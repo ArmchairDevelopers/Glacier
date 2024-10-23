@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -17,7 +18,8 @@ pub(crate) fn register_matchmaking_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTMATCHMAKINGSERVICE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceMatchmakingServiceData {
     pub _glacier_base: super::online_shared::PresenceServiceData,
     pub dummy_bool: bool,
@@ -54,16 +56,20 @@ impl super::core::DataContainerTrait for PresenceMatchmakingServiceData {
 
 pub static PRESENCEMATCHMAKINGSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceMatchmakingServiceData",
+    name_hash: 3477134309,
     flags: MemberInfoFlags::new(101),
     module: "Matchmaking",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCESERVICEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceMatchmakingServiceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceMatchmakingServiceData as Default>::default())),
+            create_boxed: || Box::new(<PresenceMatchmakingServiceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "dummyBool",
+                name_hash: 3418807235,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PresenceMatchmakingServiceData, dummy_bool),
@@ -95,6 +101,7 @@ impl TypeObject for PresenceMatchmakingServiceData {
 
 pub static PRESENCEMATCHMAKINGSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceMatchmakingServiceData-Array",
+    name_hash: 2206983377,
     flags: MemberInfoFlags::new(145),
     module: "Matchmaking",
     data: TypeInfoData::Array("PresenceMatchmakingServiceData"),
@@ -103,7 +110,8 @@ pub static PRESENCEMATCHMAKINGSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceMatchmakerMessageBase {
 }
 
@@ -115,11 +123,13 @@ impl PresenceMatchmakerMessageBaseTrait for PresenceMatchmakerMessageBase {
 
 pub static PRESENCEMATCHMAKERMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceMatchmakerMessageBase",
+    name_hash: 2170770177,
     flags: MemberInfoFlags::new(36937),
     module: "Matchmaking",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceMatchmakerMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresenceMatchmakerMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -146,7 +156,8 @@ impl TypeObject for PresenceMatchmakerMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceMatchmakingRequestMessageBase {
 }
 
@@ -158,11 +169,13 @@ impl PresenceMatchmakingRequestMessageBaseTrait for PresenceMatchmakingRequestMe
 
 pub static PRESENCEMATCHMAKINGREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceMatchmakingRequestMessageBase",
+    name_hash: 2060763687,
     flags: MemberInfoFlags::new(36937),
     module: "Matchmaking",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceMatchmakingRequestMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresenceMatchmakingRequestMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -189,7 +202,8 @@ impl TypeObject for PresenceMatchmakingRequestMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientMatchmakingService {
     pub _glacier_base: super::online::PresenceService,
 }
@@ -205,12 +219,15 @@ impl super::online::PresenceServiceTrait for ClientMatchmakingService {
 
 pub static CLIENTMATCHMAKINGSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMatchmakingService",
+    name_hash: 1535026741,
     flags: MemberInfoFlags::new(101),
     module: "Matchmaking",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCESERVICE_TYPE_INFO),
+        super_class_offset: offset_of!(ClientMatchmakingService, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientMatchmakingService as Default>::default())),
+            create_boxed: || Box::new(<ClientMatchmakingService as Default>::default()),
         },
         fields: &[
         ],
@@ -240,6 +257,7 @@ impl TypeObject for ClientMatchmakingService {
 
 pub static CLIENTMATCHMAKINGSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMatchmakingService-Array",
+    name_hash: 38463105,
     flags: MemberInfoFlags::new(145),
     module: "Matchmaking",
     data: TypeInfoData::Array("ClientMatchmakingService"),

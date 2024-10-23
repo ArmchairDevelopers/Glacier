@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -33,7 +34,8 @@ pub(crate) fn register_quickscope_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(QUICKSCOPEFRAMETYPE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QuickscopeControlEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -85,22 +87,27 @@ impl super::core::DataContainerTrait for QuickscopeControlEntityData {
 
 pub static QUICKSCOPECONTROLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeControlEntityData",
+    name_hash: 2446989702,
     flags: MemberInfoFlags::new(101),
     module: "QuickscopeShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(QuickscopeControlEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QuickscopeControlEntityData as Default>::default())),
+            create_boxed: || Box::new(<QuickscopeControlEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(QuickscopeControlEntityData, realm),
             },
             FieldInfoData {
                 name: "Label",
+                name_hash: 218105699,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(QuickscopeControlEntityData, label),
@@ -132,6 +139,7 @@ impl TypeObject for QuickscopeControlEntityData {
 
 pub static QUICKSCOPECONTROLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeControlEntityData-Array",
+    name_hash: 435275442,
     flags: MemberInfoFlags::new(145),
     module: "QuickscopeShared",
     data: TypeInfoData::Array("QuickscopeControlEntityData"),
@@ -140,7 +148,8 @@ pub static QUICKSCOPECONTROLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QuickscopeTest {
     pub _glacier_base: super::core::Asset,
     pub number: i32,
@@ -174,16 +183,20 @@ impl super::core::DataContainerTrait for QuickscopeTest {
 
 pub static QUICKSCOPETEST_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeTest",
+    name_hash: 4007529148,
     flags: MemberInfoFlags::new(101),
     module: "QuickscopeShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(QuickscopeTest, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QuickscopeTest as Default>::default())),
+            create_boxed: || Box::new(<QuickscopeTest as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Number",
+                name_hash: 2852165926,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(QuickscopeTest, number),
@@ -215,6 +228,7 @@ impl TypeObject for QuickscopeTest {
 
 pub static QUICKSCOPETEST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeTest-Array",
+    name_hash: 191611400,
     flags: MemberInfoFlags::new(145),
     module: "QuickscopeShared",
     data: TypeInfoData::Array("QuickscopeTest"),
@@ -223,31 +237,32 @@ pub static QUICKSCOPETEST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QuickscopeBudgetsAsset {
     pub _glacier_base: super::core::Asset,
-    pub entries: Vec<QuickscopeBudgetEntry>,
-    pub resolution_targets: Vec<QuickscopePlatformValue>,
+    pub entries: Vec<BoxedTypeObject /* QuickscopeBudgetEntry */>,
+    pub resolution_targets: Vec<BoxedTypeObject /* QuickscopePlatformValue */>,
 }
 
 pub trait QuickscopeBudgetsAssetTrait: super::core::AssetTrait {
-    fn entries(&self) -> &Vec<QuickscopeBudgetEntry>;
-    fn entries_mut(&mut self) -> &mut Vec<QuickscopeBudgetEntry>;
-    fn resolution_targets(&self) -> &Vec<QuickscopePlatformValue>;
-    fn resolution_targets_mut(&mut self) -> &mut Vec<QuickscopePlatformValue>;
+    fn entries(&self) -> &Vec<BoxedTypeObject /* QuickscopeBudgetEntry */>;
+    fn entries_mut(&mut self) -> &mut Vec<BoxedTypeObject /* QuickscopeBudgetEntry */>;
+    fn resolution_targets(&self) -> &Vec<BoxedTypeObject /* QuickscopePlatformValue */>;
+    fn resolution_targets_mut(&mut self) -> &mut Vec<BoxedTypeObject /* QuickscopePlatformValue */>;
 }
 
 impl QuickscopeBudgetsAssetTrait for QuickscopeBudgetsAsset {
-    fn entries(&self) -> &Vec<QuickscopeBudgetEntry> {
+    fn entries(&self) -> &Vec<BoxedTypeObject /* QuickscopeBudgetEntry */> {
         &self.entries
     }
-    fn entries_mut(&mut self) -> &mut Vec<QuickscopeBudgetEntry> {
+    fn entries_mut(&mut self) -> &mut Vec<BoxedTypeObject /* QuickscopeBudgetEntry */> {
         &mut self.entries
     }
-    fn resolution_targets(&self) -> &Vec<QuickscopePlatformValue> {
+    fn resolution_targets(&self) -> &Vec<BoxedTypeObject /* QuickscopePlatformValue */> {
         &self.resolution_targets
     }
-    fn resolution_targets_mut(&mut self) -> &mut Vec<QuickscopePlatformValue> {
+    fn resolution_targets_mut(&mut self) -> &mut Vec<BoxedTypeObject /* QuickscopePlatformValue */> {
         &mut self.resolution_targets
     }
 }
@@ -266,22 +281,27 @@ impl super::core::DataContainerTrait for QuickscopeBudgetsAsset {
 
 pub static QUICKSCOPEBUDGETSASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeBudgetsAsset",
+    name_hash: 165555948,
     flags: MemberInfoFlags::new(101),
     module: "QuickscopeShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(QuickscopeBudgetsAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QuickscopeBudgetsAsset as Default>::default())),
+            create_boxed: || Box::new(<QuickscopeBudgetsAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Entries",
+                name_hash: 8238103,
                 flags: MemberInfoFlags::new(144),
                 field_type: "QuickscopeBudgetEntry-Array",
                 rust_offset: offset_of!(QuickscopeBudgetsAsset, entries),
             },
             FieldInfoData {
                 name: "ResolutionTargets",
+                name_hash: 2321090633,
                 flags: MemberInfoFlags::new(144),
                 field_type: "QuickscopePlatformValue-Array",
                 rust_offset: offset_of!(QuickscopeBudgetsAsset, resolution_targets),
@@ -313,6 +333,7 @@ impl TypeObject for QuickscopeBudgetsAsset {
 
 pub static QUICKSCOPEBUDGETSASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeBudgetsAsset-Array",
+    name_hash: 4247736024,
     flags: MemberInfoFlags::new(145),
     module: "QuickscopeShared",
     data: TypeInfoData::Array("QuickscopeBudgetsAsset"),
@@ -321,17 +342,18 @@ pub static QUICKSCOPEBUDGETSASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QuickscopeBudgetEntry {
     pub category_name: String,
-    pub budgets: Vec<QuickscopePlatformValue>,
+    pub budgets: Vec<BoxedTypeObject /* QuickscopePlatformValue */>,
 }
 
 pub trait QuickscopeBudgetEntryTrait: TypeObject {
     fn category_name(&self) -> &String;
     fn category_name_mut(&mut self) -> &mut String;
-    fn budgets(&self) -> &Vec<QuickscopePlatformValue>;
-    fn budgets_mut(&mut self) -> &mut Vec<QuickscopePlatformValue>;
+    fn budgets(&self) -> &Vec<BoxedTypeObject /* QuickscopePlatformValue */>;
+    fn budgets_mut(&mut self) -> &mut Vec<BoxedTypeObject /* QuickscopePlatformValue */>;
 }
 
 impl QuickscopeBudgetEntryTrait for QuickscopeBudgetEntry {
@@ -341,31 +363,35 @@ impl QuickscopeBudgetEntryTrait for QuickscopeBudgetEntry {
     fn category_name_mut(&mut self) -> &mut String {
         &mut self.category_name
     }
-    fn budgets(&self) -> &Vec<QuickscopePlatformValue> {
+    fn budgets(&self) -> &Vec<BoxedTypeObject /* QuickscopePlatformValue */> {
         &self.budgets
     }
-    fn budgets_mut(&mut self) -> &mut Vec<QuickscopePlatformValue> {
+    fn budgets_mut(&mut self) -> &mut Vec<BoxedTypeObject /* QuickscopePlatformValue */> {
         &mut self.budgets
     }
 }
 
 pub static QUICKSCOPEBUDGETENTRY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeBudgetEntry",
+    name_hash: 3846491675,
     flags: MemberInfoFlags::new(73),
     module: "QuickscopeShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QuickscopeBudgetEntry as Default>::default())),
+            create_boxed: || Box::new(<QuickscopeBudgetEntry as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CategoryName",
+                name_hash: 1997430002,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(QuickscopeBudgetEntry, category_name),
             },
             FieldInfoData {
                 name: "Budgets",
+                name_hash: 2763087795,
                 flags: MemberInfoFlags::new(144),
                 field_type: "QuickscopePlatformValue-Array",
                 rust_offset: offset_of!(QuickscopeBudgetEntry, budgets),
@@ -397,6 +423,7 @@ impl TypeObject for QuickscopeBudgetEntry {
 
 pub static QUICKSCOPEBUDGETENTRY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeBudgetEntry-Array",
+    name_hash: 4057687215,
     flags: MemberInfoFlags::new(145),
     module: "QuickscopeShared",
     data: TypeInfoData::Array("QuickscopeBudgetEntry"),
@@ -405,7 +432,8 @@ pub static QUICKSCOPEBUDGETENTRY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QuickscopePlatformValue {
     pub platform: QuickscopePlatform,
     pub value: f32,
@@ -435,21 +463,25 @@ impl QuickscopePlatformValueTrait for QuickscopePlatformValue {
 
 pub static QUICKSCOPEPLATFORMVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopePlatformValue",
+    name_hash: 3880671390,
     flags: MemberInfoFlags::new(36937),
     module: "QuickscopeShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QuickscopePlatformValue as Default>::default())),
+            create_boxed: || Box::new(<QuickscopePlatformValue as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Platform",
+                name_hash: 942751002,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QuickscopePlatform",
                 rust_offset: offset_of!(QuickscopePlatformValue, platform),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(QuickscopePlatformValue, value),
@@ -481,6 +513,7 @@ impl TypeObject for QuickscopePlatformValue {
 
 pub static QUICKSCOPEPLATFORMVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopePlatformValue-Array",
+    name_hash: 1567320490,
     flags: MemberInfoFlags::new(145),
     module: "QuickscopeShared",
     data: TypeInfoData::Array("QuickscopePlatformValue"),
@@ -505,6 +538,7 @@ pub enum QuickscopePlatform {
 
 pub static QUICKSCOPEPLATFORM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopePlatform",
+    name_hash: 3010488757,
     flags: MemberInfoFlags::new(49429),
     module: "QuickscopeShared",
     data: TypeInfoData::Enum,
@@ -533,6 +567,7 @@ impl TypeObject for QuickscopePlatform {
 
 pub static QUICKSCOPEPLATFORM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopePlatform-Array",
+    name_hash: 3831581185,
     flags: MemberInfoFlags::new(145),
     module: "QuickscopeShared",
     data: TypeInfoData::Array("QuickscopePlatform"),
@@ -541,22 +576,23 @@ pub static QUICKSCOPEPLATFORM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QuickscopeCategoriesAsset {
     pub _glacier_base: super::core::Asset,
-    pub categories: Vec<QuickscopeCategory>,
+    pub categories: Vec<BoxedTypeObject /* QuickscopeCategory */>,
 }
 
 pub trait QuickscopeCategoriesAssetTrait: super::core::AssetTrait {
-    fn categories(&self) -> &Vec<QuickscopeCategory>;
-    fn categories_mut(&mut self) -> &mut Vec<QuickscopeCategory>;
+    fn categories(&self) -> &Vec<BoxedTypeObject /* QuickscopeCategory */>;
+    fn categories_mut(&mut self) -> &mut Vec<BoxedTypeObject /* QuickscopeCategory */>;
 }
 
 impl QuickscopeCategoriesAssetTrait for QuickscopeCategoriesAsset {
-    fn categories(&self) -> &Vec<QuickscopeCategory> {
+    fn categories(&self) -> &Vec<BoxedTypeObject /* QuickscopeCategory */> {
         &self.categories
     }
-    fn categories_mut(&mut self) -> &mut Vec<QuickscopeCategory> {
+    fn categories_mut(&mut self) -> &mut Vec<BoxedTypeObject /* QuickscopeCategory */> {
         &mut self.categories
     }
 }
@@ -575,16 +611,20 @@ impl super::core::DataContainerTrait for QuickscopeCategoriesAsset {
 
 pub static QUICKSCOPECATEGORIESASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeCategoriesAsset",
+    name_hash: 2403708844,
     flags: MemberInfoFlags::new(101),
     module: "QuickscopeShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(QuickscopeCategoriesAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QuickscopeCategoriesAsset as Default>::default())),
+            create_boxed: || Box::new(<QuickscopeCategoriesAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Categories",
+                name_hash: 1039077843,
                 flags: MemberInfoFlags::new(144),
                 field_type: "QuickscopeCategory-Array",
                 rust_offset: offset_of!(QuickscopeCategoriesAsset, categories),
@@ -616,6 +656,7 @@ impl TypeObject for QuickscopeCategoriesAsset {
 
 pub static QUICKSCOPECATEGORIESASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeCategoriesAsset-Array",
+    name_hash: 2527616792,
     flags: MemberInfoFlags::new(145),
     module: "QuickscopeShared",
     data: TypeInfoData::Array("QuickscopeCategoriesAsset"),
@@ -624,7 +665,8 @@ pub static QUICKSCOPECATEGORIESASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QuickscopeCategory {
     pub name: String,
     pub frame: QuickscopeFrameType,
@@ -681,39 +723,46 @@ impl QuickscopeCategoryTrait for QuickscopeCategory {
 
 pub static QUICKSCOPECATEGORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeCategory",
+    name_hash: 2671955354,
     flags: MemberInfoFlags::new(73),
     module: "QuickscopeShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QuickscopeCategory as Default>::default())),
+            create_boxed: || Box::new(<QuickscopeCategory as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(QuickscopeCategory, name),
             },
             FieldInfoData {
                 name: "Frame",
+                name_hash: 206997912,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QuickscopeFrameType",
                 rust_offset: offset_of!(QuickscopeCategory, frame),
             },
             FieldInfoData {
                 name: "Processor",
+                name_hash: 136630291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QuickscopeProcessorType",
                 rust_offset: offset_of!(QuickscopeCategory, processor),
             },
             FieldInfoData {
                 name: "IncludeScope",
+                name_hash: 791040819,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(QuickscopeCategory, include_scope),
             },
             FieldInfoData {
                 name: "ExcludeScope",
+                name_hash: 759250601,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(QuickscopeCategory, exclude_scope),
@@ -745,6 +794,7 @@ impl TypeObject for QuickscopeCategory {
 
 pub static QUICKSCOPECATEGORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeCategory-Array",
+    name_hash: 2028204206,
     flags: MemberInfoFlags::new(145),
     module: "QuickscopeShared",
     data: TypeInfoData::Array("QuickscopeCategory"),
@@ -753,31 +803,32 @@ pub static QUICKSCOPECATEGORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QuickscopeLevelData {
     pub _glacier_base: super::entity::SubWorldDataComponent,
-    pub categories: Option<Arc<Mutex<dyn QuickscopeCategoriesAssetTrait>>>,
-    pub budgets: Option<Arc<Mutex<dyn QuickscopeBudgetsAssetTrait>>>,
+    pub categories: Option<LockedTypeObject /* QuickscopeCategoriesAsset */>,
+    pub budgets: Option<LockedTypeObject /* QuickscopeBudgetsAsset */>,
 }
 
 pub trait QuickscopeLevelDataTrait: super::entity::SubWorldDataComponentTrait {
-    fn categories(&self) -> &Option<Arc<Mutex<dyn QuickscopeCategoriesAssetTrait>>>;
-    fn categories_mut(&mut self) -> &mut Option<Arc<Mutex<dyn QuickscopeCategoriesAssetTrait>>>;
-    fn budgets(&self) -> &Option<Arc<Mutex<dyn QuickscopeBudgetsAssetTrait>>>;
-    fn budgets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn QuickscopeBudgetsAssetTrait>>>;
+    fn categories(&self) -> &Option<LockedTypeObject /* QuickscopeCategoriesAsset */>;
+    fn categories_mut(&mut self) -> &mut Option<LockedTypeObject /* QuickscopeCategoriesAsset */>;
+    fn budgets(&self) -> &Option<LockedTypeObject /* QuickscopeBudgetsAsset */>;
+    fn budgets_mut(&mut self) -> &mut Option<LockedTypeObject /* QuickscopeBudgetsAsset */>;
 }
 
 impl QuickscopeLevelDataTrait for QuickscopeLevelData {
-    fn categories(&self) -> &Option<Arc<Mutex<dyn QuickscopeCategoriesAssetTrait>>> {
+    fn categories(&self) -> &Option<LockedTypeObject /* QuickscopeCategoriesAsset */> {
         &self.categories
     }
-    fn categories_mut(&mut self) -> &mut Option<Arc<Mutex<dyn QuickscopeCategoriesAssetTrait>>> {
+    fn categories_mut(&mut self) -> &mut Option<LockedTypeObject /* QuickscopeCategoriesAsset */> {
         &mut self.categories
     }
-    fn budgets(&self) -> &Option<Arc<Mutex<dyn QuickscopeBudgetsAssetTrait>>> {
+    fn budgets(&self) -> &Option<LockedTypeObject /* QuickscopeBudgetsAsset */> {
         &self.budgets
     }
-    fn budgets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn QuickscopeBudgetsAssetTrait>>> {
+    fn budgets_mut(&mut self) -> &mut Option<LockedTypeObject /* QuickscopeBudgetsAsset */> {
         &mut self.budgets
     }
 }
@@ -790,22 +841,27 @@ impl super::core::DataContainerTrait for QuickscopeLevelData {
 
 pub static QUICKSCOPELEVELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeLevelData",
+    name_hash: 1612757836,
     flags: MemberInfoFlags::new(101),
     module: "QuickscopeShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SUBWORLDDATACOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(QuickscopeLevelData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QuickscopeLevelData as Default>::default())),
+            create_boxed: || Box::new(<QuickscopeLevelData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Categories",
+                name_hash: 1039077843,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QuickscopeCategoriesAsset",
                 rust_offset: offset_of!(QuickscopeLevelData, categories),
             },
             FieldInfoData {
                 name: "Budgets",
+                name_hash: 2763087795,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QuickscopeBudgetsAsset",
                 rust_offset: offset_of!(QuickscopeLevelData, budgets),
@@ -837,6 +893,7 @@ impl TypeObject for QuickscopeLevelData {
 
 pub static QUICKSCOPELEVELDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeLevelData-Array",
+    name_hash: 3526482936,
     flags: MemberInfoFlags::new(145),
     module: "QuickscopeShared",
     data: TypeInfoData::Array("QuickscopeLevelData"),
@@ -858,6 +915,7 @@ pub enum QuickscopeProcessorType {
 
 pub static QUICKSCOPEPROCESSORTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeProcessorType",
+    name_hash: 1862495460,
     flags: MemberInfoFlags::new(49429),
     module: "QuickscopeShared",
     data: TypeInfoData::Enum,
@@ -886,6 +944,7 @@ impl TypeObject for QuickscopeProcessorType {
 
 pub static QUICKSCOPEPROCESSORTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeProcessorType-Array",
+    name_hash: 1112256720,
     flags: MemberInfoFlags::new(145),
     module: "QuickscopeShared",
     data: TypeInfoData::Array("QuickscopeProcessorType"),
@@ -907,6 +966,7 @@ pub enum QuickscopeFrameType {
 
 pub static QUICKSCOPEFRAMETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeFrameType",
+    name_hash: 2831633711,
     flags: MemberInfoFlags::new(49429),
     module: "QuickscopeShared",
     data: TypeInfoData::Enum,
@@ -935,6 +995,7 @@ impl TypeObject for QuickscopeFrameType {
 
 pub static QUICKSCOPEFRAMETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeFrameType-Array",
+    name_hash: 1884936859,
     flags: MemberInfoFlags::new(145),
     module: "QuickscopeShared",
     data: TypeInfoData::Array("QuickscopeFrameType"),

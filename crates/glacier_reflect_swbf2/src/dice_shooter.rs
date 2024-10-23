@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -672,7 +673,8 @@ pub(crate) fn register_dice_shooter_types(registry: &mut TypeRegistry) {
     registry.register_type(RAWDATAMAXLIMITS_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPlayerAbilityEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -691,12 +693,15 @@ impl super::entity::EntityBusPeerTrait for ServerPlayerAbilityEntity {
 
 pub static SERVERPLAYERABILITYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilityEntity",
+    name_hash: 798389354,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPlayerAbilityEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPlayerAbilityEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerPlayerAbilityEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -726,6 +731,7 @@ impl TypeObject for ServerPlayerAbilityEntity {
 
 pub static SERVERPLAYERABILITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilityEntity-Array",
+    name_hash: 4107419486,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPlayerAbilityEntity"),
@@ -734,7 +740,8 @@ pub static SERVERPLAYERABILITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLinkedPlayerAbilityReferenceEntity {
     pub _glacier_base: ServerPlayerAbilityReferenceEntity,
 }
@@ -756,12 +763,15 @@ impl super::entity::EntityBusPeerTrait for ServerLinkedPlayerAbilityReferenceEnt
 
 pub static SERVERLINKEDPLAYERABILITYREFERENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLinkedPlayerAbilityReferenceEntity",
+    name_hash: 140533056,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERPLAYERABILITYREFERENCEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerLinkedPlayerAbilityReferenceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLinkedPlayerAbilityReferenceEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerLinkedPlayerAbilityReferenceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -791,6 +801,7 @@ impl TypeObject for ServerLinkedPlayerAbilityReferenceEntity {
 
 pub static SERVERLINKEDPLAYERABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLinkedPlayerAbilityReferenceEntity-Array",
+    name_hash: 1684272116,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerLinkedPlayerAbilityReferenceEntity"),
@@ -799,7 +810,8 @@ pub static SERVERLINKEDPLAYERABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLinkedAbilityReferenceEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -818,12 +830,15 @@ impl super::entity::EntityBusPeerTrait for ServerLinkedAbilityReferenceEntity {
 
 pub static SERVERLINKEDABILITYREFERENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLinkedAbilityReferenceEntity",
+    name_hash: 698490611,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerLinkedAbilityReferenceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLinkedAbilityReferenceEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerLinkedAbilityReferenceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -853,6 +868,7 @@ impl TypeObject for ServerLinkedAbilityReferenceEntity {
 
 pub static SERVERLINKEDABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLinkedAbilityReferenceEntity-Array",
+    name_hash: 680704711,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerLinkedAbilityReferenceEntity"),
@@ -861,7 +877,8 @@ pub static SERVERLINKEDABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCategoryToPlayerAbilityEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -880,12 +897,15 @@ impl super::entity::EntityBusPeerTrait for ServerCategoryToPlayerAbilityEntity {
 
 pub static SERVERCATEGORYTOPLAYERABILITYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCategoryToPlayerAbilityEntity",
+    name_hash: 2825505089,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCategoryToPlayerAbilityEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCategoryToPlayerAbilityEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCategoryToPlayerAbilityEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -915,6 +935,7 @@ impl TypeObject for ServerCategoryToPlayerAbilityEntity {
 
 pub static SERVERCATEGORYTOPLAYERABILITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCategoryToPlayerAbilityEntity-Array",
+    name_hash: 1662071669,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerCategoryToPlayerAbilityEntity"),
@@ -923,7 +944,8 @@ pub static SERVERCATEGORYTOPLAYERABILITYENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRemotePlayerAbilityStateEntity {
     pub _glacier_base: ClientPlayerAbilityStateEntity,
 }
@@ -945,12 +967,15 @@ impl super::entity::EntityBusPeerTrait for ClientRemotePlayerAbilityStateEntity 
 
 pub static CLIENTREMOTEPLAYERABILITYSTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemotePlayerAbilityStateEntity",
+    name_hash: 1209864325,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTPLAYERABILITYSTATEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRemotePlayerAbilityStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRemotePlayerAbilityStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientRemotePlayerAbilityStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -980,6 +1005,7 @@ impl TypeObject for ClientRemotePlayerAbilityStateEntity {
 
 pub static CLIENTREMOTEPLAYERABILITYSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemotePlayerAbilityStateEntity-Array",
+    name_hash: 2356189233,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRemotePlayerAbilityStateEntity"),
@@ -988,7 +1014,8 @@ pub static CLIENTREMOTEPLAYERABILITYSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerAbilityStateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1007,12 +1034,15 @@ impl super::entity::EntityBusPeerTrait for ClientPlayerAbilityStateEntity {
 
 pub static CLIENTPLAYERABILITYSTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilityStateEntity",
+    name_hash: 4246684353,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPlayerAbilityStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerAbilityStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerAbilityStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1042,6 +1072,7 @@ impl TypeObject for ClientPlayerAbilityStateEntity {
 
 pub static CLIENTPLAYERABILITYSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilityStateEntity-Array",
+    name_hash: 1868287221,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPlayerAbilityStateEntity"),
@@ -1050,7 +1081,8 @@ pub static CLIENTPLAYERABILITYSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerAbilityReferenceEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1069,12 +1101,15 @@ impl super::entity::EntityBusPeerTrait for ClientPlayerAbilityReferenceEntity {
 
 pub static CLIENTPLAYERABILITYREFERENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilityReferenceEntity",
+    name_hash: 1479153181,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPlayerAbilityReferenceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerAbilityReferenceEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerAbilityReferenceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1104,6 +1139,7 @@ impl TypeObject for ClientPlayerAbilityReferenceEntity {
 
 pub static CLIENTPLAYERABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilityReferenceEntity-Array",
+    name_hash: 614326697,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPlayerAbilityReferenceEntity"),
@@ -1112,7 +1148,8 @@ pub static CLIENTPLAYERABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerAbilityPropertyOutputEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1131,12 +1168,15 @@ impl super::entity::EntityBusPeerTrait for ClientPlayerAbilityPropertyOutputEnti
 
 pub static CLIENTPLAYERABILITYPROPERTYOUTPUTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilityPropertyOutputEntity",
+    name_hash: 3683653294,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPlayerAbilityPropertyOutputEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerAbilityPropertyOutputEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerAbilityPropertyOutputEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1166,6 +1206,7 @@ impl TypeObject for ClientPlayerAbilityPropertyOutputEntity {
 
 pub static CLIENTPLAYERABILITYPROPERTYOUTPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilityPropertyOutputEntity-Array",
+    name_hash: 3139206938,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPlayerAbilityPropertyOutputEntity"),
@@ -1174,7 +1215,8 @@ pub static CLIENTPLAYERABILITYPROPERTYOUTPUTENTITY_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerAbilityEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1193,12 +1235,15 @@ impl super::entity::EntityBusPeerTrait for ClientPlayerAbilityEntity {
 
 pub static CLIENTPLAYERABILITYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilityEntity",
+    name_hash: 4165695030,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPlayerAbilityEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerAbilityEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerAbilityEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1228,6 +1273,7 @@ impl TypeObject for ClientPlayerAbilityEntity {
 
 pub static CLIENTPLAYERABILITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilityEntity-Array",
+    name_hash: 517270146,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPlayerAbilityEntity"),
@@ -1236,7 +1282,8 @@ pub static CLIENTPLAYERABILITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLinkedPlayerAbilityReferenceEntity {
     pub _glacier_base: ClientPlayerAbilityReferenceEntity,
 }
@@ -1258,12 +1305,15 @@ impl super::entity::EntityBusPeerTrait for ClientLinkedPlayerAbilityReferenceEnt
 
 pub static CLIENTLINKEDPLAYERABILITYREFERENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLinkedPlayerAbilityReferenceEntity",
+    name_hash: 1874711580,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTPLAYERABILITYREFERENCEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientLinkedPlayerAbilityReferenceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLinkedPlayerAbilityReferenceEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientLinkedPlayerAbilityReferenceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1293,6 +1343,7 @@ impl TypeObject for ClientLinkedPlayerAbilityReferenceEntity {
 
 pub static CLIENTLINKEDPLAYERABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLinkedPlayerAbilityReferenceEntity-Array",
+    name_hash: 1539132456,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientLinkedPlayerAbilityReferenceEntity"),
@@ -1301,7 +1352,8 @@ pub static CLIENTLINKEDPLAYERABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLinkedAbilityReferenceEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1320,12 +1372,15 @@ impl super::entity::EntityBusPeerTrait for ClientLinkedAbilityReferenceEntity {
 
 pub static CLIENTLINKEDABILITYREFERENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLinkedAbilityReferenceEntity",
+    name_hash: 755556527,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientLinkedAbilityReferenceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLinkedAbilityReferenceEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientLinkedAbilityReferenceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1355,6 +1410,7 @@ impl TypeObject for ClientLinkedAbilityReferenceEntity {
 
 pub static CLIENTLINKEDABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLinkedAbilityReferenceEntity-Array",
+    name_hash: 2405174811,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientLinkedAbilityReferenceEntity"),
@@ -1363,7 +1419,8 @@ pub static CLIENTLINKEDABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCategoryToPlayerAbilityEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1382,12 +1439,15 @@ impl super::entity::EntityBusPeerTrait for ClientCategoryToPlayerAbilityEntity {
 
 pub static CLIENTCATEGORYTOPLAYERABILITYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCategoryToPlayerAbilityEntity",
+    name_hash: 3600341277,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCategoryToPlayerAbilityEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCategoryToPlayerAbilityEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCategoryToPlayerAbilityEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1417,6 +1477,7 @@ impl TypeObject for ClientCategoryToPlayerAbilityEntity {
 
 pub static CLIENTCATEGORYTOPLAYERABILITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCategoryToPlayerAbilityEntity-Array",
+    name_hash: 3654476969,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientCategoryToPlayerAbilityEntity"),
@@ -1425,7 +1486,8 @@ pub static CLIENTCATEGORYTOPLAYERABILITYENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPlayerAbilitySetComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -1450,12 +1512,15 @@ impl super::entity::EntityBusPeerTrait for ServerPlayerAbilitySetComponent {
 
 pub static SERVERPLAYERABILITYSETCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilitySetComponent",
+    name_hash: 1007235132,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPlayerAbilitySetComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPlayerAbilitySetComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerPlayerAbilitySetComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1485,6 +1550,7 @@ impl TypeObject for ServerPlayerAbilitySetComponent {
 
 pub static SERVERPLAYERABILITYSETCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilitySetComponent-Array",
+    name_hash: 4106028936,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPlayerAbilitySetComponent"),
@@ -1493,7 +1559,8 @@ pub static SERVERPLAYERABILITYSETCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerNonCustomizablePlayerAbilitySetComponent {
     pub _glacier_base: ServerPlayerAbilitySetComponent,
 }
@@ -1521,12 +1588,15 @@ impl super::entity::EntityBusPeerTrait for ServerNonCustomizablePlayerAbilitySet
 
 pub static SERVERNONCUSTOMIZABLEPLAYERABILITYSETCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerNonCustomizablePlayerAbilitySetComponent",
+    name_hash: 815053305,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERPLAYERABILITYSETCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerNonCustomizablePlayerAbilitySetComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerNonCustomizablePlayerAbilitySetComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerNonCustomizablePlayerAbilitySetComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1556,6 +1626,7 @@ impl TypeObject for ServerNonCustomizablePlayerAbilitySetComponent {
 
 pub static SERVERNONCUSTOMIZABLEPLAYERABILITYSETCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerNonCustomizablePlayerAbilitySetComponent-Array",
+    name_hash: 1218492621,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerNonCustomizablePlayerAbilitySetComponent"),
@@ -1564,7 +1635,8 @@ pub static SERVERNONCUSTOMIZABLEPLAYERABILITYSETCOMPONENT_ARRAY_TYPE_INFO: &'sta
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerAbilitySetComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -1589,12 +1661,15 @@ impl super::entity::EntityBusPeerTrait for ClientPlayerAbilitySetComponent {
 
 pub static CLIENTPLAYERABILITYSETCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilitySetComponent",
+    name_hash: 1554780896,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPlayerAbilitySetComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerAbilitySetComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerAbilitySetComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1624,6 +1699,7 @@ impl TypeObject for ClientPlayerAbilitySetComponent {
 
 pub static CLIENTPLAYERABILITYSETCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilitySetComponent-Array",
+    name_hash: 4028180692,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPlayerAbilitySetComponent"),
@@ -1632,7 +1708,8 @@ pub static CLIENTPLAYERABILITYSETCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientNonCustomizablePlayerAbilitySetComponent {
     pub _glacier_base: ClientPlayerAbilitySetComponent,
 }
@@ -1660,12 +1737,15 @@ impl super::entity::EntityBusPeerTrait for ClientNonCustomizablePlayerAbilitySet
 
 pub static CLIENTNONCUSTOMIZABLEPLAYERABILITYSETCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientNonCustomizablePlayerAbilitySetComponent",
+    name_hash: 293610149,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTPLAYERABILITYSETCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientNonCustomizablePlayerAbilitySetComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientNonCustomizablePlayerAbilitySetComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientNonCustomizablePlayerAbilitySetComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1695,6 +1775,7 @@ impl TypeObject for ClientNonCustomizablePlayerAbilitySetComponent {
 
 pub static CLIENTNONCUSTOMIZABLEPLAYERABILITYSETCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientNonCustomizablePlayerAbilitySetComponent-Array",
+    name_hash: 1476721425,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientNonCustomizablePlayerAbilitySetComponent"),
@@ -1703,7 +1784,8 @@ pub static CLIENTNONCUSTOMIZABLEPLAYERABILITYSETCOMPONENT_ARRAY_TYPE_INFO: &'sta
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSoldierWeaponPlayerAbility {
     pub _glacier_base: ServerBasicPlayerAbility,
 }
@@ -1728,12 +1810,15 @@ impl PlayerAbilityTrait for ServerSoldierWeaponPlayerAbility {
 
 pub static SERVERSOLDIERWEAPONPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSoldierWeaponPlayerAbility",
+    name_hash: 1155539897,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERBASICPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSoldierWeaponPlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSoldierWeaponPlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ServerSoldierWeaponPlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -1763,6 +1848,7 @@ impl TypeObject for ServerSoldierWeaponPlayerAbility {
 
 pub static SERVERSOLDIERWEAPONPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSoldierWeaponPlayerAbility-Array",
+    name_hash: 2121544205,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerSoldierWeaponPlayerAbility"),
@@ -1771,7 +1857,8 @@ pub static SERVERSOLDIERWEAPONPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRetriggerablePlayerAbility {
     pub _glacier_base: ServerBasicPlayerAbility,
 }
@@ -1796,12 +1883,15 @@ impl PlayerAbilityTrait for ServerRetriggerablePlayerAbility {
 
 pub static SERVERRETRIGGERABLEPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRetriggerablePlayerAbility",
+    name_hash: 20456788,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERBASICPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRetriggerablePlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRetriggerablePlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ServerRetriggerablePlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -1831,6 +1921,7 @@ impl TypeObject for ServerRetriggerablePlayerAbility {
 
 pub static SERVERRETRIGGERABLEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRetriggerablePlayerAbility-Array",
+    name_hash: 3536073184,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRetriggerablePlayerAbility"),
@@ -1839,7 +1930,8 @@ pub static SERVERRETRIGGERABLEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRechargeablePlayerAbility {
     pub _glacier_base: ServerBasicPlayerAbility,
 }
@@ -1864,12 +1956,15 @@ impl PlayerAbilityTrait for ServerRechargeablePlayerAbility {
 
 pub static SERVERRECHARGEABLEPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRechargeablePlayerAbility",
+    name_hash: 131615798,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERBASICPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRechargeablePlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRechargeablePlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ServerRechargeablePlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -1899,6 +1994,7 @@ impl TypeObject for ServerRechargeablePlayerAbility {
 
 pub static SERVERRECHARGEABLEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRechargeablePlayerAbility-Array",
+    name_hash: 3593093250,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRechargeablePlayerAbility"),
@@ -1907,7 +2003,8 @@ pub static SERVERRECHARGEABLEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPlayerAbility {
     pub _glacier_base: PlayerAbility,
 }
@@ -1923,12 +2020,15 @@ impl PlayerAbilityTrait for ServerPlayerAbility {
 
 pub static SERVERPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbility",
+    name_hash: 1468034737,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ServerPlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -1958,6 +2058,7 @@ impl TypeObject for ServerPlayerAbility {
 
 pub static SERVERPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbility-Array",
+    name_hash: 375480581,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPlayerAbility"),
@@ -1966,7 +2067,8 @@ pub static SERVERPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPassivePlayerAbility {
     pub _glacier_base: ServerPlayerAbility,
 }
@@ -1985,12 +2087,15 @@ impl PlayerAbilityTrait for ServerPassivePlayerAbility {
 
 pub static SERVERPASSIVEPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPassivePlayerAbility",
+    name_hash: 3470761498,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPassivePlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPassivePlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ServerPassivePlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -2020,6 +2125,7 @@ impl TypeObject for ServerPassivePlayerAbility {
 
 pub static SERVERPASSIVEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPassivePlayerAbility-Array",
+    name_hash: 3153797422,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPassivePlayerAbility"),
@@ -2028,7 +2134,8 @@ pub static SERVERPASSIVEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCorrectedPlayerAbility {
     pub _glacier_base: ServerPlayerAbility,
 }
@@ -2047,12 +2154,15 @@ impl PlayerAbilityTrait for ServerCorrectedPlayerAbility {
 
 pub static SERVERCORRECTEDPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCorrectedPlayerAbility",
+    name_hash: 1636947694,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCorrectedPlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCorrectedPlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ServerCorrectedPlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -2082,6 +2192,7 @@ impl TypeObject for ServerCorrectedPlayerAbility {
 
 pub static SERVERCORRECTEDPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCorrectedPlayerAbility-Array",
+    name_hash: 3769446362,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerCorrectedPlayerAbility"),
@@ -2090,7 +2201,8 @@ pub static SERVERCORRECTEDPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerBasicPlayerAbility {
     pub _glacier_base: ServerCorrectedPlayerAbility,
 }
@@ -2112,12 +2224,15 @@ impl PlayerAbilityTrait for ServerBasicPlayerAbility {
 
 pub static SERVERBASICPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBasicPlayerAbility",
+    name_hash: 2506028139,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERCORRECTEDPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerBasicPlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerBasicPlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ServerBasicPlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -2147,6 +2262,7 @@ impl TypeObject for ServerBasicPlayerAbility {
 
 pub static SERVERBASICPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBasicPlayerAbility-Array",
+    name_hash: 2514895967,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerBasicPlayerAbility"),
@@ -2155,7 +2271,8 @@ pub static SERVERBASICPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlayerAbility {
 }
 
@@ -2167,12 +2284,15 @@ impl PlayerAbilityTrait for PlayerAbility {
 
 pub static PLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayerAbility",
+    name_hash: 3898918772,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<PlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -2202,6 +2322,7 @@ impl TypeObject for PlayerAbility {
 
 pub static PLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayerAbility-Array",
+    name_hash: 3329864512,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("PlayerAbility"),
@@ -2210,7 +2331,8 @@ pub static PLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSoldierWeaponPlayerAbility {
     pub _glacier_base: ClientBasicPlayerAbility,
 }
@@ -2235,12 +2357,15 @@ impl PlayerAbilityTrait for ClientSoldierWeaponPlayerAbility {
 
 pub static CLIENTSOLDIERWEAPONPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSoldierWeaponPlayerAbility",
+    name_hash: 3719183973,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTBASICPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSoldierWeaponPlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSoldierWeaponPlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ClientSoldierWeaponPlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -2270,6 +2395,7 @@ impl TypeObject for ClientSoldierWeaponPlayerAbility {
 
 pub static CLIENTSOLDIERWEAPONPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSoldierWeaponPlayerAbility-Array",
+    name_hash: 941172561,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientSoldierWeaponPlayerAbility"),
@@ -2278,7 +2404,8 @@ pub static CLIENTSOLDIERWEAPONPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRetriggerablePlayerAbility {
     pub _glacier_base: ClientBasicPlayerAbility,
 }
@@ -2303,12 +2430,15 @@ impl PlayerAbilityTrait for ClientRetriggerablePlayerAbility {
 
 pub static CLIENTRETRIGGERABLEPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRetriggerablePlayerAbility",
+    name_hash: 3681750280,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTBASICPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRetriggerablePlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRetriggerablePlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ClientRetriggerablePlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -2338,6 +2468,7 @@ impl TypeObject for ClientRetriggerablePlayerAbility {
 
 pub static CLIENTRETRIGGERABLEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRetriggerablePlayerAbility-Array",
+    name_hash: 3253129020,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRetriggerablePlayerAbility"),
@@ -2346,7 +2477,8 @@ pub static CLIENTRETRIGGERABLEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRechargeablePlayerAbility {
     pub _glacier_base: ClientBasicPlayerAbility,
 }
@@ -2371,12 +2503,15 @@ impl PlayerAbilityTrait for ClientRechargeablePlayerAbility {
 
 pub static CLIENTRECHARGEABLEPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRechargeablePlayerAbility",
+    name_hash: 2289115370,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTBASICPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRechargeablePlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRechargeablePlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ClientRechargeablePlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -2406,6 +2541,7 @@ impl TypeObject for ClientRechargeablePlayerAbility {
 
 pub static CLIENTRECHARGEABLEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRechargeablePlayerAbility-Array",
+    name_hash: 2803649502,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRechargeablePlayerAbility"),
@@ -2414,7 +2550,8 @@ pub static CLIENTRECHARGEABLEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerAbility {
     pub _glacier_base: PlayerAbility,
 }
@@ -2430,12 +2567,15 @@ impl PlayerAbilityTrait for ClientPlayerAbility {
 
 pub static CLIENTPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbility",
+    name_hash: 3381044077,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -2465,6 +2605,7 @@ impl TypeObject for ClientPlayerAbility {
 
 pub static CLIENTPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbility-Array",
+    name_hash: 2724767833,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPlayerAbility"),
@@ -2473,7 +2614,8 @@ pub static CLIENTPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPassivePlayerAbility {
     pub _glacier_base: ClientPlayerAbility,
 }
@@ -2492,12 +2634,15 @@ impl PlayerAbilityTrait for ClientPassivePlayerAbility {
 
 pub static CLIENTPASSIVEPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPassivePlayerAbility",
+    name_hash: 2540157382,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPassivePlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPassivePlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ClientPassivePlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -2527,6 +2672,7 @@ impl TypeObject for ClientPassivePlayerAbility {
 
 pub static CLIENTPASSIVEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPassivePlayerAbility-Array",
+    name_hash: 51828594,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPassivePlayerAbility"),
@@ -2535,7 +2681,8 @@ pub static CLIENTPASSIVEPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCorrectedPlayerAbility {
     pub _glacier_base: ClientPlayerAbility,
 }
@@ -2554,12 +2701,15 @@ impl PlayerAbilityTrait for ClientCorrectedPlayerAbility {
 
 pub static CLIENTCORRECTEDPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCorrectedPlayerAbility",
+    name_hash: 4223290290,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCorrectedPlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCorrectedPlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ClientCorrectedPlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -2589,6 +2739,7 @@ impl TypeObject for ClientCorrectedPlayerAbility {
 
 pub static CLIENTCORRECTEDPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCorrectedPlayerAbility-Array",
+    name_hash: 221131270,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientCorrectedPlayerAbility"),
@@ -2597,7 +2748,8 @@ pub static CLIENTCORRECTEDPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IsLookedAtEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2616,12 +2768,15 @@ impl super::entity::EntityBusPeerTrait for IsLookedAtEntity {
 
 pub static ISLOOKEDATENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IsLookedAtEntity",
+    name_hash: 1915505783,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(IsLookedAtEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IsLookedAtEntity as Default>::default())),
+            create_boxed: || Box::new(<IsLookedAtEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2651,6 +2806,7 @@ impl TypeObject for IsLookedAtEntity {
 
 pub static ISLOOKEDATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IsLookedAtEntity-Array",
+    name_hash: 3416831555,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("IsLookedAtEntity"),
@@ -2659,7 +2815,8 @@ pub static ISLOOKEDATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IsLookedAtTargetOverrideEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2678,12 +2835,15 @@ impl super::entity::EntityBusPeerTrait for IsLookedAtTargetOverrideEntity {
 
 pub static ISLOOKEDATTARGETOVERRIDEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IsLookedAtTargetOverrideEntity",
+    name_hash: 3506449874,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(IsLookedAtTargetOverrideEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IsLookedAtTargetOverrideEntity as Default>::default())),
+            create_boxed: || Box::new(<IsLookedAtTargetOverrideEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2713,6 +2873,7 @@ impl TypeObject for IsLookedAtTargetOverrideEntity {
 
 pub static ISLOOKEDATTARGETOVERRIDEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IsLookedAtTargetOverrideEntity-Array",
+    name_hash: 545875302,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("IsLookedAtTargetOverrideEntity"),
@@ -2721,7 +2882,8 @@ pub static ISLOOKEDATTARGETOVERRIDEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientTriggerExplosiveEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2740,12 +2902,15 @@ impl super::entity::EntityBusPeerTrait for ClientTriggerExplosiveEntity {
 
 pub static CLIENTTRIGGEREXPLOSIVEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientTriggerExplosiveEntity",
+    name_hash: 256159640,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientTriggerExplosiveEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientTriggerExplosiveEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientTriggerExplosiveEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2775,6 +2940,7 @@ impl TypeObject for ClientTriggerExplosiveEntity {
 
 pub static CLIENTTRIGGEREXPLOSIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientTriggerExplosiveEntity-Array",
+    name_hash: 1973098924,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientTriggerExplosiveEntity"),
@@ -2783,7 +2949,8 @@ pub static CLIENTTRIGGEREXPLOSIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStarfighterOverlapEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2802,12 +2969,15 @@ impl super::entity::EntityBusPeerTrait for ClientStarfighterOverlapEntity {
 
 pub static CLIENTSTARFIGHTEROVERLAPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStarfighterOverlapEntity",
+    name_hash: 438355235,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientStarfighterOverlapEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStarfighterOverlapEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientStarfighterOverlapEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2837,6 +3007,7 @@ impl TypeObject for ClientStarfighterOverlapEntity {
 
 pub static CLIENTSTARFIGHTEROVERLAPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStarfighterOverlapEntity-Array",
+    name_hash: 2838382743,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientStarfighterOverlapEntity"),
@@ -2845,7 +3016,8 @@ pub static CLIENTSTARFIGHTEROVERLAPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStarfighterOverlapConfigEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2864,12 +3036,15 @@ impl super::entity::EntityBusPeerTrait for ClientStarfighterOverlapConfigEntity 
 
 pub static CLIENTSTARFIGHTEROVERLAPCONFIGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStarfighterOverlapConfigEntity",
+    name_hash: 3972865033,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientStarfighterOverlapConfigEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStarfighterOverlapConfigEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientStarfighterOverlapConfigEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2899,6 +3074,7 @@ impl TypeObject for ClientStarfighterOverlapConfigEntity {
 
 pub static CLIENTSTARFIGHTEROVERLAPCONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStarfighterOverlapConfigEntity-Array",
+    name_hash: 1411051965,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientStarfighterOverlapConfigEntity"),
@@ -2907,7 +3083,8 @@ pub static CLIENTSTARFIGHTEROVERLAPCONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStarfighterAvoidanceZoneEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2926,12 +3103,15 @@ impl super::entity::EntityBusPeerTrait for ClientStarfighterAvoidanceZoneEntity 
 
 pub static CLIENTSTARFIGHTERAVOIDANCEZONEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStarfighterAvoidanceZoneEntity",
+    name_hash: 1674734738,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientStarfighterAvoidanceZoneEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStarfighterAvoidanceZoneEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientStarfighterAvoidanceZoneEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2961,6 +3141,7 @@ impl TypeObject for ClientStarfighterAvoidanceZoneEntity {
 
 pub static CLIENTSTARFIGHTERAVOIDANCEZONEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStarfighterAvoidanceZoneEntity-Array",
+    name_hash: 1441756070,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientStarfighterAvoidanceZoneEntity"),
@@ -2969,7 +3150,8 @@ pub static CLIENTSTARFIGHTERAVOIDANCEZONEENTITY_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientMaterialBasedEffectEntity {
     pub _glacier_base: ClientDiceVFXEntityBase,
 }
@@ -2991,12 +3173,15 @@ impl super::entity::EntityBusPeerTrait for ClientMaterialBasedEffectEntity {
 
 pub static CLIENTMATERIALBASEDEFFECTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMaterialBasedEffectEntity",
+    name_hash: 3551524298,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTDICEVFXENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ClientMaterialBasedEffectEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientMaterialBasedEffectEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientMaterialBasedEffectEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3026,6 +3211,7 @@ impl TypeObject for ClientMaterialBasedEffectEntity {
 
 pub static CLIENTMATERIALBASEDEFFECTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMaterialBasedEffectEntity-Array",
+    name_hash: 484163966,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientMaterialBasedEffectEntity"),
@@ -3034,7 +3220,8 @@ pub static CLIENTMATERIALBASEDEFFECTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDiceVFXEntityBase {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3053,12 +3240,15 @@ impl super::entity::EntityBusPeerTrait for ClientDiceVFXEntityBase {
 
 pub static CLIENTDICEVFXENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDiceVFXEntityBase",
+    name_hash: 2907142033,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientDiceVFXEntityBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDiceVFXEntityBase as Default>::default())),
+            create_boxed: || Box::new(<ClientDiceVFXEntityBase as Default>::default()),
         },
         fields: &[
         ],
@@ -3088,6 +3278,7 @@ impl TypeObject for ClientDiceVFXEntityBase {
 
 pub static CLIENTDICEVFXENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDiceVFXEntityBase-Array",
+    name_hash: 98523429,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientDiceVFXEntityBase"),
@@ -3096,7 +3287,8 @@ pub static CLIENTDICEVFXENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDicePlayVFXEntity {
     pub _glacier_base: ClientDiceVFXEntityBase,
 }
@@ -3118,12 +3310,15 @@ impl super::entity::EntityBusPeerTrait for ClientDicePlayVFXEntity {
 
 pub static CLIENTDICEPLAYVFXENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDicePlayVFXEntity",
+    name_hash: 767337600,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTDICEVFXENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ClientDicePlayVFXEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDicePlayVFXEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientDicePlayVFXEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3153,6 +3348,7 @@ impl TypeObject for ClientDicePlayVFXEntity {
 
 pub static CLIENTDICEPLAYVFXENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDicePlayVFXEntity-Array",
+    name_hash: 3143936692,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientDicePlayVFXEntity"),
@@ -3161,7 +3357,8 @@ pub static CLIENTDICEPLAYVFXENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VaultModifierVolumeEntity {
     pub _glacier_base: super::entity::SpatialEntity,
 }
@@ -3183,12 +3380,15 @@ impl super::entity::EntityBusPeerTrait for VaultModifierVolumeEntity {
 
 pub static VAULTMODIFIERVOLUMEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VaultModifierVolumeEntity",
+    name_hash: 4274792635,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(VaultModifierVolumeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VaultModifierVolumeEntity as Default>::default())),
+            create_boxed: || Box::new(<VaultModifierVolumeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3218,6 +3418,7 @@ impl TypeObject for VaultModifierVolumeEntity {
 
 pub static VAULTMODIFIERVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VaultModifierVolumeEntity-Array",
+    name_hash: 1992847375,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("VaultModifierVolumeEntity"),
@@ -3226,7 +3427,8 @@ pub static VAULTMODIFIERVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerVaultModifierVolumeEntity {
     pub _glacier_base: super::entity::SpatialEntity,
 }
@@ -3248,12 +3450,15 @@ impl super::entity::EntityBusPeerTrait for ServerVaultModifierVolumeEntity {
 
 pub static SERVERVAULTMODIFIERVOLUMEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerVaultModifierVolumeEntity",
+    name_hash: 29132350,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerVaultModifierVolumeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerVaultModifierVolumeEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerVaultModifierVolumeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3283,6 +3488,7 @@ impl TypeObject for ServerVaultModifierVolumeEntity {
 
 pub static SERVERVAULTMODIFIERVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerVaultModifierVolumeEntity-Array",
+    name_hash: 2672907914,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerVaultModifierVolumeEntity"),
@@ -3291,7 +3497,8 @@ pub static SERVERVAULTMODIFIERVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientVaultModifierVolumeEntity {
     pub _glacier_base: super::entity::SpatialEntity,
 }
@@ -3313,12 +3520,15 @@ impl super::entity::EntityBusPeerTrait for ClientVaultModifierVolumeEntity {
 
 pub static CLIENTVAULTMODIFIERVOLUMEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientVaultModifierVolumeEntity",
+    name_hash: 3066557666,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientVaultModifierVolumeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientVaultModifierVolumeEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientVaultModifierVolumeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3348,6 +3558,7 @@ impl TypeObject for ClientVaultModifierVolumeEntity {
 
 pub static CLIENTVAULTMODIFIERVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientVaultModifierVolumeEntity-Array",
+    name_hash: 3049440214,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientVaultModifierVolumeEntity"),
@@ -3356,7 +3567,8 @@ pub static CLIENTVAULTMODIFIERVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerTrackRespawnNodeEntity {
     pub _glacier_base: super::entity::SpatialEntity,
 }
@@ -3378,12 +3590,15 @@ impl super::entity::EntityBusPeerTrait for ServerTrackRespawnNodeEntity {
 
 pub static SERVERTRACKRESPAWNNODEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTrackRespawnNodeEntity",
+    name_hash: 3301741272,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerTrackRespawnNodeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerTrackRespawnNodeEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerTrackRespawnNodeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3413,6 +3628,7 @@ impl TypeObject for ServerTrackRespawnNodeEntity {
 
 pub static SERVERTRACKRESPAWNNODEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTrackRespawnNodeEntity-Array",
+    name_hash: 529821036,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerTrackRespawnNodeEntity"),
@@ -3421,7 +3637,8 @@ pub static SERVERTRACKRESPAWNNODEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerTrackRespawnManagerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3440,12 +3657,15 @@ impl super::entity::EntityBusPeerTrait for ServerTrackRespawnManagerEntity {
 
 pub static SERVERTRACKRESPAWNMANAGERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTrackRespawnManagerEntity",
+    name_hash: 2405694955,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerTrackRespawnManagerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerTrackRespawnManagerEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerTrackRespawnManagerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3475,6 +3695,7 @@ impl TypeObject for ServerTrackRespawnManagerEntity {
 
 pub static SERVERTRACKRESPAWNMANAGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTrackRespawnManagerEntity-Array",
+    name_hash: 2297195999,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerTrackRespawnManagerEntity"),
@@ -3483,7 +3704,8 @@ pub static SERVERTRACKRESPAWNMANAGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerShieldControllerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3502,12 +3724,15 @@ impl super::entity::EntityBusPeerTrait for ServerShieldControllerEntity {
 
 pub static SERVERSHIELDCONTROLLERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldControllerEntity",
+    name_hash: 4002722360,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerShieldControllerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerShieldControllerEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerShieldControllerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3537,6 +3762,7 @@ impl TypeObject for ServerShieldControllerEntity {
 
 pub static SERVERSHIELDCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldControllerEntity-Array",
+    name_hash: 354573196,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerShieldControllerEntity"),
@@ -3545,7 +3771,8 @@ pub static SERVERSHIELDCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientShieldControllerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3564,12 +3791,15 @@ impl super::entity::EntityBusPeerTrait for ClientShieldControllerEntity {
 
 pub static CLIENTSHIELDCONTROLLERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldControllerEntity",
+    name_hash: 4071470308,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientShieldControllerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientShieldControllerEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientShieldControllerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3599,6 +3829,7 @@ impl TypeObject for ClientShieldControllerEntity {
 
 pub static CLIENTSHIELDCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldControllerEntity-Array",
+    name_hash: 3196844240,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientShieldControllerEntity"),
@@ -3607,7 +3838,8 @@ pub static CLIENTSHIELDCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SetTheoryQueryEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3626,12 +3858,15 @@ impl super::entity::EntityBusPeerTrait for SetTheoryQueryEntity {
 
 pub static SETTHEORYQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetTheoryQueryEntity",
+    name_hash: 3962418475,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SetTheoryQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SetTheoryQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<SetTheoryQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3661,6 +3896,7 @@ impl TypeObject for SetTheoryQueryEntity {
 
 pub static SETTHEORYQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetTheoryQueryEntity-Array",
+    name_hash: 2947454111,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("SetTheoryQueryEntity"),
@@ -3669,7 +3905,8 @@ pub static SETTHEORYQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerTransformQueryEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3688,12 +3925,15 @@ impl super::entity::EntityBusPeerTrait for ServerTransformQueryEntity {
 
 pub static SERVERTRANSFORMQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTransformQueryEntity",
+    name_hash: 922861981,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerTransformQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerTransformQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerTransformQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3723,6 +3963,7 @@ impl TypeObject for ServerTransformQueryEntity {
 
 pub static SERVERTRANSFORMQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTransformQueryEntity-Array",
+    name_hash: 745024809,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerTransformQueryEntity"),
@@ -3731,7 +3972,8 @@ pub static SERVERTRANSFORMQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponModifierStateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3750,12 +3992,15 @@ impl super::entity::EntityBusPeerTrait for WeaponModifierStateEntity {
 
 pub static WEAPONMODIFIERSTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponModifierStateEntity",
+    name_hash: 2282250364,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponModifierStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponModifierStateEntity as Default>::default())),
+            create_boxed: || Box::new(<WeaponModifierStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3785,6 +4030,7 @@ impl TypeObject for WeaponModifierStateEntity {
 
 pub static WEAPONMODIFIERSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponModifierStateEntity-Array",
+    name_hash: 623601736,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("WeaponModifierStateEntity"),
@@ -3793,7 +4039,8 @@ pub static WEAPONMODIFIERSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSendEventEntity {
     pub _glacier_base: ServerRemoteEventEntity,
 }
@@ -3815,12 +4062,15 @@ impl super::entity::EntityBusPeerTrait for ServerSendEventEntity {
 
 pub static SERVERSENDEVENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSendEventEntity",
+    name_hash: 1522285675,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERREMOTEEVENTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSendEventEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSendEventEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSendEventEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3850,6 +4100,7 @@ impl TypeObject for ServerSendEventEntity {
 
 pub static SERVERSENDEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSendEventEntity-Array",
+    name_hash: 2384039007,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerSendEventEntity"),
@@ -3858,7 +4109,8 @@ pub static SERVERSENDEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRoundOverEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3877,12 +4129,15 @@ impl super::entity::EntityBusPeerTrait for ServerRoundOverEntity {
 
 pub static SERVERROUNDOVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRoundOverEntity",
+    name_hash: 3444605047,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRoundOverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRoundOverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerRoundOverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3912,6 +4167,7 @@ impl TypeObject for ServerRoundOverEntity {
 
 pub static SERVERROUNDOVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRoundOverEntity-Array",
+    name_hash: 3324242499,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRoundOverEntity"),
@@ -3920,7 +4176,8 @@ pub static SERVERROUNDOVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRemoteEventEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3939,12 +4196,15 @@ impl super::entity::EntityBusPeerTrait for ServerRemoteEventEntity {
 
 pub static SERVERREMOTEEVENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteEventEntity",
+    name_hash: 2057372147,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRemoteEventEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRemoteEventEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerRemoteEventEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3974,6 +4234,7 @@ impl TypeObject for ServerRemoteEventEntity {
 
 pub static SERVERREMOTEEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteEventEntity-Array",
+    name_hash: 2750406087,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRemoteEventEntity"),
@@ -3982,7 +4243,8 @@ pub static SERVERREMOTEEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerReceiveEventEntity {
     pub _glacier_base: ServerRemoteEventEntity,
 }
@@ -4004,12 +4266,15 @@ impl super::entity::EntityBusPeerTrait for ServerReceiveEventEntity {
 
 pub static SERVERRECEIVEEVENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerReceiveEventEntity",
+    name_hash: 1648815516,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERREMOTEEVENTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerReceiveEventEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerReceiveEventEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerReceiveEventEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4039,6 +4304,7 @@ impl TypeObject for ServerReceiveEventEntity {
 
 pub static SERVERRECEIVEEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerReceiveEventEntity-Array",
+    name_hash: 1041466792,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerReceiveEventEntity"),
@@ -4047,7 +4313,8 @@ pub static SERVERRECEIVEEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerKillCounterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4066,12 +4333,15 @@ impl super::entity::EntityBusPeerTrait for ServerKillCounterEntity {
 
 pub static SERVERKILLCOUNTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerKillCounterEntity",
+    name_hash: 3473700525,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerKillCounterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerKillCounterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerKillCounterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4101,6 +4371,7 @@ impl TypeObject for ServerKillCounterEntity {
 
 pub static SERVERKILLCOUNTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerKillCounterEntity-Array",
+    name_hash: 1828694809,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerKillCounterEntity"),
@@ -4109,7 +4380,8 @@ pub static SERVERKILLCOUNTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerInputToNetworkedBoolEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4128,12 +4400,15 @@ impl super::entity::EntityBusPeerTrait for ServerInputToNetworkedBoolEntity {
 
 pub static SERVERINPUTTONETWORKEDBOOLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerInputToNetworkedBoolEntity",
+    name_hash: 1299634599,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerInputToNetworkedBoolEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerInputToNetworkedBoolEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerInputToNetworkedBoolEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4163,6 +4438,7 @@ impl TypeObject for ServerInputToNetworkedBoolEntity {
 
 pub static SERVERINPUTTONETWORKEDBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerInputToNetworkedBoolEntity-Array",
+    name_hash: 2954980115,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerInputToNetworkedBoolEntity"),
@@ -4171,7 +4447,8 @@ pub static SERVERINPUTTONETWORKEDBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGravityWellControllerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4190,12 +4467,15 @@ impl super::entity::EntityBusPeerTrait for ServerGravityWellControllerEntity {
 
 pub static SERVERGRAVITYWELLCONTROLLERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGravityWellControllerEntity",
+    name_hash: 2486723731,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerGravityWellControllerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGravityWellControllerEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerGravityWellControllerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4225,6 +4505,7 @@ impl TypeObject for ServerGravityWellControllerEntity {
 
 pub static SERVERGRAVITYWELLCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGravityWellControllerEntity-Array",
+    name_hash: 2772860711,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerGravityWellControllerEntity"),
@@ -4233,7 +4514,8 @@ pub static SERVERGRAVITYWELLCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDebugPlayerSpawnerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4252,12 +4534,15 @@ impl super::entity::EntityBusPeerTrait for ServerDebugPlayerSpawnerEntity {
 
 pub static SERVERDEBUGPLAYERSPAWNERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDebugPlayerSpawnerEntity",
+    name_hash: 1739733909,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDebugPlayerSpawnerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDebugPlayerSpawnerEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerDebugPlayerSpawnerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4287,6 +4572,7 @@ impl TypeObject for ServerDebugPlayerSpawnerEntity {
 
 pub static SERVERDEBUGPLAYERSPAWNERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDebugPlayerSpawnerEntity-Array",
+    name_hash: 529320737,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerDebugPlayerSpawnerEntity"),
@@ -4295,7 +4581,8 @@ pub static SERVERDEBUGPLAYERSPAWNERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerControlInputEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4314,12 +4601,15 @@ impl super::entity::EntityBusPeerTrait for ServerControlInputEntity {
 
 pub static SERVERCONTROLINPUTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerControlInputEntity",
+    name_hash: 2965822954,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerControlInputEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerControlInputEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerControlInputEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4349,6 +4639,7 @@ impl TypeObject for ServerControlInputEntity {
 
 pub static SERVERCONTROLINPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerControlInputEntity-Array",
+    name_hash: 3121334494,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerControlInputEntity"),
@@ -4357,7 +4648,8 @@ pub static SERVERCONTROLINPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSendEventEntity {
     pub _glacier_base: ClientRemoteEventEntity,
 }
@@ -4379,12 +4671,15 @@ impl super::entity::EntityBusPeerTrait for ClientSendEventEntity {
 
 pub static CLIENTSENDEVENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSendEventEntity",
+    name_hash: 1232666935,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTREMOTEEVENTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSendEventEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSendEventEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSendEventEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4414,6 +4709,7 @@ impl TypeObject for ClientSendEventEntity {
 
 pub static CLIENTSENDEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSendEventEntity-Array",
+    name_hash: 2442525315,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientSendEventEntity"),
@@ -4422,7 +4718,8 @@ pub static CLIENTSENDEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRoundOverEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4441,12 +4738,15 @@ impl super::entity::EntityBusPeerTrait for ClientRoundOverEntity {
 
 pub static CLIENTROUNDOVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRoundOverEntity",
+    name_hash: 4148628523,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRoundOverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRoundOverEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientRoundOverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4476,6 +4776,7 @@ impl TypeObject for ClientRoundOverEntity {
 
 pub static CLIENTROUNDOVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRoundOverEntity-Array",
+    name_hash: 4096600991,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRoundOverEntity"),
@@ -4484,7 +4785,8 @@ pub static CLIENTROUNDOVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRemoteEventEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4503,12 +4805,15 @@ impl super::entity::EntityBusPeerTrait for ClientRemoteEventEntity {
 
 pub static CLIENTREMOTEEVENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteEventEntity",
+    name_hash: 2094660527,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRemoteEventEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRemoteEventEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientRemoteEventEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4538,6 +4843,7 @@ impl TypeObject for ClientRemoteEventEntity {
 
 pub static CLIENTREMOTEEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteEventEntity-Array",
+    name_hash: 475359515,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRemoteEventEntity"),
@@ -4546,7 +4852,8 @@ pub static CLIENTREMOTEEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientReceiveEventEntity {
     pub _glacier_base: ClientRemoteEventEntity,
 }
@@ -4568,12 +4875,15 @@ impl super::entity::EntityBusPeerTrait for ClientReceiveEventEntity {
 
 pub static CLIENTRECEIVEEVENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientReceiveEventEntity",
+    name_hash: 442613824,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTREMOTEEVENTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientReceiveEventEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientReceiveEventEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientReceiveEventEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4603,6 +4913,7 @@ impl TypeObject for ClientReceiveEventEntity {
 
 pub static CLIENTRECEIVEEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientReceiveEventEntity-Array",
+    name_hash: 4171470580,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientReceiveEventEntity"),
@@ -4611,7 +4922,8 @@ pub static CLIENTRECEIVEEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientKillCounterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4630,12 +4942,15 @@ impl super::entity::EntityBusPeerTrait for ClientKillCounterEntity {
 
 pub static CLIENTKILLCOUNTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientKillCounterEntity",
+    name_hash: 2081342833,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientKillCounterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientKillCounterEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientKillCounterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4665,6 +4980,7 @@ impl TypeObject for ClientKillCounterEntity {
 
 pub static CLIENTKILLCOUNTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientKillCounterEntity-Array",
+    name_hash: 3268806725,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientKillCounterEntity"),
@@ -4673,7 +4989,8 @@ pub static CLIENTKILLCOUNTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientInputToNetworkedBoolEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4692,12 +5009,15 @@ impl super::entity::EntityBusPeerTrait for ClientInputToNetworkedBoolEntity {
 
 pub static CLIENTINPUTTONETWORKEDBOOLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientInputToNetworkedBoolEntity",
+    name_hash: 3593736059,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientInputToNetworkedBoolEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientInputToNetworkedBoolEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientInputToNetworkedBoolEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4727,6 +5047,7 @@ impl TypeObject for ClientInputToNetworkedBoolEntity {
 
 pub static CLIENTINPUTTONETWORKEDBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientInputToNetworkedBoolEntity-Array",
+    name_hash: 2524342095,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientInputToNetworkedBoolEntity"),
@@ -4735,7 +5056,8 @@ pub static CLIENTINPUTTONETWORKEDBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientGravityWellTrackerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4754,12 +5076,15 @@ impl super::entity::EntityBusPeerTrait for ClientGravityWellTrackerEntity {
 
 pub static CLIENTGRAVITYWELLTRACKERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGravityWellTrackerEntity",
+    name_hash: 2568424683,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientGravityWellTrackerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientGravityWellTrackerEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientGravityWellTrackerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4789,6 +5114,7 @@ impl TypeObject for ClientGravityWellTrackerEntity {
 
 pub static CLIENTGRAVITYWELLTRACKERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGravityWellTrackerEntity-Array",
+    name_hash: 1986968799,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientGravityWellTrackerEntity"),
@@ -4797,7 +5123,8 @@ pub static CLIENTGRAVITYWELLTRACKERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRaycastEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4816,12 +5143,15 @@ impl super::entity::EntityBusPeerTrait for ClientRaycastEntity {
 
 pub static CLIENTRAYCASTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRaycastEntity",
+    name_hash: 1230258632,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRaycastEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRaycastEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientRaycastEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4851,6 +5181,7 @@ impl TypeObject for ClientRaycastEntity {
 
 pub static CLIENTRAYCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRaycastEntity-Array",
+    name_hash: 3981481084,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRaycastEntity"),
@@ -4859,7 +5190,8 @@ pub static CLIENTRAYCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientQuerySplitterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4878,12 +5210,15 @@ impl super::entity::EntityBusPeerTrait for ClientQuerySplitterEntity {
 
 pub static CLIENTQUERYSPLITTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientQuerySplitterEntity",
+    name_hash: 2987655292,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientQuerySplitterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientQuerySplitterEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientQuerySplitterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4913,6 +5248,7 @@ impl TypeObject for ClientQuerySplitterEntity {
 
 pub static CLIENTQUERYSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientQuerySplitterEntity-Array",
+    name_hash: 3513714760,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientQuerySplitterEntity"),
@@ -4921,7 +5257,8 @@ pub static CLIENTQUERYSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDynamicQueryFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -4940,12 +5277,15 @@ impl super::entity::EntityBusPeerTrait for ClientDynamicQueryFilterEntity {
 
 pub static CLIENTDYNAMICQUERYFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDynamicQueryFilterEntity",
+    name_hash: 561647576,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientDynamicQueryFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDynamicQueryFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientDynamicQueryFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4975,6 +5315,7 @@ impl TypeObject for ClientDynamicQueryFilterEntity {
 
 pub static CLIENTDYNAMICQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDynamicQueryFilterEntity-Array",
+    name_hash: 3115035244,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientDynamicQueryFilterEntity"),
@@ -4983,7 +5324,8 @@ pub static CLIENTDYNAMICQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientQueryFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5002,12 +5344,15 @@ impl super::entity::EntityBusPeerTrait for ClientQueryFilterEntity {
 
 pub static CLIENTQUERYFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientQueryFilterEntity",
+    name_hash: 4039309,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientQueryFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientQueryFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientQueryFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5037,6 +5382,7 @@ impl TypeObject for ClientQueryFilterEntity {
 
 pub static CLIENTQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientQueryFilterEntity-Array",
+    name_hash: 3585476153,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientQueryFilterEntity"),
@@ -5045,7 +5391,8 @@ pub static CLIENTQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientQueryCacheEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5064,12 +5411,15 @@ impl super::entity::EntityBusPeerTrait for ClientQueryCacheEntity {
 
 pub static CLIENTQUERYCACHEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientQueryCacheEntity",
+    name_hash: 4014426337,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientQueryCacheEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientQueryCacheEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientQueryCacheEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5099,6 +5449,7 @@ impl TypeObject for ClientQueryCacheEntity {
 
 pub static CLIENTQUERYCACHEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientQueryCacheEntity-Array",
+    name_hash: 2058380245,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientQueryCacheEntity"),
@@ -5107,7 +5458,8 @@ pub static CLIENTQUERYCACHEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPhantomEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5126,12 +5478,15 @@ impl super::entity::EntityBusPeerTrait for ClientPhantomEntity {
 
 pub static CLIENTPHANTOMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhantomEntity",
+    name_hash: 2989288262,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPhantomEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPhantomEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientPhantomEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5161,6 +5516,7 @@ impl TypeObject for ClientPhantomEntity {
 
 pub static CLIENTPHANTOMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhantomEntity-Array",
+    name_hash: 3227199730,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPhantomEntity"),
@@ -5169,7 +5525,8 @@ pub static CLIENTPHANTOMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientOwnerToQueryResultEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5188,12 +5545,15 @@ impl super::entity::EntityBusPeerTrait for ClientOwnerToQueryResultEntity {
 
 pub static CLIENTOWNERTOQUERYRESULTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientOwnerToQueryResultEntity",
+    name_hash: 2974756926,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientOwnerToQueryResultEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientOwnerToQueryResultEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientOwnerToQueryResultEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5223,6 +5583,7 @@ impl TypeObject for ClientOwnerToQueryResultEntity {
 
 pub static CLIENTOWNERTOQUERYRESULTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientOwnerToQueryResultEntity-Array",
+    name_hash: 1622900874,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientOwnerToQueryResultEntity"),
@@ -5231,7 +5592,8 @@ pub static CLIENTOWNERTOQUERYRESULTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientOverrideJointEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5250,12 +5612,15 @@ impl super::entity::EntityBusPeerTrait for ClientOverrideJointEntity {
 
 pub static CLIENTOVERRIDEJOINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientOverrideJointEntity",
+    name_hash: 2196391077,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientOverrideJointEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientOverrideJointEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientOverrideJointEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5285,6 +5650,7 @@ impl TypeObject for ClientOverrideJointEntity {
 
 pub static CLIENTOVERRIDEJOINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientOverrideJointEntity-Array",
+    name_hash: 3976240401,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientOverrideJointEntity"),
@@ -5293,7 +5659,8 @@ pub static CLIENTOVERRIDEJOINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientInputQueryEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5312,12 +5679,15 @@ impl super::entity::EntityBusPeerTrait for ClientInputQueryEntity {
 
 pub static CLIENTINPUTQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientInputQueryEntity",
+    name_hash: 1762191291,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientInputQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientInputQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientInputQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5347,6 +5717,7 @@ impl TypeObject for ClientInputQueryEntity {
 
 pub static CLIENTINPUTQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientInputQueryEntity-Array",
+    name_hash: 1364750095,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientInputQueryEntity"),
@@ -5355,7 +5726,8 @@ pub static CLIENTINPUTQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientFireProjectileEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5374,12 +5746,15 @@ impl super::entity::EntityBusPeerTrait for ClientFireProjectileEntity {
 
 pub static CLIENTFIREPROJECTILEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientFireProjectileEntity",
+    name_hash: 1000208874,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientFireProjectileEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientFireProjectileEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientFireProjectileEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5409,6 +5784,7 @@ impl TypeObject for ClientFireProjectileEntity {
 
 pub static CLIENTFIREPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientFireProjectileEntity-Array",
+    name_hash: 684188894,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientFireProjectileEntity"),
@@ -5417,7 +5793,8 @@ pub static CLIENTFIREPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDealDamageEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5436,12 +5813,15 @@ impl super::entity::EntityBusPeerTrait for ClientDealDamageEntity {
 
 pub static CLIENTDEALDAMAGEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDealDamageEntity",
+    name_hash: 3291540416,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientDealDamageEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDealDamageEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientDealDamageEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5471,6 +5851,7 @@ impl TypeObject for ClientDealDamageEntity {
 
 pub static CLIENTDEALDAMAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDealDamageEntity-Array",
+    name_hash: 117793396,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientDealDamageEntity"),
@@ -5479,7 +5860,8 @@ pub static CLIENTDEALDAMAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDamageGiverEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5498,12 +5880,15 @@ impl super::entity::EntityBusPeerTrait for ClientDamageGiverEntity {
 
 pub static CLIENTDAMAGEGIVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDamageGiverEntity",
+    name_hash: 1857040803,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientDamageGiverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDamageGiverEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientDamageGiverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5533,6 +5918,7 @@ impl TypeObject for ClientDamageGiverEntity {
 
 pub static CLIENTDAMAGEGIVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDamageGiverEntity-Array",
+    name_hash: 4223472919,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientDamageGiverEntity"),
@@ -5541,7 +5927,8 @@ pub static CLIENTDAMAGEGIVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldRelSteeringPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5560,12 +5947,15 @@ impl super::entity::EntityBusPeerTrait for WorldRelSteeringPhysicsActionEntity {
 
 pub static WORLDRELSTEERINGPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldRelSteeringPhysicsActionEntity",
+    name_hash: 1698553831,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(WorldRelSteeringPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldRelSteeringPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<WorldRelSteeringPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5595,6 +5985,7 @@ impl TypeObject for WorldRelSteeringPhysicsActionEntity {
 
 pub static WORLDRELSTEERINGPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldRelSteeringPhysicsActionEntity-Array",
+    name_hash: 1709711827,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("WorldRelSteeringPhysicsActionEntity"),
@@ -5603,7 +5994,8 @@ pub static WORLDRELSTEERINGPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VelocityOnInputPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5622,12 +6014,15 @@ impl super::entity::EntityBusPeerTrait for VelocityOnInputPhysicsActionEntity {
 
 pub static VELOCITYONINPUTPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VelocityOnInputPhysicsActionEntity",
+    name_hash: 831489355,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(VelocityOnInputPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VelocityOnInputPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<VelocityOnInputPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5657,6 +6052,7 @@ impl TypeObject for VelocityOnInputPhysicsActionEntity {
 
 pub static VELOCITYONINPUTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VelocityOnInputPhysicsActionEntity-Array",
+    name_hash: 348095615,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("VelocityOnInputPhysicsActionEntity"),
@@ -5665,7 +6061,8 @@ pub static VELOCITYONINPUTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StarfighterSpinoutPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5684,12 +6081,15 @@ impl super::entity::EntityBusPeerTrait for StarfighterSpinoutPhysicsActionEntity
 
 pub static STARFIGHTERSPINOUTPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarfighterSpinoutPhysicsActionEntity",
+    name_hash: 2638699830,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(StarfighterSpinoutPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StarfighterSpinoutPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<StarfighterSpinoutPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5719,6 +6119,7 @@ impl TypeObject for StarfighterSpinoutPhysicsActionEntity {
 
 pub static STARFIGHTERSPINOUTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarfighterSpinoutPhysicsActionEntity-Array",
+    name_hash: 551686530,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("StarfighterSpinoutPhysicsActionEntity"),
@@ -5727,7 +6128,8 @@ pub static STARFIGHTERSPINOUTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStarFighterPhysicsActionEntity {
     pub _glacier_base: StarFighterPhysicsActionEntity,
 }
@@ -5749,12 +6151,15 @@ impl super::entity::EntityBusPeerTrait for ClientStarFighterPhysicsActionEntity 
 
 pub static CLIENTSTARFIGHTERPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStarFighterPhysicsActionEntity",
+    name_hash: 264912645,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(STARFIGHTERPHYSICSACTIONENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientStarFighterPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStarFighterPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientStarFighterPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5784,6 +6189,7 @@ impl TypeObject for ClientStarFighterPhysicsActionEntity {
 
 pub static CLIENTSTARFIGHTERPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStarFighterPhysicsActionEntity-Array",
+    name_hash: 367437489,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientStarFighterPhysicsActionEntity"),
@@ -5792,7 +6198,8 @@ pub static CLIENTSTARFIGHTERPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StarFighterPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5811,12 +6218,15 @@ impl super::entity::EntityBusPeerTrait for StarFighterPhysicsActionEntity {
 
 pub static STARFIGHTERPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarFighterPhysicsActionEntity",
+    name_hash: 1766215164,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(StarFighterPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StarFighterPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<StarFighterPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5846,6 +6256,7 @@ impl TypeObject for StarFighterPhysicsActionEntity {
 
 pub static STARFIGHTERPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarFighterPhysicsActionEntity-Array",
+    name_hash: 1736799688,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("StarFighterPhysicsActionEntity"),
@@ -5854,7 +6265,8 @@ pub static STARFIGHTERPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StarfighterConfigEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5873,12 +6285,15 @@ impl super::entity::EntityBusPeerTrait for StarfighterConfigEntity {
 
 pub static STARFIGHTERCONFIGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarfighterConfigEntity",
+    name_hash: 4191434371,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(StarfighterConfigEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StarfighterConfigEntity as Default>::default())),
+            create_boxed: || Box::new(<StarfighterConfigEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5908,6 +6323,7 @@ impl TypeObject for StarfighterConfigEntity {
 
 pub static STARFIGHTERCONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarfighterConfigEntity-Array",
+    name_hash: 157616439,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("StarfighterConfigEntity"),
@@ -5916,7 +6332,8 @@ pub static STARFIGHTERCONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StarfighterCollisionRepulsorPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5935,12 +6352,15 @@ impl super::entity::EntityBusPeerTrait for StarfighterCollisionRepulsorPhysicsAc
 
 pub static STARFIGHTERCOLLISIONREPULSORPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarfighterCollisionRepulsorPhysicsActionEntity",
+    name_hash: 3340396082,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(StarfighterCollisionRepulsorPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StarfighterCollisionRepulsorPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<StarfighterCollisionRepulsorPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5970,6 +6390,7 @@ impl TypeObject for StarfighterCollisionRepulsorPhysicsActionEntity {
 
 pub static STARFIGHTERCOLLISIONREPULSORPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarfighterCollisionRepulsorPhysicsActionEntity-Array",
+    name_hash: 3352833158,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("StarfighterCollisionRepulsorPhysicsActionEntity"),
@@ -5978,7 +6399,8 @@ pub static STARFIGHTERCOLLISIONREPULSORPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'st
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpringSetPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5997,12 +6419,15 @@ impl super::entity::EntityBusPeerTrait for SpringSetPhysicsActionEntity {
 
 pub static SPRINGSETPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpringSetPhysicsActionEntity",
+    name_hash: 2320349144,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SpringSetPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpringSetPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<SpringSetPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6032,6 +6457,7 @@ impl TypeObject for SpringSetPhysicsActionEntity {
 
 pub static SPRINGSETPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpringSetPhysicsActionEntity-Array",
+    name_hash: 1822249580,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("SpringSetPhysicsActionEntity"),
@@ -6040,7 +6466,8 @@ pub static SPRINGSETPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSpeederBikePhysicsActionEntity {
     pub _glacier_base: SpeederBikePhysicsActionEntity,
 }
@@ -6062,12 +6489,15 @@ impl super::entity::EntityBusPeerTrait for ClientSpeederBikePhysicsActionEntity 
 
 pub static CLIENTSPEEDERBIKEPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSpeederBikePhysicsActionEntity",
+    name_hash: 1724778087,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPEEDERBIKEPHYSICSACTIONENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSpeederBikePhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSpeederBikePhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSpeederBikePhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6097,6 +6527,7 @@ impl TypeObject for ClientSpeederBikePhysicsActionEntity {
 
 pub static CLIENTSPEEDERBIKEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSpeederBikePhysicsActionEntity-Array",
+    name_hash: 4120586323,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientSpeederBikePhysicsActionEntity"),
@@ -6105,7 +6536,8 @@ pub static CLIENTSPEEDERBIKEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpeederBikePhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6124,12 +6556,15 @@ impl super::entity::EntityBusPeerTrait for SpeederBikePhysicsActionEntity {
 
 pub static SPEEDERBIKEPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpeederBikePhysicsActionEntity",
+    name_hash: 3819464286,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SpeederBikePhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpeederBikePhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<SpeederBikePhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6159,6 +6594,7 @@ impl TypeObject for SpeederBikePhysicsActionEntity {
 
 pub static SPEEDERBIKEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpeederBikePhysicsActionEntity-Array",
+    name_hash: 794363882,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("SpeederBikePhysicsActionEntity"),
@@ -6167,7 +6603,8 @@ pub static SPEEDERBIKEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RearViewCameraTransformerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6186,12 +6623,15 @@ impl super::entity::EntityBusPeerTrait for RearViewCameraTransformerEntity {
 
 pub static REARVIEWCAMERATRANSFORMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RearViewCameraTransformerEntity",
+    name_hash: 2613555381,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RearViewCameraTransformerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RearViewCameraTransformerEntity as Default>::default())),
+            create_boxed: || Box::new(<RearViewCameraTransformerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6221,6 +6661,7 @@ impl TypeObject for RearViewCameraTransformerEntity {
 
 pub static REARVIEWCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RearViewCameraTransformerEntity-Array",
+    name_hash: 3637629185,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("RearViewCameraTransformerEntity"),
@@ -6229,7 +6670,8 @@ pub static REARVIEWCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RearViewCameraConfigEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6248,12 +6690,15 @@ impl super::entity::EntityBusPeerTrait for RearViewCameraConfigEntity {
 
 pub static REARVIEWCAMERACONFIGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RearViewCameraConfigEntity",
+    name_hash: 3076787012,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RearViewCameraConfigEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RearViewCameraConfigEntity as Default>::default())),
+            create_boxed: || Box::new(<RearViewCameraConfigEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6283,6 +6728,7 @@ impl TypeObject for RearViewCameraConfigEntity {
 
 pub static REARVIEWCAMERACONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RearViewCameraConfigEntity-Array",
+    name_hash: 1077006320,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("RearViewCameraConfigEntity"),
@@ -6291,7 +6737,8 @@ pub static REARVIEWCAMERACONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HoverCameraTransformerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6310,12 +6757,15 @@ impl super::entity::EntityBusPeerTrait for HoverCameraTransformerEntity {
 
 pub static HOVERCAMERATRANSFORMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoverCameraTransformerEntity",
+    name_hash: 338173754,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(HoverCameraTransformerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HoverCameraTransformerEntity as Default>::default())),
+            create_boxed: || Box::new(<HoverCameraTransformerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6345,6 +6795,7 @@ impl TypeObject for HoverCameraTransformerEntity {
 
 pub static HOVERCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoverCameraTransformerEntity-Array",
+    name_hash: 51118478,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("HoverCameraTransformerEntity"),
@@ -6353,7 +6804,8 @@ pub static HOVERCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HoverCameraConfigEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6372,12 +6824,15 @@ impl super::entity::EntityBusPeerTrait for HoverCameraConfigEntity {
 
 pub static HOVERCAMERACONFIGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoverCameraConfigEntity",
+    name_hash: 2286103979,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(HoverCameraConfigEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HoverCameraConfigEntity as Default>::default())),
+            create_boxed: || Box::new(<HoverCameraConfigEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6407,6 +6862,7 @@ impl TypeObject for HoverCameraConfigEntity {
 
 pub static HOVERCAMERACONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoverCameraConfigEntity-Array",
+    name_hash: 287075615,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("HoverCameraConfigEntity"),
@@ -6415,7 +6871,8 @@ pub static HOVERCAMERACONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FollowCameraTransformerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6434,12 +6891,15 @@ impl super::entity::EntityBusPeerTrait for FollowCameraTransformerEntity {
 
 pub static FOLLOWCAMERATRANSFORMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FollowCameraTransformerEntity",
+    name_hash: 1899460077,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(FollowCameraTransformerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FollowCameraTransformerEntity as Default>::default())),
+            create_boxed: || Box::new(<FollowCameraTransformerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6469,6 +6929,7 @@ impl TypeObject for FollowCameraTransformerEntity {
 
 pub static FOLLOWCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FollowCameraTransformerEntity-Array",
+    name_hash: 286087897,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("FollowCameraTransformerEntity"),
@@ -6477,7 +6938,8 @@ pub static FOLLOWCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FollowCameraConfigEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6496,12 +6958,15 @@ impl super::entity::EntityBusPeerTrait for FollowCameraConfigEntity {
 
 pub static FOLLOWCAMERACONFIGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FollowCameraConfigEntity",
+    name_hash: 2002462748,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(FollowCameraConfigEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FollowCameraConfigEntity as Default>::default())),
+            create_boxed: || Box::new(<FollowCameraConfigEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6531,6 +6996,7 @@ impl TypeObject for FollowCameraConfigEntity {
 
 pub static FOLLOWCAMERACONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FollowCameraConfigEntity-Array",
+    name_hash: 17408040,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("FollowCameraConfigEntity"),
@@ -6539,7 +7005,8 @@ pub static FOLLOWCAMERACONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CockpitCameraTransformerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6558,12 +7025,15 @@ impl super::entity::EntityBusPeerTrait for CockpitCameraTransformerEntity {
 
 pub static COCKPITCAMERATRANSFORMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CockpitCameraTransformerEntity",
+    name_hash: 3848454389,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CockpitCameraTransformerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CockpitCameraTransformerEntity as Default>::default())),
+            create_boxed: || Box::new(<CockpitCameraTransformerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6593,6 +7063,7 @@ impl TypeObject for CockpitCameraTransformerEntity {
 
 pub static COCKPITCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CockpitCameraTransformerEntity-Array",
+    name_hash: 2522370497,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CockpitCameraTransformerEntity"),
@@ -6601,7 +7072,8 @@ pub static COCKPITCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CockpitCameraConfigEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6620,12 +7092,15 @@ impl super::entity::EntityBusPeerTrait for CockpitCameraConfigEntity {
 
 pub static COCKPITCAMERACONFIGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CockpitCameraConfigEntity",
+    name_hash: 2394685444,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CockpitCameraConfigEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CockpitCameraConfigEntity as Default>::default())),
+            create_boxed: || Box::new(<CockpitCameraConfigEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6655,6 +7130,7 @@ impl TypeObject for CockpitCameraConfigEntity {
 
 pub static COCKPITCAMERACONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CockpitCameraConfigEntity-Array",
+    name_hash: 832197680,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CockpitCameraConfigEntity"),
@@ -6663,7 +7139,8 @@ pub static COCKPITCAMERACONFIGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPhysicalCameraTransformerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6682,12 +7159,15 @@ impl super::entity::EntityBusPeerTrait for ClientPhysicalCameraTransformerEntity
 
 pub static CLIENTPHYSICALCAMERATRANSFORMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicalCameraTransformerEntity",
+    name_hash: 3669079856,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPhysicalCameraTransformerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPhysicalCameraTransformerEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientPhysicalCameraTransformerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6717,6 +7197,7 @@ impl TypeObject for ClientPhysicalCameraTransformerEntity {
 
 pub static CLIENTPHYSICALCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicalCameraTransformerEntity-Array",
+    name_hash: 2209334404,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPhysicalCameraTransformerEntity"),
@@ -6725,7 +7206,8 @@ pub static CLIENTPHYSICALCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CameraSlerpTransformEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6744,12 +7226,15 @@ impl super::entity::EntityBusPeerTrait for CameraSlerpTransformEntity {
 
 pub static CAMERASLERPTRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraSlerpTransformEntity",
+    name_hash: 3503443635,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CameraSlerpTransformEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CameraSlerpTransformEntity as Default>::default())),
+            create_boxed: || Box::new(<CameraSlerpTransformEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6779,6 +7264,7 @@ impl TypeObject for CameraSlerpTransformEntity {
 
 pub static CAMERASLERPTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraSlerpTransformEntity-Array",
+    name_hash: 399751687,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CameraSlerpTransformEntity"),
@@ -6787,7 +7273,8 @@ pub static CAMERASLERPTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CameraInertiaTransformEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6806,12 +7293,15 @@ impl super::entity::EntityBusPeerTrait for CameraInertiaTransformEntity {
 
 pub static CAMERAINERTIATRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraInertiaTransformEntity",
+    name_hash: 614182023,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CameraInertiaTransformEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CameraInertiaTransformEntity as Default>::default())),
+            create_boxed: || Box::new(<CameraInertiaTransformEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6841,6 +7331,7 @@ impl TypeObject for CameraInertiaTransformEntity {
 
 pub static CAMERAINERTIATRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraInertiaTransformEntity-Array",
+    name_hash: 1722592563,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CameraInertiaTransformEntity"),
@@ -6849,7 +7340,8 @@ pub static CAMERAINERTIATRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ArmCollisionCameraTransformerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6868,12 +7360,15 @@ impl super::entity::EntityBusPeerTrait for ArmCollisionCameraTransformerEntity {
 
 pub static ARMCOLLISIONCAMERATRANSFORMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArmCollisionCameraTransformerEntity",
+    name_hash: 3479266940,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ArmCollisionCameraTransformerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ArmCollisionCameraTransformerEntity as Default>::default())),
+            create_boxed: || Box::new(<ArmCollisionCameraTransformerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6903,6 +7398,7 @@ impl TypeObject for ArmCollisionCameraTransformerEntity {
 
 pub static ARMCOLLISIONCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArmCollisionCameraTransformerEntity-Array",
+    name_hash: 2830167624,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ArmCollisionCameraTransformerEntity"),
@@ -6911,7 +7407,8 @@ pub static ARMCOLLISIONCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientObstacleDetectionHint {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6930,12 +7427,15 @@ impl super::entity::EntityBusPeerTrait for ClientObstacleDetectionHint {
 
 pub static CLIENTOBSTACLEDETECTIONHINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientObstacleDetectionHint",
+    name_hash: 1256153353,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientObstacleDetectionHint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientObstacleDetectionHint as Default>::default())),
+            create_boxed: || Box::new(<ClientObstacleDetectionHint as Default>::default()),
         },
         fields: &[
         ],
@@ -6965,6 +7465,7 @@ impl TypeObject for ClientObstacleDetectionHint {
 
 pub static CLIENTOBSTACLEDETECTIONHINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientObstacleDetectionHint-Array",
+    name_hash: 3926718141,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientObstacleDetectionHint"),
@@ -6973,7 +7474,8 @@ pub static CLIENTOBSTACLEDETECTIONHINT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientObstacleDetectionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6992,12 +7494,15 @@ impl super::entity::EntityBusPeerTrait for ClientObstacleDetectionEntity {
 
 pub static CLIENTOBSTACLEDETECTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientObstacleDetectionEntity",
+    name_hash: 1965761961,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientObstacleDetectionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientObstacleDetectionEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientObstacleDetectionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7027,6 +7532,7 @@ impl TypeObject for ClientObstacleDetectionEntity {
 
 pub static CLIENTOBSTACLEDETECTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientObstacleDetectionEntity-Array",
+    name_hash: 2682645533,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientObstacleDetectionEntity"),
@@ -7035,7 +7541,8 @@ pub static CLIENTOBSTACLEDETECTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLogicAwarenessTargetEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7054,12 +7561,15 @@ impl super::entity::EntityBusPeerTrait for ClientLogicAwarenessTargetEntity {
 
 pub static CLIENTLOGICAWARENESSTARGETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLogicAwarenessTargetEntity",
+    name_hash: 521098035,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientLogicAwarenessTargetEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLogicAwarenessTargetEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientLogicAwarenessTargetEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7089,6 +7599,7 @@ impl TypeObject for ClientLogicAwarenessTargetEntity {
 
 pub static CLIENTLOGICAWARENESSTARGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLogicAwarenessTargetEntity-Array",
+    name_hash: 3319930503,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientLogicAwarenessTargetEntity"),
@@ -7097,7 +7608,8 @@ pub static CLIENTLOGICAWARENESSTARGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAwarenessTargetEntity {
     pub _glacier_base: super::entity::SpatialEntity,
 }
@@ -7119,12 +7631,15 @@ impl super::entity::EntityBusPeerTrait for ClientAwarenessTargetEntity {
 
 pub static CLIENTAWARENESSTARGETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAwarenessTargetEntity",
+    name_hash: 3932111293,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAwarenessTargetEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAwarenessTargetEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientAwarenessTargetEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7154,6 +7669,7 @@ impl TypeObject for ClientAwarenessTargetEntity {
 
 pub static CLIENTAWARENESSTARGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAwarenessTargetEntity-Array",
+    name_hash: 2073132553,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAwarenessTargetEntity"),
@@ -7162,7 +7678,8 @@ pub static CLIENTAWARENESSTARGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSoldierIndoorsEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7181,12 +7698,15 @@ impl super::entity::EntityBusPeerTrait for ServerSoldierIndoorsEntity {
 
 pub static SERVERSOLDIERINDOORSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSoldierIndoorsEntity",
+    name_hash: 3486544339,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSoldierIndoorsEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSoldierIndoorsEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSoldierIndoorsEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7216,6 +7736,7 @@ impl TypeObject for ServerSoldierIndoorsEntity {
 
 pub static SERVERSOLDIERINDOORSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSoldierIndoorsEntity-Array",
+    name_hash: 489897191,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerSoldierIndoorsEntity"),
@@ -7224,7 +7745,8 @@ pub static SERVERSOLDIERINDOORSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientVoiceOverQueryEventEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7243,12 +7765,15 @@ impl super::entity::EntityBusPeerTrait for ClientVoiceOverQueryEventEntity {
 
 pub static CLIENTVOICEOVERQUERYEVENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientVoiceOverQueryEventEntity",
+    name_hash: 1171741433,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientVoiceOverQueryEventEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientVoiceOverQueryEventEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientVoiceOverQueryEventEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7278,6 +7803,7 @@ impl TypeObject for ClientVoiceOverQueryEventEntity {
 
 pub static CLIENTVOICEOVERQUERYEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientVoiceOverQueryEventEntity-Array",
+    name_hash: 664279501,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientVoiceOverQueryEventEntity"),
@@ -7286,7 +7812,8 @@ pub static CLIENTVOICEOVERQUERYEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSoldierIndoorsEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7305,12 +7832,15 @@ impl super::entity::EntityBusPeerTrait for ClientSoldierIndoorsEntity {
 
 pub static CLIENTSOLDIERINDOORSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSoldierIndoorsEntity",
+    name_hash: 1682805903,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSoldierIndoorsEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSoldierIndoorsEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSoldierIndoorsEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7340,6 +7870,7 @@ impl TypeObject for ClientSoldierIndoorsEntity {
 
 pub static CLIENTSOLDIERINDOORSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSoldierIndoorsEntity-Array",
+    name_hash: 4037800251,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientSoldierIndoorsEntity"),
@@ -7348,7 +7879,8 @@ pub static CLIENTSOLDIERINDOORSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAudioWheelLogicEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7367,12 +7899,15 @@ impl super::entity::EntityBusPeerTrait for ClientAudioWheelLogicEntity {
 
 pub static CLIENTAUDIOWHEELLOGICENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAudioWheelLogicEntity",
+    name_hash: 1388377900,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAudioWheelLogicEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAudioWheelLogicEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientAudioWheelLogicEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7402,6 +7937,7 @@ impl TypeObject for ClientAudioWheelLogicEntity {
 
 pub static CLIENTAUDIOWHEELLOGICENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAudioWheelLogicEntity-Array",
+    name_hash: 2925217432,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAudioWheelLogicEntity"),
@@ -7410,7 +7946,8 @@ pub static CLIENTAUDIOWHEELLOGICENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAudioVehicleEngineParametersEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7429,12 +7966,15 @@ impl super::entity::EntityBusPeerTrait for ClientAudioVehicleEngineParametersEnt
 
 pub static CLIENTAUDIOVEHICLEENGINEPARAMETERSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAudioVehicleEngineParametersEntity",
+    name_hash: 3771318557,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAudioVehicleEngineParametersEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAudioVehicleEngineParametersEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientAudioVehicleEngineParametersEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7464,6 +8004,7 @@ impl TypeObject for ClientAudioVehicleEngineParametersEntity {
 
 pub static CLIENTAUDIOVEHICLEENGINEPARAMETERSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAudioVehicleEngineParametersEntity-Array",
+    name_hash: 2400308393,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAudioVehicleEngineParametersEntity"),
@@ -7472,7 +8013,8 @@ pub static CLIENTAUDIOVEHICLEENGINEPARAMETERSENTITY_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAudioRaycastInfoEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7491,12 +8033,15 @@ impl super::entity::EntityBusPeerTrait for ClientAudioRaycastInfoEntity {
 
 pub static CLIENTAUDIORAYCASTINFOENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAudioRaycastInfoEntity",
+    name_hash: 860345872,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAudioRaycastInfoEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAudioRaycastInfoEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientAudioRaycastInfoEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7526,6 +8071,7 @@ impl TypeObject for ClientAudioRaycastInfoEntity {
 
 pub static CLIENTAUDIORAYCASTINFOENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAudioRaycastInfoEntity-Array",
+    name_hash: 2944517156,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAudioRaycastInfoEntity"),
@@ -7534,7 +8080,8 @@ pub static CLIENTAUDIORAYCASTINFOENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SkiSpeederPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7553,12 +8100,15 @@ impl super::entity::EntityBusPeerTrait for SkiSpeederPhysicsActionEntity {
 
 pub static SKISPEEDERPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SkiSpeederPhysicsActionEntity",
+    name_hash: 1677069994,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SkiSpeederPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SkiSpeederPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<SkiSpeederPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7588,6 +8138,7 @@ impl TypeObject for SkiSpeederPhysicsActionEntity {
 
 pub static SKISPEEDERPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SkiSpeederPhysicsActionEntity-Array",
+    name_hash: 2229061918,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("SkiSpeederPhysicsActionEntity"),
@@ -7596,7 +8147,8 @@ pub static SKISPEEDERPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SimpleEnginePhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7615,12 +8167,15 @@ impl super::entity::EntityBusPeerTrait for SimpleEnginePhysicsActionEntity {
 
 pub static SIMPLEENGINEPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimpleEnginePhysicsActionEntity",
+    name_hash: 2661822795,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SimpleEnginePhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SimpleEnginePhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<SimpleEnginePhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7650,6 +8205,7 @@ impl TypeObject for SimpleEnginePhysicsActionEntity {
 
 pub static SIMPLEENGINEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimpleEnginePhysicsActionEntity-Array",
+    name_hash: 346632319,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("SimpleEnginePhysicsActionEntity"),
@@ -7658,7 +8214,8 @@ pub static SIMPLEENGINEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScriptedMotionPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7677,12 +8234,15 @@ impl super::entity::EntityBusPeerTrait for ScriptedMotionPhysicsActionEntity {
 
 pub static SCRIPTEDMOTIONPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScriptedMotionPhysicsActionEntity",
+    name_hash: 3129910683,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ScriptedMotionPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScriptedMotionPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<ScriptedMotionPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7712,6 +8272,7 @@ impl TypeObject for ScriptedMotionPhysicsActionEntity {
 
 pub static SCRIPTEDMOTIONPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScriptedMotionPhysicsActionEntity-Array",
+    name_hash: 2148064303,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ScriptedMotionPhysicsActionEntity"),
@@ -7720,7 +8281,8 @@ pub static SCRIPTEDMOTIONPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RollOnInputPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7739,12 +8301,15 @@ impl super::entity::EntityBusPeerTrait for RollOnInputPhysicsActionEntity {
 
 pub static ROLLONINPUTPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RollOnInputPhysicsActionEntity",
+    name_hash: 1148413473,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RollOnInputPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RollOnInputPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<RollOnInputPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7774,6 +8339,7 @@ impl TypeObject for RollOnInputPhysicsActionEntity {
 
 pub static ROLLONINPUTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RollOnInputPhysicsActionEntity-Array",
+    name_hash: 2398957717,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("RollOnInputPhysicsActionEntity"),
@@ -7782,7 +8348,8 @@ pub static ROLLONINPUTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RepulsorLiftPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7801,12 +8368,15 @@ impl super::entity::EntityBusPeerTrait for RepulsorLiftPhysicsActionEntity {
 
 pub static REPULSORLIFTPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RepulsorLiftPhysicsActionEntity",
+    name_hash: 2472685964,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RepulsorLiftPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RepulsorLiftPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<RepulsorLiftPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7836,6 +8406,7 @@ impl TypeObject for RepulsorLiftPhysicsActionEntity {
 
 pub static REPULSORLIFTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RepulsorLiftPhysicsActionEntity-Array",
+    name_hash: 1073676728,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("RepulsorLiftPhysicsActionEntity"),
@@ -7844,7 +8415,8 @@ pub static REPULSORLIFTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyReaderPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7863,12 +8435,15 @@ impl super::entity::EntityBusPeerTrait for PropertyReaderPhysicsActionEntity {
 
 pub static PROPERTYREADERPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyReaderPhysicsActionEntity",
+    name_hash: 847320265,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PropertyReaderPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyReaderPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<PropertyReaderPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7898,6 +8473,7 @@ impl TypeObject for PropertyReaderPhysicsActionEntity {
 
 pub static PROPERTYREADERPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyReaderPhysicsActionEntity-Array",
+    name_hash: 4057103101,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("PropertyReaderPhysicsActionEntity"),
@@ -7906,7 +8482,8 @@ pub static PROPERTYREADERPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MutualRepulsorPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7925,12 +8502,15 @@ impl super::entity::EntityBusPeerTrait for MutualRepulsorPhysicsActionEntity {
 
 pub static MUTUALREPULSORPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MutualRepulsorPhysicsActionEntity",
+    name_hash: 1270888879,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(MutualRepulsorPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MutualRepulsorPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<MutualRepulsorPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7960,6 +8540,7 @@ impl TypeObject for MutualRepulsorPhysicsActionEntity {
 
 pub static MUTUALREPULSORPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MutualRepulsorPhysicsActionEntity-Array",
+    name_hash: 2591172379,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("MutualRepulsorPhysicsActionEntity"),
@@ -7968,7 +8549,8 @@ pub static MUTUALREPULSORPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MotionDampingPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7987,12 +8569,15 @@ impl super::entity::EntityBusPeerTrait for MotionDampingPhysicsActionEntity {
 
 pub static MOTIONDAMPINGPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MotionDampingPhysicsActionEntity",
+    name_hash: 219274029,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(MotionDampingPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MotionDampingPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<MotionDampingPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8022,6 +8607,7 @@ impl TypeObject for MotionDampingPhysicsActionEntity {
 
 pub static MOTIONDAMPINGPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MotionDampingPhysicsActionEntity-Array",
+    name_hash: 2543742873,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("MotionDampingPhysicsActionEntity"),
@@ -8030,7 +8616,8 @@ pub static MOTIONDAMPINGPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearRepulsorLiftPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8049,12 +8636,15 @@ impl super::entity::EntityBusPeerTrait for LinearRepulsorLiftPhysicsActionEntity
 
 pub static LINEARREPULSORLIFTPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearRepulsorLiftPhysicsActionEntity",
+    name_hash: 13046641,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(LinearRepulsorLiftPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearRepulsorLiftPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<LinearRepulsorLiftPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8084,6 +8674,7 @@ impl TypeObject for LinearRepulsorLiftPhysicsActionEntity {
 
 pub static LINEARREPULSORLIFTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearRepulsorLiftPhysicsActionEntity-Array",
+    name_hash: 806409797,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("LinearRepulsorLiftPhysicsActionEntity"),
@@ -8092,7 +8683,8 @@ pub static LINEARREPULSORLIFTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputReaderActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8111,12 +8703,15 @@ impl super::entity::EntityBusPeerTrait for InputReaderActionEntity {
 
 pub static INPUTREADERACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputReaderActionEntity",
+    name_hash: 1442640723,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(InputReaderActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputReaderActionEntity as Default>::default())),
+            create_boxed: || Box::new(<InputReaderActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8146,6 +8741,7 @@ impl TypeObject for InputReaderActionEntity {
 
 pub static INPUTREADERACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputReaderActionEntity-Array",
+    name_hash: 706403943,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("InputReaderActionEntity"),
@@ -8154,7 +8750,8 @@ pub static INPUTREADERACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientHoverTankPhysicsActionEntity {
     pub _glacier_base: HoverTankPhysicsActionEntity,
 }
@@ -8176,12 +8773,15 @@ impl super::entity::EntityBusPeerTrait for ClientHoverTankPhysicsActionEntity {
 
 pub static CLIENTHOVERTANKPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientHoverTankPhysicsActionEntity",
+    name_hash: 2808196260,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(HOVERTANKPHYSICSACTIONENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientHoverTankPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientHoverTankPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientHoverTankPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8211,6 +8811,7 @@ impl TypeObject for ClientHoverTankPhysicsActionEntity {
 
 pub static CLIENTHOVERTANKPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientHoverTankPhysicsActionEntity-Array",
+    name_hash: 579780624,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientHoverTankPhysicsActionEntity"),
@@ -8219,7 +8820,8 @@ pub static CLIENTHOVERTANKPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HoverTankPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8238,12 +8840,15 @@ impl super::entity::EntityBusPeerTrait for HoverTankPhysicsActionEntity {
 
 pub static HOVERTANKPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoverTankPhysicsActionEntity",
+    name_hash: 2949885597,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(HoverTankPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HoverTankPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<HoverTankPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8273,6 +8878,7 @@ impl TypeObject for HoverTankPhysicsActionEntity {
 
 pub static HOVERTANKPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoverTankPhysicsActionEntity-Array",
+    name_hash: 3895974441,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("HoverTankPhysicsActionEntity"),
@@ -8281,7 +8887,8 @@ pub static HOVERTANKPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HoverNoisePhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8300,12 +8907,15 @@ impl super::entity::EntityBusPeerTrait for HoverNoisePhysicsActionEntity {
 
 pub static HOVERNOISEPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoverNoisePhysicsActionEntity",
+    name_hash: 187712979,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(HoverNoisePhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HoverNoisePhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<HoverNoisePhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8335,6 +8945,7 @@ impl TypeObject for HoverNoisePhysicsActionEntity {
 
 pub static HOVERNOISEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoverNoisePhysicsActionEntity-Array",
+    name_hash: 1579290855,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("HoverNoisePhysicsActionEntity"),
@@ -8343,7 +8954,8 @@ pub static HOVERNOISEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HoverLiftPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8362,12 +8974,15 @@ impl super::entity::EntityBusPeerTrait for HoverLiftPhysicsActionEntity {
 
 pub static HOVERLIFTPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoverLiftPhysicsActionEntity",
+    name_hash: 1610259066,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(HoverLiftPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HoverLiftPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<HoverLiftPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8397,6 +9012,7 @@ impl TypeObject for HoverLiftPhysicsActionEntity {
 
 pub static HOVERLIFTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoverLiftPhysicsActionEntity-Array",
+    name_hash: 3570249038,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("HoverLiftPhysicsActionEntity"),
@@ -8405,7 +9021,8 @@ pub static HOVERLIFTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GroundFollowPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8424,12 +9041,15 @@ impl super::entity::EntityBusPeerTrait for GroundFollowPhysicsActionEntity {
 
 pub static GROUNDFOLLOWPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroundFollowPhysicsActionEntity",
+    name_hash: 3209044223,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(GroundFollowPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GroundFollowPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<GroundFollowPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8459,6 +9079,7 @@ impl TypeObject for GroundFollowPhysicsActionEntity {
 
 pub static GROUNDFOLLOWPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroundFollowPhysicsActionEntity-Array",
+    name_hash: 3245295307,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("GroundFollowPhysicsActionEntity"),
@@ -8467,7 +9088,8 @@ pub static GROUNDFOLLOWPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ForcePhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8486,12 +9108,15 @@ impl super::entity::EntityBusPeerTrait for ForcePhysicsActionEntity {
 
 pub static FORCEPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForcePhysicsActionEntity",
+    name_hash: 3930722390,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ForcePhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ForcePhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<ForcePhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8521,6 +9146,7 @@ impl TypeObject for ForcePhysicsActionEntity {
 
 pub static FORCEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForcePhysicsActionEntity-Array",
+    name_hash: 3566392802,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ForcePhysicsActionEntity"),
@@ -8529,7 +9155,8 @@ pub static FORCEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ForceOverTimePhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8548,12 +9175,15 @@ impl super::entity::EntityBusPeerTrait for ForceOverTimePhysicsActionEntity {
 
 pub static FORCEOVERTIMEPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceOverTimePhysicsActionEntity",
+    name_hash: 2514391501,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ForceOverTimePhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ForceOverTimePhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<ForceOverTimePhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8583,6 +9213,7 @@ impl TypeObject for ForceOverTimePhysicsActionEntity {
 
 pub static FORCEOVERTIMEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceOverTimePhysicsActionEntity-Array",
+    name_hash: 4158219769,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ForceOverTimePhysicsActionEntity"),
@@ -8591,7 +9222,8 @@ pub static FORCEOVERTIMEPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatStateActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8610,12 +9242,15 @@ impl super::entity::EntityBusPeerTrait for FloatStateActionEntity {
 
 pub static FLOATSTATEACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatStateActionEntity",
+    name_hash: 1729853895,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(FloatStateActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatStateActionEntity as Default>::default())),
+            create_boxed: || Box::new(<FloatStateActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8645,6 +9280,7 @@ impl TypeObject for FloatStateActionEntity {
 
 pub static FLOATSTATEACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatStateActionEntity-Array",
+    name_hash: 3830524659,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("FloatStateActionEntity"),
@@ -8653,7 +9289,8 @@ pub static FLOATSTATEACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConstraintPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8672,12 +9309,15 @@ impl super::entity::EntityBusPeerTrait for ConstraintPhysicsActionEntity {
 
 pub static CONSTRAINTPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConstraintPhysicsActionEntity",
+    name_hash: 123026702,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ConstraintPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConstraintPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<ConstraintPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8707,6 +9347,7 @@ impl TypeObject for ConstraintPhysicsActionEntity {
 
 pub static CONSTRAINTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConstraintPhysicsActionEntity-Array",
+    name_hash: 1972954682,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ConstraintPhysicsActionEntity"),
@@ -8715,7 +9356,8 @@ pub static CONSTRAINTPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CameraRelSteeringPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8734,12 +9376,15 @@ impl super::entity::EntityBusPeerTrait for CameraRelSteeringPhysicsActionEntity 
 
 pub static CAMERARELSTEERINGPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraRelSteeringPhysicsActionEntity",
+    name_hash: 1448466588,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CameraRelSteeringPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CameraRelSteeringPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<CameraRelSteeringPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8769,6 +9414,7 @@ impl TypeObject for CameraRelSteeringPhysicsActionEntity {
 
 pub static CAMERARELSTEERINGPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraRelSteeringPhysicsActionEntity-Array",
+    name_hash: 979808424,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CameraRelSteeringPhysicsActionEntity"),
@@ -8777,7 +9423,8 @@ pub static CAMERARELSTEERINGPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AntiGravityPhysicsActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8796,12 +9443,15 @@ impl super::entity::EntityBusPeerTrait for AntiGravityPhysicsActionEntity {
 
 pub static ANTIGRAVITYPHYSICSACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AntiGravityPhysicsActionEntity",
+    name_hash: 2069352959,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(AntiGravityPhysicsActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AntiGravityPhysicsActionEntity as Default>::default())),
+            create_boxed: || Box::new(<AntiGravityPhysicsActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8831,6 +9481,7 @@ impl TypeObject for AntiGravityPhysicsActionEntity {
 
 pub static ANTIGRAVITYPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AntiGravityPhysicsActionEntity-Array",
+    name_hash: 2319562699,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("AntiGravityPhysicsActionEntity"),
@@ -8839,7 +9490,8 @@ pub static ANTIGRAVITYPHYSICSACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientGravityWellControllerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8858,12 +9510,15 @@ impl super::entity::EntityBusPeerTrait for ClientGravityWellControllerEntity {
 
 pub static CLIENTGRAVITYWELLCONTROLLERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGravityWellControllerEntity",
+    name_hash: 3845425231,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientGravityWellControllerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientGravityWellControllerEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientGravityWellControllerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8893,6 +9548,7 @@ impl TypeObject for ClientGravityWellControllerEntity {
 
 pub static CLIENTGRAVITYWELLCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGravityWellControllerEntity-Array",
+    name_hash: 1075475835,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientGravityWellControllerEntity"),
@@ -8901,7 +9557,8 @@ pub static CLIENTGRAVITYWELLCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientFrameInterpolatedTransformEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8920,12 +9577,15 @@ impl super::entity::EntityBusPeerTrait for ClientFrameInterpolatedTransformEntit
 
 pub static CLIENTFRAMEINTERPOLATEDTRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientFrameInterpolatedTransformEntity",
+    name_hash: 3835279349,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientFrameInterpolatedTransformEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientFrameInterpolatedTransformEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientFrameInterpolatedTransformEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8955,6 +9615,7 @@ impl TypeObject for ClientFrameInterpolatedTransformEntity {
 
 pub static CLIENTFRAMEINTERPOLATEDTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientFrameInterpolatedTransformEntity-Array",
+    name_hash: 380405953,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientFrameInterpolatedTransformEntity"),
@@ -8963,7 +9624,8 @@ pub static CLIENTFRAMEINTERPOLATEDTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDiceShooterDeathExperienceEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8982,12 +9644,15 @@ impl super::entity::EntityBusPeerTrait for ClientDiceShooterDeathExperienceEntit
 
 pub static CLIENTDICESHOOTERDEATHEXPERIENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDiceShooterDeathExperienceEntity",
+    name_hash: 3688806358,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientDiceShooterDeathExperienceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDiceShooterDeathExperienceEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientDiceShooterDeathExperienceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9017,6 +9682,7 @@ impl TypeObject for ClientDiceShooterDeathExperienceEntity {
 
 pub static CLIENTDICESHOOTERDEATHEXPERIENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDiceShooterDeathExperienceEntity-Array",
+    name_hash: 1608981858,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientDiceShooterDeathExperienceEntity"),
@@ -9025,7 +9691,8 @@ pub static CLIENTDICESHOOTERDEATHEXPERIENCEENTITY_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientControllableInputFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9044,12 +9711,15 @@ impl super::entity::EntityBusPeerTrait for ClientControllableInputFilterEntity {
 
 pub static CLIENTCONTROLLABLEINPUTFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControllableInputFilterEntity",
+    name_hash: 270774800,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientControllableInputFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientControllableInputFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientControllableInputFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9079,6 +9749,7 @@ impl TypeObject for ClientControllableInputFilterEntity {
 
 pub static CLIENTCONTROLLABLEINPUTFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControllableInputFilterEntity-Array",
+    name_hash: 2429722660,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientControllableInputFilterEntity"),
@@ -9087,7 +9758,8 @@ pub static CLIENTCONTROLLABLEINPUTFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientControlInputEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9106,12 +9778,15 @@ impl super::entity::EntityBusPeerTrait for ClientControlInputEntity {
 
 pub static CLIENTCONTROLINPUTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControlInputEntity",
+    name_hash: 1834533814,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientControlInputEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientControlInputEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientControlInputEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9141,6 +9816,7 @@ impl TypeObject for ClientControlInputEntity {
 
 pub static CLIENTCONTROLINPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControlInputEntity-Array",
+    name_hash: 721836034,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientControlInputEntity"),
@@ -9149,7 +9825,8 @@ pub static CLIENTCONTROLINPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCharacterUtilEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9168,12 +9845,15 @@ impl super::entity::EntityBusPeerTrait for ClientCharacterUtilEntity {
 
 pub static CLIENTCHARACTERUTILENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterUtilEntity",
+    name_hash: 191499610,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCharacterUtilEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCharacterUtilEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCharacterUtilEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9203,6 +9883,7 @@ impl TypeObject for ClientCharacterUtilEntity {
 
 pub static CLIENTCHARACTERUTILENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterUtilEntity-Array",
+    name_hash: 2151432430,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientCharacterUtilEntity"),
@@ -9211,7 +9892,8 @@ pub static CLIENTCHARACTERUTILENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BarrageEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9230,12 +9912,15 @@ impl super::entity::EntityBusPeerTrait for BarrageEntity {
 
 pub static BARRAGEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BarrageEntity",
+    name_hash: 2261600638,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BarrageEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BarrageEntity as Default>::default())),
+            create_boxed: || Box::new(<BarrageEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9265,6 +9950,7 @@ impl TypeObject for BarrageEntity {
 
 pub static BARRAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BarrageEntity-Array",
+    name_hash: 2179418698,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("BarrageEntity"),
@@ -9273,7 +9959,8 @@ pub static BARRAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TargetCyclingEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9292,12 +9979,15 @@ impl super::entity::EntityBusPeerTrait for TargetCyclingEntity {
 
 pub static TARGETCYCLINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TargetCyclingEntity",
+    name_hash: 1766117818,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TargetCyclingEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TargetCyclingEntity as Default>::default())),
+            create_boxed: || Box::new(<TargetCyclingEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9327,6 +10017,7 @@ impl TypeObject for TargetCyclingEntity {
 
 pub static TARGETCYCLINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TargetCyclingEntity-Array",
+    name_hash: 948212750,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("TargetCyclingEntity"),
@@ -9335,7 +10026,8 @@ pub static TARGETCYCLINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPropertyToInputEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9354,12 +10046,15 @@ impl super::entity::EntityBusPeerTrait for ServerPropertyToInputEntity {
 
 pub static SERVERPROPERTYTOINPUTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPropertyToInputEntity",
+    name_hash: 4233014481,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPropertyToInputEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPropertyToInputEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerPropertyToInputEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9389,6 +10084,7 @@ impl TypeObject for ServerPropertyToInputEntity {
 
 pub static SERVERPROPERTYTOINPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPropertyToInputEntity-Array",
+    name_hash: 1116045029,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPropertyToInputEntity"),
@@ -9397,7 +10093,8 @@ pub static SERVERPROPERTYTOINPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPropertyToInputEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9416,12 +10113,15 @@ impl super::entity::EntityBusPeerTrait for ClientPropertyToInputEntity {
 
 pub static CLIENTPROPERTYTOINPUTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPropertyToInputEntity",
+    name_hash: 3501784717,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPropertyToInputEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPropertyToInputEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientPropertyToInputEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9451,6 +10151,7 @@ impl TypeObject for ClientPropertyToInputEntity {
 
 pub static CLIENTPROPERTYTOINPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPropertyToInputEntity-Array",
+    name_hash: 3292947001,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPropertyToInputEntity"),
@@ -9459,7 +10160,8 @@ pub static CLIENTPROPERTYTOINPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerClientVec3ToServerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9478,12 +10180,15 @@ impl super::entity::EntityBusPeerTrait for ServerClientVec3ToServerEntity {
 
 pub static SERVERCLIENTVEC3TOSERVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerClientVec3ToServerEntity",
+    name_hash: 1779941151,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerClientVec3ToServerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerClientVec3ToServerEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerClientVec3ToServerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9513,6 +10218,7 @@ impl TypeObject for ServerClientVec3ToServerEntity {
 
 pub static SERVERCLIENTVEC3TOSERVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerClientVec3ToServerEntity-Array",
+    name_hash: 10404779,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerClientVec3ToServerEntity"),
@@ -9521,7 +10227,8 @@ pub static SERVERCLIENTVEC3TOSERVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientClientVec3ToServerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9540,12 +10247,15 @@ impl super::entity::EntityBusPeerTrait for ClientClientVec3ToServerEntity {
 
 pub static CLIENTCLIENTVEC3TOSERVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientClientVec3ToServerEntity",
+    name_hash: 3704224323,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientClientVec3ToServerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientClientVec3ToServerEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientClientVec3ToServerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9575,6 +10285,7 @@ impl TypeObject for ClientClientVec3ToServerEntity {
 
 pub static CLIENTCLIENTVEC3TOSERVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientClientVec3ToServerEntity-Array",
+    name_hash: 3737017719,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientClientVec3ToServerEntity"),
@@ -9583,7 +10294,8 @@ pub static CLIENTCLIENTVEC3TOSERVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct YawOnlyCameraTransformerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9602,12 +10314,15 @@ impl super::entity::EntityBusPeerTrait for YawOnlyCameraTransformerEntity {
 
 pub static YAWONLYCAMERATRANSFORMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "YawOnlyCameraTransformerEntity",
+    name_hash: 1568167271,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(YawOnlyCameraTransformerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<YawOnlyCameraTransformerEntity as Default>::default())),
+            create_boxed: || Box::new(<YawOnlyCameraTransformerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9637,6 +10352,7 @@ impl TypeObject for YawOnlyCameraTransformerEntity {
 
 pub static YAWONLYCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "YawOnlyCameraTransformerEntity-Array",
+    name_hash: 4236556115,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("YawOnlyCameraTransformerEntity"),
@@ -9645,7 +10361,8 @@ pub static YAWONLYCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VelocityRedirectCameraTransformerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9664,12 +10381,15 @@ impl super::entity::EntityBusPeerTrait for VelocityRedirectCameraTransformerEnti
 
 pub static VELOCITYREDIRECTCAMERATRANSFORMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VelocityRedirectCameraTransformerEntity",
+    name_hash: 3949279793,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(VelocityRedirectCameraTransformerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VelocityRedirectCameraTransformerEntity as Default>::default())),
+            create_boxed: || Box::new(<VelocityRedirectCameraTransformerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9699,6 +10419,7 @@ impl TypeObject for VelocityRedirectCameraTransformerEntity {
 
 pub static VELOCITYREDIRECTCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VelocityRedirectCameraTransformerEntity-Array",
+    name_hash: 4036021381,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("VelocityRedirectCameraTransformerEntity"),
@@ -9707,7 +10428,8 @@ pub static VELOCITYREDIRECTCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ThirdPersonCameraTransformerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9726,12 +10448,15 @@ impl super::entity::EntityBusPeerTrait for ThirdPersonCameraTransformerEntity {
 
 pub static THIRDPERSONCAMERATRANSFORMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ThirdPersonCameraTransformerEntity",
+    name_hash: 4242352490,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ThirdPersonCameraTransformerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ThirdPersonCameraTransformerEntity as Default>::default())),
+            create_boxed: || Box::new(<ThirdPersonCameraTransformerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9761,6 +10486,7 @@ impl TypeObject for ThirdPersonCameraTransformerEntity {
 
 pub static THIRDPERSONCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ThirdPersonCameraTransformerEntity-Array",
+    name_hash: 193770590,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ThirdPersonCameraTransformerEntity"),
@@ -9769,7 +10495,8 @@ pub static THIRDPERSONCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StarfighterCameraTransformerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9788,12 +10515,15 @@ impl super::entity::EntityBusPeerTrait for StarfighterCameraTransformerEntity {
 
 pub static STARFIGHTERCAMERATRANSFORMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarfighterCameraTransformerEntity",
+    name_hash: 885274443,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(StarfighterCameraTransformerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StarfighterCameraTransformerEntity as Default>::default())),
+            create_boxed: || Box::new(<StarfighterCameraTransformerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9823,6 +10553,7 @@ impl TypeObject for StarfighterCameraTransformerEntity {
 
 pub static STARFIGHTERCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarfighterCameraTransformerEntity-Array",
+    name_hash: 2905716351,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("StarfighterCameraTransformerEntity"),
@@ -9831,7 +10562,8 @@ pub static STARFIGHTERCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpeederCameraTransformerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9850,12 +10582,15 @@ impl super::entity::EntityBusPeerTrait for SpeederCameraTransformerEntity {
 
 pub static SPEEDERCAMERATRANSFORMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpeederCameraTransformerEntity",
+    name_hash: 2882460588,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SpeederCameraTransformerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpeederCameraTransformerEntity as Default>::default())),
+            create_boxed: || Box::new(<SpeederCameraTransformerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9885,6 +10620,7 @@ impl TypeObject for SpeederCameraTransformerEntity {
 
 pub static SPEEDERCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpeederCameraTransformerEntity-Array",
+    name_hash: 945982232,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("SpeederCameraTransformerEntity"),
@@ -9893,7 +10629,8 @@ pub static SPEEDERCAMERATRANSFORMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPlayerAbilityExtent {
     pub _glacier_base: super::game_server::ServerGamePlayerInternalExtent,
 }
@@ -9912,12 +10649,15 @@ impl super::game_server::ServerPlayerExtentTrait for ServerPlayerAbilityExtent {
 
 pub static SERVERPLAYERABILITYEXTENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilityExtent",
+    name_hash: 778065447,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_server::SERVERGAMEPLAYERINTERNALEXTENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPlayerAbilityExtent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPlayerAbilityExtent as Default>::default())),
+            create_boxed: || Box::new(<ServerPlayerAbilityExtent as Default>::default()),
         },
         fields: &[
         ],
@@ -9947,6 +10687,7 @@ impl TypeObject for ServerPlayerAbilityExtent {
 
 pub static SERVERPLAYERABILITYEXTENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilityExtent-Array",
+    name_hash: 2388019091,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPlayerAbilityExtent"),
@@ -9955,7 +10696,8 @@ pub static SERVERPLAYERABILITYEXTENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerAbilityExtent {
     pub _glacier_base: super::game_client::ClientGamePlayerInternalExtent,
 }
@@ -9974,12 +10716,15 @@ impl super::gameplay_client_server::ClientPlayerExtentTrait for ClientPlayerAbil
 
 pub static CLIENTPLAYERABILITYEXTENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilityExtent",
+    name_hash: 4181275387,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_client::CLIENTGAMEPLAYERINTERNALEXTENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPlayerAbilityExtent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerAbilityExtent as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerAbilityExtent as Default>::default()),
         },
         fields: &[
         ],
@@ -10009,6 +10754,7 @@ impl TypeObject for ClientPlayerAbilityExtent {
 
 pub static CLIENTPLAYERABILITYEXTENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerAbilityExtent-Array",
+    name_hash: 3702008527,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPlayerAbilityExtent"),
@@ -10017,7 +10763,8 @@ pub static CLIENTPLAYERABILITYEXTENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRemotePlayerAbilityStateEntity {
     pub _glacier_base: ServerPlayerAbilityStateEntity,
 }
@@ -10039,12 +10786,15 @@ impl super::entity::EntityBusPeerTrait for ServerRemotePlayerAbilityStateEntity 
 
 pub static SERVERREMOTEPLAYERABILITYSTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemotePlayerAbilityStateEntity",
+    name_hash: 284230361,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERPLAYERABILITYSTATEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRemotePlayerAbilityStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRemotePlayerAbilityStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerRemotePlayerAbilityStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10074,6 +10824,7 @@ impl TypeObject for ServerRemotePlayerAbilityStateEntity {
 
 pub static SERVERREMOTEPLAYERABILITYSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemotePlayerAbilityStateEntity-Array",
+    name_hash: 462401773,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRemotePlayerAbilityStateEntity"),
@@ -10082,7 +10833,8 @@ pub static SERVERREMOTEPLAYERABILITYSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPlayerAbilityStateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -10101,12 +10853,15 @@ impl super::entity::EntityBusPeerTrait for ServerPlayerAbilityStateEntity {
 
 pub static SERVERPLAYERABILITYSTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilityStateEntity",
+    name_hash: 3633748253,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPlayerAbilityStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPlayerAbilityStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerPlayerAbilityStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10136,6 +10891,7 @@ impl TypeObject for ServerPlayerAbilityStateEntity {
 
 pub static SERVERPLAYERABILITYSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilityStateEntity-Array",
+    name_hash: 1394648233,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPlayerAbilityStateEntity"),
@@ -10144,7 +10900,8 @@ pub static SERVERPLAYERABILITYSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPlayerAbilityReferenceEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -10163,12 +10920,15 @@ impl super::entity::EntityBusPeerTrait for ServerPlayerAbilityReferenceEntity {
 
 pub static SERVERPLAYERABILITYREFERENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilityReferenceEntity",
+    name_hash: 2210790465,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPlayerAbilityReferenceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPlayerAbilityReferenceEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerPlayerAbilityReferenceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10198,6 +10958,7 @@ impl TypeObject for ServerPlayerAbilityReferenceEntity {
 
 pub static SERVERPLAYERABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilityReferenceEntity-Array",
+    name_hash: 763864693,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPlayerAbilityReferenceEntity"),
@@ -10206,7 +10967,8 @@ pub static SERVERPLAYERABILITYREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPlayerAbilityPropertyOutputEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -10225,12 +10987,15 @@ impl super::entity::EntityBusPeerTrait for ServerPlayerAbilityPropertyOutputEnti
 
 pub static SERVERPLAYERABILITYPROPERTYOUTPUTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilityPropertyOutputEntity",
+    name_hash: 4167935986,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPlayerAbilityPropertyOutputEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPlayerAbilityPropertyOutputEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerPlayerAbilityPropertyOutputEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10260,6 +11025,7 @@ impl TypeObject for ServerPlayerAbilityPropertyOutputEntity {
 
 pub static SERVERPLAYERABILITYPROPERTYOUTPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerAbilityPropertyOutputEntity-Array",
+    name_hash: 2805300934,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPlayerAbilityPropertyOutputEntity"),
@@ -10268,7 +11034,8 @@ pub static SERVERPLAYERABILITYPROPERTYOUTPUTENTITY_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LODEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -10287,12 +11054,15 @@ impl super::entity::EntityBusPeerTrait for LODEntity {
 
 pub static LODENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LODEntity",
+    name_hash: 3702679769,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(LODEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LODEntity as Default>::default())),
+            create_boxed: || Box::new(<LODEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10322,6 +11092,7 @@ impl TypeObject for LODEntity {
 
 pub static LODENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LODEntity-Array",
+    name_hash: 2823132909,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("LODEntity"),
@@ -10330,7 +11101,8 @@ pub static LODENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocalPlayerLODEntity {
     pub _glacier_base: LODEntity,
 }
@@ -10352,12 +11124,15 @@ impl super::entity::EntityBusPeerTrait for LocalPlayerLODEntity {
 
 pub static LOCALPLAYERLODENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerLODEntity",
+    name_hash: 3875285767,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LODENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(LocalPlayerLODEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocalPlayerLODEntity as Default>::default())),
+            create_boxed: || Box::new(<LocalPlayerLODEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10387,6 +11162,7 @@ impl TypeObject for LocalPlayerLODEntity {
 
 pub static LOCALPLAYERLODENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerLODEntity-Array",
+    name_hash: 403835827,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("LocalPlayerLODEntity"),
@@ -10395,7 +11171,8 @@ pub static LOCALPLAYERLODENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CameraLODEntity {
     pub _glacier_base: LODEntity,
 }
@@ -10417,12 +11194,15 @@ impl super::entity::EntityBusPeerTrait for CameraLODEntity {
 
 pub static CAMERALODENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraLODEntity",
+    name_hash: 242974400,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LODENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CameraLODEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CameraLODEntity as Default>::default())),
+            create_boxed: || Box::new(<CameraLODEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10452,6 +11232,7 @@ impl TypeObject for CameraLODEntity {
 
 pub static CAMERALODENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraLODEntity-Array",
+    name_hash: 296891764,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CameraLODEntity"),
@@ -10460,7 +11241,8 @@ pub static CAMERALODENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerTriggerExplosiveEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -10479,12 +11261,15 @@ impl super::entity::EntityBusPeerTrait for ServerTriggerExplosiveEntity {
 
 pub static SERVERTRIGGEREXPLOSIVEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTriggerExplosiveEntity",
+    name_hash: 1577043396,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerTriggerExplosiveEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerTriggerExplosiveEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerTriggerExplosiveEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10514,6 +11299,7 @@ impl TypeObject for ServerTriggerExplosiveEntity {
 
 pub static SERVERTRIGGEREXPLOSIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTriggerExplosiveEntity-Array",
+    name_hash: 2085579376,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerTriggerExplosiveEntity"),
@@ -10522,7 +11308,8 @@ pub static SERVERTRIGGEREXPLOSIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerTransformAreaQueryEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -10541,12 +11328,15 @@ impl super::entity::EntityBusPeerTrait for ServerTransformAreaQueryEntity {
 
 pub static SERVERTRANSFORMAREAQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTransformAreaQueryEntity",
+    name_hash: 3203183242,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerTransformAreaQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerTransformAreaQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerTransformAreaQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10576,6 +11366,7 @@ impl TypeObject for ServerTransformAreaQueryEntity {
 
 pub static SERVERTRANSFORMAREAQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTransformAreaQueryEntity-Array",
+    name_hash: 4229090750,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerTransformAreaQueryEntity"),
@@ -10584,7 +11375,8 @@ pub static SERVERTRANSFORMAREAQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerFriendZoneEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -10603,12 +11395,15 @@ impl super::entity::EntityBusPeerTrait for ServerFriendZoneEntity {
 
 pub static SERVERFRIENDZONEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFriendZoneEntity",
+    name_hash: 2726683991,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerFriendZoneEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerFriendZoneEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerFriendZoneEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10638,6 +11433,7 @@ impl TypeObject for ServerFriendZoneEntity {
 
 pub static SERVERFRIENDZONEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFriendZoneEntity-Array",
+    name_hash: 1800470115,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerFriendZoneEntity"),
@@ -10646,7 +11442,8 @@ pub static SERVERFRIENDZONEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPhysicsLockHeightVolumeManager {
 }
 
@@ -10658,12 +11455,15 @@ impl ServerPhysicsLockHeightVolumeManagerTrait for ServerPhysicsLockHeightVolume
 
 pub static SERVERPHYSICSLOCKHEIGHTVOLUMEMANAGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPhysicsLockHeightVolumeManager",
+    name_hash: 2562454948,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPhysicsLockHeightVolumeManager as Default>::default())),
+            create_boxed: || Box::new(<ServerPhysicsLockHeightVolumeManager as Default>::default()),
         },
         fields: &[
         ],
@@ -10693,6 +11493,7 @@ impl TypeObject for ServerPhysicsLockHeightVolumeManager {
 
 pub static SERVERPHYSICSLOCKHEIGHTVOLUMEMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPhysicsLockHeightVolumeManager-Array",
+    name_hash: 2327562512,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPhysicsLockHeightVolumeManager"),
@@ -10701,7 +11502,8 @@ pub static SERVERPHYSICSLOCKHEIGHTVOLUMEMANAGER_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPhysicsLockHeightVolumeManager {
 }
 
@@ -10713,12 +11515,15 @@ impl ClientPhysicsLockHeightVolumeManagerTrait for ClientPhysicsLockHeightVolume
 
 pub static CLIENTPHYSICSLOCKHEIGHTVOLUMEMANAGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicsLockHeightVolumeManager",
+    name_hash: 1013836408,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPhysicsLockHeightVolumeManager as Default>::default())),
+            create_boxed: || Box::new(<ClientPhysicsLockHeightVolumeManager as Default>::default()),
         },
         fields: &[
         ],
@@ -10748,6 +11553,7 @@ impl TypeObject for ClientPhysicsLockHeightVolumeManager {
 
 pub static CLIENTPHYSICSLOCKHEIGHTVOLUMEMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicsLockHeightVolumeManager-Array",
+    name_hash: 2496709708,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPhysicsLockHeightVolumeManager"),
@@ -10756,7 +11562,8 @@ pub static CLIENTPHYSICSLOCKHEIGHTVOLUMEMANAGER_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsLockHeightVolumeEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -10775,12 +11582,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsLockHeightVolumeEntity {
 
 pub static PHYSICSLOCKHEIGHTVOLUMEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsLockHeightVolumeEntity",
+    name_hash: 4070731689,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsLockHeightVolumeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsLockHeightVolumeEntity as Default>::default())),
+            create_boxed: || Box::new(<PhysicsLockHeightVolumeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10810,6 +11620,7 @@ impl TypeObject for PhysicsLockHeightVolumeEntity {
 
 pub static PHYSICSLOCKHEIGHTVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsLockHeightVolumeEntity-Array",
+    name_hash: 1881978397,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("PhysicsLockHeightVolumeEntity"),
@@ -10818,7 +11629,8 @@ pub static PHYSICSLOCKHEIGHTVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPhysicsFilterMetadataManager {
 }
 
@@ -10830,12 +11642,15 @@ impl ServerPhysicsFilterMetadataManagerTrait for ServerPhysicsFilterMetadataMana
 
 pub static SERVERPHYSICSFILTERMETADATAMANAGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPhysicsFilterMetadataManager",
+    name_hash: 1741473813,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPhysicsFilterMetadataManager as Default>::default())),
+            create_boxed: || Box::new(<ServerPhysicsFilterMetadataManager as Default>::default()),
         },
         fields: &[
         ],
@@ -10865,6 +11680,7 @@ impl TypeObject for ServerPhysicsFilterMetadataManager {
 
 pub static SERVERPHYSICSFILTERMETADATAMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPhysicsFilterMetadataManager-Array",
+    name_hash: 2709436321,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPhysicsFilterMetadataManager"),
@@ -10873,7 +11689,8 @@ pub static SERVERPHYSICSFILTERMETADATAMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPhysicsFilterMetadataManager {
 }
 
@@ -10885,12 +11702,15 @@ impl ClientPhysicsFilterMetadataManagerTrait for ClientPhysicsFilterMetadataMana
 
 pub static CLIENTPHYSICSFILTERMETADATAMANAGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicsFilterMetadataManager",
+    name_hash: 1248428233,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPhysicsFilterMetadataManager as Default>::default())),
+            create_boxed: || Box::new(<ClientPhysicsFilterMetadataManager as Default>::default()),
         },
         fields: &[
         ],
@@ -10920,6 +11740,7 @@ impl TypeObject for ClientPhysicsFilterMetadataManager {
 
 pub static CLIENTPHYSICSFILTERMETADATAMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicsFilterMetadataManager-Array",
+    name_hash: 3915114237,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPhysicsFilterMetadataManager"),
@@ -10928,7 +11749,8 @@ pub static CLIENTPHYSICSFILTERMETADATAMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsFilterMetadataEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -10947,12 +11769,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsFilterMetadataEntity {
 
 pub static PHYSICSFILTERMETADATAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsFilterMetadataEntity",
+    name_hash: 554645496,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsFilterMetadataEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsFilterMetadataEntity as Default>::default())),
+            create_boxed: || Box::new(<PhysicsFilterMetadataEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -10982,6 +11807,7 @@ impl TypeObject for PhysicsFilterMetadataEntity {
 
 pub static PHYSICSFILTERMETADATAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsFilterMetadataEntity-Array",
+    name_hash: 1872114124,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("PhysicsFilterMetadataEntity"),
@@ -10990,7 +11816,8 @@ pub static PHYSICSFILTERMETADATAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioRaycastCalculationEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -11009,12 +11836,15 @@ impl super::entity::EntityBusPeerTrait for AudioRaycastCalculationEntity {
 
 pub static AUDIORAYCASTCALCULATIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioRaycastCalculationEntity",
+    name_hash: 2310996750,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(AudioRaycastCalculationEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioRaycastCalculationEntity as Default>::default())),
+            create_boxed: || Box::new(<AudioRaycastCalculationEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -11044,6 +11874,7 @@ impl TypeObject for AudioRaycastCalculationEntity {
 
 pub static AUDIORAYCASTCALCULATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioRaycastCalculationEntity-Array",
+    name_hash: 3988728890,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("AudioRaycastCalculationEntity"),
@@ -11052,7 +11883,8 @@ pub static AUDIORAYCASTCALCULATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerInformAnimationOfPhysicsStateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -11071,12 +11903,15 @@ impl super::entity::EntityBusPeerTrait for ServerInformAnimationOfPhysicsStateEn
 
 pub static SERVERINFORMANIMATIONOFPHYSICSSTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerInformAnimationOfPhysicsStateEntity",
+    name_hash: 1272358889,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerInformAnimationOfPhysicsStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerInformAnimationOfPhysicsStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerInformAnimationOfPhysicsStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -11106,6 +11941,7 @@ impl TypeObject for ServerInformAnimationOfPhysicsStateEntity {
 
 pub static SERVERINFORMANIMATIONOFPHYSICSSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerInformAnimationOfPhysicsStateEntity-Array",
+    name_hash: 3851050717,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerInformAnimationOfPhysicsStateEntity"),
@@ -11114,7 +11950,8 @@ pub static SERVERINFORMANIMATIONOFPHYSICSSTATEENTITY_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientInformAnimationOfPhysicsStateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -11133,12 +11970,15 @@ impl super::entity::EntityBusPeerTrait for ClientInformAnimationOfPhysicsStateEn
 
 pub static CLIENTINFORMANIMATIONOFPHYSICSSTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientInformAnimationOfPhysicsStateEntity",
+    name_hash: 2421503157,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientInformAnimationOfPhysicsStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientInformAnimationOfPhysicsStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientInformAnimationOfPhysicsStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -11168,6 +12008,7 @@ impl TypeObject for ClientInformAnimationOfPhysicsStateEntity {
 
 pub static CLIENTINFORMANIMATIONOFPHYSICSSTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientInformAnimationOfPhysicsStateEntity-Array",
+    name_hash: 1249006849,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientInformAnimationOfPhysicsStateEntity"),
@@ -11176,7 +12017,8 @@ pub static CLIENTINFORMANIMATIONOFPHYSICSSTATEENTITY_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterCustomizationUserContext {
     pub _glacier_base: super::game_common::UserSpawnContext,
 }
@@ -11192,12 +12034,15 @@ impl super::game_common::UserSpawnContextTrait for CharacterCustomizationUserCon
 
 pub static CHARACTERCUSTOMIZATIONUSERCONTEXT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterCustomizationUserContext",
+    name_hash: 1186896591,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_common::USERSPAWNCONTEXT_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterCustomizationUserContext, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterCustomizationUserContext as Default>::default())),
+            create_boxed: || Box::new(<CharacterCustomizationUserContext as Default>::default()),
         },
         fields: &[
         ],
@@ -11227,6 +12072,7 @@ impl TypeObject for CharacterCustomizationUserContext {
 
 pub static CHARACTERCUSTOMIZATIONUSERCONTEXT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterCustomizationUserContext-Array",
+    name_hash: 914909179,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterCustomizationUserContext"),
@@ -11235,7 +12081,8 @@ pub static CHARACTERCUSTOMIZATIONUSERCONTEXT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerMountHealthComponent {
     pub _glacier_base: super::game_server::ServerControllableHealthComponent,
 }
@@ -11263,12 +12110,15 @@ impl super::entity::EntityBusPeerTrait for ServerMountHealthComponent {
 
 pub static SERVERMOUNTHEALTHCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerMountHealthComponent",
+    name_hash: 1715112158,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_server::SERVERCONTROLLABLEHEALTHCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerMountHealthComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerMountHealthComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerMountHealthComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -11298,6 +12148,7 @@ impl TypeObject for ServerMountHealthComponent {
 
 pub static SERVERMOUNTHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerMountHealthComponent-Array",
+    name_hash: 2426079850,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerMountHealthComponent"),
@@ -11306,7 +12157,8 @@ pub static SERVERMOUNTHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientMountHealthComponent {
     pub _glacier_base: super::gameplay_client_server::ClientControllableHealthComponent,
 }
@@ -11334,12 +12186,15 @@ impl super::entity::EntityBusPeerTrait for ClientMountHealthComponent {
 
 pub static CLIENTMOUNTHEALTHCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMountHealthComponent",
+    name_hash: 3342744194,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTCONTROLLABLEHEALTHCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientMountHealthComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientMountHealthComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientMountHealthComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -11369,6 +12224,7 @@ impl TypeObject for ClientMountHealthComponent {
 
 pub static CLIENTMOUNTHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMountHealthComponent-Array",
+    name_hash: 3941267894,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientMountHealthComponent"),
@@ -11377,7 +12233,8 @@ pub static CLIENTMOUNTHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCharacterAnimatableMeshProxyComponent {
     pub _glacier_base: super::game_client::ClientMeshComponent,
 }
@@ -11405,12 +12262,15 @@ impl super::entity::EntityBusPeerTrait for ClientCharacterAnimatableMeshProxyCom
 
 pub static CLIENTCHARACTERANIMATABLEMESHPROXYCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterAnimatableMeshProxyComponent",
+    name_hash: 1166634177,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_client::CLIENTMESHCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCharacterAnimatableMeshProxyComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCharacterAnimatableMeshProxyComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientCharacterAnimatableMeshProxyComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -11440,6 +12300,7 @@ impl TypeObject for ClientCharacterAnimatableMeshProxyComponent {
 
 pub static CLIENTCHARACTERANIMATABLEMESHPROXYCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterAnimatableMeshProxyComponent-Array",
+    name_hash: 3980228341,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientCharacterAnimatableMeshProxyComponent"),
@@ -11448,7 +12309,8 @@ pub static CLIENTCHARACTERANIMATABLEMESHPROXYCOMPONENT_ARRAY_TYPE_INFO: &'static
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerVaultComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -11473,12 +12335,15 @@ impl super::entity::EntityBusPeerTrait for ServerVaultComponent {
 
 pub static SERVERVAULTCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerVaultComponent",
+    name_hash: 1026387509,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerVaultComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerVaultComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerVaultComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -11508,6 +12373,7 @@ impl TypeObject for ServerVaultComponent {
 
 pub static SERVERVAULTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerVaultComponent-Array",
+    name_hash: 1844424321,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerVaultComponent"),
@@ -11516,7 +12382,8 @@ pub static SERVERVAULTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientVaultComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -11541,12 +12408,15 @@ impl super::entity::EntityBusPeerTrait for ClientVaultComponent {
 
 pub static CLIENTVAULTCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientVaultComponent",
+    name_hash: 2685068265,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientVaultComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientVaultComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientVaultComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -11576,6 +12446,7 @@ impl TypeObject for ClientVaultComponent {
 
 pub static CLIENTVAULTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientVaultComponent-Array",
+    name_hash: 922458845,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientVaultComponent"),
@@ -11584,7 +12455,8 @@ pub static CLIENTVAULTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSoldierSuppressionComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -11609,12 +12481,15 @@ impl super::entity::EntityBusPeerTrait for ServerSoldierSuppressionComponent {
 
 pub static SERVERSOLDIERSUPPRESSIONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSoldierSuppressionComponent",
+    name_hash: 3159307388,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSoldierSuppressionComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSoldierSuppressionComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerSoldierSuppressionComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -11644,6 +12519,7 @@ impl TypeObject for ServerSoldierSuppressionComponent {
 
 pub static SERVERSOLDIERSUPPRESSIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSoldierSuppressionComponent-Array",
+    name_hash: 809581640,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerSoldierSuppressionComponent"),
@@ -11652,7 +12528,8 @@ pub static SERVERSOLDIERSUPPRESSIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSoldierSuppressionComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -11677,12 +12554,15 @@ impl super::entity::EntityBusPeerTrait for ClientSoldierSuppressionComponent {
 
 pub static CLIENTSOLDIERSUPPRESSIONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSoldierSuppressionComponent",
+    name_hash: 973663776,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSoldierSuppressionComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSoldierSuppressionComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientSoldierSuppressionComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -11712,6 +12592,7 @@ impl TypeObject for ClientSoldierSuppressionComponent {
 
 pub static CLIENTSOLDIERSUPPRESSIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSoldierSuppressionComponent-Array",
+    name_hash: 3150017428,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientSoldierSuppressionComponent"),
@@ -11720,7 +12601,8 @@ pub static CLIENTSOLDIERSUPPRESSIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShieldUserContext {
     pub _glacier_base: super::game_common::UserSpawnContext,
 }
@@ -11736,12 +12618,15 @@ impl super::game_common::UserSpawnContextTrait for ShieldUserContext {
 
 pub static SHIELDUSERCONTEXT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShieldUserContext",
+    name_hash: 3259517716,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_common::USERSPAWNCONTEXT_TYPE_INFO),
+        super_class_offset: offset_of!(ShieldUserContext, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShieldUserContext as Default>::default())),
+            create_boxed: || Box::new(<ShieldUserContext as Default>::default()),
         },
         fields: &[
         ],
@@ -11771,6 +12656,7 @@ impl TypeObject for ShieldUserContext {
 
 pub static SHIELDUSERCONTEXT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShieldUserContext-Array",
+    name_hash: 4253394720,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ShieldUserContext"),
@@ -11779,7 +12665,8 @@ pub static SHIELDUSERCONTEXT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerShieldStateComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -11804,12 +12691,15 @@ impl super::entity::EntityBusPeerTrait for ServerShieldStateComponent {
 
 pub static SERVERSHIELDSTATECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldStateComponent",
+    name_hash: 255182471,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerShieldStateComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerShieldStateComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerShieldStateComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -11839,6 +12729,7 @@ impl TypeObject for ServerShieldStateComponent {
 
 pub static SERVERSHIELDSTATECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldStateComponent-Array",
+    name_hash: 3337766707,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerShieldStateComponent"),
@@ -11847,7 +12738,8 @@ pub static SERVERSHIELDSTATECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAffectorReceiveEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -11866,12 +12758,15 @@ impl super::entity::EntityBusPeerTrait for ClientAffectorReceiveEntity {
 
 pub static CLIENTAFFECTORRECEIVEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffectorReceiveEntity",
+    name_hash: 3628613666,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAffectorReceiveEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAffectorReceiveEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientAffectorReceiveEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -11901,6 +12796,7 @@ impl TypeObject for ClientAffectorReceiveEntity {
 
 pub static CLIENTAFFECTORRECEIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffectorReceiveEntity-Array",
+    name_hash: 2398011030,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAffectorReceiveEntity"),
@@ -11909,7 +12805,8 @@ pub static CLIENTAFFECTORRECEIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAffectorQueryFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -11928,12 +12825,15 @@ impl super::entity::EntityBusPeerTrait for ClientAffectorQueryFilterEntity {
 
 pub static CLIENTAFFECTORQUERYFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffectorQueryFilterEntity",
+    name_hash: 4224366531,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAffectorQueryFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAffectorQueryFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientAffectorQueryFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -11963,6 +12863,7 @@ impl TypeObject for ClientAffectorQueryFilterEntity {
 
 pub static CLIENTAFFECTORQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffectorQueryFilterEntity-Array",
+    name_hash: 2042051319,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAffectorQueryFilterEntity"),
@@ -11971,7 +12872,8 @@ pub static CLIENTAFFECTORQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAffectorComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -11996,12 +12898,15 @@ impl super::entity::EntityBusPeerTrait for ServerAffectorComponent {
 
 pub static SERVERAFFECTORCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorComponent",
+    name_hash: 3423800449,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAffectorComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAffectorComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAffectorComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -12031,6 +12936,7 @@ impl TypeObject for ServerAffectorComponent {
 
 pub static SERVERAFFECTORCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorComponent-Array",
+    name_hash: 2796807733,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerAffectorComponent"),
@@ -12039,7 +12945,8 @@ pub static SERVERAFFECTORCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAffectorComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -12064,12 +12971,15 @@ impl super::entity::EntityBusPeerTrait for ClientAffectorComponent {
 
 pub static CLIENTAFFECTORCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffectorComponent",
+    name_hash: 757968733,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAffectorComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAffectorComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientAffectorComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -12099,6 +13009,7 @@ impl TypeObject for ClientAffectorComponent {
 
 pub static CLIENTAFFECTORCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffectorComponent-Array",
+    name_hash: 872115049,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAffectorComponent"),
@@ -12107,7 +13018,8 @@ pub static CLIENTAFFECTORCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRemoveAffector {
     pub _glacier_base: ServerAffector,
 }
@@ -12126,12 +13038,15 @@ impl AffectorTrait for ServerRemoveAffector {
 
 pub static SERVERREMOVEAFFECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoveAffector",
+    name_hash: 2429195432,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAFFECTOR_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRemoveAffector, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRemoveAffector as Default>::default())),
+            create_boxed: || Box::new(<ServerRemoveAffector as Default>::default()),
         },
         fields: &[
         ],
@@ -12161,6 +13076,7 @@ impl TypeObject for ServerRemoveAffector {
 
 pub static SERVERREMOVEAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoveAffector-Array",
+    name_hash: 1648711196,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRemoveAffector"),
@@ -12169,7 +13085,8 @@ pub static SERVERREMOVEAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCharacterStateAffector {
     pub _glacier_base: ServerAffector,
 }
@@ -12188,12 +13105,15 @@ impl AffectorTrait for ServerCharacterStateAffector {
 
 pub static SERVERCHARACTERSTATEAFFECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCharacterStateAffector",
+    name_hash: 253894528,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAFFECTOR_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCharacterStateAffector, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCharacterStateAffector as Default>::default())),
+            create_boxed: || Box::new(<ServerCharacterStateAffector as Default>::default()),
         },
         fields: &[
         ],
@@ -12223,6 +13143,7 @@ impl TypeObject for ServerCharacterStateAffector {
 
 pub static SERVERCHARACTERSTATEAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCharacterStateAffector-Array",
+    name_hash: 2411357620,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerCharacterStateAffector"),
@@ -12231,7 +13152,8 @@ pub static SERVERCHARACTERSTATEAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAffectorImmunityAffector {
     pub _glacier_base: ServerAffector,
 }
@@ -12250,12 +13172,15 @@ impl AffectorTrait for ServerAffectorImmunityAffector {
 
 pub static SERVERAFFECTORIMMUNITYAFFECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorImmunityAffector",
+    name_hash: 3646898262,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAFFECTOR_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAffectorImmunityAffector, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAffectorImmunityAffector as Default>::default())),
+            create_boxed: || Box::new(<ServerAffectorImmunityAffector as Default>::default()),
         },
         fields: &[
         ],
@@ -12285,6 +13210,7 @@ impl TypeObject for ServerAffectorImmunityAffector {
 
 pub static SERVERAFFECTORIMMUNITYAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorImmunityAffector-Array",
+    name_hash: 3939239394,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerAffectorImmunityAffector"),
@@ -12293,7 +13219,8 @@ pub static SERVERAFFECTORIMMUNITYAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAffector {
     pub _glacier_base: Affector,
 }
@@ -12309,12 +13236,15 @@ impl AffectorTrait for ServerAffector {
 
 pub static SERVERAFFECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffector",
+    name_hash: 3746828462,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AFFECTOR_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAffector, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAffector as Default>::default())),
+            create_boxed: || Box::new(<ServerAffector as Default>::default()),
         },
         fields: &[
         ],
@@ -12344,6 +13274,7 @@ impl TypeObject for ServerAffector {
 
 pub static SERVERAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffector-Array",
+    name_hash: 2759063834,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerAffector"),
@@ -12352,7 +13283,8 @@ pub static SERVERAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAbilityInputMappingAffector {
     pub _glacier_base: ServerAffector,
 }
@@ -12371,12 +13303,15 @@ impl AffectorTrait for ServerAbilityInputMappingAffector {
 
 pub static SERVERABILITYINPUTMAPPINGAFFECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAbilityInputMappingAffector",
+    name_hash: 445945654,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAFFECTOR_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAbilityInputMappingAffector, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAbilityInputMappingAffector as Default>::default())),
+            create_boxed: || Box::new(<ServerAbilityInputMappingAffector as Default>::default()),
         },
         fields: &[
         ],
@@ -12406,6 +13341,7 @@ impl TypeObject for ServerAbilityInputMappingAffector {
 
 pub static SERVERABILITYINPUTMAPPINGAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAbilityInputMappingAffector-Array",
+    name_hash: 1437780866,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerAbilityInputMappingAffector"),
@@ -12414,7 +13350,8 @@ pub static SERVERABILITYINPUTMAPPINGAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRemoveAffector {
     pub _glacier_base: ClientAffector,
 }
@@ -12433,12 +13370,15 @@ impl AffectorTrait for ClientRemoveAffector {
 
 pub static CLIENTREMOVEAFFECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoveAffector",
+    name_hash: 3262297460,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTAFFECTOR_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRemoveAffector, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRemoveAffector as Default>::default())),
+            create_boxed: || Box::new(<ClientRemoveAffector as Default>::default()),
         },
         fields: &[
         ],
@@ -12468,6 +13408,7 @@ impl TypeObject for ClientRemoveAffector {
 
 pub static CLIENTREMOVEAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoveAffector-Array",
+    name_hash: 3670155584,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRemoveAffector"),
@@ -12476,7 +13417,8 @@ pub static CLIENTREMOVEAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCharacterStateAffector {
     pub _glacier_base: ClientAffector,
 }
@@ -12495,12 +13437,15 @@ impl AffectorTrait for ClientCharacterStateAffector {
 
 pub static CLIENTCHARACTERSTATEAFFECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterStateAffector",
+    name_hash: 4248932956,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTAFFECTOR_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCharacterStateAffector, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCharacterStateAffector as Default>::default())),
+            create_boxed: || Box::new(<ClientCharacterStateAffector as Default>::default()),
         },
         fields: &[
         ],
@@ -12530,6 +13475,7 @@ impl TypeObject for ClientCharacterStateAffector {
 
 pub static CLIENTCHARACTERSTATEAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterStateAffector-Array",
+    name_hash: 3219831528,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientCharacterStateAffector"),
@@ -12538,7 +13484,8 @@ pub static CLIENTCHARACTERSTATEAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAffectorImmunityAffector {
     pub _glacier_base: ClientAffector,
 }
@@ -12557,12 +13504,15 @@ impl AffectorTrait for ClientAffectorImmunityAffector {
 
 pub static CLIENTAFFECTORIMMUNITYAFFECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffectorImmunityAffector",
+    name_hash: 1929815562,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTAFFECTOR_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAffectorImmunityAffector, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAffectorImmunityAffector as Default>::default())),
+            create_boxed: || Box::new(<ClientAffectorImmunityAffector as Default>::default()),
         },
         fields: &[
         ],
@@ -12592,6 +13542,7 @@ impl TypeObject for ClientAffectorImmunityAffector {
 
 pub static CLIENTAFFECTORIMMUNITYAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffectorImmunityAffector-Array",
+    name_hash: 2746573118,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAffectorImmunityAffector"),
@@ -12600,7 +13551,8 @@ pub static CLIENTAFFECTORIMMUNITYAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAffector {
     pub _glacier_base: Affector,
 }
@@ -12616,12 +13568,15 @@ impl AffectorTrait for ClientAffector {
 
 pub static CLIENTAFFECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffector",
+    name_hash: 68337778,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AFFECTOR_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAffector, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAffector as Default>::default())),
+            create_boxed: || Box::new(<ClientAffector as Default>::default()),
         },
         fields: &[
         ],
@@ -12651,6 +13606,7 @@ impl TypeObject for ClientAffector {
 
 pub static CLIENTAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffector-Array",
+    name_hash: 225113926,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAffector"),
@@ -12659,7 +13615,8 @@ pub static CLIENTAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAbilityInputMappingAffector {
     pub _glacier_base: ClientAffector,
 }
@@ -12678,12 +13635,15 @@ impl AffectorTrait for ClientAbilityInputMappingAffector {
 
 pub static CLIENTABILITYINPUTMAPPINGAFFECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAbilityInputMappingAffector",
+    name_hash: 2852781290,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTAFFECTOR_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAbilityInputMappingAffector, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAbilityInputMappingAffector as Default>::default())),
+            create_boxed: || Box::new(<ClientAbilityInputMappingAffector as Default>::default()),
         },
         fields: &[
         ],
@@ -12713,6 +13673,7 @@ impl TypeObject for ClientAbilityInputMappingAffector {
 
 pub static CLIENTABILITYINPUTMAPPINGAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAbilityInputMappingAffector-Array",
+    name_hash: 2800363486,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAbilityInputMappingAffector"),
@@ -12721,7 +13682,8 @@ pub static CLIENTABILITYINPUTMAPPINGAFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Affector {
 }
 
@@ -12733,12 +13695,15 @@ impl AffectorTrait for Affector {
 
 pub static AFFECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Affector",
+    name_hash: 3824752715,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Affector as Default>::default())),
+            create_boxed: || Box::new(<Affector as Default>::default()),
         },
         fields: &[
         ],
@@ -12768,6 +13733,7 @@ impl TypeObject for Affector {
 
 pub static AFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Affector-Array",
+    name_hash: 3804977023,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("Affector"),
@@ -12776,7 +13742,8 @@ pub static AFFECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientEntityCorrectionInterfaceComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -12801,12 +13768,15 @@ impl super::entity::EntityBusPeerTrait for ClientEntityCorrectionInterfaceCompon
 
 pub static CLIENTENTITYCORRECTIONINTERFACECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEntityCorrectionInterfaceComponent",
+    name_hash: 3303701307,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientEntityCorrectionInterfaceComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientEntityCorrectionInterfaceComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientEntityCorrectionInterfaceComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -12836,6 +13806,7 @@ impl TypeObject for ClientEntityCorrectionInterfaceComponent {
 
 pub static CLIENTENTITYCORRECTIONINTERFACECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEntityCorrectionInterfaceComponent-Array",
+    name_hash: 2147132047,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientEntityCorrectionInterfaceComponent"),
@@ -12844,7 +13815,8 @@ pub static CLIENTENTITYCORRECTIONINTERFACECOMPONENT_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRemoteEntryComponent {
     pub _glacier_base: ServerDiceShooterVehicleEntryComponent,
 }
@@ -12884,12 +13856,15 @@ impl super::entity::EntityBusPeerTrait for ServerRemoteEntryComponent {
 
 pub static SERVERREMOTEENTRYCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteEntryComponent",
+    name_hash: 1091760479,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDICESHOOTERVEHICLEENTRYCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRemoteEntryComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRemoteEntryComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerRemoteEntryComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -12919,6 +13894,7 @@ impl TypeObject for ServerRemoteEntryComponent {
 
 pub static SERVERREMOTEENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteEntryComponent-Array",
+    name_hash: 4244006507,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRemoteEntryComponent"),
@@ -12927,7 +13903,8 @@ pub static SERVERREMOTEENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDiceShooterVehicleEntryComponent {
     pub _glacier_base: super::game_server::ServerVehicleEntryComponent,
 }
@@ -12964,12 +13941,15 @@ impl super::entity::EntityBusPeerTrait for ServerDiceShooterVehicleEntryComponen
 
 pub static SERVERDICESHOOTERVEHICLEENTRYCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDiceShooterVehicleEntryComponent",
+    name_hash: 3175055440,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_server::SERVERVEHICLEENTRYCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDiceShooterVehicleEntryComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDiceShooterVehicleEntryComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerDiceShooterVehicleEntryComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -12999,6 +13979,7 @@ impl TypeObject for ServerDiceShooterVehicleEntryComponent {
 
 pub static SERVERDICESHOOTERVEHICLEENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDiceShooterVehicleEntryComponent-Array",
+    name_hash: 174333668,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerDiceShooterVehicleEntryComponent"),
@@ -13007,7 +13988,8 @@ pub static SERVERDICESHOOTERVEHICLEENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRemoteEntryComponent {
     pub _glacier_base: ClientDiceShooterVehicleEntryComponent,
 }
@@ -13047,12 +14029,15 @@ impl super::entity::EntityBusPeerTrait for ClientRemoteEntryComponent {
 
 pub static CLIENTREMOTEENTRYCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteEntryComponent",
+    name_hash: 1574133251,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTDICESHOOTERVEHICLEENTRYCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRemoteEntryComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRemoteEntryComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientRemoteEntryComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -13082,6 +14067,7 @@ impl TypeObject for ClientRemoteEntryComponent {
 
 pub static CLIENTREMOTEENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteEntryComponent-Array",
+    name_hash: 3439579319,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRemoteEntryComponent"),
@@ -13090,7 +14076,8 @@ pub static CLIENTREMOTEENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDiceShooterVehicleEntryComponent {
     pub _glacier_base: super::game_client::ClientVehicleEntryComponent,
 }
@@ -13127,12 +14114,15 @@ impl super::entity::EntityBusPeerTrait for ClientDiceShooterVehicleEntryComponen
 
 pub static CLIENTDICESHOOTERVEHICLEENTRYCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDiceShooterVehicleEntryComponent",
+    name_hash: 372570892,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_client::CLIENTVEHICLEENTRYCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientDiceShooterVehicleEntryComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDiceShooterVehicleEntryComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientDiceShooterVehicleEntryComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -13162,6 +14152,7 @@ impl TypeObject for ClientDiceShooterVehicleEntryComponent {
 
 pub static CLIENTDICESHOOTERVEHICLEENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDiceShooterVehicleEntryComponent-Array",
+    name_hash: 253946680,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientDiceShooterVehicleEntryComponent"),
@@ -13170,7 +14161,8 @@ pub static CLIENTDICESHOOTERVEHICLEENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAwarenessComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -13195,12 +14187,15 @@ impl super::entity::EntityBusPeerTrait for ClientAwarenessComponent {
 
 pub static CLIENTAWARENESSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAwarenessComponent",
+    name_hash: 986643128,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAwarenessComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAwarenessComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientAwarenessComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -13230,6 +14225,7 @@ impl TypeObject for ClientAwarenessComponent {
 
 pub static CLIENTAWARENESSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAwarenessComponent-Array",
+    name_hash: 51446796,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAwarenessComponent"),
@@ -13238,7 +14234,8 @@ pub static CLIENTAWARENESSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWaterHitComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -13263,12 +14260,15 @@ impl super::entity::EntityBusPeerTrait for ClientWaterHitComponent {
 
 pub static CLIENTWATERHITCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWaterHitComponent",
+    name_hash: 1681503443,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientWaterHitComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWaterHitComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientWaterHitComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -13298,6 +14298,7 @@ impl TypeObject for ClientWaterHitComponent {
 
 pub static CLIENTWATERHITCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWaterHitComponent-Array",
+    name_hash: 440582119,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientWaterHitComponent"),
@@ -13306,7 +14307,8 @@ pub static CLIENTWATERHITCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCharacterStateEvalComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -13331,12 +14333,15 @@ impl super::entity::EntityBusPeerTrait for ServerCharacterStateEvalComponent {
 
 pub static SERVERCHARACTERSTATEEVALCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCharacterStateEvalComponent",
+    name_hash: 360914207,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCharacterStateEvalComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCharacterStateEvalComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerCharacterStateEvalComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -13366,6 +14371,7 @@ impl TypeObject for ServerCharacterStateEvalComponent {
 
 pub static SERVERCHARACTERSTATEEVALCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCharacterStateEvalComponent-Array",
+    name_hash: 848863659,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerCharacterStateEvalComponent"),
@@ -13374,7 +14380,8 @@ pub static SERVERCHARACTERSTATEEVALCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCharacterStateEvalComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -13399,12 +14406,15 @@ impl super::entity::EntityBusPeerTrait for ClientCharacterStateEvalComponent {
 
 pub static CLIENTCHARACTERSTATEEVALCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterStateEvalComponent",
+    name_hash: 2137523651,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCharacterStateEvalComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCharacterStateEvalComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientCharacterStateEvalComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -13434,6 +14444,7 @@ impl TypeObject for ClientCharacterStateEvalComponent {
 
 pub static CLIENTCHARACTERSTATEEVALCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterStateEvalComponent-Array",
+    name_hash: 3180792055,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientCharacterStateEvalComponent"),
@@ -13442,7 +14453,8 @@ pub static CLIENTCHARACTERSTATEEVALCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCharacterStateRequestEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -13461,12 +14473,15 @@ impl super::entity::EntityBusPeerTrait for ServerCharacterStateRequestEntity {
 
 pub static SERVERCHARACTERSTATEREQUESTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCharacterStateRequestEntity",
+    name_hash: 507837156,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCharacterStateRequestEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCharacterStateRequestEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCharacterStateRequestEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -13496,6 +14511,7 @@ impl TypeObject for ServerCharacterStateRequestEntity {
 
 pub static SERVERCHARACTERSTATEREQUESTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCharacterStateRequestEntity-Array",
+    name_hash: 1811922640,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerCharacterStateRequestEntity"),
@@ -13504,7 +14520,8 @@ pub static SERVERCHARACTERSTATEREQUESTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCharacterStateChannelReaderEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -13523,12 +14540,15 @@ impl super::entity::EntityBusPeerTrait for ServerCharacterStateChannelReaderEnti
 
 pub static SERVERCHARACTERSTATECHANNELREADERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCharacterStateChannelReaderEntity",
+    name_hash: 3594588243,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCharacterStateChannelReaderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCharacterStateChannelReaderEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCharacterStateChannelReaderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -13558,6 +14578,7 @@ impl TypeObject for ServerCharacterStateChannelReaderEntity {
 
 pub static SERVERCHARACTERSTATECHANNELREADERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCharacterStateChannelReaderEntity-Array",
+    name_hash: 641776487,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerCharacterStateChannelReaderEntity"),
@@ -13566,7 +14587,8 @@ pub static SERVERCHARACTERSTATECHANNELREADERENTITY_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCharacterStateRequestEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -13585,12 +14607,15 @@ impl super::entity::EntityBusPeerTrait for ClientCharacterStateRequestEntity {
 
 pub static CLIENTCHARACTERSTATEREQUESTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterStateRequestEntity",
+    name_hash: 3073626552,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCharacterStateRequestEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCharacterStateRequestEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCharacterStateRequestEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -13620,6 +14645,7 @@ impl TypeObject for ClientCharacterStateRequestEntity {
 
 pub static CLIENTCHARACTERSTATEREQUESTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterStateRequestEntity-Array",
+    name_hash: 1669012236,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientCharacterStateRequestEntity"),
@@ -13628,7 +14654,8 @@ pub static CLIENTCHARACTERSTATEREQUESTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCharacterStateChannelReaderEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -13647,12 +14674,15 @@ impl super::entity::EntityBusPeerTrait for ClientCharacterStateChannelReaderEnti
 
 pub static CLIENTCHARACTERSTATECHANNELREADERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterStateChannelReaderEntity",
+    name_hash: 1312515087,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCharacterStateChannelReaderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCharacterStateChannelReaderEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCharacterStateChannelReaderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -13682,6 +14712,7 @@ impl TypeObject for ClientCharacterStateChannelReaderEntity {
 
 pub static CLIENTCHARACTERSTATECHANNELREADERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterStateChannelReaderEntity-Array",
+    name_hash: 2895601851,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientCharacterStateChannelReaderEntity"),
@@ -13690,7 +14721,8 @@ pub static CLIENTCHARACTERSTATECHANNELREADERENTITY_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerShieldPhysicsComponent {
     pub _glacier_base: super::physics::PartPhysicsComponent,
 }
@@ -13715,12 +14747,15 @@ impl super::entity::EntityBusPeerTrait for ServerShieldPhysicsComponent {
 
 pub static SERVERSHIELDPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldPhysicsComponent",
+    name_hash: 2172115035,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::physics::PARTPHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerShieldPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerShieldPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerShieldPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -13750,6 +14785,7 @@ impl TypeObject for ServerShieldPhysicsComponent {
 
 pub static SERVERSHIELDPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldPhysicsComponent-Array",
+    name_hash: 2750209903,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerShieldPhysicsComponent"),
@@ -13758,7 +14794,8 @@ pub static SERVERSHIELDPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerShieldHealthComponent {
     pub _glacier_base: super::game_server::ServerGameHealthComponent,
 }
@@ -13783,12 +14820,15 @@ impl super::entity::EntityBusPeerTrait for ServerShieldHealthComponent {
 
 pub static SERVERSHIELDHEALTHCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldHealthComponent",
+    name_hash: 1215028812,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_server::SERVERGAMEHEALTHCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerShieldHealthComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerShieldHealthComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerShieldHealthComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -13818,6 +14858,7 @@ impl TypeObject for ServerShieldHealthComponent {
 
 pub static SERVERSHIELDHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldHealthComponent-Array",
+    name_hash: 3171630840,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerShieldHealthComponent"),
@@ -13826,7 +14867,8 @@ pub static SERVERSHIELDHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerShieldControllerComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -13851,12 +14893,15 @@ impl super::entity::EntityBusPeerTrait for ServerShieldControllerComponent {
 
 pub static SERVERSHIELDCONTROLLERCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldControllerComponent",
+    name_hash: 2496774828,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerShieldControllerComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerShieldControllerComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerShieldControllerComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -13886,6 +14931,7 @@ impl TypeObject for ServerShieldControllerComponent {
 
 pub static SERVERSHIELDCONTROLLERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldControllerComponent-Array",
+    name_hash: 666284568,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerShieldControllerComponent"),
@@ -13894,7 +14940,8 @@ pub static SERVERSHIELDCONTROLLERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerShieldComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -13919,12 +14966,15 @@ impl super::entity::EntityBusPeerTrait for ServerShieldComponent {
 
 pub static SERVERSHIELDCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldComponent",
+    name_hash: 1096565008,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerShieldComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerShieldComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerShieldComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -13954,6 +15004,7 @@ impl TypeObject for ServerShieldComponent {
 
 pub static SERVERSHIELDCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShieldComponent-Array",
+    name_hash: 2482663204,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerShieldComponent"),
@@ -13962,7 +15013,8 @@ pub static SERVERSHIELDCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientShieldStateComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -13987,12 +15039,15 @@ impl super::entity::EntityBusPeerTrait for ClientShieldStateComponent {
 
 pub static CLIENTSHIELDSTATECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldStateComponent",
+    name_hash: 1436596315,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientShieldStateComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientShieldStateComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientShieldStateComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14022,6 +15077,7 @@ impl TypeObject for ClientShieldStateComponent {
 
 pub static CLIENTSHIELDSTATECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldStateComponent-Array",
+    name_hash: 3946692463,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientShieldStateComponent"),
@@ -14030,7 +15086,8 @@ pub static CLIENTSHIELDSTATECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientShieldPhysicsComponent {
     pub _glacier_base: super::physics::PartPhysicsComponent,
 }
@@ -14055,12 +15112,15 @@ impl super::entity::EntityBusPeerTrait for ClientShieldPhysicsComponent {
 
 pub static CLIENTSHIELDPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldPhysicsComponent",
+    name_hash: 1771710471,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::physics::PARTPHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientShieldPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientShieldPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientShieldPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14090,6 +15150,7 @@ impl TypeObject for ClientShieldPhysicsComponent {
 
 pub static CLIENTSHIELDPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldPhysicsComponent-Array",
+    name_hash: 2860107955,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientShieldPhysicsComponent"),
@@ -14098,7 +15159,8 @@ pub static CLIENTSHIELDPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientShieldHealthComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameHealthComponent,
 }
@@ -14123,12 +15185,15 @@ impl super::entity::EntityBusPeerTrait for ClientShieldHealthComponent {
 
 pub static CLIENTSHIELDHEALTHCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldHealthComponent",
+    name_hash: 3787763472,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMEHEALTHCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientShieldHealthComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientShieldHealthComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientShieldHealthComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14158,6 +15223,7 @@ impl TypeObject for ClientShieldHealthComponent {
 
 pub static CLIENTSHIELDHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldHealthComponent-Array",
+    name_hash: 1753046308,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientShieldHealthComponent"),
@@ -14166,7 +15232,8 @@ pub static CLIENTSHIELDHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientShieldControllerComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -14191,12 +15258,15 @@ impl super::entity::EntityBusPeerTrait for ClientShieldControllerComponent {
 
 pub static CLIENTSHIELDCONTROLLERCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldControllerComponent",
+    name_hash: 841386352,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientShieldControllerComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientShieldControllerComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientShieldControllerComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14226,6 +15296,7 @@ impl TypeObject for ClientShieldControllerComponent {
 
 pub static CLIENTSHIELDCONTROLLERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldControllerComponent-Array",
+    name_hash: 499468100,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientShieldControllerComponent"),
@@ -14234,7 +15305,8 @@ pub static CLIENTSHIELDCONTROLLERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientShieldComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -14259,12 +15331,15 @@ impl super::entity::EntityBusPeerTrait for ClientShieldComponent {
 
 pub static CLIENTSHIELDCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldComponent",
+    name_hash: 1372398540,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientShieldComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientShieldComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientShieldComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14294,6 +15369,7 @@ impl TypeObject for ClientShieldComponent {
 
 pub static CLIENTSHIELDCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShieldComponent-Array",
+    name_hash: 2058003576,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientShieldComponent"),
@@ -14302,7 +15378,8 @@ pub static CLIENTSHIELDCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPhysicsActionCollectionComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -14327,12 +15404,15 @@ impl super::entity::EntityBusPeerTrait for ServerPhysicsActionCollectionComponen
 
 pub static SERVERPHYSICSACTIONCOLLECTIONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPhysicsActionCollectionComponent",
+    name_hash: 2224977228,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPhysicsActionCollectionComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPhysicsActionCollectionComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerPhysicsActionCollectionComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14362,6 +15442,7 @@ impl TypeObject for ServerPhysicsActionCollectionComponent {
 
 pub static SERVERPHYSICSACTIONCOLLECTIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPhysicsActionCollectionComponent-Array",
+    name_hash: 1888687608,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPhysicsActionCollectionComponent"),
@@ -14370,7 +15451,8 @@ pub static SERVERPHYSICSACTIONCOLLECTIONCOMPONENT_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPhysicsActionCollectionComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -14395,12 +15477,15 @@ impl super::entity::EntityBusPeerTrait for ClientPhysicsActionCollectionComponen
 
 pub static CLIENTPHYSICSACTIONCOLLECTIONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicsActionCollectionComponent",
+    name_hash: 513812240,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPhysicsActionCollectionComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPhysicsActionCollectionComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientPhysicsActionCollectionComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14430,6 +15515,7 @@ impl TypeObject for ClientPhysicsActionCollectionComponent {
 
 pub static CLIENTPHYSICSACTIONCOLLECTIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicsActionCollectionComponent-Array",
+    name_hash: 3927102756,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientPhysicsActionCollectionComponent"),
@@ -14438,7 +15524,8 @@ pub static CLIENTPHYSICSACTIONCOLLECTIONCOMPONENT_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerMultiBodyPhysicsComponent {
     pub _glacier_base: super::game_server::ServerVehiclePhysicsComponent,
 }
@@ -14466,12 +15553,15 @@ impl super::entity::EntityBusPeerTrait for ServerMultiBodyPhysicsComponent {
 
 pub static SERVERMULTIBODYPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerMultiBodyPhysicsComponent",
+    name_hash: 3683452349,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_server::SERVERVEHICLEPHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerMultiBodyPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerMultiBodyPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerMultiBodyPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14501,6 +15591,7 @@ impl TypeObject for ServerMultiBodyPhysicsComponent {
 
 pub static SERVERMULTIBODYPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerMultiBodyPhysicsComponent-Array",
+    name_hash: 1895973385,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerMultiBodyPhysicsComponent"),
@@ -14509,7 +15600,8 @@ pub static SERVERMULTIBODYPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientMultiBodyPhysicsComponent {
     pub _glacier_base: super::game_client::ClientVehiclePhysicsComponent,
 }
@@ -14537,12 +15629,15 @@ impl super::entity::EntityBusPeerTrait for ClientMultiBodyPhysicsComponent {
 
 pub static CLIENTMULTIBODYPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMultiBodyPhysicsComponent",
+    name_hash: 3459611745,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_client::CLIENTVEHICLEPHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientMultiBodyPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientMultiBodyPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientMultiBodyPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14572,6 +15667,7 @@ impl TypeObject for ClientMultiBodyPhysicsComponent {
 
 pub static CLIENTMULTIBODYPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMultiBodyPhysicsComponent-Array",
+    name_hash: 2874619733,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientMultiBodyPhysicsComponent"),
@@ -14580,7 +15676,8 @@ pub static CLIENTMULTIBODYPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerEntityReplicationInterfaceComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -14605,12 +15702,15 @@ impl super::entity::EntityBusPeerTrait for ServerEntityReplicationInterfaceCompo
 
 pub static SERVERENTITYREPLICATIONINTERFACECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerEntityReplicationInterfaceComponent",
+    name_hash: 351093933,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerEntityReplicationInterfaceComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerEntityReplicationInterfaceComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerEntityReplicationInterfaceComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14640,6 +15740,7 @@ impl TypeObject for ServerEntityReplicationInterfaceComponent {
 
 pub static SERVERENTITYREPLICATIONINTERFACECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerEntityReplicationInterfaceComponent-Array",
+    name_hash: 4156750105,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerEntityReplicationInterfaceComponent"),
@@ -14648,7 +15749,8 @@ pub static SERVERENTITYREPLICATIONINTERFACECOMPONENT_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerEntityCorrectionInterfaceComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -14673,12 +15775,15 @@ impl super::entity::EntityBusPeerTrait for ServerEntityCorrectionInterfaceCompon
 
 pub static SERVERENTITYCORRECTIONINTERFACECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerEntityCorrectionInterfaceComponent",
+    name_hash: 311944807,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerEntityCorrectionInterfaceComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerEntityCorrectionInterfaceComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerEntityCorrectionInterfaceComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14708,6 +15813,7 @@ impl TypeObject for ServerEntityCorrectionInterfaceComponent {
 
 pub static SERVERENTITYCORRECTIONINTERFACECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerEntityCorrectionInterfaceComponent-Array",
+    name_hash: 2303526995,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerEntityCorrectionInterfaceComponent"),
@@ -14716,7 +15822,8 @@ pub static SERVERENTITYCORRECTIONINTERFACECOMPONENT_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientEntityReplicationInterfaceComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -14741,12 +15848,15 @@ impl super::entity::EntityBusPeerTrait for ClientEntityReplicationInterfaceCompo
 
 pub static CLIENTENTITYREPLICATIONINTERFACECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEntityReplicationInterfaceComponent",
+    name_hash: 2969223281,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientEntityReplicationInterfaceComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientEntityReplicationInterfaceComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientEntityReplicationInterfaceComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -14776,6 +15886,7 @@ impl TypeObject for ClientEntityReplicationInterfaceComponent {
 
 pub static CLIENTENTITYREPLICATIONINTERFACECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEntityReplicationInterfaceComponent-Array",
+    name_hash: 361907013,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientEntityReplicationInterfaceComponent"),
@@ -14784,7 +15895,8 @@ pub static CLIENTENTITYREPLICATIONINTERFACECOMPONENT_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientBasicPlayerAbility {
     pub _glacier_base: ClientCorrectedPlayerAbility,
 }
@@ -14806,12 +15918,15 @@ impl PlayerAbilityTrait for ClientBasicPlayerAbility {
 
 pub static CLIENTBASICPLAYERABILITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBasicPlayerAbility",
+    name_hash: 3429659959,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTCORRECTEDPLAYERABILITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientBasicPlayerAbility, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientBasicPlayerAbility as Default>::default())),
+            create_boxed: || Box::new(<ClientBasicPlayerAbility as Default>::default()),
         },
         fields: &[
         ],
@@ -14841,6 +15956,7 @@ impl TypeObject for ClientBasicPlayerAbility {
 
 pub static CLIENTBASICPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBasicPlayerAbility-Array",
+    name_hash: 2723180163,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientBasicPlayerAbility"),
@@ -14849,7 +15965,8 @@ pub static CLIENTBASICPLAYERABILITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceShooterServerPlayerExtent {
     pub _glacier_base: super::game_server::ServerGamePlayerInternalExtent,
 }
@@ -14868,12 +15985,15 @@ impl super::game_server::ServerPlayerExtentTrait for DiceShooterServerPlayerExte
 
 pub static DICESHOOTERSERVERPLAYEREXTENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceShooterServerPlayerExtent",
+    name_hash: 2494921558,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_server::SERVERGAMEPLAYERINTERNALEXTENT_TYPE_INFO),
+        super_class_offset: offset_of!(DiceShooterServerPlayerExtent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceShooterServerPlayerExtent as Default>::default())),
+            create_boxed: || Box::new(<DiceShooterServerPlayerExtent as Default>::default()),
         },
         fields: &[
         ],
@@ -14903,6 +16023,7 @@ impl TypeObject for DiceShooterServerPlayerExtent {
 
 pub static DICESHOOTERSERVERPLAYEREXTENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceShooterServerPlayerExtent-Array",
+    name_hash: 4204953826,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("DiceShooterServerPlayerExtent"),
@@ -14911,7 +16032,8 @@ pub static DICESHOOTERSERVERPLAYEREXTENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceShooterClientPlayerExtent {
     pub _glacier_base: super::game_client::ClientGamePlayerInternalExtent,
 }
@@ -14930,12 +16052,15 @@ impl super::gameplay_client_server::ClientPlayerExtentTrait for DiceShooterClien
 
 pub static DICESHOOTERCLIENTPLAYEREXTENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceShooterClientPlayerExtent",
+    name_hash: 1593148810,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_client::CLIENTGAMEPLAYERINTERNALEXTENT_TYPE_INFO),
+        super_class_offset: offset_of!(DiceShooterClientPlayerExtent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceShooterClientPlayerExtent as Default>::default())),
+            create_boxed: || Box::new(<DiceShooterClientPlayerExtent as Default>::default()),
         },
         fields: &[
         ],
@@ -14965,6 +16090,7 @@ impl TypeObject for DiceShooterClientPlayerExtent {
 
 pub static DICESHOOTERCLIENTPLAYEREXTENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceShooterClientPlayerExtent-Array",
+    name_hash: 3257786558,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("DiceShooterClientPlayerExtent"),
@@ -14973,7 +16099,8 @@ pub static DICESHOOTERCLIENTPLAYEREXTENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerTerrainRaycastEntity {
     pub _glacier_base: ServerRaycastEntity,
 }
@@ -14995,12 +16122,15 @@ impl super::entity::EntityBusPeerTrait for ServerTerrainRaycastEntity {
 
 pub static SERVERTERRAINRAYCASTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTerrainRaycastEntity",
+    name_hash: 3661210275,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERRAYCASTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerTerrainRaycastEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerTerrainRaycastEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerTerrainRaycastEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15030,6 +16160,7 @@ impl TypeObject for ServerTerrainRaycastEntity {
 
 pub static SERVERTERRAINRAYCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerTerrainRaycastEntity-Array",
+    name_hash: 2664908311,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerTerrainRaycastEntity"),
@@ -15038,7 +16169,8 @@ pub static SERVERTERRAINRAYCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSphereQueryEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15057,12 +16189,15 @@ impl super::entity::EntityBusPeerTrait for ServerSphereQueryEntity {
 
 pub static SERVERSPHEREQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSphereQueryEntity",
+    name_hash: 311244200,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSphereQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSphereQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSphereQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15092,6 +16227,7 @@ impl TypeObject for ServerSphereQueryEntity {
 
 pub static SERVERSPHEREQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSphereQueryEntity-Array",
+    name_hash: 230471452,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerSphereQueryEntity"),
@@ -15100,7 +16236,8 @@ pub static SERVERSPHEREQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSimpleStateWriteEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15119,12 +16256,15 @@ impl super::entity::EntityBusPeerTrait for ServerSimpleStateWriteEntity {
 
 pub static SERVERSIMPLESTATEWRITEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSimpleStateWriteEntity",
+    name_hash: 2134797567,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSimpleStateWriteEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSimpleStateWriteEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSimpleStateWriteEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15154,6 +16294,7 @@ impl TypeObject for ServerSimpleStateWriteEntity {
 
 pub static SERVERSIMPLESTATEWRITEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSimpleStateWriteEntity-Array",
+    name_hash: 3849360075,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerSimpleStateWriteEntity"),
@@ -15162,7 +16303,8 @@ pub static SERVERSIMPLESTATEWRITEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSimpleStateReadEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15181,12 +16323,15 @@ impl super::entity::EntityBusPeerTrait for ServerSimpleStateReadEntity {
 
 pub static SERVERSIMPLESTATEREADENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSimpleStateReadEntity",
+    name_hash: 4137672848,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSimpleStateReadEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSimpleStateReadEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSimpleStateReadEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15216,6 +16361,7 @@ impl TypeObject for ServerSimpleStateReadEntity {
 
 pub static SERVERSIMPLESTATEREADENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSimpleStateReadEntity-Array",
+    name_hash: 3629624996,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerSimpleStateReadEntity"),
@@ -15224,7 +16370,8 @@ pub static SERVERSIMPLESTATEREADENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSimpleStateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15243,12 +16390,15 @@ impl super::entity::EntityBusPeerTrait for ServerSimpleStateEntity {
 
 pub static SERVERSIMPLESTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSimpleStateEntity",
+    name_hash: 490042626,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSimpleStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSimpleStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSimpleStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15278,6 +16428,7 @@ impl TypeObject for ServerSimpleStateEntity {
 
 pub static SERVERSIMPLESTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSimpleStateEntity-Array",
+    name_hash: 3439596598,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerSimpleStateEntity"),
@@ -15286,7 +16437,8 @@ pub static SERVERSIMPLESTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRemoteStateQueryFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15305,12 +16457,15 @@ impl super::entity::EntityBusPeerTrait for ServerRemoteStateQueryFilterEntity {
 
 pub static SERVERREMOTESTATEQUERYFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteStateQueryFilterEntity",
+    name_hash: 825245666,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRemoteStateQueryFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRemoteStateQueryFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerRemoteStateQueryFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15340,6 +16495,7 @@ impl TypeObject for ServerRemoteStateQueryFilterEntity {
 
 pub static SERVERREMOTESTATEQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteStateQueryFilterEntity-Array",
+    name_hash: 2918665942,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRemoteStateQueryFilterEntity"),
@@ -15348,7 +16504,8 @@ pub static SERVERREMOTESTATEQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRemoteStateWriteEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15367,12 +16524,15 @@ impl super::entity::EntityBusPeerTrait for ServerRemoteStateWriteEntity {
 
 pub static SERVERREMOTESTATEWRITEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteStateWriteEntity",
+    name_hash: 1240456725,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRemoteStateWriteEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRemoteStateWriteEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerRemoteStateWriteEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15402,6 +16562,7 @@ impl TypeObject for ServerRemoteStateWriteEntity {
 
 pub static SERVERREMOTESTATEWRITEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteStateWriteEntity-Array",
+    name_hash: 3541716385,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRemoteStateWriteEntity"),
@@ -15410,7 +16571,8 @@ pub static SERVERREMOTESTATEWRITEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRemoteStateReadEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15429,12 +16591,15 @@ impl super::entity::EntityBusPeerTrait for ServerRemoteStateReadEntity {
 
 pub static SERVERREMOTESTATEREADENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteStateReadEntity",
+    name_hash: 3208631226,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRemoteStateReadEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRemoteStateReadEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerRemoteStateReadEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15464,6 +16629,7 @@ impl TypeObject for ServerRemoteStateReadEntity {
 
 pub static SERVERREMOTESTATEREADENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteStateReadEntity-Array",
+    name_hash: 3543733774,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRemoteStateReadEntity"),
@@ -15472,7 +16638,8 @@ pub static SERVERREMOTESTATEREADENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRemoteStateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15491,12 +16658,15 @@ impl super::entity::EntityBusPeerTrait for ServerRemoteStateEntity {
 
 pub static SERVERREMOTESTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteStateEntity",
+    name_hash: 303989864,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRemoteStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRemoteStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerRemoteStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15526,6 +16696,7 @@ impl TypeObject for ServerRemoteStateEntity {
 
 pub static SERVERREMOTESTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRemoteStateEntity-Array",
+    name_hash: 2809796188,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRemoteStateEntity"),
@@ -15534,7 +16705,8 @@ pub static SERVERREMOTESTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRaycastEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15553,12 +16725,15 @@ impl super::entity::EntityBusPeerTrait for ServerRaycastEntity {
 
 pub static SERVERRAYCASTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRaycastEntity",
+    name_hash: 3824255252,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRaycastEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRaycastEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerRaycastEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15588,6 +16763,7 @@ impl TypeObject for ServerRaycastEntity {
 
 pub static SERVERRAYCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRaycastEntity-Array",
+    name_hash: 3267321120,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerRaycastEntity"),
@@ -15596,7 +16772,8 @@ pub static SERVERRAYCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerQuerySplitterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15615,12 +16792,15 @@ impl super::entity::EntityBusPeerTrait for ServerQuerySplitterEntity {
 
 pub static SERVERQUERYSPLITTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerQuerySplitterEntity",
+    name_hash: 2887757984,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerQuerySplitterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerQuerySplitterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerQuerySplitterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15650,6 +16830,7 @@ impl TypeObject for ServerQuerySplitterEntity {
 
 pub static SERVERQUERYSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerQuerySplitterEntity-Array",
+    name_hash: 92280340,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerQuerySplitterEntity"),
@@ -15658,7 +16839,8 @@ pub static SERVERQUERYSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDynamicQueryFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15677,12 +16859,15 @@ impl super::entity::EntityBusPeerTrait for ServerDynamicQueryFilterEntity {
 
 pub static SERVERDYNAMICQUERYFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDynamicQueryFilterEntity",
+    name_hash: 3381402372,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDynamicQueryFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDynamicQueryFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerDynamicQueryFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15712,6 +16897,7 @@ impl TypeObject for ServerDynamicQueryFilterEntity {
 
 pub static SERVERDYNAMICQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDynamicQueryFilterEntity-Array",
+    name_hash: 2899488560,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerDynamicQueryFilterEntity"),
@@ -15720,7 +16906,8 @@ pub static SERVERDYNAMICQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerQueryFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15739,12 +16926,15 @@ impl super::entity::EntityBusPeerTrait for ServerQueryFilterEntity {
 
 pub static SERVERQUERYFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerQueryFilterEntity",
+    name_hash: 4112031441,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerQueryFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerQueryFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerQueryFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15774,6 +16964,7 @@ impl TypeObject for ServerQueryFilterEntity {
 
 pub static SERVERQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerQueryFilterEntity-Array",
+    name_hash: 2071785701,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerQueryFilterEntity"),
@@ -15782,7 +16973,8 @@ pub static SERVERQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerQueryCacheEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15801,12 +16993,15 @@ impl super::entity::EntityBusPeerTrait for ServerQueryCacheEntity {
 
 pub static SERVERQUERYCACHEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerQueryCacheEntity",
+    name_hash: 3128184637,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerQueryCacheEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerQueryCacheEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerQueryCacheEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15836,6 +17031,7 @@ impl TypeObject for ServerQueryCacheEntity {
 
 pub static SERVERQUERYCACHEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerQueryCacheEntity-Array",
+    name_hash: 2040179593,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerQueryCacheEntity"),
@@ -15844,7 +17040,8 @@ pub static SERVERQUERYCACHEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPhantomEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15863,12 +17060,15 @@ impl super::entity::EntityBusPeerTrait for ServerPhantomEntity {
 
 pub static SERVERPHANTOMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPhantomEntity",
+    name_hash: 1226139802,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPhantomEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPhantomEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerPhantomEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15898,6 +17098,7 @@ impl TypeObject for ServerPhantomEntity {
 
 pub static SERVERPHANTOMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPhantomEntity-Array",
+    name_hash: 989776814,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerPhantomEntity"),
@@ -15906,7 +17107,8 @@ pub static SERVERPHANTOMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerOwnerToQueryResultEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15925,12 +17127,15 @@ impl super::entity::EntityBusPeerTrait for ServerOwnerToQueryResultEntity {
 
 pub static SERVEROWNERTOQUERYRESULTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerOwnerToQueryResultEntity",
+    name_hash: 257700194,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerOwnerToQueryResultEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerOwnerToQueryResultEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerOwnerToQueryResultEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -15960,6 +17165,7 @@ impl TypeObject for ServerOwnerToQueryResultEntity {
 
 pub static SERVEROWNERTOQUERYRESULTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerOwnerToQueryResultEntity-Array",
+    name_hash: 1353867350,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerOwnerToQueryResultEntity"),
@@ -15968,7 +17174,8 @@ pub static SERVEROWNERTOQUERYRESULTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerInputQueryEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -15987,12 +17194,15 @@ impl super::entity::EntityBusPeerTrait for ServerInputQueryEntity {
 
 pub static SERVERINPUTQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerInputQueryEntity",
+    name_hash: 104293351,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerInputQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerInputQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerInputQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16022,6 +17232,7 @@ impl TypeObject for ServerInputQueryEntity {
 
 pub static SERVERINPUTQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerInputQueryEntity-Array",
+    name_hash: 620013011,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerInputQueryEntity"),
@@ -16030,7 +17241,8 @@ pub static SERVERINPUTQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerFireProjectileEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16049,12 +17261,15 @@ impl super::entity::EntityBusPeerTrait for ServerFireProjectileEntity {
 
 pub static SERVERFIREPROJECTILEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFireProjectileEntity",
+    name_hash: 2780388662,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerFireProjectileEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerFireProjectileEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerFireProjectileEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16084,6 +17299,7 @@ impl TypeObject for ServerFireProjectileEntity {
 
 pub static SERVERFIREPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFireProjectileEntity-Array",
+    name_hash: 919867778,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerFireProjectileEntity"),
@@ -16092,7 +17308,8 @@ pub static SERVERFIREPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDealDamageEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16111,12 +17328,15 @@ impl super::entity::EntityBusPeerTrait for ServerDealDamageEntity {
 
 pub static SERVERDEALDAMAGEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDealDamageEntity",
+    name_hash: 1133250588,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDealDamageEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDealDamageEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerDealDamageEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16146,6 +17366,7 @@ impl TypeObject for ServerDealDamageEntity {
 
 pub static SERVERDEALDAMAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDealDamageEntity-Array",
+    name_hash: 643989544,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerDealDamageEntity"),
@@ -16154,7 +17375,8 @@ pub static SERVERDEALDAMAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDamageGiverEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16173,12 +17395,15 @@ impl super::entity::EntityBusPeerTrait for ServerDamageGiverEntity {
 
 pub static SERVERDAMAGEGIVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDamageGiverEntity",
+    name_hash: 4232741375,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDamageGiverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDamageGiverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerDamageGiverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16208,6 +17433,7 @@ impl TypeObject for ServerDamageGiverEntity {
 
 pub static SERVERDAMAGEGIVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDamageGiverEntity-Array",
+    name_hash: 2188928971,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerDamageGiverEntity"),
@@ -16216,7 +17442,8 @@ pub static SERVERDAMAGEGIVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QueryResultPlayerInspectorEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16235,12 +17462,15 @@ impl super::entity::EntityBusPeerTrait for QueryResultPlayerInspectorEntity {
 
 pub static QUERYRESULTPLAYERINSPECTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QueryResultPlayerInspectorEntity",
+    name_hash: 305046597,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(QueryResultPlayerInspectorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QueryResultPlayerInspectorEntity as Default>::default())),
+            create_boxed: || Box::new(<QueryResultPlayerInspectorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16270,6 +17500,7 @@ impl TypeObject for QueryResultPlayerInspectorEntity {
 
 pub static QUERYRESULTPLAYERINSPECTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QueryResultPlayerInspectorEntity-Array",
+    name_hash: 1124990065,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("QueryResultPlayerInspectorEntity"),
@@ -16278,7 +17509,8 @@ pub static QUERYRESULTPLAYERINSPECTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QueryResultBufferEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16297,12 +17529,15 @@ impl super::entity::EntityBusPeerTrait for QueryResultBufferEntity {
 
 pub static QUERYRESULTBUFFERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QueryResultBufferEntity",
+    name_hash: 3128475165,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(QueryResultBufferEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QueryResultBufferEntity as Default>::default())),
+            create_boxed: || Box::new(<QueryResultBufferEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16332,6 +17567,7 @@ impl TypeObject for QueryResultBufferEntity {
 
 pub static QUERYRESULTBUFFERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QueryResultBufferEntity-Array",
+    name_hash: 3242887593,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("QueryResultBufferEntity"),
@@ -16340,7 +17576,8 @@ pub static QUERYRESULTBUFFERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QueryEntityFilterTypeEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16359,12 +17596,15 @@ impl super::entity::EntityBusPeerTrait for QueryEntityFilterTypeEntity {
 
 pub static QUERYENTITYFILTERTYPEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QueryEntityFilterTypeEntity",
+    name_hash: 774266871,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(QueryEntityFilterTypeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QueryEntityFilterTypeEntity as Default>::default())),
+            create_boxed: || Box::new(<QueryEntityFilterTypeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16394,6 +17634,7 @@ impl TypeObject for QueryEntityFilterTypeEntity {
 
 pub static QUERYENTITYFILTERTYPEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QueryEntityFilterTypeEntity-Array",
+    name_hash: 717449667,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("QueryEntityFilterTypeEntity"),
@@ -16402,7 +17643,8 @@ pub static QUERYENTITYFILTERTYPEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlayersQueryEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16421,12 +17663,15 @@ impl super::entity::EntityBusPeerTrait for PlayersQueryEntity {
 
 pub static PLAYERSQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayersQueryEntity",
+    name_hash: 2734989716,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PlayersQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlayersQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<PlayersQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16456,6 +17701,7 @@ impl TypeObject for PlayersQueryEntity {
 
 pub static PLAYERSQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayersQueryEntity-Array",
+    name_hash: 147381664,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("PlayersQueryEntity"),
@@ -16464,7 +17710,8 @@ pub static PLAYERSQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlayersInsideEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16483,12 +17730,15 @@ impl super::entity::EntityBusPeerTrait for PlayersInsideEntity {
 
 pub static PLAYERSINSIDEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayersInsideEntity",
+    name_hash: 940449890,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PlayersInsideEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlayersInsideEntity as Default>::default())),
+            create_boxed: || Box::new(<PlayersInsideEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16518,6 +17768,7 @@ impl TypeObject for PlayersInsideEntity {
 
 pub static PLAYERSINSIDEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayersInsideEntity-Array",
+    name_hash: 417042262,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("PlayersInsideEntity"),
@@ -16526,7 +17777,8 @@ pub static PLAYERSINSIDEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlayerEventToQueryResultEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16545,12 +17797,15 @@ impl super::entity::EntityBusPeerTrait for PlayerEventToQueryResultEntity {
 
 pub static PLAYEREVENTTOQUERYRESULTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayerEventToQueryResultEntity",
+    name_hash: 3399265497,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PlayerEventToQueryResultEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlayerEventToQueryResultEntity as Default>::default())),
+            create_boxed: || Box::new(<PlayerEventToQueryResultEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16580,6 +17835,7 @@ impl TypeObject for PlayerEventToQueryResultEntity {
 
 pub static PLAYEREVENTTOQUERYRESULTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayerEventToQueryResultEntity-Array",
+    name_hash: 1439881965,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("PlayerEventToQueryResultEntity"),
@@ -16588,7 +17844,8 @@ pub static PLAYEREVENTTOQUERYRESULTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FireProjectileEntityOverride {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16607,12 +17864,15 @@ impl super::entity::EntityBusPeerTrait for FireProjectileEntityOverride {
 
 pub static FIREPROJECTILEENTITYOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FireProjectileEntityOverride",
+    name_hash: 2264623527,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(FireProjectileEntityOverride, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FireProjectileEntityOverride as Default>::default())),
+            create_boxed: || Box::new(<FireProjectileEntityOverride as Default>::default()),
         },
         fields: &[
         ],
@@ -16642,6 +17902,7 @@ impl TypeObject for FireProjectileEntityOverride {
 
 pub static FIREPROJECTILEENTITYOVERRIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FireProjectileEntityOverride-Array",
+    name_hash: 3201432339,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("FireProjectileEntityOverride"),
@@ -16650,7 +17911,8 @@ pub static FIREPROJECTILEENTITYOVERRIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientViewQueryEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16669,12 +17931,15 @@ impl super::entity::EntityBusPeerTrait for ClientViewQueryEntity {
 
 pub static CLIENTVIEWQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientViewQueryEntity",
+    name_hash: 3708503520,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientViewQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientViewQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientViewQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16704,6 +17969,7 @@ impl TypeObject for ClientViewQueryEntity {
 
 pub static CLIENTVIEWQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientViewQueryEntity-Array",
+    name_hash: 3587349460,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientViewQueryEntity"),
@@ -16712,7 +17978,8 @@ pub static CLIENTVIEWQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientTransformQueryEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16731,12 +17998,15 @@ impl super::entity::EntityBusPeerTrait for ClientTransformQueryEntity {
 
 pub static CLIENTTRANSFORMQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientTransformQueryEntity",
+    name_hash: 2616921153,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientTransformQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientTransformQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientTransformQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16766,6 +18036,7 @@ impl TypeObject for ClientTransformQueryEntity {
 
 pub static CLIENTTRANSFORMQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientTransformQueryEntity-Array",
+    name_hash: 2101917301,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientTransformQueryEntity"),
@@ -16774,7 +18045,8 @@ pub static CLIENTTRANSFORMQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientTerrainRaycastEntity {
     pub _glacier_base: ClientRaycastEntity,
 }
@@ -16796,12 +18068,15 @@ impl super::entity::EntityBusPeerTrait for ClientTerrainRaycastEntity {
 
 pub static CLIENTTERRAINRAYCASTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientTerrainRaycastEntity",
+    name_hash: 2902482047,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTRAYCASTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientTerrainRaycastEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientTerrainRaycastEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientTerrainRaycastEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16831,6 +18106,7 @@ impl TypeObject for ClientTerrainRaycastEntity {
 
 pub static CLIENTTERRAINRAYCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientTerrainRaycastEntity-Array",
+    name_hash: 3150455371,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientTerrainRaycastEntity"),
@@ -16839,7 +18115,8 @@ pub static CLIENTTERRAINRAYCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSphereQueryEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16858,12 +18135,15 @@ impl super::entity::EntityBusPeerTrait for ClientSphereQueryEntity {
 
 pub static CLIENTSPHEREQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSphereQueryEntity",
+    name_hash: 2720804724,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSphereQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSphereQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSphereQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16893,6 +18173,7 @@ impl TypeObject for ClientSphereQueryEntity {
 
 pub static CLIENTSPHEREQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSphereQueryEntity-Array",
+    name_hash: 573512512,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientSphereQueryEntity"),
@@ -16901,7 +18182,8 @@ pub static CLIENTSPHEREQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSimpleStateWriteEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16920,12 +18202,15 @@ impl super::entity::EntityBusPeerTrait for ClientSimpleStateWriteEntity {
 
 pub static CLIENTSIMPLESTATEWRITEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSimpleStateWriteEntity",
+    name_hash: 1852400291,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSimpleStateWriteEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSimpleStateWriteEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSimpleStateWriteEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -16955,6 +18240,7 @@ impl TypeObject for ClientSimpleStateWriteEntity {
 
 pub static CLIENTSIMPLESTATEWRITEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSimpleStateWriteEntity-Array",
+    name_hash: 131532311,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientSimpleStateWriteEntity"),
@@ -16963,7 +18249,8 @@ pub static CLIENTSIMPLESTATEWRITEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSimpleStateReadEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -16982,12 +18269,15 @@ impl super::entity::EntityBusPeerTrait for ClientSimpleStateReadEntity {
 
 pub static CLIENTSIMPLESTATEREADENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSimpleStateReadEntity",
+    name_hash: 647496012,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSimpleStateReadEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSimpleStateReadEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSimpleStateReadEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -17017,6 +18307,7 @@ impl TypeObject for ClientSimpleStateReadEntity {
 
 pub static CLIENTSIMPLESTATEREADENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSimpleStateReadEntity-Array",
+    name_hash: 3263537656,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientSimpleStateReadEntity"),
@@ -17025,7 +18316,8 @@ pub static CLIENTSIMPLESTATEREADENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSimpleStateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -17044,12 +18336,15 @@ impl super::entity::EntityBusPeerTrait for ClientSimpleStateEntity {
 
 pub static CLIENTSIMPLESTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSimpleStateEntity",
+    name_hash: 2538360286,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSimpleStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSimpleStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSimpleStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -17079,6 +18374,7 @@ impl TypeObject for ClientSimpleStateEntity {
 
 pub static CLIENTSIMPLESTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSimpleStateEntity-Array",
+    name_hash: 455905130,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientSimpleStateEntity"),
@@ -17087,7 +18383,8 @@ pub static CLIENTSIMPLESTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRemoteStateQueryFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -17106,12 +18403,15 @@ impl super::entity::EntityBusPeerTrait for ClientRemoteStateQueryFilterEntity {
 
 pub static CLIENTREMOTESTATEQUERYFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteStateQueryFilterEntity",
+    name_hash: 2969418686,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRemoteStateQueryFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRemoteStateQueryFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientRemoteStateQueryFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -17141,6 +18441,7 @@ impl TypeObject for ClientRemoteStateQueryFilterEntity {
 
 pub static CLIENTREMOTESTATEQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteStateQueryFilterEntity-Array",
+    name_hash: 1191488522,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRemoteStateQueryFilterEntity"),
@@ -17149,7 +18450,8 @@ pub static CLIENTREMOTESTATEQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRemoteStateWriteEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -17168,12 +18470,15 @@ impl super::entity::EntityBusPeerTrait for ClientRemoteStateWriteEntity {
 
 pub static CLIENTREMOTESTATEWRITEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteStateWriteEntity",
+    name_hash: 1395743177,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRemoteStateWriteEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRemoteStateWriteEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientRemoteStateWriteEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -17203,6 +18508,7 @@ impl TypeObject for ClientRemoteStateWriteEntity {
 
 pub static CLIENTREMOTESTATEWRITEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteStateWriteEntity-Array",
+    name_hash: 1222803453,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRemoteStateWriteEntity"),
@@ -17211,7 +18517,8 @@ pub static CLIENTREMOTESTATEWRITEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRemoteStateReadEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -17230,12 +18537,15 @@ impl super::entity::EntityBusPeerTrait for ClientRemoteStateReadEntity {
 
 pub static CLIENTREMOTESTATEREADENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteStateReadEntity",
+    name_hash: 3007349350,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRemoteStateReadEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRemoteStateReadEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientRemoteStateReadEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -17265,6 +18575,7 @@ impl TypeObject for ClientRemoteStateReadEntity {
 
 pub static CLIENTREMOTESTATEREADENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteStateReadEntity-Array",
+    name_hash: 2651791186,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRemoteStateReadEntity"),
@@ -17273,7 +18584,8 @@ pub static CLIENTREMOTESTATEREADENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRemoteStateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -17292,12 +18604,15 @@ impl super::entity::EntityBusPeerTrait for ClientRemoteStateEntity {
 
 pub static CLIENTREMOTESTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteStateEntity",
+    name_hash: 729112884,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRemoteStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRemoteStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientRemoteStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -17327,6 +18642,7 @@ impl TypeObject for ClientRemoteStateEntity {
 
 pub static CLIENTREMOTESTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRemoteStateEntity-Array",
+    name_hash: 1749720192,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientRemoteStateEntity"),
@@ -17335,7 +18651,8 @@ pub static CLIENTREMOTESTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAimingConstraint {
     pub _glacier_base: super::entity::Entity,
 }
@@ -17354,12 +18671,15 @@ impl super::entity::EntityBusPeerTrait for ClientAimingConstraint {
 
 pub static CLIENTAIMINGCONSTRAINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAimingConstraint",
+    name_hash: 3263559420,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAimingConstraint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAimingConstraint as Default>::default())),
+            create_boxed: || Box::new(<ClientAimingConstraint as Default>::default()),
         },
         fields: &[
         ],
@@ -17389,6 +18709,7 @@ impl TypeObject for ClientAimingConstraint {
 
 pub static CLIENTAIMINGCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAimingConstraint-Array",
+    name_hash: 2787106504,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAimingConstraint"),
@@ -17397,7 +18718,8 @@ pub static CLIENTAIMINGCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAffectorStreamEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -17416,12 +18738,15 @@ impl super::entity::EntityBusPeerTrait for ServerAffectorStreamEntity {
 
 pub static SERVERAFFECTORSTREAMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorStreamEntity",
+    name_hash: 2362828489,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAffectorStreamEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAffectorStreamEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAffectorStreamEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -17451,6 +18776,7 @@ impl TypeObject for ServerAffectorStreamEntity {
 
 pub static SERVERAFFECTORSTREAMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorStreamEntity-Array",
+    name_hash: 16567549,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerAffectorStreamEntity"),
@@ -17459,7 +18785,8 @@ pub static SERVERAFFECTORSTREAMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAffectorReceiveEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -17478,12 +18805,15 @@ impl super::entity::EntityBusPeerTrait for ServerAffectorReceiveEntity {
 
 pub static SERVERAFFECTORRECEIVEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorReceiveEntity",
+    name_hash: 2868305022,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAffectorReceiveEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAffectorReceiveEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAffectorReceiveEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -17513,6 +18843,7 @@ impl TypeObject for ServerAffectorReceiveEntity {
 
 pub static SERVERAFFECTORRECEIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorReceiveEntity-Array",
+    name_hash: 296951114,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerAffectorReceiveEntity"),
@@ -17521,7 +18852,8 @@ pub static SERVERAFFECTORRECEIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAffectorQueryFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -17540,12 +18872,15 @@ impl super::entity::EntityBusPeerTrait for ServerAffectorQueryFilterEntity {
 
 pub static SERVERAFFECTORQUERYFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorQueryFilterEntity",
+    name_hash: 501851423,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAffectorQueryFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAffectorQueryFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAffectorQueryFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -17575,6 +18910,7 @@ impl TypeObject for ServerAffectorQueryFilterEntity {
 
 pub static SERVERAFFECTORQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorQueryFilterEntity-Array",
+    name_hash: 1606756779,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerAffectorQueryFilterEntity"),
@@ -17583,7 +18919,8 @@ pub static SERVERAFFECTORQUERYFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAffectorApplyEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -17602,12 +18939,15 @@ impl super::entity::EntityBusPeerTrait for ServerAffectorApplyEntity {
 
 pub static SERVERAFFECTORAPPLYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorApplyEntity",
+    name_hash: 112601569,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAffectorApplyEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAffectorApplyEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAffectorApplyEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -17637,6 +18977,7 @@ impl TypeObject for ServerAffectorApplyEntity {
 
 pub static SERVERAFFECTORAPPLYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAffectorApplyEntity-Array",
+    name_hash: 3691250901,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ServerAffectorApplyEntity"),
@@ -17645,7 +18986,8 @@ pub static SERVERAFFECTORAPPLYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAffectorStreamEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -17664,12 +19006,15 @@ impl super::entity::EntityBusPeerTrait for ClientAffectorStreamEntity {
 
 pub static CLIENTAFFECTORSTREAMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffectorStreamEntity",
+    name_hash: 1336838293,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAffectorStreamEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAffectorStreamEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientAffectorStreamEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -17699,6 +19044,7 @@ impl TypeObject for ClientAffectorStreamEntity {
 
 pub static CLIENTAFFECTORSTREAMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAffectorStreamEntity-Array",
+    name_hash: 1489950753,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientAffectorStreamEntity"),
@@ -17707,7 +19053,8 @@ pub static CLIENTAFFECTORSTREAMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerLocalPlayerReviveRefusedMessage {
 }
 
@@ -17719,11 +19066,13 @@ impl ClientPlayerLocalPlayerReviveRefusedMessageTrait for ClientPlayerLocalPlaye
 
 pub static CLIENTPLAYERLOCALPLAYERREVIVEREFUSEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerLocalPlayerReviveRefusedMessage",
+    name_hash: 522123831,
     flags: MemberInfoFlags::new(36937),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerLocalPlayerReviveRefusedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerLocalPlayerReviveRefusedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -17750,7 +19099,8 @@ impl TypeObject for ClientPlayerLocalPlayerReviveRefusedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerLocalPlayerReviveAcceptedMessage {
 }
 
@@ -17762,11 +19112,13 @@ impl ClientPlayerLocalPlayerReviveAcceptedMessageTrait for ClientPlayerLocalPlay
 
 pub static CLIENTPLAYERLOCALPLAYERREVIVEACCEPTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerLocalPlayerReviveAcceptedMessage",
+    name_hash: 191209440,
     flags: MemberInfoFlags::new(36937),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerLocalPlayerReviveAcceptedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerLocalPlayerReviveAcceptedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -17793,7 +19145,8 @@ impl TypeObject for ClientPlayerLocalPlayerReviveAcceptedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerLocalPlayerReviveQueryMessage {
 }
 
@@ -17805,11 +19158,13 @@ impl ClientPlayerLocalPlayerReviveQueryMessageTrait for ClientPlayerLocalPlayerR
 
 pub static CLIENTPLAYERLOCALPLAYERREVIVEQUERYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerLocalPlayerReviveQueryMessage",
+    name_hash: 2800279147,
     flags: MemberInfoFlags::new(36937),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerLocalPlayerReviveQueryMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerLocalPlayerReviveQueryMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -17836,7 +19191,8 @@ impl TypeObject for ClientPlayerLocalPlayerReviveQueryMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerLocalPlayerDeadMessage {
 }
 
@@ -17848,11 +19204,13 @@ impl ClientPlayerLocalPlayerDeadMessageTrait for ClientPlayerLocalPlayerDeadMess
 
 pub static CLIENTPLAYERLOCALPLAYERDEADMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerLocalPlayerDeadMessage",
+    name_hash: 2810672414,
     flags: MemberInfoFlags::new(36937),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerLocalPlayerDeadMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerLocalPlayerDeadMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -17879,7 +19237,8 @@ impl TypeObject for ClientPlayerLocalPlayerDeadMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerLocalPlayerAliveMessage {
 }
 
@@ -17891,11 +19250,13 @@ impl ClientPlayerLocalPlayerAliveMessageTrait for ClientPlayerLocalPlayerAliveMe
 
 pub static CLIENTPLAYERLOCALPLAYERALIVEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerLocalPlayerAliveMessage",
+    name_hash: 4212505165,
     flags: MemberInfoFlags::new(36937),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerLocalPlayerAliveMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerLocalPlayerAliveMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -17922,7 +19283,8 @@ impl TypeObject for ClientPlayerLocalPlayerAliveMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSoldierSuppressionSuppressMessage {
 }
 
@@ -17934,11 +19296,13 @@ impl ClientSoldierSuppressionSuppressMessageTrait for ClientSoldierSuppressionSu
 
 pub static CLIENTSOLDIERSUPPRESSIONSUPPRESSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSoldierSuppressionSuppressMessage",
+    name_hash: 2503338037,
     flags: MemberInfoFlags::new(36937),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSoldierSuppressionSuppressMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientSoldierSuppressionSuppressMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -17965,7 +19329,8 @@ impl TypeObject for ClientSoldierSuppressionSuppressMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSoldierSuppressionSuppressMessage {
 }
 
@@ -17977,11 +19342,13 @@ impl ServerSoldierSuppressionSuppressMessageTrait for ServerSoldierSuppressionSu
 
 pub static SERVERSOLDIERSUPPRESSIONSUPPRESSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSoldierSuppressionSuppressMessage",
+    name_hash: 743559529,
     flags: MemberInfoFlags::new(36937),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSoldierSuppressionSuppressMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerSoldierSuppressionSuppressMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -18008,7 +19375,8 @@ impl TypeObject for ServerSoldierSuppressionSuppressMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPlayerChangedSquadLeaderStatusMessage {
 }
 
@@ -18020,11 +19388,13 @@ impl ServerPlayerChangedSquadLeaderStatusMessageTrait for ServerPlayerChangedSqu
 
 pub static SERVERPLAYERCHANGEDSQUADLEADERSTATUSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerChangedSquadLeaderStatusMessage",
+    name_hash: 2135036327,
     flags: MemberInfoFlags::new(36937),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPlayerChangedSquadLeaderStatusMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerPlayerChangedSquadLeaderStatusMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -18051,7 +19421,8 @@ impl TypeObject for ServerPlayerChangedSquadLeaderStatusMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPlayerSwitchSquadMessage {
 }
 
@@ -18063,11 +19434,13 @@ impl ServerPlayerSwitchSquadMessageTrait for ServerPlayerSwitchSquadMessage {
 
 pub static SERVERPLAYERSWITCHSQUADMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerSwitchSquadMessage",
+    name_hash: 3793533880,
     flags: MemberInfoFlags::new(36937),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPlayerSwitchSquadMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerPlayerSwitchSquadMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -18094,7 +19467,8 @@ impl TypeObject for ServerPlayerSwitchSquadMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerChangedSquadLeaderStatusMessage {
 }
 
@@ -18106,11 +19480,13 @@ impl ClientPlayerChangedSquadLeaderStatusMessageTrait for ClientPlayerChangedSqu
 
 pub static CLIENTPLAYERCHANGEDSQUADLEADERSTATUSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerChangedSquadLeaderStatusMessage",
+    name_hash: 4225349499,
     flags: MemberInfoFlags::new(36937),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerChangedSquadLeaderStatusMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerChangedSquadLeaderStatusMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -18137,7 +19513,8 @@ impl TypeObject for ClientPlayerChangedSquadLeaderStatusMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerSwitchSquadMessage {
 }
 
@@ -18149,11 +19526,13 @@ impl ClientPlayerSwitchSquadMessageTrait for ClientPlayerSwitchSquadMessage {
 
 pub static CLIENTPLAYERSWITCHSQUADMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerSwitchSquadMessage",
+    name_hash: 2797886308,
     flags: MemberInfoFlags::new(36937),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerSwitchSquadMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerSwitchSquadMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -18180,7 +19559,8 @@ impl TypeObject for ClientPlayerSwitchSquadMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCharacterUtilData {
     pub _glacier_base: super::entity::EntityData,
     pub dummy_b_f_legacy: bool,
@@ -18223,16 +19603,20 @@ impl super::core::DataContainerTrait for ClientCharacterUtilData {
 
 pub static CLIENTCHARACTERUTILDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterUtilData",
+    name_hash: 3715337905,
     flags: MemberInfoFlags::new(101),
     module: "DiceShooter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCharacterUtilData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCharacterUtilData as Default>::default())),
+            create_boxed: || Box::new(<ClientCharacterUtilData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DummyBFLegacy",
+                name_hash: 1772596508,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientCharacterUtilData, dummy_b_f_legacy),
@@ -18264,6 +19648,7 @@ impl TypeObject for ClientCharacterUtilData {
 
 pub static CLIENTCHARACTERUTILDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterUtilData-Array",
+    name_hash: 1311539461,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("ClientCharacterUtilData"),
@@ -18272,7 +19657,8 @@ pub static CLIENTCHARACTERUTILDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateControllerStateList {
     pub slot_list: CharacterStateControllerStateSlotList,
 }
@@ -18293,15 +19679,18 @@ impl CharacterStateControllerStateListTrait for CharacterStateControllerStateLis
 
 pub static CHARACTERSTATECONTROLLERSTATELIST_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateControllerStateList",
+    name_hash: 4114974818,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateControllerStateList as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateControllerStateList as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SlotList",
+                name_hash: 3917800611,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterStateControllerStateSlotList",
                 rust_offset: offset_of!(CharacterStateControllerStateList, slot_list),
@@ -18333,6 +19722,7 @@ impl TypeObject for CharacterStateControllerStateList {
 
 pub static CHARACTERSTATECONTROLLERSTATELIST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateControllerStateList-Array",
+    name_hash: 1275131734,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateControllerStateList"),
@@ -18341,7 +19731,8 @@ pub static CHARACTERSTATECONTROLLERSTATELIST_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateControllerStateSlotList {
     pub owner_data: u64,
     pub is_replication: bool,
@@ -18380,27 +19771,32 @@ impl CharacterStateControllerStateSlotListTrait for CharacterStateControllerStat
 
 pub static CHARACTERSTATECONTROLLERSTATESLOTLIST_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateControllerStateSlotList",
+    name_hash: 1550681862,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateControllerStateSlotList as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateControllerStateSlotList as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OwnerData",
+                name_hash: 2899185172,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(CharacterStateControllerStateSlotList, owner_data),
             },
             FieldInfoData {
                 name: "IsReplication",
+                name_hash: 2087697603,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterStateControllerStateSlotList, is_replication),
             },
             FieldInfoData {
                 name: "GameStateTable",
+                name_hash: 887886626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "NetworkedChannelRawData",
                 rust_offset: offset_of!(CharacterStateControllerStateSlotList, game_state_table),
@@ -18432,6 +19828,7 @@ impl TypeObject for CharacterStateControllerStateSlotList {
 
 pub static CHARACTERSTATECONTROLLERSTATESLOTLIST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateControllerStateSlotList-Array",
+    name_hash: 1338070066,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateControllerStateSlotList"),
@@ -18440,7 +19837,8 @@ pub static CHARACTERSTATECONTROLLERSTATESLOTLIST_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CBaseControllerState {
     pub asset_index: u16,
     pub networked_state_index: u8,
@@ -18470,21 +19868,25 @@ impl CBaseControllerStateTrait for CBaseControllerState {
 
 pub static CBASECONTROLLERSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CBaseControllerState",
+    name_hash: 2717362424,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CBaseControllerState as Default>::default())),
+            create_boxed: || Box::new(<CBaseControllerState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AssetIndex",
+                name_hash: 330410859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(CBaseControllerState, asset_index),
             },
             FieldInfoData {
                 name: "NetworkedStateIndex",
+                name_hash: 1241789331,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(CBaseControllerState, networked_state_index),
@@ -18516,6 +19918,7 @@ impl TypeObject for CBaseControllerState {
 
 pub static CBASECONTROLLERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CBaseControllerState-Array",
+    name_hash: 1934582476,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CBaseControllerState"),
@@ -18524,7 +19927,8 @@ pub static CBASECONTROLLERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStatePairedClipState {
     pub current_blend: f32,
     pub start_connect_trans_and_scale: super::core::Vec4,
@@ -18563,27 +19967,32 @@ impl CharacterStatePairedClipStateTrait for CharacterStatePairedClipState {
 
 pub static CHARACTERSTATEPAIREDCLIPSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStatePairedClipState",
+    name_hash: 3648009121,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStatePairedClipState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStatePairedClipState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CurrentBlend",
+                name_hash: 1129378125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStatePairedClipState, current_blend),
             },
             FieldInfoData {
                 name: "StartConnectTransAndScale",
+                name_hash: 1823151538,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(CharacterStatePairedClipState, start_connect_trans_and_scale),
             },
             FieldInfoData {
                 name: "StartConnectQuat",
+                name_hash: 1311386154,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(CharacterStatePairedClipState, start_connect_quat),
@@ -18615,6 +20024,7 @@ impl TypeObject for CharacterStatePairedClipState {
 
 pub static CHARACTERSTATEPAIREDCLIPSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStatePairedClipState-Array",
+    name_hash: 3502120469,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStatePairedClipState"),
@@ -18623,7 +20033,8 @@ pub static CHARACTERSTATEPAIREDCLIPSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateIKState {
     pub i_k_target_rotation: super::core::Quat,
     pub i_k_target_position: super::core::Vec3,
@@ -18689,45 +20100,53 @@ impl CharacterStateIKStateTrait for CharacterStateIKState {
 
 pub static CHARACTERSTATEIKSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateIKState",
+    name_hash: 1998523326,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateIKState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateIKState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IKTargetRotation",
+                name_hash: 1500968354,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(CharacterStateIKState, i_k_target_rotation),
             },
             FieldInfoData {
                 name: "IKTargetPosition",
+                name_hash: 2110577295,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CharacterStateIKState, i_k_target_position),
             },
             FieldInfoData {
                 name: "IKToAnimRotation",
+                name_hash: 1216216291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(CharacterStateIKState, i_k_to_anim_rotation),
             },
             FieldInfoData {
                 name: "IKToAnimPosition",
+                name_hash: 1747419150,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CharacterStateIKState, i_k_to_anim_position),
             },
             FieldInfoData {
                 name: "BlendTicks",
+                name_hash: 230178274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(CharacterStateIKState, blend_ticks),
             },
             FieldInfoData {
                 name: "DisabledTick",
+                name_hash: 3598242272,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(CharacterStateIKState, disabled_tick),
@@ -18759,6 +20178,7 @@ impl TypeObject for CharacterStateIKState {
 
 pub static CHARACTERSTATEIKSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateIKState-Array",
+    name_hash: 2497838090,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateIKState"),
@@ -18767,7 +20187,8 @@ pub static CHARACTERSTATEIKSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateKeyframedVec3ChannelState {
 }
 
@@ -18779,11 +20200,13 @@ impl CharacterStateKeyframedVec3ChannelStateTrait for CharacterStateKeyframedVec
 
 pub static CHARACTERSTATEKEYFRAMEDVEC3CHANNELSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedVec3ChannelState",
+    name_hash: 3738596722,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateKeyframedVec3ChannelState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateKeyframedVec3ChannelState as Default>::default()),
         },
         fields: &[
         ],
@@ -18813,6 +20236,7 @@ impl TypeObject for CharacterStateKeyframedVec3ChannelState {
 
 pub static CHARACTERSTATEKEYFRAMEDVEC3CHANNELSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedVec3ChannelState-Array",
+    name_hash: 2606918726,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateKeyframedVec3ChannelState"),
@@ -18821,7 +20245,8 @@ pub static CHARACTERSTATEKEYFRAMEDVEC3CHANNELSTATE_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateHelperState {
 }
 
@@ -18833,11 +20258,13 @@ impl CharacterStateHelperStateTrait for CharacterStateHelperState {
 
 pub static CHARACTERSTATEHELPERSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateHelperState",
+    name_hash: 3517057306,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateHelperState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateHelperState as Default>::default()),
         },
         fields: &[
         ],
@@ -18867,6 +20294,7 @@ impl TypeObject for CharacterStateHelperState {
 
 pub static CHARACTERSTATEHELPERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateHelperState-Array",
+    name_hash: 3751922734,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateHelperState"),
@@ -18875,7 +20303,8 @@ pub static CHARACTERSTATEHELPERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateClimbingState {
     pub child_absolute_time: f32,
     pub climbing_object_height: f32,
@@ -18923,33 +20352,39 @@ impl CharacterStateClimbingStateTrait for CharacterStateClimbingState {
 
 pub static CHARACTERSTATECLIMBINGSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateClimbingState",
+    name_hash: 2884344469,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateClimbingState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateClimbingState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ChildAbsoluteTime",
+                name_hash: 488027277,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStateClimbingState, child_absolute_time),
             },
             FieldInfoData {
                 name: "ClimbingObjectHeight",
+                name_hash: 2404952774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStateClimbingState, climbing_object_height),
             },
             FieldInfoData {
                 name: "ClimbingRotation",
+                name_hash: 1861576248,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(CharacterStateClimbingState, climbing_rotation),
             },
             FieldInfoData {
                 name: "ClimbingObjectPosition",
+                name_hash: 3363160032,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CharacterStateClimbingState, climbing_object_position),
@@ -18981,6 +20416,7 @@ impl TypeObject for CharacterStateClimbingState {
 
 pub static CHARACTERSTATECLIMBINGSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateClimbingState-Array",
+    name_hash: 3339807265,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateClimbingState"),
@@ -18989,7 +20425,8 @@ pub static CHARACTERSTATECLIMBINGSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateCheckStartVaultState {
 }
 
@@ -19001,11 +20438,13 @@ impl CharacterStateCheckStartVaultStateTrait for CharacterStateCheckStartVaultSt
 
 pub static CHARACTERSTATECHECKSTARTVAULTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateCheckStartVaultState",
+    name_hash: 4040100960,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateCheckStartVaultState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateCheckStartVaultState as Default>::default()),
         },
         fields: &[
         ],
@@ -19035,6 +20474,7 @@ impl TypeObject for CharacterStateCheckStartVaultState {
 
 pub static CHARACTERSTATECHECKSTARTVAULTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateCheckStartVaultState-Array",
+    name_hash: 2012299860,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateCheckStartVaultState"),
@@ -19043,7 +20483,8 @@ pub static CHARACTERSTATECHECKSTARTVAULTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateCheckStartClimbingState {
 }
 
@@ -19055,11 +20496,13 @@ impl CharacterStateCheckStartClimbingStateTrait for CharacterStateCheckStartClim
 
 pub static CHARACTERSTATECHECKSTARTCLIMBINGSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateCheckStartClimbingState",
+    name_hash: 2803977907,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateCheckStartClimbingState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateCheckStartClimbingState as Default>::default()),
         },
         fields: &[
         ],
@@ -19089,6 +20532,7 @@ impl TypeObject for CharacterStateCheckStartClimbingState {
 
 pub static CHARACTERSTATECHECKSTARTCLIMBINGSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateCheckStartClimbingState-Array",
+    name_hash: 761444871,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateCheckStartClimbingState"),
@@ -19097,7 +20541,8 @@ pub static CHARACTERSTATECHECKSTARTCLIMBINGSTATE_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStatePhaseState {
 }
 
@@ -19109,11 +20554,13 @@ impl CharacterStatePhaseStateTrait for CharacterStatePhaseState {
 
 pub static CHARACTERSTATEPHASESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStatePhaseState",
+    name_hash: 2061434803,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStatePhaseState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStatePhaseState as Default>::default()),
         },
         fields: &[
         ],
@@ -19143,6 +20590,7 @@ impl TypeObject for CharacterStatePhaseState {
 
 pub static CHARACTERSTATEPHASESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStatePhaseState-Array",
+    name_hash: 518073095,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStatePhaseState"),
@@ -19151,7 +20599,8 @@ pub static CHARACTERSTATEPHASESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateParachuteState {
 }
 
@@ -19163,11 +20612,13 @@ impl CharacterStateParachuteStateTrait for CharacterStateParachuteState {
 
 pub static CHARACTERSTATEPARACHUTESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateParachuteState",
+    name_hash: 586030289,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateParachuteState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateParachuteState as Default>::default()),
         },
         fields: &[
         ],
@@ -19197,6 +20648,7 @@ impl TypeObject for CharacterStateParachuteState {
 
 pub static CHARACTERSTATEPARACHUTESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateParachuteState-Array",
+    name_hash: 519630565,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateParachuteState"),
@@ -19205,7 +20657,8 @@ pub static CHARACTERSTATEPARACHUTESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateCharacterStateHelperState {
 }
 
@@ -19217,11 +20670,13 @@ impl CharacterStateCharacterStateHelperStateTrait for CharacterStateCharacterSta
 
 pub static CHARACTERSTATECHARACTERSTATEHELPERSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateCharacterStateHelperState",
+    name_hash: 4066106420,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateCharacterStateHelperState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateCharacterStateHelperState as Default>::default()),
         },
         fields: &[
         ],
@@ -19251,6 +20706,7 @@ impl TypeObject for CharacterStateCharacterStateHelperState {
 
 pub static CHARACTERSTATECHARACTERSTATEHELPERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateCharacterStateHelperState-Array",
+    name_hash: 2128697216,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateCharacterStateHelperState"),
@@ -19259,7 +20715,8 @@ pub static CHARACTERSTATECHARACTERSTATEHELPERSTATE_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateCameraRelativeSteeringState {
 }
 
@@ -19271,11 +20728,13 @@ impl CharacterStateCameraRelativeSteeringStateTrait for CharacterStateCameraRela
 
 pub static CHARACTERSTATECAMERARELATIVESTEERINGSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateCameraRelativeSteeringState",
+    name_hash: 3844439268,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateCameraRelativeSteeringState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateCameraRelativeSteeringState as Default>::default()),
         },
         fields: &[
         ],
@@ -19305,6 +20764,7 @@ impl TypeObject for CharacterStateCameraRelativeSteeringState {
 
 pub static CHARACTERSTATECAMERARELATIVESTEERINGSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateCameraRelativeSteeringState-Array",
+    name_hash: 3988373712,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateCameraRelativeSteeringState"),
@@ -19313,7 +20773,8 @@ pub static CHARACTERSTATECAMERARELATIVESTEERINGSTATE_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateRotateWithYawState {
 }
 
@@ -19325,11 +20786,13 @@ impl CharacterStateRotateWithYawStateTrait for CharacterStateRotateWithYawState 
 
 pub static CHARACTERSTATEROTATEWITHYAWSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateRotateWithYawState",
+    name_hash: 1575648328,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateRotateWithYawState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateRotateWithYawState as Default>::default()),
         },
         fields: &[
         ],
@@ -19359,6 +20822,7 @@ impl TypeObject for CharacterStateRotateWithYawState {
 
 pub static CHARACTERSTATEROTATEWITHYAWSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateRotateWithYawState-Array",
+    name_hash: 3376983804,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateRotateWithYawState"),
@@ -19367,7 +20831,8 @@ pub static CHARACTERSTATEROTATEWITHYAWSTATE_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateAdjustToGroundState {
 }
 
@@ -19379,11 +20844,13 @@ impl CharacterStateAdjustToGroundStateTrait for CharacterStateAdjustToGroundStat
 
 pub static CHARACTERSTATEADJUSTTOGROUNDSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateAdjustToGroundState",
+    name_hash: 2688464735,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateAdjustToGroundState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateAdjustToGroundState as Default>::default()),
         },
         fields: &[
         ],
@@ -19413,6 +20880,7 @@ impl TypeObject for CharacterStateAdjustToGroundState {
 
 pub static CHARACTERSTATEADJUSTTOGROUNDSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateAdjustToGroundState-Array",
+    name_hash: 1532931179,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateAdjustToGroundState"),
@@ -19421,7 +20889,8 @@ pub static CHARACTERSTATEADJUSTTOGROUNDSTATE_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateClipFromInputState {
     pub current_rotation: super::core::Quat,
     pub chosen_index: u8,
@@ -19451,21 +20920,25 @@ impl CharacterStateClipFromInputStateTrait for CharacterStateClipFromInputState 
 
 pub static CHARACTERSTATECLIPFROMINPUTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateClipFromInputState",
+    name_hash: 1611198506,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateClipFromInputState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateClipFromInputState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CurrentRotation",
+                name_hash: 2931483672,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(CharacterStateClipFromInputState, current_rotation),
             },
             FieldInfoData {
                 name: "ChosenIndex",
+                name_hash: 3782085447,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(CharacterStateClipFromInputState, chosen_index),
@@ -19497,6 +20970,7 @@ impl TypeObject for CharacterStateClipFromInputState {
 
 pub static CHARACTERSTATECLIPFROMINPUTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateClipFromInputState-Array",
+    name_hash: 854772382,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateClipFromInputState"),
@@ -19505,7 +20979,8 @@ pub static CHARACTERSTATECLIPFROMINPUTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStatePoseMatchingState {
     pub tick_offset: i32,
 }
@@ -19526,15 +21001,18 @@ impl CharacterStatePoseMatchingStateTrait for CharacterStatePoseMatchingState {
 
 pub static CHARACTERSTATEPOSEMATCHINGSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStatePoseMatchingState",
+    name_hash: 2363695814,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStatePoseMatchingState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStatePoseMatchingState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TickOffset",
+                name_hash: 4948477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterStatePoseMatchingState, tick_offset),
@@ -19566,6 +21044,7 @@ impl TypeObject for CharacterStatePoseMatchingState {
 
 pub static CHARACTERSTATEPOSEMATCHINGSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStatePoseMatchingState-Array",
+    name_hash: 2344419442,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStatePoseMatchingState"),
@@ -19574,7 +21053,8 @@ pub static CHARACTERSTATEPOSEMATCHINGSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateIndexChooserState {
 }
 
@@ -19586,11 +21066,13 @@ impl CharacterStateIndexChooserStateTrait for CharacterStateIndexChooserState {
 
 pub static CHARACTERSTATEINDEXCHOOSERSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateIndexChooserState",
+    name_hash: 4030671821,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateIndexChooserState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateIndexChooserState as Default>::default()),
         },
         fields: &[
         ],
@@ -19620,6 +21102,7 @@ impl TypeObject for CharacterStateIndexChooserState {
 
 pub static CHARACTERSTATEINDEXCHOOSERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateIndexChooserState-Array",
+    name_hash: 583368697,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateIndexChooserState"),
@@ -19628,7 +21111,8 @@ pub static CHARACTERSTATEINDEXCHOOSERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateAuthoritativeMotionState {
 }
 
@@ -19640,11 +21124,13 @@ impl CharacterStateAuthoritativeMotionStateTrait for CharacterStateAuthoritative
 
 pub static CHARACTERSTATEAUTHORITATIVEMOTIONSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateAuthoritativeMotionState",
+    name_hash: 453045829,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateAuthoritativeMotionState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateAuthoritativeMotionState as Default>::default()),
         },
         fields: &[
         ],
@@ -19674,6 +21160,7 @@ impl TypeObject for CharacterStateAuthoritativeMotionState {
 
 pub static CHARACTERSTATEAUTHORITATIVEMOTIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateAuthoritativeMotionState-Array",
+    name_hash: 1995425393,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateAuthoritativeMotionState"),
@@ -19682,7 +21169,8 @@ pub static CHARACTERSTATEAUTHORITATIVEMOTIONSTATE_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateMoveToTargetState {
 }
 
@@ -19694,11 +21182,13 @@ impl CharacterStateMoveToTargetStateTrait for CharacterStateMoveToTargetState {
 
 pub static CHARACTERSTATEMOVETOTARGETSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateMoveToTargetState",
+    name_hash: 3474118791,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateMoveToTargetState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateMoveToTargetState as Default>::default()),
         },
         fields: &[
         ],
@@ -19728,6 +21218,7 @@ impl TypeObject for CharacterStateMoveToTargetState {
 
 pub static CHARACTERSTATEMOVETOTARGETSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateMoveToTargetState-Array",
+    name_hash: 3503610163,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateMoveToTargetState"),
@@ -19736,7 +21227,8 @@ pub static CHARACTERSTATEMOVETOTARGETSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateKeyframedTransformChannelState {
 }
 
@@ -19748,11 +21240,13 @@ impl CharacterStateKeyframedTransformChannelStateTrait for CharacterStateKeyfram
 
 pub static CHARACTERSTATEKEYFRAMEDTRANSFORMCHANNELSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedTransformChannelState",
+    name_hash: 1099668061,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateKeyframedTransformChannelState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateKeyframedTransformChannelState as Default>::default()),
         },
         fields: &[
         ],
@@ -19782,6 +21276,7 @@ impl TypeObject for CharacterStateKeyframedTransformChannelState {
 
 pub static CHARACTERSTATEKEYFRAMEDTRANSFORMCHANNELSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedTransformChannelState-Array",
+    name_hash: 266180201,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateKeyframedTransformChannelState"),
@@ -19790,7 +21285,8 @@ pub static CHARACTERSTATEKEYFRAMEDTRANSFORMCHANNELSTATE_ARRAY_TYPE_INFO: &'stati
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateKeyframedIntChannelState {
 }
 
@@ -19802,11 +21298,13 @@ impl CharacterStateKeyframedIntChannelStateTrait for CharacterStateKeyframedIntC
 
 pub static CHARACTERSTATEKEYFRAMEDINTCHANNELSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedIntChannelState",
+    name_hash: 2748149826,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateKeyframedIntChannelState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateKeyframedIntChannelState as Default>::default()),
         },
         fields: &[
         ],
@@ -19836,6 +21334,7 @@ impl TypeObject for CharacterStateKeyframedIntChannelState {
 
 pub static CHARACTERSTATEKEYFRAMEDINTCHANNELSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedIntChannelState-Array",
+    name_hash: 1246478326,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateKeyframedIntChannelState"),
@@ -19844,7 +21343,8 @@ pub static CHARACTERSTATEKEYFRAMEDINTCHANNELSTATE_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateKeyframedFloatChannelState {
 }
 
@@ -19856,11 +21356,13 @@ impl CharacterStateKeyframedFloatChannelStateTrait for CharacterStateKeyframedFl
 
 pub static CHARACTERSTATEKEYFRAMEDFLOATCHANNELSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedFloatChannelState",
+    name_hash: 4160351905,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateKeyframedFloatChannelState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateKeyframedFloatChannelState as Default>::default()),
         },
         fields: &[
         ],
@@ -19890,6 +21392,7 @@ impl TypeObject for CharacterStateKeyframedFloatChannelState {
 
 pub static CHARACTERSTATEKEYFRAMEDFLOATCHANNELSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedFloatChannelState-Array",
+    name_hash: 3160938773,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateKeyframedFloatChannelState"),
@@ -19898,7 +21401,8 @@ pub static CHARACTERSTATEKEYFRAMEDFLOATCHANNELSTATE_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateKeyframedBoolChannelState {
 }
 
@@ -19910,11 +21414,13 @@ impl CharacterStateKeyframedBoolChannelStateTrait for CharacterStateKeyframedBoo
 
 pub static CHARACTERSTATEKEYFRAMEDBOOLCHANNELSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedBoolChannelState",
+    name_hash: 2088100351,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateKeyframedBoolChannelState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateKeyframedBoolChannelState as Default>::default()),
         },
         fields: &[
         ],
@@ -19944,6 +21450,7 @@ impl TypeObject for CharacterStateKeyframedBoolChannelState {
 
 pub static CHARACTERSTATEKEYFRAMEDBOOLCHANNELSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedBoolChannelState-Array",
+    name_hash: 229361611,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateKeyframedBoolChannelState"),
@@ -19952,7 +21459,8 @@ pub static CHARACTERSTATEKEYFRAMEDBOOLCHANNELSTATE_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateKeyframedChannelState {
 }
 
@@ -19964,11 +21472,13 @@ impl CharacterStateKeyframedChannelStateTrait for CharacterStateKeyframedChannel
 
 pub static CHARACTERSTATEKEYFRAMEDCHANNELSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedChannelState",
+    name_hash: 772246769,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateKeyframedChannelState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateKeyframedChannelState as Default>::default()),
         },
         fields: &[
         ],
@@ -19998,6 +21508,7 @@ impl TypeObject for CharacterStateKeyframedChannelState {
 
 pub static CHARACTERSTATEKEYFRAMEDCHANNELSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateKeyframedChannelState-Array",
+    name_hash: 287731653,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateKeyframedChannelState"),
@@ -20006,7 +21517,8 @@ pub static CHARACTERSTATEKEYFRAMEDCHANNELSTATE_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateApplyAccelerationFromInputState {
 }
 
@@ -20018,11 +21530,13 @@ impl CharacterStateApplyAccelerationFromInputStateTrait for CharacterStateApplyA
 
 pub static CHARACTERSTATEAPPLYACCELERATIONFROMINPUTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateApplyAccelerationFromInputState",
+    name_hash: 26324266,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateApplyAccelerationFromInputState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateApplyAccelerationFromInputState as Default>::default()),
         },
         fields: &[
         ],
@@ -20052,6 +21566,7 @@ impl TypeObject for CharacterStateApplyAccelerationFromInputState {
 
 pub static CHARACTERSTATEAPPLYACCELERATIONFROMINPUTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateApplyAccelerationFromInputState-Array",
+    name_hash: 2572502942,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateApplyAccelerationFromInputState"),
@@ -20060,7 +21575,8 @@ pub static CHARACTERSTATEAPPLYACCELERATIONFROMINPUTSTATE_ARRAY_TYPE_INFO: &'stat
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateApplyFrictionState {
 }
 
@@ -20072,11 +21588,13 @@ impl CharacterStateApplyFrictionStateTrait for CharacterStateApplyFrictionState 
 
 pub static CHARACTERSTATEAPPLYFRICTIONSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateApplyFrictionState",
+    name_hash: 1602496906,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateApplyFrictionState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateApplyFrictionState as Default>::default()),
         },
         fields: &[
         ],
@@ -20106,6 +21624,7 @@ impl TypeObject for CharacterStateApplyFrictionState {
 
 pub static CHARACTERSTATEAPPLYFRICTIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateApplyFrictionState-Array",
+    name_hash: 3290924222,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateApplyFrictionState"),
@@ -20114,7 +21633,8 @@ pub static CHARACTERSTATEAPPLYFRICTIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateImpulseState {
 }
 
@@ -20126,11 +21646,13 @@ impl CharacterStateImpulseStateTrait for CharacterStateImpulseState {
 
 pub static CHARACTERSTATEIMPULSESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateImpulseState",
+    name_hash: 558155815,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateImpulseState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateImpulseState as Default>::default()),
         },
         fields: &[
         ],
@@ -20160,6 +21682,7 @@ impl TypeObject for CharacterStateImpulseState {
 
 pub static CHARACTERSTATEIMPULSESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateImpulseState-Array",
+    name_hash: 2336766355,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateImpulseState"),
@@ -20168,7 +21691,8 @@ pub static CHARACTERSTATEIMPULSESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateConstantVelocityState {
 }
 
@@ -20180,11 +21704,13 @@ impl CharacterStateConstantVelocityStateTrait for CharacterStateConstantVelocity
 
 pub static CHARACTERSTATECONSTANTVELOCITYSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateConstantVelocityState",
+    name_hash: 962794741,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateConstantVelocityState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateConstantVelocityState as Default>::default()),
         },
         fields: &[
         ],
@@ -20214,6 +21740,7 @@ impl TypeObject for CharacterStateConstantVelocityState {
 
 pub static CHARACTERSTATECONSTANTVELOCITYSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateConstantVelocityState-Array",
+    name_hash: 105358785,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateConstantVelocityState"),
@@ -20222,7 +21749,8 @@ pub static CHARACTERSTATECONSTANTVELOCITYSTATE_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateConstantAccelerationState {
 }
 
@@ -20234,11 +21762,13 @@ impl CharacterStateConstantAccelerationStateTrait for CharacterStateConstantAcce
 
 pub static CHARACTERSTATECONSTANTACCELERATIONSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateConstantAccelerationState",
+    name_hash: 247201088,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateConstantAccelerationState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateConstantAccelerationState as Default>::default()),
         },
         fields: &[
         ],
@@ -20268,6 +21798,7 @@ impl TypeObject for CharacterStateConstantAccelerationState {
 
 pub static CHARACTERSTATECONSTANTACCELERATIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateConstantAccelerationState-Array",
+    name_hash: 3908539380,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateConstantAccelerationState"),
@@ -20276,7 +21807,8 @@ pub static CHARACTERSTATECONSTANTACCELERATIONSTATE_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateFollowGroundState {
 }
 
@@ -20288,11 +21820,13 @@ impl CharacterStateFollowGroundStateTrait for CharacterStateFollowGroundState {
 
 pub static CHARACTERSTATEFOLLOWGROUNDSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateFollowGroundState",
+    name_hash: 4280129896,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateFollowGroundState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateFollowGroundState as Default>::default()),
         },
         fields: &[
         ],
@@ -20322,6 +21856,7 @@ impl TypeObject for CharacterStateFollowGroundState {
 
 pub static CHARACTERSTATEFOLLOWGROUNDSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateFollowGroundState-Array",
+    name_hash: 2662656860,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateFollowGroundState"),
@@ -20330,7 +21865,8 @@ pub static CHARACTERSTATEFOLLOWGROUNDSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateSlidingState {
 }
 
@@ -20342,11 +21878,13 @@ impl CharacterStateSlidingStateTrait for CharacterStateSlidingState {
 
 pub static CHARACTERSTATESLIDINGSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateSlidingState",
+    name_hash: 4084998126,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateSlidingState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateSlidingState as Default>::default()),
         },
         fields: &[
         ],
@@ -20376,6 +21914,7 @@ impl TypeObject for CharacterStateSlidingState {
 
 pub static CHARACTERSTATESLIDINGSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateSlidingState-Array",
+    name_hash: 359282906,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateSlidingState"),
@@ -20384,7 +21923,8 @@ pub static CHARACTERSTATESLIDINGSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStatePoseState {
     pub ticks_until_finished: i32,
 }
@@ -20405,15 +21945,18 @@ impl CharacterStatePoseStateTrait for CharacterStatePoseState {
 
 pub static CHARACTERSTATEPOSESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStatePoseState",
+    name_hash: 424029685,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStatePoseState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStatePoseState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TicksUntilFinished",
+                name_hash: 2892577947,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterStatePoseState, ticks_until_finished),
@@ -20445,6 +21988,7 @@ impl TypeObject for CharacterStatePoseState {
 
 pub static CHARACTERSTATEPOSESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStatePoseState-Array",
+    name_hash: 1952022209,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStatePoseState"),
@@ -20453,7 +21997,8 @@ pub static CHARACTERSTATEPOSESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateWarpAnimationToInputState {
 }
 
@@ -20465,11 +22010,13 @@ impl CharacterStateWarpAnimationToInputStateTrait for CharacterStateWarpAnimatio
 
 pub static CHARACTERSTATEWARPANIMATIONTOINPUTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateWarpAnimationToInputState",
+    name_hash: 2502145683,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateWarpAnimationToInputState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateWarpAnimationToInputState as Default>::default()),
         },
         fields: &[
         ],
@@ -20499,6 +22046,7 @@ impl TypeObject for CharacterStateWarpAnimationToInputState {
 
 pub static CHARACTERSTATEWARPANIMATIONTOINPUTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateWarpAnimationToInputState-Array",
+    name_hash: 2447855911,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateWarpAnimationToInputState"),
@@ -20519,6 +22067,7 @@ pub enum CharacterStateWarpAnimationToInputOffsets {
 
 pub static CHARACTERSTATEWARPANIMATIONTOINPUTOFFSETS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateWarpAnimationToInputOffsets",
+    name_hash: 228385082,
     flags: MemberInfoFlags::new(49429),
     module: "DiceShooter",
     data: TypeInfoData::Enum,
@@ -20547,6 +22096,7 @@ impl TypeObject for CharacterStateWarpAnimationToInputOffsets {
 
 pub static CHARACTERSTATEWARPANIMATIONTOINPUTOFFSETS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateWarpAnimationToInputOffsets-Array",
+    name_hash: 3851043726,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateWarpAnimationToInputOffsets"),
@@ -20555,7 +22105,8 @@ pub static CHARACTERSTATEWARPANIMATIONTOINPUTOFFSETS_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateWarpClipState {
 }
 
@@ -20567,11 +22118,13 @@ impl CharacterStateWarpClipStateTrait for CharacterStateWarpClipState {
 
 pub static CHARACTERSTATEWARPCLIPSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateWarpClipState",
+    name_hash: 2872856766,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateWarpClipState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateWarpClipState as Default>::default()),
         },
         fields: &[
         ],
@@ -20601,6 +22154,7 @@ impl TypeObject for CharacterStateWarpClipState {
 
 pub static CHARACTERSTATEWARPCLIPSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateWarpClipState-Array",
+    name_hash: 488571146,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateWarpClipState"),
@@ -20609,7 +22163,8 @@ pub static CHARACTERSTATEWARPCLIPSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateJetPackState {
     pub jetpack_state: JetPackStateEnum,
     pub button_was_down_last_update: bool,
@@ -20666,39 +22221,46 @@ impl CharacterStateJetPackStateTrait for CharacterStateJetPackState {
 
 pub static CHARACTERSTATEJETPACKSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateJetPackState",
+    name_hash: 3255582878,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateJetPackState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateJetPackState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "JetpackState",
+                name_hash: 2377939600,
                 flags: MemberInfoFlags::new(0),
                 field_type: "JetPackStateEnum",
                 rust_offset: offset_of!(CharacterStateJetPackState, jetpack_state),
             },
             FieldInfoData {
                 name: "ButtonWasDownLastUpdate",
+                name_hash: 1526793823,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterStateJetPackState, button_was_down_last_update),
             },
             FieldInfoData {
                 name: "ActiveTicks",
+                name_hash: 1428695727,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterStateJetPackState, active_ticks),
             },
             FieldInfoData {
                 name: "LandingTicks",
+                name_hash: 1021213764,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterStateJetPackState, landing_ticks),
             },
             FieldInfoData {
                 name: "HeightLimit",
+                name_hash: 3581073167,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStateJetPackState, height_limit),
@@ -20730,6 +22292,7 @@ impl TypeObject for CharacterStateJetPackState {
 
 pub static CHARACTERSTATEJETPACKSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateJetPackState-Array",
+    name_hash: 1492603306,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateJetPackState"),
@@ -20738,7 +22301,8 @@ pub static CHARACTERSTATEJETPACKSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateJumpPackState {
     pub active_ticks: i32,
     pub landing_ticks: i32,
@@ -20795,39 +22359,46 @@ impl CharacterStateJumpPackStateTrait for CharacterStateJumpPackState {
 
 pub static CHARACTERSTATEJUMPPACKSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateJumpPackState",
+    name_hash: 3617763943,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateJumpPackState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateJumpPackState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ActiveTicks",
+                name_hash: 1428695727,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterStateJumpPackState, active_ticks),
             },
             FieldInfoData {
                 name: "LandingTicks",
+                name_hash: 1021213764,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterStateJumpPackState, landing_ticks),
             },
             FieldInfoData {
                 name: "LastFramePosYVel",
+                name_hash: 2767218232,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterStateJumpPackState, last_frame_pos_y_vel),
             },
             FieldInfoData {
                 name: "ButtonWasDownLastUpdate",
+                name_hash: 1526793823,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterStateJumpPackState, button_was_down_last_update),
             },
             FieldInfoData {
                 name: "JetpackState",
+                name_hash: 2377939600,
                 flags: MemberInfoFlags::new(0),
                 field_type: "JetPackStateEnum",
                 rust_offset: offset_of!(CharacterStateJumpPackState, jetpack_state),
@@ -20859,6 +22430,7 @@ impl TypeObject for CharacterStateJumpPackState {
 
 pub static CHARACTERSTATEJUMPPACKSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateJumpPackState-Array",
+    name_hash: 3594572883,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateJumpPackState"),
@@ -20884,6 +22456,7 @@ pub enum JetPackStateEnum {
 
 pub static JETPACKSTATEENUM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JetPackStateEnum",
+    name_hash: 2712007811,
     flags: MemberInfoFlags::new(49429),
     module: "DiceShooter",
     data: TypeInfoData::Enum,
@@ -20912,6 +22485,7 @@ impl TypeObject for JetPackStateEnum {
 
 pub static JETPACKSTATEENUM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JetPackStateEnum-Array",
+    name_hash: 1124943671,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("JetPackStateEnum"),
@@ -20920,7 +22494,8 @@ pub static JETPACKSTATEENUM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateCheckSupportState {
 }
 
@@ -20932,11 +22507,13 @@ impl CharacterStateCheckSupportStateTrait for CharacterStateCheckSupportState {
 
 pub static CHARACTERSTATECHECKSUPPORTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateCheckSupportState",
+    name_hash: 3191239093,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateCheckSupportState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateCheckSupportState as Default>::default()),
         },
         fields: &[
         ],
@@ -20966,6 +22543,7 @@ impl TypeObject for CharacterStateCheckSupportState {
 
 pub static CHARACTERSTATECHECKSUPPORTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateCheckSupportState-Array",
+    name_hash: 1032671745,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateCheckSupportState"),
@@ -20974,7 +22552,8 @@ pub static CHARACTERSTATECHECKSUPPORTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateNetworkEndState {
 }
 
@@ -20986,11 +22565,13 @@ impl CharacterStateNetworkEndStateTrait for CharacterStateNetworkEndState {
 
 pub static CHARACTERSTATENETWORKENDSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateNetworkEndState",
+    name_hash: 963456749,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateNetworkEndState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateNetworkEndState as Default>::default()),
         },
         fields: &[
         ],
@@ -21020,6 +22601,7 @@ impl TypeObject for CharacterStateNetworkEndState {
 
 pub static CHARACTERSTATENETWORKENDSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateNetworkEndState-Array",
+    name_hash: 1122620377,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateNetworkEndState"),
@@ -21028,7 +22610,8 @@ pub static CHARACTERSTATENETWORKENDSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateClipState {
 }
 
@@ -21040,11 +22623,13 @@ impl CharacterStateClipStateTrait for CharacterStateClipState {
 
 pub static CHARACTERSTATECLIPSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateClipState",
+    name_hash: 1934857706,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateClipState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateClipState as Default>::default()),
         },
         fields: &[
         ],
@@ -21074,6 +22659,7 @@ impl TypeObject for CharacterStateClipState {
 
 pub static CHARACTERSTATECLIPSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateClipState-Array",
+    name_hash: 289571038,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateClipState"),
@@ -21082,7 +22668,8 @@ pub static CHARACTERSTATECLIPSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateStateFlowNodeTransitionState {
     pub start_time: u32,
 }
@@ -21103,15 +22690,18 @@ impl CharacterStateStateFlowNodeTransitionStateTrait for CharacterStateStateFlow
 
 pub static CHARACTERSTATESTATEFLOWNODETRANSITIONSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateStateFlowNodeTransitionState",
+    name_hash: 2715858774,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateStateFlowNodeTransitionState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateStateFlowNodeTransitionState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StartTime",
+                name_hash: 3727579056,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CharacterStateStateFlowNodeTransitionState, start_time),
@@ -21143,6 +22733,7 @@ impl TypeObject for CharacterStateStateFlowNodeTransitionState {
 
 pub static CHARACTERSTATESTATEFLOWNODETRANSITIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateStateFlowNodeTransitionState-Array",
+    name_hash: 2722807010,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateStateFlowNodeTransitionState"),
@@ -21151,7 +22742,8 @@ pub static CHARACTERSTATESTATEFLOWNODETRANSITIONSTATE_ARRAY_TYPE_INFO: &'static 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateStateFlowNodeState {
     pub start_time: u32,
     pub child_offset_time: u32,
@@ -21181,21 +22773,25 @@ impl CharacterStateStateFlowNodeStateTrait for CharacterStateStateFlowNodeState 
 
 pub static CHARACTERSTATESTATEFLOWNODESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateStateFlowNodeState",
+    name_hash: 517495097,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateStateFlowNodeState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateStateFlowNodeState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StartTime",
+                name_hash: 3727579056,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CharacterStateStateFlowNodeState, start_time),
             },
             FieldInfoData {
                 name: "ChildOffsetTime",
+                name_hash: 3459801367,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CharacterStateStateFlowNodeState, child_offset_time),
@@ -21227,6 +22823,7 @@ impl TypeObject for CharacterStateStateFlowNodeState {
 
 pub static CHARACTERSTATESTATEFLOWNODESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateStateFlowNodeState-Array",
+    name_hash: 1042188173,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateStateFlowNodeState"),
@@ -21235,7 +22832,8 @@ pub static CHARACTERSTATESTATEFLOWNODESTATE_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateStateFlowState {
 }
 
@@ -21247,11 +22845,13 @@ impl CharacterStateStateFlowStateTrait for CharacterStateStateFlowState {
 
 pub static CHARACTERSTATESTATEFLOWSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateStateFlowState",
+    name_hash: 1872037977,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateStateFlowState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateStateFlowState as Default>::default()),
         },
         fields: &[
         ],
@@ -21281,6 +22881,7 @@ impl TypeObject for CharacterStateStateFlowState {
 
 pub static CHARACTERSTATESTATEFLOWSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateStateFlowState-Array",
+    name_hash: 1166136941,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateStateFlowState"),
@@ -21289,7 +22890,8 @@ pub static CHARACTERSTATESTATEFLOWSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateTimeState {
     pub time_multiplier: f32,
 }
@@ -21310,15 +22912,18 @@ impl CharacterStateTimeStateTrait for CharacterStateTimeState {
 
 pub static CHARACTERSTATETIMESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateTimeState",
+    name_hash: 3589633833,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateTimeState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateTimeState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TimeMultiplier",
+                name_hash: 2973563291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStateTimeState, time_multiplier),
@@ -21350,6 +22955,7 @@ impl TypeObject for CharacterStateTimeState {
 
 pub static CHARACTERSTATETIMESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateTimeState-Array",
+    name_hash: 2592562589,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateTimeState"),
@@ -21358,7 +22964,8 @@ pub static CHARACTERSTATETIMESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateClipOnlyBlendSpaceState {
     pub time_offset: i32,
     pub last_triangle_index: i32,
@@ -21388,21 +22995,25 @@ impl CharacterStateClipOnlyBlendSpaceStateTrait for CharacterStateClipOnlyBlendS
 
 pub static CHARACTERSTATECLIPONLYBLENDSPACESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateClipOnlyBlendSpaceState",
+    name_hash: 2188678683,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateClipOnlyBlendSpaceState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateClipOnlyBlendSpaceState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TimeOffset",
+                name_hash: 2388918461,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterStateClipOnlyBlendSpaceState, time_offset),
             },
             FieldInfoData {
                 name: "LastTriangleIndex",
+                name_hash: 4026013919,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterStateClipOnlyBlendSpaceState, last_triangle_index),
@@ -21434,6 +23045,7 @@ impl TypeObject for CharacterStateClipOnlyBlendSpaceState {
 
 pub static CHARACTERSTATECLIPONLYBLENDSPACESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateClipOnlyBlendSpaceState-Array",
+    name_hash: 4123077807,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateClipOnlyBlendSpaceState"),
@@ -21442,7 +23054,8 @@ pub static CHARACTERSTATECLIPONLYBLENDSPACESTATE_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateBlendSpaceState {
     pub time_offset: i32,
     pub last_triangle_index: i32,
@@ -21472,21 +23085,25 @@ impl CharacterStateBlendSpaceStateTrait for CharacterStateBlendSpaceState {
 
 pub static CHARACTERSTATEBLENDSPACESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateBlendSpaceState",
+    name_hash: 57508153,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateBlendSpaceState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateBlendSpaceState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TimeOffset",
+                name_hash: 2388918461,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterStateBlendSpaceState, time_offset),
             },
             FieldInfoData {
                 name: "LastTriangleIndex",
+                name_hash: 4026013919,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterStateBlendSpaceState, last_triangle_index),
@@ -21518,6 +23135,7 @@ impl TypeObject for CharacterStateBlendSpaceState {
 
 pub static CHARACTERSTATEBLENDSPACESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateBlendSpaceState-Array",
+    name_hash: 2549198733,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateBlendSpaceState"),
@@ -21526,7 +23144,8 @@ pub static CHARACTERSTATEBLENDSPACESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateLayerState {
 }
 
@@ -21538,11 +23157,13 @@ impl CharacterStateLayerStateTrait for CharacterStateLayerState {
 
 pub static CHARACTERSTATELAYERSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateLayerState",
+    name_hash: 2672293215,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateLayerState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateLayerState as Default>::default()),
         },
         fields: &[
         ],
@@ -21572,6 +23193,7 @@ impl TypeObject for CharacterStateLayerState {
 
 pub static CHARACTERSTATELAYERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateLayerState-Array",
+    name_hash: 1474194027,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateLayerState"),
@@ -21590,6 +23212,7 @@ pub enum CharacterStateLayerInfo {
 
 pub static CHARACTERSTATELAYERINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateLayerInfo",
+    name_hash: 990982342,
     flags: MemberInfoFlags::new(49429),
     module: "DiceShooter",
     data: TypeInfoData::Enum,
@@ -21618,6 +23241,7 @@ impl TypeObject for CharacterStateLayerInfo {
 
 pub static CHARACTERSTATELAYERINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateLayerInfo-Array",
+    name_hash: 1404931698,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateLayerInfo"),
@@ -21626,7 +23250,8 @@ pub static CHARACTERSTATELAYERINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateRootState {
     pub time: u32,
 }
@@ -21647,15 +23272,18 @@ impl CharacterStateRootStateTrait for CharacterStateRootState {
 
 pub static CHARACTERSTATEROOTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateRootState",
+    name_hash: 1274004250,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateRootState as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateRootState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CharacterStateRootState, time),
@@ -21687,6 +23315,7 @@ impl TypeObject for CharacterStateRootState {
 
 pub static CHARACTERSTATEROOTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateRootState-Array",
+    name_hash: 4023584302,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("CharacterStateRootState"),
@@ -21695,7 +23324,8 @@ pub static CHARACTERSTATEROOTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NonNetworkedChannelRawData {
 }
 
@@ -21707,11 +23337,13 @@ impl NonNetworkedChannelRawDataTrait for NonNetworkedChannelRawData {
 
 pub static NONNETWORKEDCHANNELRAWDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NonNetworkedChannelRawData",
+    name_hash: 2634123490,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NonNetworkedChannelRawData as Default>::default())),
+            create_boxed: || Box::new(<NonNetworkedChannelRawData as Default>::default()),
         },
         fields: &[
         ],
@@ -21741,6 +23373,7 @@ impl TypeObject for NonNetworkedChannelRawData {
 
 pub static NONNETWORKEDCHANNELRAWDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NonNetworkedChannelRawData-Array",
+    name_hash: 1306220502,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("NonNetworkedChannelRawData"),
@@ -21749,7 +23382,8 @@ pub static NONNETWORKEDCHANNELRAWDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkedChannelRawData {
 }
 
@@ -21761,11 +23395,13 @@ impl NetworkedChannelRawDataTrait for NetworkedChannelRawData {
 
 pub static NETWORKEDCHANNELRAWDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkedChannelRawData",
+    name_hash: 2931844301,
     flags: MemberInfoFlags::new(73),
     module: "DiceShooter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkedChannelRawData as Default>::default())),
+            create_boxed: || Box::new(<NetworkedChannelRawData as Default>::default()),
         },
         fields: &[
         ],
@@ -21795,6 +23431,7 @@ impl TypeObject for NetworkedChannelRawData {
 
 pub static NETWORKEDCHANNELRAWDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkedChannelRawData-Array",
+    name_hash: 3045947641,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("NetworkedChannelRawData"),
@@ -21813,6 +23450,7 @@ pub enum RawDataMaxLimits {
 
 pub static RAWDATAMAXLIMITS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RawDataMaxLimits",
+    name_hash: 2932111779,
     flags: MemberInfoFlags::new(49429),
     module: "DiceShooter",
     data: TypeInfoData::Enum,
@@ -21841,6 +23479,7 @@ impl TypeObject for RawDataMaxLimits {
 
 pub static RAWDATAMAXLIMITS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RawDataMaxLimits-Array",
+    name_hash: 1541889303,
     flags: MemberInfoFlags::new(145),
     module: "DiceShooter",
     data: TypeInfoData::Array("RawDataMaxLimits"),

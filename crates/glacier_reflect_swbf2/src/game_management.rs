@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -52,7 +53,8 @@ pub(crate) fn register_game_management_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTGAMEMANAGEMENTBACKEND_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerAddQueuedPlayerMessage {
 }
 
@@ -64,11 +66,13 @@ impl ServerGameManagerAddQueuedPlayerMessageTrait for ServerGameManagerAddQueued
 
 pub static SERVERGAMEMANAGERADDQUEUEDPLAYERMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerAddQueuedPlayerMessage",
+    name_hash: 201506321,
     flags: MemberInfoFlags::new(73),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerAddQueuedPlayerMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerAddQueuedPlayerMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -95,7 +99,8 @@ impl TypeObject for ServerGameManagerAddQueuedPlayerMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerGameDestructingMessage {
 }
 
@@ -107,11 +112,13 @@ impl ServerGameManagerGameDestructingMessageTrait for ServerGameManagerGameDestr
 
 pub static SERVERGAMEMANAGERGAMEDESTRUCTINGMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerGameDestructingMessage",
+    name_hash: 3394573742,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerGameDestructingMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerGameDestructingMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -138,7 +145,8 @@ impl TypeObject for ServerGameManagerGameDestructingMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerPlayerRemovedMessageBase {
 }
 
@@ -150,11 +158,13 @@ impl ServerGameManagerPlayerRemovedMessageBaseTrait for ServerGameManagerPlayerR
 
 pub static SERVERGAMEMANAGERPLAYERREMOVEDMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerPlayerRemovedMessageBase",
+    name_hash: 331032914,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerPlayerRemovedMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerPlayerRemovedMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -181,7 +191,8 @@ impl TypeObject for ServerGameManagerPlayerRemovedMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerPlayerJoinCompleteMessage {
 }
 
@@ -193,11 +204,13 @@ impl ServerGameManagerPlayerJoinCompleteMessageTrait for ServerGameManagerPlayer
 
 pub static SERVERGAMEMANAGERPLAYERJOINCOMPLETEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerPlayerJoinCompleteMessage",
+    name_hash: 1707964398,
     flags: MemberInfoFlags::new(73),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerPlayerJoinCompleteMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerPlayerJoinCompleteMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -224,7 +237,8 @@ impl TypeObject for ServerGameManagerPlayerJoinCompleteMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerPlayerJoiningMessageBase {
 }
 
@@ -236,11 +250,13 @@ impl ServerGameManagerPlayerJoiningMessageBaseTrait for ServerGameManagerPlayerJ
 
 pub static SERVERGAMEMANAGERPLAYERJOININGMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerPlayerJoiningMessageBase",
+    name_hash: 3463465042,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerPlayerJoiningMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerPlayerJoiningMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -267,7 +283,8 @@ impl TypeObject for ServerGameManagerPlayerJoiningMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerUpdateCapacityMessageBase {
 }
 
@@ -279,11 +296,13 @@ impl ServerGameManagerUpdateCapacityMessageBaseTrait for ServerGameManagerUpdate
 
 pub static SERVERGAMEMANAGERUPDATECAPACITYMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerUpdateCapacityMessageBase",
+    name_hash: 2293263782,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerUpdateCapacityMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerUpdateCapacityMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -310,7 +329,8 @@ impl TypeObject for ServerGameManagerUpdateCapacityMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerGameParametersChangedMessageBase {
 }
 
@@ -322,11 +342,13 @@ impl ServerGameManagerGameParametersChangedMessageBaseTrait for ServerGameManage
 
 pub static SERVERGAMEMANAGERGAMEPARAMETERSCHANGEDMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerGameParametersChangedMessageBase",
+    name_hash: 3205162133,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerGameParametersChangedMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerGameParametersChangedMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -353,7 +375,8 @@ impl TypeObject for ServerGameManagerGameParametersChangedMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerChangeGameParametersMessageBase {
 }
 
@@ -365,11 +388,13 @@ impl ServerGameManagerChangeGameParametersMessageBaseTrait for ServerGameManager
 
 pub static SERVERGAMEMANAGERCHANGEGAMEPARAMETERSMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerChangeGameParametersMessageBase",
+    name_hash: 1155195345,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerChangeGameParametersMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerChangeGameParametersMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -396,7 +421,8 @@ impl TypeObject for ServerGameManagerChangeGameParametersMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerReconfigurableGameCreatedMessage {
 }
 
@@ -408,11 +434,13 @@ impl ServerGameManagerReconfigurableGameCreatedMessageTrait for ServerGameManage
 
 pub static SERVERGAMEMANAGERRECONFIGURABLEGAMECREATEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerReconfigurableGameCreatedMessage",
+    name_hash: 2213774344,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerReconfigurableGameCreatedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerReconfigurableGameCreatedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -439,7 +467,8 @@ impl TypeObject for ServerGameManagerReconfigurableGameCreatedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerCreatingReconfigurableGameMessage {
 }
 
@@ -451,11 +480,13 @@ impl ServerGameManagerCreatingReconfigurableGameMessageTrait for ServerGameManag
 
 pub static SERVERGAMEMANAGERCREATINGRECONFIGURABLEGAMEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerCreatingReconfigurableGameMessage",
+    name_hash: 3286710761,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerCreatingReconfigurableGameMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerCreatingReconfigurableGameMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -482,7 +513,8 @@ impl TypeObject for ServerGameManagerCreatingReconfigurableGameMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerGameResetMessageBase {
 }
 
@@ -494,11 +526,13 @@ impl ServerGameManagerGameResetMessageBaseTrait for ServerGameManagerGameResetMe
 
 pub static SERVERGAMEMANAGERGAMERESETMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerGameResetMessageBase",
+    name_hash: 4106982552,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerGameResetMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerGameResetMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -525,7 +559,8 @@ impl TypeObject for ServerGameManagerGameResetMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerGameCreatedMessageBase {
 }
 
@@ -537,11 +572,13 @@ impl ServerGameManagerGameCreatedMessageBaseTrait for ServerGameManagerGameCreat
 
 pub static SERVERGAMEMANAGERGAMECREATEDMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerGameCreatedMessageBase",
+    name_hash: 1801938221,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerGameCreatedMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerGameCreatedMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -568,7 +605,8 @@ impl TypeObject for ServerGameManagerGameCreatedMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagerCreatingGameMessageBase {
 }
 
@@ -580,11 +618,13 @@ impl ServerGameManagerCreatingGameMessageBaseTrait for ServerGameManagerCreating
 
 pub static SERVERGAMEMANAGERCREATINGGAMEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagerCreatingGameMessageBase",
+    name_hash: 4186465996,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagerCreatingGameMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagerCreatingGameMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -611,22 +651,23 @@ impl TypeObject for ServerGameManagerCreatingGameMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameManagementBackendData {
     pub _glacier_base: super::online_shared::PresenceBackendData,
-    pub create_parameters: Option<Arc<Mutex<dyn GameParametersDataTrait>>>,
+    pub create_parameters: Option<LockedTypeObject /* GameParametersData */>,
 }
 
 pub trait ServerGameManagementBackendDataTrait: super::online_shared::PresenceBackendDataTrait {
-    fn create_parameters(&self) -> &Option<Arc<Mutex<dyn GameParametersDataTrait>>>;
-    fn create_parameters_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GameParametersDataTrait>>>;
+    fn create_parameters(&self) -> &Option<LockedTypeObject /* GameParametersData */>;
+    fn create_parameters_mut(&mut self) -> &mut Option<LockedTypeObject /* GameParametersData */>;
 }
 
 impl ServerGameManagementBackendDataTrait for ServerGameManagementBackendData {
-    fn create_parameters(&self) -> &Option<Arc<Mutex<dyn GameParametersDataTrait>>> {
+    fn create_parameters(&self) -> &Option<LockedTypeObject /* GameParametersData */> {
         &self.create_parameters
     }
-    fn create_parameters_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GameParametersDataTrait>>> {
+    fn create_parameters_mut(&mut self) -> &mut Option<LockedTypeObject /* GameParametersData */> {
         &mut self.create_parameters
     }
 }
@@ -654,16 +695,20 @@ impl super::core::DataContainerTrait for ServerGameManagementBackendData {
 
 pub static SERVERGAMEMANAGEMENTBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagementBackendData",
+    name_hash: 2649027273,
     flags: MemberInfoFlags::new(101),
     module: "GameManagement",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCEBACKENDDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ServerGameManagementBackendData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameManagementBackendData as Default>::default())),
+            create_boxed: || Box::new(<ServerGameManagementBackendData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CreateParameters",
+                name_hash: 4233299195,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameParametersData",
                 rust_offset: offset_of!(ServerGameManagementBackendData, create_parameters),
@@ -695,6 +740,7 @@ impl TypeObject for ServerGameManagementBackendData {
 
 pub static SERVERGAMEMANAGEMENTBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameManagementBackendData-Array",
+    name_hash: 472176893,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("ServerGameManagementBackendData"),
@@ -703,7 +749,8 @@ pub static SERVERGAMEMANAGEMENTBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GameParametersData {
     pub _glacier_base: super::core::Asset,
     pub server_name: String,
@@ -726,8 +773,8 @@ pub struct GameParametersData {
     pub game_topology: GameNetworkTopology,
     pub peer_mode: GamePeer2PeerMode,
     pub voip_topology: GameNetworkTopology,
-    pub attributes: Vec<GameAttributeData>,
-    pub role_configuration: Vec<Option<Arc<Mutex<dyn GameRoleInformationTrait>>>>,
+    pub attributes: Vec<BoxedTypeObject /* GameAttributeData */>,
+    pub role_configuration: Vec<Option<LockedTypeObject /* GameRoleInformation */>>,
     pub role: String,
     pub teams: i32,
 }
@@ -773,10 +820,10 @@ pub trait GameParametersDataTrait: super::core::AssetTrait {
     fn peer_mode_mut(&mut self) -> &mut GamePeer2PeerMode;
     fn voip_topology(&self) -> &GameNetworkTopology;
     fn voip_topology_mut(&mut self) -> &mut GameNetworkTopology;
-    fn attributes(&self) -> &Vec<GameAttributeData>;
-    fn attributes_mut(&mut self) -> &mut Vec<GameAttributeData>;
-    fn role_configuration(&self) -> &Vec<Option<Arc<Mutex<dyn GameRoleInformationTrait>>>>;
-    fn role_configuration_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameRoleInformationTrait>>>>;
+    fn attributes(&self) -> &Vec<BoxedTypeObject /* GameAttributeData */>;
+    fn attributes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* GameAttributeData */>;
+    fn role_configuration(&self) -> &Vec<Option<LockedTypeObject /* GameRoleInformation */>>;
+    fn role_configuration_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameRoleInformation */>>;
     fn role(&self) -> &String;
     fn role_mut(&mut self) -> &mut String;
     fn teams(&self) -> &i32;
@@ -904,16 +951,16 @@ impl GameParametersDataTrait for GameParametersData {
     fn voip_topology_mut(&mut self) -> &mut GameNetworkTopology {
         &mut self.voip_topology
     }
-    fn attributes(&self) -> &Vec<GameAttributeData> {
+    fn attributes(&self) -> &Vec<BoxedTypeObject /* GameAttributeData */> {
         &self.attributes
     }
-    fn attributes_mut(&mut self) -> &mut Vec<GameAttributeData> {
+    fn attributes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* GameAttributeData */> {
         &mut self.attributes
     }
-    fn role_configuration(&self) -> &Vec<Option<Arc<Mutex<dyn GameRoleInformationTrait>>>> {
+    fn role_configuration(&self) -> &Vec<Option<LockedTypeObject /* GameRoleInformation */>> {
         &self.role_configuration
     }
-    fn role_configuration_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameRoleInformationTrait>>>> {
+    fn role_configuration_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameRoleInformation */>> {
         &mut self.role_configuration
     }
     fn role(&self) -> &String {
@@ -944,154 +991,181 @@ impl super::core::DataContainerTrait for GameParametersData {
 
 pub static GAMEPARAMETERSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameParametersData",
+    name_hash: 4196919105,
     flags: MemberInfoFlags::new(101),
     module: "GameManagement",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(GameParametersData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GameParametersData as Default>::default())),
+            create_boxed: || Box::new(<GameParametersData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ServerName",
+                name_hash: 1802252391,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(GameParametersData, server_name),
             },
             FieldInfoData {
                 name: "GameType",
+                name_hash: 510356627,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PersistenceGameType",
                 rust_offset: offset_of!(GameParametersData, game_type),
             },
             FieldInfoData {
                 name: "OpenToInvites",
+                name_hash: 4079225360,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GameParametersData, open_to_invites),
             },
             FieldInfoData {
                 name: "OpenToMatchmaking",
+                name_hash: 1779714654,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GameParametersData, open_to_matchmaking),
             },
             FieldInfoData {
                 name: "OpenToJoinByPlayer",
+                name_hash: 273410944,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GameParametersData, open_to_join_by_player),
             },
             FieldInfoData {
                 name: "OpenToBrowsing",
+                name_hash: 4203661745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GameParametersData, open_to_browsing),
             },
             FieldInfoData {
                 name: "Ranked",
+                name_hash: 3298743058,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GameParametersData, ranked),
             },
             FieldInfoData {
                 name: "HostMigratable",
+                name_hash: 1465774187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GameParametersData, host_migratable),
             },
             FieldInfoData {
                 name: "JoinInProgressSupported",
+                name_hash: 583156691,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GameParametersData, join_in_progress_supported),
             },
             FieldInfoData {
                 name: "AllowAnyReputation",
+                name_hash: 3975316241,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GameParametersData, allow_any_reputation),
             },
             FieldInfoData {
                 name: "DynamicReputationRequirement",
+                name_hash: 2079321620,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GameParametersData, dynamic_reputation_requirement),
             },
             FieldInfoData {
                 name: "FriendsBypassClosedToJoinByPlayer",
+                name_hash: 1795087725,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GameParametersData, friends_bypass_closed_to_join_by_player),
             },
             FieldInfoData {
                 name: "QueueCapacity",
+                name_hash: 2357148928,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(GameParametersData, queue_capacity),
             },
             FieldInfoData {
                 name: "Mod",
+                name_hash: 193446659,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(GameParametersData, r#mod),
             },
             FieldInfoData {
                 name: "MaxSpectators",
+                name_hash: 1029582139,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(GameParametersData, max_spectators),
             },
             FieldInfoData {
                 name: "MaxAllowedCapacity",
+                name_hash: 2550207325,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(GameParametersData, max_allowed_capacity),
             },
             FieldInfoData {
                 name: "DefaultMaxPlayers",
+                name_hash: 799415802,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(GameParametersData, default_max_players),
             },
             FieldInfoData {
                 name: "GameTopology",
+                name_hash: 3949212722,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameNetworkTopology",
                 rust_offset: offset_of!(GameParametersData, game_topology),
             },
             FieldInfoData {
                 name: "PeerMode",
+                name_hash: 3663647812,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GamePeer2PeerMode",
                 rust_offset: offset_of!(GameParametersData, peer_mode),
             },
             FieldInfoData {
                 name: "VoipTopology",
+                name_hash: 3415203484,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameNetworkTopology",
                 rust_offset: offset_of!(GameParametersData, voip_topology),
             },
             FieldInfoData {
                 name: "Attributes",
+                name_hash: 3723762538,
                 flags: MemberInfoFlags::new(144),
                 field_type: "GameAttributeData-Array",
                 rust_offset: offset_of!(GameParametersData, attributes),
             },
             FieldInfoData {
                 name: "RoleConfiguration",
+                name_hash: 1372004705,
                 flags: MemberInfoFlags::new(144),
                 field_type: "GameRoleInformation-Array",
                 rust_offset: offset_of!(GameParametersData, role_configuration),
             },
             FieldInfoData {
                 name: "Role",
+                name_hash: 2089387569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(GameParametersData, role),
             },
             FieldInfoData {
                 name: "Teams",
+                name_hash: 227737643,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(GameParametersData, teams),
@@ -1123,6 +1197,7 @@ impl TypeObject for GameParametersData {
 
 pub static GAMEPARAMETERSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameParametersData-Array",
+    name_hash: 3731738997,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("GameParametersData"),
@@ -1131,7 +1206,8 @@ pub static GAMEPARAMETERSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GameRoleInformation {
     pub _glacier_base: super::core::DataContainer,
     pub role_name: String,
@@ -1165,22 +1241,27 @@ impl super::core::DataContainerTrait for GameRoleInformation {
 
 pub static GAMEROLEINFORMATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameRoleInformation",
+    name_hash: 2707202323,
     flags: MemberInfoFlags::new(101),
     module: "GameManagement",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(GameRoleInformation, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GameRoleInformation as Default>::default())),
+            create_boxed: || Box::new(<GameRoleInformation as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RoleName",
+                name_hash: 355871222,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(GameRoleInformation, role_name),
             },
             FieldInfoData {
                 name: "Capacity",
+                name_hash: 3607789937,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(GameRoleInformation, capacity),
@@ -1212,6 +1293,7 @@ impl TypeObject for GameRoleInformation {
 
 pub static GAMEROLEINFORMATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameRoleInformation-Array",
+    name_hash: 549854119,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("GameRoleInformation"),
@@ -1220,7 +1302,8 @@ pub static GAMEROLEINFORMATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GameAttributeData {
     pub attribute: String,
     pub value: String,
@@ -1250,21 +1333,25 @@ impl GameAttributeDataTrait for GameAttributeData {
 
 pub static GAMEATTRIBUTEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameAttributeData",
+    name_hash: 1983890919,
     flags: MemberInfoFlags::new(73),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GameAttributeData as Default>::default())),
+            create_boxed: || Box::new(<GameAttributeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Attribute",
+                name_hash: 2715851769,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(GameAttributeData, attribute),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(GameAttributeData, value),
@@ -1296,6 +1383,7 @@ impl TypeObject for GameAttributeData {
 
 pub static GAMEATTRIBUTEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameAttributeData-Array",
+    name_hash: 1178503123,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("GameAttributeData"),
@@ -1315,6 +1403,7 @@ pub enum GamePeer2PeerMode {
 
 pub static GAMEPEER2PEERMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GamePeer2PeerMode",
+    name_hash: 3137824634,
     flags: MemberInfoFlags::new(49429),
     module: "GameManagement",
     data: TypeInfoData::Enum,
@@ -1343,6 +1432,7 @@ impl TypeObject for GamePeer2PeerMode {
 
 pub static GAMEPEER2PEERMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GamePeer2PeerMode-Array",
+    name_hash: 2877307470,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("GamePeer2PeerMode"),
@@ -1364,6 +1454,7 @@ pub enum GameNetworkTopology {
 
 pub static GAMENETWORKTOPOLOGY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameNetworkTopology",
+    name_hash: 378788620,
     flags: MemberInfoFlags::new(49429),
     module: "GameManagement",
     data: TypeInfoData::Enum,
@@ -1392,6 +1483,7 @@ impl TypeObject for GameNetworkTopology {
 
 pub static GAMENETWORKTOPOLOGY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameNetworkTopology-Array",
+    name_hash: 1395247928,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("GameNetworkTopology"),
@@ -1400,7 +1492,8 @@ pub static GAMENETWORKTOPOLOGY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceGameManagementServiceData {
     pub _glacier_base: super::online_shared::PresenceServiceData,
     pub gamegroup_max_participants: i32,
@@ -1455,28 +1548,34 @@ impl super::core::DataContainerTrait for PresenceGameManagementServiceData {
 
 pub static PRESENCEGAMEMANAGEMENTSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceGameManagementServiceData",
+    name_hash: 2639492460,
     flags: MemberInfoFlags::new(101),
     module: "GameManagement",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCESERVICEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceGameManagementServiceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceGameManagementServiceData as Default>::default())),
+            create_boxed: || Box::new(<PresenceGameManagementServiceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "GamegroupMaxParticipants",
+                name_hash: 559747500,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PresenceGameManagementServiceData, gamegroup_max_participants),
             },
             FieldInfoData {
                 name: "JoinGameSessionAfterGamegroup",
+                name_hash: 215375202,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PresenceGameManagementServiceData, join_game_session_after_gamegroup),
             },
             FieldInfoData {
                 name: "DefaultGameRoleName",
+                name_hash: 308935411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(PresenceGameManagementServiceData, default_game_role_name),
@@ -1508,6 +1607,7 @@ impl TypeObject for PresenceGameManagementServiceData {
 
 pub static PRESENCEGAMEMANAGEMENTSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceGameManagementServiceData-Array",
+    name_hash: 2115990872,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("PresenceGameManagementServiceData"),
@@ -1516,7 +1616,8 @@ pub static PRESENCEGAMEMANAGEMENTSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceGameManagementBackendData {
     pub _glacier_base: super::online_shared::PresenceBackendData,
     pub use_game_info_strategy: bool,
@@ -1559,16 +1660,20 @@ impl super::core::DataContainerTrait for PresenceGameManagementBackendData {
 
 pub static PRESENCEGAMEMANAGEMENTBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceGameManagementBackendData",
+    name_hash: 2064760885,
     flags: MemberInfoFlags::new(101),
     module: "GameManagement",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCEBACKENDDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceGameManagementBackendData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceGameManagementBackendData as Default>::default())),
+            create_boxed: || Box::new(<PresenceGameManagementBackendData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "UseGameInfoStrategy",
+                name_hash: 2682950749,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PresenceGameManagementBackendData, use_game_info_strategy),
@@ -1600,6 +1705,7 @@ impl TypeObject for PresenceGameManagementBackendData {
 
 pub static PRESENCEGAMEMANAGEMENTBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceGameManagementBackendData-Array",
+    name_hash: 2924052609,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("PresenceGameManagementBackendData"),
@@ -1608,7 +1714,8 @@ pub static PRESENCEGAMEMANAGEMENTBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceGameQueueMessageBase {
 }
 
@@ -1620,11 +1727,13 @@ impl PresenceGameQueueMessageBaseTrait for PresenceGameQueueMessageBase {
 
 pub static PRESENCEGAMEQUEUEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceGameQueueMessageBase",
+    name_hash: 4169564925,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceGameQueueMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresenceGameQueueMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1651,7 +1760,8 @@ impl TypeObject for PresenceGameQueueMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceGameNotificationMessageBase {
 }
 
@@ -1663,11 +1773,13 @@ impl PresenceGameNotificationMessageBaseTrait for PresenceGameNotificationMessag
 
 pub static PRESENCEGAMENOTIFICATIONMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceGameNotificationMessageBase",
+    name_hash: 3399647169,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceGameNotificationMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresenceGameNotificationMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1694,7 +1806,8 @@ impl TypeObject for PresenceGameNotificationMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceGameMessageBase {
 }
 
@@ -1706,11 +1819,13 @@ impl PresenceGameMessageBaseTrait for PresenceGameMessageBase {
 
 pub static PRESENCEGAMEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceGameMessageBase",
+    name_hash: 298682508,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceGameMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresenceGameMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1737,7 +1852,8 @@ impl TypeObject for PresenceGameMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceGameRequestMessageBase {
 }
 
@@ -1749,11 +1865,13 @@ impl PresenceGameRequestMessageBaseTrait for PresenceGameRequestMessageBase {
 
 pub static PRESENCEGAMEREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceGameRequestMessageBase",
+    name_hash: 3320931421,
     flags: MemberInfoFlags::new(36937),
     module: "GameManagement",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceGameRequestMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresenceGameRequestMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1780,7 +1898,8 @@ impl TypeObject for PresenceGameRequestMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GameParameters {
 }
 
@@ -1792,12 +1911,15 @@ impl GameParametersTrait for GameParameters {
 
 pub static GAMEPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameParameters",
+    name_hash: 251764785,
     flags: MemberInfoFlags::new(101),
     module: "GameManagement",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GameParameters as Default>::default())),
+            create_boxed: || Box::new(<GameParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -1827,6 +1949,7 @@ impl TypeObject for GameParameters {
 
 pub static GAMEPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameParameters-Array",
+    name_hash: 224506501,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("GameParameters"),
@@ -1835,7 +1958,8 @@ pub static GAMEPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceCreateGameRequestParameters {
     pub _glacier_base: super::online::PresenceRequestParameters,
 }
@@ -1851,12 +1975,15 @@ impl super::online::PresenceRequestParametersTrait for PresenceCreateGameRequest
 
 pub static PRESENCECREATEGAMEREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceCreateGameRequestParameters",
+    name_hash: 925457853,
     flags: MemberInfoFlags::new(101),
     module: "GameManagement",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceCreateGameRequestParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceCreateGameRequestParameters as Default>::default())),
+            create_boxed: || Box::new(<PresenceCreateGameRequestParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -1886,6 +2013,7 @@ impl TypeObject for PresenceCreateGameRequestParameters {
 
 pub static PRESENCECREATEGAMEREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceCreateGameRequestParameters-Array",
+    name_hash: 377526793,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("PresenceCreateGameRequestParameters"),
@@ -1894,7 +2022,8 @@ pub static PRESENCECREATEGAMEREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientGameManagementService {
     pub _glacier_base: super::online::PresenceService,
 }
@@ -1910,12 +2039,15 @@ impl super::online::PresenceServiceTrait for ClientGameManagementService {
 
 pub static CLIENTGAMEMANAGEMENTSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGameManagementService",
+    name_hash: 1998765948,
     flags: MemberInfoFlags::new(101),
     module: "GameManagement",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCESERVICE_TYPE_INFO),
+        super_class_offset: offset_of!(ClientGameManagementService, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientGameManagementService as Default>::default())),
+            create_boxed: || Box::new(<ClientGameManagementService as Default>::default()),
         },
         fields: &[
         ],
@@ -1945,6 +2077,7 @@ impl TypeObject for ClientGameManagementService {
 
 pub static CLIENTGAMEMANAGEMENTSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGameManagementService-Array",
+    name_hash: 1548814152,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("ClientGameManagementService"),
@@ -1953,7 +2086,8 @@ pub static CLIENTGAMEMANAGEMENTSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientGameManagementBackend {
     pub _glacier_base: super::online::PresenceBackend,
 }
@@ -1969,12 +2103,15 @@ impl super::online::PresenceBackendTrait for ClientGameManagementBackend {
 
 pub static CLIENTGAMEMANAGEMENTBACKEND_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGameManagementBackend",
+    name_hash: 2957938021,
     flags: MemberInfoFlags::new(101),
     module: "GameManagement",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEBACKEND_TYPE_INFO),
+        super_class_offset: offset_of!(ClientGameManagementBackend, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientGameManagementBackend as Default>::default())),
+            create_boxed: || Box::new(<ClientGameManagementBackend as Default>::default()),
         },
         fields: &[
         ],
@@ -2004,6 +2141,7 @@ impl TypeObject for ClientGameManagementBackend {
 
 pub static CLIENTGAMEMANAGEMENTBACKEND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGameManagementBackend-Array",
+    name_hash: 3145250385,
     flags: MemberInfoFlags::new(145),
     module: "GameManagement",
     data: TypeInfoData::Array("ClientGameManagementBackend"),

@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -13,7 +14,8 @@ pub(crate) fn register_dice_svg_rasterizer_types(registry: &mut TypeRegistry) {
     registry.register_type(SVGIMAGEDATA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SvgImageData {
 }
 
@@ -25,12 +27,15 @@ impl SvgImageDataTrait for SvgImageData {
 
 pub static SVGIMAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SvgImageData",
+    name_hash: 2737897712,
     flags: MemberInfoFlags::new(101),
     module: "DiceSvgRasterizer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SvgImageData as Default>::default())),
+            create_boxed: || Box::new(<SvgImageData as Default>::default()),
         },
         fields: &[
         ],
@@ -60,6 +65,7 @@ impl TypeObject for SvgImageData {
 
 pub static SVGIMAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SvgImageData-Array",
+    name_hash: 2108382916,
     flags: MemberInfoFlags::new(145),
     module: "DiceSvgRasterizer",
     data: TypeInfoData::Array("SvgImageData"),

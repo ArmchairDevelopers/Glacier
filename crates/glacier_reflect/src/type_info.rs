@@ -8,6 +8,7 @@ use crate::{data_container::DataContainerCore, member::MemberInfoFlags, type_reg
 #[derive(Debug, Clone, PartialEq)]
 pub struct FieldInfoData {
     pub name: &'static str,
+    pub name_hash: u32,
     pub flags: MemberInfoFlags,
     /// I really hate that this is a string, but there are some cyclic issues and I don't want to deal with setting up
     /// an option resolution system or something like that.
@@ -24,16 +25,29 @@ impl FieldInfoData {
 #[derive(Debug, PartialEq)]
 pub struct TypeFunctions {
     pub create: fn() -> LockedTypeObject,
+    pub create_boxed: fn() -> BoxedTypeObject,
+
+    ///// Expensive! This currently constructs a new object for every call.
+    //pub trait_vtable: fn() -> *const (),
 }
 
 #[derive(Debug, PartialEq)]
 pub struct ClassInfoData {
-    pub functions: TypeFunctions,
     pub super_class: Option<&'static TypeInfo>,
+    pub super_class_offset: usize,
+    pub functions: TypeFunctions,
     pub fields: &'static [FieldInfoData],
 }
 
 impl ClassInfoData {
+    pub fn create(&self) -> LockedTypeObject {
+        (self.functions.create)()
+    }
+
+    // pub fn trait_vtable(&self) -> *const () {
+    //     (self.functions.trait_vtable)()
+    // }
+
     pub fn field(&self, name: &str) -> Option<&FieldInfoData> {
         for field in self.fields {
             if field.name == name {
@@ -52,7 +66,7 @@ impl ClassInfoData {
 
     pub fn field_by_hash(&self, hash: u32) -> Option<&FieldInfoData> {
         for field in self.fields {
-            if field.name.quick_hash() == hash {
+            if field.name_hash == hash {
                 return Some(field);
             }
         }
@@ -74,6 +88,14 @@ pub struct ValueTypeInfoData {
 }
 
 impl ValueTypeInfoData {
+    pub fn create(&self) -> LockedTypeObject {
+        (self.functions.create)()
+    }
+
+    pub fn create_boxed(&self) -> BoxedTypeObject {
+        (self.functions.create_boxed)()
+    }
+
     pub fn field(&self, name: &str) -> Option<&FieldInfoData> {
         for field in self.fields {
             if field.name == name {
@@ -86,7 +108,7 @@ impl ValueTypeInfoData {
 
     pub fn field_by_hash(&self, hash: u32) -> Option<&FieldInfoData> {
         for field in self.fields {
-            if field.name.quick_hash() == hash {
+            if field.name_hash == hash {
                 return Some(field);
             }
         }
@@ -125,6 +147,7 @@ pub enum TypeInfoData {
 #[derive(Debug, PartialEq)]
 pub struct TypeInfo {
     pub name: &'static str,
+    pub name_hash: u32,
     pub flags: MemberInfoFlags,
     pub module: &'static str,
     pub data: TypeInfoData,
@@ -133,10 +156,6 @@ pub struct TypeInfo {
 }
 
 impl TypeInfo {
-    pub fn name_hash(&self) -> u32 {
-        self.name.quick_hash()
-    }
-
     pub const fn array_type(&self) -> Option<&'static TypeInfo> {
         match &self.data {
             TypeInfoData::Array(_) => self.array_type,
@@ -160,3 +179,4 @@ pub trait TypeObject: Any + Send + Sync + Debug {
 }
 
 pub type LockedTypeObject = Arc<Mutex<dyn TypeObject>>;
+pub type BoxedTypeObject = Box<dyn TypeObject>;

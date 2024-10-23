@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -84,7 +85,8 @@ pub(crate) fn register_u_i_types(registry: &mut TypeRegistry) {
     registry.register_type(USERGAMERPICBUFFERRECEIVEDMESSAGE_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIVehicleHitUpdatedMessage {
 }
 
@@ -96,11 +98,13 @@ impl UIVehicleHitUpdatedMessageTrait for UIVehicleHitUpdatedMessage {
 
 pub static UIVEHICLEHITUPDATEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIVehicleHitUpdatedMessage",
+    name_hash: 1293352138,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIVehicleHitUpdatedMessage as Default>::default())),
+            create_boxed: || Box::new(<UIVehicleHitUpdatedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -127,7 +131,8 @@ impl TypeObject for UIVehicleHitUpdatedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UISquadStatusChangedMessage {
 }
 
@@ -139,11 +144,13 @@ impl UISquadStatusChangedMessageTrait for UISquadStatusChangedMessage {
 
 pub static UISQUADSTATUSCHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UISquadStatusChangedMessage",
+    name_hash: 1645083222,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UISquadStatusChangedMessage as Default>::default())),
+            create_boxed: || Box::new(<UISquadStatusChangedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -170,7 +177,8 @@ impl TypeObject for UISquadStatusChangedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UISoldierHitUpdatedMessage {
 }
 
@@ -182,11 +190,13 @@ impl UISoldierHitUpdatedMessageTrait for UISoldierHitUpdatedMessage {
 
 pub static UISOLDIERHITUPDATEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UISoldierHitUpdatedMessage",
+    name_hash: 2349856792,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UISoldierHitUpdatedMessage as Default>::default())),
+            create_boxed: || Box::new(<UISoldierHitUpdatedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -213,7 +223,8 @@ impl TypeObject for UISoldierHitUpdatedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIPlayerVehicleHealthChangeMessage {
 }
 
@@ -225,11 +236,13 @@ impl UIPlayerVehicleHealthChangeMessageTrait for UIPlayerVehicleHealthChangeMess
 
 pub static UIPLAYERVEHICLEHEALTHCHANGEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIPlayerVehicleHealthChangeMessage",
+    name_hash: 3639533411,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIPlayerVehicleHealthChangeMessage as Default>::default())),
+            create_boxed: || Box::new(<UIPlayerVehicleHealthChangeMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -256,7 +269,8 @@ impl TypeObject for UIPlayerVehicleHealthChangeMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIInputStatusChangedMessage {
 }
 
@@ -268,11 +282,13 @@ impl UIInputStatusChangedMessageTrait for UIInputStatusChangedMessage {
 
 pub static UIINPUTSTATUSCHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputStatusChangedMessage",
+    name_hash: 3997880946,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIInputStatusChangedMessage as Default>::default())),
+            create_boxed: || Box::new(<UIInputStatusChangedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -299,7 +315,8 @@ impl TypeObject for UIInputStatusChangedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIHudUpdateCrosshairMessage {
 }
 
@@ -311,11 +328,13 @@ impl UIHudUpdateCrosshairMessageTrait for UIHudUpdateCrosshairMessage {
 
 pub static UIHUDUPDATECROSSHAIRMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIHudUpdateCrosshairMessage",
+    name_hash: 4098889814,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIHudUpdateCrosshairMessage as Default>::default())),
+            create_boxed: || Box::new(<UIHudUpdateCrosshairMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -342,7 +361,8 @@ impl TypeObject for UIHudUpdateCrosshairMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIHudToggleMapZoomMessage {
 }
 
@@ -354,11 +374,13 @@ impl UIHudToggleMapZoomMessageTrait for UIHudToggleMapZoomMessage {
 
 pub static UIHUDTOGGLEMAPZOOMMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIHudToggleMapZoomMessage",
+    name_hash: 4201387858,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIHudToggleMapZoomMessage as Default>::default())),
+            create_boxed: || Box::new(<UIHudToggleMapZoomMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -385,7 +407,8 @@ impl TypeObject for UIHudToggleMapZoomMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIHudDebugPauseMessage {
 }
 
@@ -397,11 +420,13 @@ impl UIHudDebugPauseMessageTrait for UIHudDebugPauseMessage {
 
 pub static UIHUDDEBUGPAUSEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIHudDebugPauseMessage",
+    name_hash: 2792305416,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIHudDebugPauseMessage as Default>::default())),
+            create_boxed: || Box::new(<UIHudDebugPauseMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -428,7 +453,8 @@ impl TypeObject for UIHudDebugPauseMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIHasSuppressedEnemyMessage {
 }
 
@@ -440,11 +466,13 @@ impl UIHasSuppressedEnemyMessageTrait for UIHasSuppressedEnemyMessage {
 
 pub static UIHASSUPPRESSEDENEMYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIHasSuppressedEnemyMessage",
+    name_hash: 1614990818,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIHasSuppressedEnemyMessage as Default>::default())),
+            create_boxed: || Box::new(<UIHasSuppressedEnemyMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -471,7 +499,8 @@ impl TypeObject for UIHasSuppressedEnemyMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDamageGivenToEnemyMessage {
 }
 
@@ -483,11 +512,13 @@ impl UIDamageGivenToEnemyMessageTrait for UIDamageGivenToEnemyMessage {
 
 pub static UIDAMAGEGIVENTOENEMYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDamageGivenToEnemyMessage",
+    name_hash: 93974635,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDamageGivenToEnemyMessage as Default>::default())),
+            create_boxed: || Box::new(<UIDamageGivenToEnemyMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -514,7 +545,8 @@ impl TypeObject for UIDamageGivenToEnemyMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIMessageEntityMessage {
 }
 
@@ -526,11 +558,13 @@ impl UIMessageEntityMessageTrait for UIMessageEntityMessage {
 
 pub static UIMESSAGEENTITYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMessageEntityMessage",
+    name_hash: 1810512226,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIMessageEntityMessage as Default>::default())),
+            create_boxed: || Box::new(<UIMessageEntityMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -557,7 +591,8 @@ impl TypeObject for UIMessageEntityMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIControllerDisconnectedMessage {
 }
 
@@ -569,11 +604,13 @@ impl UIControllerDisconnectedMessageTrait for UIControllerDisconnectedMessage {
 
 pub static UICONTROLLERDISCONNECTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIControllerDisconnectedMessage",
+    name_hash: 263344463,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIControllerDisconnectedMessage as Default>::default())),
+            create_boxed: || Box::new(<UIControllerDisconnectedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -600,7 +637,8 @@ impl TypeObject for UIControllerDisconnectedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIControllerConnectedMessage {
 }
 
@@ -612,11 +650,13 @@ impl UIControllerConnectedMessageTrait for UIControllerConnectedMessage {
 
 pub static UICONTROLLERCONNECTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIControllerConnectedMessage",
+    name_hash: 4268107761,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIControllerConnectedMessage as Default>::default())),
+            create_boxed: || Box::new(<UIControllerConnectedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -643,7 +683,8 @@ impl TypeObject for UIControllerConnectedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIUserDisconnectedMessage {
 }
 
@@ -655,11 +696,13 @@ impl UIUserDisconnectedMessageTrait for UIUserDisconnectedMessage {
 
 pub static UIUSERDISCONNECTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIUserDisconnectedMessage",
+    name_hash: 574090210,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIUserDisconnectedMessage as Default>::default())),
+            create_boxed: || Box::new(<UIUserDisconnectedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -686,7 +729,8 @@ impl TypeObject for UIUserDisconnectedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIUserConnectedMessage {
 }
 
@@ -698,11 +742,13 @@ impl UIUserConnectedMessageTrait for UIUserConnectedMessage {
 
 pub static UIUSERCONNECTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIUserConnectedMessage",
+    name_hash: 3819163132,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIUserConnectedMessage as Default>::default())),
+            create_boxed: || Box::new(<UIUserConnectedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -729,7 +775,8 @@ impl TypeObject for UIUserConnectedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIUserNotificationMessage {
 }
 
@@ -741,11 +788,13 @@ impl UIUserNotificationMessageTrait for UIUserNotificationMessage {
 
 pub static UIUSERNOTIFICATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIUserNotificationMessage",
+    name_hash: 13715502,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIUserNotificationMessage as Default>::default())),
+            create_boxed: || Box::new(<UIUserNotificationMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -772,7 +821,8 @@ impl TypeObject for UIUserNotificationMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIUserSkippedLoginMessage {
 }
 
@@ -784,11 +834,13 @@ impl UIUserSkippedLoginMessageTrait for UIUserSkippedLoginMessage {
 
 pub static UIUSERSKIPPEDLOGINMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIUserSkippedLoginMessage",
+    name_hash: 1512388048,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIUserSkippedLoginMessage as Default>::default())),
+            create_boxed: || Box::new(<UIUserSkippedLoginMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -815,7 +867,8 @@ impl TypeObject for UIUserSkippedLoginMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardSavePauseMessage {
 }
 
@@ -827,11 +880,13 @@ impl MemoryCardSavePauseMessageTrait for MemoryCardSavePauseMessage {
 
 pub static MEMORYCARDSAVEPAUSEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardSavePauseMessage",
+    name_hash: 2192846344,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardSavePauseMessage as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardSavePauseMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -858,7 +913,8 @@ impl TypeObject for MemoryCardSavePauseMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardBootCheckMessageBase {
 }
 
@@ -870,11 +926,13 @@ impl MemoryCardBootCheckMessageBaseTrait for MemoryCardBootCheckMessageBase {
 
 pub static MEMORYCARDBOOTCHECKMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardBootCheckMessageBase",
+    name_hash: 440736638,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardBootCheckMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardBootCheckMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -901,7 +959,8 @@ impl TypeObject for MemoryCardBootCheckMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardSaveCheckDoneMessageBase {
 }
 
@@ -913,11 +972,13 @@ impl MemoryCardSaveCheckDoneMessageBaseTrait for MemoryCardSaveCheckDoneMessageB
 
 pub static MEMORYCARDSAVECHECKDONEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardSaveCheckDoneMessageBase",
+    name_hash: 477402249,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardSaveCheckDoneMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardSaveCheckDoneMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -944,7 +1005,8 @@ impl TypeObject for MemoryCardSaveCheckDoneMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardDeleteCorruptSavesDoneMessageBase {
 }
 
@@ -956,11 +1018,13 @@ impl MemoryCardDeleteCorruptSavesDoneMessageBaseTrait for MemoryCardDeleteCorrup
 
 pub static MEMORYCARDDELETECORRUPTSAVESDONEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardDeleteCorruptSavesDoneMessageBase",
+    name_hash: 3156346264,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardDeleteCorruptSavesDoneMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardDeleteCorruptSavesDoneMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -987,7 +1051,8 @@ impl TypeObject for MemoryCardDeleteCorruptSavesDoneMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardDeleteCorruptSavesMessageBase {
 }
 
@@ -999,11 +1064,13 @@ impl MemoryCardDeleteCorruptSavesMessageBaseTrait for MemoryCardDeleteCorruptSav
 
 pub static MEMORYCARDDELETECORRUPTSAVESMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardDeleteCorruptSavesMessageBase",
+    name_hash: 321820280,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardDeleteCorruptSavesMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardDeleteCorruptSavesMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1030,7 +1097,8 @@ impl TypeObject for MemoryCardDeleteCorruptSavesMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardDeleteDoneMessageBase {
 }
 
@@ -1042,11 +1110,13 @@ impl MemoryCardDeleteDoneMessageBaseTrait for MemoryCardDeleteDoneMessageBase {
 
 pub static MEMORYCARDDELETEDONEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardDeleteDoneMessageBase",
+    name_hash: 1960335927,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardDeleteDoneMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardDeleteDoneMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1073,7 +1143,8 @@ impl TypeObject for MemoryCardDeleteDoneMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardDeleteMessageBase {
 }
 
@@ -1085,11 +1156,13 @@ impl MemoryCardDeleteMessageBaseTrait for MemoryCardDeleteMessageBase {
 
 pub static MEMORYCARDDELETEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardDeleteMessageBase",
+    name_hash: 2093504983,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardDeleteMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardDeleteMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1116,7 +1189,8 @@ impl TypeObject for MemoryCardDeleteMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardFindEntriesDoneMessageBase {
 }
 
@@ -1128,11 +1202,13 @@ impl MemoryCardFindEntriesDoneMessageBaseTrait for MemoryCardFindEntriesDoneMess
 
 pub static MEMORYCARDFINDENTRIESDONEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardFindEntriesDoneMessageBase",
+    name_hash: 1584000889,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardFindEntriesDoneMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardFindEntriesDoneMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1159,7 +1235,8 @@ impl TypeObject for MemoryCardFindEntriesDoneMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardFindEntriesMessageBase {
 }
 
@@ -1171,11 +1248,13 @@ impl MemoryCardFindEntriesMessageBaseTrait for MemoryCardFindEntriesMessageBase 
 
 pub static MEMORYCARDFINDENTRIESMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardFindEntriesMessageBase",
+    name_hash: 1870864025,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardFindEntriesMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardFindEntriesMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1202,7 +1281,8 @@ impl TypeObject for MemoryCardFindEntriesMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardSaveDoneMessageBase {
 }
 
@@ -1214,11 +1294,13 @@ impl MemoryCardSaveDoneMessageBaseTrait for MemoryCardSaveDoneMessageBase {
 
 pub static MEMORYCARDSAVEDONEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardSaveDoneMessageBase",
+    name_hash: 4023947407,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardSaveDoneMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardSaveDoneMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1245,7 +1327,8 @@ impl TypeObject for MemoryCardSaveDoneMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardSaveMessageBase {
 }
 
@@ -1257,11 +1340,13 @@ impl MemoryCardSaveMessageBaseTrait for MemoryCardSaveMessageBase {
 
 pub static MEMORYCARDSAVEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardSaveMessageBase",
+    name_hash: 3515988847,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardSaveMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardSaveMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1288,7 +1373,8 @@ impl TypeObject for MemoryCardSaveMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardLoadDoneMessageBase {
 }
 
@@ -1300,11 +1386,13 @@ impl MemoryCardLoadDoneMessageBaseTrait for MemoryCardLoadDoneMessageBase {
 
 pub static MEMORYCARDLOADDONEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardLoadDoneMessageBase",
+    name_hash: 3241061032,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardLoadDoneMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardLoadDoneMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1331,7 +1419,8 @@ impl TypeObject for MemoryCardLoadDoneMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardLoadMessageBase {
 }
 
@@ -1343,11 +1432,13 @@ impl MemoryCardLoadMessageBaseTrait for MemoryCardLoadMessageBase {
 
 pub static MEMORYCARDLOADMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardLoadMessageBase",
+    name_hash: 3364201288,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardLoadMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardLoadMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1374,7 +1465,8 @@ impl TypeObject for MemoryCardLoadMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardDestroyedMessageBase {
 }
 
@@ -1386,11 +1478,13 @@ impl MemoryCardDestroyedMessageBaseTrait for MemoryCardDestroyedMessageBase {
 
 pub static MEMORYCARDDESTROYEDMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardDestroyedMessageBase",
+    name_hash: 2999948621,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardDestroyedMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardDestroyedMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1417,7 +1511,8 @@ impl TypeObject for MemoryCardDestroyedMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardInitializedMessageBase {
 }
 
@@ -1429,11 +1524,13 @@ impl MemoryCardInitializedMessageBaseTrait for MemoryCardInitializedMessageBase 
 
 pub static MEMORYCARDINITIALIZEDMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardInitializedMessageBase",
+    name_hash: 3910510690,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardInitializedMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardInitializedMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1460,7 +1557,8 @@ impl TypeObject for MemoryCardInitializedMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardCreatedMessageBase {
 }
 
@@ -1472,11 +1570,13 @@ impl MemoryCardCreatedMessageBaseTrait for MemoryCardCreatedMessageBase {
 
 pub static MEMORYCARDCREATEDMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardCreatedMessageBase",
+    name_hash: 317456526,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardCreatedMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardCreatedMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1503,7 +1603,8 @@ impl TypeObject for MemoryCardCreatedMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardPopupHideMessageBase {
 }
 
@@ -1515,11 +1616,13 @@ impl MemoryCardPopupHideMessageBaseTrait for MemoryCardPopupHideMessageBase {
 
 pub static MEMORYCARDPOPUPHIDEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardPopupHideMessageBase",
+    name_hash: 3962428644,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardPopupHideMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardPopupHideMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1546,7 +1649,8 @@ impl TypeObject for MemoryCardPopupHideMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardPopupResponseMessageBase {
 }
 
@@ -1558,11 +1662,13 @@ impl MemoryCardPopupResponseMessageBaseTrait for MemoryCardPopupResponseMessageB
 
 pub static MEMORYCARDPOPUPRESPONSEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardPopupResponseMessageBase",
+    name_hash: 28863655,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardPopupResponseMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardPopupResponseMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1589,7 +1695,8 @@ impl TypeObject for MemoryCardPopupResponseMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MemoryCardPopupRequestMessageBase {
 }
 
@@ -1601,11 +1708,13 @@ impl MemoryCardPopupRequestMessageBaseTrait for MemoryCardPopupRequestMessageBas
 
 pub static MEMORYCARDPOPUPREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MemoryCardPopupRequestMessageBase",
+    name_hash: 2703809941,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MemoryCardPopupRequestMessageBase as Default>::default())),
+            create_boxed: || Box::new(<MemoryCardPopupRequestMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1632,15 +1741,16 @@ impl TypeObject for MemoryCardPopupRequestMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIInputActionDataAsset {
     pub _glacier_base: super::core::Asset,
     pub default_repeat_delay_sec: f32,
     pub default_repeat_speed_sec: f32,
     pub default_one_axis_dead_zone: f32,
     pub default_two_axis_dead_zone: f32,
-    pub input_action_maps: Vec<UIInputActionMapData>,
-    pub analog_input_maps: Vec<UIAnalogInputMapData>,
+    pub input_action_maps: Vec<BoxedTypeObject /* UIInputActionMapData */>,
+    pub analog_input_maps: Vec<BoxedTypeObject /* UIAnalogInputMapData */>,
 }
 
 pub trait UIInputActionDataAssetTrait: super::core::AssetTrait {
@@ -1652,10 +1762,10 @@ pub trait UIInputActionDataAssetTrait: super::core::AssetTrait {
     fn default_one_axis_dead_zone_mut(&mut self) -> &mut f32;
     fn default_two_axis_dead_zone(&self) -> &f32;
     fn default_two_axis_dead_zone_mut(&mut self) -> &mut f32;
-    fn input_action_maps(&self) -> &Vec<UIInputActionMapData>;
-    fn input_action_maps_mut(&mut self) -> &mut Vec<UIInputActionMapData>;
-    fn analog_input_maps(&self) -> &Vec<UIAnalogInputMapData>;
-    fn analog_input_maps_mut(&mut self) -> &mut Vec<UIAnalogInputMapData>;
+    fn input_action_maps(&self) -> &Vec<BoxedTypeObject /* UIInputActionMapData */>;
+    fn input_action_maps_mut(&mut self) -> &mut Vec<BoxedTypeObject /* UIInputActionMapData */>;
+    fn analog_input_maps(&self) -> &Vec<BoxedTypeObject /* UIAnalogInputMapData */>;
+    fn analog_input_maps_mut(&mut self) -> &mut Vec<BoxedTypeObject /* UIAnalogInputMapData */>;
 }
 
 impl UIInputActionDataAssetTrait for UIInputActionDataAsset {
@@ -1683,16 +1793,16 @@ impl UIInputActionDataAssetTrait for UIInputActionDataAsset {
     fn default_two_axis_dead_zone_mut(&mut self) -> &mut f32 {
         &mut self.default_two_axis_dead_zone
     }
-    fn input_action_maps(&self) -> &Vec<UIInputActionMapData> {
+    fn input_action_maps(&self) -> &Vec<BoxedTypeObject /* UIInputActionMapData */> {
         &self.input_action_maps
     }
-    fn input_action_maps_mut(&mut self) -> &mut Vec<UIInputActionMapData> {
+    fn input_action_maps_mut(&mut self) -> &mut Vec<BoxedTypeObject /* UIInputActionMapData */> {
         &mut self.input_action_maps
     }
-    fn analog_input_maps(&self) -> &Vec<UIAnalogInputMapData> {
+    fn analog_input_maps(&self) -> &Vec<BoxedTypeObject /* UIAnalogInputMapData */> {
         &self.analog_input_maps
     }
-    fn analog_input_maps_mut(&mut self) -> &mut Vec<UIAnalogInputMapData> {
+    fn analog_input_maps_mut(&mut self) -> &mut Vec<BoxedTypeObject /* UIAnalogInputMapData */> {
         &mut self.analog_input_maps
     }
 }
@@ -1711,46 +1821,55 @@ impl super::core::DataContainerTrait for UIInputActionDataAsset {
 
 pub static UIINPUTACTIONDATAASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputActionDataAsset",
+    name_hash: 2442394705,
     flags: MemberInfoFlags::new(101),
     module: "UI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(UIInputActionDataAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIInputActionDataAsset as Default>::default())),
+            create_boxed: || Box::new(<UIInputActionDataAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DefaultRepeatDelaySec",
+                name_hash: 3820639673,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIInputActionDataAsset, default_repeat_delay_sec),
             },
             FieldInfoData {
                 name: "DefaultRepeatSpeedSec",
+                name_hash: 4018921867,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIInputActionDataAsset, default_repeat_speed_sec),
             },
             FieldInfoData {
                 name: "DefaultOneAxisDeadZone",
+                name_hash: 2872575283,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIInputActionDataAsset, default_one_axis_dead_zone),
             },
             FieldInfoData {
                 name: "DefaultTwoAxisDeadZone",
+                name_hash: 918733915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIInputActionDataAsset, default_two_axis_dead_zone),
             },
             FieldInfoData {
                 name: "InputActionMaps",
+                name_hash: 2094181090,
                 flags: MemberInfoFlags::new(144),
                 field_type: "UIInputActionMapData-Array",
                 rust_offset: offset_of!(UIInputActionDataAsset, input_action_maps),
             },
             FieldInfoData {
                 name: "AnalogInputMaps",
+                name_hash: 679237526,
                 flags: MemberInfoFlags::new(144),
                 field_type: "UIAnalogInputMapData-Array",
                 rust_offset: offset_of!(UIInputActionDataAsset, analog_input_maps),
@@ -1782,6 +1901,7 @@ impl TypeObject for UIInputActionDataAsset {
 
 pub static UIINPUTACTIONDATAASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputActionDataAsset-Array",
+    name_hash: 2909302373,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIInputActionDataAsset"),
@@ -1790,7 +1910,8 @@ pub static UIINPUTACTIONDATAASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIAnalogInputMapData {
     pub analog_input: UIAnalogInput,
     pub x_axis_concept_identifier: i32,
@@ -1838,33 +1959,39 @@ impl UIAnalogInputMapDataTrait for UIAnalogInputMapData {
 
 pub static UIANALOGINPUTMAPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIAnalogInputMapData",
+    name_hash: 2980201289,
     flags: MemberInfoFlags::new(32841),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIAnalogInputMapData as Default>::default())),
+            create_boxed: || Box::new(<UIAnalogInputMapData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AnalogInput",
+                name_hash: 716942105,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIAnalogInput",
                 rust_offset: offset_of!(UIAnalogInputMapData, analog_input),
             },
             FieldInfoData {
                 name: "XAxisConceptIdentifier",
+                name_hash: 1203750749,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIAnalogInputMapData, x_axis_concept_identifier),
             },
             FieldInfoData {
                 name: "YAxisConceptIdentifier",
+                name_hash: 283205884,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIAnalogInputMapData, y_axis_concept_identifier),
             },
             FieldInfoData {
                 name: "OverrideDeadZone",
+                name_hash: 334220043,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIAnalogInputMapData, override_dead_zone),
@@ -1896,6 +2023,7 @@ impl TypeObject for UIAnalogInputMapData {
 
 pub static UIANALOGINPUTMAPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIAnalogInputMapData-Array",
+    name_hash: 4189882749,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIAnalogInputMapData"),
@@ -1904,7 +2032,8 @@ pub static UIANALOGINPUTMAPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIInputActionMapData {
     pub input_action: UIInputAction,
     pub concept_identifier: i32,
@@ -1961,39 +2090,46 @@ impl UIInputActionMapDataTrait for UIInputActionMapData {
 
 pub static UIINPUTACTIONMAPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputActionMapData",
+    name_hash: 1808574781,
     flags: MemberInfoFlags::new(32841),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIInputActionMapData as Default>::default())),
+            create_boxed: || Box::new(<UIInputActionMapData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InputAction",
+                name_hash: 1407707693,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIInputAction",
                 rust_offset: offset_of!(UIInputActionMapData, input_action),
             },
             FieldInfoData {
                 name: "ConceptIdentifier",
+                name_hash: 1320965734,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIInputActionMapData, concept_identifier),
             },
             FieldInfoData {
                 name: "AllowRepeat",
+                name_hash: 3174616907,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIInputActionMapData, allow_repeat),
             },
             FieldInfoData {
                 name: "OverrideRepeatDelaySec",
+                name_hash: 4252250214,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIInputActionMapData, override_repeat_delay_sec),
             },
             FieldInfoData {
                 name: "OverrideRepeatSpeedSec",
+                name_hash: 3957425428,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIInputActionMapData, override_repeat_speed_sec),
@@ -2025,6 +2161,7 @@ impl TypeObject for UIInputActionMapData {
 
 pub static UIINPUTACTIONMAPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputActionMapData-Array",
+    name_hash: 3327034761,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIInputActionMapData"),
@@ -2033,22 +2170,23 @@ pub static UIINPUTACTIONMAPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIInputSettings {
     pub _glacier_base: super::input_shared::BaseInputSettings,
-    pub u_i_input_actions: Option<Arc<Mutex<dyn UIInputActionDataAssetTrait>>>,
+    pub u_i_input_actions: Option<LockedTypeObject /* UIInputActionDataAsset */>,
 }
 
 pub trait UIInputSettingsTrait: super::input_shared::BaseInputSettingsTrait {
-    fn u_i_input_actions(&self) -> &Option<Arc<Mutex<dyn UIInputActionDataAssetTrait>>>;
-    fn u_i_input_actions_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIInputActionDataAssetTrait>>>;
+    fn u_i_input_actions(&self) -> &Option<LockedTypeObject /* UIInputActionDataAsset */>;
+    fn u_i_input_actions_mut(&mut self) -> &mut Option<LockedTypeObject /* UIInputActionDataAsset */>;
 }
 
 impl UIInputSettingsTrait for UIInputSettings {
-    fn u_i_input_actions(&self) -> &Option<Arc<Mutex<dyn UIInputActionDataAssetTrait>>> {
+    fn u_i_input_actions(&self) -> &Option<LockedTypeObject /* UIInputActionDataAsset */> {
         &self.u_i_input_actions
     }
-    fn u_i_input_actions_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIInputActionDataAssetTrait>>> {
+    fn u_i_input_actions_mut(&mut self) -> &mut Option<LockedTypeObject /* UIInputActionDataAsset */> {
         &mut self.u_i_input_actions
     }
 }
@@ -2061,16 +2199,20 @@ impl super::core::DataContainerTrait for UIInputSettings {
 
 pub static UIINPUTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputSettings",
+    name_hash: 1159347434,
     flags: MemberInfoFlags::new(101),
     module: "UI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::input_shared::BASEINPUTSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(UIInputSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIInputSettings as Default>::default())),
+            create_boxed: || Box::new(<UIInputSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "UIInputActions",
+                name_hash: 3364902722,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIInputActionDataAsset",
                 rust_offset: offset_of!(UIInputSettings, u_i_input_actions),
@@ -2102,6 +2244,7 @@ impl TypeObject for UIInputSettings {
 
 pub static UIINPUTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputSettings-Array",
+    name_hash: 3710543838,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIInputSettings"),
@@ -2110,7 +2253,8 @@ pub static UIINPUTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UILocaleFormatStrings {
     pub _glacier_base: super::core::DataContainer,
     pub number_format_s_i_d: String,
@@ -2135,16 +2279,20 @@ impl super::core::DataContainerTrait for UILocaleFormatStrings {
 
 pub static UILOCALEFORMATSTRINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UILocaleFormatStrings",
+    name_hash: 3761214708,
     flags: MemberInfoFlags::new(101),
     module: "UI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(UILocaleFormatStrings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UILocaleFormatStrings as Default>::default())),
+            create_boxed: || Box::new(<UILocaleFormatStrings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "NumberFormatSID",
+                name_hash: 941411323,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(UILocaleFormatStrings, number_format_s_i_d),
@@ -2176,6 +2324,7 @@ impl TypeObject for UILocaleFormatStrings {
 
 pub static UILOCALEFORMATSTRINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UILocaleFormatStrings-Array",
+    name_hash: 3448283328,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UILocaleFormatStrings"),
@@ -2184,7 +2333,8 @@ pub static UILOCALEFORMATSTRINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocalizedStringBase {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -2200,12 +2350,15 @@ impl super::core::DataContainerTrait for LocalizedStringBase {
 
 pub static LOCALIZEDSTRINGBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalizedStringBase",
+    name_hash: 1782759290,
     flags: MemberInfoFlags::new(101),
     module: "UI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LocalizedStringBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocalizedStringBase as Default>::default())),
+            create_boxed: || Box::new(<LocalizedStringBase as Default>::default()),
         },
         fields: &[
         ],
@@ -2235,6 +2388,7 @@ impl TypeObject for LocalizedStringBase {
 
 pub static LOCALIZEDSTRINGBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalizedStringBase-Array",
+    name_hash: 2682098254,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("LocalizedStringBase"),
@@ -2243,22 +2397,23 @@ pub static LOCALIZEDSTRINGBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocalizationAsset {
     pub _glacier_base: super::core::Asset,
-    pub localized_texts: Vec<Option<Arc<Mutex<dyn UITextDatabaseTrait>>>>,
+    pub localized_texts: Vec<Option<LockedTypeObject /* UITextDatabase */>>,
 }
 
 pub trait LocalizationAssetTrait: super::core::AssetTrait {
-    fn localized_texts(&self) -> &Vec<Option<Arc<Mutex<dyn UITextDatabaseTrait>>>>;
-    fn localized_texts_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn UITextDatabaseTrait>>>>;
+    fn localized_texts(&self) -> &Vec<Option<LockedTypeObject /* UITextDatabase */>>;
+    fn localized_texts_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* UITextDatabase */>>;
 }
 
 impl LocalizationAssetTrait for LocalizationAsset {
-    fn localized_texts(&self) -> &Vec<Option<Arc<Mutex<dyn UITextDatabaseTrait>>>> {
+    fn localized_texts(&self) -> &Vec<Option<LockedTypeObject /* UITextDatabase */>> {
         &self.localized_texts
     }
-    fn localized_texts_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn UITextDatabaseTrait>>>> {
+    fn localized_texts_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* UITextDatabase */>> {
         &mut self.localized_texts
     }
 }
@@ -2277,16 +2432,20 @@ impl super::core::DataContainerTrait for LocalizationAsset {
 
 pub static LOCALIZATIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalizationAsset",
+    name_hash: 573806006,
     flags: MemberInfoFlags::new(101),
     module: "UI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(LocalizationAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocalizationAsset as Default>::default())),
+            create_boxed: || Box::new(<LocalizationAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LocalizedTexts",
+                name_hash: 2715502676,
                 flags: MemberInfoFlags::new(144),
                 field_type: "UITextDatabase-Array",
                 rust_offset: offset_of!(LocalizationAsset, localized_texts),
@@ -2318,6 +2477,7 @@ impl TypeObject for LocalizationAsset {
 
 pub static LOCALIZATIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalizationAsset-Array",
+    name_hash: 3778456066,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("LocalizationAsset"),
@@ -2326,7 +2486,8 @@ pub static LOCALIZATIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UITextDatabase {
     pub _glacier_base: super::core::Asset,
     pub language: super::core::LanguageFormat,
@@ -2396,40 +2557,48 @@ impl super::core::DataContainerTrait for UITextDatabase {
 
 pub static UITEXTDATABASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UITextDatabase",
+    name_hash: 444359553,
     flags: MemberInfoFlags::new(101),
     module: "UI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(UITextDatabase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UITextDatabase as Default>::default())),
+            create_boxed: || Box::new(<UITextDatabase as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Language",
+                name_hash: 3872303031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LanguageFormat",
                 rust_offset: offset_of!(UITextDatabase, language),
             },
             FieldInfoData {
                 name: "BinaryChunk",
+                name_hash: 1121887089,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(UITextDatabase, binary_chunk),
             },
             FieldInfoData {
                 name: "BinaryChunkSize",
+                name_hash: 261197236,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(UITextDatabase, binary_chunk_size),
             },
             FieldInfoData {
                 name: "HistogramChunk",
+                name_hash: 423724782,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(UITextDatabase, histogram_chunk),
             },
             FieldInfoData {
                 name: "HistogramChunkSize",
+                name_hash: 1536427179,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(UITextDatabase, histogram_chunk_size),
@@ -2461,6 +2630,7 @@ impl TypeObject for UITextDatabase {
 
 pub static UITEXTDATABASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UITextDatabase-Array",
+    name_hash: 1786936629,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UITextDatabase"),
@@ -2484,6 +2654,7 @@ pub enum UIConsoleKeyboardStatus {
 
 pub static UICONSOLEKEYBOARDSTATUS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIConsoleKeyboardStatus",
+    name_hash: 1944419223,
     flags: MemberInfoFlags::new(49429),
     module: "UI",
     data: TypeInfoData::Enum,
@@ -2512,6 +2683,7 @@ impl TypeObject for UIConsoleKeyboardStatus {
 
 pub static UICONSOLEKEYBOARDSTATUS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIConsoleKeyboardStatus-Array",
+    name_hash: 1869120547,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIConsoleKeyboardStatus"),
@@ -2531,6 +2703,7 @@ pub enum UIAnalogInput {
 
 pub static UIANALOGINPUT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIAnalogInput",
+    name_hash: 1121443173,
     flags: MemberInfoFlags::new(49429),
     module: "UI",
     data: TypeInfoData::Enum,
@@ -2559,6 +2732,7 @@ impl TypeObject for UIAnalogInput {
 
 pub static UIANALOGINPUT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIAnalogInput-Array",
+    name_hash: 2210268753,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIAnalogInput"),
@@ -2578,6 +2752,7 @@ pub enum UIAnalogInputEventType {
 
 pub static UIANALOGINPUTEVENTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIAnalogInputEventType",
+    name_hash: 765881777,
     flags: MemberInfoFlags::new(49429),
     module: "UI",
     data: TypeInfoData::Enum,
@@ -2606,6 +2781,7 @@ impl TypeObject for UIAnalogInputEventType {
 
 pub static UIANALOGINPUTEVENTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIAnalogInputEventType-Array",
+    name_hash: 1992990725,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIAnalogInputEventType"),
@@ -2705,6 +2881,7 @@ pub enum UIInputAction {
 
 pub static UIINPUTACTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputAction",
+    name_hash: 492418321,
     flags: MemberInfoFlags::new(49429),
     module: "UI",
     data: TypeInfoData::Enum,
@@ -2733,6 +2910,7 @@ impl TypeObject for UIInputAction {
 
 pub static UIINPUTACTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputAction-Array",
+    name_hash: 3641292453,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIInputAction"),
@@ -2753,6 +2931,7 @@ pub enum UITouchEventType {
 
 pub static UITOUCHEVENTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UITouchEventType",
+    name_hash: 2844459048,
     flags: MemberInfoFlags::new(49429),
     module: "UI",
     data: TypeInfoData::Enum,
@@ -2781,6 +2960,7 @@ impl TypeObject for UITouchEventType {
 
 pub static UITOUCHEVENTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UITouchEventType-Array",
+    name_hash: 529031580,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UITouchEventType"),
@@ -2801,6 +2981,7 @@ pub enum UIInputActionEventType {
 
 pub static UIINPUTACTIONEVENTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputActionEventType",
+    name_hash: 76066565,
     flags: MemberInfoFlags::new(49429),
     module: "UI",
     data: TypeInfoData::Enum,
@@ -2829,6 +3010,7 @@ impl TypeObject for UIInputActionEventType {
 
 pub static UIINPUTACTIONEVENTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputActionEventType-Array",
+    name_hash: 2612598449,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIInputActionEventType"),
@@ -2849,6 +3031,7 @@ pub enum UIKeyboardEventType {
 
 pub static UIKEYBOARDEVENTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIKeyboardEventType",
+    name_hash: 2141191488,
     flags: MemberInfoFlags::new(49429),
     module: "UI",
     data: TypeInfoData::Enum,
@@ -2877,6 +3060,7 @@ impl TypeObject for UIKeyboardEventType {
 
 pub static UIKEYBOARDEVENTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIKeyboardEventType-Array",
+    name_hash: 1960547316,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIKeyboardEventType"),
@@ -2898,6 +3082,7 @@ pub enum UIMouseEventType {
 
 pub static UIMOUSEEVENTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMouseEventType",
+    name_hash: 655653420,
     flags: MemberInfoFlags::new(49429),
     module: "UI",
     data: TypeInfoData::Enum,
@@ -2926,6 +3111,7 @@ impl TypeObject for UIMouseEventType {
 
 pub static UIMOUSEEVENTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMouseEventType-Array",
+    name_hash: 1107626392,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIMouseEventType"),
@@ -2949,6 +3135,7 @@ pub enum UIMouseButton {
 
 pub static UIMOUSEBUTTON_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMouseButton",
+    name_hash: 672029454,
     flags: MemberInfoFlags::new(49429),
     module: "UI",
     data: TypeInfoData::Enum,
@@ -2977,6 +3164,7 @@ impl TypeObject for UIMouseButton {
 
 pub static UIMOUSEBUTTON_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMouseButton-Array",
+    name_hash: 3492840506,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UIMouseButton"),
@@ -2997,6 +3185,7 @@ pub enum UISystemType {
 
 pub static UISYSTEMTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UISystemType",
+    name_hash: 1751698884,
     flags: MemberInfoFlags::new(49429),
     module: "UI",
     data: TypeInfoData::Enum,
@@ -3025,6 +3214,7 @@ impl TypeObject for UISystemType {
 
 pub static UISYSTEMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UISystemType-Array",
+    name_hash: 3277746800,
     flags: MemberInfoFlags::new(145),
     module: "UI",
     data: TypeInfoData::Array("UISystemType"),
@@ -3033,7 +3223,8 @@ pub static UISYSTEMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UserGamerpicBufferReceivedMessage {
 }
 
@@ -3045,11 +3236,13 @@ impl UserGamerpicBufferReceivedMessageTrait for UserGamerpicBufferReceivedMessag
 
 pub static USERGAMERPICBUFFERRECEIVEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UserGamerpicBufferReceivedMessage",
+    name_hash: 2691207478,
     flags: MemberInfoFlags::new(36937),
     module: "UI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UserGamerpicBufferReceivedMessage as Default>::default())),
+            create_boxed: || Box::new(<UserGamerpicBufferReceivedMessage as Default>::default()),
         },
         fields: &[
         ],

@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -87,10 +88,11 @@ pub(crate) fn register_input_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(BASEINPUTSETTINGS_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputSettings {
     pub _glacier_base: super::core::SystemSettings,
-    pub input_configuration_asset: Option<Arc<Mutex<dyn InputConfigurationAssetTrait>>>,
+    pub input_configuration_asset: Option<LockedTypeObject /* InputConfigurationAsset */>,
     pub input_enable: bool,
     pub use_raw_gamepad_input: bool,
     pub vr_device_type: u32,
@@ -129,8 +131,8 @@ pub struct InputSettings {
 }
 
 pub trait InputSettingsTrait: super::core::SystemSettingsTrait {
-    fn input_configuration_asset(&self) -> &Option<Arc<Mutex<dyn InputConfigurationAssetTrait>>>;
-    fn input_configuration_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConfigurationAssetTrait>>>;
+    fn input_configuration_asset(&self) -> &Option<LockedTypeObject /* InputConfigurationAsset */>;
+    fn input_configuration_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* InputConfigurationAsset */>;
     fn input_enable(&self) -> &bool;
     fn input_enable_mut(&mut self) -> &mut bool;
     fn use_raw_gamepad_input(&self) -> &bool;
@@ -204,10 +206,10 @@ pub trait InputSettingsTrait: super::core::SystemSettingsTrait {
 }
 
 impl InputSettingsTrait for InputSettings {
-    fn input_configuration_asset(&self) -> &Option<Arc<Mutex<dyn InputConfigurationAssetTrait>>> {
+    fn input_configuration_asset(&self) -> &Option<LockedTypeObject /* InputConfigurationAsset */> {
         &self.input_configuration_asset
     }
-    fn input_configuration_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConfigurationAssetTrait>>> {
+    fn input_configuration_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* InputConfigurationAsset */> {
         &mut self.input_configuration_asset
     }
     fn input_enable(&self) -> &bool {
@@ -436,226 +438,265 @@ impl super::core::DataContainerTrait for InputSettings {
 
 pub static INPUTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputSettings",
+    name_hash: 2963486998,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(InputSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputSettings as Default>::default())),
+            create_boxed: || Box::new(<InputSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InputConfigurationAsset",
+                name_hash: 1697774899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputConfigurationAsset",
                 rust_offset: offset_of!(InputSettings, input_configuration_asset),
             },
             FieldInfoData {
                 name: "InputEnable",
+                name_hash: 1570773874,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputSettings, input_enable),
             },
             FieldInfoData {
                 name: "UseRawGamepadInput",
+                name_hash: 2767734287,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputSettings, use_raw_gamepad_input),
             },
             FieldInfoData {
                 name: "VrDeviceType",
+                name_hash: 1232471553,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(InputSettings, vr_device_type),
             },
             FieldInfoData {
                 name: "InvertPitch",
+                name_hash: 3593098353,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputSettings, invert_pitch),
             },
             FieldInfoData {
                 name: "InvertPadPcRightStick",
+                name_hash: 2944881719,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputSettings, invert_pad_pc_right_stick),
             },
             FieldInfoData {
                 name: "InvertYaw",
+                name_hash: 1935838488,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputSettings, invert_yaw),
             },
             FieldInfoData {
                 name: "ConsoleInputEmulation",
+                name_hash: 3596483464,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputSettings, console_input_emulation),
             },
             FieldInfoData {
                 name: "PadsRumbleEnabled",
+                name_hash: 3440909447,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Boolean-Array",
                 rust_offset: offset_of!(InputSettings, pads_rumble_enabled),
             },
             FieldInfoData {
                 name: "PadsIndex",
+                name_hash: 2972611517,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(InputSettings, pads_index),
             },
             FieldInfoData {
                 name: "XenonGamepadDeadZoneCenter",
+                name_hash: 4031376893,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, xenon_gamepad_dead_zone_center),
             },
             FieldInfoData {
                 name: "XenonGamepadDeadZoneAxis",
+                name_hash: 3458533173,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, xenon_gamepad_dead_zone_axis),
             },
             FieldInfoData {
                 name: "XenonGamepadDeadZoneOffsetAxis",
+                name_hash: 3972578072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, xenon_gamepad_dead_zone_offset_axis),
             },
             FieldInfoData {
                 name: "PS3GamepadDeadZoneCenter",
+                name_hash: 2873610431,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, p_s3_gamepad_dead_zone_center),
             },
             FieldInfoData {
                 name: "PS3GamepadDeadZoneAxis",
+                name_hash: 2234979063,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, p_s3_gamepad_dead_zone_axis),
             },
             FieldInfoData {
                 name: "PS3GamepadDeadZoneOffsetAxis",
+                name_hash: 1099685338,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, p_s3_gamepad_dead_zone_offset_axis),
             },
             FieldInfoData {
                 name: "PCGamepadDeadZoneCenter",
+                name_hash: 3932607036,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, p_c_gamepad_dead_zone_center),
             },
             FieldInfoData {
                 name: "PCGamepadDeadZoneAxis",
+                name_hash: 2582886644,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, p_c_gamepad_dead_zone_axis),
             },
             FieldInfoData {
                 name: "PCGamepadDeadZoneOffsetAxis",
+                name_hash: 2299850777,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, p_c_gamepad_dead_zone_offset_axis),
             },
             FieldInfoData {
                 name: "Gen4aGamepadDeadZoneCenter",
+                name_hash: 1125503414,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, gen4a_gamepad_dead_zone_center),
             },
             FieldInfoData {
                 name: "Gen4aGamepadDeadZoneAxis",
+                name_hash: 3238789502,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, gen4a_gamepad_dead_zone_axis),
             },
             FieldInfoData {
                 name: "Gen4aGamepadDeadZoneOffsetAxis",
+                name_hash: 899451027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, gen4a_gamepad_dead_zone_offset_axis),
             },
             FieldInfoData {
                 name: "Gen4bGamepadDeadZoneCenter",
+                name_hash: 1866632981,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, gen4b_gamepad_dead_zone_center),
             },
             FieldInfoData {
                 name: "Gen4bGamepadDeadZoneAxis",
+                name_hash: 3929812061,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, gen4b_gamepad_dead_zone_axis),
             },
             FieldInfoData {
                 name: "Gen4bGamepadDeadZoneOffsetAxis",
+                name_hash: 240099056,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, gen4b_gamepad_dead_zone_offset_axis),
             },
             FieldInfoData {
                 name: "UseMouseAndKeyboardSystem",
+                name_hash: 1086358628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputSettings, use_mouse_and_keyboard_system),
             },
             FieldInfoData {
                 name: "UseGlobalGamePadInput",
+                name_hash: 2939773824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputSettings, use_global_game_pad_input),
             },
             FieldInfoData {
                 name: "UsePcGamePadInput",
+                name_hash: 319652728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputSettings, use_pc_game_pad_input),
             },
             FieldInfoData {
                 name: "GamepadGuid",
+                name_hash: 2907655905,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(InputSettings, gamepad_guid),
             },
             FieldInfoData {
                 name: "MouseSensitivityMin",
+                name_hash: 2349414947,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, mouse_sensitivity_min),
             },
             FieldInfoData {
                 name: "MouseSensitivitySliderRange",
+                name_hash: 3197878259,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, mouse_sensitivity_slider_range),
             },
             FieldInfoData {
                 name: "MouseSensitivityFactor",
+                name_hash: 957418692,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, mouse_sensitivity_factor),
             },
             FieldInfoData {
                 name: "MouseSensitivityPower",
+                name_hash: 3029496406,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputSettings, mouse_sensitivity_power),
             },
             FieldInfoData {
                 name: "InvertFreeCamera",
+                name_hash: 962025594,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputSettings, invert_free_camera),
             },
             FieldInfoData {
                 name: "ThreadEnable",
+                name_hash: 3553471978,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputSettings, thread_enable),
             },
             FieldInfoData {
                 name: "ThreadPollFrequency",
+                name_hash: 503972048,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(InputSettings, thread_poll_frequency),
@@ -687,6 +728,7 @@ impl TypeObject for InputSettings {
 
 pub static INPUTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputSettings-Array",
+    name_hash: 92753442,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputSettings"),
@@ -695,7 +737,8 @@ pub static INPUTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientInputRemotePadChangedMessage {
 }
 
@@ -707,11 +750,13 @@ impl ClientInputRemotePadChangedMessageTrait for ClientInputRemotePadChangedMess
 
 pub static CLIENTINPUTREMOTEPADCHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientInputRemotePadChangedMessage",
+    name_hash: 2998817970,
     flags: MemberInfoFlags::new(36937),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientInputRemotePadChangedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientInputRemotePadChangedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -738,7 +783,8 @@ impl TypeObject for ClientInputRemotePadChangedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientInputSettingsRefreshMessage {
 }
 
@@ -750,11 +796,13 @@ impl ClientInputSettingsRefreshMessageTrait for ClientInputSettingsRefreshMessag
 
 pub static CLIENTINPUTSETTINGSREFRESHMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientInputSettingsRefreshMessage",
+    name_hash: 2127449433,
     flags: MemberInfoFlags::new(36937),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientInputSettingsRefreshMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientInputSettingsRefreshMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -781,7 +829,8 @@ impl TypeObject for ClientInputSettingsRefreshMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientInputUnchangedInputMessage {
 }
 
@@ -793,11 +842,13 @@ impl ClientInputUnchangedInputMessageTrait for ClientInputUnchangedInputMessage 
 
 pub static CLIENTINPUTUNCHANGEDINPUTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientInputUnchangedInputMessage",
+    name_hash: 3594343086,
     flags: MemberInfoFlags::new(36937),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientInputUnchangedInputMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientInputUnchangedInputMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -824,7 +875,8 @@ impl TypeObject for ClientInputUnchangedInputMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputMessagesResetJoystickSimValuesMessage {
 }
 
@@ -836,11 +888,13 @@ impl InputMessagesResetJoystickSimValuesMessageTrait for InputMessagesResetJoyst
 
 pub static INPUTMESSAGESRESETJOYSTICKSIMVALUESMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputMessagesResetJoystickSimValuesMessage",
+    name_hash: 46118528,
     flags: MemberInfoFlags::new(36937),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputMessagesResetJoystickSimValuesMessage as Default>::default())),
+            create_boxed: || Box::new(<InputMessagesResetJoystickSimValuesMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -867,7 +921,8 @@ impl TypeObject for InputMessagesResetJoystickSimValuesMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputMessagesKeyboardLayoutChangedMessage {
 }
 
@@ -879,11 +934,13 @@ impl InputMessagesKeyboardLayoutChangedMessageTrait for InputMessagesKeyboardLay
 
 pub static INPUTMESSAGESKEYBOARDLAYOUTCHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputMessagesKeyboardLayoutChangedMessage",
+    name_hash: 443043669,
     flags: MemberInfoFlags::new(36937),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputMessagesKeyboardLayoutChangedMessage as Default>::default())),
+            create_boxed: || Box::new(<InputMessagesKeyboardLayoutChangedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -910,7 +967,8 @@ impl TypeObject for InputMessagesKeyboardLayoutChangedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputMessagesSingleInputEventMessage {
 }
 
@@ -922,11 +980,13 @@ impl InputMessagesSingleInputEventMessageTrait for InputMessagesSingleInputEvent
 
 pub static INPUTMESSAGESSINGLEINPUTEVENTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputMessagesSingleInputEventMessage",
+    name_hash: 738110656,
     flags: MemberInfoFlags::new(36937),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputMessagesSingleInputEventMessage as Default>::default())),
+            create_boxed: || Box::new(<InputMessagesSingleInputEventMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -953,52 +1013,53 @@ impl TypeObject for InputMessagesSingleInputEventMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputGraph {
     pub _glacier_base: super::expression::ExpressionFunctionTypeInfoAsset,
-    pub input_action_maps: Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>,
-    pub combined_input_concept_to_entry_input_action_mappings: Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>>,
-    pub concept_ports: Vec<InputConceptNodePorts>,
-    pub action_ports: Vec<EntryInputActionNodePorts>,
+    pub input_action_maps: Option<LockedTypeObject /* InputActionMapsData */>,
+    pub combined_input_concept_to_entry_input_action_mappings: Option<LockedTypeObject /* InputConceptToEntryInputActionMappings */>,
+    pub concept_ports: Vec<BoxedTypeObject /* InputConceptNodePorts */>,
+    pub action_ports: Vec<BoxedTypeObject /* EntryInputActionNodePorts */>,
     pub player_id_port: u32,
 }
 
 pub trait InputGraphTrait: super::expression::ExpressionFunctionTypeInfoAssetTrait {
-    fn input_action_maps(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
-    fn input_action_maps_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
-    fn combined_input_concept_to_entry_input_action_mappings(&self) -> &Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>>;
-    fn combined_input_concept_to_entry_input_action_mappings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>>;
-    fn concept_ports(&self) -> &Vec<InputConceptNodePorts>;
-    fn concept_ports_mut(&mut self) -> &mut Vec<InputConceptNodePorts>;
-    fn action_ports(&self) -> &Vec<EntryInputActionNodePorts>;
-    fn action_ports_mut(&mut self) -> &mut Vec<EntryInputActionNodePorts>;
+    fn input_action_maps(&self) -> &Option<LockedTypeObject /* InputActionMapsData */>;
+    fn input_action_maps_mut(&mut self) -> &mut Option<LockedTypeObject /* InputActionMapsData */>;
+    fn combined_input_concept_to_entry_input_action_mappings(&self) -> &Option<LockedTypeObject /* InputConceptToEntryInputActionMappings */>;
+    fn combined_input_concept_to_entry_input_action_mappings_mut(&mut self) -> &mut Option<LockedTypeObject /* InputConceptToEntryInputActionMappings */>;
+    fn concept_ports(&self) -> &Vec<BoxedTypeObject /* InputConceptNodePorts */>;
+    fn concept_ports_mut(&mut self) -> &mut Vec<BoxedTypeObject /* InputConceptNodePorts */>;
+    fn action_ports(&self) -> &Vec<BoxedTypeObject /* EntryInputActionNodePorts */>;
+    fn action_ports_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EntryInputActionNodePorts */>;
     fn player_id_port(&self) -> &u32;
     fn player_id_port_mut(&mut self) -> &mut u32;
 }
 
 impl InputGraphTrait for InputGraph {
-    fn input_action_maps(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
+    fn input_action_maps(&self) -> &Option<LockedTypeObject /* InputActionMapsData */> {
         &self.input_action_maps
     }
-    fn input_action_maps_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
+    fn input_action_maps_mut(&mut self) -> &mut Option<LockedTypeObject /* InputActionMapsData */> {
         &mut self.input_action_maps
     }
-    fn combined_input_concept_to_entry_input_action_mappings(&self) -> &Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>> {
+    fn combined_input_concept_to_entry_input_action_mappings(&self) -> &Option<LockedTypeObject /* InputConceptToEntryInputActionMappings */> {
         &self.combined_input_concept_to_entry_input_action_mappings
     }
-    fn combined_input_concept_to_entry_input_action_mappings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>> {
+    fn combined_input_concept_to_entry_input_action_mappings_mut(&mut self) -> &mut Option<LockedTypeObject /* InputConceptToEntryInputActionMappings */> {
         &mut self.combined_input_concept_to_entry_input_action_mappings
     }
-    fn concept_ports(&self) -> &Vec<InputConceptNodePorts> {
+    fn concept_ports(&self) -> &Vec<BoxedTypeObject /* InputConceptNodePorts */> {
         &self.concept_ports
     }
-    fn concept_ports_mut(&mut self) -> &mut Vec<InputConceptNodePorts> {
+    fn concept_ports_mut(&mut self) -> &mut Vec<BoxedTypeObject /* InputConceptNodePorts */> {
         &mut self.concept_ports
     }
-    fn action_ports(&self) -> &Vec<EntryInputActionNodePorts> {
+    fn action_ports(&self) -> &Vec<BoxedTypeObject /* EntryInputActionNodePorts */> {
         &self.action_ports
     }
-    fn action_ports_mut(&mut self) -> &mut Vec<EntryInputActionNodePorts> {
+    fn action_ports_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EntryInputActionNodePorts */> {
         &mut self.action_ports
     }
     fn player_id_port(&self) -> &u32 {
@@ -1010,25 +1071,25 @@ impl InputGraphTrait for InputGraph {
 }
 
 impl super::expression::ExpressionFunctionTypeInfoAssetTrait for InputGraph {
-    fn graph_data(&self) -> &Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>> {
+    fn graph_data(&self) -> &Option<LockedTypeObject /* super::expression::ExpressionNodeGraphData */> {
         self._glacier_base.graph_data()
     }
-    fn graph_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>> {
+    fn graph_data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::expression::ExpressionNodeGraphData */> {
         self._glacier_base.graph_data_mut()
     }
 }
 
 impl super::core::FunctionTypeInfoAssetTrait for InputGraph {
-    fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::TypeInfoParameterDataContainerTrait>>>> {
+    fn parameters(&self) -> &Vec<Option<LockedTypeObject /* super::core::TypeInfoParameterDataContainer */>> {
         self._glacier_base.parameters()
     }
-    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::TypeInfoParameterDataContainerTrait>>>> {
+    fn parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::TypeInfoParameterDataContainer */>> {
         self._glacier_base.parameters_mut()
     }
-    fn owner(&self) -> &Option<Arc<Mutex<dyn super::core::ClassInfoAssetTrait>>> {
+    fn owner(&self) -> &Option<LockedTypeObject /* super::core::ClassInfoAsset */> {
         self._glacier_base.owner()
     }
-    fn owner_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::ClassInfoAssetTrait>>> {
+    fn owner_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::ClassInfoAsset */> {
         self._glacier_base.owner_mut()
     }
 }
@@ -1052,10 +1113,10 @@ impl super::core::TypeInfoAssetTrait for InputGraph {
     fn is_meta_mut(&mut self) -> &mut bool {
         self._glacier_base.is_meta_mut()
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* super::core::TypeInfoAttribute */>> {
         self._glacier_base.attributes()
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::TypeInfoAttribute */>> {
         self._glacier_base.attributes_mut()
     }
     fn is_native(&self) -> &bool {
@@ -1080,40 +1141,48 @@ impl super::core::DataContainerTrait for InputGraph {
 
 pub static INPUTGRAPH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputGraph",
+    name_hash: 1611054975,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::expression::EXPRESSIONFUNCTIONTYPEINFOASSET_TYPE_INFO),
+        super_class_offset: offset_of!(InputGraph, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputGraph as Default>::default())),
+            create_boxed: || Box::new(<InputGraph as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InputActionMaps",
+                name_hash: 2094181090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputActionMapsData",
                 rust_offset: offset_of!(InputGraph, input_action_maps),
             },
             FieldInfoData {
                 name: "CombinedInputConceptToEntryInputActionMappings",
+                name_hash: 2698861486,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputConceptToEntryInputActionMappings",
                 rust_offset: offset_of!(InputGraph, combined_input_concept_to_entry_input_action_mappings),
             },
             FieldInfoData {
                 name: "ConceptPorts",
+                name_hash: 3032101551,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InputConceptNodePorts-Array",
                 rust_offset: offset_of!(InputGraph, concept_ports),
             },
             FieldInfoData {
                 name: "ActionPorts",
+                name_hash: 2420944433,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EntryInputActionNodePorts-Array",
                 rust_offset: offset_of!(InputGraph, action_ports),
             },
             FieldInfoData {
                 name: "PlayerIdPort",
+                name_hash: 3025300034,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(InputGraph, player_id_port),
@@ -1145,6 +1214,7 @@ impl TypeObject for InputGraph {
 
 pub static INPUTGRAPH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputGraph-Array",
+    name_hash: 3771516235,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputGraph"),
@@ -1153,7 +1223,8 @@ pub static INPUTGRAPH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntryInputActionNodePorts {
     pub action: i32,
     pub level_port: u32,
@@ -1192,27 +1263,32 @@ impl EntryInputActionNodePortsTrait for EntryInputActionNodePorts {
 
 pub static ENTRYINPUTACTIONNODEPORTS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryInputActionNodePorts",
+    name_hash: 253749299,
     flags: MemberInfoFlags::new(36937),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntryInputActionNodePorts as Default>::default())),
+            create_boxed: || Box::new(<EntryInputActionNodePorts as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Action",
+                name_hash: 2484178491,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EntryInputActionNodePorts, action),
             },
             FieldInfoData {
                 name: "LevelPort",
+                name_hash: 1598024650,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntryInputActionNodePorts, level_port),
             },
             FieldInfoData {
                 name: "IsDownPort",
+                name_hash: 1060295860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntryInputActionNodePorts, is_down_port),
@@ -1244,6 +1320,7 @@ impl TypeObject for EntryInputActionNodePorts {
 
 pub static ENTRYINPUTACTIONNODEPORTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryInputActionNodePorts-Array",
+    name_hash: 659452807,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("EntryInputActionNodePorts"),
@@ -1252,7 +1329,8 @@ pub static ENTRYINPUTACTIONNODEPORTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputConceptNodePorts {
     pub identifier: i32,
     pub level_port: u32,
@@ -1309,39 +1387,46 @@ impl InputConceptNodePortsTrait for InputConceptNodePorts {
 
 pub static INPUTCONCEPTNODEPORTS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputConceptNodePorts",
+    name_hash: 3609085081,
     flags: MemberInfoFlags::new(36937),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputConceptNodePorts as Default>::default())),
+            create_boxed: || Box::new(<InputConceptNodePorts as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Identifier",
+                name_hash: 3512790342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(InputConceptNodePorts, identifier),
             },
             FieldInfoData {
                 name: "LevelPort",
+                name_hash: 1598024650,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(InputConceptNodePorts, level_port),
             },
             FieldInfoData {
                 name: "WentDownPort",
+                name_hash: 1909524390,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(InputConceptNodePorts, went_down_port),
             },
             FieldInfoData {
                 name: "IsDownPort",
+                name_hash: 1060295860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(InputConceptNodePorts, is_down_port),
             },
             FieldInfoData {
                 name: "WentUpPort",
+                name_hash: 3510110961,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(InputConceptNodePorts, went_up_port),
@@ -1373,6 +1458,7 @@ impl TypeObject for InputConceptNodePorts {
 
 pub static INPUTCONCEPTNODEPORTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputConceptNodePorts-Array",
+    name_hash: 1566261805,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputConceptNodePorts"),
@@ -1381,22 +1467,23 @@ pub static INPUTCONCEPTNODEPORTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputConceptToEntryInputActionMappings {
     pub _glacier_base: super::core::DataContainer,
-    pub mappings: Vec<InputConceptToEntryInputActionMappingStruct>,
+    pub mappings: Vec<BoxedTypeObject /* InputConceptToEntryInputActionMappingStruct */>,
 }
 
 pub trait InputConceptToEntryInputActionMappingsTrait: super::core::DataContainerTrait {
-    fn mappings(&self) -> &Vec<InputConceptToEntryInputActionMappingStruct>;
-    fn mappings_mut(&mut self) -> &mut Vec<InputConceptToEntryInputActionMappingStruct>;
+    fn mappings(&self) -> &Vec<BoxedTypeObject /* InputConceptToEntryInputActionMappingStruct */>;
+    fn mappings_mut(&mut self) -> &mut Vec<BoxedTypeObject /* InputConceptToEntryInputActionMappingStruct */>;
 }
 
 impl InputConceptToEntryInputActionMappingsTrait for InputConceptToEntryInputActionMappings {
-    fn mappings(&self) -> &Vec<InputConceptToEntryInputActionMappingStruct> {
+    fn mappings(&self) -> &Vec<BoxedTypeObject /* InputConceptToEntryInputActionMappingStruct */> {
         &self.mappings
     }
-    fn mappings_mut(&mut self) -> &mut Vec<InputConceptToEntryInputActionMappingStruct> {
+    fn mappings_mut(&mut self) -> &mut Vec<BoxedTypeObject /* InputConceptToEntryInputActionMappingStruct */> {
         &mut self.mappings
     }
 }
@@ -1406,16 +1493,20 @@ impl super::core::DataContainerTrait for InputConceptToEntryInputActionMappings 
 
 pub static INPUTCONCEPTTOENTRYINPUTACTIONMAPPINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputConceptToEntryInputActionMappings",
+    name_hash: 2716522507,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(InputConceptToEntryInputActionMappings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputConceptToEntryInputActionMappings as Default>::default())),
+            create_boxed: || Box::new(<InputConceptToEntryInputActionMappings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Mappings",
+                name_hash: 673881690,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InputConceptToEntryInputActionMappingStruct-Array",
                 rust_offset: offset_of!(InputConceptToEntryInputActionMappings, mappings),
@@ -1447,6 +1538,7 @@ impl TypeObject for InputConceptToEntryInputActionMappings {
 
 pub static INPUTCONCEPTTOENTRYINPUTACTIONMAPPINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputConceptToEntryInputActionMappings-Array",
+    name_hash: 164505279,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputConceptToEntryInputActionMappings"),
@@ -1455,7 +1547,8 @@ pub static INPUTCONCEPTTOENTRYINPUTACTIONMAPPINGS_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputConceptToEntryInputActionMappingStruct {
     pub concept_identifier: i32,
     pub action_identifier: i32,
@@ -1485,21 +1578,25 @@ impl InputConceptToEntryInputActionMappingStructTrait for InputConceptToEntryInp
 
 pub static INPUTCONCEPTTOENTRYINPUTACTIONMAPPINGSTRUCT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputConceptToEntryInputActionMappingStruct",
+    name_hash: 2866218447,
     flags: MemberInfoFlags::new(32841),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputConceptToEntryInputActionMappingStruct as Default>::default())),
+            create_boxed: || Box::new(<InputConceptToEntryInputActionMappingStruct as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ConceptIdentifier",
+                name_hash: 1320965734,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(InputConceptToEntryInputActionMappingStruct, concept_identifier),
             },
             FieldInfoData {
                 name: "ActionIdentifier",
+                name_hash: 2090288440,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(InputConceptToEntryInputActionMappingStruct, action_identifier),
@@ -1531,6 +1628,7 @@ impl TypeObject for InputConceptToEntryInputActionMappingStruct {
 
 pub static INPUTCONCEPTTOENTRYINPUTACTIONMAPPINGSTRUCT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputConceptToEntryInputActionMappingStruct-Array",
+    name_hash: 3825537787,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputConceptToEntryInputActionMappingStruct"),
@@ -1694,6 +1792,7 @@ pub enum InputDeviceKeys {
 
 pub static INPUTDEVICEKEYS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDeviceKeys",
+    name_hash: 62416367,
     flags: MemberInfoFlags::new(49429),
     module: "InputShared",
     data: TypeInfoData::Enum,
@@ -1722,6 +1821,7 @@ impl TypeObject for InputDeviceKeys {
 
 pub static INPUTDEVICEKEYS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDeviceKeys-Array",
+    name_hash: 3056501723,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputDeviceKeys"),
@@ -1743,6 +1843,7 @@ pub enum CursorStyle {
 
 pub static CURSORSTYLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CursorStyle",
+    name_hash: 1036911320,
     flags: MemberInfoFlags::new(49429),
     module: "InputShared",
     data: TypeInfoData::Enum,
@@ -1771,6 +1872,7 @@ impl TypeObject for CursorStyle {
 
 pub static CURSORSTYLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CursorStyle-Array",
+    name_hash: 266984812,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("CursorStyle"),
@@ -1797,6 +1899,7 @@ pub enum InputDeviceMouseButtons {
 
 pub static INPUTDEVICEMOUSEBUTTONS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDeviceMouseButtons",
+    name_hash: 700395791,
     flags: MemberInfoFlags::new(49429),
     module: "InputShared",
     data: TypeInfoData::Enum,
@@ -1825,6 +1928,7 @@ impl TypeObject for InputDeviceMouseButtons {
 
 pub static INPUTDEVICEMOUSEBUTTONS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDeviceMouseButtons-Array",
+    name_hash: 1090579899,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputDeviceMouseButtons"),
@@ -1856,6 +1960,7 @@ pub enum InputDeviceMotionControllerButtons {
 
 pub static INPUTDEVICEMOTIONCONTROLLERBUTTONS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDeviceMotionControllerButtons",
+    name_hash: 2068419276,
     flags: MemberInfoFlags::new(49429),
     module: "InputShared",
     data: TypeInfoData::Enum,
@@ -1884,6 +1989,7 @@ impl TypeObject for InputDeviceMotionControllerButtons {
 
 pub static INPUTDEVICEMOTIONCONTROLLERBUTTONS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDeviceMotionControllerButtons-Array",
+    name_hash: 1367233400,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputDeviceMotionControllerButtons"),
@@ -1940,6 +2046,7 @@ pub enum InputDeviceWheelButtons {
 
 pub static INPUTDEVICEWHEELBUTTONS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDeviceWheelButtons",
+    name_hash: 2221468477,
     flags: MemberInfoFlags::new(49429),
     module: "InputShared",
     data: TypeInfoData::Enum,
@@ -1968,6 +2075,7 @@ impl TypeObject for InputDeviceWheelButtons {
 
 pub static INPUTDEVICEWHEELBUTTONS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDeviceWheelButtons-Array",
+    name_hash: 1737770889,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputDeviceWheelButtons"),
@@ -2050,6 +2158,7 @@ pub enum InputDevicePadButtons {
 
 pub static INPUTDEVICEPADBUTTONS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDevicePadButtons",
+    name_hash: 640748411,
     flags: MemberInfoFlags::new(49429),
     module: "InputShared",
     data: TypeInfoData::Enum,
@@ -2078,6 +2187,7 @@ impl TypeObject for InputDevicePadButtons {
 
 pub static INPUTDEVICEPADBUTTONS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDevicePadButtons-Array",
+    name_hash: 1195402063,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputDevicePadButtons"),
@@ -2120,6 +2230,7 @@ pub enum InputDeviceAxes {
 
 pub static INPUTDEVICEAXES_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDeviceAxes",
+    name_hash: 62641124,
     flags: MemberInfoFlags::new(49429),
     module: "InputShared",
     data: TypeInfoData::Enum,
@@ -2148,6 +2259,7 @@ impl TypeObject for InputDeviceAxes {
 
 pub static INPUTDEVICEAXES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputDeviceAxes-Array",
+    name_hash: 796219344,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputDeviceAxes"),
@@ -2156,70 +2268,71 @@ pub static INPUTDEVICEAXES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputConfigurationAsset {
     pub _glacier_base: super::core::Asset,
-    pub default_input_graph: Option<Arc<Mutex<dyn InputGraphTrait>>>,
-    pub default_input_action_maps: Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>,
-    pub default_input_concept_to_entry_input_mappings: Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>>,
-    pub entry_input_action_bindings: Option<Arc<Mutex<dyn EntryInputActionBindingsDataTrait>>>,
-    pub user_configurable_action_maps: Vec<EditableActionMap>,
+    pub default_input_graph: Option<LockedTypeObject /* InputGraph */>,
+    pub default_input_action_maps: Option<LockedTypeObject /* InputActionMapsData */>,
+    pub default_input_concept_to_entry_input_mappings: Option<LockedTypeObject /* InputConceptToEntryInputActionMappings */>,
+    pub entry_input_action_bindings: Option<LockedTypeObject /* EntryInputActionBindingsData */>,
+    pub user_configurable_action_maps: Vec<BoxedTypeObject /* EditableActionMap */>,
     pub default_exclusive_input_concepts: Vec<i32>,
     pub reverse_input_concept_exclusion: bool,
     pub input_curves_enabled: bool,
-    pub input_settings: Vec<Option<Arc<Mutex<dyn BaseInputSettingsTrait>>>>,
+    pub input_settings: Vec<Option<LockedTypeObject /* BaseInputSettings */>>,
 }
 
 pub trait InputConfigurationAssetTrait: super::core::AssetTrait {
-    fn default_input_graph(&self) -> &Option<Arc<Mutex<dyn InputGraphTrait>>>;
-    fn default_input_graph_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputGraphTrait>>>;
-    fn default_input_action_maps(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
-    fn default_input_action_maps_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
-    fn default_input_concept_to_entry_input_mappings(&self) -> &Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>>;
-    fn default_input_concept_to_entry_input_mappings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>>;
-    fn entry_input_action_bindings(&self) -> &Option<Arc<Mutex<dyn EntryInputActionBindingsDataTrait>>>;
-    fn entry_input_action_bindings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntryInputActionBindingsDataTrait>>>;
-    fn user_configurable_action_maps(&self) -> &Vec<EditableActionMap>;
-    fn user_configurable_action_maps_mut(&mut self) -> &mut Vec<EditableActionMap>;
+    fn default_input_graph(&self) -> &Option<LockedTypeObject /* InputGraph */>;
+    fn default_input_graph_mut(&mut self) -> &mut Option<LockedTypeObject /* InputGraph */>;
+    fn default_input_action_maps(&self) -> &Option<LockedTypeObject /* InputActionMapsData */>;
+    fn default_input_action_maps_mut(&mut self) -> &mut Option<LockedTypeObject /* InputActionMapsData */>;
+    fn default_input_concept_to_entry_input_mappings(&self) -> &Option<LockedTypeObject /* InputConceptToEntryInputActionMappings */>;
+    fn default_input_concept_to_entry_input_mappings_mut(&mut self) -> &mut Option<LockedTypeObject /* InputConceptToEntryInputActionMappings */>;
+    fn entry_input_action_bindings(&self) -> &Option<LockedTypeObject /* EntryInputActionBindingsData */>;
+    fn entry_input_action_bindings_mut(&mut self) -> &mut Option<LockedTypeObject /* EntryInputActionBindingsData */>;
+    fn user_configurable_action_maps(&self) -> &Vec<BoxedTypeObject /* EditableActionMap */>;
+    fn user_configurable_action_maps_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EditableActionMap */>;
     fn default_exclusive_input_concepts(&self) -> &Vec<i32>;
     fn default_exclusive_input_concepts_mut(&mut self) -> &mut Vec<i32>;
     fn reverse_input_concept_exclusion(&self) -> &bool;
     fn reverse_input_concept_exclusion_mut(&mut self) -> &mut bool;
     fn input_curves_enabled(&self) -> &bool;
     fn input_curves_enabled_mut(&mut self) -> &mut bool;
-    fn input_settings(&self) -> &Vec<Option<Arc<Mutex<dyn BaseInputSettingsTrait>>>>;
-    fn input_settings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn BaseInputSettingsTrait>>>>;
+    fn input_settings(&self) -> &Vec<Option<LockedTypeObject /* BaseInputSettings */>>;
+    fn input_settings_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* BaseInputSettings */>>;
 }
 
 impl InputConfigurationAssetTrait for InputConfigurationAsset {
-    fn default_input_graph(&self) -> &Option<Arc<Mutex<dyn InputGraphTrait>>> {
+    fn default_input_graph(&self) -> &Option<LockedTypeObject /* InputGraph */> {
         &self.default_input_graph
     }
-    fn default_input_graph_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputGraphTrait>>> {
+    fn default_input_graph_mut(&mut self) -> &mut Option<LockedTypeObject /* InputGraph */> {
         &mut self.default_input_graph
     }
-    fn default_input_action_maps(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
+    fn default_input_action_maps(&self) -> &Option<LockedTypeObject /* InputActionMapsData */> {
         &self.default_input_action_maps
     }
-    fn default_input_action_maps_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
+    fn default_input_action_maps_mut(&mut self) -> &mut Option<LockedTypeObject /* InputActionMapsData */> {
         &mut self.default_input_action_maps
     }
-    fn default_input_concept_to_entry_input_mappings(&self) -> &Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>> {
+    fn default_input_concept_to_entry_input_mappings(&self) -> &Option<LockedTypeObject /* InputConceptToEntryInputActionMappings */> {
         &self.default_input_concept_to_entry_input_mappings
     }
-    fn default_input_concept_to_entry_input_mappings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputConceptToEntryInputActionMappingsTrait>>> {
+    fn default_input_concept_to_entry_input_mappings_mut(&mut self) -> &mut Option<LockedTypeObject /* InputConceptToEntryInputActionMappings */> {
         &mut self.default_input_concept_to_entry_input_mappings
     }
-    fn entry_input_action_bindings(&self) -> &Option<Arc<Mutex<dyn EntryInputActionBindingsDataTrait>>> {
+    fn entry_input_action_bindings(&self) -> &Option<LockedTypeObject /* EntryInputActionBindingsData */> {
         &self.entry_input_action_bindings
     }
-    fn entry_input_action_bindings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntryInputActionBindingsDataTrait>>> {
+    fn entry_input_action_bindings_mut(&mut self) -> &mut Option<LockedTypeObject /* EntryInputActionBindingsData */> {
         &mut self.entry_input_action_bindings
     }
-    fn user_configurable_action_maps(&self) -> &Vec<EditableActionMap> {
+    fn user_configurable_action_maps(&self) -> &Vec<BoxedTypeObject /* EditableActionMap */> {
         &self.user_configurable_action_maps
     }
-    fn user_configurable_action_maps_mut(&mut self) -> &mut Vec<EditableActionMap> {
+    fn user_configurable_action_maps_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EditableActionMap */> {
         &mut self.user_configurable_action_maps
     }
     fn default_exclusive_input_concepts(&self) -> &Vec<i32> {
@@ -2240,10 +2353,10 @@ impl InputConfigurationAssetTrait for InputConfigurationAsset {
     fn input_curves_enabled_mut(&mut self) -> &mut bool {
         &mut self.input_curves_enabled
     }
-    fn input_settings(&self) -> &Vec<Option<Arc<Mutex<dyn BaseInputSettingsTrait>>>> {
+    fn input_settings(&self) -> &Vec<Option<LockedTypeObject /* BaseInputSettings */>> {
         &self.input_settings
     }
-    fn input_settings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn BaseInputSettingsTrait>>>> {
+    fn input_settings_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* BaseInputSettings */>> {
         &mut self.input_settings
     }
 }
@@ -2262,64 +2375,76 @@ impl super::core::DataContainerTrait for InputConfigurationAsset {
 
 pub static INPUTCONFIGURATIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputConfigurationAsset",
+    name_hash: 1697774899,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(InputConfigurationAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputConfigurationAsset as Default>::default())),
+            create_boxed: || Box::new(<InputConfigurationAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DefaultInputGraph",
+                name_hash: 2400811860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputGraph",
                 rust_offset: offset_of!(InputConfigurationAsset, default_input_graph),
             },
             FieldInfoData {
                 name: "DefaultInputActionMaps",
+                name_hash: 2962384617,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputActionMapsData",
                 rust_offset: offset_of!(InputConfigurationAsset, default_input_action_maps),
             },
             FieldInfoData {
                 name: "DefaultInputConceptToEntryInputMappings",
+                name_hash: 1476074846,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputConceptToEntryInputActionMappings",
                 rust_offset: offset_of!(InputConfigurationAsset, default_input_concept_to_entry_input_mappings),
             },
             FieldInfoData {
                 name: "EntryInputActionBindings",
+                name_hash: 2571985003,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EntryInputActionBindingsData",
                 rust_offset: offset_of!(InputConfigurationAsset, entry_input_action_bindings),
             },
             FieldInfoData {
                 name: "UserConfigurableActionMaps",
+                name_hash: 3516645410,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EditableActionMap-Array",
                 rust_offset: offset_of!(InputConfigurationAsset, user_configurable_action_maps),
             },
             FieldInfoData {
                 name: "DefaultExclusiveInputConcepts",
+                name_hash: 3010993925,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(InputConfigurationAsset, default_exclusive_input_concepts),
             },
             FieldInfoData {
                 name: "ReverseInputConceptExclusion",
+                name_hash: 2502687183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputConfigurationAsset, reverse_input_concept_exclusion),
             },
             FieldInfoData {
                 name: "InputCurvesEnabled",
+                name_hash: 2151840626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputConfigurationAsset, input_curves_enabled),
             },
             FieldInfoData {
                 name: "InputSettings",
+                name_hash: 2963486998,
                 flags: MemberInfoFlags::new(144),
                 field_type: "BaseInputSettings-Array",
                 rust_offset: offset_of!(InputConfigurationAsset, input_settings),
@@ -2351,6 +2476,7 @@ impl TypeObject for InputConfigurationAsset {
 
 pub static INPUTCONFIGURATIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputConfigurationAsset-Array",
+    name_hash: 3386656903,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputConfigurationAsset"),
@@ -2359,17 +2485,18 @@ pub static INPUTCONFIGURATIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EditableActionMap {
     pub id: String,
-    pub action_map: Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>,
+    pub action_map: Option<LockedTypeObject /* InputActionMapsData */>,
 }
 
 pub trait EditableActionMapTrait: TypeObject {
     fn id(&self) -> &String;
     fn id_mut(&mut self) -> &mut String;
-    fn action_map(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
-    fn action_map_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>>;
+    fn action_map(&self) -> &Option<LockedTypeObject /* InputActionMapsData */>;
+    fn action_map_mut(&mut self) -> &mut Option<LockedTypeObject /* InputActionMapsData */>;
 }
 
 impl EditableActionMapTrait for EditableActionMap {
@@ -2379,31 +2506,35 @@ impl EditableActionMapTrait for EditableActionMap {
     fn id_mut(&mut self) -> &mut String {
         &mut self.id
     }
-    fn action_map(&self) -> &Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
+    fn action_map(&self) -> &Option<LockedTypeObject /* InputActionMapsData */> {
         &self.action_map
     }
-    fn action_map_mut(&mut self) -> &mut Option<Arc<Mutex<dyn InputActionMapsDataTrait>>> {
+    fn action_map_mut(&mut self) -> &mut Option<LockedTypeObject /* InputActionMapsData */> {
         &mut self.action_map
     }
 }
 
 pub static EDITABLEACTIONMAP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EditableActionMap",
+    name_hash: 788929265,
     flags: MemberInfoFlags::new(73),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EditableActionMap as Default>::default())),
+            create_boxed: || Box::new(<EditableActionMap as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EditableActionMap, id),
             },
             FieldInfoData {
                 name: "ActionMap",
+                name_hash: 3027251111,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputActionMapsData",
                 rust_offset: offset_of!(EditableActionMap, action_map),
@@ -2435,6 +2566,7 @@ impl TypeObject for EditableActionMap {
 
 pub static EDITABLEACTIONMAP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EditableActionMap-Array",
+    name_hash: 643268037,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("EditableActionMap"),
@@ -2443,12 +2575,13 @@ pub static EDITABLEACTIONMAP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputActionMapsData {
     pub _glacier_base: super::core::Asset,
     pub action_map_settings_scheme: i32,
     pub default_input_action_map: InputActionMapSlot,
-    pub input_action_maps: Vec<Option<Arc<Mutex<dyn InputActionMapDataTrait>>>>,
+    pub input_action_maps: Vec<Option<LockedTypeObject /* InputActionMapData */>>,
     pub identifier: u32,
 }
 
@@ -2457,8 +2590,8 @@ pub trait InputActionMapsDataTrait: super::core::AssetTrait {
     fn action_map_settings_scheme_mut(&mut self) -> &mut i32;
     fn default_input_action_map(&self) -> &InputActionMapSlot;
     fn default_input_action_map_mut(&mut self) -> &mut InputActionMapSlot;
-    fn input_action_maps(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionMapDataTrait>>>>;
-    fn input_action_maps_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionMapDataTrait>>>>;
+    fn input_action_maps(&self) -> &Vec<Option<LockedTypeObject /* InputActionMapData */>>;
+    fn input_action_maps_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputActionMapData */>>;
     fn identifier(&self) -> &u32;
     fn identifier_mut(&mut self) -> &mut u32;
 }
@@ -2476,10 +2609,10 @@ impl InputActionMapsDataTrait for InputActionMapsData {
     fn default_input_action_map_mut(&mut self) -> &mut InputActionMapSlot {
         &mut self.default_input_action_map
     }
-    fn input_action_maps(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionMapDataTrait>>>> {
+    fn input_action_maps(&self) -> &Vec<Option<LockedTypeObject /* InputActionMapData */>> {
         &self.input_action_maps
     }
-    fn input_action_maps_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionMapDataTrait>>>> {
+    fn input_action_maps_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputActionMapData */>> {
         &mut self.input_action_maps
     }
     fn identifier(&self) -> &u32 {
@@ -2504,34 +2637,41 @@ impl super::core::DataContainerTrait for InputActionMapsData {
 
 pub static INPUTACTIONMAPSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionMapsData",
+    name_hash: 2855741394,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(InputActionMapsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputActionMapsData as Default>::default())),
+            create_boxed: || Box::new(<InputActionMapsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ActionMapSettingsScheme",
+                name_hash: 3553311511,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(InputActionMapsData, action_map_settings_scheme),
             },
             FieldInfoData {
                 name: "DefaultInputActionMap",
+                name_hash: 1781726042,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputActionMapSlot",
                 rust_offset: offset_of!(InputActionMapsData, default_input_action_map),
             },
             FieldInfoData {
                 name: "InputActionMaps",
+                name_hash: 2094181090,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InputActionMapData-Array",
                 rust_offset: offset_of!(InputActionMapsData, input_action_maps),
             },
             FieldInfoData {
                 name: "Identifier",
+                name_hash: 3512790342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(InputActionMapsData, identifier),
@@ -2563,6 +2703,7 @@ impl TypeObject for InputActionMapsData {
 
 pub static INPUTACTIONMAPSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionMapsData-Array",
+    name_hash: 3918782310,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputActionMapsData"),
@@ -2571,18 +2712,19 @@ pub static INPUTACTIONMAPSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputActionMapData {
     pub _glacier_base: super::core::DataContainer,
-    pub actions: Vec<Option<Arc<Mutex<dyn InputActionsDataTrait>>>>,
+    pub actions: Vec<Option<LockedTypeObject /* InputActionsData */>>,
     pub platform_specific: InputActionMapPlatform,
     pub slot: InputActionMapSlot,
     pub copy_key_bindings_from: String,
 }
 
 pub trait InputActionMapDataTrait: super::core::DataContainerTrait {
-    fn actions(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionsDataTrait>>>>;
-    fn actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionsDataTrait>>>>;
+    fn actions(&self) -> &Vec<Option<LockedTypeObject /* InputActionsData */>>;
+    fn actions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputActionsData */>>;
     fn platform_specific(&self) -> &InputActionMapPlatform;
     fn platform_specific_mut(&mut self) -> &mut InputActionMapPlatform;
     fn slot(&self) -> &InputActionMapSlot;
@@ -2592,10 +2734,10 @@ pub trait InputActionMapDataTrait: super::core::DataContainerTrait {
 }
 
 impl InputActionMapDataTrait for InputActionMapData {
-    fn actions(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionsDataTrait>>>> {
+    fn actions(&self) -> &Vec<Option<LockedTypeObject /* InputActionsData */>> {
         &self.actions
     }
-    fn actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionsDataTrait>>>> {
+    fn actions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputActionsData */>> {
         &mut self.actions
     }
     fn platform_specific(&self) -> &InputActionMapPlatform {
@@ -2623,34 +2765,41 @@ impl super::core::DataContainerTrait for InputActionMapData {
 
 pub static INPUTACTIONMAPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionMapData",
+    name_hash: 2168300417,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(InputActionMapData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputActionMapData as Default>::default())),
+            create_boxed: || Box::new(<InputActionMapData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Actions",
+                name_hash: 373511656,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InputActionsData-Array",
                 rust_offset: offset_of!(InputActionMapData, actions),
             },
             FieldInfoData {
                 name: "PlatformSpecific",
+                name_hash: 818960378,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputActionMapPlatform",
                 rust_offset: offset_of!(InputActionMapData, platform_specific),
             },
             FieldInfoData {
                 name: "Slot",
+                name_hash: 2089426785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputActionMapSlot",
                 rust_offset: offset_of!(InputActionMapData, slot),
             },
             FieldInfoData {
                 name: "CopyKeyBindingsFrom",
+                name_hash: 2847317651,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(InputActionMapData, copy_key_bindings_from),
@@ -2682,6 +2831,7 @@ impl TypeObject for InputActionMapData {
 
 pub static INPUTACTIONMAPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionMapData-Array",
+    name_hash: 2905849141,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputActionMapData"),
@@ -2690,14 +2840,15 @@ pub static INPUTACTIONMAPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputActionsData {
     pub _glacier_base: super::core::DataContainer,
     pub name_sid: String,
     pub concept_identifier: i32,
     pub copy_key_binding_from: i32,
     pub hide_in_key_bindings: bool,
-    pub input_actions: Vec<Option<Arc<Mutex<dyn InputActionDataTrait>>>>,
+    pub input_actions: Vec<Option<LockedTypeObject /* InputActionData */>>,
 }
 
 pub trait InputActionsDataTrait: super::core::DataContainerTrait {
@@ -2709,8 +2860,8 @@ pub trait InputActionsDataTrait: super::core::DataContainerTrait {
     fn copy_key_binding_from_mut(&mut self) -> &mut i32;
     fn hide_in_key_bindings(&self) -> &bool;
     fn hide_in_key_bindings_mut(&mut self) -> &mut bool;
-    fn input_actions(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionDataTrait>>>>;
-    fn input_actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionDataTrait>>>>;
+    fn input_actions(&self) -> &Vec<Option<LockedTypeObject /* InputActionData */>>;
+    fn input_actions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputActionData */>>;
 }
 
 impl InputActionsDataTrait for InputActionsData {
@@ -2738,10 +2889,10 @@ impl InputActionsDataTrait for InputActionsData {
     fn hide_in_key_bindings_mut(&mut self) -> &mut bool {
         &mut self.hide_in_key_bindings
     }
-    fn input_actions(&self) -> &Vec<Option<Arc<Mutex<dyn InputActionDataTrait>>>> {
+    fn input_actions(&self) -> &Vec<Option<LockedTypeObject /* InputActionData */>> {
         &self.input_actions
     }
-    fn input_actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputActionDataTrait>>>> {
+    fn input_actions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputActionData */>> {
         &mut self.input_actions
     }
 }
@@ -2751,40 +2902,48 @@ impl super::core::DataContainerTrait for InputActionsData {
 
 pub static INPUTACTIONSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionsData",
+    name_hash: 455864974,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(InputActionsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputActionsData as Default>::default())),
+            create_boxed: || Box::new(<InputActionsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "NameSid",
+                name_hash: 3153745340,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(InputActionsData, name_sid),
             },
             FieldInfoData {
                 name: "ConceptIdentifier",
+                name_hash: 1320965734,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(InputActionsData, concept_identifier),
             },
             FieldInfoData {
                 name: "CopyKeyBindingFrom",
+                name_hash: 1909891296,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(InputActionsData, copy_key_binding_from),
             },
             FieldInfoData {
                 name: "HideInKeyBindings",
+                name_hash: 3898345319,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputActionsData, hide_in_key_bindings),
             },
             FieldInfoData {
                 name: "InputActions",
+                name_hash: 3504680894,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InputActionData-Array",
                 rust_offset: offset_of!(InputActionsData, input_actions),
@@ -2816,6 +2975,7 @@ impl TypeObject for InputActionsData {
 
 pub static INPUTACTIONSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionsData-Array",
+    name_hash: 4227972026,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputActionsData"),
@@ -2824,7 +2984,8 @@ pub static INPUTACTIONSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MessageInputActionData {
     pub _glacier_base: InputActionData,
     pub command: i32,
@@ -2864,16 +3025,20 @@ impl super::core::DataContainerTrait for MessageInputActionData {
 
 pub static MESSAGEINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MessageInputActionData",
+    name_hash: 240570550,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(INPUTACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MessageInputActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MessageInputActionData as Default>::default())),
+            create_boxed: || Box::new(<MessageInputActionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Command",
+                name_hash: 3657619234,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(MessageInputActionData, command),
@@ -2905,6 +3070,7 @@ impl TypeObject for MessageInputActionData {
 
 pub static MESSAGEINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MessageInputActionData-Array",
+    name_hash: 3348768002,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("MessageInputActionData"),
@@ -2913,7 +3079,8 @@ pub static MESSAGEINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MouseInputActionData {
     pub _glacier_base: AxesInputActionData,
     pub button: InputDeviceMouseButtons,
@@ -2995,34 +3162,41 @@ impl super::core::DataContainerTrait for MouseInputActionData {
 
 pub static MOUSEINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MouseInputActionData",
+    name_hash: 3365308316,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AXESINPUTACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MouseInputActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MouseInputActionData as Default>::default())),
+            create_boxed: || Box::new(<MouseInputActionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Button",
+                name_hash: 2686182099,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputDeviceMouseButtons",
                 rust_offset: offset_of!(MouseInputActionData, button),
             },
             FieldInfoData {
                 name: "SimulateJoystickAxis",
+                name_hash: 3307710434,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MouseInputActionData, simulate_joystick_axis),
             },
             FieldInfoData {
                 name: "RememberExcessInput",
+                name_hash: 1274294351,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MouseInputActionData, remember_excess_input),
             },
             FieldInfoData {
                 name: "ScaleScrollWheelAxisInput",
+                name_hash: 809122294,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MouseInputActionData, scale_scroll_wheel_axis_input),
@@ -3054,6 +3228,7 @@ impl TypeObject for MouseInputActionData {
 
 pub static MOUSEINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MouseInputActionData-Array",
+    name_hash: 1814994856,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("MouseInputActionData"),
@@ -3062,7 +3237,8 @@ pub static MOUSEINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct KeyboardInputActionData {
     pub _glacier_base: InputActionData,
     pub key: InputDeviceKeys,
@@ -3102,16 +3278,20 @@ impl super::core::DataContainerTrait for KeyboardInputActionData {
 
 pub static KEYBOARDINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "KeyboardInputActionData",
+    name_hash: 384997296,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(INPUTACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(KeyboardInputActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<KeyboardInputActionData as Default>::default())),
+            create_boxed: || Box::new(<KeyboardInputActionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Key",
+                name_hash: 193457490,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputDeviceKeys",
                 rust_offset: offset_of!(KeyboardInputActionData, key),
@@ -3143,6 +3323,7 @@ impl TypeObject for KeyboardInputActionData {
 
 pub static KEYBOARDINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "KeyboardInputActionData-Array",
+    name_hash: 1647772932,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("KeyboardInputActionData"),
@@ -3151,7 +3332,8 @@ pub static KEYBOARDINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WheelInputActionData {
     pub _glacier_base: AxesInputActionData,
     pub button: InputDeviceWheelButtons,
@@ -3206,16 +3388,20 @@ impl super::core::DataContainerTrait for WheelInputActionData {
 
 pub static WHEELINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WheelInputActionData",
+    name_hash: 2043777454,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AXESINPUTACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WheelInputActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WheelInputActionData as Default>::default())),
+            create_boxed: || Box::new(<WheelInputActionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Button",
+                name_hash: 2686182099,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputDeviceWheelButtons",
                 rust_offset: offset_of!(WheelInputActionData, button),
@@ -3247,6 +3433,7 @@ impl TypeObject for WheelInputActionData {
 
 pub static WHEELINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WheelInputActionData-Array",
+    name_hash: 2169387546,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("WheelInputActionData"),
@@ -3255,7 +3442,8 @@ pub static WHEELINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VrInputActionData {
     pub _glacier_base: AxesInputActionData,
 }
@@ -3301,12 +3489,15 @@ impl super::core::DataContainerTrait for VrInputActionData {
 
 pub static VRINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VrInputActionData",
+    name_hash: 14002297,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AXESINPUTACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VrInputActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VrInputActionData as Default>::default())),
+            create_boxed: || Box::new(<VrInputActionData as Default>::default()),
         },
         fields: &[
         ],
@@ -3336,6 +3527,7 @@ impl TypeObject for VrInputActionData {
 
 pub static VRINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VrInputActionData-Array",
+    name_hash: 1786414925,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("VrInputActionData"),
@@ -3344,7 +3536,8 @@ pub static VRINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MotionControllerInputActionData {
     pub _glacier_base: AxesInputActionData,
     pub button: InputDeviceMotionControllerButtons,
@@ -3399,16 +3592,20 @@ impl super::core::DataContainerTrait for MotionControllerInputActionData {
 
 pub static MOTIONCONTROLLERINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MotionControllerInputActionData",
+    name_hash: 3423968671,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AXESINPUTACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MotionControllerInputActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MotionControllerInputActionData as Default>::default())),
+            create_boxed: || Box::new(<MotionControllerInputActionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Button",
+                name_hash: 2686182099,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputDeviceMotionControllerButtons",
                 rust_offset: offset_of!(MotionControllerInputActionData, button),
@@ -3440,6 +3637,7 @@ impl TypeObject for MotionControllerInputActionData {
 
 pub static MOTIONCONTROLLERINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MotionControllerInputActionData-Array",
+    name_hash: 2854847019,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("MotionControllerInputActionData"),
@@ -3448,7 +3646,8 @@ pub static MOTIONCONTROLLERINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct JoystickInputActionData {
     pub _glacier_base: AxesInputActionData,
     pub use_square_input: bool,
@@ -3512,22 +3711,27 @@ impl super::core::DataContainerTrait for JoystickInputActionData {
 
 pub static JOYSTICKINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JoystickInputActionData",
+    name_hash: 1855930471,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AXESINPUTACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(JoystickInputActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<JoystickInputActionData as Default>::default())),
+            create_boxed: || Box::new(<JoystickInputActionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "UseSquareInput",
+                name_hash: 3247391921,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(JoystickInputActionData, use_square_input),
             },
             FieldInfoData {
                 name: "Button",
+                name_hash: 2686182099,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputDevicePadButtons",
                 rust_offset: offset_of!(JoystickInputActionData, button),
@@ -3559,6 +3763,7 @@ impl TypeObject for JoystickInputActionData {
 
 pub static JOYSTICKINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JoystickInputActionData-Array",
+    name_hash: 2280645203,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("JoystickInputActionData"),
@@ -3567,7 +3772,8 @@ pub static JOYSTICKINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PadInputActionData {
     pub _glacier_base: AxesInputActionData,
     pub use_square_input: bool,
@@ -3667,46 +3873,55 @@ impl super::core::DataContainerTrait for PadInputActionData {
 
 pub static PADINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PadInputActionData",
+    name_hash: 3036489704,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AXESINPUTACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PadInputActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PadInputActionData as Default>::default())),
+            create_boxed: || Box::new(<PadInputActionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "UseSquareInput",
+                name_hash: 3247391921,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PadInputActionData, use_square_input),
             },
             FieldInfoData {
                 name: "IgnoreSuppression",
+                name_hash: 4247410852,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PadInputActionData, ignore_suppression),
             },
             FieldInfoData {
                 name: "Button",
+                name_hash: 2686182099,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputDevicePadButtons",
                 rust_offset: offset_of!(PadInputActionData, button),
             },
             FieldInfoData {
                 name: "PS3AlternativeButton",
+                name_hash: 1772338028,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputDevicePadButtons",
                 rust_offset: offset_of!(PadInputActionData, p_s3_alternative_button),
             },
             FieldInfoData {
                 name: "PSVitaButton",
+                name_hash: 4109009722,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputDevicePadButtons",
                 rust_offset: offset_of!(PadInputActionData, p_s_vita_button),
             },
             FieldInfoData {
                 name: "PSVitaAlternativeButton",
+                name_hash: 3998615125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputDevicePadButtons",
                 rust_offset: offset_of!(PadInputActionData, p_s_vita_alternative_button),
@@ -3738,6 +3953,7 @@ impl TypeObject for PadInputActionData {
 
 pub static PADINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PadInputActionData-Array",
+    name_hash: 1252350428,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("PadInputActionData"),
@@ -3746,7 +3962,8 @@ pub static PADINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AxesInputActionData {
     pub _glacier_base: InputActionData,
     pub axis: InputDeviceAxes,
@@ -3795,22 +4012,27 @@ impl super::core::DataContainerTrait for AxesInputActionData {
 
 pub static AXESINPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AxesInputActionData",
+    name_hash: 1156109970,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(INPUTACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AxesInputActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AxesInputActionData as Default>::default())),
+            create_boxed: || Box::new(<AxesInputActionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Axis",
+                name_hash: 2088662246,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputDeviceAxes",
                 rust_offset: offset_of!(AxesInputActionData, axis),
             },
             FieldInfoData {
                 name: "NormalizeInput",
+                name_hash: 4067559830,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AxesInputActionData, normalize_input),
@@ -3842,6 +4064,7 @@ impl TypeObject for AxesInputActionData {
 
 pub static AXESINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AxesInputActionData-Array",
+    name_hash: 3433913766,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("AxesInputActionData"),
@@ -3850,7 +4073,8 @@ pub static AXESINPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputActionData {
     pub _glacier_base: super::core::DataContainer,
     pub is_analog: bool,
@@ -3884,22 +4108,27 @@ impl super::core::DataContainerTrait for InputActionData {
 
 pub static INPUTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionData",
+    name_hash: 2094428509,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(InputActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputActionData as Default>::default())),
+            create_boxed: || Box::new(<InputActionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IsAnalog",
+                name_hash: 998391125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputActionData, is_analog),
             },
             FieldInfoData {
                 name: "NegateValue",
+                name_hash: 928334002,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputActionData, negate_value),
@@ -3931,6 +4160,7 @@ impl TypeObject for InputActionData {
 
 pub static INPUTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionData-Array",
+    name_hash: 1135455593,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputActionData"),
@@ -3990,6 +4220,7 @@ pub enum InputActionMapSlot {
 
 pub static INPUTACTIONMAPSLOT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionMapSlot",
+    name_hash: 2167838997,
     flags: MemberInfoFlags::new(49429),
     module: "InputShared",
     data: TypeInfoData::Enum,
@@ -4018,6 +4249,7 @@ impl TypeObject for InputActionMapSlot {
 
 pub static INPUTACTIONMAPSLOT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionMapSlot-Array",
+    name_hash: 2973845665,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputActionMapSlot"),
@@ -4040,6 +4272,7 @@ pub enum InputActionMapPlatform {
 
 pub static INPUTACTIONMAPPLATFORM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionMapPlatform",
+    name_hash: 1987132334,
     flags: MemberInfoFlags::new(49429),
     module: "InputShared",
     data: TypeInfoData::Enum,
@@ -4068,6 +4301,7 @@ impl TypeObject for InputActionMapPlatform {
 
 pub static INPUTACTIONMAPPLATFORM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputActionMapPlatform-Array",
+    name_hash: 1703240730,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("InputActionMapPlatform"),
@@ -4076,11 +4310,12 @@ pub static INPUTACTIONMAPPLATFORM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntryInputActionBindingsData {
     pub _glacier_base: super::core::Asset,
     pub bound_actions: Vec<i32>,
-    pub entry_input_action_index_pairs: Vec<EntryInputActionIndexPair>,
+    pub entry_input_action_index_pairs: Vec<BoxedTypeObject /* EntryInputActionIndexPair */>,
     pub num_networked_analog_inputs: u32,
     pub num_analog_inputs: u32,
     pub first_digital: u32,
@@ -4093,8 +4328,8 @@ pub struct EntryInputActionBindingsData {
 pub trait EntryInputActionBindingsDataTrait: super::core::AssetTrait {
     fn bound_actions(&self) -> &Vec<i32>;
     fn bound_actions_mut(&mut self) -> &mut Vec<i32>;
-    fn entry_input_action_index_pairs(&self) -> &Vec<EntryInputActionIndexPair>;
-    fn entry_input_action_index_pairs_mut(&mut self) -> &mut Vec<EntryInputActionIndexPair>;
+    fn entry_input_action_index_pairs(&self) -> &Vec<BoxedTypeObject /* EntryInputActionIndexPair */>;
+    fn entry_input_action_index_pairs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EntryInputActionIndexPair */>;
     fn num_networked_analog_inputs(&self) -> &u32;
     fn num_networked_analog_inputs_mut(&mut self) -> &mut u32;
     fn num_analog_inputs(&self) -> &u32;
@@ -4118,10 +4353,10 @@ impl EntryInputActionBindingsDataTrait for EntryInputActionBindingsData {
     fn bound_actions_mut(&mut self) -> &mut Vec<i32> {
         &mut self.bound_actions
     }
-    fn entry_input_action_index_pairs(&self) -> &Vec<EntryInputActionIndexPair> {
+    fn entry_input_action_index_pairs(&self) -> &Vec<BoxedTypeObject /* EntryInputActionIndexPair */> {
         &self.entry_input_action_index_pairs
     }
-    fn entry_input_action_index_pairs_mut(&mut self) -> &mut Vec<EntryInputActionIndexPair> {
+    fn entry_input_action_index_pairs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EntryInputActionIndexPair */> {
         &mut self.entry_input_action_index_pairs
     }
     fn num_networked_analog_inputs(&self) -> &u32 {
@@ -4182,64 +4417,76 @@ impl super::core::DataContainerTrait for EntryInputActionBindingsData {
 
 pub static ENTRYINPUTACTIONBINDINGSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryInputActionBindingsData",
+    name_hash: 1214977947,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EntryInputActionBindingsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntryInputActionBindingsData as Default>::default())),
+            create_boxed: || Box::new(<EntryInputActionBindingsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BoundActions",
+                name_hash: 386120634,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(EntryInputActionBindingsData, bound_actions),
             },
             FieldInfoData {
                 name: "EntryInputActionIndexPairs",
+                name_hash: 1240139870,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EntryInputActionIndexPair-Array",
                 rust_offset: offset_of!(EntryInputActionBindingsData, entry_input_action_index_pairs),
             },
             FieldInfoData {
                 name: "NumNetworkedAnalogInputs",
+                name_hash: 1667830275,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntryInputActionBindingsData, num_networked_analog_inputs),
             },
             FieldInfoData {
                 name: "NumAnalogInputs",
+                name_hash: 2770879836,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntryInputActionBindingsData, num_analog_inputs),
             },
             FieldInfoData {
                 name: "FirstDigital",
+                name_hash: 3672691429,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntryInputActionBindingsData, first_digital),
             },
             FieldInfoData {
                 name: "NumNetworkedDigitalInputs",
+                name_hash: 1267274291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntryInputActionBindingsData, num_networked_digital_inputs),
             },
             FieldInfoData {
                 name: "NumDigitalInputs",
+                name_hash: 1052654156,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntryInputActionBindingsData, num_digital_inputs),
             },
             FieldInfoData {
                 name: "NumInputs",
+                name_hash: 338881814,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntryInputActionBindingsData, num_inputs),
             },
             FieldInfoData {
                 name: "SignedAnalogInputs",
+                name_hash: 1575694040,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(EntryInputActionBindingsData, signed_analog_inputs),
@@ -4271,6 +4518,7 @@ impl TypeObject for EntryInputActionBindingsData {
 
 pub static ENTRYINPUTACTIONBINDINGSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryInputActionBindingsData-Array",
+    name_hash: 1911737903,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("EntryInputActionBindingsData"),
@@ -4279,7 +4527,8 @@ pub static ENTRYINPUTACTIONBINDINGSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntryInputActionBinding {
     pub action: i32,
     pub alias: i32,
@@ -4327,33 +4576,39 @@ impl EntryInputActionBindingTrait for EntryInputActionBinding {
 
 pub static ENTRYINPUTACTIONBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryInputActionBinding",
+    name_hash: 3331702040,
     flags: MemberInfoFlags::new(36937),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntryInputActionBinding as Default>::default())),
+            create_boxed: || Box::new(<EntryInputActionBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Action",
+                name_hash: 2484178491,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EntryInputActionBinding, action),
             },
             FieldInfoData {
                 name: "Alias",
+                name_hash: 205659027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EntryInputActionBinding, alias),
             },
             FieldInfoData {
                 name: "ActionType",
+                name_hash: 1114728387,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EntryInputActionType",
                 rust_offset: offset_of!(EntryInputActionBinding, action_type),
             },
             FieldInfoData {
                 name: "Networked",
+                name_hash: 1516563994,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EntryInputActionBinding, networked),
@@ -4385,6 +4640,7 @@ impl TypeObject for EntryInputActionBinding {
 
 pub static ENTRYINPUTACTIONBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryInputActionBinding-Array",
+    name_hash: 3621799724,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("EntryInputActionBinding"),
@@ -4405,6 +4661,7 @@ pub enum EntryInputActionType {
 
 pub static ENTRYINPUTACTIONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryInputActionType",
+    name_hash: 658107297,
     flags: MemberInfoFlags::new(49429),
     module: "InputShared",
     data: TypeInfoData::Enum,
@@ -4433,6 +4690,7 @@ impl TypeObject for EntryInputActionType {
 
 pub static ENTRYINPUTACTIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryInputActionType-Array",
+    name_hash: 1827788309,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("EntryInputActionType"),
@@ -4441,7 +4699,8 @@ pub static ENTRYINPUTACTIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntryInputActionIndexPair {
     pub key: i32,
     pub value: u32,
@@ -4471,21 +4730,25 @@ impl EntryInputActionIndexPairTrait for EntryInputActionIndexPair {
 
 pub static ENTRYINPUTACTIONINDEXPAIR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryInputActionIndexPair",
+    name_hash: 2640590477,
     flags: MemberInfoFlags::new(36937),
     module: "InputShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntryInputActionIndexPair as Default>::default())),
+            create_boxed: || Box::new(<EntryInputActionIndexPair as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Key",
+                name_hash: 193457490,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EntryInputActionIndexPair, key),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntryInputActionIndexPair, value),
@@ -4517,6 +4780,7 @@ impl TypeObject for EntryInputActionIndexPair {
 
 pub static ENTRYINPUTACTIONINDEXPAIR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryInputActionIndexPair-Array",
+    name_hash: 3799751225,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("EntryInputActionIndexPair"),
@@ -4525,7 +4789,8 @@ pub static ENTRYINPUTACTIONINDEXPAIR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BaseInputSettings {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -4541,12 +4806,15 @@ impl super::core::DataContainerTrait for BaseInputSettings {
 
 pub static BASEINPUTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseInputSettings",
+    name_hash: 2466583971,
     flags: MemberInfoFlags::new(101),
     module: "InputShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(BaseInputSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BaseInputSettings as Default>::default())),
+            create_boxed: || Box::new(<BaseInputSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -4576,6 +4844,7 @@ impl TypeObject for BaseInputSettings {
 
 pub static BASEINPUTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseInputSettings-Array",
+    name_hash: 3979147543,
     flags: MemberInfoFlags::new(145),
     module: "InputShared",
     data: TypeInfoData::Array("BaseInputSettings"),

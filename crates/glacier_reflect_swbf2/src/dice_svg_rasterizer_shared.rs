@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -13,7 +14,8 @@ pub(crate) fn register_dice_svg_rasterizer_shared_types(registry: &mut TypeRegis
     registry.register_type(SVGIMAGE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SvgImage {
     pub _glacier_base: super::core::Asset,
     pub width: f32,
@@ -65,28 +67,34 @@ impl super::core::DataContainerTrait for SvgImage {
 
 pub static SVGIMAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SvgImage",
+    name_hash: 154131648,
     flags: MemberInfoFlags::new(101),
     module: "DiceSvgRasterizerShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(SvgImage, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SvgImage as Default>::default())),
+            create_boxed: || Box::new(<SvgImage as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Width",
+                name_hash: 226981187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SvgImage, width),
             },
             FieldInfoData {
                 name: "Height",
+                name_hash: 3054065626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SvgImage, height),
             },
             FieldInfoData {
                 name: "Resource",
+                name_hash: 74513935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(SvgImage, resource),
@@ -118,6 +126,7 @@ impl TypeObject for SvgImage {
 
 pub static SVGIMAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SvgImage-Array",
+    name_hash: 632623988,
     flags: MemberInfoFlags::new(145),
     module: "DiceSvgRasterizerShared",
     data: TypeInfoData::Array("SvgImage"),

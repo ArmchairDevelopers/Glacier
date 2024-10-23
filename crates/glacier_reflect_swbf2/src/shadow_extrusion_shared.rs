@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -25,7 +26,8 @@ pub(crate) fn register_shadow_extrusion_shared_types(registry: &mut TypeRegistry
     registry.register_type(SHADOWEXTRUSIONOBJECTINSTANCE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowExtrusionLevelSettings {
     pub _glacier_base: super::entity::SubWorldDataComponent,
     pub dynamic_light_direction: bool,
@@ -80,34 +82,41 @@ impl super::core::DataContainerTrait for ShadowExtrusionLevelSettings {
 
 pub static SHADOWEXTRUSIONLEVELSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionLevelSettings",
+    name_hash: 4044125797,
     flags: MemberInfoFlags::new(101),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SUBWORLDDATACOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ShadowExtrusionLevelSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowExtrusionLevelSettings as Default>::default())),
+            create_boxed: || Box::new(<ShadowExtrusionLevelSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DynamicLightDirection",
+                name_hash: 450807051,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ShadowExtrusionLevelSettings, dynamic_light_direction),
             },
             FieldInfoData {
                 name: "AllowExtrusionBackFaceHit",
+                name_hash: 1619593110,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ShadowExtrusionLevelSettings, allow_extrusion_back_face_hit),
             },
             FieldInfoData {
                 name: "AllowFullOccludedBackFaceHit",
+                name_hash: 4052047139,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ShadowExtrusionLevelSettings, allow_full_occluded_back_face_hit),
             },
             FieldInfoData {
                 name: "AdditionalExtrusionLength",
+                name_hash: 402302901,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ShadowExtrusionLevelSettings, additional_extrusion_length),
@@ -139,6 +148,7 @@ impl TypeObject for ShadowExtrusionLevelSettings {
 
 pub static SHADOWEXTRUSIONLEVELSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionLevelSettings-Array",
+    name_hash: 2537643857,
     flags: MemberInfoFlags::new(145),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Array("ShadowExtrusionLevelSettings"),
@@ -147,7 +157,8 @@ pub static SHADOWEXTRUSIONLEVELSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowExtrusionLightDirectionEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub light_direction: super::core::Vec3,
@@ -190,16 +201,20 @@ impl super::core::DataContainerTrait for ShadowExtrusionLightDirectionEntityData
 
 pub static SHADOWEXTRUSIONLIGHTDIRECTIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionLightDirectionEntityData",
+    name_hash: 2951269126,
     flags: MemberInfoFlags::new(101),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ShadowExtrusionLightDirectionEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowExtrusionLightDirectionEntityData as Default>::default())),
+            create_boxed: || Box::new(<ShadowExtrusionLightDirectionEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LightDirection",
+                name_hash: 1907672094,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ShadowExtrusionLightDirectionEntityData, light_direction),
@@ -231,6 +246,7 @@ impl TypeObject for ShadowExtrusionLightDirectionEntityData {
 
 pub static SHADOWEXTRUSIONLIGHTDIRECTIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionLightDirectionEntityData-Array",
+    name_hash: 2342492210,
     flags: MemberInfoFlags::new(145),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Array("ShadowExtrusionLightDirectionEntityData"),
@@ -239,22 +255,23 @@ pub static SHADOWEXTRUSIONLIGHTDIRECTIONENTITYDATA_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowExtrusionLevelDataEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub extrusion_directions: Vec<super::core::Vec3>,
+    pub extrusion_directions: Vec<BoxedTypeObject /* super::core::Vec3 */>,
 }
 
 pub trait ShadowExtrusionLevelDataEntityDataTrait: super::entity::EntityDataTrait {
-    fn extrusion_directions(&self) -> &Vec<super::core::Vec3>;
-    fn extrusion_directions_mut(&mut self) -> &mut Vec<super::core::Vec3>;
+    fn extrusion_directions(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */>;
+    fn extrusion_directions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */>;
 }
 
 impl ShadowExtrusionLevelDataEntityDataTrait for ShadowExtrusionLevelDataEntityData {
-    fn extrusion_directions(&self) -> &Vec<super::core::Vec3> {
+    fn extrusion_directions(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &self.extrusion_directions
     }
-    fn extrusion_directions_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn extrusion_directions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &mut self.extrusion_directions
     }
 }
@@ -282,16 +299,20 @@ impl super::core::DataContainerTrait for ShadowExtrusionLevelDataEntityData {
 
 pub static SHADOWEXTRUSIONLEVELDATAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionLevelDataEntityData",
+    name_hash: 3603626363,
     flags: MemberInfoFlags::new(101),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ShadowExtrusionLevelDataEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowExtrusionLevelDataEntityData as Default>::default())),
+            create_boxed: || Box::new(<ShadowExtrusionLevelDataEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExtrusionDirections",
+                name_hash: 299643782,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec3-Array",
                 rust_offset: offset_of!(ShadowExtrusionLevelDataEntityData, extrusion_directions),
@@ -323,6 +344,7 @@ impl TypeObject for ShadowExtrusionLevelDataEntityData {
 
 pub static SHADOWEXTRUSIONLEVELDATAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionLevelDataEntityData-Array",
+    name_hash: 3944010063,
     flags: MemberInfoFlags::new(145),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Array("ShadowExtrusionLevelDataEntityData"),
@@ -331,25 +353,26 @@ pub static SHADOWEXTRUSIONLEVELDATAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowExtrusionDataEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub extrusion_data: Option<Arc<Mutex<dyn ShadowExtrusionAssetTrait>>>,
+    pub extrusion_data: Option<LockedTypeObject /* ShadowExtrusionAsset */>,
     pub realm: super::core::Realm,
 }
 
 pub trait ShadowExtrusionDataEntityDataTrait: super::entity::EntityDataTrait {
-    fn extrusion_data(&self) -> &Option<Arc<Mutex<dyn ShadowExtrusionAssetTrait>>>;
-    fn extrusion_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ShadowExtrusionAssetTrait>>>;
+    fn extrusion_data(&self) -> &Option<LockedTypeObject /* ShadowExtrusionAsset */>;
+    fn extrusion_data_mut(&mut self) -> &mut Option<LockedTypeObject /* ShadowExtrusionAsset */>;
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
 }
 
 impl ShadowExtrusionDataEntityDataTrait for ShadowExtrusionDataEntityData {
-    fn extrusion_data(&self) -> &Option<Arc<Mutex<dyn ShadowExtrusionAssetTrait>>> {
+    fn extrusion_data(&self) -> &Option<LockedTypeObject /* ShadowExtrusionAsset */> {
         &self.extrusion_data
     }
-    fn extrusion_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ShadowExtrusionAssetTrait>>> {
+    fn extrusion_data_mut(&mut self) -> &mut Option<LockedTypeObject /* ShadowExtrusionAsset */> {
         &mut self.extrusion_data
     }
     fn realm(&self) -> &super::core::Realm {
@@ -383,22 +406,27 @@ impl super::core::DataContainerTrait for ShadowExtrusionDataEntityData {
 
 pub static SHADOWEXTRUSIONDATAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionDataEntityData",
+    name_hash: 1823279341,
     flags: MemberInfoFlags::new(101),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ShadowExtrusionDataEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowExtrusionDataEntityData as Default>::default())),
+            create_boxed: || Box::new(<ShadowExtrusionDataEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExtrusionData",
+                name_hash: 1406519104,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShadowExtrusionAsset",
                 rust_offset: offset_of!(ShadowExtrusionDataEntityData, extrusion_data),
             },
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(ShadowExtrusionDataEntityData, realm),
@@ -430,6 +458,7 @@ impl TypeObject for ShadowExtrusionDataEntityData {
 
 pub static SHADOWEXTRUSIONDATAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionDataEntityData-Array",
+    name_hash: 3240439257,
     flags: MemberInfoFlags::new(145),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Array("ShadowExtrusionDataEntityData"),
@@ -438,22 +467,23 @@ pub static SHADOWEXTRUSIONDATAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowExtrusionAsset {
     pub _glacier_base: super::core::Asset,
-    pub extrusion_data: Option<Arc<Mutex<dyn ShadowExtrusionObjectDataTrait>>>,
+    pub extrusion_data: Option<LockedTypeObject /* ShadowExtrusionObjectData */>,
 }
 
 pub trait ShadowExtrusionAssetTrait: super::core::AssetTrait {
-    fn extrusion_data(&self) -> &Option<Arc<Mutex<dyn ShadowExtrusionObjectDataTrait>>>;
-    fn extrusion_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ShadowExtrusionObjectDataTrait>>>;
+    fn extrusion_data(&self) -> &Option<LockedTypeObject /* ShadowExtrusionObjectData */>;
+    fn extrusion_data_mut(&mut self) -> &mut Option<LockedTypeObject /* ShadowExtrusionObjectData */>;
 }
 
 impl ShadowExtrusionAssetTrait for ShadowExtrusionAsset {
-    fn extrusion_data(&self) -> &Option<Arc<Mutex<dyn ShadowExtrusionObjectDataTrait>>> {
+    fn extrusion_data(&self) -> &Option<LockedTypeObject /* ShadowExtrusionObjectData */> {
         &self.extrusion_data
     }
-    fn extrusion_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ShadowExtrusionObjectDataTrait>>> {
+    fn extrusion_data_mut(&mut self) -> &mut Option<LockedTypeObject /* ShadowExtrusionObjectData */> {
         &mut self.extrusion_data
     }
 }
@@ -472,16 +502,20 @@ impl super::core::DataContainerTrait for ShadowExtrusionAsset {
 
 pub static SHADOWEXTRUSIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionAsset",
+    name_hash: 4016093478,
     flags: MemberInfoFlags::new(101),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(ShadowExtrusionAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowExtrusionAsset as Default>::default())),
+            create_boxed: || Box::new(<ShadowExtrusionAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExtrusionData",
+                name_hash: 1406519104,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShadowExtrusionObjectData",
                 rust_offset: offset_of!(ShadowExtrusionAsset, extrusion_data),
@@ -513,6 +547,7 @@ impl TypeObject for ShadowExtrusionAsset {
 
 pub static SHADOWEXTRUSIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionAsset-Array",
+    name_hash: 4294813074,
     flags: MemberInfoFlags::new(145),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Array("ShadowExtrusionAsset"),
@@ -521,22 +556,23 @@ pub static SHADOWEXTRUSIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowExtrusionObjectData {
     pub _glacier_base: super::entity::GameObjectData,
-    pub object_extrusions: Vec<ShadowExtrusionObjectInstance>,
+    pub object_extrusions: Vec<BoxedTypeObject /* ShadowExtrusionObjectInstance */>,
 }
 
 pub trait ShadowExtrusionObjectDataTrait: super::entity::GameObjectDataTrait {
-    fn object_extrusions(&self) -> &Vec<ShadowExtrusionObjectInstance>;
-    fn object_extrusions_mut(&mut self) -> &mut Vec<ShadowExtrusionObjectInstance>;
+    fn object_extrusions(&self) -> &Vec<BoxedTypeObject /* ShadowExtrusionObjectInstance */>;
+    fn object_extrusions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShadowExtrusionObjectInstance */>;
 }
 
 impl ShadowExtrusionObjectDataTrait for ShadowExtrusionObjectData {
-    fn object_extrusions(&self) -> &Vec<ShadowExtrusionObjectInstance> {
+    fn object_extrusions(&self) -> &Vec<BoxedTypeObject /* ShadowExtrusionObjectInstance */> {
         &self.object_extrusions
     }
-    fn object_extrusions_mut(&mut self) -> &mut Vec<ShadowExtrusionObjectInstance> {
+    fn object_extrusions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShadowExtrusionObjectInstance */> {
         &mut self.object_extrusions
     }
 }
@@ -561,16 +597,20 @@ impl super::core::DataContainerTrait for ShadowExtrusionObjectData {
 
 pub static SHADOWEXTRUSIONOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionObjectData",
+    name_hash: 3711769587,
     flags: MemberInfoFlags::new(101),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ShadowExtrusionObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowExtrusionObjectData as Default>::default())),
+            create_boxed: || Box::new(<ShadowExtrusionObjectData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ObjectExtrusions",
+                name_hash: 508044214,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ShadowExtrusionObjectInstance-Array",
                 rust_offset: offset_of!(ShadowExtrusionObjectData, object_extrusions),
@@ -602,6 +642,7 @@ impl TypeObject for ShadowExtrusionObjectData {
 
 pub static SHADOWEXTRUSIONOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionObjectData-Array",
+    name_hash: 4122441671,
     flags: MemberInfoFlags::new(145),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Array("ShadowExtrusionObjectData"),
@@ -610,7 +651,8 @@ pub static SHADOWEXTRUSIONOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowExtrusionObjectInstance {
     pub guid: glacier_util::guid::Guid,
     pub extrusion_lengths: Vec<f32>,
@@ -640,21 +682,25 @@ impl ShadowExtrusionObjectInstanceTrait for ShadowExtrusionObjectInstance {
 
 pub static SHADOWEXTRUSIONOBJECTINSTANCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionObjectInstance",
+    name_hash: 1358914666,
     flags: MemberInfoFlags::new(73),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowExtrusionObjectInstance as Default>::default())),
+            create_boxed: || Box::new(<ShadowExtrusionObjectInstance as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Guid",
+                name_hash: 2088724858,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(ShadowExtrusionObjectInstance, guid),
             },
             FieldInfoData {
                 name: "ExtrusionLengths",
+                name_hash: 208821119,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(ShadowExtrusionObjectInstance, extrusion_lengths),
@@ -686,6 +732,7 @@ impl TypeObject for ShadowExtrusionObjectInstance {
 
 pub static SHADOWEXTRUSIONOBJECTINSTANCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionObjectInstance-Array",
+    name_hash: 489631582,
     flags: MemberInfoFlags::new(145),
     module: "ShadowExtrusionShared",
     data: TypeInfoData::Array("ShadowExtrusionObjectInstance"),

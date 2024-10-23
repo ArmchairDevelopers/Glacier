@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -27,7 +28,8 @@ pub(crate) fn register_telemetry_types(registry: &mut TypeRegistry) {
     registry.register_type(VARSTREAMTELEMETRYHOOKENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransactionalTelemetryHookEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -46,12 +48,15 @@ impl super::entity::EntityBusPeerTrait for TransactionalTelemetryHookEntity {
 
 pub static TRANSACTIONALTELEMETRYHOOKENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransactionalTelemetryHookEntity",
+    name_hash: 2968593019,
     flags: MemberInfoFlags::new(101),
     module: "Telemetry",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransactionalTelemetryHookEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransactionalTelemetryHookEntity as Default>::default())),
+            create_boxed: || Box::new(<TransactionalTelemetryHookEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -81,6 +86,7 @@ impl TypeObject for TransactionalTelemetryHookEntity {
 
 pub static TRANSACTIONALTELEMETRYHOOKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransactionalTelemetryHookEntity-Array",
+    name_hash: 1567996495,
     flags: MemberInfoFlags::new(145),
     module: "Telemetry",
     data: TypeInfoData::Array("TransactionalTelemetryHookEntity"),
@@ -89,7 +95,8 @@ pub static TRANSACTIONALTELEMETRYHOOKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -108,12 +115,15 @@ impl super::entity::EntityBusPeerTrait for TelemetryHookEntity {
 
 pub static TELEMETRYHOOKENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookEntity",
+    name_hash: 1053119506,
     flags: MemberInfoFlags::new(101),
     module: "Telemetry",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetryHookEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookEntity as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -143,6 +153,7 @@ impl TypeObject for TelemetryHookEntity {
 
 pub static TELEMETRYHOOKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookEntity-Array",
+    name_hash: 1750203174,
     flags: MemberInfoFlags::new(145),
     module: "Telemetry",
     data: TypeInfoData::Array("TelemetryHookEntity"),
@@ -151,7 +162,8 @@ pub static TELEMETRYHOOKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryGenericHookEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -170,12 +182,15 @@ impl super::entity::EntityBusPeerTrait for TelemetryGenericHookEntity {
 
 pub static TELEMETRYGENERICHOOKENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryGenericHookEntity",
+    name_hash: 154338211,
     flags: MemberInfoFlags::new(101),
     module: "Telemetry",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetryGenericHookEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryGenericHookEntity as Default>::default())),
+            create_boxed: || Box::new(<TelemetryGenericHookEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -205,6 +220,7 @@ impl TypeObject for TelemetryGenericHookEntity {
 
 pub static TELEMETRYGENERICHOOKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryGenericHookEntity-Array",
+    name_hash: 898983703,
     flags: MemberInfoFlags::new(145),
     module: "Telemetry",
     data: TypeInfoData::Array("TelemetryGenericHookEntity"),
@@ -213,7 +229,8 @@ pub static TELEMETRYGENERICHOOKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FixedStreamTelemetryHookEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -232,12 +249,15 @@ impl super::entity::EntityBusPeerTrait for FixedStreamTelemetryHookEntity {
 
 pub static FIXEDSTREAMTELEMETRYHOOKENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FixedStreamTelemetryHookEntity",
+    name_hash: 3488252696,
     flags: MemberInfoFlags::new(101),
     module: "Telemetry",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(FixedStreamTelemetryHookEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FixedStreamTelemetryHookEntity as Default>::default())),
+            create_boxed: || Box::new(<FixedStreamTelemetryHookEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -267,6 +287,7 @@ impl TypeObject for FixedStreamTelemetryHookEntity {
 
 pub static FIXEDSTREAMTELEMETRYHOOKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FixedStreamTelemetryHookEntity-Array",
+    name_hash: 456232236,
     flags: MemberInfoFlags::new(145),
     module: "Telemetry",
     data: TypeInfoData::Array("FixedStreamTelemetryHookEntity"),
@@ -275,7 +296,8 @@ pub static FIXEDSTREAMTELEMETRYHOOKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransactionalTelemetryStream {
     pub _glacier_base: TelemetryStream,
 }
@@ -291,12 +313,15 @@ impl TelemetryStreamTrait for TransactionalTelemetryStream {
 
 pub static TRANSACTIONALTELEMETRYSTREAM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransactionalTelemetryStream",
+    name_hash: 3182041951,
     flags: MemberInfoFlags::new(101),
     module: "Telemetry",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSTREAM_TYPE_INFO),
+        super_class_offset: offset_of!(TransactionalTelemetryStream, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransactionalTelemetryStream as Default>::default())),
+            create_boxed: || Box::new(<TransactionalTelemetryStream as Default>::default()),
         },
         fields: &[
         ],
@@ -326,6 +351,7 @@ impl TypeObject for TransactionalTelemetryStream {
 
 pub static TRANSACTIONALTELEMETRYSTREAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransactionalTelemetryStream-Array",
+    name_hash: 1556418667,
     flags: MemberInfoFlags::new(145),
     module: "Telemetry",
     data: TypeInfoData::Array("TransactionalTelemetryStream"),
@@ -334,7 +360,8 @@ pub static TRANSACTIONALTELEMETRYSTREAM_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryStream {
 }
 
@@ -346,12 +373,15 @@ impl TelemetryStreamTrait for TelemetryStream {
 
 pub static TELEMETRYSTREAM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryStream",
+    name_hash: 158194678,
     flags: MemberInfoFlags::new(101),
     module: "Telemetry",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryStream as Default>::default())),
+            create_boxed: || Box::new(<TelemetryStream as Default>::default()),
         },
         fields: &[
         ],
@@ -381,6 +411,7 @@ impl TypeObject for TelemetryStream {
 
 pub static TELEMETRYSTREAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryStream-Array",
+    name_hash: 1842110658,
     flags: MemberInfoFlags::new(145),
     module: "Telemetry",
     data: TypeInfoData::Array("TelemetryStream"),
@@ -389,7 +420,8 @@ pub static TELEMETRYSTREAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventTelemetryStream {
     pub _glacier_base: TelemetryStream,
 }
@@ -405,12 +437,15 @@ impl TelemetryStreamTrait for EventTelemetryStream {
 
 pub static EVENTTELEMETRYSTREAM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventTelemetryStream",
+    name_hash: 1061062426,
     flags: MemberInfoFlags::new(101),
     module: "Telemetry",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSTREAM_TYPE_INFO),
+        super_class_offset: offset_of!(EventTelemetryStream, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventTelemetryStream as Default>::default())),
+            create_boxed: || Box::new(<EventTelemetryStream as Default>::default()),
         },
         fields: &[
         ],
@@ -440,6 +475,7 @@ impl TypeObject for EventTelemetryStream {
 
 pub static EVENTTELEMETRYSTREAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventTelemetryStream-Array",
+    name_hash: 1009044014,
     flags: MemberInfoFlags::new(145),
     module: "Telemetry",
     data: TypeInfoData::Array("EventTelemetryStream"),
@@ -448,7 +484,8 @@ pub static EVENTTELEMETRYSTREAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VarStreamTelemetryHookEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -467,12 +504,15 @@ impl super::entity::EntityBusPeerTrait for VarStreamTelemetryHookEntity {
 
 pub static VARSTREAMTELEMETRYHOOKENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VarStreamTelemetryHookEntity",
+    name_hash: 409578507,
     flags: MemberInfoFlags::new(101),
     module: "Telemetry",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(VarStreamTelemetryHookEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VarStreamTelemetryHookEntity as Default>::default())),
+            create_boxed: || Box::new(<VarStreamTelemetryHookEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -502,6 +542,7 @@ impl TypeObject for VarStreamTelemetryHookEntity {
 
 pub static VARSTREAMTELEMETRYHOOKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VarStreamTelemetryHookEntity-Array",
+    name_hash: 555481791,
     flags: MemberInfoFlags::new(145),
     module: "Telemetry",
     data: TypeInfoData::Array("VarStreamTelemetryHookEntity"),

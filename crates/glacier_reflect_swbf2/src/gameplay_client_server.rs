@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -149,7 +150,8 @@ pub(crate) fn register_gameplay_client_server_types(registry: &mut TypeRegistry)
     registry.register_type(CLIENTSUBVIEW_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAdministrationRestartRequiredMessage {
 }
 
@@ -161,11 +163,13 @@ impl ServerAdministrationRestartRequiredMessageTrait for ServerAdministrationRes
 
 pub static SERVERADMINISTRATIONRESTARTREQUIREDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAdministrationRestartRequiredMessage",
+    name_hash: 4261479067,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAdministrationRestartRequiredMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerAdministrationRestartRequiredMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -192,7 +196,8 @@ impl TypeObject for ServerAdministrationRestartRequiredMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPeerLoadLevelMessage {
 }
 
@@ -204,11 +209,13 @@ impl ServerPeerLoadLevelMessageTrait for ServerPeerLoadLevelMessage {
 
 pub static SERVERPEERLOADLEVELMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPeerLoadLevelMessage",
+    name_hash: 3422850905,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPeerLoadLevelMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerPeerLoadLevelMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -235,7 +242,8 @@ impl TypeObject for ServerPeerLoadLevelMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPeerInitializedMessage {
 }
 
@@ -247,11 +255,13 @@ impl ServerPeerInitializedMessageTrait for ServerPeerInitializedMessage {
 
 pub static SERVERPEERINITIALIZEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPeerInitializedMessage",
+    name_hash: 1369321701,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPeerInitializedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerPeerInitializedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -278,7 +288,8 @@ impl TypeObject for ServerPeerInitializedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLevelLoadNextLevelMessage {
 }
 
@@ -290,11 +301,13 @@ impl ServerLevelLoadNextLevelMessageTrait for ServerLevelLoadNextLevelMessage {
 
 pub static SERVERLEVELLOADNEXTLEVELMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLevelLoadNextLevelMessage",
+    name_hash: 1825713322,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLevelLoadNextLevelMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerLevelLoadNextLevelMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -321,7 +334,8 @@ impl TypeObject for ServerLevelLoadNextLevelMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLevelLoadNextRoundMessage {
 }
 
@@ -333,11 +347,13 @@ impl ServerLevelLoadNextRoundMessageTrait for ServerLevelLoadNextRoundMessage {
 
 pub static SERVERLEVELLOADNEXTROUNDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLevelLoadNextRoundMessage",
+    name_hash: 1386603614,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLevelLoadNextRoundMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerLevelLoadNextRoundMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -364,7 +380,8 @@ impl TypeObject for ServerLevelLoadNextRoundMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSubLevelOnStreamedInMessage {
 }
 
@@ -376,11 +393,13 @@ impl ServerSubLevelOnStreamedInMessageTrait for ServerSubLevelOnStreamedInMessag
 
 pub static SERVERSUBLEVELONSTREAMEDINMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSubLevelOnStreamedInMessage",
+    name_hash: 4071252802,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSubLevelOnStreamedInMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerSubLevelOnStreamedInMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -407,7 +426,8 @@ impl TypeObject for ServerSubLevelOnStreamedInMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLevelCompletedMessage {
 }
 
@@ -419,11 +439,13 @@ impl ServerLevelCompletedMessageTrait for ServerLevelCompletedMessage {
 
 pub static SERVERLEVELCOMPLETEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLevelCompletedMessage",
+    name_hash: 4159386256,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLevelCompletedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerLevelCompletedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -450,7 +472,8 @@ impl TypeObject for ServerLevelCompletedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLevelStartedMessage {
 }
 
@@ -462,11 +485,13 @@ impl ServerLevelStartedMessageTrait for ServerLevelStartedMessage {
 
 pub static SERVERLEVELSTARTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLevelStartedMessage",
+    name_hash: 3702476764,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLevelStartedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerLevelStartedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -493,7 +518,8 @@ impl TypeObject for ServerLevelStartedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLevelSpawnEntitiesEndMessage {
 }
 
@@ -505,11 +531,13 @@ impl ServerLevelSpawnEntitiesEndMessageTrait for ServerLevelSpawnEntitiesEndMess
 
 pub static SERVERLEVELSPAWNENTITIESENDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLevelSpawnEntitiesEndMessage",
+    name_hash: 2619947572,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLevelSpawnEntitiesEndMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerLevelSpawnEntitiesEndMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -536,7 +564,8 @@ impl TypeObject for ServerLevelSpawnEntitiesEndMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLevelSpawnEntitiesBeginMessage {
 }
 
@@ -548,11 +577,13 @@ impl ServerLevelSpawnEntitiesBeginMessageTrait for ServerLevelSpawnEntitiesBegin
 
 pub static SERVERLEVELSPAWNENTITIESBEGINMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLevelSpawnEntitiesBeginMessage",
+    name_hash: 623123260,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLevelSpawnEntitiesBeginMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerLevelSpawnEntitiesBeginMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -579,7 +610,8 @@ impl TypeObject for ServerLevelSpawnEntitiesBeginMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSoundVoiceOverFinishedMessage {
 }
 
@@ -591,11 +623,13 @@ impl ServerSoundVoiceOverFinishedMessageTrait for ServerSoundVoiceOverFinishedMe
 
 pub static SERVERSOUNDVOICEOVERFINISHEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSoundVoiceOverFinishedMessage",
+    name_hash: 1235756386,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSoundVoiceOverFinishedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerSoundVoiceOverFinishedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -622,7 +656,8 @@ impl TypeObject for ServerSoundVoiceOverFinishedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerInputDeactivateInputRestrictionMessage {
 }
 
@@ -634,11 +669,13 @@ impl ServerInputDeactivateInputRestrictionMessageTrait for ServerInputDeactivate
 
 pub static SERVERINPUTDEACTIVATEINPUTRESTRICTIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerInputDeactivateInputRestrictionMessage",
+    name_hash: 385784103,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerInputDeactivateInputRestrictionMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerInputDeactivateInputRestrictionMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -665,7 +702,8 @@ impl TypeObject for ServerInputDeactivateInputRestrictionMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerInputReactivateInputRestrictionMessage {
 }
 
@@ -677,11 +715,13 @@ impl ServerInputReactivateInputRestrictionMessageTrait for ServerInputReactivate
 
 pub static SERVERINPUTREACTIVATEINPUTRESTRICTIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerInputReactivateInputRestrictionMessage",
+    name_hash: 3146839217,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerInputReactivateInputRestrictionMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerInputReactivateInputRestrictionMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -708,7 +748,8 @@ impl TypeObject for ServerInputReactivateInputRestrictionMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerComponentEntryComponentProcessedInputMessage {
 }
 
@@ -720,11 +761,13 @@ impl ServerComponentEntryComponentProcessedInputMessageTrait for ServerComponent
 
 pub static SERVERCOMPONENTENTRYCOMPONENTPROCESSEDINPUTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerComponentEntryComponentProcessedInputMessage",
+    name_hash: 941015299,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerComponentEntryComponentProcessedInputMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerComponentEntryComponentProcessedInputMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -751,7 +794,8 @@ impl TypeObject for ServerComponentEntryComponentProcessedInputMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerComponentEntryOnPlayerExitsMessage {
 }
 
@@ -763,11 +807,13 @@ impl ServerComponentEntryOnPlayerExitsMessageTrait for ServerComponentEntryOnPla
 
 pub static SERVERCOMPONENTENTRYONPLAYEREXITSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerComponentEntryOnPlayerExitsMessage",
+    name_hash: 915911761,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerComponentEntryOnPlayerExitsMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerComponentEntryOnPlayerExitsMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -794,7 +840,8 @@ impl TypeObject for ServerComponentEntryOnPlayerExitsMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerComponentEntryOnPlayerEntersMessage {
 }
 
@@ -806,11 +853,13 @@ impl ServerComponentEntryOnPlayerEntersMessageTrait for ServerComponentEntryOnPl
 
 pub static SERVERCOMPONENTENTRYONPLAYERENTERSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerComponentEntryOnPlayerEntersMessage",
+    name_hash: 345337529,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerComponentEntryOnPlayerEntersMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerComponentEntryOnPlayerEntersMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -837,7 +886,8 @@ impl TypeObject for ServerComponentEntryOnPlayerEntersMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerComponentEntryOnUnspawnMessage {
 }
 
@@ -849,11 +899,13 @@ impl ServerComponentEntryOnUnspawnMessageTrait for ServerComponentEntryOnUnspawn
 
 pub static SERVERCOMPONENTENTRYONUNSPAWNMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerComponentEntryOnUnspawnMessage",
+    name_hash: 3728094449,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerComponentEntryOnUnspawnMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerComponentEntryOnUnspawnMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -880,7 +932,8 @@ impl TypeObject for ServerComponentEntryOnUnspawnMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerControllableUnspawnDoneMessage {
 }
 
@@ -892,11 +945,13 @@ impl ServerControllableUnspawnDoneMessageTrait for ServerControllableUnspawnDone
 
 pub static SERVERCONTROLLABLEUNSPAWNDONEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerControllableUnspawnDoneMessage",
+    name_hash: 1726982570,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerControllableUnspawnDoneMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerControllableUnspawnDoneMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -923,7 +978,8 @@ impl TypeObject for ServerControllableUnspawnDoneMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerControllableSpawnDoneMessage {
 }
 
@@ -935,11 +991,13 @@ impl ServerControllableSpawnDoneMessageTrait for ServerControllableSpawnDoneMess
 
 pub static SERVERCONTROLLABLESPAWNDONEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerControllableSpawnDoneMessage",
+    name_hash: 2252492369,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerControllableSpawnDoneMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerControllableSpawnDoneMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -966,7 +1024,8 @@ impl TypeObject for ServerControllableSpawnDoneMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerConnectionExitMessage {
 }
 
@@ -978,11 +1037,13 @@ impl ServerConnectionExitMessageTrait for ServerConnectionExitMessage {
 
 pub static SERVERCONNECTIONEXITMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerConnectionExitMessage",
+    name_hash: 386425725,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerConnectionExitMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerConnectionExitMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1009,7 +1070,8 @@ impl TypeObject for ServerConnectionExitMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerConnectionInitMessage {
 }
 
@@ -1021,11 +1083,13 @@ impl ServerConnectionInitMessageTrait for ServerConnectionInitMessage {
 
 pub static SERVERCONNECTIONINITMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerConnectionInitMessage",
+    name_hash: 4125563431,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerConnectionInitMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerConnectionInitMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1052,7 +1116,8 @@ impl TypeObject for ServerConnectionInitMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerClientConnectionRemovedMessage {
 }
 
@@ -1064,11 +1129,13 @@ impl ServerClientConnectionRemovedMessageTrait for ServerClientConnectionRemoved
 
 pub static SERVERCLIENTCONNECTIONREMOVEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerClientConnectionRemovedMessage",
+    name_hash: 3347093062,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerClientConnectionRemovedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerClientConnectionRemovedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1095,7 +1162,8 @@ impl TypeObject for ServerClientConnectionRemovedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerClientConnectionConnectedMessage {
 }
 
@@ -1107,11 +1175,13 @@ impl ServerClientConnectionConnectedMessageTrait for ServerClientConnectionConne
 
 pub static SERVERCLIENTCONNECTIONCONNECTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerClientConnectionConnectedMessage",
+    name_hash: 2275425979,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerClientConnectionConnectedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerClientConnectionConnectedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1138,7 +1208,8 @@ impl TypeObject for ServerClientConnectionConnectedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAdminBanPlayerMessage {
 }
 
@@ -1150,11 +1221,13 @@ impl ServerAdminBanPlayerMessageTrait for ServerAdminBanPlayerMessage {
 
 pub static SERVERADMINBANPLAYERMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAdminBanPlayerMessage",
+    name_hash: 412527098,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAdminBanPlayerMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerAdminBanPlayerMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1181,7 +1254,8 @@ impl TypeObject for ServerAdminBanPlayerMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAdminSetServerNameMessage {
 }
 
@@ -1193,11 +1267,13 @@ impl ServerAdminSetServerNameMessageTrait for ServerAdminSetServerNameMessage {
 
 pub static SERVERADMINSETSERVERNAMEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAdminSetServerNameMessage",
+    name_hash: 2239505124,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAdminSetServerNameMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerAdminSetServerNameMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1224,7 +1300,8 @@ impl TypeObject for ServerAdminSetServerNameMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerScriptTickMessage {
 }
 
@@ -1236,11 +1313,13 @@ impl ServerScriptTickMessageTrait for ServerScriptTickMessage {
 
 pub static SERVERSCRIPTTICKMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerScriptTickMessage",
+    name_hash: 853829137,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerScriptTickMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerScriptTickMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1267,7 +1346,8 @@ impl TypeObject for ServerScriptTickMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerStopMessageBase {
 }
 
@@ -1279,11 +1359,13 @@ impl ServerStopMessageBaseTrait for ServerStopMessageBase {
 
 pub static SERVERSTOPMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerStopMessageBase",
+    name_hash: 3025513894,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerStopMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ServerStopMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1310,7 +1392,8 @@ impl TypeObject for ServerStopMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLoadLevelMessageBase {
 }
 
@@ -1322,11 +1405,13 @@ impl ServerLoadLevelMessageBaseTrait for ServerLoadLevelMessageBase {
 
 pub static SERVERLOADLEVELMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLoadLevelMessageBase",
+    name_hash: 4165114382,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLoadLevelMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ServerLoadLevelMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1353,7 +1438,8 @@ impl TypeObject for ServerLoadLevelMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLevelUnloadedMessage {
 }
 
@@ -1365,11 +1451,13 @@ impl ServerLevelUnloadedMessageTrait for ServerLevelUnloadedMessage {
 
 pub static SERVERLEVELUNLOADEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLevelUnloadedMessage",
+    name_hash: 3543238017,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLevelUnloadedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerLevelUnloadedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1396,7 +1484,8 @@ impl TypeObject for ServerLevelUnloadedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerUnloadLevelMessage {
 }
 
@@ -1408,11 +1497,13 @@ impl ServerUnloadLevelMessageTrait for ServerUnloadLevelMessage {
 
 pub static SERVERUNLOADLEVELMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerUnloadLevelMessage",
+    name_hash: 1847145440,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerUnloadLevelMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerUnloadLevelMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1439,7 +1530,8 @@ impl TypeObject for ServerUnloadLevelMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLevelLoadedMessage {
 }
 
@@ -1451,11 +1543,13 @@ impl ServerLevelLoadedMessageTrait for ServerLevelLoadedMessage {
 
 pub static SERVERLEVELLOADEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLevelLoadedMessage",
+    name_hash: 594295130,
     flags: MemberInfoFlags::new(73),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLevelLoadedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerLevelLoadedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1482,7 +1576,8 @@ impl TypeObject for ServerLevelLoadedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerStoppedMessage {
 }
 
@@ -1494,11 +1589,13 @@ impl ServerStoppedMessageTrait for ServerStoppedMessage {
 
 pub static SERVERSTOPPEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerStoppedMessage",
+    name_hash: 3317787202,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerStoppedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerStoppedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1525,7 +1622,8 @@ impl TypeObject for ServerStoppedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerApplyConfigurationMessage {
 }
 
@@ -1537,11 +1635,13 @@ impl ServerApplyConfigurationMessageTrait for ServerApplyConfigurationMessage {
 
 pub static SERVERAPPLYCONFIGURATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerApplyConfigurationMessage",
+    name_hash: 1113777263,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerApplyConfigurationMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerApplyConfigurationMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1568,7 +1668,8 @@ impl TypeObject for ServerApplyConfigurationMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerResetConfigurationMessage {
 }
 
@@ -1580,11 +1681,13 @@ impl ServerResetConfigurationMessageTrait for ServerResetConfigurationMessage {
 
 pub static SERVERRESETCONFIGURATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerResetConfigurationMessage",
+    name_hash: 4027737070,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerResetConfigurationMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerResetConfigurationMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1611,7 +1714,8 @@ impl TypeObject for ServerResetConfigurationMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerStartedMessage {
 }
 
@@ -1623,11 +1727,13 @@ impl ServerStartedMessageTrait for ServerStartedMessage {
 
 pub static SERVERSTARTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerStartedMessage",
+    name_hash: 987331850,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerStartedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerStartedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1654,7 +1760,8 @@ impl TypeObject for ServerStartedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerLoadGameMessage {
 }
 
@@ -1666,11 +1773,13 @@ impl ServerLoadGameMessageTrait for ServerLoadGameMessage {
 
 pub static SERVERLOADGAMEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerLoadGameMessage",
+    name_hash: 2870134691,
     flags: MemberInfoFlags::new(73),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerLoadGameMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerLoadGameMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1697,7 +1806,8 @@ impl TypeObject for ServerLoadGameMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SaveGameWrittenToMediaMessage {
 }
 
@@ -1709,11 +1819,13 @@ impl SaveGameWrittenToMediaMessageTrait for SaveGameWrittenToMediaMessage {
 
 pub static SAVEGAMEWRITTENTOMEDIAMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SaveGameWrittenToMediaMessage",
+    name_hash: 3064651673,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SaveGameWrittenToMediaMessage as Default>::default())),
+            create_boxed: || Box::new(<SaveGameWrittenToMediaMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1740,7 +1852,8 @@ impl TypeObject for SaveGameWrittenToMediaMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SaveGameGeneratedMessage {
 }
 
@@ -1752,11 +1865,13 @@ impl SaveGameGeneratedMessageTrait for SaveGameGeneratedMessage {
 
 pub static SAVEGAMEGENERATEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SaveGameGeneratedMessage",
+    name_hash: 1152606382,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SaveGameGeneratedMessage as Default>::default())),
+            create_boxed: || Box::new(<SaveGameGeneratedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1783,7 +1898,8 @@ impl TypeObject for SaveGameGeneratedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StatDisableMessage {
 }
 
@@ -1795,11 +1911,13 @@ impl StatDisableMessageTrait for StatDisableMessage {
 
 pub static STATDISABLEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StatDisableMessage",
+    name_hash: 174924872,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StatDisableMessage as Default>::default())),
+            create_boxed: || Box::new(<StatDisableMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1826,7 +1944,8 @@ impl TypeObject for StatDisableMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StatEnableMessage {
 }
 
@@ -1838,11 +1957,13 @@ impl StatEnableMessageTrait for StatEnableMessage {
 
 pub static STATENABLEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StatEnableMessage",
+    name_hash: 2970049597,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StatEnableMessage as Default>::default())),
+            create_boxed: || Box::new(<StatEnableMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1869,7 +1990,8 @@ impl TypeObject for StatEnableMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SoundSettings {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -1885,12 +2007,15 @@ impl super::core::DataContainerTrait for SoundSettings {
 
 pub static SOUNDSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundSettings",
+    name_hash: 2008659523,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(SoundSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SoundSettings as Default>::default())),
+            create_boxed: || Box::new(<SoundSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -1920,6 +2045,7 @@ impl TypeObject for SoundSettings {
 
 pub static SOUNDSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundSettings-Array",
+    name_hash: 1972050295,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("SoundSettings"),
@@ -1928,7 +2054,8 @@ pub static SOUNDSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub is_spectator: bool,
@@ -2403,310 +2530,363 @@ impl super::core::DataContainerTrait for ClientSettings {
 
 pub static CLIENTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSettings",
+    name_hash: 1116683705,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSettings as Default>::default())),
+            create_boxed: || Box::new(<ClientSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IsSpectator",
+                name_hash: 1656349510,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, is_spectator),
             },
             FieldInfoData {
                 name: "AllowVideoRecording",
+                name_hash: 3150274784,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, allow_video_recording),
             },
             FieldInfoData {
                 name: "DebrisClusterEnabled",
+                name_hash: 3885754465,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, debris_cluster_enabled),
             },
             FieldInfoData {
                 name: "VegetationEnabled",
+                name_hash: 1260276984,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, vegetation_enabled),
             },
             FieldInfoData {
                 name: "ForceEnabled",
+                name_hash: 520526749,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, force_enabled),
             },
             FieldInfoData {
                 name: "WorldRenderEnabled",
+                name_hash: 1601841480,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, world_render_enabled),
             },
             FieldInfoData {
                 name: "TerrainEnabled",
+                name_hash: 3348002903,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, terrain_enabled),
             },
             FieldInfoData {
                 name: "WaterPhysicsEnabled",
+                name_hash: 4150371006,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, water_physics_enabled),
             },
             FieldInfoData {
                 name: "OvergrowthEnabled",
+                name_hash: 686776479,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, overgrowth_enabled),
             },
             FieldInfoData {
                 name: "EffectsEnabled",
+                name_hash: 1039031940,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, effects_enabled),
             },
             FieldInfoData {
                 name: "AutoIncrementPadIndex",
+                name_hash: 3369837696,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, auto_increment_pad_index),
             },
             FieldInfoData {
                 name: "LipSyncEnabled",
+                name_hash: 2236175698,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, lip_sync_enabled),
             },
             FieldInfoData {
                 name: "PauseGameOnStartUp",
+                name_hash: 1660343261,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, pause_game_on_start_up),
             },
             FieldInfoData {
                 name: "SkipFastLevelLoad",
+                name_hash: 531296308,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, skip_fast_level_load),
             },
             FieldInfoData {
                 name: "ScreenshotToFile",
+                name_hash: 2288081012,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, screenshot_to_file),
             },
             FieldInfoData {
                 name: "ScreenshotFilename",
+                name_hash: 3330296424,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ClientSettings, screenshot_filename),
             },
             FieldInfoData {
                 name: "ScreenshotSuffix",
+                name_hash: 2399091550,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ClientSettings, screenshot_suffix),
             },
             FieldInfoData {
                 name: "LoadMenu",
+                name_hash: 2201383312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, load_menu),
             },
             FieldInfoData {
                 name: "DebugMenuOnLThumb",
+                name_hash: 3134005900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, debug_menu_on_l_thumb),
             },
             FieldInfoData {
                 name: "ScreenshotComparisonsEnable",
+                name_hash: 431829730,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, screenshot_comparisons_enable),
             },
             FieldInfoData {
                 name: "RenderTags",
+                name_hash: 604878030,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, render_tags),
             },
             FieldInfoData {
                 name: "Team",
+                name_hash: 2089309528,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ClientSettings, team),
             },
             FieldInfoData {
                 name: "SpawnPointIndex",
+                name_hash: 2235435532,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ClientSettings, spawn_point_index),
             },
             FieldInfoData {
                 name: "ServerIp",
+                name_hash: 269843833,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ClientSettings, server_ip),
             },
             FieldInfoData {
                 name: "SecondaryServerIp",
+                name_hash: 3819727747,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ClientSettings, secondary_server_ip),
             },
             FieldInfoData {
                 name: "Scheme0FlipY",
+                name_hash: 157467626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, scheme0_flip_y),
             },
             FieldInfoData {
                 name: "Scheme1FlipY",
+                name_hash: 192070603,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, scheme1_flip_y),
             },
             FieldInfoData {
                 name: "Scheme2FlipY",
+                name_hash: 79057320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, scheme2_flip_y),
             },
             FieldInfoData {
                 name: "AimScale",
+                name_hash: 2680888952,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClientSettings, aim_scale),
             },
             FieldInfoData {
                 name: "HavokVisualDebugger",
+                name_hash: 1929453227,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, havok_visual_debugger),
             },
             FieldInfoData {
                 name: "HavokCaptureToFile",
+                name_hash: 199879943,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, havok_capture_to_file),
             },
             FieldInfoData {
                 name: "ShowBuildId",
+                name_hash: 3678869853,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, show_build_id),
             },
             FieldInfoData {
                 name: "ExtractPersistenceInformation",
+                name_hash: 2413057907,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, extract_persistence_information),
             },
             FieldInfoData {
                 name: "EnableRestTool",
+                name_hash: 1964416300,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, enable_rest_tool),
             },
             FieldInfoData {
                 name: "LocalVehicleSimulationEnabled",
+                name_hash: 1639847270,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, local_vehicle_simulation_enabled),
             },
             FieldInfoData {
                 name: "AutoUnspawnDynamicObjects",
+                name_hash: 854342937,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, auto_unspawn_dynamic_objects),
             },
             FieldInfoData {
                 name: "IncomingFrequency",
+                name_hash: 1185543623,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClientSettings, incoming_frequency),
             },
             FieldInfoData {
                 name: "OutgoingFrequency",
+                name_hash: 657578791,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClientSettings, outgoing_frequency),
             },
             FieldInfoData {
                 name: "IncomingRate",
+                name_hash: 2958796769,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ClientSettings, incoming_rate),
             },
             FieldInfoData {
                 name: "OutgoingRate",
+                name_hash: 3079887233,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ClientSettings, outgoing_rate),
             },
             FieldInfoData {
                 name: "LoadingTimeout",
+                name_hash: 1203409176,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClientSettings, loading_timeout),
             },
             FieldInfoData {
                 name: "LoadedTimeout",
+                name_hash: 1689787417,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClientSettings, loaded_timeout),
             },
             FieldInfoData {
                 name: "IngameTimeout",
+                name_hash: 178921847,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClientSettings, ingame_timeout),
             },
             FieldInfoData {
                 name: "QuitGameOnServerDisconnect",
+                name_hash: 491704118,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, quit_game_on_server_disconnect),
             },
             FieldInfoData {
                 name: "LuaOptionSetEnable",
+                name_hash: 4140423805,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, lua_option_set_enable),
             },
             FieldInfoData {
                 name: "CpuQuality",
+                name_hash: 169331566,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClientSettings, cpu_quality),
             },
             FieldInfoData {
                 name: "InstancePath",
+                name_hash: 1188027073,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ClientSettings, instance_path),
             },
             FieldInfoData {
                 name: "AudioSystemGuid",
+                name_hash: 40022921,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(ClientSettings, audio_system_guid),
             },
             FieldInfoData {
                 name: "FrameHistoryTimeWarnScale",
+                name_hash: 1329106365,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClientSettings, frame_history_time_warn_scale),
             },
             FieldInfoData {
                 name: "FastExit",
+                name_hash: 196486565,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClientSettings, fast_exit),
@@ -2738,6 +2918,7 @@ impl TypeObject for ClientSettings {
 
 pub static CLIENTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSettings-Array",
+    name_hash: 764333069,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientSettings"),
@@ -2746,7 +2927,8 @@ pub static CLIENTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSpawnSpawnedOrUnSpawnedMessage {
 }
 
@@ -2758,11 +2940,13 @@ impl ClientSpawnSpawnedOrUnSpawnedMessageTrait for ClientSpawnSpawnedOrUnSpawned
 
 pub static CLIENTSPAWNSPAWNEDORUNSPAWNEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSpawnSpawnedOrUnSpawnedMessage",
+    name_hash: 1618548042,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSpawnSpawnedOrUnSpawnedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientSpawnSpawnedOrUnSpawnedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2789,7 +2973,8 @@ impl TypeObject for ClientSpawnSpawnedOrUnSpawnedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLevelFinalizedMessage {
 }
 
@@ -2801,11 +2986,13 @@ impl ClientLevelFinalizedMessageTrait for ClientLevelFinalizedMessage {
 
 pub static CLIENTLEVELFINALIZEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLevelFinalizedMessage",
+    name_hash: 1781596255,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLevelFinalizedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientLevelFinalizedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2832,7 +3019,8 @@ impl TypeObject for ClientLevelFinalizedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLevelSpawnDebugEntitiesMessage {
 }
 
@@ -2844,11 +3032,13 @@ impl ClientLevelSpawnDebugEntitiesMessageTrait for ClientLevelSpawnDebugEntities
 
 pub static CLIENTLEVELSPAWNDEBUGENTITIESMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLevelSpawnDebugEntitiesMessage",
+    name_hash: 43109398,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLevelSpawnDebugEntitiesMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientLevelSpawnDebugEntitiesMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2875,7 +3065,8 @@ impl TypeObject for ClientLevelSpawnDebugEntitiesMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientControllableUnspawnDoneMessage {
 }
 
@@ -2887,11 +3078,13 @@ impl ClientControllableUnspawnDoneMessageTrait for ClientControllableUnspawnDone
 
 pub static CLIENTCONTROLLABLEUNSPAWNDONEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControllableUnspawnDoneMessage",
+    name_hash: 2203761782,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientControllableUnspawnDoneMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientControllableUnspawnDoneMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2918,7 +3111,8 @@ impl TypeObject for ClientControllableUnspawnDoneMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientControllableSpawnDoneMessage {
 }
 
@@ -2930,11 +3124,13 @@ impl ClientControllableSpawnDoneMessageTrait for ClientControllableSpawnDoneMess
 
 pub static CLIENTCONTROLLABLESPAWNDONEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControllableSpawnDoneMessage",
+    name_hash: 738681613,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientControllableSpawnDoneMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientControllableSpawnDoneMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2961,7 +3157,8 @@ impl TypeObject for ClientControllableSpawnDoneMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientConnectionUnloadLevelMessage {
 }
 
@@ -2973,11 +3170,13 @@ impl ClientConnectionUnloadLevelMessageTrait for ClientConnectionUnloadLevelMess
 
 pub static CLIENTCONNECTIONUNLOADLEVELMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientConnectionUnloadLevelMessage",
+    name_hash: 1811412394,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientConnectionUnloadLevelMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientConnectionUnloadLevelMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3004,7 +3203,8 @@ impl TypeObject for ClientConnectionUnloadLevelMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientConnectionLinkLevelMessage {
 }
 
@@ -3016,11 +3216,13 @@ impl ClientConnectionLinkLevelMessageTrait for ClientConnectionLinkLevelMessage 
 
 pub static CLIENTCONNECTIONLINKLEVELMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientConnectionLinkLevelMessage",
+    name_hash: 3578740535,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientConnectionLinkLevelMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientConnectionLinkLevelMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3047,7 +3249,8 @@ impl TypeObject for ClientConnectionLinkLevelMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientConnectionLoadLevelMessage {
 }
 
@@ -3059,11 +3262,13 @@ impl ClientConnectionLoadLevelMessageTrait for ClientConnectionLoadLevelMessage 
 
 pub static CLIENTCONNECTIONLOADLEVELMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientConnectionLoadLevelMessage",
+    name_hash: 3364052497,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientConnectionLoadLevelMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientConnectionLoadLevelMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3090,7 +3295,8 @@ impl TypeObject for ClientConnectionLoadLevelMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientConnectionInitializedMessage {
 }
 
@@ -3102,11 +3308,13 @@ impl ClientConnectionInitializedMessageTrait for ClientConnectionInitializedMess
 
 pub static CLIENTCONNECTIONINITIALIZEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientConnectionInitializedMessage",
+    name_hash: 2291592365,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientConnectionInitializedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientConnectionInitializedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3133,7 +3341,8 @@ impl TypeObject for ClientConnectionInitializedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlaceHolderEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3152,12 +3361,15 @@ impl super::entity::EntityBusPeerTrait for ClientPlaceHolderEntity {
 
 pub static CLIENTPLACEHOLDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlaceHolderEntity",
+    name_hash: 2887326788,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPlaceHolderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlaceHolderEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientPlaceHolderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3187,6 +3399,7 @@ impl TypeObject for ClientPlaceHolderEntity {
 
 pub static CLIENTPLACEHOLDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlaceHolderEntity-Array",
+    name_hash: 3333398768,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientPlaceHolderEntity"),
@@ -3195,7 +3408,8 @@ pub static CLIENTPLACEHOLDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPhysicsEntityWithPoseProvider {
     pub _glacier_base: ClientPhysicsEntity,
 }
@@ -3229,12 +3443,15 @@ impl super::entity::EntityBusPeerTrait for ClientPhysicsEntityWithPoseProvider {
 
 pub static CLIENTPHYSICSENTITYWITHPOSEPROVIDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicsEntityWithPoseProvider",
+    name_hash: 2434420966,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTPHYSICSENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPhysicsEntityWithPoseProvider, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPhysicsEntityWithPoseProvider as Default>::default())),
+            create_boxed: || Box::new(<ClientPhysicsEntityWithPoseProvider as Default>::default()),
         },
         fields: &[
         ],
@@ -3264,6 +3481,7 @@ impl TypeObject for ClientPhysicsEntityWithPoseProvider {
 
 pub static CLIENTPHYSICSENTITYWITHPOSEPROVIDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicsEntityWithPoseProvider-Array",
+    name_hash: 2494156242,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientPhysicsEntityWithPoseProvider"),
@@ -3272,7 +3490,8 @@ pub static CLIENTPHYSICSENTITYWITHPOSEPROVIDER_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPhysicsEntity {
     pub _glacier_base: ClientGameComponentEntity,
 }
@@ -3303,12 +3522,15 @@ impl super::entity::EntityBusPeerTrait for ClientPhysicsEntity {
 
 pub static CLIENTPHYSICSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicsEntity",
+    name_hash: 1120355756,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTGAMECOMPONENTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPhysicsEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPhysicsEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientPhysicsEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3338,6 +3560,7 @@ impl TypeObject for ClientPhysicsEntity {
 
 pub static CLIENTPHYSICSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPhysicsEntity-Array",
+    name_hash: 3330438424,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientPhysicsEntity"),
@@ -3346,7 +3569,8 @@ pub static CLIENTPHYSICSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientGameComponentEntity {
     pub _glacier_base: super::gameplay_sim::GameComponentEntity,
 }
@@ -3374,12 +3598,15 @@ impl super::entity::EntityBusPeerTrait for ClientGameComponentEntity {
 
 pub static CLIENTGAMECOMPONENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGameComponentEntity",
+    name_hash: 2807452262,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_sim::GAMECOMPONENTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientGameComponentEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientGameComponentEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientGameComponentEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3409,6 +3636,7 @@ impl TypeObject for ClientGameComponentEntity {
 
 pub static CLIENTGAMECOMPONENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGameComponentEntity-Array",
+    name_hash: 3745574738,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientGameComponentEntity"),
@@ -3417,7 +3645,8 @@ pub static CLIENTGAMECOMPONENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientGameComponent {
     pub _glacier_base: super::gameplay_sim::GameComponent,
 }
@@ -3439,12 +3668,15 @@ impl super::entity::EntityBusPeerTrait for ClientGameComponent {
 
 pub static CLIENTGAMECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGameComponent",
+    name_hash: 2396166845,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_sim::GAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientGameComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientGameComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientGameComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -3474,6 +3706,7 @@ impl TypeObject for ClientGameComponent {
 
 pub static CLIENTGAMECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGameComponent-Array",
+    name_hash: 1768134409,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientGameComponent"),
@@ -3482,7 +3715,8 @@ pub static CLIENTGAMECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientControllableEntityCreatedEntityInfo {
 }
 
@@ -3494,12 +3728,15 @@ impl ClientControllableEntityCreatedEntityInfoTrait for ClientControllableEntity
 
 pub static CLIENTCONTROLLABLEENTITYCREATEDENTITYINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControllableEntityCreatedEntityInfo",
+    name_hash: 1148713491,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientControllableEntityCreatedEntityInfo as Default>::default())),
+            create_boxed: || Box::new(<ClientControllableEntityCreatedEntityInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -3529,6 +3766,7 @@ impl TypeObject for ClientControllableEntityCreatedEntityInfo {
 
 pub static CLIENTCONTROLLABLEENTITYCREATEDENTITYINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControllableEntityCreatedEntityInfo-Array",
+    name_hash: 1799369895,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientControllableEntityCreatedEntityInfo"),
@@ -3537,7 +3775,8 @@ pub static CLIENTCONTROLLABLEENTITYCREATEDENTITYINFO_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientControllableEntity {
     pub _glacier_base: ClientPhysicsEntity,
 }
@@ -3571,12 +3810,15 @@ impl super::entity::EntityBusPeerTrait for ClientControllableEntity {
 
 pub static CLIENTCONTROLLABLEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControllableEntity",
+    name_hash: 4009400838,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTPHYSICSENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientControllableEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientControllableEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientControllableEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3606,6 +3848,7 @@ impl TypeObject for ClientControllableEntity {
 
 pub static CLIENTCONTROLLABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControllableEntity-Array",
+    name_hash: 1787864882,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientControllableEntity"),
@@ -3614,7 +3857,8 @@ pub static CLIENTCONTROLLABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientEntryComponent {
     pub _glacier_base: ClientGameComponent,
 }
@@ -3639,12 +3883,15 @@ impl super::entity::EntityBusPeerTrait for ClientEntryComponent {
 
 pub static CLIENTENTRYCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEntryComponent",
+    name_hash: 1514690887,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientEntryComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientEntryComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientEntryComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -3674,6 +3921,7 @@ impl TypeObject for ClientEntryComponent {
 
 pub static CLIENTENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEntryComponent-Array",
+    name_hash: 8890995,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientEntryComponent"),
@@ -3682,7 +3930,8 @@ pub static CLIENTENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientControllableHealthComponent {
     pub _glacier_base: ClientGameHealthComponent,
 }
@@ -3707,12 +3956,15 @@ impl super::entity::EntityBusPeerTrait for ClientControllableHealthComponent {
 
 pub static CLIENTCONTROLLABLEHEALTHCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControllableHealthComponent",
+    name_hash: 1401745230,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTGAMEHEALTHCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientControllableHealthComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientControllableHealthComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientControllableHealthComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -3742,6 +3994,7 @@ impl TypeObject for ClientControllableHealthComponent {
 
 pub static CLIENTCONTROLLABLEHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientControllableHealthComponent-Array",
+    name_hash: 355305722,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientControllableHealthComponent"),
@@ -3750,7 +4003,8 @@ pub static CLIENTCONTROLLABLEHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerExtent {
 }
 
@@ -3762,12 +4016,15 @@ impl ClientPlayerExtentTrait for ClientPlayerExtent {
 
 pub static CLIENTPLAYEREXTENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerExtent",
+    name_hash: 1644728409,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerExtent as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerExtent as Default>::default()),
         },
         fields: &[
         ],
@@ -3797,6 +4054,7 @@ impl TypeObject for ClientPlayerExtent {
 
 pub static CLIENTPLAYEREXTENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerExtent-Array",
+    name_hash: 4068171373,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientPlayerExtent"),
@@ -3805,7 +4063,8 @@ pub static CLIENTPLAYEREXTENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OnlineManager {
 }
 
@@ -3817,12 +4076,15 @@ impl OnlineManagerTrait for OnlineManager {
 
 pub static ONLINEMANAGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OnlineManager",
+    name_hash: 160362873,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OnlineManager as Default>::default())),
+            create_boxed: || Box::new(<OnlineManager as Default>::default()),
         },
         fields: &[
         ],
@@ -3852,6 +4114,7 @@ impl TypeObject for OnlineManager {
 
 pub static ONLINEMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OnlineManager-Array",
+    name_hash: 3041300557,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("OnlineManager"),
@@ -3860,7 +4123,8 @@ pub static ONLINEMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientConnection {
     pub _glacier_base: super::network::EngineConnectionPeer,
 }
@@ -3879,12 +4143,15 @@ impl super::network::EngineConnectionTrait for ClientConnection {
 
 pub static CLIENTCONNECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientConnection",
+    name_hash: 2412982250,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::network::ENGINECONNECTIONPEER_TYPE_INFO),
+        super_class_offset: offset_of!(ClientConnection, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientConnection as Default>::default())),
+            create_boxed: || Box::new(<ClientConnection as Default>::default()),
         },
         fields: &[
         ],
@@ -3914,6 +4181,7 @@ impl TypeObject for ClientConnection {
 
 pub static CLIENTCONNECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientConnection-Array",
+    name_hash: 3649936094,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientConnection"),
@@ -3922,7 +4190,8 @@ pub static CLIENTCONNECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSpawnEntity {
     pub _glacier_base: super::entity::SpatialEntity,
 }
@@ -3944,12 +4213,15 @@ impl super::entity::EntityBusPeerTrait for ClientSpawnEntity {
 
 pub static CLIENTSPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSpawnEntity",
+    name_hash: 3396570332,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSpawnEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSpawnEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSpawnEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3979,6 +4251,7 @@ impl TypeObject for ClientSpawnEntity {
 
 pub static CLIENTSPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSpawnEntity-Array",
+    name_hash: 3394147688,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientSpawnEntity"),
@@ -3987,7 +4260,8 @@ pub static CLIENTSPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerEvent {
     pub _glacier_base: super::gameplay_sim::PlayerEventBase,
 }
@@ -4006,12 +4280,15 @@ impl super::entity::EntityEventTrait for ClientPlayerEvent {
 
 pub static CLIENTPLAYEREVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerEvent",
+    name_hash: 3824720419,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_sim::PLAYEREVENTBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPlayerEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerEvent as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerEvent as Default>::default()),
         },
         fields: &[
         ],
@@ -4041,6 +4318,7 @@ impl TypeObject for ClientPlayerEvent {
 
 pub static CLIENTPLAYEREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerEvent-Array",
+    name_hash: 1825693079,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientPlayerEvent"),
@@ -4049,7 +4327,8 @@ pub static CLIENTPLAYEREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDestructionComponent {
     pub _glacier_base: super::destruction::DestructionComponent,
 }
@@ -4071,12 +4350,15 @@ impl super::entity::EntityBusPeerTrait for ClientDestructionComponent {
 
 pub static CLIENTDESTRUCTIONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDestructionComponent",
+    name_hash: 3768812077,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::destruction::DESTRUCTIONCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientDestructionComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDestructionComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientDestructionComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -4106,6 +4388,7 @@ impl TypeObject for ClientDestructionComponent {
 
 pub static CLIENTDESTRUCTIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDestructionComponent-Array",
+    name_hash: 1368479385,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientDestructionComponent"),
@@ -4114,7 +4397,8 @@ pub static CLIENTDESTRUCTIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerUpdateCameraComponentMessage {
 }
 
@@ -4126,11 +4410,13 @@ impl ClientPlayerUpdateCameraComponentMessageTrait for ClientPlayerUpdateCameraC
 
 pub static CLIENTPLAYERUPDATECAMERACOMPONENTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerUpdateCameraComponentMessage",
+    name_hash: 1688559811,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerUpdateCameraComponentMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerUpdateCameraComponentMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4157,7 +4443,8 @@ impl TypeObject for ClientPlayerUpdateCameraComponentMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerSwitchTeamMessage {
 }
 
@@ -4169,11 +4456,13 @@ impl ClientPlayerSwitchTeamMessageTrait for ClientPlayerSwitchTeamMessage {
 
 pub static CLIENTPLAYERSWITCHTEAMMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerSwitchTeamMessage",
+    name_hash: 1837906027,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerSwitchTeamMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerSwitchTeamMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4200,7 +4489,8 @@ impl TypeObject for ClientPlayerSwitchTeamMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerRequestCameraChangeMessage {
 }
 
@@ -4212,11 +4502,13 @@ impl ClientPlayerRequestCameraChangeMessageTrait for ClientPlayerRequestCameraCh
 
 pub static CLIENTPLAYERREQUESTCAMERACHANGEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerRequestCameraChangeMessage",
+    name_hash: 2025231082,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerRequestCameraChangeMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerRequestCameraChangeMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4243,7 +4535,8 @@ impl TypeObject for ClientPlayerRequestCameraChangeMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerLocalSetMessage {
 }
 
@@ -4255,11 +4548,13 @@ impl ClientPlayerLocalSetMessageTrait for ClientPlayerLocalSetMessage {
 
 pub static CLIENTPLAYERLOCALSETMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerLocalSetMessage",
+    name_hash: 473901803,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerLocalSetMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerLocalSetMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4286,7 +4581,8 @@ impl TypeObject for ClientPlayerLocalSetMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerExitEntryMessage {
 }
 
@@ -4298,11 +4594,13 @@ impl ClientPlayerExitEntryMessageTrait for ClientPlayerExitEntryMessage {
 
 pub static CLIENTPLAYEREXITENTRYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerExitEntryMessage",
+    name_hash: 3218224592,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerExitEntryMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerExitEntryMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4329,7 +4627,8 @@ impl TypeObject for ClientPlayerExitEntryMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerEnterEntryMessage {
 }
 
@@ -4341,11 +4640,13 @@ impl ClientPlayerEnterEntryMessageTrait for ClientPlayerEnterEntryMessage {
 
 pub static CLIENTPLAYERENTERENTRYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerEnterEntryMessage",
+    name_hash: 2692762808,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerEnterEntryMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerEnterEntryMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4372,7 +4673,8 @@ impl TypeObject for ClientPlayerEnterEntryMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerDeletedMessage {
 }
 
@@ -4384,11 +4686,13 @@ impl ClientPlayerDeletedMessageTrait for ClientPlayerDeletedMessage {
 
 pub static CLIENTPLAYERDELETEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerDeletedMessage",
+    name_hash: 1619630009,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerDeletedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerDeletedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4415,7 +4719,8 @@ impl TypeObject for ClientPlayerDeletedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerConnectMessage {
 }
 
@@ -4427,11 +4732,13 @@ impl ClientPlayerConnectMessageTrait for ClientPlayerConnectMessage {
 
 pub static CLIENTPLAYERCONNECTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerConnectMessage",
+    name_hash: 1776313402,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerConnectMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerConnectMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4458,7 +4765,8 @@ impl TypeObject for ClientPlayerConnectMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayerChangedPlayerViewMessage {
 }
 
@@ -4470,11 +4778,13 @@ impl ClientPlayerChangedPlayerViewMessageTrait for ClientPlayerChangedPlayerView
 
 pub static CLIENTPLAYERCHANGEDPLAYERVIEWMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayerChangedPlayerViewMessage",
+    name_hash: 563946744,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayerChangedPlayerViewMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayerChangedPlayerViewMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4501,7 +4811,8 @@ impl TypeObject for ClientPlayerChangedPlayerViewMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSetServerPasswordMessage {
 }
 
@@ -4513,11 +4824,13 @@ impl ClientSetServerPasswordMessageTrait for ClientSetServerPasswordMessage {
 
 pub static CLIENTSETSERVERPASSWORDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSetServerPasswordMessage",
+    name_hash: 252002927,
     flags: MemberInfoFlags::new(73),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSetServerPasswordMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientSetServerPasswordMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4544,7 +4857,8 @@ impl TypeObject for ClientSetServerPasswordMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWantFullscreenMessage {
 }
 
@@ -4556,11 +4870,13 @@ impl ClientWantFullscreenMessageTrait for ClientWantFullscreenMessage {
 
 pub static CLIENTWANTFULLSCREENMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWantFullscreenMessage",
+    name_hash: 1692722820,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWantFullscreenMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientWantFullscreenMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4587,7 +4903,8 @@ impl TypeObject for ClientWantFullscreenMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLeftRemoteServerMessage {
 }
 
@@ -4599,11 +4916,13 @@ impl ClientLeftRemoteServerMessageTrait for ClientLeftRemoteServerMessage {
 
 pub static CLIENTLEFTREMOTESERVERMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLeftRemoteServerMessage",
+    name_hash: 1368126605,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLeftRemoteServerMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientLeftRemoteServerMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4630,7 +4949,8 @@ impl TypeObject for ClientLeftRemoteServerMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDisconnectedMessage {
 }
 
@@ -4642,11 +4962,13 @@ impl ClientDisconnectedMessageTrait for ClientDisconnectedMessage {
 
 pub static CLIENTDISCONNECTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDisconnectedMessage",
+    name_hash: 3175843734,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDisconnectedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientDisconnectedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4673,7 +4995,8 @@ impl TypeObject for ClientDisconnectedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientConnectedMessage {
 }
 
@@ -4685,11 +5008,13 @@ impl ClientConnectedMessageTrait for ClientConnectedMessage {
 
 pub static CLIENTCONNECTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientConnectedMessage",
+    name_hash: 2594647112,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientConnectedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientConnectedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4716,7 +5041,8 @@ impl TypeObject for ClientConnectedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAbortCutsceneMessage {
 }
 
@@ -4728,11 +5054,13 @@ impl ClientAbortCutsceneMessageTrait for ClientAbortCutsceneMessage {
 
 pub static CLIENTABORTCUTSCENEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAbortCutsceneMessage",
+    name_hash: 847018273,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAbortCutsceneMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientAbortCutsceneMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4759,7 +5087,8 @@ impl TypeObject for ClientAbortCutsceneMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLevelLoadedMessage {
 }
 
@@ -4771,11 +5100,13 @@ impl ClientLevelLoadedMessageTrait for ClientLevelLoadedMessage {
 
 pub static CLIENTLEVELLOADEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLevelLoadedMessage",
+    name_hash: 3732255494,
     flags: MemberInfoFlags::new(73),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLevelLoadedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientLevelLoadedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4802,7 +5133,8 @@ impl TypeObject for ClientLevelLoadedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLevelLoadProgressMessage {
 }
 
@@ -4814,11 +5146,13 @@ impl ClientLevelLoadProgressMessageTrait for ClientLevelLoadProgressMessage {
 
 pub static CLIENTLEVELLOADPROGRESSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLevelLoadProgressMessage",
+    name_hash: 2175882842,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLevelLoadProgressMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientLevelLoadProgressMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4845,7 +5179,8 @@ impl TypeObject for ClientLevelLoadProgressMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLevelDescriptionLoadedMessage {
 }
 
@@ -4857,11 +5192,13 @@ impl ClientLevelDescriptionLoadedMessageTrait for ClientLevelDescriptionLoadedMe
 
 pub static CLIENTLEVELDESCRIPTIONLOADEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLevelDescriptionLoadedMessage",
+    name_hash: 1533759808,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLevelDescriptionLoadedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientLevelDescriptionLoadedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4888,7 +5225,8 @@ impl TypeObject for ClientLevelDescriptionLoadedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLevelUnloadedMessage {
 }
 
@@ -4900,11 +5238,13 @@ impl ClientLevelUnloadedMessageTrait for ClientLevelUnloadedMessage {
 
 pub static CLIENTLEVELUNLOADEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLevelUnloadedMessage",
+    name_hash: 2919187293,
     flags: MemberInfoFlags::new(73),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLevelUnloadedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientLevelUnloadedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4931,7 +5271,8 @@ impl TypeObject for ClientLevelUnloadedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLevelUnloadStartedMessage {
 }
 
@@ -4943,11 +5284,13 @@ impl ClientLevelUnloadStartedMessageTrait for ClientLevelUnloadStartedMessage {
 
 pub static CLIENTLEVELUNLOADSTARTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLevelUnloadStartedMessage",
+    name_hash: 2543346877,
     flags: MemberInfoFlags::new(73),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLevelUnloadStartedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientLevelUnloadStartedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4974,7 +5317,8 @@ impl TypeObject for ClientLevelUnloadStartedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientQuittingFinishedMessage {
 }
 
@@ -4986,11 +5330,13 @@ impl ClientQuittingFinishedMessageTrait for ClientQuittingFinishedMessage {
 
 pub static CLIENTQUITTINGFINISHEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientQuittingFinishedMessage",
+    name_hash: 147338920,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientQuittingFinishedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientQuittingFinishedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5017,7 +5363,8 @@ impl TypeObject for ClientQuittingFinishedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientQuittingStartedMessage {
 }
 
@@ -5029,11 +5376,13 @@ impl ClientQuittingStartedMessageTrait for ClientQuittingStartedMessage {
 
 pub static CLIENTQUITTINGSTARTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientQuittingStartedMessage",
+    name_hash: 1930192315,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientQuittingStartedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientQuittingStartedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5060,7 +5409,8 @@ impl TypeObject for ClientQuittingStartedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStartupFinishedMessage {
 }
 
@@ -5072,11 +5422,13 @@ impl ClientStartupFinishedMessageTrait for ClientStartupFinishedMessage {
 
 pub static CLIENTSTARTUPFINISHEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStartupFinishedMessage",
+    name_hash: 3343548064,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStartupFinishedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientStartupFinishedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5103,7 +5455,8 @@ impl TypeObject for ClientStartupFinishedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLoadLevelMessage {
 }
 
@@ -5115,11 +5468,13 @@ impl ClientLoadLevelMessageTrait for ClientLoadLevelMessage {
 
 pub static CLIENTLOADLEVELMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLoadLevelMessage",
+    name_hash: 3053829895,
     flags: MemberInfoFlags::new(73),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLoadLevelMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientLoadLevelMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5146,7 +5501,8 @@ impl TypeObject for ClientLoadLevelMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLoadLevelRequestedMessage {
 }
 
@@ -5158,11 +5514,13 @@ impl ClientLoadLevelRequestedMessageTrait for ClientLoadLevelRequestedMessage {
 
 pub static CLIENTLOADLEVELREQUESTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLoadLevelRequestedMessage",
+    name_hash: 2116295255,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLoadLevelRequestedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientLoadLevelRequestedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5189,7 +5547,8 @@ impl TypeObject for ClientLoadLevelRequestedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientEnteredIngameMessage {
 }
 
@@ -5201,11 +5560,13 @@ impl ClientEnteredIngameMessageTrait for ClientEnteredIngameMessage {
 
 pub static CLIENTENTEREDINGAMEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEnteredIngameMessage",
+    name_hash: 3509221207,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientEnteredIngameMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientEnteredIngameMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5232,7 +5593,8 @@ impl TypeObject for ClientEnteredIngameMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientEnterHudIngameMessage {
 }
 
@@ -5244,11 +5606,13 @@ impl ClientEnterHudIngameMessageTrait for ClientEnterHudIngameMessage {
 
 pub static CLIENTENTERHUDINGAMEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEnterHudIngameMessage",
+    name_hash: 4182036879,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientEnterHudIngameMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientEnterHudIngameMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5275,7 +5639,8 @@ impl TypeObject for ClientEnterHudIngameMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientExitGameMessage {
 }
 
@@ -5287,11 +5652,13 @@ impl ClientExitGameMessageTrait for ClientExitGameMessage {
 
 pub static CLIENTEXITGAMEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientExitGameMessage",
+    name_hash: 3139477337,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientExitGameMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientExitGameMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5318,7 +5685,8 @@ impl TypeObject for ClientExitGameMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientHostMigrationMessage {
 }
 
@@ -5330,11 +5698,13 @@ impl ClientHostMigrationMessageTrait for ClientHostMigrationMessage {
 
 pub static CLIENTHOSTMIGRATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientHostMigrationMessage",
+    name_hash: 3582299,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientHostMigrationMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientHostMigrationMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5361,7 +5731,8 @@ impl TypeObject for ClientHostMigrationMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientExitToMenuMessage {
 }
 
@@ -5373,11 +5744,13 @@ impl ClientExitToMenuMessageTrait for ClientExitToMenuMessage {
 
 pub static CLIENTEXITTOMENUMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientExitToMenuMessage",
+    name_hash: 2129992607,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientExitToMenuMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientExitToMenuMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5404,7 +5777,8 @@ impl TypeObject for ClientExitToMenuMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientReturnToMenuMessage {
 }
 
@@ -5416,11 +5790,13 @@ impl ClientReturnToMenuMessageTrait for ClientReturnToMenuMessage {
 
 pub static CLIENTRETURNTOMENUMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientReturnToMenuMessage",
+    name_hash: 1871399125,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientReturnToMenuMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientReturnToMenuMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5447,7 +5823,8 @@ impl TypeObject for ClientReturnToMenuMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStartMultiplayerMessage {
 }
 
@@ -5459,11 +5836,13 @@ impl ClientStartMultiplayerMessageTrait for ClientStartMultiplayerMessage {
 
 pub static CLIENTSTARTMULTIPLAYERMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStartMultiplayerMessage",
+    name_hash: 3210238573,
     flags: MemberInfoFlags::new(73),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStartMultiplayerMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientStartMultiplayerMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5490,7 +5869,8 @@ impl TypeObject for ClientStartMultiplayerMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientContinueSingleplayerMessage {
 }
 
@@ -5502,11 +5882,13 @@ impl ClientContinueSingleplayerMessageTrait for ClientContinueSingleplayerMessag
 
 pub static CLIENTCONTINUESINGLEPLAYERMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientContinueSingleplayerMessage",
+    name_hash: 1131904991,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientContinueSingleplayerMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientContinueSingleplayerMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5533,7 +5915,8 @@ impl TypeObject for ClientContinueSingleplayerMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStartedMessage {
 }
 
@@ -5545,11 +5928,13 @@ impl ClientStartedMessageTrait for ClientStartedMessage {
 
 pub static CLIENTSTARTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStartedMessage",
+    name_hash: 512147926,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStartedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientStartedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5576,7 +5961,8 @@ impl TypeObject for ClientStartedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientJoinServerJobMessage {
 }
 
@@ -5588,11 +5974,13 @@ impl ClientJoinServerJobMessageTrait for ClientJoinServerJobMessage {
 
 pub static CLIENTJOINSERVERJOBMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientJoinServerJobMessage",
+    name_hash: 3841511415,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientJoinServerJobMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientJoinServerJobMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5619,7 +6007,8 @@ impl TypeObject for ClientJoinServerJobMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPeerNetworkRemovedMessageBase {
 }
 
@@ -5631,11 +6020,13 @@ impl ClientPeerNetworkRemovedMessageBaseTrait for ClientPeerNetworkRemovedMessag
 
 pub static CLIENTPEERNETWORKREMOVEDMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPeerNetworkRemovedMessageBase",
+    name_hash: 1764257468,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPeerNetworkRemovedMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ClientPeerNetworkRemovedMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -5662,7 +6053,8 @@ impl TypeObject for ClientPeerNetworkRemovedMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientJoinMultiplayerMessageBase {
 }
 
@@ -5674,11 +6066,13 @@ impl ClientJoinMultiplayerMessageBaseTrait for ClientJoinMultiplayerMessageBase 
 
 pub static CLIENTJOINMULTIPLAYERMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientJoinMultiplayerMessageBase",
+    name_hash: 1162997178,
     flags: MemberInfoFlags::new(73),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientJoinMultiplayerMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ClientJoinMultiplayerMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -5705,7 +6099,8 @@ impl TypeObject for ClientJoinMultiplayerMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRestartSingleplayerMessageBase {
 }
 
@@ -5717,11 +6112,13 @@ impl ClientRestartSingleplayerMessageBaseTrait for ClientRestartSingleplayerMess
 
 pub static CLIENTRESTARTSINGLEPLAYERMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRestartSingleplayerMessageBase",
+    name_hash: 3794935164,
     flags: MemberInfoFlags::new(36937),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRestartSingleplayerMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ClientRestartSingleplayerMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -5748,7 +6145,8 @@ impl TypeObject for ClientRestartSingleplayerMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStartSingleplayerMessageBase {
 }
 
@@ -5760,11 +6158,13 @@ impl ClientStartSingleplayerMessageBaseTrait for ClientStartSingleplayerMessageB
 
 pub static CLIENTSTARTSINGLEPLAYERMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStartSingleplayerMessageBase",
+    name_hash: 276130283,
     flags: MemberInfoFlags::new(73),
     module: "GameplayClientServer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStartSingleplayerMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ClientStartSingleplayerMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -5791,7 +6191,8 @@ impl TypeObject for ClientStartSingleplayerMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDestructionComponent {
     pub _glacier_base: super::destruction::DestructionComponent,
 }
@@ -5813,12 +6214,15 @@ impl super::entity::EntityBusPeerTrait for ServerDestructionComponent {
 
 pub static SERVERDESTRUCTIONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDestructionComponent",
+    name_hash: 1204385393,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::destruction::DESTRUCTIONCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDestructionComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDestructionComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerDestructionComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -5848,6 +6252,7 @@ impl TypeObject for ServerDestructionComponent {
 
 pub static SERVERDESTRUCTIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDestructionComponent-Array",
+    name_hash: 4128340293,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ServerDestructionComponent"),
@@ -5856,7 +6261,8 @@ pub static SERVERDESTRUCTIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGameComponent {
     pub _glacier_base: super::gameplay_sim::GameComponent,
 }
@@ -5878,12 +6284,15 @@ impl super::entity::EntityBusPeerTrait for ServerGameComponent {
 
 pub static SERVERGAMECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameComponent",
+    name_hash: 3972447201,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_sim::GAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerGameComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGameComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerGameComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -5913,6 +6322,7 @@ impl TypeObject for ServerGameComponent {
 
 pub static SERVERGAMECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGameComponent-Array",
+    name_hash: 3300529877,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ServerGameComponent"),
@@ -5921,7 +6331,8 @@ pub static SERVERGAMECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderParameterComponent {
     pub _glacier_base: ClientGameComponent,
 }
@@ -5946,12 +6357,15 @@ impl super::entity::EntityBusPeerTrait for ShaderParameterComponent {
 
 pub static SHADERPARAMETERCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterComponent",
+    name_hash: 2229444106,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ShaderParameterComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderParameterComponent as Default>::default())),
+            create_boxed: || Box::new(<ShaderParameterComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -5981,6 +6395,7 @@ impl TypeObject for ShaderParameterComponent {
 
 pub static SHADERPARAMETERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterComponent-Array",
+    name_hash: 3635108158,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ShaderParameterComponent"),
@@ -5989,7 +6404,8 @@ pub static SHADERPARAMETERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPartComponent {
     pub _glacier_base: ClientGameComponent,
 }
@@ -6014,12 +6430,15 @@ impl super::entity::EntityBusPeerTrait for ClientPartComponent {
 
 pub static CLIENTPARTCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPartComponent",
+    name_hash: 3723804484,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPartComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPartComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientPartComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -6049,6 +6468,7 @@ impl TypeObject for ClientPartComponent {
 
 pub static CLIENTPARTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPartComponent-Array",
+    name_hash: 91849712,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientPartComponent"),
@@ -6057,7 +6477,8 @@ pub static CLIENTPARTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPart {
     pub _glacier_base: super::entity::Part,
 }
@@ -6079,12 +6500,15 @@ impl super::entity::EntityBusPeerTrait for ClientPart {
 
 pub static CLIENTPART_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPart",
+    name_hash: 891916299,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::PART_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPart, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPart as Default>::default())),
+            create_boxed: || Box::new(<ClientPart as Default>::default()),
         },
         fields: &[
         ],
@@ -6114,6 +6538,7 @@ impl TypeObject for ClientPart {
 
 pub static CLIENTPART_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPart-Array",
+    name_hash: 1865866943,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientPart"),
@@ -6122,7 +6547,8 @@ pub static CLIENTPART_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientGameHealthComponent {
     pub _glacier_base: super::gameplay_sim::HealthComponent,
 }
@@ -6144,12 +6570,15 @@ impl super::entity::EntityBusPeerTrait for ClientGameHealthComponent {
 
 pub static CLIENTGAMEHEALTHCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGameHealthComponent",
+    name_hash: 3658374497,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_sim::HEALTHCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientGameHealthComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientGameHealthComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientGameHealthComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -6179,6 +6608,7 @@ impl TypeObject for ClientGameHealthComponent {
 
 pub static CLIENTGAMEHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGameHealthComponent-Array",
+    name_hash: 680843349,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientGameHealthComponent"),
@@ -6187,7 +6617,8 @@ pub static CLIENTGAMEHEALTHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientBoneComponent {
     pub _glacier_base: ClientGameComponent,
 }
@@ -6212,12 +6643,15 @@ impl super::entity::EntityBusPeerTrait for ClientBoneComponent {
 
 pub static CLIENTBONECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBoneComponent",
+    name_hash: 1620513077,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientBoneComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientBoneComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientBoneComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -6247,6 +6681,7 @@ impl TypeObject for ClientBoneComponent {
 
 pub static CLIENTBONECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBoneComponent-Array",
+    name_hash: 281514369,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientBoneComponent"),
@@ -6255,7 +6690,8 @@ pub static CLIENTBONECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSubView {
     pub _glacier_base: super::gameplay_sim::SubView,
 }
@@ -6271,12 +6707,15 @@ impl super::gameplay_sim::SubViewTrait for ClientSubView {
 
 pub static CLIENTSUBVIEW_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSubView",
+    name_hash: 2060112213,
     flags: MemberInfoFlags::new(101),
     module: "GameplayClientServer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_sim::SUBVIEW_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSubView, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSubView as Default>::default())),
+            create_boxed: || Box::new(<ClientSubView as Default>::default()),
         },
         fields: &[
         ],
@@ -6306,6 +6745,7 @@ impl TypeObject for ClientSubView {
 
 pub static CLIENTSUBVIEW_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSubView-Array",
+    name_hash: 2095755617,
     flags: MemberInfoFlags::new(145),
     module: "GameplayClientServer",
     data: TypeInfoData::Array("ClientSubView"),

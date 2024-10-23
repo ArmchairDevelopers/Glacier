@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -64,7 +65,8 @@ pub(crate) fn register_network_types(registry: &mut TypeRegistry) {
     registry.register_type(SYNCEDBOOLENTITYDATA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSyncedTransformEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -83,12 +85,15 @@ impl super::entity::EntityBusPeerTrait for ClientSyncedTransformEntity {
 
 pub static CLIENTSYNCEDTRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSyncedTransformEntity",
+    name_hash: 1776480717,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSyncedTransformEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSyncedTransformEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSyncedTransformEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -118,6 +123,7 @@ impl TypeObject for ClientSyncedTransformEntity {
 
 pub static CLIENTSYNCEDTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSyncedTransformEntity-Array",
+    name_hash: 2510669305,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("ClientSyncedTransformEntity"),
@@ -126,7 +132,8 @@ pub static CLIENTSYNCEDTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSyncedTransformEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -145,12 +152,15 @@ impl super::entity::EntityBusPeerTrait for ServerSyncedTransformEntity {
 
 pub static SERVERSYNCEDTRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSyncedTransformEntity",
+    name_hash: 4024262673,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSyncedTransformEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSyncedTransformEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSyncedTransformEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -180,6 +190,7 @@ impl TypeObject for ServerSyncedTransformEntity {
 
 pub static SERVERSYNCEDTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSyncedTransformEntity-Array",
+    name_hash: 1751228837,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("ServerSyncedTransformEntity"),
@@ -188,7 +199,8 @@ pub static SERVERSYNCEDTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSyncedIntEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -207,12 +219,15 @@ impl super::entity::EntityBusPeerTrait for ClientSyncedIntEntity {
 
 pub static CLIENTSYNCEDINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSyncedIntEntity",
+    name_hash: 3960958994,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSyncedIntEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSyncedIntEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSyncedIntEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -242,6 +257,7 @@ impl TypeObject for ClientSyncedIntEntity {
 
 pub static CLIENTSYNCEDINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSyncedIntEntity-Array",
+    name_hash: 2848528166,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("ClientSyncedIntEntity"),
@@ -250,7 +266,8 @@ pub static CLIENTSYNCEDINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSyncedIntEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -269,12 +286,15 @@ impl super::entity::EntityBusPeerTrait for ServerSyncedIntEntity {
 
 pub static SERVERSYNCEDINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSyncedIntEntity",
+    name_hash: 762172494,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSyncedIntEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSyncedIntEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSyncedIntEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -304,6 +324,7 @@ impl TypeObject for ServerSyncedIntEntity {
 
 pub static SERVERSYNCEDINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSyncedIntEntity-Array",
+    name_hash: 2942709242,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("ServerSyncedIntEntity"),
@@ -312,7 +333,8 @@ pub static SERVERSYNCEDINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSyncedFloatEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -331,12 +353,15 @@ impl super::entity::EntityBusPeerTrait for ClientSyncedFloatEntity {
 
 pub static CLIENTSYNCEDFLOATENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSyncedFloatEntity",
+    name_hash: 274493617,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSyncedFloatEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSyncedFloatEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSyncedFloatEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -366,6 +391,7 @@ impl TypeObject for ClientSyncedFloatEntity {
 
 pub static CLIENTSYNCEDFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSyncedFloatEntity-Array",
+    name_hash: 4172735237,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("ClientSyncedFloatEntity"),
@@ -374,7 +400,8 @@ pub static CLIENTSYNCEDFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSyncedFloatEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -393,12 +420,15 @@ impl super::entity::EntityBusPeerTrait for ServerSyncedFloatEntity {
 
 pub static SERVERSYNCEDFLOATENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSyncedFloatEntity",
+    name_hash: 3771005933,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSyncedFloatEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSyncedFloatEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSyncedFloatEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -428,6 +458,7 @@ impl TypeObject for ServerSyncedFloatEntity {
 
 pub static SERVERSYNCEDFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSyncedFloatEntity-Array",
+    name_hash: 841441497,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("ServerSyncedFloatEntity"),
@@ -436,7 +467,8 @@ pub static SERVERSYNCEDFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientSyncedBoolEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -455,12 +487,15 @@ impl super::entity::EntityBusPeerTrait for ClientSyncedBoolEntity {
 
 pub static CLIENTSYNCEDBOOLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSyncedBoolEntity",
+    name_hash: 1054394639,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientSyncedBoolEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientSyncedBoolEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientSyncedBoolEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -490,6 +525,7 @@ impl TypeObject for ClientSyncedBoolEntity {
 
 pub static CLIENTSYNCEDBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientSyncedBoolEntity-Array",
+    name_hash: 2565637563,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("ClientSyncedBoolEntity"),
@@ -498,7 +534,8 @@ pub static CLIENTSYNCEDBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSyncedBoolEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -517,12 +554,15 @@ impl super::entity::EntityBusPeerTrait for ServerSyncedBoolEntity {
 
 pub static SERVERSYNCEDBOOLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSyncedBoolEntity",
+    name_hash: 952774483,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSyncedBoolEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSyncedBoolEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSyncedBoolEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -552,6 +592,7 @@ impl TypeObject for ServerSyncedBoolEntity {
 
 pub static SERVERSYNCEDBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSyncedBoolEntity-Array",
+    name_hash: 3638893159,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("ServerSyncedBoolEntity"),
@@ -560,7 +601,8 @@ pub static SERVERSYNCEDBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EngineConnectionPeer {
     pub _glacier_base: EngineConnection,
 }
@@ -576,12 +618,15 @@ impl EngineConnectionTrait for EngineConnectionPeer {
 
 pub static ENGINECONNECTIONPEER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EngineConnectionPeer",
+    name_hash: 3930262911,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENGINECONNECTION_TYPE_INFO),
+        super_class_offset: offset_of!(EngineConnectionPeer, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EngineConnectionPeer as Default>::default())),
+            create_boxed: || Box::new(<EngineConnectionPeer as Default>::default()),
         },
         fields: &[
         ],
@@ -611,6 +656,7 @@ impl TypeObject for EngineConnectionPeer {
 
 pub static ENGINECONNECTIONPEER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EngineConnectionPeer-Array",
+    name_hash: 1720423243,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("EngineConnectionPeer"),
@@ -619,7 +665,8 @@ pub static ENGINECONNECTIONPEER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EngineConnection {
 }
 
@@ -631,12 +678,15 @@ impl EngineConnectionTrait for EngineConnection {
 
 pub static ENGINECONNECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EngineConnection",
+    name_hash: 1372988669,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EngineConnection as Default>::default())),
+            create_boxed: || Box::new(<EngineConnection as Default>::default()),
         },
         fields: &[
         ],
@@ -666,6 +716,7 @@ impl TypeObject for EngineConnection {
 
 pub static ENGINECONNECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EngineConnection-Array",
+    name_hash: 1329992137,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("EngineConnection"),
@@ -674,7 +725,8 @@ pub static ENGINECONNECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpikeInternalMessagePartMessage {
 }
 
@@ -686,11 +738,13 @@ impl SpikeInternalMessagePartMessageTrait for SpikeInternalMessagePartMessage {
 
 pub static SPIKEINTERNALMESSAGEPARTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpikeInternalMessagePartMessage",
+    name_hash: 1784852497,
     flags: MemberInfoFlags::new(73),
     module: "Network",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpikeInternalMessagePartMessage as Default>::default())),
+            create_boxed: || Box::new(<SpikeInternalMessagePartMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -717,7 +771,8 @@ impl TypeObject for SpikeInternalMessagePartMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpikeInternalMessageWrapperMessage {
 }
 
@@ -729,11 +784,13 @@ impl SpikeInternalMessageWrapperMessageTrait for SpikeInternalMessageWrapperMess
 
 pub static SPIKEINTERNALMESSAGEWRAPPERMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpikeInternalMessageWrapperMessage",
+    name_hash: 4077307189,
     flags: MemberInfoFlags::new(73),
     module: "Network",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpikeInternalMessageWrapperMessage as Default>::default())),
+            create_boxed: || Box::new(<SpikeInternalMessageWrapperMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -760,7 +817,8 @@ impl TypeObject for SpikeInternalMessageWrapperMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkPerfOverlaySettings {
     pub _glacier_base: super::core::DataContainer,
     pub enable: bool,
@@ -875,76 +933,90 @@ impl super::core::DataContainerTrait for NetworkPerfOverlaySettings {
 
 pub static NETWORKPERFOVERLAYSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkPerfOverlaySettings",
+    name_hash: 813936613,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(NetworkPerfOverlaySettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkPerfOverlaySettings as Default>::default())),
+            create_boxed: || Box::new(<NetworkPerfOverlaySettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetworkPerfOverlaySettings, enable),
             },
             FieldInfoData {
                 name: "GraphPos",
+                name_hash: 1352104293,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(NetworkPerfOverlaySettings, graph_pos),
             },
             FieldInfoData {
                 name: "UpdateFrequency",
+                name_hash: 219717232,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetworkPerfOverlaySettings, update_frequency),
             },
             FieldInfoData {
                 name: "HighLatency",
+                name_hash: 3787528835,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetworkPerfOverlaySettings, high_latency),
             },
             FieldInfoData {
                 name: "CriticalLatency",
+                name_hash: 2362833414,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetworkPerfOverlaySettings, critical_latency),
             },
             FieldInfoData {
                 name: "HighLatencyVariation",
+                name_hash: 2284846354,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetworkPerfOverlaySettings, high_latency_variation),
             },
             FieldInfoData {
                 name: "CriticalLatencyVariation",
+                name_hash: 2417257143,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetworkPerfOverlaySettings, critical_latency_variation),
             },
             FieldInfoData {
                 name: "HighPacketLossRatio",
+                name_hash: 2039687393,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetworkPerfOverlaySettings, high_packet_loss_ratio),
             },
             FieldInfoData {
                 name: "CriticalPacketLossRatio",
+                name_hash: 1584471204,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetworkPerfOverlaySettings, critical_packet_loss_ratio),
             },
             FieldInfoData {
                 name: "ServerFpsLowThresholdPerc",
+                name_hash: 451424322,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetworkPerfOverlaySettings, server_fps_low_threshold_perc),
             },
             FieldInfoData {
                 name: "ServerFpsLowThresholdCritPerc",
+                name_hash: 2411888046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetworkPerfOverlaySettings, server_fps_low_threshold_crit_perc),
@@ -976,6 +1048,7 @@ impl TypeObject for NetworkPerfOverlaySettings {
 
 pub static NETWORKPERFOVERLAYSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkPerfOverlaySettings-Array",
+    name_hash: 2292037841,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("NetworkPerfOverlaySettings"),
@@ -984,7 +1057,8 @@ pub static NETWORKPERFOVERLAYSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InterpolationManagerSettings {
     pub _glacier_base: super::core::DataContainer,
     pub time_nudge_calculator: i32,
@@ -1099,76 +1173,90 @@ impl super::core::DataContainerTrait for InterpolationManagerSettings {
 
 pub static INTERPOLATIONMANAGERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InterpolationManagerSettings",
+    name_hash: 3197599801,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(InterpolationManagerSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InterpolationManagerSettings as Default>::default())),
+            create_boxed: || Box::new(<InterpolationManagerSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TimeNudgeCalculator",
+                name_hash: 2386089905,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(InterpolationManagerSettings, time_nudge_calculator),
             },
             FieldInfoData {
                 name: "TimeNudgePIDConstKPos",
+                name_hash: 317353362,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InterpolationManagerSettings, time_nudge_p_i_d_const_k_pos),
             },
             FieldInfoData {
                 name: "TimeNudgePIDConstKNeg",
+                name_hash: 317352018,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InterpolationManagerSettings, time_nudge_p_i_d_const_k_neg),
             },
             FieldInfoData {
                 name: "TimeNudgePIDConstTIPos",
+                name_hash: 1849093924,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InterpolationManagerSettings, time_nudge_p_i_d_const_t_i_pos),
             },
             FieldInfoData {
                 name: "TimeNudgePIDConstTINeg",
+                name_hash: 1849070180,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InterpolationManagerSettings, time_nudge_p_i_d_const_t_i_neg),
             },
             FieldInfoData {
                 name: "TimeNudgePIDConstTDPos",
+                name_hash: 1848982025,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InterpolationManagerSettings, time_nudge_p_i_d_const_t_d_pos),
             },
             FieldInfoData {
                 name: "TimeNudgePIDConstTDNeg",
+                name_hash: 1848975433,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InterpolationManagerSettings, time_nudge_p_i_d_const_t_d_neg),
             },
             FieldInfoData {
                 name: "TimeNudgePIDLatencyTol",
+                name_hash: 133853199,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InterpolationManagerSettings, time_nudge_p_i_d_latency_tol),
             },
             FieldInfoData {
                 name: "TimeNudgePIDPacketDeltaTimeTol",
+                name_hash: 2633655426,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InterpolationManagerSettings, time_nudge_p_i_d_packet_delta_time_tol),
             },
             FieldInfoData {
                 name: "TimeNudgePIDMaxChangePerSec",
+                name_hash: 828391824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InterpolationManagerSettings, time_nudge_p_i_d_max_change_per_sec),
             },
             FieldInfoData {
                 name: "AveragePacketSampleCount",
+                name_hash: 1637518571,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(InterpolationManagerSettings, average_packet_sample_count),
@@ -1200,6 +1288,7 @@ impl TypeObject for InterpolationManagerSettings {
 
 pub static INTERPOLATIONMANAGERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InterpolationManagerSettings-Array",
+    name_hash: 2422140557,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("InterpolationManagerSettings"),
@@ -1208,7 +1297,8 @@ pub static INTERPOLATIONMANAGERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InternetSimulationState {
     pub enabled: bool,
     pub reorder_ratio: f32,
@@ -1346,93 +1436,109 @@ impl InternetSimulationStateTrait for InternetSimulationState {
 
 pub static INTERNETSIMULATIONSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InternetSimulationState",
+    name_hash: 1267347930,
     flags: MemberInfoFlags::new(36937),
     module: "Network",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InternetSimulationState as Default>::default())),
+            create_boxed: || Box::new(<InternetSimulationState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InternetSimulationState, enabled),
             },
             FieldInfoData {
                 name: "ReorderRatio",
+                name_hash: 4055254845,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, reorder_ratio),
             },
             FieldInfoData {
                 name: "LatencyMin",
+                name_hash: 786382599,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, latency_min),
             },
             FieldInfoData {
                 name: "LatencyMax",
+                name_hash: 786382361,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, latency_max),
             },
             FieldInfoData {
                 name: "DuplicateRatio",
+                name_hash: 1765163763,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, duplicate_ratio),
             },
             FieldInfoData {
                 name: "DropRatio",
+                name_hash: 2887696013,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, drop_ratio),
             },
             FieldInfoData {
                 name: "CorruptRatio",
+                name_hash: 3938068633,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, corrupt_ratio),
             },
             FieldInfoData {
                 name: "SizeRatio",
+                name_hash: 2353800513,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, size_ratio),
             },
             FieldInfoData {
                 name: "SpikeDurationMin",
+                name_hash: 3352376597,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, spike_duration_min),
             },
             FieldInfoData {
                 name: "SpikeDurationMax",
+                name_hash: 3352376331,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, spike_duration_max),
             },
             FieldInfoData {
                 name: "SpikeCooldownMin",
+                name_hash: 2870776246,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, spike_cooldown_min),
             },
             FieldInfoData {
                 name: "SpikeCooldownMax",
+                name_hash: 2870775976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, spike_cooldown_max),
             },
             FieldInfoData {
                 name: "BandwidthMax",
+                name_hash: 773802078,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, bandwidth_max),
             },
             FieldInfoData {
                 name: "BandwidthDelayMax",
+                name_hash: 1436090027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InternetSimulationState, bandwidth_delay_max),
@@ -1464,6 +1570,7 @@ impl TypeObject for InternetSimulationState {
 
 pub static INTERNETSIMULATIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InternetSimulationState-Array",
+    name_hash: 101041518,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("InternetSimulationState"),
@@ -1472,7 +1579,8 @@ pub static INTERNETSIMULATIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkCoreSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub dedicated_server_max_send_job_count: u32,
@@ -1515,22 +1623,27 @@ impl super::core::DataContainerTrait for NetworkCoreSettings {
 
 pub static NETWORKCORESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkCoreSettings",
+    name_hash: 3860884837,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(NetworkCoreSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkCoreSettings as Default>::default())),
+            create_boxed: || Box::new(<NetworkCoreSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DedicatedServerMaxSendJobCount",
+                name_hash: 3154848759,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetworkCoreSettings, dedicated_server_max_send_job_count),
             },
             FieldInfoData {
                 name: "ServerMaxSendJobCount",
+                name_hash: 225925612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetworkCoreSettings, server_max_send_job_count),
@@ -1562,6 +1675,7 @@ impl TypeObject for NetworkCoreSettings {
 
 pub static NETWORKCORESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkCoreSettings-Array",
+    name_hash: 1060279889,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("NetworkCoreSettings"),
@@ -1570,7 +1684,8 @@ pub static NETWORKCORESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoreDemoStatusMessage {
 }
 
@@ -1582,11 +1697,13 @@ impl CoreDemoStatusMessageTrait for CoreDemoStatusMessage {
 
 pub static COREDEMOSTATUSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreDemoStatusMessage",
+    name_hash: 3073441026,
     flags: MemberInfoFlags::new(36937),
     module: "Network",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoreDemoStatusMessage as Default>::default())),
+            create_boxed: || Box::new(<CoreDemoStatusMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1613,7 +1730,8 @@ impl TypeObject for CoreDemoStatusMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetObjectSystemSettings {
     pub _glacier_base: super::core::DataContainer,
     pub max_net_object_count: u32,
@@ -1746,88 +1864,104 @@ impl super::core::DataContainerTrait for NetObjectSystemSettings {
 
 pub static NETOBJECTSYSTEMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetObjectSystemSettings",
+    name_hash: 2656923439,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(NetObjectSystemSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetObjectSystemSettings as Default>::default())),
+            create_boxed: || Box::new(<NetObjectSystemSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxNetObjectCount",
+                name_hash: 114573048,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetObjectSystemSettings, max_net_object_count),
             },
             FieldInfoData {
                 name: "MaxStaticNetObjectCount",
+                name_hash: 2158798752,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetObjectSystemSettings, max_static_net_object_count),
             },
             FieldInfoData {
                 name: "MaxClientConnectionCount",
+                name_hash: 2983938397,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetObjectSystemSettings, max_client_connection_count),
             },
             FieldInfoData {
                 name: "MaxServerConnectionCount",
+                name_hash: 1572697729,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetObjectSystemSettings, max_server_connection_count),
             },
             FieldInfoData {
                 name: "InProcReplicationEnabled",
+                name_hash: 3273877269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemSettings, in_proc_replication_enabled),
             },
             FieldInfoData {
                 name: "InProcBufferSize",
+                name_hash: 3394060937,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetObjectSystemSettings, in_proc_buffer_size),
             },
             FieldInfoData {
                 name: "GameViewInProcBufferSize",
+                name_hash: 4250647594,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetObjectSystemSettings, game_view_in_proc_buffer_size),
             },
             FieldInfoData {
                 name: "MaxRemoteAuthorityNetObjectCount",
+                name_hash: 1936911405,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetObjectSystemSettings, max_remote_authority_net_object_count),
             },
             FieldInfoData {
                 name: "DefaultDynamicPriorityMethod",
+                name_hash: 1901858614,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(NetObjectSystemSettings, default_dynamic_priority_method),
             },
             FieldInfoData {
                 name: "PrioritySettings",
+                name_hash: 1452554962,
                 flags: MemberInfoFlags::new(0),
                 field_type: "NetObjectPrioritySettings",
                 rust_offset: offset_of!(NetObjectSystemSettings, priority_settings),
             },
             FieldInfoData {
                 name: "DefaultFilterMethod",
+                name_hash: 2026384401,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(NetObjectSystemSettings, default_filter_method),
             },
             FieldInfoData {
                 name: "DeltaCompressionSettings",
+                name_hash: 158055158,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DeltaCompressionSettings",
                 rust_offset: offset_of!(NetObjectSystemSettings, delta_compression_settings),
             },
             FieldInfoData {
                 name: "Debug",
+                name_hash: 208762356,
                 flags: MemberInfoFlags::new(0),
                 field_type: "NetObjectSystemDebugSettings",
                 rust_offset: offset_of!(NetObjectSystemSettings, debug),
@@ -1859,6 +1993,7 @@ impl TypeObject for NetObjectSystemSettings {
 
 pub static NETOBJECTSYSTEMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetObjectSystemSettings-Array",
+    name_hash: 4202790043,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("NetObjectSystemSettings"),
@@ -1867,7 +2002,8 @@ pub static NETOBJECTSYSTEMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetObjectSystemDebugSettings {
     pub enable_replication_warnings: bool,
     pub enable_incoming_replication_status_report: bool,
@@ -2014,99 +2150,116 @@ impl NetObjectSystemDebugSettingsTrait for NetObjectSystemDebugSettings {
 
 pub static NETOBJECTSYSTEMDEBUGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetObjectSystemDebugSettings",
+    name_hash: 4238457150,
     flags: MemberInfoFlags::new(73),
     module: "Network",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetObjectSystemDebugSettings as Default>::default())),
+            create_boxed: || Box::new(<NetObjectSystemDebugSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EnableReplicationWarnings",
+                name_hash: 3336095937,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, enable_replication_warnings),
             },
             FieldInfoData {
                 name: "EnableIncomingReplicationStatusReport",
+                name_hash: 2013071140,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, enable_incoming_replication_status_report),
             },
             FieldInfoData {
                 name: "IncomingReplicationStatusReportMaxDelta",
+                name_hash: 4040482281,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, incoming_replication_status_report_max_delta),
             },
             FieldInfoData {
                 name: "IncomingReplicationStatusReportFilter",
+                name_hash: 3680027237,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, incoming_replication_status_report_filter),
             },
             FieldInfoData {
                 name: "IncomingReplicationStatusReportIncludeSpatial",
+                name_hash: 1106721547,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, incoming_replication_status_report_include_spatial),
             },
             FieldInfoData {
                 name: "IncomingReplicationStatusReportIncludeStatic",
+                name_hash: 3942787713,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, incoming_replication_status_report_include_static),
             },
             FieldInfoData {
                 name: "IncomingReplicationStatusReportIncludeNonSpatial",
+                name_hash: 1322820772,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, incoming_replication_status_report_include_non_spatial),
             },
             FieldInfoData {
                 name: "IncomingReplicationStatusReportDrawName",
+                name_hash: 2956613026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, incoming_replication_status_report_draw_name),
             },
             FieldInfoData {
                 name: "OutputObjectProtocols",
+                name_hash: 3513042698,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, output_object_protocols),
             },
             FieldInfoData {
                 name: "InitialGraceTimeInFrames",
+                name_hash: 1355287029,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, initial_grace_time_in_frames),
             },
             FieldInfoData {
                 name: "ReportReplicationWarningsAfterFrames",
+                name_hash: 2144099364,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, report_replication_warnings_after_frames),
             },
             FieldInfoData {
                 name: "WarnOnMissingInitDependency",
+                name_hash: 4228312863,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, warn_on_missing_init_dependency),
             },
             FieldInfoData {
                 name: "WarnOnTooLargeNetObject",
+                name_hash: 3016126797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, warn_on_too_large_net_object),
             },
             FieldInfoData {
                 name: "WarnOnNoStateCanBeSent",
+                name_hash: 4178208863,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, warn_on_no_state_can_be_sent),
             },
             FieldInfoData {
                 name: "WarnOnWaitingForCreationAck",
+                name_hash: 445089150,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetObjectSystemDebugSettings, warn_on_waiting_for_creation_ack),
@@ -2138,6 +2291,7 @@ impl TypeObject for NetObjectSystemDebugSettings {
 
 pub static NETOBJECTSYSTEMDEBUGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetObjectSystemDebugSettings-Array",
+    name_hash: 1276168586,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("NetObjectSystemDebugSettings"),
@@ -2146,7 +2300,8 @@ pub static NETOBJECTSYSTEMDEBUGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DeltaCompressionSettings {
     pub is_enabled: bool,
     pub share_baselines_across_connections: bool,
@@ -2185,27 +2340,32 @@ impl DeltaCompressionSettingsTrait for DeltaCompressionSettings {
 
 pub static DELTACOMPRESSIONSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeltaCompressionSettings",
+    name_hash: 158055158,
     flags: MemberInfoFlags::new(36937),
     module: "Network",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DeltaCompressionSettings as Default>::default())),
+            create_boxed: || Box::new(<DeltaCompressionSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IsEnabled",
+                name_hash: 2323834330,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DeltaCompressionSettings, is_enabled),
             },
             FieldInfoData {
                 name: "ShareBaselinesAcrossConnections",
+                name_hash: 4242071194,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DeltaCompressionSettings, share_baselines_across_connections),
             },
             FieldInfoData {
                 name: "BaselineReuseCount",
+                name_hash: 364780841,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DeltaCompressionSettings, baseline_reuse_count),
@@ -2237,6 +2397,7 @@ impl TypeObject for DeltaCompressionSettings {
 
 pub static DELTACOMPRESSIONSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeltaCompressionSettings-Array",
+    name_hash: 2994044866,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("DeltaCompressionSettings"),
@@ -2261,6 +2422,7 @@ pub enum NetObjectDependencyType {
 
 pub static NETOBJECTDEPENDENCYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetObjectDependencyType",
+    name_hash: 2775823864,
     flags: MemberInfoFlags::new(49429),
     module: "Network",
     data: TypeInfoData::Enum,
@@ -2289,6 +2451,7 @@ impl TypeObject for NetObjectDependencyType {
 
 pub static NETOBJECTDEPENDENCYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetObjectDependencyType-Array",
+    name_hash: 3638636492,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("NetObjectDependencyType"),
@@ -2297,7 +2460,8 @@ pub static NETOBJECTDEPENDENCYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetObjectPrioritySettings {
     pub min_frequency_factor: f32,
     pub max_frequency_factor: f32,
@@ -2390,63 +2554,74 @@ impl NetObjectPrioritySettingsTrait for NetObjectPrioritySettings {
 
 pub static NETOBJECTPRIORITYSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetObjectPrioritySettings",
+    name_hash: 981067256,
     flags: MemberInfoFlags::new(36937),
     module: "Network",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetObjectPrioritySettings as Default>::default())),
+            create_boxed: || Box::new(<NetObjectPrioritySettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MinFrequencyFactor",
+                name_hash: 950240998,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetObjectPrioritySettings, min_frequency_factor),
             },
             FieldInfoData {
                 name: "MaxFrequencyFactor",
+                name_hash: 2744889912,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetObjectPrioritySettings, max_frequency_factor),
             },
             FieldInfoData {
                 name: "MinFrequencyFactorRadius",
+                name_hash: 3133919230,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetObjectPrioritySettings, min_frequency_factor_radius),
             },
             FieldInfoData {
                 name: "MaxFrequencyFactorRadius",
+                name_hash: 4158767520,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetObjectPrioritySettings, max_frequency_factor_radius),
             },
             FieldInfoData {
                 name: "MaxFrequencyFactorConeRadius",
+                name_hash: 3335439719,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetObjectPrioritySettings, max_frequency_factor_cone_radius),
             },
             FieldInfoData {
                 name: "MinConeFrequencyFactor",
+                name_hash: 2784041281,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetObjectPrioritySettings, min_cone_frequency_factor),
             },
             FieldInfoData {
                 name: "CameraFovBiasDegrees",
+                name_hash: 3359994077,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetObjectPrioritySettings, camera_fov_bias_degrees),
             },
             FieldInfoData {
                 name: "MaxCameraFovDegrees",
+                name_hash: 1872683184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetObjectPrioritySettings, max_camera_fov_degrees),
             },
             FieldInfoData {
                 name: "MinCameraFovDegrees",
+                name_hash: 2783691566,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NetObjectPrioritySettings, min_camera_fov_degrees),
@@ -2478,6 +2653,7 @@ impl TypeObject for NetObjectPrioritySettings {
 
 pub static NETOBJECTPRIORITYSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetObjectPrioritySettings-Array",
+    name_hash: 2244698060,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("NetObjectPrioritySettings"),
@@ -2498,6 +2674,7 @@ pub enum NetObjectSendStatus {
 
 pub static NETOBJECTSENDSTATUS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetObjectSendStatus",
+    name_hash: 593998055,
     flags: MemberInfoFlags::new(49429),
     module: "Network",
     data: TypeInfoData::Enum,
@@ -2526,6 +2703,7 @@ impl TypeObject for NetObjectSendStatus {
 
 pub static NETOBJECTSENDSTATUS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetObjectSendStatus-Array",
+    name_hash: 2859119315,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("NetObjectSendStatus"),
@@ -2545,6 +2723,7 @@ pub enum NetworkChannelId {
 
 pub static NETWORKCHANNELID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkChannelId",
+    name_hash: 2246145845,
     flags: MemberInfoFlags::new(49429),
     module: "Network",
     data: TypeInfoData::Enum,
@@ -2573,6 +2752,7 @@ impl TypeObject for NetworkChannelId {
 
 pub static NETWORKCHANNELID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkChannelId-Array",
+    name_hash: 969308033,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("NetworkChannelId"),
@@ -2581,7 +2761,8 @@ pub static NETWORKCHANNELID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SyncedTransformEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub interpolate: bool,
@@ -2624,16 +2805,20 @@ impl super::core::DataContainerTrait for SyncedTransformEntityData {
 
 pub static SYNCEDTRANSFORMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SyncedTransformEntityData",
+    name_hash: 1832943140,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SyncedTransformEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SyncedTransformEntityData as Default>::default())),
+            create_boxed: || Box::new(<SyncedTransformEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Interpolate",
+                name_hash: 2332438914,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SyncedTransformEntityData, interpolate),
@@ -2665,6 +2850,7 @@ impl TypeObject for SyncedTransformEntityData {
 
 pub static SYNCEDTRANSFORMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SyncedTransformEntityData-Array",
+    name_hash: 530887056,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("SyncedTransformEntityData"),
@@ -2673,7 +2859,8 @@ pub static SYNCEDTRANSFORMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SyncedIntEntityData {
     pub _glacier_base: super::entity::EntityData,
 }
@@ -2707,12 +2894,15 @@ impl super::core::DataContainerTrait for SyncedIntEntityData {
 
 pub static SYNCEDINTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SyncedIntEntityData",
+    name_hash: 4229977915,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SyncedIntEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SyncedIntEntityData as Default>::default())),
+            create_boxed: || Box::new(<SyncedIntEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -2742,6 +2932,7 @@ impl TypeObject for SyncedIntEntityData {
 
 pub static SYNCEDINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SyncedIntEntityData-Array",
+    name_hash: 2535816847,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("SyncedIntEntityData"),
@@ -2750,7 +2941,8 @@ pub static SYNCEDINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SyncedFloatEntityData {
     pub _glacier_base: super::entity::EntityData,
 }
@@ -2784,12 +2976,15 @@ impl super::core::DataContainerTrait for SyncedFloatEntityData {
 
 pub static SYNCEDFLOATENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SyncedFloatEntityData",
+    name_hash: 1238364696,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SyncedFloatEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SyncedFloatEntityData as Default>::default())),
+            create_boxed: || Box::new(<SyncedFloatEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -2819,6 +3014,7 @@ impl TypeObject for SyncedFloatEntityData {
 
 pub static SYNCEDFLOATENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SyncedFloatEntityData-Array",
+    name_hash: 758004780,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("SyncedFloatEntityData"),
@@ -2827,7 +3023,8 @@ pub static SYNCEDFLOATENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SyncedBoolEntityData {
     pub _glacier_base: super::entity::EntityData,
 }
@@ -2861,12 +3058,15 @@ impl super::core::DataContainerTrait for SyncedBoolEntityData {
 
 pub static SYNCEDBOOLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SyncedBoolEntityData",
+    name_hash: 3175993478,
     flags: MemberInfoFlags::new(101),
     module: "Network",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SyncedBoolEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SyncedBoolEntityData as Default>::default())),
+            create_boxed: || Box::new(<SyncedBoolEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -2896,6 +3096,7 @@ impl TypeObject for SyncedBoolEntityData {
 
 pub static SYNCEDBOOLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SyncedBoolEntityData-Array",
+    name_hash: 2970795442,
     flags: MemberInfoFlags::new(145),
     module: "Network",
     data: TypeInfoData::Array("SyncedBoolEntityData"),

@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -13,7 +14,8 @@ pub(crate) fn register_quickscope_types(registry: &mut TypeRegistry) {
     registry.register_type(QUICKSCOPECONTROLENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QuickscopeControlEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -32,12 +34,15 @@ impl super::entity::EntityBusPeerTrait for QuickscopeControlEntity {
 
 pub static QUICKSCOPECONTROLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeControlEntity",
+    name_hash: 1600559798,
     flags: MemberInfoFlags::new(101),
     module: "Quickscope",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(QuickscopeControlEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QuickscopeControlEntity as Default>::default())),
+            create_boxed: || Box::new(<QuickscopeControlEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -67,6 +72,7 @@ impl TypeObject for QuickscopeControlEntity {
 
 pub static QUICKSCOPECONTROLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuickscopeControlEntity-Array",
+    name_hash: 3688460034,
     flags: MemberInfoFlags::new(145),
     module: "Quickscope",
     data: TypeInfoData::Array("QuickscopeControlEntity"),

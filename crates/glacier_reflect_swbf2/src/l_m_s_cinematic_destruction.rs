@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -73,7 +74,8 @@ pub(crate) fn register_l_m_s_cinematic_destruction_types(registry: &mut TypeRegi
     registry.register_type(CLIENTCINEMATICDESTRUCTIONOUTPUTPIPEENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionPoolBufferEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub cpu_pool_adjustment: i32,
@@ -134,28 +136,34 @@ impl super::core::DataContainerTrait for CinematicDestructionPoolBufferEntityDat
 
 pub static CINEMATICDESTRUCTIONPOOLBUFFERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionPoolBufferEntityData",
+    name_hash: 2630206527,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CinematicDestructionPoolBufferEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionPoolBufferEntityData as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionPoolBufferEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CpuPoolAdjustment",
+                name_hash: 1490645680,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CinematicDestructionPoolBufferEntityData, cpu_pool_adjustment),
             },
             FieldInfoData {
                 name: "GpuPoolAdjustment",
+                name_hash: 1174958516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CinematicDestructionPoolBufferEntityData, gpu_pool_adjustment),
             },
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CinematicDestructionPoolBufferEntityData, enabled),
@@ -187,6 +195,7 @@ impl TypeObject for CinematicDestructionPoolBufferEntityData {
 
 pub static CINEMATICDESTRUCTIONPOOLBUFFERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionPoolBufferEntityData-Array",
+    name_hash: 212359563,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionPoolBufferEntityData"),
@@ -195,25 +204,26 @@ pub static CINEMATICDESTRUCTIONPOOLBUFFERENTITYDATA_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionControllerEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub source_asset: Option<Arc<Mutex<dyn CinematicDestructionAssetTrait>>>,
-    pub output_pipe_results: Vec<Option<Arc<Mutex<dyn CinematicDestructionOutputPipeResultTrait>>>>,
+    pub source_asset: Option<LockedTypeObject /* CinematicDestructionAsset */>,
+    pub output_pipe_results: Vec<Option<LockedTypeObject /* CinematicDestructionOutputPipeResult */>>,
     pub enabled: bool,
     pub external_time: f32,
     pub start_paused: bool,
     pub active_playback_sequence: i32,
     pub auto_start: bool,
     pub auto_pause: bool,
-    pub playback_sequences: Vec<CinematicDestructionPlaybackSequence>,
+    pub playback_sequences: Vec<BoxedTypeObject /* CinematicDestructionPlaybackSequence */>,
 }
 
 pub trait CinematicDestructionControllerEntityDataTrait: super::entity::EntityDataTrait {
-    fn source_asset(&self) -> &Option<Arc<Mutex<dyn CinematicDestructionAssetTrait>>>;
-    fn source_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CinematicDestructionAssetTrait>>>;
-    fn output_pipe_results(&self) -> &Vec<Option<Arc<Mutex<dyn CinematicDestructionOutputPipeResultTrait>>>>;
-    fn output_pipe_results_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CinematicDestructionOutputPipeResultTrait>>>>;
+    fn source_asset(&self) -> &Option<LockedTypeObject /* CinematicDestructionAsset */>;
+    fn source_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* CinematicDestructionAsset */>;
+    fn output_pipe_results(&self) -> &Vec<Option<LockedTypeObject /* CinematicDestructionOutputPipeResult */>>;
+    fn output_pipe_results_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CinematicDestructionOutputPipeResult */>>;
     fn enabled(&self) -> &bool;
     fn enabled_mut(&mut self) -> &mut bool;
     fn external_time(&self) -> &f32;
@@ -226,21 +236,21 @@ pub trait CinematicDestructionControllerEntityDataTrait: super::entity::EntityDa
     fn auto_start_mut(&mut self) -> &mut bool;
     fn auto_pause(&self) -> &bool;
     fn auto_pause_mut(&mut self) -> &mut bool;
-    fn playback_sequences(&self) -> &Vec<CinematicDestructionPlaybackSequence>;
-    fn playback_sequences_mut(&mut self) -> &mut Vec<CinematicDestructionPlaybackSequence>;
+    fn playback_sequences(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionPlaybackSequence */>;
+    fn playback_sequences_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionPlaybackSequence */>;
 }
 
 impl CinematicDestructionControllerEntityDataTrait for CinematicDestructionControllerEntityData {
-    fn source_asset(&self) -> &Option<Arc<Mutex<dyn CinematicDestructionAssetTrait>>> {
+    fn source_asset(&self) -> &Option<LockedTypeObject /* CinematicDestructionAsset */> {
         &self.source_asset
     }
-    fn source_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CinematicDestructionAssetTrait>>> {
+    fn source_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* CinematicDestructionAsset */> {
         &mut self.source_asset
     }
-    fn output_pipe_results(&self) -> &Vec<Option<Arc<Mutex<dyn CinematicDestructionOutputPipeResultTrait>>>> {
+    fn output_pipe_results(&self) -> &Vec<Option<LockedTypeObject /* CinematicDestructionOutputPipeResult */>> {
         &self.output_pipe_results
     }
-    fn output_pipe_results_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CinematicDestructionOutputPipeResultTrait>>>> {
+    fn output_pipe_results_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CinematicDestructionOutputPipeResult */>> {
         &mut self.output_pipe_results
     }
     fn enabled(&self) -> &bool {
@@ -279,10 +289,10 @@ impl CinematicDestructionControllerEntityDataTrait for CinematicDestructionContr
     fn auto_pause_mut(&mut self) -> &mut bool {
         &mut self.auto_pause
     }
-    fn playback_sequences(&self) -> &Vec<CinematicDestructionPlaybackSequence> {
+    fn playback_sequences(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionPlaybackSequence */> {
         &self.playback_sequences
     }
-    fn playback_sequences_mut(&mut self) -> &mut Vec<CinematicDestructionPlaybackSequence> {
+    fn playback_sequences_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionPlaybackSequence */> {
         &mut self.playback_sequences
     }
 }
@@ -310,64 +320,76 @@ impl super::core::DataContainerTrait for CinematicDestructionControllerEntityDat
 
 pub static CINEMATICDESTRUCTIONCONTROLLERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionControllerEntityData",
+    name_hash: 2655061855,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CinematicDestructionControllerEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionControllerEntityData as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionControllerEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SourceAsset",
+                name_hash: 2996111944,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CinematicDestructionAsset",
                 rust_offset: offset_of!(CinematicDestructionControllerEntityData, source_asset),
             },
             FieldInfoData {
                 name: "OutputPipeResults",
+                name_hash: 3990442124,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CinematicDestructionOutputPipeResult-Array",
                 rust_offset: offset_of!(CinematicDestructionControllerEntityData, output_pipe_results),
             },
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CinematicDestructionControllerEntityData, enabled),
             },
             FieldInfoData {
                 name: "ExternalTime",
+                name_hash: 2162678253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CinematicDestructionControllerEntityData, external_time),
             },
             FieldInfoData {
                 name: "StartPaused",
+                name_hash: 735997331,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CinematicDestructionControllerEntityData, start_paused),
             },
             FieldInfoData {
                 name: "ActivePlaybackSequence",
+                name_hash: 1484959193,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CinematicDestructionControllerEntityData, active_playback_sequence),
             },
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CinematicDestructionControllerEntityData, auto_start),
             },
             FieldInfoData {
                 name: "AutoPause",
+                name_hash: 792162712,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CinematicDestructionControllerEntityData, auto_pause),
             },
             FieldInfoData {
                 name: "PlaybackSequences",
+                name_hash: 473671750,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CinematicDestructionPlaybackSequence-Array",
                 rust_offset: offset_of!(CinematicDestructionControllerEntityData, playback_sequences),
@@ -399,6 +421,7 @@ impl TypeObject for CinematicDestructionControllerEntityData {
 
 pub static CINEMATICDESTRUCTIONCONTROLLERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionControllerEntityData-Array",
+    name_hash: 2245852267,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionControllerEntityData"),
@@ -407,36 +430,40 @@ pub static CINEMATICDESTRUCTIONCONTROLLERENTITYDATA_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionPlaybackSequence {
-    pub segment_table: Vec<CinematicDestructionBakedSegmentGroupOrder>,
+    pub segment_table: Vec<BoxedTypeObject /* CinematicDestructionBakedSegmentGroupOrder */>,
 }
 
 pub trait CinematicDestructionPlaybackSequenceTrait: TypeObject {
-    fn segment_table(&self) -> &Vec<CinematicDestructionBakedSegmentGroupOrder>;
-    fn segment_table_mut(&mut self) -> &mut Vec<CinematicDestructionBakedSegmentGroupOrder>;
+    fn segment_table(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionBakedSegmentGroupOrder */>;
+    fn segment_table_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionBakedSegmentGroupOrder */>;
 }
 
 impl CinematicDestructionPlaybackSequenceTrait for CinematicDestructionPlaybackSequence {
-    fn segment_table(&self) -> &Vec<CinematicDestructionBakedSegmentGroupOrder> {
+    fn segment_table(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionBakedSegmentGroupOrder */> {
         &self.segment_table
     }
-    fn segment_table_mut(&mut self) -> &mut Vec<CinematicDestructionBakedSegmentGroupOrder> {
+    fn segment_table_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionBakedSegmentGroupOrder */> {
         &mut self.segment_table
     }
 }
 
 pub static CINEMATICDESTRUCTIONPLAYBACKSEQUENCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionPlaybackSequence",
+    name_hash: 1625168408,
     flags: MemberInfoFlags::new(73),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionPlaybackSequence as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionPlaybackSequence as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SegmentTable",
+                name_hash: 3503285848,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CinematicDestructionBakedSegmentGroupOrder-Array",
                 rust_offset: offset_of!(CinematicDestructionPlaybackSequence, segment_table),
@@ -468,6 +495,7 @@ impl TypeObject for CinematicDestructionPlaybackSequence {
 
 pub static CINEMATICDESTRUCTIONPLAYBACKSEQUENCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionPlaybackSequence-Array",
+    name_hash: 4030358572,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionPlaybackSequence"),
@@ -476,7 +504,8 @@ pub static CINEMATICDESTRUCTIONPLAYBACKSEQUENCE_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionBakedSegmentGroupOrder {
     pub segment: u32,
     pub next_segment: u32,
@@ -506,21 +535,25 @@ impl CinematicDestructionBakedSegmentGroupOrderTrait for CinematicDestructionBak
 
 pub static CINEMATICDESTRUCTIONBAKEDSEGMENTGROUPORDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionBakedSegmentGroupOrder",
+    name_hash: 3464133011,
     flags: MemberInfoFlags::new(36937),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionBakedSegmentGroupOrder as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionBakedSegmentGroupOrder as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Segment",
+                name_hash: 2765640422,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CinematicDestructionBakedSegmentGroupOrder, segment),
             },
             FieldInfoData {
                 name: "NextSegment",
+                name_hash: 3895044129,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CinematicDestructionBakedSegmentGroupOrder, next_segment),
@@ -552,6 +585,7 @@ impl TypeObject for CinematicDestructionBakedSegmentGroupOrder {
 
 pub static CINEMATICDESTRUCTIONBAKEDSEGMENTGROUPORDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionBakedSegmentGroupOrder-Array",
+    name_hash: 2416202791,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionBakedSegmentGroupOrder"),
@@ -560,7 +594,8 @@ pub static CINEMATICDESTRUCTIONBAKEDSEGMENTGROUPORDER_ARRAY_TYPE_INFO: &'static 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionSegmentGroupOrder {
     pub segment_group: String,
     pub next_segment_group: String,
@@ -590,21 +625,25 @@ impl CinematicDestructionSegmentGroupOrderTrait for CinematicDestructionSegmentG
 
 pub static CINEMATICDESTRUCTIONSEGMENTGROUPORDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionSegmentGroupOrder",
+    name_hash: 2240060282,
     flags: MemberInfoFlags::new(73),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionSegmentGroupOrder as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionSegmentGroupOrder as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SegmentGroup",
+                name_hash: 3485981465,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CinematicDestructionSegmentGroupOrder, segment_group),
             },
             FieldInfoData {
                 name: "NextSegmentGroup",
+                name_hash: 2503477502,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CinematicDestructionSegmentGroupOrder, next_segment_group),
@@ -636,6 +675,7 @@ impl TypeObject for CinematicDestructionSegmentGroupOrder {
 
 pub static CINEMATICDESTRUCTIONSEGMENTGROUPORDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionSegmentGroupOrder-Array",
+    name_hash: 1947496014,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionSegmentGroupOrder"),
@@ -644,22 +684,23 @@ pub static CINEMATICDESTRUCTIONSEGMENTGROUPORDER_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionEmitterOutputPipeResult {
     pub _glacier_base: CinematicDestructionOutputPipeResult,
-    pub attributes: Vec<CinematicDestructionEmitterOutputPipeAttribute>,
+    pub attributes: Vec<BoxedTypeObject /* CinematicDestructionEmitterOutputPipeAttribute */>,
 }
 
 pub trait CinematicDestructionEmitterOutputPipeResultTrait: CinematicDestructionOutputPipeResultTrait {
-    fn attributes(&self) -> &Vec<CinematicDestructionEmitterOutputPipeAttribute>;
-    fn attributes_mut(&mut self) -> &mut Vec<CinematicDestructionEmitterOutputPipeAttribute>;
+    fn attributes(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionEmitterOutputPipeAttribute */>;
+    fn attributes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionEmitterOutputPipeAttribute */>;
 }
 
 impl CinematicDestructionEmitterOutputPipeResultTrait for CinematicDestructionEmitterOutputPipeResult {
-    fn attributes(&self) -> &Vec<CinematicDestructionEmitterOutputPipeAttribute> {
+    fn attributes(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionEmitterOutputPipeAttribute */> {
         &self.attributes
     }
-    fn attributes_mut(&mut self) -> &mut Vec<CinematicDestructionEmitterOutputPipeAttribute> {
+    fn attributes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionEmitterOutputPipeAttribute */> {
         &mut self.attributes
     }
 }
@@ -672,16 +713,20 @@ impl super::core::DataContainerTrait for CinematicDestructionEmitterOutputPipeRe
 
 pub static CINEMATICDESTRUCTIONEMITTEROUTPUTPIPERESULT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionEmitterOutputPipeResult",
+    name_hash: 678645636,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CINEMATICDESTRUCTIONOUTPUTPIPERESULT_TYPE_INFO),
+        super_class_offset: offset_of!(CinematicDestructionEmitterOutputPipeResult, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionEmitterOutputPipeResult as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionEmitterOutputPipeResult as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Attributes",
+                name_hash: 3723762538,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CinematicDestructionEmitterOutputPipeAttribute-Array",
                 rust_offset: offset_of!(CinematicDestructionEmitterOutputPipeResult, attributes),
@@ -713,6 +758,7 @@ impl TypeObject for CinematicDestructionEmitterOutputPipeResult {
 
 pub static CINEMATICDESTRUCTIONEMITTEROUTPUTPIPERESULT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionEmitterOutputPipeResult-Array",
+    name_hash: 2926527408,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionEmitterOutputPipeResult"),
@@ -721,24 +767,25 @@ pub static CINEMATICDESTRUCTIONEMITTEROUTPUTPIPERESULT_ARRAY_TYPE_INFO: &'static
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionEmitterOutputPipeAttribute {
-    pub effect_param: Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>,
+    pub effect_param: Option<LockedTypeObject /* super::effect_base::EffectParameter */>,
     pub attribute_code: u64,
 }
 
 pub trait CinematicDestructionEmitterOutputPipeAttributeTrait: TypeObject {
-    fn effect_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
-    fn effect_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
+    fn effect_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */>;
+    fn effect_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */>;
     fn attribute_code(&self) -> &u64;
     fn attribute_code_mut(&mut self) -> &mut u64;
 }
 
 impl CinematicDestructionEmitterOutputPipeAttributeTrait for CinematicDestructionEmitterOutputPipeAttribute {
-    fn effect_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn effect_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         &self.effect_param
     }
-    fn effect_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn effect_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         &mut self.effect_param
     }
     fn attribute_code(&self) -> &u64 {
@@ -751,21 +798,25 @@ impl CinematicDestructionEmitterOutputPipeAttributeTrait for CinematicDestructio
 
 pub static CINEMATICDESTRUCTIONEMITTEROUTPUTPIPEATTRIBUTE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionEmitterOutputPipeAttribute",
+    name_hash: 3371185073,
     flags: MemberInfoFlags::new(73),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionEmitterOutputPipeAttribute as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionEmitterOutputPipeAttribute as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EffectParam",
+                name_hash: 1371190589,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectParameter",
                 rust_offset: offset_of!(CinematicDestructionEmitterOutputPipeAttribute, effect_param),
             },
             FieldInfoData {
                 name: "AttributeCode",
+                name_hash: 2557813876,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(CinematicDestructionEmitterOutputPipeAttribute, attribute_code),
@@ -797,6 +848,7 @@ impl TypeObject for CinematicDestructionEmitterOutputPipeAttribute {
 
 pub static CINEMATICDESTRUCTIONEMITTEROUTPUTPIPEATTRIBUTE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionEmitterOutputPipeAttribute-Array",
+    name_hash: 802219525,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionEmitterOutputPipeAttribute"),
@@ -805,7 +857,8 @@ pub static CINEMATICDESTRUCTIONEMITTEROUTPUTPIPEATTRIBUTE_ARRAY_TYPE_INFO: &'sta
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionEmitterOutputPipeEntityData {
     pub _glacier_base: CinematicDestructionOutputPipeEntityData,
 }
@@ -842,12 +895,15 @@ impl super::core::DataContainerTrait for CinematicDestructionEmitterOutputPipeEn
 
 pub static CINEMATICDESTRUCTIONEMITTEROUTPUTPIPEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionEmitterOutputPipeEntityData",
+    name_hash: 1857829094,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CINEMATICDESTRUCTIONOUTPUTPIPEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CinematicDestructionEmitterOutputPipeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionEmitterOutputPipeEntityData as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionEmitterOutputPipeEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -877,6 +933,7 @@ impl TypeObject for CinematicDestructionEmitterOutputPipeEntityData {
 
 pub static CINEMATICDESTRUCTIONEMITTEROUTPUTPIPEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionEmitterOutputPipeEntityData-Array",
+    name_hash: 773436882,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionEmitterOutputPipeEntityData"),
@@ -885,7 +942,8 @@ pub static CINEMATICDESTRUCTIONEMITTEROUTPUTPIPEENTITYDATA_ARRAY_TYPE_INFO: &'st
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionAutoMeshOutputPipeEntityData {
     pub _glacier_base: CinematicDestructionMeshOutputPipeEntityData,
 }
@@ -925,12 +983,15 @@ impl super::core::DataContainerTrait for CinematicDestructionAutoMeshOutputPipeE
 
 pub static CINEMATICDESTRUCTIONAUTOMESHOUTPUTPIPEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionAutoMeshOutputPipeEntityData",
+    name_hash: 1249477196,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CINEMATICDESTRUCTIONMESHOUTPUTPIPEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CinematicDestructionAutoMeshOutputPipeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionAutoMeshOutputPipeEntityData as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionAutoMeshOutputPipeEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -960,6 +1021,7 @@ impl TypeObject for CinematicDestructionAutoMeshOutputPipeEntityData {
 
 pub static CINEMATICDESTRUCTIONAUTOMESHOUTPUTPIPEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionAutoMeshOutputPipeEntityData-Array",
+    name_hash: 2747523832,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionAutoMeshOutputPipeEntityData"),
@@ -968,7 +1030,8 @@ pub static CINEMATICDESTRUCTIONAUTOMESHOUTPUTPIPEENTITYDATA_ARRAY_TYPE_INFO: &'s
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionManualMeshOutputPipeEntityData {
     pub _glacier_base: CinematicDestructionMeshOutputPipeEntityData,
 }
@@ -1008,12 +1071,15 @@ impl super::core::DataContainerTrait for CinematicDestructionManualMeshOutputPip
 
 pub static CINEMATICDESTRUCTIONMANUALMESHOUTPUTPIPEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionManualMeshOutputPipeEntityData",
+    name_hash: 2857415801,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CINEMATICDESTRUCTIONMESHOUTPUTPIPEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CinematicDestructionManualMeshOutputPipeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionManualMeshOutputPipeEntityData as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionManualMeshOutputPipeEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -1043,6 +1109,7 @@ impl TypeObject for CinematicDestructionManualMeshOutputPipeEntityData {
 
 pub static CINEMATICDESTRUCTIONMANUALMESHOUTPUTPIPEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionManualMeshOutputPipeEntityData-Array",
+    name_hash: 3205403469,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionManualMeshOutputPipeEntityData"),
@@ -1051,7 +1118,8 @@ pub static CINEMATICDESTRUCTIONMANUALMESHOUTPUTPIPEENTITYDATA_ARRAY_TYPE_INFO: &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionMeshOutputPipeEntityData {
     pub _glacier_base: CinematicDestructionOutputPipeEntityData,
 }
@@ -1088,12 +1156,15 @@ impl super::core::DataContainerTrait for CinematicDestructionMeshOutputPipeEntit
 
 pub static CINEMATICDESTRUCTIONMESHOUTPUTPIPEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionMeshOutputPipeEntityData",
+    name_hash: 1368205379,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CINEMATICDESTRUCTIONOUTPUTPIPEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CinematicDestructionMeshOutputPipeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionMeshOutputPipeEntityData as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionMeshOutputPipeEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -1123,6 +1194,7 @@ impl TypeObject for CinematicDestructionMeshOutputPipeEntityData {
 
 pub static CINEMATICDESTRUCTIONMESHOUTPUTPIPEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionMeshOutputPipeEntityData-Array",
+    name_hash: 2427194231,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionMeshOutputPipeEntityData"),
@@ -1131,23 +1203,24 @@ pub static CINEMATICDESTRUCTIONMESHOUTPUTPIPEENTITYDATA_ARRAY_TYPE_INFO: &'stati
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionMeshOutputPipeResult {
     pub _glacier_base: CinematicDestructionOutputPipeResult,
-    pub vertex_attributes: Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute>,
-    pub material_attributes: Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute>,
-    pub texture_attributes: Vec<CinematicDestructionAutoMeshGeneratedTextureAttribute>,
+    pub vertex_attributes: Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedVertexAttribute */>,
+    pub material_attributes: Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedVertexAttribute */>,
+    pub texture_attributes: Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedTextureAttribute */>,
     pub replace_index_buffer: bool,
     pub index_buffer: CinematicDestructionAutoMeshGeneratedIndexBuffer,
 }
 
 pub trait CinematicDestructionMeshOutputPipeResultTrait: CinematicDestructionOutputPipeResultTrait {
-    fn vertex_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute>;
-    fn vertex_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute>;
-    fn material_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute>;
-    fn material_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute>;
-    fn texture_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedTextureAttribute>;
-    fn texture_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedTextureAttribute>;
+    fn vertex_attributes(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedVertexAttribute */>;
+    fn vertex_attributes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedVertexAttribute */>;
+    fn material_attributes(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedVertexAttribute */>;
+    fn material_attributes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedVertexAttribute */>;
+    fn texture_attributes(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedTextureAttribute */>;
+    fn texture_attributes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedTextureAttribute */>;
     fn replace_index_buffer(&self) -> &bool;
     fn replace_index_buffer_mut(&mut self) -> &mut bool;
     fn index_buffer(&self) -> &CinematicDestructionAutoMeshGeneratedIndexBuffer;
@@ -1155,22 +1228,22 @@ pub trait CinematicDestructionMeshOutputPipeResultTrait: CinematicDestructionOut
 }
 
 impl CinematicDestructionMeshOutputPipeResultTrait for CinematicDestructionMeshOutputPipeResult {
-    fn vertex_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute> {
+    fn vertex_attributes(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedVertexAttribute */> {
         &self.vertex_attributes
     }
-    fn vertex_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute> {
+    fn vertex_attributes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedVertexAttribute */> {
         &mut self.vertex_attributes
     }
-    fn material_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute> {
+    fn material_attributes(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedVertexAttribute */> {
         &self.material_attributes
     }
-    fn material_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedVertexAttribute> {
+    fn material_attributes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedVertexAttribute */> {
         &mut self.material_attributes
     }
-    fn texture_attributes(&self) -> &Vec<CinematicDestructionAutoMeshGeneratedTextureAttribute> {
+    fn texture_attributes(&self) -> &Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedTextureAttribute */> {
         &self.texture_attributes
     }
-    fn texture_attributes_mut(&mut self) -> &mut Vec<CinematicDestructionAutoMeshGeneratedTextureAttribute> {
+    fn texture_attributes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CinematicDestructionAutoMeshGeneratedTextureAttribute */> {
         &mut self.texture_attributes
     }
     fn replace_index_buffer(&self) -> &bool {
@@ -1195,40 +1268,48 @@ impl super::core::DataContainerTrait for CinematicDestructionMeshOutputPipeResul
 
 pub static CINEMATICDESTRUCTIONMESHOUTPUTPIPERESULT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionMeshOutputPipeResult",
+    name_hash: 3981244513,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CINEMATICDESTRUCTIONOUTPUTPIPERESULT_TYPE_INFO),
+        super_class_offset: offset_of!(CinematicDestructionMeshOutputPipeResult, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionMeshOutputPipeResult as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionMeshOutputPipeResult as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "VertexAttributes",
+                name_hash: 1676558626,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CinematicDestructionAutoMeshGeneratedVertexAttribute-Array",
                 rust_offset: offset_of!(CinematicDestructionMeshOutputPipeResult, vertex_attributes),
             },
             FieldInfoData {
                 name: "MaterialAttributes",
+                name_hash: 3599326529,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CinematicDestructionAutoMeshGeneratedVertexAttribute-Array",
                 rust_offset: offset_of!(CinematicDestructionMeshOutputPipeResult, material_attributes),
             },
             FieldInfoData {
                 name: "TextureAttributes",
+                name_hash: 3920023413,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CinematicDestructionAutoMeshGeneratedTextureAttribute-Array",
                 rust_offset: offset_of!(CinematicDestructionMeshOutputPipeResult, texture_attributes),
             },
             FieldInfoData {
                 name: "ReplaceIndexBuffer",
+                name_hash: 138989687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CinematicDestructionMeshOutputPipeResult, replace_index_buffer),
             },
             FieldInfoData {
                 name: "IndexBuffer",
+                name_hash: 3711725403,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CinematicDestructionAutoMeshGeneratedIndexBuffer",
                 rust_offset: offset_of!(CinematicDestructionMeshOutputPipeResult, index_buffer),
@@ -1260,6 +1341,7 @@ impl TypeObject for CinematicDestructionMeshOutputPipeResult {
 
 pub static CINEMATICDESTRUCTIONMESHOUTPUTPIPERESULT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionMeshOutputPipeResult-Array",
+    name_hash: 3038491477,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionMeshOutputPipeResult"),
@@ -1268,7 +1350,8 @@ pub static CINEMATICDESTRUCTIONMESHOUTPUTPIPERESULT_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionAutoMeshGeneratedIndexBuffer {
     pub attribute_code: u64,
 }
@@ -1289,15 +1372,18 @@ impl CinematicDestructionAutoMeshGeneratedIndexBufferTrait for CinematicDestruct
 
 pub static CINEMATICDESTRUCTIONAUTOMESHGENERATEDINDEXBUFFER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionAutoMeshGeneratedIndexBuffer",
+    name_hash: 3824341093,
     flags: MemberInfoFlags::new(36937),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionAutoMeshGeneratedIndexBuffer as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionAutoMeshGeneratedIndexBuffer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AttributeCode",
+                name_hash: 2557813876,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(CinematicDestructionAutoMeshGeneratedIndexBuffer, attribute_code),
@@ -1329,6 +1415,7 @@ impl TypeObject for CinematicDestructionAutoMeshGeneratedIndexBuffer {
 
 pub static CINEMATICDESTRUCTIONAUTOMESHGENERATEDINDEXBUFFER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionAutoMeshGeneratedIndexBuffer-Array",
+    name_hash: 2550348113,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionAutoMeshGeneratedIndexBuffer"),
@@ -1337,7 +1424,8 @@ pub static CINEMATICDESTRUCTIONAUTOMESHGENERATEDINDEXBUFFER_ARRAY_TYPE_INFO: &'s
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionAutoMeshGeneratedTextureAttribute {
     pub usage: CinematicDestructionTextureReplaceUsage,
     pub attribute_code: u64,
@@ -1367,21 +1455,25 @@ impl CinematicDestructionAutoMeshGeneratedTextureAttributeTrait for CinematicDes
 
 pub static CINEMATICDESTRUCTIONAUTOMESHGENERATEDTEXTUREATTRIBUTE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionAutoMeshGeneratedTextureAttribute",
+    name_hash: 669056376,
     flags: MemberInfoFlags::new(36937),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionAutoMeshGeneratedTextureAttribute as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionAutoMeshGeneratedTextureAttribute as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Usage",
+                name_hash: 219072544,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CinematicDestructionTextureReplaceUsage",
                 rust_offset: offset_of!(CinematicDestructionAutoMeshGeneratedTextureAttribute, usage),
             },
             FieldInfoData {
                 name: "AttributeCode",
+                name_hash: 2557813876,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(CinematicDestructionAutoMeshGeneratedTextureAttribute, attribute_code),
@@ -1413,6 +1505,7 @@ impl TypeObject for CinematicDestructionAutoMeshGeneratedTextureAttribute {
 
 pub static CINEMATICDESTRUCTIONAUTOMESHGENERATEDTEXTUREATTRIBUTE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionAutoMeshGeneratedTextureAttribute-Array",
+    name_hash: 2634422092,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionAutoMeshGeneratedTextureAttribute"),
@@ -1421,7 +1514,8 @@ pub static CINEMATICDESTRUCTIONAUTOMESHGENERATEDTEXTUREATTRIBUTE_ARRAY_TYPE_INFO
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionAutoMeshGeneratedVertexAttribute {
     pub usage: super::render::VertexElementUsage,
     pub attribute_code: u64,
@@ -1451,21 +1545,25 @@ impl CinematicDestructionAutoMeshGeneratedVertexAttributeTrait for CinematicDest
 
 pub static CINEMATICDESTRUCTIONAUTOMESHGENERATEDVERTEXATTRIBUTE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionAutoMeshGeneratedVertexAttribute",
+    name_hash: 1514423631,
     flags: MemberInfoFlags::new(36937),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionAutoMeshGeneratedVertexAttribute as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionAutoMeshGeneratedVertexAttribute as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Usage",
+                name_hash: 219072544,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VertexElementUsage",
                 rust_offset: offset_of!(CinematicDestructionAutoMeshGeneratedVertexAttribute, usage),
             },
             FieldInfoData {
                 name: "AttributeCode",
+                name_hash: 2557813876,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(CinematicDestructionAutoMeshGeneratedVertexAttribute, attribute_code),
@@ -1497,6 +1595,7 @@ impl TypeObject for CinematicDestructionAutoMeshGeneratedVertexAttribute {
 
 pub static CINEMATICDESTRUCTIONAUTOMESHGENERATEDVERTEXATTRIBUTE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionAutoMeshGeneratedVertexAttribute-Array",
+    name_hash: 3276010107,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionAutoMeshGeneratedVertexAttribute"),
@@ -1505,7 +1604,8 @@ pub static CINEMATICDESTRUCTIONAUTOMESHGENERATEDVERTEXATTRIBUTE_ARRAY_TYPE_INFO:
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectDataAttributeCpuParameter {
     pub _glacier_base: EffectDataAttributeParameter,
 }
@@ -1524,12 +1624,15 @@ impl super::core::DataContainerTrait for EffectDataAttributeCpuParameter {
 
 pub static EFFECTDATAATTRIBUTECPUPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectDataAttributeCpuParameter",
+    name_hash: 3322690769,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EFFECTDATAATTRIBUTEPARAMETER_TYPE_INFO),
+        super_class_offset: offset_of!(EffectDataAttributeCpuParameter, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectDataAttributeCpuParameter as Default>::default())),
+            create_boxed: || Box::new(<EffectDataAttributeCpuParameter as Default>::default()),
         },
         fields: &[
         ],
@@ -1559,6 +1662,7 @@ impl TypeObject for EffectDataAttributeCpuParameter {
 
 pub static EFFECTDATAATTRIBUTECPUPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectDataAttributeCpuParameter-Array",
+    name_hash: 1747914469,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("EffectDataAttributeCpuParameter"),
@@ -1567,7 +1671,8 @@ pub static EFFECTDATAATTRIBUTECPUPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectDataAttributeParameter {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -1583,12 +1688,15 @@ impl super::core::DataContainerTrait for EffectDataAttributeParameter {
 
 pub static EFFECTDATAATTRIBUTEPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectDataAttributeParameter",
+    name_hash: 2691587223,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(EffectDataAttributeParameter, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectDataAttributeParameter as Default>::default())),
+            create_boxed: || Box::new(<EffectDataAttributeParameter as Default>::default()),
         },
         fields: &[
         ],
@@ -1618,6 +1726,7 @@ impl TypeObject for EffectDataAttributeParameter {
 
 pub static EFFECTDATAATTRIBUTEPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectDataAttributeParameter-Array",
+    name_hash: 3512083747,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("EffectDataAttributeParameter"),
@@ -1626,7 +1735,8 @@ pub static EFFECTDATAATTRIBUTEPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshDataReplaceTextureAttribute {
     pub _glacier_base: MeshDataReplaceAttribute,
     pub usage: CinematicDestructionTextureReplaceUsage,
@@ -1654,16 +1764,20 @@ impl super::core::DataContainerTrait for MeshDataReplaceTextureAttribute {
 
 pub static MESHDATAREPLACETEXTUREATTRIBUTE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshDataReplaceTextureAttribute",
+    name_hash: 524972617,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MESHDATAREPLACEATTRIBUTE_TYPE_INFO),
+        super_class_offset: offset_of!(MeshDataReplaceTextureAttribute, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshDataReplaceTextureAttribute as Default>::default())),
+            create_boxed: || Box::new(<MeshDataReplaceTextureAttribute as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Usage",
+                name_hash: 219072544,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CinematicDestructionTextureReplaceUsage",
                 rust_offset: offset_of!(MeshDataReplaceTextureAttribute, usage),
@@ -1695,6 +1809,7 @@ impl TypeObject for MeshDataReplaceTextureAttribute {
 
 pub static MESHDATAREPLACETEXTUREATTRIBUTE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshDataReplaceTextureAttribute-Array",
+    name_hash: 4136368253,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("MeshDataReplaceTextureAttribute"),
@@ -1703,7 +1818,8 @@ pub static MESHDATAREPLACETEXTUREATTRIBUTE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshDataReplaceVertexAttribute {
     pub _glacier_base: MeshDataReplaceAttribute,
     pub usage: super::render::VertexElementUsage,
@@ -1731,16 +1847,20 @@ impl super::core::DataContainerTrait for MeshDataReplaceVertexAttribute {
 
 pub static MESHDATAREPLACEVERTEXATTRIBUTE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshDataReplaceVertexAttribute",
+    name_hash: 2285573918,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MESHDATAREPLACEATTRIBUTE_TYPE_INFO),
+        super_class_offset: offset_of!(MeshDataReplaceVertexAttribute, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshDataReplaceVertexAttribute as Default>::default())),
+            create_boxed: || Box::new(<MeshDataReplaceVertexAttribute as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Usage",
+                name_hash: 219072544,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VertexElementUsage",
                 rust_offset: offset_of!(MeshDataReplaceVertexAttribute, usage),
@@ -1772,6 +1892,7 @@ impl TypeObject for MeshDataReplaceVertexAttribute {
 
 pub static MESHDATAREPLACEVERTEXATTRIBUTE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshDataReplaceVertexAttribute-Array",
+    name_hash: 898435114,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("MeshDataReplaceVertexAttribute"),
@@ -1780,7 +1901,8 @@ pub static MESHDATAREPLACEVERTEXATTRIBUTE_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshDataReplaceAttribute {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -1796,12 +1918,15 @@ impl super::core::DataContainerTrait for MeshDataReplaceAttribute {
 
 pub static MESHDATAREPLACEATTRIBUTE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshDataReplaceAttribute",
+    name_hash: 778177366,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(MeshDataReplaceAttribute, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshDataReplaceAttribute as Default>::default())),
+            create_boxed: || Box::new(<MeshDataReplaceAttribute as Default>::default()),
         },
         fields: &[
         ],
@@ -1831,6 +1956,7 @@ impl TypeObject for MeshDataReplaceAttribute {
 
 pub static MESHDATAREPLACEATTRIBUTE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshDataReplaceAttribute-Array",
+    name_hash: 3883602146,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("MeshDataReplaceAttribute"),
@@ -1839,7 +1965,8 @@ pub static MESHDATAREPLACEATTRIBUTE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionOutputPipeEntityData {
     pub _glacier_base: super::entity::EntityData,
 }
@@ -1873,12 +2000,15 @@ impl super::core::DataContainerTrait for CinematicDestructionOutputPipeEntityDat
 
 pub static CINEMATICDESTRUCTIONOUTPUTPIPEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionOutputPipeEntityData",
+    name_hash: 3090921072,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CinematicDestructionOutputPipeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionOutputPipeEntityData as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionOutputPipeEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -1908,6 +2038,7 @@ impl TypeObject for CinematicDestructionOutputPipeEntityData {
 
 pub static CINEMATICDESTRUCTIONOUTPUTPIPEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionOutputPipeEntityData-Array",
+    name_hash: 474494020,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionOutputPipeEntityData"),
@@ -1916,7 +2047,8 @@ pub static CINEMATICDESTRUCTIONOUTPUTPIPEENTITYDATA_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionOutputPipeResult {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -1932,12 +2064,15 @@ impl super::core::DataContainerTrait for CinematicDestructionOutputPipeResult {
 
 pub static CINEMATICDESTRUCTIONOUTPUTPIPERESULT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionOutputPipeResult",
+    name_hash: 182749970,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(CinematicDestructionOutputPipeResult, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionOutputPipeResult as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionOutputPipeResult as Default>::default()),
         },
         fields: &[
         ],
@@ -1967,6 +2102,7 @@ impl TypeObject for CinematicDestructionOutputPipeResult {
 
 pub static CINEMATICDESTRUCTIONOUTPUTPIPERESULT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionOutputPipeResult-Array",
+    name_hash: 1388212774,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionOutputPipeResult"),
@@ -1990,6 +2126,7 @@ pub enum CinematicDestructionTextureReplaceUsage {
 
 pub static CINEMATICDESTRUCTIONTEXTUREREPLACEUSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionTextureReplaceUsage",
+    name_hash: 3207163006,
     flags: MemberInfoFlags::new(49429),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Enum,
@@ -2018,6 +2155,7 @@ impl TypeObject for CinematicDestructionTextureReplaceUsage {
 
 pub static CINEMATICDESTRUCTIONTEXTUREREPLACEUSAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionTextureReplaceUsage-Array",
+    name_hash: 3314658634,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionTextureReplaceUsage"),
@@ -2026,7 +2164,8 @@ pub static CINEMATICDESTRUCTIONTEXTUREREPLACEUSAGE_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CinematicDestructionAsset {
     pub _glacier_base: super::linear_media::LinearMediaAssetDesc,
 }
@@ -2038,10 +2177,10 @@ impl CinematicDestructionAssetTrait for CinematicDestructionAsset {
 }
 
 impl super::linear_media::LinearMediaAssetDescTrait for CinematicDestructionAsset {
-    fn resources(&self) -> &Vec<super::linear_media::LinearMediaRuntimeResource> {
+    fn resources(&self) -> &Vec<BoxedTypeObject /* super::linear_media::LinearMediaRuntimeResource */> {
         self._glacier_base.resources()
     }
-    fn resources_mut(&mut self) -> &mut Vec<super::linear_media::LinearMediaRuntimeResource> {
+    fn resources_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::linear_media::LinearMediaRuntimeResource */> {
         self._glacier_base.resources_mut()
     }
 }
@@ -2060,12 +2199,15 @@ impl super::core::DataContainerTrait for CinematicDestructionAsset {
 
 pub static CINEMATICDESTRUCTIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionAsset",
+    name_hash: 2780106840,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::linear_media::LINEARMEDIAASSETDESC_TYPE_INFO),
+        super_class_offset: offset_of!(CinematicDestructionAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CinematicDestructionAsset as Default>::default())),
+            create_boxed: || Box::new(<CinematicDestructionAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -2095,6 +2237,7 @@ impl TypeObject for CinematicDestructionAsset {
 
 pub static CINEMATICDESTRUCTIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CinematicDestructionAsset-Array",
+    name_hash: 3141864172,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("CinematicDestructionAsset"),
@@ -2103,7 +2246,8 @@ pub static CINEMATICDESTRUCTIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCinematicDestructionPoolBufferEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2122,12 +2266,15 @@ impl super::entity::EntityBusPeerTrait for ClientCinematicDestructionPoolBufferE
 
 pub static CLIENTCINEMATICDESTRUCTIONPOOLBUFFERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionPoolBufferEntity",
+    name_hash: 3240388918,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCinematicDestructionPoolBufferEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCinematicDestructionPoolBufferEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCinematicDestructionPoolBufferEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2157,6 +2304,7 @@ impl TypeObject for ClientCinematicDestructionPoolBufferEntity {
 
 pub static CLIENTCINEMATICDESTRUCTIONPOOLBUFFERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionPoolBufferEntity-Array",
+    name_hash: 2975341954,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("ClientCinematicDestructionPoolBufferEntity"),
@@ -2165,7 +2313,8 @@ pub static CLIENTCINEMATICDESTRUCTIONPOOLBUFFERENTITY_ARRAY_TYPE_INFO: &'static 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCinematicDestructionMeshOutputPipeEntity {
     pub _glacier_base: ClientCinematicDestructionOutputPipeEntity,
 }
@@ -2187,12 +2336,15 @@ impl super::entity::EntityBusPeerTrait for ClientCinematicDestructionMeshOutputP
 
 pub static CLIENTCINEMATICDESTRUCTIONMESHOUTPUTPIPEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionMeshOutputPipeEntity",
+    name_hash: 4180416906,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTCINEMATICDESTRUCTIONOUTPUTPIPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCinematicDestructionMeshOutputPipeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCinematicDestructionMeshOutputPipeEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCinematicDestructionMeshOutputPipeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2222,6 +2374,7 @@ impl TypeObject for ClientCinematicDestructionMeshOutputPipeEntity {
 
 pub static CLIENTCINEMATICDESTRUCTIONMESHOUTPUTPIPEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionMeshOutputPipeEntity-Array",
+    name_hash: 1476621502,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("ClientCinematicDestructionMeshOutputPipeEntity"),
@@ -2230,7 +2383,8 @@ pub static CLIENTCINEMATICDESTRUCTIONMESHOUTPUTPIPEENTITY_ARRAY_TYPE_INFO: &'sta
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCinematicDestructionManualMeshOutputPipeEntity {
     pub _glacier_base: ClientCinematicDestructionMeshOutputPipeEntity,
 }
@@ -2255,12 +2409,15 @@ impl super::entity::EntityBusPeerTrait for ClientCinematicDestructionManualMeshO
 
 pub static CLIENTCINEMATICDESTRUCTIONMANUALMESHOUTPUTPIPEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionManualMeshOutputPipeEntity",
+    name_hash: 374399472,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTCINEMATICDESTRUCTIONMESHOUTPUTPIPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCinematicDestructionManualMeshOutputPipeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCinematicDestructionManualMeshOutputPipeEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCinematicDestructionManualMeshOutputPipeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2290,6 +2447,7 @@ impl TypeObject for ClientCinematicDestructionManualMeshOutputPipeEntity {
 
 pub static CLIENTCINEMATICDESTRUCTIONMANUALMESHOUTPUTPIPEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionManualMeshOutputPipeEntity-Array",
+    name_hash: 2070937540,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("ClientCinematicDestructionManualMeshOutputPipeEntity"),
@@ -2298,7 +2456,8 @@ pub static CLIENTCINEMATICDESTRUCTIONMANUALMESHOUTPUTPIPEENTITY_ARRAY_TYPE_INFO:
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCinematicDestructionAutoMeshOutputPipeEntity {
     pub _glacier_base: ClientCinematicDestructionMeshOutputPipeEntity,
 }
@@ -2323,12 +2482,15 @@ impl super::entity::EntityBusPeerTrait for ClientCinematicDestructionAutoMeshOut
 
 pub static CLIENTCINEMATICDESTRUCTIONAUTOMESHOUTPUTPIPEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionAutoMeshOutputPipeEntity",
+    name_hash: 3897157253,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTCINEMATICDESTRUCTIONMESHOUTPUTPIPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCinematicDestructionAutoMeshOutputPipeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCinematicDestructionAutoMeshOutputPipeEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCinematicDestructionAutoMeshOutputPipeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2358,6 +2520,7 @@ impl TypeObject for ClientCinematicDestructionAutoMeshOutputPipeEntity {
 
 pub static CLIENTCINEMATICDESTRUCTIONAUTOMESHOUTPUTPIPEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionAutoMeshOutputPipeEntity-Array",
+    name_hash: 3429232177,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("ClientCinematicDestructionAutoMeshOutputPipeEntity"),
@@ -2366,7 +2529,8 @@ pub static CLIENTCINEMATICDESTRUCTIONAUTOMESHOUTPUTPIPEENTITY_ARRAY_TYPE_INFO: &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCinematicDestructionEmitterOutputPipeEntity {
     pub _glacier_base: ClientCinematicDestructionOutputPipeEntity,
 }
@@ -2388,12 +2552,15 @@ impl super::entity::EntityBusPeerTrait for ClientCinematicDestructionEmitterOutp
 
 pub static CLIENTCINEMATICDESTRUCTIONEMITTEROUTPUTPIPEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionEmitterOutputPipeEntity",
+    name_hash: 382424847,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTCINEMATICDESTRUCTIONOUTPUTPIPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCinematicDestructionEmitterOutputPipeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCinematicDestructionEmitterOutputPipeEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCinematicDestructionEmitterOutputPipeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2423,6 +2590,7 @@ impl TypeObject for ClientCinematicDestructionEmitterOutputPipeEntity {
 
 pub static CLIENTCINEMATICDESTRUCTIONEMITTEROUTPUTPIPEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionEmitterOutputPipeEntity-Array",
+    name_hash: 3960574907,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("ClientCinematicDestructionEmitterOutputPipeEntity"),
@@ -2431,7 +2599,8 @@ pub static CLIENTCINEMATICDESTRUCTIONEMITTEROUTPUTPIPEENTITY_ARRAY_TYPE_INFO: &'
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCinematicDestructionControllerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2450,12 +2619,15 @@ impl super::entity::EntityBusPeerTrait for ClientCinematicDestructionControllerE
 
 pub static CLIENTCINEMATICDESTRUCTIONCONTROLLERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionControllerEntity",
+    name_hash: 2065437334,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCinematicDestructionControllerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCinematicDestructionControllerEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCinematicDestructionControllerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2485,6 +2657,7 @@ impl TypeObject for ClientCinematicDestructionControllerEntity {
 
 pub static CLIENTCINEMATICDESTRUCTIONCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionControllerEntity-Array",
+    name_hash: 1688029090,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("ClientCinematicDestructionControllerEntity"),
@@ -2493,7 +2666,8 @@ pub static CLIENTCINEMATICDESTRUCTIONCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCinematicDestructionOutputPipeEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2512,12 +2686,15 @@ impl super::entity::EntityBusPeerTrait for ClientCinematicDestructionOutputPipeE
 
 pub static CLIENTCINEMATICDESTRUCTIONOUTPUTPIPEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionOutputPipeEntity",
+    name_hash: 1990061753,
     flags: MemberInfoFlags::new(101),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCinematicDestructionOutputPipeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCinematicDestructionOutputPipeEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCinematicDestructionOutputPipeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2547,6 +2724,7 @@ impl TypeObject for ClientCinematicDestructionOutputPipeEntity {
 
 pub static CLIENTCINEMATICDESTRUCTIONOUTPUTPIPEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCinematicDestructionOutputPipeEntity-Array",
+    name_hash: 3088989453,
     flags: MemberInfoFlags::new(145),
     module: "LMSCinematicDestruction",
     data: TypeInfoData::Array("ClientCinematicDestructionOutputPipeEntity"),

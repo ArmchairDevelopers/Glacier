@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -59,7 +60,8 @@ pub(crate) fn register_auto_players_types(registry: &mut TypeRegistry) {
     registry.register_type(AUTOPLAYERATTACKOBJECTIVEENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerActionObjectiveEntity {
     pub _glacier_base: AutoPlayerObjectiveEntityBase,
 }
@@ -81,12 +83,15 @@ impl super::entity::EntityBusPeerTrait for AutoPlayerActionObjectiveEntity {
 
 pub static AUTOPLAYERACTIONOBJECTIVEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerActionObjectiveEntity",
+    name_hash: 3317431379,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerActionObjectiveEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerActionObjectiveEntity as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerActionObjectiveEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -116,6 +121,7 @@ impl TypeObject for AutoPlayerActionObjectiveEntity {
 
 pub static AUTOPLAYERACTIONOBJECTIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerActionObjectiveEntity-Array",
+    name_hash: 4181501799,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerActionObjectiveEntity"),
@@ -124,7 +130,8 @@ pub static AUTOPLAYERACTIONOBJECTIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerListenerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -143,12 +150,15 @@ impl super::entity::EntityBusPeerTrait for AutoPlayerListenerEntity {
 
 pub static AUTOPLAYERLISTENERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerListenerEntity",
+    name_hash: 2508770812,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerListenerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerListenerEntity as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerListenerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -178,6 +188,7 @@ impl TypeObject for AutoPlayerListenerEntity {
 
 pub static AUTOPLAYERLISTENERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerListenerEntity-Array",
+    name_hash: 1537734088,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerListenerEntity"),
@@ -186,7 +197,8 @@ pub static AUTOPLAYERLISTENERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerObjectiveEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -382,118 +394,139 @@ impl super::core::DataContainerTrait for AutoPlayerObjectiveEntityData {
 
 pub static AUTOPLAYEROBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerObjectiveEntityData",
+    name_hash: 3626950941,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerObjectiveEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerObjectiveEntityData as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerObjectiveEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, realm),
             },
             FieldInfoData {
                 name: "Players",
+                name_hash: 28107269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QueryEntityResult",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, players),
             },
             FieldInfoData {
                 name: "JesusMode",
+                name_hash: 1223214972,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, jesus_mode),
             },
             FieldInfoData {
                 name: "UnlimitedAmmo",
+                name_hash: 348431844,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, unlimited_ammo),
             },
             FieldInfoData {
                 name: "AllowTeleport",
+                name_hash: 92097277,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, allow_teleport),
             },
             FieldInfoData {
                 name: "UseObjectiveTeleport",
+                name_hash: 3772915976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, use_objective_teleport),
             },
             FieldInfoData {
                 name: "UseStuckEscapeProcedure",
+                name_hash: 2384788624,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, use_stuck_escape_procedure),
             },
             FieldInfoData {
                 name: "UseNavmesh",
+                name_hash: 1036430316,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, use_navmesh),
             },
             FieldInfoData {
                 name: "AllowObjectiveMoveOutsideCombatArea",
+                name_hash: 3233472982,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, allow_objective_move_outside_combat_area),
             },
             FieldInfoData {
                 name: "AllowSecondaryObjectives",
+                name_hash: 3708322490,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, allow_secondary_objectives),
             },
             FieldInfoData {
                 name: "DisableZoomWhenAiming",
+                name_hash: 2547011063,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, disable_zoom_when_aiming),
             },
             FieldInfoData {
                 name: "MoveMode",
+                name_hash: 1608178775,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AutoPlayerMoveMode",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, move_mode),
             },
             FieldInfoData {
                 name: "MoveModeOverrideInt",
+                name_hash: 1408186640,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, move_mode_override_int),
             },
             FieldInfoData {
                 name: "DebugName",
+                name_hash: 859955379,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, debug_name),
             },
             FieldInfoData {
                 name: "TimeThreshold",
+                name_hash: 780400743,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, time_threshold),
             },
             FieldInfoData {
                 name: "ClampVerticalNavPosSearchMeters",
+                name_hash: 2038853383,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, clamp_vertical_nav_pos_search_meters),
             },
             FieldInfoData {
                 name: "RestrictedAreaSphereCentre",
+                name_hash: 2220441277,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, restricted_area_sphere_centre),
             },
             FieldInfoData {
                 name: "RestrictedAreaSphereRadius",
+                name_hash: 1632865070,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerObjectiveEntityData, restricted_area_sphere_radius),
@@ -525,6 +558,7 @@ impl TypeObject for AutoPlayerObjectiveEntityData {
 
 pub static AUTOPLAYEROBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerObjectiveEntityData-Array",
+    name_hash: 97447081,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerObjectiveEntityData"),
@@ -545,6 +579,7 @@ pub enum AutoPlayerMoveMode {
 
 pub static AUTOPLAYERMOVEMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerMoveMode",
+    name_hash: 1422759979,
     flags: MemberInfoFlags::new(49429),
     module: "AutoPlayers",
     data: TypeInfoData::Enum,
@@ -573,6 +608,7 @@ impl TypeObject for AutoPlayerMoveMode {
 
 pub static AUTOPLAYERMOVEMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerMoveMode-Array",
+    name_hash: 3077355423,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerMoveMode"),
@@ -581,7 +617,8 @@ pub static AUTOPLAYERMOVEMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerMoveObjectiveEntityData {
     pub _glacier_base: AutoPlayerObjectiveEntityData,
     pub target_position: super::core::Vec3,
@@ -762,34 +799,41 @@ impl super::core::DataContainerTrait for AutoPlayerMoveObjectiveEntityData {
 
 pub static AUTOPLAYERMOVEOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerMoveObjectiveEntityData",
+    name_hash: 442632812,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerMoveObjectiveEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerMoveObjectiveEntityData as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerMoveObjectiveEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TargetPosition",
+                name_hash: 12362477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AutoPlayerMoveObjectiveEntityData, target_position),
             },
             FieldInfoData {
                 name: "MoveAreaRadius",
+                name_hash: 445046651,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerMoveObjectiveEntityData, move_area_radius),
             },
             FieldInfoData {
                 name: "IsTargetReachedAsSoonAsEnteringTargetArea",
+                name_hash: 1803769761,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerMoveObjectiveEntityData, is_target_reached_as_soon_as_entering_target_area),
             },
             FieldInfoData {
                 name: "UseRandomPathSpread",
+                name_hash: 882040577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerMoveObjectiveEntityData, use_random_path_spread),
@@ -821,6 +865,7 @@ impl TypeObject for AutoPlayerMoveObjectiveEntityData {
 
 pub static AUTOPLAYERMOVEOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerMoveObjectiveEntityData-Array",
+    name_hash: 3003763288,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerMoveObjectiveEntityData"),
@@ -829,7 +874,8 @@ pub static AUTOPLAYERMOVEOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerInteractObjectiveEntityData {
     pub _glacier_base: AutoPlayerObjectiveEntityData,
     pub interaction_entity_position: super::core::Vec3,
@@ -1046,58 +1092,69 @@ impl super::core::DataContainerTrait for AutoPlayerInteractObjectiveEntityData {
 
 pub static AUTOPLAYERINTERACTOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerInteractObjectiveEntityData",
+    name_hash: 3436465519,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerInteractObjectiveEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerInteractObjectiveEntityData as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerInteractObjectiveEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InteractionEntityPosition",
+                name_hash: 3013231485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AutoPlayerInteractObjectiveEntityData, interaction_entity_position),
             },
             FieldInfoData {
                 name: "InteractionPosition",
+                name_hash: 2345473190,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AutoPlayerInteractObjectiveEntityData, interaction_position),
             },
             FieldInfoData {
                 name: "InteractInputAction",
+                name_hash: 966762655,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerInteractObjectiveEntityData, interact_input_action),
             },
             FieldInfoData {
                 name: "FindInteractTargetPosition",
+                name_hash: 3865538682,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerInteractObjectiveEntityData, find_interact_target_position),
             },
             FieldInfoData {
                 name: "InteractionStartRadius",
+                name_hash: 3792049319,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerInteractObjectiveEntityData, interaction_start_radius),
             },
             FieldInfoData {
                 name: "HoldToInteractTime",
+                name_hash: 594026294,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerInteractObjectiveEntityData, hold_to_interact_time),
             },
             FieldInfoData {
                 name: "PrimaryInteractionSearchRadius",
+                name_hash: 2163826245,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerInteractObjectiveEntityData, primary_interaction_search_radius),
             },
             FieldInfoData {
                 name: "UseRandomPathSpread",
+                name_hash: 882040577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerInteractObjectiveEntityData, use_random_path_spread),
@@ -1129,6 +1186,7 @@ impl TypeObject for AutoPlayerInteractObjectiveEntityData {
 
 pub static AUTOPLAYERINTERACTOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerInteractObjectiveEntityData-Array",
+    name_hash: 4051307355,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerInteractObjectiveEntityData"),
@@ -1137,7 +1195,8 @@ pub static AUTOPLAYERINTERACTOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerFollowObjectiveEntityData {
     pub _glacier_base: AutoPlayerObjectiveEntityData,
     pub follow_target_player: super::dice_shooter_shared::QueryEntityResult,
@@ -1345,52 +1404,62 @@ impl super::core::DataContainerTrait for AutoPlayerFollowObjectiveEntityData {
 
 pub static AUTOPLAYERFOLLOWOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerFollowObjectiveEntityData",
+    name_hash: 1018182124,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerFollowObjectiveEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerFollowObjectiveEntityData as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerFollowObjectiveEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FollowTargetPlayer",
+                name_hash: 3265628726,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QueryEntityResult",
                 rust_offset: offset_of!(AutoPlayerFollowObjectiveEntityData, follow_target_player),
             },
             FieldInfoData {
                 name: "FollowPositionRadius",
+                name_hash: 1379430133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerFollowObjectiveEntityData, follow_position_radius),
             },
             FieldInfoData {
                 name: "UseBreadCrumbsPathFollowing",
+                name_hash: 2755783314,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerFollowObjectiveEntityData, use_bread_crumbs_path_following),
             },
             FieldInfoData {
                 name: "FollowTimeoutSeconds",
+                name_hash: 622990668,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerFollowObjectiveEntityData, follow_timeout_seconds),
             },
             FieldInfoData {
                 name: "FollowUntilPosition",
+                name_hash: 4069178183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AutoPlayerFollowObjectiveEntityData, follow_until_position),
             },
             FieldInfoData {
                 name: "FollowUntilPositionToleranceMeters",
+                name_hash: 4284809334,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerFollowObjectiveEntityData, follow_until_position_tolerance_meters),
             },
             FieldInfoData {
                 name: "ActivelyPatrolFollowPlayerPosition",
+                name_hash: 693731347,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerFollowObjectiveEntityData, actively_patrol_follow_player_position),
@@ -1422,6 +1491,7 @@ impl TypeObject for AutoPlayerFollowObjectiveEntityData {
 
 pub static AUTOPLAYERFOLLOWOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerFollowObjectiveEntityData-Array",
+    name_hash: 1176345048,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerFollowObjectiveEntityData"),
@@ -1430,7 +1500,8 @@ pub static AUTOPLAYERFOLLOWOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerDefendObjectiveEntityData {
     pub _glacier_base: AutoPlayerObjectiveEntityData,
     pub target_position: super::core::Vec3,
@@ -1620,40 +1691,48 @@ impl super::core::DataContainerTrait for AutoPlayerDefendObjectiveEntityData {
 
 pub static AUTOPLAYERDEFENDOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerDefendObjectiveEntityData",
+    name_hash: 1750913973,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerDefendObjectiveEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerDefendObjectiveEntityData as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerDefendObjectiveEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TargetPosition",
+                name_hash: 12362477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AutoPlayerDefendObjectiveEntityData, target_position),
             },
             FieldInfoData {
                 name: "DefendAreaRadius",
+                name_hash: 3858104642,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerDefendObjectiveEntityData, defend_area_radius),
             },
             FieldInfoData {
                 name: "UseRandomPathSpread",
+                name_hash: 882040577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerDefendObjectiveEntityData, use_random_path_spread),
             },
             FieldInfoData {
                 name: "DefendCurrentPosition",
+                name_hash: 3784844061,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerDefendObjectiveEntityData, defend_current_position),
             },
             FieldInfoData {
                 name: "IsTargetReachedAsSoonAsEnteringTargetArea",
+                name_hash: 1803769761,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerDefendObjectiveEntityData, is_target_reached_as_soon_as_entering_target_area),
@@ -1685,6 +1764,7 @@ impl TypeObject for AutoPlayerDefendObjectiveEntityData {
 
 pub static AUTOPLAYERDEFENDOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerDefendObjectiveEntityData-Array",
+    name_hash: 930427905,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerDefendObjectiveEntityData"),
@@ -1693,7 +1773,8 @@ pub static AUTOPLAYERDEFENDOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerAttackObjectiveEntityData {
     pub _glacier_base: AutoPlayerObjectiveEntityData,
     pub targets: super::dice_shooter_shared::QueryEntityResult,
@@ -1865,28 +1946,34 @@ impl super::core::DataContainerTrait for AutoPlayerAttackObjectiveEntityData {
 
 pub static AUTOPLAYERATTACKOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerAttackObjectiveEntityData",
+    name_hash: 3635382453,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerAttackObjectiveEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerAttackObjectiveEntityData as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerAttackObjectiveEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Targets",
+                name_hash: 3016537383,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QueryEntityResult",
                 rust_offset: offset_of!(AutoPlayerAttackObjectiveEntityData, targets),
             },
             FieldInfoData {
                 name: "Weapon",
+                name_hash: 3190562823,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerAttackObjectiveEntityData, weapon),
             },
             FieldInfoData {
                 name: "UseRandomPathSpread",
+                name_hash: 882040577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerAttackObjectiveEntityData, use_random_path_spread),
@@ -1918,6 +2005,7 @@ impl TypeObject for AutoPlayerAttackObjectiveEntityData {
 
 pub static AUTOPLAYERATTACKOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerAttackObjectiveEntityData-Array",
+    name_hash: 171682049,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerAttackObjectiveEntityData"),
@@ -1926,7 +2014,8 @@ pub static AUTOPLAYERATTACKOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerActionObjectiveEntityData {
     pub _glacier_base: AutoPlayerObjectiveEntityData,
     pub action_target_position: super::core::Vec3,
@@ -2143,58 +2232,69 @@ impl super::core::DataContainerTrait for AutoPlayerActionObjectiveEntityData {
 
 pub static AUTOPLAYERACTIONOBJECTIVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerActionObjectiveEntityData",
+    name_hash: 22846499,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerActionObjectiveEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerActionObjectiveEntityData as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerActionObjectiveEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ActionTargetPosition",
+                name_hash: 2801948307,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AutoPlayerActionObjectiveEntityData, action_target_position),
             },
             FieldInfoData {
                 name: "ActionPosition",
+                name_hash: 2922531394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AutoPlayerActionObjectiveEntityData, action_position),
             },
             FieldInfoData {
                 name: "ActionStartRadius",
+                name_hash: 1245475907,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerActionObjectiveEntityData, action_start_radius),
             },
             FieldInfoData {
                 name: "SelectItemInput",
+                name_hash: 1955598894,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerActionObjectiveEntityData, select_item_input),
             },
             FieldInfoData {
                 name: "ActionInput",
+                name_hash: 2432057581,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerActionObjectiveEntityData, action_input),
             },
             FieldInfoData {
                 name: "ActionTime",
+                name_hash: 1114711598,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerActionObjectiveEntityData, action_time),
             },
             FieldInfoData {
                 name: "IsASpammingButtonAction",
+                name_hash: 1899341652,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerActionObjectiveEntityData, is_a_spamming_button_action),
             },
             FieldInfoData {
                 name: "UseRandomPathSpread",
+                name_hash: 882040577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerActionObjectiveEntityData, use_random_path_spread),
@@ -2226,6 +2326,7 @@ impl TypeObject for AutoPlayerActionObjectiveEntityData {
 
 pub static AUTOPLAYERACTIONOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerActionObjectiveEntityData-Array",
+    name_hash: 4189020055,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerActionObjectiveEntityData"),
@@ -2234,7 +2335,8 @@ pub static AUTOPLAYERACTIONOBJECTIVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerSettingsEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub choice: AutoPlayerSettingsChoice,
@@ -2277,16 +2379,20 @@ impl super::core::DataContainerTrait for AutoPlayerSettingsEntityData {
 
 pub static AUTOPLAYERSETTINGSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerSettingsEntityData",
+    name_hash: 2770487319,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerSettingsEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerSettingsEntityData as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerSettingsEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Choice",
+                name_hash: 2726385422,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AutoPlayerSettingsChoice",
                 rust_offset: offset_of!(AutoPlayerSettingsEntityData, choice),
@@ -2318,6 +2424,7 @@ impl TypeObject for AutoPlayerSettingsEntityData {
 
 pub static AUTOPLAYERSETTINGSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerSettingsEntityData-Array",
+    name_hash: 2200744099,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerSettingsEntityData"),
@@ -2326,7 +2433,8 @@ pub static AUTOPLAYERSETTINGSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerSettingsChoice {
     pub kind: AutoPlayerSettingsKind,
     pub name: String,
@@ -2356,21 +2464,25 @@ impl AutoPlayerSettingsChoiceTrait for AutoPlayerSettingsChoice {
 
 pub static AUTOPLAYERSETTINGSCHOICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerSettingsChoice",
+    name_hash: 1650424567,
     flags: MemberInfoFlags::new(73),
     module: "AutoPlayers",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerSettingsChoice as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerSettingsChoice as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Kind",
+                name_hash: 2089125261,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AutoPlayerSettingsKind",
                 rust_offset: offset_of!(AutoPlayerSettingsChoice, kind),
             },
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(AutoPlayerSettingsChoice, name),
@@ -2402,6 +2514,7 @@ impl TypeObject for AutoPlayerSettingsChoice {
 
 pub static AUTOPLAYERSETTINGSCHOICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerSettingsChoice-Array",
+    name_hash: 1243923651,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerSettingsChoice"),
@@ -2424,6 +2537,7 @@ pub enum AutoPlayerSettingsKind {
 
 pub static AUTOPLAYERSETTINGSKIND_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerSettingsKind",
+    name_hash: 1152872692,
     flags: MemberInfoFlags::new(49429),
     module: "AutoPlayers",
     data: TypeInfoData::Enum,
@@ -2452,6 +2566,7 @@ impl TypeObject for AutoPlayerSettingsKind {
 
 pub static AUTOPLAYERSETTINGSKIND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerSettingsKind-Array",
+    name_hash: 1199930560,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerSettingsKind"),
@@ -2460,7 +2575,8 @@ pub static AUTOPLAYERSETTINGSKIND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerManagerEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub player_count: i32,
@@ -2539,40 +2655,48 @@ impl super::core::DataContainerTrait for AutoPlayerManagerEntityData {
 
 pub static AUTOPLAYERMANAGERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerManagerEntityData",
+    name_hash: 405582913,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerManagerEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerManagerEntityData as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerManagerEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PlayerCount",
+                name_hash: 4110176597,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerManagerEntityData, player_count),
             },
             FieldInfoData {
                 name: "FillGameplayBotsTeam1",
+                name_hash: 2498425862,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerManagerEntityData, fill_gameplay_bots_team1),
             },
             FieldInfoData {
                 name: "FillGameplayBotsTeam2",
+                name_hash: 2498425861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerManagerEntityData, fill_gameplay_bots_team2),
             },
             FieldInfoData {
                 name: "ResetForceFills",
+                name_hash: 1102314481,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerManagerEntityData, reset_force_fills),
             },
             FieldInfoData {
                 name: "OrphanTimeSeconds",
+                name_hash: 3961840953,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerManagerEntityData, orphan_time_seconds),
@@ -2604,6 +2728,7 @@ impl TypeObject for AutoPlayerManagerEntityData {
 
 pub static AUTOPLAYERMANAGERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerManagerEntityData-Array",
+    name_hash: 3524812405,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerManagerEntityData"),
@@ -2612,7 +2737,8 @@ pub static AUTOPLAYERMANAGERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -2664,22 +2790,27 @@ impl super::core::DataContainerTrait for AutoPlayerEntityData {
 
 pub static AUTOPLAYERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerEntityData",
+    name_hash: 411218578,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerEntityData as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(AutoPlayerEntityData, realm),
             },
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerEntityData, auto_start),
@@ -2711,6 +2842,7 @@ impl TypeObject for AutoPlayerEntityData {
 
 pub static AUTOPLAYERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerEntityData-Array",
+    name_hash: 993802662,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerEntityData"),
@@ -2719,7 +2851,8 @@ pub static AUTOPLAYERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub a_f_k_takeover: f32,
@@ -5129,1600 +5262,1868 @@ impl super::core::DataContainerTrait for AutoPlayerSettings {
 
 pub static AUTOPLAYERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerSettings",
+    name_hash: 252022972,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerSettings as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AFKTakeover",
+                name_hash: 704515516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, a_f_k_takeover),
             },
             FieldInfoData {
                 name: "ClientEnabled",
+                name_hash: 947599257,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, client_enabled),
             },
             FieldInfoData {
                 name: "AllowClientTakeOver",
+                name_hash: 2177672080,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_client_take_over),
             },
             FieldInfoData {
                 name: "ForceServerControl",
+                name_hash: 3083053178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_server_control),
             },
             FieldInfoData {
                 name: "ForceServerObjectiveControl",
+                name_hash: 3317860949,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_server_objective_control),
             },
             FieldInfoData {
                 name: "ForceClientObjectiveControl",
+                name_hash: 2955097993,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_client_objective_control),
             },
             FieldInfoData {
                 name: "ForceClientNavigation",
+                name_hash: 4255273387,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_client_navigation),
             },
             FieldInfoData {
                 name: "DebugDrawEnabled",
+                name_hash: 579542993,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_enabled),
             },
             FieldInfoData {
                 name: "DebugDrawWaypoints",
+                name_hash: 4289039460,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_waypoints),
             },
             FieldInfoData {
                 name: "DebugDrawClientDetails",
+                name_hash: 4065526127,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_client_details),
             },
             FieldInfoData {
                 name: "DebugDrawCombatDetails",
+                name_hash: 1187188512,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_combat_details),
             },
             FieldInfoData {
                 name: "PlayerCount",
+                name_hash: 4110176597,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, player_count),
             },
             FieldInfoData {
                 name: "ForcedServerAutoPlayerCount",
+                name_hash: 3575197958,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, forced_server_auto_player_count),
             },
             FieldInfoData {
                 name: "AllowAddAutoFillPlayers",
+                name_hash: 1197504061,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_add_auto_fill_players),
             },
             FieldInfoData {
                 name: "AllowRemoveAutoFillPlayers",
+                name_hash: 558594010,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_remove_auto_fill_players),
             },
             FieldInfoData {
                 name: "ForceApplyGameplayBotsCount",
+                name_hash: 1733256687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_apply_gameplay_bots_count),
             },
             FieldInfoData {
                 name: "ForceFillGameplayBotsTeam1",
+                name_hash: 695851227,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, force_fill_gameplay_bots_team1),
             },
             FieldInfoData {
                 name: "ForceFillGameplayBotsTeam2",
+                name_hash: 695851224,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, force_fill_gameplay_bots_team2),
             },
             FieldInfoData {
                 name: "RespawnDelay",
+                name_hash: 684347420,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, respawn_delay),
             },
             FieldInfoData {
                 name: "InitialRespawnDelay",
+                name_hash: 1129262082,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, initial_respawn_delay),
             },
             FieldInfoData {
                 name: "ClientJoinDelay",
+                name_hash: 1511208747,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, client_join_delay),
             },
             FieldInfoData {
                 name: "RoundTimeout",
+                name_hash: 1637334556,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, round_timeout),
             },
             FieldInfoData {
                 name: "SquadMembers",
+                name_hash: 3090799924,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, squad_members),
             },
             FieldInfoData {
                 name: "AllowGameplayBotsToJoinPlayerSquads",
+                name_hash: 1442344919,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_gameplay_bots_to_join_player_squads),
             },
             FieldInfoData {
                 name: "AllowGameplayBotsToFormOwnSquads",
+                name_hash: 1921284678,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_gameplay_bots_to_form_own_squads),
             },
             FieldInfoData {
                 name: "AllowVehicleSpawn",
+                name_hash: 3826993727,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_vehicle_spawn),
             },
             FieldInfoData {
                 name: "ForceDisableVehicleSpawn",
+                name_hash: 3975008655,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_disable_vehicle_spawn),
             },
             FieldInfoData {
                 name: "AllowClientVehicleSpawn",
+                name_hash: 1019638598,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_client_vehicle_spawn),
             },
             FieldInfoData {
                 name: "AllowFirstClientInitialVehicleSpawn",
+                name_hash: 1268968962,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_first_client_initial_vehicle_spawn),
             },
             FieldInfoData {
                 name: "ControlConnectionlessPlayers",
+                name_hash: 3350417757,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, control_connectionless_players),
             },
             FieldInfoData {
                 name: "AllowRespawn",
+                name_hash: 1676531728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_respawn),
             },
             FieldInfoData {
                 name: "PickupItemsSecondaryObjectiveAttemptIntervalSeconds",
+                name_hash: 3141676179,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, pickup_items_secondary_objective_attempt_interval_seconds),
             },
             FieldInfoData {
                 name: "UseTelemetryBasedPlanner",
+                name_hash: 938131634,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, use_telemetry_based_planner),
             },
             FieldInfoData {
                 name: "DebugTelemetryBasedPlanner",
+                name_hash: 1915275712,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_telemetry_based_planner),
             },
             FieldInfoData {
                 name: "PlannerTerrainVerticalCutoff",
+                name_hash: 2854433095,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, planner_terrain_vertical_cutoff),
             },
             FieldInfoData {
                 name: "PlannerConnectionCutoff",
+                name_hash: 4110829012,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, planner_connection_cutoff),
             },
             FieldInfoData {
                 name: "PlannerMaxNodesSearchRadius",
+                name_hash: 657349822,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, planner_max_nodes_search_radius),
             },
             FieldInfoData {
                 name: "PlannerLinkEndArrivalRange",
+                name_hash: 2414350316,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, planner_link_end_arrival_range),
             },
             FieldInfoData {
                 name: "UseFadeOverride",
+                name_hash: 122123348,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, use_fade_override),
             },
             FieldInfoData {
                 name: "InputScaleYaw",
+                name_hash: 694739268,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, input_scale_yaw),
             },
             FieldInfoData {
                 name: "InputScalePitch",
+                name_hash: 664695469,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, input_scale_pitch),
             },
             FieldInfoData {
                 name: "InputScaleClient",
+                name_hash: 3949326642,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, input_scale_client),
             },
             FieldInfoData {
                 name: "InputForceMouse",
+                name_hash: 777239535,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, input_force_mouse),
             },
             FieldInfoData {
                 name: "UseInputOverrideYawPitch",
+                name_hash: 4219927309,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, use_input_override_yaw_pitch),
             },
             FieldInfoData {
                 name: "InputOverrideYaw",
+                name_hash: 1990866536,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, input_override_yaw),
             },
             FieldInfoData {
                 name: "InputOverridePitch",
+                name_hash: 3379615425,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, input_override_pitch),
             },
             FieldInfoData {
                 name: "UseSeekAndDestroy",
+                name_hash: 2931613399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, use_seek_and_destroy),
             },
             FieldInfoData {
                 name: "AllowTeleport",
+                name_hash: 92097277,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_teleport),
             },
             FieldInfoData {
                 name: "ForceAllowAllTeleports",
+                name_hash: 748797650,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_allow_all_teleports),
             },
             FieldInfoData {
                 name: "DebugDrawTeleports",
+                name_hash: 2196473990,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_teleports),
             },
             FieldInfoData {
                 name: "UpdateAI",
+                name_hash: 3894769596,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, update_a_i),
             },
             FieldInfoData {
                 name: "DebugDrawClientOnly",
+                name_hash: 1515355225,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_client_only),
             },
             FieldInfoData {
                 name: "DebugDrawClientRealmOnly",
+                name_hash: 735517390,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_client_realm_only),
             },
             FieldInfoData {
                 name: "AimAcceleration",
+                name_hash: 3094771330,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, aim_acceleration),
             },
             FieldInfoData {
                 name: "AimLapTime",
+                name_hash: 1850815080,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, aim_lap_time),
             },
             FieldInfoData {
                 name: "AllowMoveOutsideCombatArea",
+                name_hash: 2141598169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_move_outside_combat_area),
             },
             FieldInfoData {
                 name: "AllowSpawnOutsideCombatArea",
+                name_hash: 3181923507,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_spawn_outside_combat_area),
             },
             FieldInfoData {
                 name: "AllowVehicleSpawnOutsideCombatArea",
+                name_hash: 395625067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_vehicle_spawn_outside_combat_area),
             },
             FieldInfoData {
                 name: "AllowVehicleSpawnOnly",
+                name_hash: 3107902891,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_vehicle_spawn_only),
             },
             FieldInfoData {
                 name: "DebugDrawPrettyPath",
+                name_hash: 1739465031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_pretty_path),
             },
             FieldInfoData {
                 name: "DebugDrawUseWaypointsAlpha",
+                name_hash: 2401531027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_use_waypoints_alpha),
             },
             FieldInfoData {
                 name: "DebugDrawInvalidMoveIntention",
+                name_hash: 1949099824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_invalid_move_intention),
             },
             FieldInfoData {
                 name: "DebugSpam",
+                name_hash: 859500187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_spam),
             },
             FieldInfoData {
                 name: "LofTimeoutS",
+                name_hash: 1461296200,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, lof_timeout_s),
             },
             FieldInfoData {
                 name: "LofReactionTimeS",
+                name_hash: 319206191,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, lof_reaction_time_s),
             },
             FieldInfoData {
                 name: "ServerPlayersIgnoreClientPlayers",
+                name_hash: 1611337569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, server_players_ignore_client_players),
             },
             FieldInfoData {
                 name: "IgnoreHumanPlayers",
+                name_hash: 1485392770,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, ignore_human_players),
             },
             FieldInfoData {
                 name: "ForceKit",
+                name_hash: 1152596174,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, force_kit),
             },
             FieldInfoData {
                 name: "OpportunisticInteract",
+                name_hash: 3988221230,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, opportunistic_interact),
             },
             FieldInfoData {
                 name: "SquadSpawnProbability",
+                name_hash: 3254174881,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, squad_spawn_probability),
             },
             FieldInfoData {
                 name: "KitChangeProbability",
+                name_hash: 2172164344,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, kit_change_probability),
             },
             FieldInfoData {
                 name: "UseDefaultUnlocksProbability",
+                name_hash: 2654656035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, use_default_unlocks_probability),
             },
             FieldInfoData {
                 name: "AllowMedicRevive",
+                name_hash: 3044485665,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_medic_revive),
             },
             FieldInfoData {
                 name: "AllowPickupItems",
+                name_hash: 1364149582,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_pickup_items),
             },
             FieldInfoData {
                 name: "DebugDrawObjectives",
+                name_hash: 4033810312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_objectives),
             },
             FieldInfoData {
                 name: "DebugDrawObjectiveAlways",
+                name_hash: 903924746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_objective_always),
             },
             FieldInfoData {
                 name: "Wallhack",
+                name_hash: 3756362738,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, wallhack),
             },
             FieldInfoData {
                 name: "WeaponSwapIntervalS",
+                name_hash: 1203451326,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, weapon_swap_interval_s),
             },
             FieldInfoData {
                 name: "WeaponSwapPrimaryProbability",
+                name_hash: 2321733459,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, weapon_swap_primary_probability),
             },
             FieldInfoData {
                 name: "VehicleBailTime",
+                name_hash: 3789653422,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, vehicle_bail_time),
             },
             FieldInfoData {
                 name: "JumpIfStuckTimeSeconds",
+                name_hash: 999902980,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, jump_if_stuck_time_seconds),
             },
             FieldInfoData {
                 name: "JumpCooldownSeconds",
+                name_hash: 3319221145,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, jump_cooldown_seconds),
             },
             FieldInfoData {
                 name: "PatrolPositionCooldownSeconds",
+                name_hash: 209420438,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, patrol_position_cooldown_seconds),
             },
             FieldInfoData {
                 name: "CombatUseGrenades",
+                name_hash: 2261751165,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, combat_use_grenades),
             },
             FieldInfoData {
                 name: "CombatUseProne",
+                name_hash: 2227020374,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, combat_use_prone),
             },
             FieldInfoData {
                 name: "CombatUseMelee",
+                name_hash: 2258474324,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, combat_use_melee),
             },
             FieldInfoData {
                 name: "UseCrouch",
+                name_hash: 4020028806,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, use_crouch),
             },
             FieldInfoData {
                 name: "ForcedFireTimeMaxS",
+                name_hash: 3437890262,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, forced_fire_time_max_s),
             },
             FieldInfoData {
                 name: "ForcedFireTimeMinS",
+                name_hash: 3437882376,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, forced_fire_time_min_s),
             },
             FieldInfoData {
                 name: "AllowPrimaryWeaponForcedFire",
+                name_hash: 2222470035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_primary_weapon_forced_fire),
             },
             FieldInfoData {
                 name: "AllowVehicleForcedFire",
+                name_hash: 390773285,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_vehicle_forced_fire),
             },
             FieldInfoData {
                 name: "ForcedFireVehicleTimeScale",
+                name_hash: 403726321,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, forced_fire_vehicle_time_scale),
             },
             FieldInfoData {
                 name: "ExitVehicleWhenStuckTimeout",
+                name_hash: 3992497192,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, exit_vehicle_when_stuck_timeout),
             },
             FieldInfoData {
                 name: "MinDistanceForVehicleUTurn",
+                name_hash: 1931646151,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, min_distance_for_vehicle_u_turn),
             },
             FieldInfoData {
                 name: "MinAirplaneBailOutTime",
+                name_hash: 39201886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, min_airplane_bail_out_time),
             },
             FieldInfoData {
                 name: "MaxAirplaneBailOutTime",
+                name_hash: 3874927360,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, max_airplane_bail_out_time),
             },
             FieldInfoData {
                 name: "LoginRate",
+                name_hash: 212623108,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, login_rate),
             },
             FieldInfoData {
                 name: "SpawnRate",
+                name_hash: 2317161148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, spawn_rate),
             },
             FieldInfoData {
                 name: "MaxSpawnsPerUpdate",
+                name_hash: 3769218927,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, max_spawns_per_update),
             },
             FieldInfoData {
                 name: "Variance",
+                name_hash: 2301802912,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, variance),
             },
             FieldInfoData {
                 name: "AirplaneExitInput",
+                name_hash: 1671859583,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, airplane_exit_input),
             },
             FieldInfoData {
                 name: "SecondaryObjectiveGenerationMinSeconds",
+                name_hash: 1552112127,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, secondary_objective_generation_min_seconds),
             },
             FieldInfoData {
                 name: "SecondaryObjectiveGenerationMaxSeconds",
+                name_hash: 2850473633,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, secondary_objective_generation_max_seconds),
             },
             FieldInfoData {
                 name: "AllowEnterVehicle",
+                name_hash: 3586903020,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_enter_vehicle),
             },
             FieldInfoData {
                 name: "EnterVehicleCooldownSeconds",
+                name_hash: 2789539179,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, enter_vehicle_cooldown_seconds),
             },
             FieldInfoData {
                 name: "EnterVehicleProbability",
+                name_hash: 3151008024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, enter_vehicle_probability),
             },
             FieldInfoData {
                 name: "EnterVehicleSearchRadius",
+                name_hash: 2368582819,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, enter_vehicle_search_radius),
             },
             FieldInfoData {
                 name: "PrintClientInput",
+                name_hash: 886728923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, print_client_input),
             },
             FieldInfoData {
                 name: "AllowPrimaryObjective",
+                name_hash: 2534659679,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_primary_objective),
             },
             FieldInfoData {
                 name: "AllowSecondaryObjectivesWhilePassive",
+                name_hash: 2808660814,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_secondary_objectives_while_passive),
             },
             FieldInfoData {
                 name: "AllowSecondaryObjectivesWhileDefensive",
+                name_hash: 935563808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_secondary_objectives_while_defensive),
             },
             FieldInfoData {
                 name: "AllowPathfinding",
+                name_hash: 1229813012,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_pathfinding),
             },
             FieldInfoData {
                 name: "SecondaryObjectiveTimeoutSeconds",
+                name_hash: 2496979624,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, secondary_objective_timeout_seconds),
             },
             FieldInfoData {
                 name: "ForcePassiveMode",
+                name_hash: 1380787760,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_passive_mode),
             },
             FieldInfoData {
                 name: "ForcePrimaryObjectiveDefensiveMode",
+                name_hash: 2444301117,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_primary_objective_defensive_mode),
             },
             FieldInfoData {
                 name: "ForcePrimaryObjectiveAggressiveMode",
+                name_hash: 1631592084,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_primary_objective_aggressive_mode),
             },
             FieldInfoData {
                 name: "ForceSecondaryObjectiveDefensiveMode",
+                name_hash: 244636555,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_secondary_objective_defensive_mode),
             },
             FieldInfoData {
                 name: "ForceSecondaryObjectiveAggressiveMode",
+                name_hash: 1992188898,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_secondary_objective_aggressive_mode),
             },
             FieldInfoData {
                 name: "ClientJesusMode",
+                name_hash: 2540510245,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, client_jesus_mode),
             },
             FieldInfoData {
                 name: "AllowFortifications",
+                name_hash: 61147128,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_fortifications),
             },
             FieldInfoData {
                 name: "FortificationProbability",
+                name_hash: 1451643231,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, fortification_probability),
             },
             FieldInfoData {
                 name: "FortificationSearchRadius",
+                name_hash: 4219428164,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, fortification_search_radius),
             },
             FieldInfoData {
                 name: "RepathCooldownSeconds",
+                name_hash: 2241824097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, repath_cooldown_seconds),
             },
             FieldInfoData {
                 name: "UnStuckVehicleActionsTriggerTimeSeconds",
+                name_hash: 2509247199,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, un_stuck_vehicle_actions_trigger_time_seconds),
             },
             FieldInfoData {
                 name: "UnstuckMinimalMoveDistance",
+                name_hash: 2112111477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, unstuck_minimal_move_distance),
             },
             FieldInfoData {
                 name: "UnstuckMinimalMoveSuicideTimeout",
+                name_hash: 704902025,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, unstuck_minimal_move_suicide_timeout),
             },
             FieldInfoData {
                 name: "FallenBelowSuicideTimeout",
+                name_hash: 759320517,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, fallen_below_suicide_timeout),
             },
             FieldInfoData {
                 name: "NavigationPositionToleranceMeters",
+                name_hash: 2624511303,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, navigation_position_tolerance_meters),
             },
             FieldInfoData {
                 name: "UseNameGenerator",
+                name_hash: 1464151090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, use_name_generator),
             },
             FieldInfoData {
                 name: "AllowStuckEscapeProcedure",
+                name_hash: 522227850,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_stuck_escape_procedure),
             },
             FieldInfoData {
                 name: "ExitStuckEscapeProcedureOnVisualCheck",
+                name_hash: 1439405280,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, exit_stuck_escape_procedure_on_visual_check),
             },
             FieldInfoData {
                 name: "StuckEscapeProcedureSensorLength",
+                name_hash: 724888729,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, stuck_escape_procedure_sensor_length),
             },
             FieldInfoData {
                 name: "StuckEscapeProcedurePIFraction",
+                name_hash: 1370266848,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, stuck_escape_procedure_p_i_fraction),
             },
             FieldInfoData {
                 name: "StuckEscapeProcedureEscapeDistance",
+                name_hash: 2285948401,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, stuck_escape_procedure_escape_distance),
             },
             FieldInfoData {
                 name: "StuckEscapeProcedureActivationSeconds",
+                name_hash: 3248175492,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, stuck_escape_procedure_activation_seconds),
             },
             FieldInfoData {
                 name: "StuckEscapeProcedureUpdateInterval",
+                name_hash: 3340196413,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, stuck_escape_procedure_update_interval),
             },
             FieldInfoData {
                 name: "StuckEscapeProcedureTimeoutSeconds",
+                name_hash: 965298891,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, stuck_escape_procedure_timeout_seconds),
             },
             FieldInfoData {
                 name: "DebugDrawUnstuck",
+                name_hash: 1411346325,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_unstuck),
             },
             FieldInfoData {
                 name: "UnStuckActionsTriggerTimeSeconds",
+                name_hash: 4104513671,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, un_stuck_actions_trigger_time_seconds),
             },
             FieldInfoData {
                 name: "UnStuckActionsTriggerCooldown",
+                name_hash: 3240145932,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, un_stuck_actions_trigger_cooldown),
             },
             FieldInfoData {
                 name: "StuckEscapeProcedureRetries",
+                name_hash: 195516605,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, stuck_escape_procedure_retries),
             },
             FieldInfoData {
                 name: "PrimaryInteractionSearchRadius",
+                name_hash: 2163826245,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, primary_interaction_search_radius),
             },
             FieldInfoData {
                 name: "AllowSuicide",
+                name_hash: 1137552600,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_suicide),
             },
             FieldInfoData {
                 name: "AllowRandomBehavior",
+                name_hash: 1787617931,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_random_behavior),
             },
             FieldInfoData {
                 name: "AllowSecondaryInteractions",
+                name_hash: 3371615439,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_secondary_interactions),
             },
             FieldInfoData {
                 name: "SecondaryInteractionsProbability",
+                name_hash: 435624187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, secondary_interactions_probability),
             },
             FieldInfoData {
                 name: "SecondaryInteractionsSearchRadius",
+                name_hash: 287341792,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, secondary_interactions_search_radius),
             },
             FieldInfoData {
                 name: "SecondaryObjectivePickupItemsSearchRadius",
+                name_hash: 3876731380,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, secondary_objective_pickup_items_search_radius),
             },
             FieldInfoData {
                 name: "SecondaryObjectivePickupItemsInteractOrActionRadius",
+                name_hash: 3874661739,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, secondary_objective_pickup_items_interact_or_action_radius),
             },
             FieldInfoData {
                 name: "SecondaryObjectiveJesusMode",
+                name_hash: 1667502057,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, secondary_objective_jesus_mode),
             },
             FieldInfoData {
                 name: "SecondaryReviveSearchDistance",
+                name_hash: 2231887305,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, secondary_revive_search_distance),
             },
             FieldInfoData {
                 name: "DebugDrawNavigationDetails",
+                name_hash: 80815644,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_navigation_details),
             },
             FieldInfoData {
                 name: "DebugDrawNavigationProgressDetails",
+                name_hash: 826104577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_navigation_progress_details),
             },
             FieldInfoData {
                 name: "DebugDrawCustomInput",
+                name_hash: 855936625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_custom_input),
             },
             FieldInfoData {
                 name: "ExpectedTravelTimeDistanceScale",
+                name_hash: 2500871085,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, expected_travel_time_distance_scale),
             },
             FieldInfoData {
                 name: "ExpectedTravelTimeBase",
+                name_hash: 715647651,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, expected_travel_time_base),
             },
             FieldInfoData {
                 name: "InteractAreaTime",
+                name_hash: 4036910677,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, interact_area_time),
             },
             FieldInfoData {
                 name: "DebugHighlightObjectiveType",
+                name_hash: 599168819,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_highlight_objective_type),
             },
             FieldInfoData {
                 name: "SeekAndDestroyMinRadius",
+                name_hash: 1680822886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, seek_and_destroy_min_radius),
             },
             FieldInfoData {
                 name: "SeekAndDestroyMaxRadius",
+                name_hash: 2185018360,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, seek_and_destroy_max_radius),
             },
             FieldInfoData {
                 name: "ForceRepathIfTooFarFromWaypointMeters",
+                name_hash: 3525026369,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, force_repath_if_too_far_from_waypoint_meters),
             },
             FieldInfoData {
                 name: "WaypointMinimumProgressMeters",
+                name_hash: 148100629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, waypoint_minimum_progress_meters),
             },
             FieldInfoData {
                 name: "DebugDrawAimNoise",
+                name_hash: 1772890159,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_aim_noise),
             },
             FieldInfoData {
                 name: "AimNoiseScale",
+                name_hash: 2362047270,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, aim_noise_scale),
             },
             FieldInfoData {
                 name: "TargetMinSwitchTimeS",
+                name_hash: 2197469898,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, target_min_switch_time_s),
             },
             FieldInfoData {
                 name: "MaxTargetEngagingDistanceScale",
+                name_hash: 1761444305,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, max_target_engaging_distance_scale),
             },
             FieldInfoData {
                 name: "AllowRandomPathSpread",
+                name_hash: 709098907,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_random_path_spread),
             },
             FieldInfoData {
                 name: "ForceUseRandomPathSpread",
+                name_hash: 3489284252,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, force_use_random_path_spread),
             },
             FieldInfoData {
                 name: "RandomPathSpreadRadius",
+                name_hash: 3726354650,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, random_path_spread_radius),
             },
             FieldInfoData {
                 name: "RandomPathSpreadCenterDistance",
+                name_hash: 1222793322,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, random_path_spread_center_distance),
             },
             FieldInfoData {
                 name: "UpdateTargetCooldown",
+                name_hash: 2254592600,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, update_target_cooldown),
             },
             FieldInfoData {
                 name: "ForcedTargetTimeoutSeconds",
+                name_hash: 1338025877,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, forced_target_timeout_seconds),
             },
             FieldInfoData {
                 name: "DebugDrawPlayersNamesAndIds",
+                name_hash: 3470891509,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_players_names_and_ids),
             },
             FieldInfoData {
                 name: "VerboseLogging",
+                name_hash: 230750044,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, verbose_logging),
             },
             FieldInfoData {
                 name: "ActionObjectiveDefaultTime",
+                name_hash: 2141338602,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, action_objective_default_time),
             },
             FieldInfoData {
                 name: "AllowActionGadget",
+                name_hash: 1114439830,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_action_gadget),
             },
             FieldInfoData {
                 name: "ActionGadgetProbability",
+                name_hash: 3301829346,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, action_gadget_probability),
             },
             FieldInfoData {
                 name: "ActionGadgetInteractableSearchRadius",
+                name_hash: 2889887553,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, action_gadget_interactable_search_radius),
             },
             FieldInfoData {
                 name: "HeroSpawnProbability_Gameplay",
+                name_hash: 1476906838,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, hero_spawn_probability_gameplay),
             },
             FieldInfoData {
                 name: "SpecialSpawnProbability_Gameplay",
+                name_hash: 4039134951,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, special_spawn_probability_gameplay),
             },
             FieldInfoData {
                 name: "HeroVehicleSpawnProbability_Gameplay",
+                name_hash: 2524581998,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, hero_vehicle_spawn_probability_gameplay),
             },
             FieldInfoData {
                 name: "VehicleSpawnProbability_Gameplay",
+                name_hash: 3926765086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, vehicle_spawn_probability_gameplay),
             },
             FieldInfoData {
                 name: "HeroSpawnProbability",
+                name_hash: 165585699,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, hero_spawn_probability),
             },
             FieldInfoData {
                 name: "SpecialSpawnProbability",
+                name_hash: 2468619442,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, special_spawn_probability),
             },
             FieldInfoData {
                 name: "HeroVehicleSpawnProbability",
+                name_hash: 287458587,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, hero_vehicle_spawn_probability),
             },
             FieldInfoData {
                 name: "VehicleSpawnProbability",
+                name_hash: 2823838827,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, vehicle_spawn_probability),
             },
             FieldInfoData {
                 name: "FollowTargetPositionCheckCooldown",
+                name_hash: 2024958919,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, follow_target_position_check_cooldown),
             },
             FieldInfoData {
                 name: "NotAliveAssertTime",
+                name_hash: 1192098672,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, not_alive_assert_time),
             },
             FieldInfoData {
                 name: "PreferFPSCamera",
+                name_hash: 1695037743,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, prefer_f_p_s_camera),
             },
             FieldInfoData {
                 name: "TimeOnPathToleranceSeconds",
+                name_hash: 3548502550,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, time_on_path_tolerance_seconds),
             },
             FieldInfoData {
                 name: "CheckWaterDepthForIntermediatePositions",
+                name_hash: 1388068507,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, check_water_depth_for_intermediate_positions),
             },
             FieldInfoData {
                 name: "SwimmingSuicideTimeout",
+                name_hash: 1226790775,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, swimming_suicide_timeout),
             },
             FieldInfoData {
                 name: "LofPredictionTime",
+                name_hash: 2941513024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, lof_prediction_time),
             },
             FieldInfoData {
                 name: "DebugDrawCombatRaycastHitPoints",
+                name_hash: 1571190279,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_combat_raycast_hit_points),
             },
             FieldInfoData {
                 name: "DebugDrawTransforms",
+                name_hash: 2367222795,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_transforms),
             },
             FieldInfoData {
                 name: "TargetTrackerFieldOfViewDegrees",
+                name_hash: 2170258925,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, target_tracker_field_of_view_degrees),
             },
             FieldInfoData {
                 name: "PickRandomVehicleOnSecondaryObjective",
+                name_hash: 2099974851,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, pick_random_vehicle_on_secondary_objective),
             },
             FieldInfoData {
                 name: "NeverExitVehicleAfterEntering",
+                name_hash: 3870164027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, never_exit_vehicle_after_entering),
             },
             FieldInfoData {
                 name: "UpdateTargetPerFrameCap",
+                name_hash: 1313140013,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(AutoPlayerSettings, update_target_per_frame_cap),
             },
             FieldInfoData {
                 name: "ReplayTelemetryFile",
+                name_hash: 4051466463,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(AutoPlayerSettings, replay_telemetry_file),
             },
             FieldInfoData {
                 name: "ReplayTelemetryFileFormat",
+                name_hash: 114734556,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(AutoPlayerSettings, replay_telemetry_file_format),
             },
             FieldInfoData {
                 name: "ReplayTelemetryAdjustTime",
+                name_hash: 3102476945,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, replay_telemetry_adjust_time),
             },
             FieldInfoData {
                 name: "ReplayTelemetryAdjustTimePadding",
+                name_hash: 2705066944,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, replay_telemetry_adjust_time_padding),
             },
             FieldInfoData {
                 name: "DebugDrawWeaponDetails",
+                name_hash: 343423220,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_weapon_details),
             },
             FieldInfoData {
                 name: "DebugDrawExtensiveClientDetails",
+                name_hash: 1578626564,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_extensive_client_details),
             },
             FieldInfoData {
                 name: "EvasiveManeuversJumpProbability",
+                name_hash: 1672162513,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_jump_probability),
             },
             FieldInfoData {
                 name: "EvasiveManeuversDodgeRollProbability",
+                name_hash: 231091875,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_dodge_roll_probability),
             },
             FieldInfoData {
                 name: "EvasiveManeuversInvertStrafeDurationMax",
+                name_hash: 968274193,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_invert_strafe_duration_max),
             },
             FieldInfoData {
                 name: "EvasiveManeuversInvertStrafeDurationMin",
+                name_hash: 968273935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_invert_strafe_duration_min),
             },
             FieldInfoData {
                 name: "LegHeadAimRatioOverride",
+                name_hash: 1960703027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, leg_head_aim_ratio_override),
             },
             FieldInfoData {
                 name: "AttackingAbilityLeftProbability",
+                name_hash: 3166135289,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, attacking_ability_left_probability),
             },
             FieldInfoData {
                 name: "AttackingAbilityLeftDurationSeconds",
+                name_hash: 4132594921,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, attacking_ability_left_duration_seconds),
             },
             FieldInfoData {
                 name: "AttackingAbilityMiddleProbability",
+                name_hash: 2054048271,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, attacking_ability_middle_probability),
             },
             FieldInfoData {
                 name: "AttackingAbilityMiddleDurationSeconds",
+                name_hash: 43020639,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, attacking_ability_middle_duration_seconds),
             },
             FieldInfoData {
                 name: "AttackingAbilityRightProbability",
+                name_hash: 38138594,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, attacking_ability_right_probability),
             },
             FieldInfoData {
                 name: "AttackingAbilityRightDurationSeconds",
+                name_hash: 3166279218,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, attacking_ability_right_duration_seconds),
             },
             FieldInfoData {
                 name: "EvasiveManeuversCrouchProbability",
+                name_hash: 3627285523,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_crouch_probability),
             },
             FieldInfoData {
                 name: "EvasiveManeuversCrouchDuration",
+                name_hash: 2266041216,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_crouch_duration),
             },
             FieldInfoData {
                 name: "BlasterLegHeadAimRatio",
+                name_hash: 3336155928,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, blaster_leg_head_aim_ratio),
             },
             FieldInfoData {
                 name: "BlasterAimNoise",
+                name_hash: 3829589537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, blaster_aim_noise),
             },
             FieldInfoData {
                 name: "SniperRifleLegHeadAimRatio",
+                name_hash: 121099904,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, sniper_rifle_leg_head_aim_ratio),
             },
             FieldInfoData {
                 name: "SniperRifleAimNoise",
+                name_hash: 329042105,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, sniper_rifle_aim_noise),
             },
             FieldInfoData {
                 name: "LmgLegHeadAimRatio",
+                name_hash: 2971614849,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, lmg_leg_head_aim_ratio),
             },
             FieldInfoData {
                 name: "LmgAimNoise",
+                name_hash: 2400955480,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, lmg_aim_noise),
             },
             FieldInfoData {
                 name: "ShotgunLegHeadAimRatio",
+                name_hash: 1944460699,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, shotgun_leg_head_aim_ratio),
             },
             FieldInfoData {
                 name: "ShotgunAimNoise",
+                name_hash: 3612814466,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, shotgun_aim_noise),
             },
             FieldInfoData {
                 name: "LauncherLegHeadAimRatio",
+                name_hash: 4220382733,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, launcher_leg_head_aim_ratio),
             },
             FieldInfoData {
                 name: "LauncherAimNoise",
+                name_hash: 3382970196,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, launcher_aim_noise),
             },
             FieldInfoData {
                 name: "UseSwordAttackingAbilitiesFromMeters",
+                name_hash: 3179453401,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, use_sword_attacking_abilities_from_meters),
             },
             FieldInfoData {
                 name: "SwordAttackDurationTimeMinS",
+                name_hash: 1531106754,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, sword_attack_duration_time_min_s),
             },
             FieldInfoData {
                 name: "SwordAttackDurationTimeMaxS",
+                name_hash: 1531098140,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, sword_attack_duration_time_max_s),
             },
             FieldInfoData {
                 name: "PauseSwordAttackDurationTimeMinS",
+                name_hash: 1341939888,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, pause_sword_attack_duration_time_min_s),
             },
             FieldInfoData {
                 name: "PauseSwordAttackDurationTimeMaxS",
+                name_hash: 1341932398,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, pause_sword_attack_duration_time_max_s),
             },
             FieldInfoData {
                 name: "SwordAttackDistanceMetersMin",
+                name_hash: 46755681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, sword_attack_distance_meters_min),
             },
             FieldInfoData {
                 name: "SwordAttackDistanceMetersMax",
+                name_hash: 46755455,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, sword_attack_distance_meters_max),
             },
             FieldInfoData {
                 name: "DebugDrawInputDetails",
+                name_hash: 375546432,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_input_details),
             },
             FieldInfoData {
                 name: "DebugWindowPositionScaleOffsetX",
+                name_hash: 4135504780,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_window_position_scale_offset_x),
             },
             FieldInfoData {
                 name: "DebugWindowPositionScaleOffsetY",
+                name_hash: 4135504781,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_window_position_scale_offset_y),
             },
             FieldInfoData {
                 name: "DebugWindowWidth",
+                name_hash: 720461886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_window_width),
             },
             FieldInfoData {
                 name: "DebugWindowHeight",
+                name_hash: 2588810503,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_window_height),
             },
             FieldInfoData {
                 name: "PathLookAheadMeters",
+                name_hash: 1426251262,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, path_look_ahead_meters),
             },
             FieldInfoData {
                 name: "PathLookRightMeters",
+                name_hash: 1002625399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, path_look_right_meters),
             },
             FieldInfoData {
                 name: "WaypointToleranceMeters",
+                name_hash: 390940311,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, waypoint_tolerance_meters),
             },
             FieldInfoData {
                 name: "DebugDrawAimAtPositions",
+                name_hash: 3843934126,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, debug_draw_aim_at_positions),
             },
             FieldInfoData {
                 name: "EvasiveManeuversVehicleScale",
+                name_hash: 1772204350,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_vehicle_scale),
             },
             FieldInfoData {
                 name: "VehicleAimNoiseScale",
+                name_hash: 1652657950,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, vehicle_aim_noise_scale),
             },
             FieldInfoData {
                 name: "ResetSettingsOnLevelUnload",
+                name_hash: 1981681119,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, reset_settings_on_level_unload),
             },
             FieldInfoData {
                 name: "SwordGuardDurationTimeMinS",
+                name_hash: 963605455,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, sword_guard_duration_time_min_s),
             },
             FieldInfoData {
                 name: "SwordGuardDurationTimeMaxS",
+                name_hash: 963612945,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, sword_guard_duration_time_max_s),
             },
             FieldInfoData {
                 name: "AimNoiseScaleTeam1",
+                name_hash: 3322044970,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, aim_noise_scale_team1),
             },
             FieldInfoData {
                 name: "AimNoiseScaleTeam2",
+                name_hash: 3322044969,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, aim_noise_scale_team2),
             },
             FieldInfoData {
                 name: "HeroStrafeProbabilityPerFrame",
+                name_hash: 3249467861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, hero_strafe_probability_per_frame),
             },
             FieldInfoData {
                 name: "EmoteProbabilityAfterPlayersDeath",
+                name_hash: 3012022214,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, emote_probability_after_players_death),
             },
             FieldInfoData {
                 name: "EmoteDuration",
+                name_hash: 3924468493,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, emote_duration),
             },
             FieldInfoData {
                 name: "MeleeIntervalS",
+                name_hash: 2718295181,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, melee_interval_s),
             },
             FieldInfoData {
                 name: "MeleeDistanceM",
+                name_hash: 530960495,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, melee_distance_m),
             },
             FieldInfoData {
                 name: "AllowEvasiveManouversOOB",
+                name_hash: 2303307791,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, allow_evasive_manouvers_o_o_b),
             },
             FieldInfoData {
                 name: "EvasiveManeuversGroundCheckEnabled",
+                name_hash: 445085624,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_ground_check_enabled),
             },
             FieldInfoData {
                 name: "EvasiveManeuversGroundCheckDistanceM",
+                name_hash: 549647027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_ground_check_distance_m),
             },
             FieldInfoData {
                 name: "EvasiveManeuversGroundCheckHeightDistanceM",
+                name_hash: 1952899084,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_ground_check_height_distance_m),
             },
             FieldInfoData {
                 name: "EvasiveManeuversGroundCheckHeightOffsetM",
+                name_hash: 1417257442,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_ground_check_height_offset_m),
             },
             FieldInfoData {
                 name: "EvasiveManeuversGroundCheckCooldownS",
+                name_hash: 1827996723,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_ground_check_cooldown_s),
             },
             FieldInfoData {
                 name: "EvasiveManeuversVehiclesEnabled",
+                name_hash: 1515852272,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, evasive_maneuvers_vehicles_enabled),
             },
             FieldInfoData {
                 name: "VehicleMinimumForwardThrottle",
+                name_hash: 3538760376,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoPlayerSettings, vehicle_minimum_forward_throttle),
             },
             FieldInfoData {
                 name: "VehicleUseCharacterThrottle",
+                name_hash: 1930107087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AutoPlayerSettings, vehicle_use_character_throttle),
@@ -6754,6 +7155,7 @@ impl TypeObject for AutoPlayerSettings {
 
 pub static AUTOPLAYERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerSettings-Array",
+    name_hash: 1755301896,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerSettings"),
@@ -6762,7 +7164,8 @@ pub static AUTOPLAYERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAutoPlayerSettingsEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6781,12 +7184,15 @@ impl super::entity::EntityBusPeerTrait for ServerAutoPlayerSettingsEntity {
 
 pub static SERVERAUTOPLAYERSETTINGSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAutoPlayerSettingsEntity",
+    name_hash: 3068537282,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAutoPlayerSettingsEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAutoPlayerSettingsEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAutoPlayerSettingsEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6816,6 +7222,7 @@ impl TypeObject for ServerAutoPlayerSettingsEntity {
 
 pub static SERVERAUTOPLAYERSETTINGSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAutoPlayerSettingsEntity-Array",
+    name_hash: 2724829558,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("ServerAutoPlayerSettingsEntity"),
@@ -6824,7 +7231,8 @@ pub static SERVERAUTOPLAYERSETTINGSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAutoPlayerManagerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6843,12 +7251,15 @@ impl super::entity::EntityBusPeerTrait for ServerAutoPlayerManagerEntity {
 
 pub static SERVERAUTOPLAYERMANAGERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAutoPlayerManagerEntity",
+    name_hash: 1014252340,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAutoPlayerManagerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAutoPlayerManagerEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAutoPlayerManagerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6878,6 +7289,7 @@ impl TypeObject for ServerAutoPlayerManagerEntity {
 
 pub static SERVERAUTOPLAYERMANAGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAutoPlayerManagerEntity-Array",
+    name_hash: 2842361472,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("ServerAutoPlayerManagerEntity"),
@@ -6886,7 +7298,8 @@ pub static SERVERAUTOPLAYERMANAGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerObjectiveEntityBase {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6905,12 +7318,15 @@ impl super::entity::EntityBusPeerTrait for AutoPlayerObjectiveEntityBase {
 
 pub static AUTOPLAYEROBJECTIVEENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerObjectiveEntityBase",
+    name_hash: 3627305976,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerObjectiveEntityBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerObjectiveEntityBase as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerObjectiveEntityBase as Default>::default()),
         },
         fields: &[
         ],
@@ -6940,6 +7356,7 @@ impl TypeObject for AutoPlayerObjectiveEntityBase {
 
 pub static AUTOPLAYEROBJECTIVEENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerObjectiveEntityBase-Array",
+    name_hash: 3141158348,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerObjectiveEntityBase"),
@@ -6948,7 +7365,8 @@ pub static AUTOPLAYEROBJECTIVEENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerMoveObjectiveEntity {
     pub _glacier_base: AutoPlayerObjectiveEntityBase,
 }
@@ -6970,12 +7388,15 @@ impl super::entity::EntityBusPeerTrait for AutoPlayerMoveObjectiveEntity {
 
 pub static AUTOPLAYERMOVEOBJECTIVEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerMoveObjectiveEntity",
+    name_hash: 3360022108,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerMoveObjectiveEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerMoveObjectiveEntity as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerMoveObjectiveEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7005,6 +7426,7 @@ impl TypeObject for AutoPlayerMoveObjectiveEntity {
 
 pub static AUTOPLAYERMOVEOBJECTIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerMoveObjectiveEntity-Array",
+    name_hash: 133695208,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerMoveObjectiveEntity"),
@@ -7013,7 +7435,8 @@ pub static AUTOPLAYERMOVEOBJECTIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerInteractObjectiveEntity {
     pub _glacier_base: AutoPlayerObjectiveEntityBase,
 }
@@ -7035,12 +7458,15 @@ impl super::entity::EntityBusPeerTrait for AutoPlayerInteractObjectiveEntity {
 
 pub static AUTOPLAYERINTERACTOBJECTIVEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerInteractObjectiveEntity",
+    name_hash: 3281438879,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerInteractObjectiveEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerInteractObjectiveEntity as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerInteractObjectiveEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7070,6 +7496,7 @@ impl TypeObject for AutoPlayerInteractObjectiveEntity {
 
 pub static AUTOPLAYERINTERACTOBJECTIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerInteractObjectiveEntity-Array",
+    name_hash: 2258562347,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerInteractObjectiveEntity"),
@@ -7078,7 +7505,8 @@ pub static AUTOPLAYERINTERACTOBJECTIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerFollowObjectiveEntity {
     pub _glacier_base: AutoPlayerObjectiveEntityBase,
 }
@@ -7100,12 +7528,15 @@ impl super::entity::EntityBusPeerTrait for AutoPlayerFollowObjectiveEntity {
 
 pub static AUTOPLAYERFOLLOWOBJECTIVEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerFollowObjectiveEntity",
+    name_hash: 132664796,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerFollowObjectiveEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerFollowObjectiveEntity as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerFollowObjectiveEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7135,6 +7566,7 @@ impl TypeObject for AutoPlayerFollowObjectiveEntity {
 
 pub static AUTOPLAYERFOLLOWOBJECTIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerFollowObjectiveEntity-Array",
+    name_hash: 4136638056,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerFollowObjectiveEntity"),
@@ -7143,7 +7575,8 @@ pub static AUTOPLAYERFOLLOWOBJECTIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerDefendObjectiveEntity {
     pub _glacier_base: AutoPlayerObjectiveEntityBase,
 }
@@ -7165,12 +7598,15 @@ impl super::entity::EntityBusPeerTrait for AutoPlayerDefendObjectiveEntity {
 
 pub static AUTOPLAYERDEFENDOBJECTIVEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerDefendObjectiveEntity",
+    name_hash: 653379781,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerDefendObjectiveEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerDefendObjectiveEntity as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerDefendObjectiveEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7200,6 +7636,7 @@ impl TypeObject for AutoPlayerDefendObjectiveEntity {
 
 pub static AUTOPLAYERDEFENDOBJECTIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerDefendObjectiveEntity-Array",
+    name_hash: 1270513905,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerDefendObjectiveEntity"),
@@ -7208,7 +7645,8 @@ pub static AUTOPLAYERDEFENDOBJECTIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPlayerAttackObjectiveEntity {
     pub _glacier_base: AutoPlayerObjectiveEntityBase,
 }
@@ -7230,12 +7668,15 @@ impl super::entity::EntityBusPeerTrait for AutoPlayerAttackObjectiveEntity {
 
 pub static AUTOPLAYERATTACKOBJECTIVEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerAttackObjectiveEntity",
+    name_hash: 942800325,
     flags: MemberInfoFlags::new(101),
     module: "AutoPlayers",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(AUTOPLAYEROBJECTIVEENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(AutoPlayerAttackObjectiveEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPlayerAttackObjectiveEntity as Default>::default())),
+            create_boxed: || Box::new(<AutoPlayerAttackObjectiveEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7265,6 +7706,7 @@ impl TypeObject for AutoPlayerAttackObjectiveEntity {
 
 pub static AUTOPLAYERATTACKOBJECTIVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPlayerAttackObjectiveEntity-Array",
+    name_hash: 462321137,
     flags: MemberInfoFlags::new(145),
     module: "AutoPlayers",
     data: TypeInfoData::Array("AutoPlayerAttackObjectiveEntity"),

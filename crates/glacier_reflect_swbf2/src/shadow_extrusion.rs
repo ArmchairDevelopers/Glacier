@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -17,7 +18,8 @@ pub(crate) fn register_shadow_extrusion_types(registry: &mut TypeRegistry) {
     registry.register_type(SHADOWEXTRUSIONDATAENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowExtrusionLevelDataEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -36,12 +38,15 @@ impl super::entity::EntityBusPeerTrait for ShadowExtrusionLevelDataEntity {
 
 pub static SHADOWEXTRUSIONLEVELDATAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionLevelDataEntity",
+    name_hash: 2824534155,
     flags: MemberInfoFlags::new(101),
     module: "ShadowExtrusion",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ShadowExtrusionLevelDataEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowExtrusionLevelDataEntity as Default>::default())),
+            create_boxed: || Box::new(<ShadowExtrusionLevelDataEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -71,6 +76,7 @@ impl TypeObject for ShadowExtrusionLevelDataEntity {
 
 pub static SHADOWEXTRUSIONLEVELDATAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionLevelDataEntity-Array",
+    name_hash: 3908347711,
     flags: MemberInfoFlags::new(145),
     module: "ShadowExtrusion",
     data: TypeInfoData::Array("ShadowExtrusionLevelDataEntity"),
@@ -79,7 +85,8 @@ pub static SHADOWEXTRUSIONLEVELDATAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowExtrusionLightDirectionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -98,12 +105,15 @@ impl super::entity::EntityBusPeerTrait for ShadowExtrusionLightDirectionEntity {
 
 pub static SHADOWEXTRUSIONLIGHTDIRECTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionLightDirectionEntity",
+    name_hash: 450399286,
     flags: MemberInfoFlags::new(101),
     module: "ShadowExtrusion",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ShadowExtrusionLightDirectionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowExtrusionLightDirectionEntity as Default>::default())),
+            create_boxed: || Box::new(<ShadowExtrusionLightDirectionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -133,6 +143,7 @@ impl TypeObject for ShadowExtrusionLightDirectionEntity {
 
 pub static SHADOWEXTRUSIONLIGHTDIRECTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionLightDirectionEntity-Array",
+    name_hash: 3092938882,
     flags: MemberInfoFlags::new(145),
     module: "ShadowExtrusion",
     data: TypeInfoData::Array("ShadowExtrusionLightDirectionEntity"),
@@ -141,7 +152,8 @@ pub static SHADOWEXTRUSIONLIGHTDIRECTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowExtrusionDataEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -160,12 +172,15 @@ impl super::entity::EntityBusPeerTrait for ShadowExtrusionDataEntity {
 
 pub static SHADOWEXTRUSIONDATAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionDataEntity",
+    name_hash: 1926976797,
     flags: MemberInfoFlags::new(101),
     module: "ShadowExtrusion",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ShadowExtrusionDataEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowExtrusionDataEntity as Default>::default())),
+            create_boxed: || Box::new(<ShadowExtrusionDataEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -195,6 +210,7 @@ impl TypeObject for ShadowExtrusionDataEntity {
 
 pub static SHADOWEXTRUSIONDATAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowExtrusionDataEntity-Array",
+    name_hash: 1426219177,
     flags: MemberInfoFlags::new(145),
     module: "ShadowExtrusion",
     data: TypeInfoData::Array("ShadowExtrusionDataEntity"),

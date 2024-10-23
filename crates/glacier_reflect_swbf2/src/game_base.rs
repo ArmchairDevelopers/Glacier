@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -37,15 +38,16 @@ pub(crate) fn register_game_base_types(registry: &mut TypeRegistry) {
     registry.register_type(UIELEMENTALIGNMENT_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIImScreenDynamicState {
     pub enabled: bool,
-    pub commands: Vec<UIImCommandHandle>,
+    pub commands: Vec<BoxedTypeObject /* UIImCommandHandle */>,
     pub enable_depth_culling: bool,
     pub global_fade_value: f32,
     pub render_pass: i32,
     pub update_order: i32,
-    pub render_target: Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>,
+    pub render_target: Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>,
     pub create_render_target_stencil: bool,
     pub render_target_on_trigger: bool,
     pub render_target_trigger_count: u32,
@@ -61,8 +63,8 @@ pub struct UIImScreenDynamicState {
     pub projection_mode: UIScreenProjectionMode,
     pub use_game_view_projection: bool,
     pub normalized_mouse_position: super::core::Vec2,
-    pub texture_bindings: Vec<UITextureMappingAssetBinding>,
-    pub unmapped_textures: Vec<super::render_base::TextureResourceHandle>,
+    pub texture_bindings: Vec<BoxedTypeObject /* UITextureMappingAssetBinding */>,
+    pub unmapped_textures: Vec<BoxedTypeObject /* super::render_base::TextureResourceHandle */>,
     pub screen_sampler_settings: UIScreenSamplerSettings,
     pub field_flag_changed0: u32,
 }
@@ -70,8 +72,8 @@ pub struct UIImScreenDynamicState {
 pub trait UIImScreenDynamicStateTrait: TypeObject {
     fn enabled(&self) -> &bool;
     fn enabled_mut(&mut self) -> &mut bool;
-    fn commands(&self) -> &Vec<UIImCommandHandle>;
-    fn commands_mut(&mut self) -> &mut Vec<UIImCommandHandle>;
+    fn commands(&self) -> &Vec<BoxedTypeObject /* UIImCommandHandle */>;
+    fn commands_mut(&mut self) -> &mut Vec<BoxedTypeObject /* UIImCommandHandle */>;
     fn enable_depth_culling(&self) -> &bool;
     fn enable_depth_culling_mut(&mut self) -> &mut bool;
     fn global_fade_value(&self) -> &f32;
@@ -80,8 +82,8 @@ pub trait UIImScreenDynamicStateTrait: TypeObject {
     fn render_pass_mut(&mut self) -> &mut i32;
     fn update_order(&self) -> &i32;
     fn update_order_mut(&mut self) -> &mut i32;
-    fn render_target(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
-    fn render_target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn render_target(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
+    fn render_target_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
     fn create_render_target_stencil(&self) -> &bool;
     fn create_render_target_stencil_mut(&mut self) -> &mut bool;
     fn render_target_on_trigger(&self) -> &bool;
@@ -112,10 +114,10 @@ pub trait UIImScreenDynamicStateTrait: TypeObject {
     fn use_game_view_projection_mut(&mut self) -> &mut bool;
     fn normalized_mouse_position(&self) -> &super::core::Vec2;
     fn normalized_mouse_position_mut(&mut self) -> &mut super::core::Vec2;
-    fn texture_bindings(&self) -> &Vec<UITextureMappingAssetBinding>;
-    fn texture_bindings_mut(&mut self) -> &mut Vec<UITextureMappingAssetBinding>;
-    fn unmapped_textures(&self) -> &Vec<super::render_base::TextureResourceHandle>;
-    fn unmapped_textures_mut(&mut self) -> &mut Vec<super::render_base::TextureResourceHandle>;
+    fn texture_bindings(&self) -> &Vec<BoxedTypeObject /* UITextureMappingAssetBinding */>;
+    fn texture_bindings_mut(&mut self) -> &mut Vec<BoxedTypeObject /* UITextureMappingAssetBinding */>;
+    fn unmapped_textures(&self) -> &Vec<BoxedTypeObject /* super::render_base::TextureResourceHandle */>;
+    fn unmapped_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::render_base::TextureResourceHandle */>;
     fn screen_sampler_settings(&self) -> &UIScreenSamplerSettings;
     fn screen_sampler_settings_mut(&mut self) -> &mut UIScreenSamplerSettings;
     fn field_flag_changed0(&self) -> &u32;
@@ -129,10 +131,10 @@ impl UIImScreenDynamicStateTrait for UIImScreenDynamicState {
     fn enabled_mut(&mut self) -> &mut bool {
         &mut self.enabled
     }
-    fn commands(&self) -> &Vec<UIImCommandHandle> {
+    fn commands(&self) -> &Vec<BoxedTypeObject /* UIImCommandHandle */> {
         &self.commands
     }
-    fn commands_mut(&mut self) -> &mut Vec<UIImCommandHandle> {
+    fn commands_mut(&mut self) -> &mut Vec<BoxedTypeObject /* UIImCommandHandle */> {
         &mut self.commands
     }
     fn enable_depth_culling(&self) -> &bool {
@@ -159,10 +161,10 @@ impl UIImScreenDynamicStateTrait for UIImScreenDynamicState {
     fn update_order_mut(&mut self) -> &mut i32 {
         &mut self.update_order
     }
-    fn render_target(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn render_target(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &self.render_target
     }
-    fn render_target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn render_target_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &mut self.render_target
     }
     fn create_render_target_stencil(&self) -> &bool {
@@ -255,16 +257,16 @@ impl UIImScreenDynamicStateTrait for UIImScreenDynamicState {
     fn normalized_mouse_position_mut(&mut self) -> &mut super::core::Vec2 {
         &mut self.normalized_mouse_position
     }
-    fn texture_bindings(&self) -> &Vec<UITextureMappingAssetBinding> {
+    fn texture_bindings(&self) -> &Vec<BoxedTypeObject /* UITextureMappingAssetBinding */> {
         &self.texture_bindings
     }
-    fn texture_bindings_mut(&mut self) -> &mut Vec<UITextureMappingAssetBinding> {
+    fn texture_bindings_mut(&mut self) -> &mut Vec<BoxedTypeObject /* UITextureMappingAssetBinding */> {
         &mut self.texture_bindings
     }
-    fn unmapped_textures(&self) -> &Vec<super::render_base::TextureResourceHandle> {
+    fn unmapped_textures(&self) -> &Vec<BoxedTypeObject /* super::render_base::TextureResourceHandle */> {
         &self.unmapped_textures
     }
-    fn unmapped_textures_mut(&mut self) -> &mut Vec<super::render_base::TextureResourceHandle> {
+    fn unmapped_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::render_base::TextureResourceHandle */> {
         &mut self.unmapped_textures
     }
     fn screen_sampler_settings(&self) -> &UIScreenSamplerSettings {
@@ -283,165 +285,193 @@ impl UIImScreenDynamicStateTrait for UIImScreenDynamicState {
 
 pub static UIIMSCREENDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImScreenDynamicState",
+    name_hash: 1614199443,
     flags: MemberInfoFlags::new(73),
     module: "GameBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIImScreenDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIImScreenDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIImScreenDynamicState, enabled),
             },
             FieldInfoData {
                 name: "Commands",
+                name_hash: 442350353,
                 flags: MemberInfoFlags::new(144),
                 field_type: "UIImCommandHandle-Array",
                 rust_offset: offset_of!(UIImScreenDynamicState, commands),
             },
             FieldInfoData {
                 name: "EnableDepthCulling",
+                name_hash: 451580447,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIImScreenDynamicState, enable_depth_culling),
             },
             FieldInfoData {
                 name: "GlobalFadeValue",
+                name_hash: 847581603,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIImScreenDynamicState, global_fade_value),
             },
             FieldInfoData {
                 name: "RenderPass",
+                name_hash: 605021150,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIImScreenDynamicState, render_pass),
             },
             FieldInfoData {
                 name: "UpdateOrder",
+                name_hash: 1950297146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIImScreenDynamicState, update_order),
             },
             FieldInfoData {
                 name: "RenderTarget",
+                name_hash: 1581516062,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(UIImScreenDynamicState, render_target),
             },
             FieldInfoData {
                 name: "CreateRenderTargetStencil",
+                name_hash: 4291601680,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIImScreenDynamicState, create_render_target_stencil),
             },
             FieldInfoData {
                 name: "RenderTargetOnTrigger",
+                name_hash: 3513932967,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIImScreenDynamicState, render_target_on_trigger),
             },
             FieldInfoData {
                 name: "RenderTargetTriggerCount",
+                name_hash: 3915739877,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(UIImScreenDynamicState, render_target_trigger_count),
             },
             FieldInfoData {
                 name: "ClearRenderTarget",
+                name_hash: 2373989895,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIImScreenDynamicState, clear_render_target),
             },
             FieldInfoData {
                 name: "ViewportSize",
+                name_hash: 3525366484,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(UIImScreenDynamicState, viewport_size),
             },
             FieldInfoData {
                 name: "DisplayRect",
+                name_hash: 1925076031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ViewportRect",
                 rust_offset: offset_of!(UIImScreenDynamicState, display_rect),
             },
             FieldInfoData {
                 name: "PreferredRect",
+                name_hash: 1648109824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ViewportRect",
                 rust_offset: offset_of!(UIImScreenDynamicState, preferred_rect),
             },
             FieldInfoData {
                 name: "VirtualScreenSize",
+                name_hash: 1481395597,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(UIImScreenDynamicState, virtual_screen_size),
             },
             FieldInfoData {
                 name: "ScreenLayout",
+                name_hash: 1550983891,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(UIImScreenDynamicState, screen_layout),
             },
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TransformSpaceHandle",
                 rust_offset: offset_of!(UIImScreenDynamicState, transform),
             },
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIImScreenDynamicState, scale),
             },
             FieldInfoData {
                 name: "CenterScreen",
+                name_hash: 1445151746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIImScreenDynamicState, center_screen),
             },
             FieldInfoData {
                 name: "ProjectionMode",
+                name_hash: 2662232091,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIScreenProjectionMode",
                 rust_offset: offset_of!(UIImScreenDynamicState, projection_mode),
             },
             FieldInfoData {
                 name: "UseGameViewProjection",
+                name_hash: 229705400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIImScreenDynamicState, use_game_view_projection),
             },
             FieldInfoData {
                 name: "NormalizedMousePosition",
+                name_hash: 2648464892,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(UIImScreenDynamicState, normalized_mouse_position),
             },
             FieldInfoData {
                 name: "TextureBindings",
+                name_hash: 334396840,
                 flags: MemberInfoFlags::new(144),
                 field_type: "UITextureMappingAssetBinding-Array",
                 rust_offset: offset_of!(UIImScreenDynamicState, texture_bindings),
             },
             FieldInfoData {
                 name: "UnmappedTextures",
+                name_hash: 1909796799,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TextureResourceHandle-Array",
                 rust_offset: offset_of!(UIImScreenDynamicState, unmapped_textures),
             },
             FieldInfoData {
                 name: "ScreenSamplerSettings",
+                name_hash: 1329586712,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIScreenSamplerSettings",
                 rust_offset: offset_of!(UIImScreenDynamicState, screen_sampler_settings),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(UIImScreenDynamicState, field_flag_changed0),
@@ -473,6 +503,7 @@ impl TypeObject for UIImScreenDynamicState {
 
 pub static UIIMSCREENDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImScreenDynamicState-Array",
+    name_hash: 137188647,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UIImScreenDynamicState"),
@@ -481,7 +512,8 @@ pub static UIIMSCREENDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIScreenSamplerSettings {
     pub min_filter: super::render::TextureFilter,
     pub mag_filter: super::render::TextureFilter,
@@ -529,33 +561,39 @@ impl UIScreenSamplerSettingsTrait for UIScreenSamplerSettings {
 
 pub static UISCREENSAMPLERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIScreenSamplerSettings",
+    name_hash: 1789916708,
     flags: MemberInfoFlags::new(36937),
     module: "GameBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIScreenSamplerSettings as Default>::default())),
+            create_boxed: || Box::new(<UIScreenSamplerSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MinFilter",
+                name_hash: 3261962831,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureFilter",
                 rust_offset: offset_of!(UIScreenSamplerSettings, min_filter),
             },
             FieldInfoData {
                 name: "MagFilter",
+                name_hash: 1726549710,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureFilter",
                 rust_offset: offset_of!(UIScreenSamplerSettings, mag_filter),
             },
             FieldInfoData {
                 name: "MipFilter",
+                name_hash: 1327883217,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureFilter",
                 rust_offset: offset_of!(UIScreenSamplerSettings, mip_filter),
             },
             FieldInfoData {
                 name: "AnisotropyDegree",
+                name_hash: 2585845483,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIScreenSamplerSettings, anisotropy_degree),
@@ -587,6 +625,7 @@ impl TypeObject for UIScreenSamplerSettings {
 
 pub static UISCREENSAMPLERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIScreenSamplerSettings-Array",
+    name_hash: 2160994704,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UIScreenSamplerSettings"),
@@ -595,7 +634,8 @@ pub static UISCREENSAMPLERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIImScreenStaticState {
     pub view_index: u32,
     pub compartment: u16,
@@ -652,39 +692,46 @@ impl UIImScreenStaticStateTrait for UIImScreenStaticState {
 
 pub static UIIMSCREENSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImScreenStaticState",
+    name_hash: 2025439422,
     flags: MemberInfoFlags::new(36937),
     module: "GameBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIImScreenStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIImScreenStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ViewIndex",
+                name_hash: 4008213430,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(UIImScreenStaticState, view_index),
             },
             FieldInfoData {
                 name: "Compartment",
+                name_hash: 1500500641,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(UIImScreenStaticState, compartment),
             },
             FieldInfoData {
                 name: "FieldOfView",
+                name_hash: 2227716035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIImScreenStaticState, field_of_view),
             },
             FieldInfoData {
                 name: "ZPlane",
+                name_hash: 3555380425,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIImScreenStaticState, z_plane),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIImScreenStaticState, field_flag_changed0),
@@ -716,6 +763,7 @@ impl TypeObject for UIImScreenStaticState {
 
 pub static UIIMSCREENSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImScreenStaticState-Array",
+    name_hash: 3471864074,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UIImScreenStaticState"),
@@ -724,7 +772,8 @@ pub static UIIMSCREENSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIImReverseHandle {
 }
 
@@ -736,11 +785,13 @@ impl UIImReverseHandleTrait for UIImReverseHandle {
 
 pub static UIIMREVERSEHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImReverseHandle",
+    name_hash: 4196969495,
     flags: MemberInfoFlags::new(73),
     module: "GameBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIImReverseHandle as Default>::default())),
+            create_boxed: || Box::new(<UIImReverseHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -770,6 +821,7 @@ impl TypeObject for UIImReverseHandle {
 
 pub static UIIMREVERSEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImReverseHandle-Array",
+    name_hash: 3295548579,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UIImReverseHandle"),
@@ -778,7 +830,8 @@ pub static UIIMREVERSEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIImCommandHandle {
 }
 
@@ -790,11 +843,13 @@ impl UIImCommandHandleTrait for UIImCommandHandle {
 
 pub static UIIMCOMMANDHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImCommandHandle",
+    name_hash: 1590019184,
     flags: MemberInfoFlags::new(73),
     module: "GameBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIImCommandHandle as Default>::default())),
+            create_boxed: || Box::new(<UIImCommandHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -824,6 +879,7 @@ impl TypeObject for UIImCommandHandle {
 
 pub static UIIMCOMMANDHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImCommandHandle-Array",
+    name_hash: 2980364868,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UIImCommandHandle"),
@@ -832,7 +888,8 @@ pub static UIIMCOMMANDHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIImScreenHandle {
 }
 
@@ -844,11 +901,13 @@ impl UIImScreenHandleTrait for UIImScreenHandle {
 
 pub static UIIMSCREENHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImScreenHandle",
+    name_hash: 2506582971,
     flags: MemberInfoFlags::new(73),
     module: "GameBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIImScreenHandle as Default>::default())),
+            create_boxed: || Box::new(<UIImScreenHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -878,6 +937,7 @@ impl TypeObject for UIImScreenHandle {
 
 pub static UIIMSCREENHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImScreenHandle-Array",
+    name_hash: 3549033231,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UIImScreenHandle"),
@@ -886,10 +946,11 @@ pub static UIIMSCREENHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIImTextCommandConfig {
-    pub effect: Option<Arc<Mutex<dyn UIElementFontEffectBaseAssetTrait>>>,
-    pub style: Option<Arc<Mutex<dyn UIElementFontStyleBaseAssetTrait>>>,
+    pub effect: Option<LockedTypeObject /* UIElementFontEffectBaseAsset */>,
+    pub style: Option<LockedTypeObject /* UIElementFontStyleBaseAsset */>,
     pub horizontal_alignment: UIElementAlignment,
     pub vertical_alignment: UIElementAlignment,
     pub scale: f32,
@@ -901,10 +962,10 @@ pub struct UIImTextCommandConfig {
 }
 
 pub trait UIImTextCommandConfigTrait: TypeObject {
-    fn effect(&self) -> &Option<Arc<Mutex<dyn UIElementFontEffectBaseAssetTrait>>>;
-    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontEffectBaseAssetTrait>>>;
-    fn style(&self) -> &Option<Arc<Mutex<dyn UIElementFontStyleBaseAssetTrait>>>;
-    fn style_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontStyleBaseAssetTrait>>>;
+    fn effect(&self) -> &Option<LockedTypeObject /* UIElementFontEffectBaseAsset */>;
+    fn effect_mut(&mut self) -> &mut Option<LockedTypeObject /* UIElementFontEffectBaseAsset */>;
+    fn style(&self) -> &Option<LockedTypeObject /* UIElementFontStyleBaseAsset */>;
+    fn style_mut(&mut self) -> &mut Option<LockedTypeObject /* UIElementFontStyleBaseAsset */>;
     fn horizontal_alignment(&self) -> &UIElementAlignment;
     fn horizontal_alignment_mut(&mut self) -> &mut UIElementAlignment;
     fn vertical_alignment(&self) -> &UIElementAlignment;
@@ -924,16 +985,16 @@ pub trait UIImTextCommandConfigTrait: TypeObject {
 }
 
 impl UIImTextCommandConfigTrait for UIImTextCommandConfig {
-    fn effect(&self) -> &Option<Arc<Mutex<dyn UIElementFontEffectBaseAssetTrait>>> {
+    fn effect(&self) -> &Option<LockedTypeObject /* UIElementFontEffectBaseAsset */> {
         &self.effect
     }
-    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontEffectBaseAssetTrait>>> {
+    fn effect_mut(&mut self) -> &mut Option<LockedTypeObject /* UIElementFontEffectBaseAsset */> {
         &mut self.effect
     }
-    fn style(&self) -> &Option<Arc<Mutex<dyn UIElementFontStyleBaseAssetTrait>>> {
+    fn style(&self) -> &Option<LockedTypeObject /* UIElementFontStyleBaseAsset */> {
         &self.style
     }
-    fn style_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UIElementFontStyleBaseAssetTrait>>> {
+    fn style_mut(&mut self) -> &mut Option<LockedTypeObject /* UIElementFontStyleBaseAsset */> {
         &mut self.style
     }
     fn horizontal_alignment(&self) -> &UIElementAlignment {
@@ -988,69 +1049,81 @@ impl UIImTextCommandConfigTrait for UIImTextCommandConfig {
 
 pub static UIIMTEXTCOMMANDCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImTextCommandConfig",
+    name_hash: 1272668845,
     flags: MemberInfoFlags::new(73),
     module: "GameBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIImTextCommandConfig as Default>::default())),
+            create_boxed: || Box::new(<UIImTextCommandConfig as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Effect",
+                name_hash: 2332983090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIElementFontEffectBaseAsset",
                 rust_offset: offset_of!(UIImTextCommandConfig, effect),
             },
             FieldInfoData {
                 name: "Style",
+                name_hash: 230773746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIElementFontStyleBaseAsset",
                 rust_offset: offset_of!(UIImTextCommandConfig, style),
             },
             FieldInfoData {
                 name: "HorizontalAlignment",
+                name_hash: 199111588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIElementAlignment",
                 rust_offset: offset_of!(UIImTextCommandConfig, horizontal_alignment),
             },
             FieldInfoData {
                 name: "VerticalAlignment",
+                name_hash: 759963848,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIElementAlignment",
                 rust_offset: offset_of!(UIImTextCommandConfig, vertical_alignment),
             },
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIImTextCommandConfig, scale),
             },
             FieldInfoData {
                 name: "ClipToRect",
+                name_hash: 1822661512,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIImTextCommandConfig, clip_to_rect),
             },
             FieldInfoData {
                 name: "Wordwrap",
+                name_hash: 1907723743,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIImTextCommandConfig, wordwrap),
             },
             FieldInfoData {
                 name: "PasswordMode",
+                name_hash: 509064505,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIImTextCommandConfig, password_mode),
             },
             FieldInfoData {
                 name: "Scrollable",
+                name_hash: 1396837986,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIImTextCommandConfig, scrollable),
             },
             FieldInfoData {
                 name: "Offset",
+                name_hash: 2871410728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIImTextCommandConfig, offset),
@@ -1082,6 +1155,7 @@ impl TypeObject for UIImTextCommandConfig {
 
 pub static UIIMTEXTCOMMANDCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIImTextCommandConfig-Array",
+    name_hash: 2085590809,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UIImTextCommandConfig"),
@@ -1090,24 +1164,25 @@ pub static UIIMTEXTCOMMANDCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UITextureMappingAssetBinding {
-    pub mapping: Option<Arc<Mutex<dyn UITextureMappingBaseAssetTrait>>>,
+    pub mapping: Option<LockedTypeObject /* UITextureMappingBaseAsset */>,
     pub compartment: u16,
 }
 
 pub trait UITextureMappingAssetBindingTrait: TypeObject {
-    fn mapping(&self) -> &Option<Arc<Mutex<dyn UITextureMappingBaseAssetTrait>>>;
-    fn mapping_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UITextureMappingBaseAssetTrait>>>;
+    fn mapping(&self) -> &Option<LockedTypeObject /* UITextureMappingBaseAsset */>;
+    fn mapping_mut(&mut self) -> &mut Option<LockedTypeObject /* UITextureMappingBaseAsset */>;
     fn compartment(&self) -> &u16;
     fn compartment_mut(&mut self) -> &mut u16;
 }
 
 impl UITextureMappingAssetBindingTrait for UITextureMappingAssetBinding {
-    fn mapping(&self) -> &Option<Arc<Mutex<dyn UITextureMappingBaseAssetTrait>>> {
+    fn mapping(&self) -> &Option<LockedTypeObject /* UITextureMappingBaseAsset */> {
         &self.mapping
     }
-    fn mapping_mut(&mut self) -> &mut Option<Arc<Mutex<dyn UITextureMappingBaseAssetTrait>>> {
+    fn mapping_mut(&mut self) -> &mut Option<LockedTypeObject /* UITextureMappingBaseAsset */> {
         &mut self.mapping
     }
     fn compartment(&self) -> &u16 {
@@ -1120,21 +1195,25 @@ impl UITextureMappingAssetBindingTrait for UITextureMappingAssetBinding {
 
 pub static UITEXTUREMAPPINGASSETBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UITextureMappingAssetBinding",
+    name_hash: 499652219,
     flags: MemberInfoFlags::new(73),
     module: "GameBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UITextureMappingAssetBinding as Default>::default())),
+            create_boxed: || Box::new(<UITextureMappingAssetBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Mapping",
+                name_hash: 1321925897,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UITextureMappingBaseAsset",
                 rust_offset: offset_of!(UITextureMappingAssetBinding, mapping),
             },
             FieldInfoData {
                 name: "Compartment",
+                name_hash: 1500500641,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(UITextureMappingAssetBinding, compartment),
@@ -1166,6 +1245,7 @@ impl TypeObject for UITextureMappingAssetBinding {
 
 pub static UITEXTUREMAPPINGASSETBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UITextureMappingAssetBinding-Array",
+    name_hash: 347319887,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UITextureMappingAssetBinding"),
@@ -1174,7 +1254,8 @@ pub static UITEXTUREMAPPINGASSETBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIElementFontEffectBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -1199,12 +1280,15 @@ impl super::core::DataContainerTrait for UIElementFontEffectBaseAsset {
 
 pub static UIELEMENTFONTEFFECTBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementFontEffectBaseAsset",
+    name_hash: 4033757286,
     flags: MemberInfoFlags::new(101),
     module: "GameBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(UIElementFontEffectBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIElementFontEffectBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<UIElementFontEffectBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -1234,6 +1318,7 @@ impl TypeObject for UIElementFontEffectBaseAsset {
 
 pub static UIELEMENTFONTEFFECTBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementFontEffectBaseAsset-Array",
+    name_hash: 34823506,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UIElementFontEffectBaseAsset"),
@@ -1242,7 +1327,8 @@ pub static UIELEMENTFONTEFFECTBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIElementFontStyleBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -1267,12 +1353,15 @@ impl super::core::DataContainerTrait for UIElementFontStyleBaseAsset {
 
 pub static UIELEMENTFONTSTYLEBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementFontStyleBaseAsset",
+    name_hash: 2372859014,
     flags: MemberInfoFlags::new(101),
     module: "GameBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(UIElementFontStyleBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIElementFontStyleBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<UIElementFontStyleBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -1302,6 +1391,7 @@ impl TypeObject for UIElementFontStyleBaseAsset {
 
 pub static UIELEMENTFONTSTYLEBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementFontStyleBaseAsset-Array",
+    name_hash: 2256462258,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UIElementFontStyleBaseAsset"),
@@ -1310,7 +1400,8 @@ pub static UIELEMENTFONTSTYLEBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UITextureMappingBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -1335,12 +1426,15 @@ impl super::core::DataContainerTrait for UITextureMappingBaseAsset {
 
 pub static UITEXTUREMAPPINGBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UITextureMappingBaseAsset",
+    name_hash: 2890272175,
     flags: MemberInfoFlags::new(101),
     module: "GameBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(UITextureMappingBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UITextureMappingBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<UITextureMappingBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -1370,6 +1464,7 @@ impl TypeObject for UITextureMappingBaseAsset {
 
 pub static UITEXTUREMAPPINGBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UITextureMappingBaseAsset-Array",
+    name_hash: 3305569051,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UITextureMappingBaseAsset"),
@@ -1391,6 +1486,7 @@ pub enum UIScreenProjectionMode {
 
 pub static UISCREENPROJECTIONMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIScreenProjectionMode",
+    name_hash: 1072774091,
     flags: MemberInfoFlags::new(49429),
     module: "GameBase",
     data: TypeInfoData::Enum,
@@ -1419,6 +1515,7 @@ impl TypeObject for UIScreenProjectionMode {
 
 pub static UISCREENPROJECTIONMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIScreenProjectionMode-Array",
+    name_hash: 204479231,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UIScreenProjectionMode"),
@@ -1443,6 +1540,7 @@ pub enum UIElementAlignment {
 
 pub static UIELEMENTALIGNMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementAlignment",
+    name_hash: 369903384,
     flags: MemberInfoFlags::new(49429),
     module: "GameBase",
     data: TypeInfoData::Enum,
@@ -1471,6 +1569,7 @@ impl TypeObject for UIElementAlignment {
 
 pub static UIELEMENTALIGNMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementAlignment-Array",
+    name_hash: 1284919596,
     flags: MemberInfoFlags::new(145),
     module: "GameBase",
     data: TypeInfoData::Array("UIElementAlignment"),

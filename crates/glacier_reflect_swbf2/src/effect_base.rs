@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -43,19 +44,20 @@ pub(crate) fn register_effect_base_types(registry: &mut TypeRegistry) {
     registry.register_type(EFFECTHANDLE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectReferenceObjectData {
     pub _glacier_base: super::entity::SpatialReferenceObjectData,
     pub auto_start: bool,
-    pub effect_parameters: Vec<Option<Arc<Mutex<dyn EffectParameterTrait>>>>,
+    pub effect_parameters: Vec<Option<LockedTypeObject /* EffectParameter */>>,
     pub affected_by_lightprobe_visibility: bool,
 }
 
 pub trait EffectReferenceObjectDataTrait: super::entity::SpatialReferenceObjectDataTrait {
     fn auto_start(&self) -> &bool;
     fn auto_start_mut(&mut self) -> &mut bool;
-    fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn EffectParameterTrait>>>>;
-    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EffectParameterTrait>>>>;
+    fn effect_parameters(&self) -> &Vec<Option<LockedTypeObject /* EffectParameter */>>;
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* EffectParameter */>>;
     fn affected_by_lightprobe_visibility(&self) -> &bool;
     fn affected_by_lightprobe_visibility_mut(&mut self) -> &mut bool;
 }
@@ -67,10 +69,10 @@ impl EffectReferenceObjectDataTrait for EffectReferenceObjectData {
     fn auto_start_mut(&mut self) -> &mut bool {
         &mut self.auto_start
     }
-    fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn EffectParameterTrait>>>> {
+    fn effect_parameters(&self) -> &Vec<Option<LockedTypeObject /* EffectParameter */>> {
         &self.effect_parameters
     }
-    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EffectParameterTrait>>>> {
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* EffectParameter */>> {
         &mut self.effect_parameters
     }
     fn affected_by_lightprobe_visibility(&self) -> &bool {
@@ -97,16 +99,16 @@ impl super::entity::ReferenceObjectDataTrait for EffectReferenceObjectData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
@@ -173,28 +175,34 @@ impl super::core::DataContainerTrait for EffectReferenceObjectData {
 
 pub static EFFECTREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectReferenceObjectData",
+    name_hash: 2637079484,
     flags: MemberInfoFlags::new(101),
     module: "EffectBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EffectReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<EffectReferenceObjectData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EffectReferenceObjectData, auto_start),
             },
             FieldInfoData {
                 name: "EffectParameters",
+                name_hash: 929782248,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EffectParameter-Array",
                 rust_offset: offset_of!(EffectReferenceObjectData, effect_parameters),
             },
             FieldInfoData {
                 name: "AffectedByLightprobeVisibility",
+                name_hash: 3285178174,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EffectReferenceObjectData, affected_by_lightprobe_visibility),
@@ -226,6 +234,7 @@ impl TypeObject for EffectReferenceObjectData {
 
 pub static EFFECTREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectReferenceObjectData-Array",
+    name_hash: 3289062152,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EffectReferenceObjectData"),
@@ -234,7 +243,8 @@ pub static EFFECTREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectBlueprint {
     pub _glacier_base: super::entity::ObjectBlueprint,
     pub time_delta_type: super::entity::TimeDeltaType,
@@ -264,34 +274,34 @@ impl EffectBlueprintTrait for EffectBlueprint {
 }
 
 impl super::entity::ObjectBlueprintTrait for EffectBlueprint {
-    fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+    fn object(&self) -> &Option<LockedTypeObject /* super::entity::EntityData */> {
         self._glacier_base.object()
     }
-    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+    fn object_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::EntityData */> {
         self._glacier_base.object_mut()
     }
 }
 
 impl super::entity::BlueprintTrait for EffectBlueprint {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl super::entity::EntityBusDataTrait for EffectBlueprint {
-    fn event_connections(&self) -> &Vec<super::entity::EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* super::entity::EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<super::entity::EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::entity::EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -303,22 +313,22 @@ impl super::core::DataBusDataTrait for EffectBlueprint {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -337,22 +347,27 @@ impl super::core::DataContainerTrait for EffectBlueprint {
 
 pub static EFFECTBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectBlueprint",
+    name_hash: 3756200925,
     flags: MemberInfoFlags::new(101),
     module: "EffectBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::OBJECTBLUEPRINT_TYPE_INFO),
+        super_class_offset: offset_of!(EffectBlueprint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectBlueprint as Default>::default())),
+            create_boxed: || Box::new(<EffectBlueprint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TimeDeltaType",
+                name_hash: 1100516816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimeDeltaType",
                 rust_offset: offset_of!(EffectBlueprint, time_delta_type),
             },
             FieldInfoData {
                 name: "IsSimple",
+                name_hash: 447223665,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EffectBlueprint, is_simple),
@@ -384,6 +399,7 @@ impl TypeObject for EffectBlueprint {
 
 pub static EFFECTBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectBlueprint-Array",
+    name_hash: 2538221545,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EffectBlueprint"),
@@ -410,6 +426,7 @@ pub enum EmitterParameter {
 
 pub static EMITTERPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterParameter",
+    name_hash: 3358446298,
     flags: MemberInfoFlags::new(49429),
     module: "EffectBase",
     data: TypeInfoData::Enum,
@@ -438,6 +455,7 @@ impl TypeObject for EmitterParameter {
 
 pub static EMITTERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterParameter-Array",
+    name_hash: 2434672238,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EmitterParameter"),
@@ -446,7 +464,8 @@ pub static EMITTERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshEmitterMaskBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -471,12 +490,15 @@ impl super::core::DataContainerTrait for MeshEmitterMaskBaseAsset {
 
 pub static MESHEMITTERMASKBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterMaskBaseAsset",
+    name_hash: 167449393,
     flags: MemberInfoFlags::new(101),
     module: "EffectBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(MeshEmitterMaskBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshEmitterMaskBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<MeshEmitterMaskBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -506,6 +528,7 @@ impl TypeObject for MeshEmitterMaskBaseAsset {
 
 pub static MESHEMITTERMASKBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterMaskBaseAsset-Array",
+    name_hash: 140862853,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("MeshEmitterMaskBaseAsset"),
@@ -514,7 +537,8 @@ pub static MESHEMITTERMASKBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshEmitterBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -539,12 +563,15 @@ impl super::core::DataContainerTrait for MeshEmitterBaseAsset {
 
 pub static MESHEMITTERBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterBaseAsset",
+    name_hash: 3401147781,
     flags: MemberInfoFlags::new(101),
     module: "EffectBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(MeshEmitterBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshEmitterBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<MeshEmitterBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -574,6 +601,7 @@ impl TypeObject for MeshEmitterBaseAsset {
 
 pub static MESHEMITTERBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterBaseAsset-Array",
+    name_hash: 2855841073,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("MeshEmitterBaseAsset"),
@@ -582,7 +610,8 @@ pub static MESHEMITTERBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectTransformSpaceParam {
     pub index: u32,
     pub transform_space: super::state_stream::TransformSpaceHandle,
@@ -612,21 +641,25 @@ impl EffectTransformSpaceParamTrait for EffectTransformSpaceParam {
 
 pub static EFFECTTRANSFORMSPACEPARAM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectTransformSpaceParam",
+    name_hash: 3805789525,
     flags: MemberInfoFlags::new(73),
     module: "EffectBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectTransformSpaceParam as Default>::default())),
+            create_boxed: || Box::new(<EffectTransformSpaceParam as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Index",
+                name_hash: 214509467,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EffectTransformSpaceParam, index),
             },
             FieldInfoData {
                 name: "TransformSpace",
+                name_hash: 3602558253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TransformSpaceHandle",
                 rust_offset: offset_of!(EffectTransformSpaceParam, transform_space),
@@ -658,6 +691,7 @@ impl TypeObject for EffectTransformSpaceParam {
 
 pub static EFFECTTRANSFORMSPACEPARAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectTransformSpaceParam-Array",
+    name_hash: 1845009761,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EffectTransformSpaceParam"),
@@ -666,7 +700,8 @@ pub static EFFECTTRANSFORMSPACEPARAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectParams {
 }
 
@@ -678,11 +713,13 @@ impl EffectParamsTrait for EffectParams {
 
 pub static EFFECTPARAMS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParams",
+    name_hash: 2299616430,
     flags: MemberInfoFlags::new(73),
     module: "EffectBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectParams as Default>::default())),
+            create_boxed: || Box::new(<EffectParams as Default>::default()),
         },
         fields: &[
         ],
@@ -712,6 +749,7 @@ impl TypeObject for EffectParams {
 
 pub static EFFECTPARAMS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParams-Array",
+    name_hash: 838485274,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EffectParams"),
@@ -720,22 +758,23 @@ pub static EFFECTPARAMS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectParameterList {
     pub _glacier_base: super::core::Asset,
-    pub parameters: Vec<Option<Arc<Mutex<dyn EffectParameterTrait>>>>,
+    pub parameters: Vec<Option<LockedTypeObject /* EffectParameter */>>,
 }
 
 pub trait EffectParameterListTrait: super::core::AssetTrait {
-    fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn EffectParameterTrait>>>>;
-    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EffectParameterTrait>>>>;
+    fn parameters(&self) -> &Vec<Option<LockedTypeObject /* EffectParameter */>>;
+    fn parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* EffectParameter */>>;
 }
 
 impl EffectParameterListTrait for EffectParameterList {
-    fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn EffectParameterTrait>>>> {
+    fn parameters(&self) -> &Vec<Option<LockedTypeObject /* EffectParameter */>> {
         &self.parameters
     }
-    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EffectParameterTrait>>>> {
+    fn parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* EffectParameter */>> {
         &mut self.parameters
     }
 }
@@ -754,16 +793,20 @@ impl super::core::DataContainerTrait for EffectParameterList {
 
 pub static EFFECTPARAMETERLIST_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParameterList",
+    name_hash: 3033485049,
     flags: MemberInfoFlags::new(101),
     module: "EffectBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EffectParameterList, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectParameterList as Default>::default())),
+            create_boxed: || Box::new(<EffectParameterList as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Parameters",
+                name_hash: 3325515039,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EffectParameter-Array",
                 rust_offset: offset_of!(EffectParameterList, parameters),
@@ -795,6 +838,7 @@ impl TypeObject for EffectParameterList {
 
 pub static EFFECTPARAMETERLIST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParameterList-Array",
+    name_hash: 901189069,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EffectParameterList"),
@@ -803,7 +847,8 @@ pub static EFFECTPARAMETERLIST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectParameter {
     pub _glacier_base: super::core::DataContainer,
     pub name: String,
@@ -846,28 +891,34 @@ impl super::core::DataContainerTrait for EffectParameter {
 
 pub static EFFECTPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParameter",
+    name_hash: 1850282555,
     flags: MemberInfoFlags::new(101),
     module: "EffectBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(EffectParameter, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectParameter as Default>::default())),
+            create_boxed: || Box::new(<EffectParameter as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EffectParameter, name),
             },
             FieldInfoData {
                 name: "ParamType",
+                name_hash: 2965736018,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectParameterType",
                 rust_offset: offset_of!(EffectParameter, param_type),
             },
             FieldInfoData {
                 name: "ParamScope",
+                name_hash: 3377213504,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectParameterScopeType",
                 rust_offset: offset_of!(EffectParameter, param_scope),
@@ -899,6 +950,7 @@ impl TypeObject for EffectParameter {
 
 pub static EFFECTPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParameter-Array",
+    name_hash: 3517872527,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EffectParameter"),
@@ -918,6 +970,7 @@ pub enum EffectParameterScopeType {
 
 pub static EFFECTPARAMETERSCOPETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParameterScopeType",
+    name_hash: 42479369,
     flags: MemberInfoFlags::new(49429),
     module: "EffectBase",
     data: TypeInfoData::Enum,
@@ -946,6 +999,7 @@ impl TypeObject for EffectParameterScopeType {
 
 pub static EFFECTPARAMETERSCOPETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParameterScopeType-Array",
+    name_hash: 479741117,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EffectParameterScopeType"),
@@ -970,6 +1024,7 @@ pub enum EffectParameterType {
 
 pub static EFFECTPARAMETERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParameterType",
+    name_hash: 3033197507,
     flags: MemberInfoFlags::new(49429),
     module: "EffectBase",
     data: TypeInfoData::Enum,
@@ -998,6 +1053,7 @@ impl TypeObject for EffectParameterType {
 
 pub static EFFECTPARAMETERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParameterType-Array",
+    name_hash: 3339611895,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EffectParameterType"),
@@ -1017,6 +1073,7 @@ pub enum EmitterGraphParamType {
 
 pub static EMITTERGRAPHPARAMTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphParamType",
+    name_hash: 1660145800,
     flags: MemberInfoFlags::new(49429),
     module: "EffectBase",
     data: TypeInfoData::Enum,
@@ -1045,6 +1102,7 @@ impl TypeObject for EmitterGraphParamType {
 
 pub static EMITTERGRAPHPARAMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphParamType-Array",
+    name_hash: 46936764,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EmitterGraphParamType"),
@@ -1053,17 +1111,18 @@ pub static EMITTERGRAPHPARAMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterExposedTextureInput {
     pub shader_parameter_handle: u32,
-    pub texture: Option<Arc<Mutex<dyn super::core::AssetTrait>>>,
+    pub texture: Option<LockedTypeObject /* super::core::Asset */>,
 }
 
 pub trait EmitterExposedTextureInputTrait: TypeObject {
     fn shader_parameter_handle(&self) -> &u32;
     fn shader_parameter_handle_mut(&mut self) -> &mut u32;
-    fn texture(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
-    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn texture(&self) -> &Option<LockedTypeObject /* super::core::Asset */>;
+    fn texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */>;
 }
 
 impl EmitterExposedTextureInputTrait for EmitterExposedTextureInput {
@@ -1073,31 +1132,35 @@ impl EmitterExposedTextureInputTrait for EmitterExposedTextureInput {
     fn shader_parameter_handle_mut(&mut self) -> &mut u32 {
         &mut self.shader_parameter_handle
     }
-    fn texture(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn texture(&self) -> &Option<LockedTypeObject /* super::core::Asset */> {
         &self.texture
     }
-    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */> {
         &mut self.texture
     }
 }
 
 pub static EMITTEREXPOSEDTEXTUREINPUT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExposedTextureInput",
+    name_hash: 3290871530,
     flags: MemberInfoFlags::new(73),
     module: "EffectBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterExposedTextureInput as Default>::default())),
+            create_boxed: || Box::new(<EmitterExposedTextureInput as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ShaderParameterHandle",
+                name_hash: 4141069103,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterExposedTextureInput, shader_parameter_handle),
             },
             FieldInfoData {
                 name: "Texture",
+                name_hash: 3185041626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Asset",
                 rust_offset: offset_of!(EmitterExposedTextureInput, texture),
@@ -1129,6 +1192,7 @@ impl TypeObject for EmitterExposedTextureInput {
 
 pub static EMITTEREXPOSEDTEXTUREINPUT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExposedTextureInput-Array",
+    name_hash: 3056230878,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EmitterExposedTextureInput"),
@@ -1137,7 +1201,8 @@ pub static EMITTEREXPOSEDTEXTUREINPUT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterExposedInput {
     pub property_id: i32,
     pub value: super::core::Vec4,
@@ -1167,21 +1232,25 @@ impl EmitterExposedInputTrait for EmitterExposedInput {
 
 pub static EMITTEREXPOSEDINPUT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExposedInput",
+    name_hash: 2819021461,
     flags: MemberInfoFlags::new(32841),
     module: "EffectBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterExposedInput as Default>::default())),
+            create_boxed: || Box::new(<EmitterExposedInput as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PropertyId",
+                name_hash: 1506318447,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EmitterExposedInput, property_id),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(EmitterExposedInput, value),
@@ -1213,6 +1282,7 @@ impl TypeObject for EmitterExposedInput {
 
 pub static EMITTEREXPOSEDINPUT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExposedInput-Array",
+    name_hash: 3130829345,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EmitterExposedInput"),
@@ -1221,7 +1291,8 @@ pub static EMITTEREXPOSEDINPUT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterGraphOverrides {
     pub spawn_rate: super::core::QualityScalableFloat,
     pub particle_max_count: super::core::QualityScalableInt,
@@ -1395,117 +1466,137 @@ impl EmitterGraphOverridesTrait for EmitterGraphOverrides {
 
 pub static EMITTERGRAPHOVERRIDES_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphOverrides",
+    name_hash: 3103421752,
     flags: MemberInfoFlags::new(32841),
     module: "EffectBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterGraphOverrides as Default>::default())),
+            create_boxed: || Box::new(<EmitterGraphOverrides as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SpawnRate",
+                name_hash: 2317161148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterGraphOverrides, spawn_rate),
             },
             FieldInfoData {
                 name: "ParticleMaxCount",
+                name_hash: 1668354694,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableInt",
                 rust_offset: offset_of!(EmitterGraphOverrides, particle_max_count),
             },
             FieldInfoData {
                 name: "ParticleLifeSpan",
+                name_hash: 355291419,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterGraphOverrides, particle_life_span),
             },
             FieldInfoData {
                 name: "EmitterLifeSpan",
+                name_hash: 2884727609,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterGraphOverrides, emitter_life_span),
             },
             FieldInfoData {
                 name: "BoundingBoxMin",
+                name_hash: 2339812968,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterGraphOverrides, bounding_box_min),
             },
             FieldInfoData {
                 name: "BoundingBoxMax",
+                name_hash: 2339813238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterGraphOverrides, bounding_box_max),
             },
             FieldInfoData {
                 name: "EmitterMinSpawnDistance",
+                name_hash: 4028457313,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterGraphOverrides, emitter_min_spawn_distance),
             },
             FieldInfoData {
                 name: "EmitterMaxSpawnDistance",
+                name_hash: 1544874047,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterGraphOverrides, emitter_max_spawn_distance),
             },
             FieldInfoData {
                 name: "SpawnOutsideViewRadius",
+                name_hash: 3760047582,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterGraphOverrides, spawn_outside_view_radius),
             },
             FieldInfoData {
                 name: "IsSpawnRateOverrideSet",
+                name_hash: 2368048624,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraphOverrides, is_spawn_rate_override_set),
             },
             FieldInfoData {
                 name: "IsParticleMaxCountOverrideSet",
+                name_hash: 1180470666,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraphOverrides, is_particle_max_count_override_set),
             },
             FieldInfoData {
                 name: "IsParticleLifeSpanOverrideSet",
+                name_hash: 1898410295,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraphOverrides, is_particle_life_span_override_set),
             },
             FieldInfoData {
                 name: "IsEmitterLifeSpanOverrideSet",
+                name_hash: 2357632917,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraphOverrides, is_emitter_life_span_override_set),
             },
             FieldInfoData {
                 name: "IsBoundingBoxMinSet",
+                name_hash: 3965743376,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraphOverrides, is_bounding_box_min_set),
             },
             FieldInfoData {
                 name: "IsBoundingBoxMaxSet",
+                name_hash: 3956227534,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraphOverrides, is_bounding_box_max_set),
             },
             FieldInfoData {
                 name: "IsEmitterMinSpawnDistanceOverrideSet",
+                name_hash: 411212877,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraphOverrides, is_emitter_min_spawn_distance_override_set),
             },
             FieldInfoData {
                 name: "IsEmitterMaxSpawnDistanceOverrideSet",
+                name_hash: 1525847507,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraphOverrides, is_emitter_max_spawn_distance_override_set),
             },
             FieldInfoData {
                 name: "IsSpawnOutsideViewRadiusOverrideSet",
+                name_hash: 1561894482,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraphOverrides, is_spawn_outside_view_radius_override_set),
@@ -1537,6 +1628,7 @@ impl TypeObject for EmitterGraphOverrides {
 
 pub static EMITTERGRAPHOVERRIDES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphOverrides-Array",
+    name_hash: 4086193804,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EmitterGraphOverrides"),
@@ -1545,7 +1637,8 @@ pub static EMITTERGRAPHOVERRIDES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectHandle {
 }
 
@@ -1557,11 +1650,13 @@ impl EffectHandleTrait for EffectHandle {
 
 pub static EFFECTHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectHandle",
+    name_hash: 3238141784,
     flags: MemberInfoFlags::new(73),
     module: "EffectBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectHandle as Default>::default())),
+            create_boxed: || Box::new(<EffectHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -1591,6 +1686,7 @@ impl TypeObject for EffectHandle {
 
 pub static EFFECTHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectHandle-Array",
+    name_hash: 98654700,
     flags: MemberInfoFlags::new(145),
     module: "EffectBase",
     data: TypeInfoData::Array("EffectHandle"),

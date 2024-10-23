@@ -1,14 +1,20 @@
 use std::any::Any;
 
 use crate::{
-    data_container::DataContainerCore, member::MemberInfoFlags, type_info::{TypeInfo, TypeInfoData, TypeObject}, type_registry::TypeRegistry
+    data_container::DataContainerCore,
+    member::MemberInfoFlags,
+    type_info::{TypeInfo, TypeInfoData, TypeObject},
+    type_registry::TypeRegistry,
 };
+
+use glacier_util::hash::hash_quick_str_const;
 
 macro_rules! declare_primitive_type {
     ($name: ident, $type: ident) => {
         paste::paste! {
             pub const [<PRIMITIVE_ARRAY_TYPE_ $name:upper>]: &'static TypeInfo = &TypeInfo {
                 name: concat!(stringify!($name), "-Array"),
+                name_hash: hash_quick_str_const(concat!(stringify!($name), "-Array")),
                 flags: MemberInfoFlags::new(0),
                 module: "Intrinsic",
                 data: TypeInfoData::Array(stringify!($name)),
@@ -18,6 +24,7 @@ macro_rules! declare_primitive_type {
 
             pub const [<PRIMITIVE_TYPE_ $name:upper>]: &'static TypeInfo = &TypeInfo {
                 name: stringify!($name),
+                name_hash: hash_quick_str_const(stringify!($name)),
                 flags: MemberInfoFlags::new(0),
                 module: "Intrinsic",
                 data: TypeInfoData::$name,

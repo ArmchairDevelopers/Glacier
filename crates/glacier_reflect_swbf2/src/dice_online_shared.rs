@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -29,7 +30,8 @@ pub(crate) fn register_dice_online_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(RARITYTYPE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceOnlineSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub log_level: DiceOnlineLogLevelT,
@@ -63,16 +65,20 @@ impl super::core::DataContainerTrait for DiceOnlineSettings {
 
 pub static DICEONLINESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceOnlineSettings",
+    name_hash: 1987900292,
     flags: MemberInfoFlags::new(101),
     module: "DiceOnlineShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(DiceOnlineSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceOnlineSettings as Default>::default())),
+            create_boxed: || Box::new(<DiceOnlineSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LogLevel",
+                name_hash: 1867701815,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DiceOnlineLogLevelT",
                 rust_offset: offset_of!(DiceOnlineSettings, log_level),
@@ -104,6 +110,7 @@ impl TypeObject for DiceOnlineSettings {
 
 pub static DICEONLINESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceOnlineSettings-Array",
+    name_hash: 3995330480,
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
     data: TypeInfoData::Array("DiceOnlineSettings"),
@@ -128,6 +135,7 @@ pub enum DiceOnlineLogLevelT {
 
 pub static DICEONLINELOGLEVELT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceOnlineLogLevelT",
+    name_hash: 744470983,
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
     data: TypeInfoData::Enum,
@@ -156,6 +164,7 @@ impl TypeObject for DiceOnlineLogLevelT {
 
 pub static DICEONLINELOGLEVELT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceOnlineLogLevelT-Array",
+    name_hash: 465922803,
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
     data: TypeInfoData::Array("DiceOnlineLogLevelT"),
@@ -185,6 +194,7 @@ pub enum AwardGroup {
 
 pub static AWARDGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AwardGroup",
+    name_hash: 441163323,
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
     data: TypeInfoData::Enum,
@@ -213,6 +223,7 @@ impl TypeObject for AwardGroup {
 
 pub static AWARDGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AwardGroup-Array",
+    name_hash: 3496609167,
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
     data: TypeInfoData::Array("AwardGroup"),
@@ -282,6 +293,7 @@ pub enum StarLevelCategory {
 
 pub static STARLEVELCATEGORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarLevelCategory",
+    name_hash: 2720650807,
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
     data: TypeInfoData::Enum,
@@ -310,6 +322,7 @@ impl TypeObject for StarLevelCategory {
 
 pub static STARLEVELCATEGORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StarLevelCategory-Array",
+    name_hash: 3805450115,
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
     data: TypeInfoData::Array("StarLevelCategory"),
@@ -378,6 +391,7 @@ pub enum WSClass {
 
 pub static WSCLASS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WSClass",
+    name_hash: 2642042031,
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
     data: TypeInfoData::Enum,
@@ -406,6 +420,7 @@ impl TypeObject for WSClass {
 
 pub static WSCLASS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WSClass-Array",
+    name_hash: 100305435,
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
     data: TypeInfoData::Array("WSClass"),
@@ -426,6 +441,7 @@ pub enum InventoryProgress {
 
 pub static INVENTORYPROGRESS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InventoryProgress",
+    name_hash: 919281138,
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
     data: TypeInfoData::Enum,
@@ -454,6 +470,7 @@ impl TypeObject for InventoryProgress {
 
 pub static INVENTORYPROGRESS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InventoryProgress-Array",
+    name_hash: 3478353094,
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
     data: TypeInfoData::Array("InventoryProgress"),
@@ -487,6 +504,7 @@ pub enum OnlineItemType {
 
 pub static ONLINEITEMTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OnlineItemType",
+    name_hash: 837601351,
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
     data: TypeInfoData::Enum,
@@ -515,6 +533,7 @@ impl TypeObject for OnlineItemType {
 
 pub static ONLINEITEMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OnlineItemType-Array",
+    name_hash: 2206423411,
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
     data: TypeInfoData::Array("OnlineItemType"),
@@ -539,6 +558,7 @@ pub enum VirtualCurrency {
 
 pub static VIRTUALCURRENCY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VirtualCurrency",
+    name_hash: 463778979,
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
     data: TypeInfoData::Enum,
@@ -567,6 +587,7 @@ impl TypeObject for VirtualCurrency {
 
 pub static VIRTUALCURRENCY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VirtualCurrency-Array",
+    name_hash: 2630342679,
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
     data: TypeInfoData::Array("VirtualCurrency"),
@@ -591,6 +612,7 @@ pub enum RarityType {
 
 pub static RARITYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RarityType",
+    name_hash: 3677493464,
     flags: MemberInfoFlags::new(49429),
     module: "DiceOnlineShared",
     data: TypeInfoData::Enum,
@@ -619,6 +641,7 @@ impl TypeObject for RarityType {
 
 pub static RARITYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RarityType-Array",
+    name_hash: 2844160876,
     flags: MemberInfoFlags::new(145),
     module: "DiceOnlineShared",
     data: TypeInfoData::Array("RarityType"),

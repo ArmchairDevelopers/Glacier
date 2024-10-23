@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -19,7 +20,8 @@ pub(crate) fn register_patch_backend_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTLCUENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LiveContentUpdateSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub auto_start: bool,
@@ -71,28 +73,34 @@ impl super::core::DataContainerTrait for LiveContentUpdateSettings {
 
 pub static LIVECONTENTUPDATESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LiveContentUpdateSettings",
+    name_hash: 4042029102,
     flags: MemberInfoFlags::new(101),
     module: "PatchBackend",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(LiveContentUpdateSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LiveContentUpdateSettings as Default>::default())),
+            create_boxed: || Box::new(<LiveContentUpdateSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LiveContentUpdateSettings, auto_start),
             },
             FieldInfoData {
                 name: "TimeoutInitial",
+                name_hash: 4198899872,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LiveContentUpdateSettings, timeout_initial),
             },
             FieldInfoData {
                 name: "TimeoutRecheck",
+                name_hash: 258381327,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LiveContentUpdateSettings, timeout_recheck),
@@ -124,6 +132,7 @@ impl TypeObject for LiveContentUpdateSettings {
 
 pub static LIVECONTENTUPDATESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LiveContentUpdateSettings-Array",
+    name_hash: 3013345434,
     flags: MemberInfoFlags::new(145),
     module: "PatchBackend",
     data: TypeInfoData::Array("LiveContentUpdateSettings"),
@@ -132,7 +141,8 @@ pub static LIVECONTENTUPDATESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LCUServiceMessageProgressMessage {
 }
 
@@ -144,11 +154,13 @@ impl LCUServiceMessageProgressMessageTrait for LCUServiceMessageProgressMessage 
 
 pub static LCUSERVICEMESSAGEPROGRESSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LCUServiceMessageProgressMessage",
+    name_hash: 2621325023,
     flags: MemberInfoFlags::new(36937),
     module: "PatchBackend",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LCUServiceMessageProgressMessage as Default>::default())),
+            create_boxed: || Box::new(<LCUServiceMessageProgressMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -175,7 +187,8 @@ impl TypeObject for LCUServiceMessageProgressMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LCUServiceMessageStateChangedMessage {
 }
 
@@ -187,11 +200,13 @@ impl LCUServiceMessageStateChangedMessageTrait for LCUServiceMessageStateChanged
 
 pub static LCUSERVICEMESSAGESTATECHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LCUServiceMessageStateChangedMessage",
+    name_hash: 1384040439,
     flags: MemberInfoFlags::new(36937),
     module: "PatchBackend",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LCUServiceMessageStateChangedMessage as Default>::default())),
+            create_boxed: || Box::new(<LCUServiceMessageStateChangedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -218,7 +233,8 @@ impl TypeObject for LCUServiceMessageStateChangedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LCUEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -270,22 +286,27 @@ impl super::core::DataContainerTrait for LCUEntityData {
 
 pub static LCUENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LCUEntityData",
+    name_hash: 2695309172,
     flags: MemberInfoFlags::new(101),
     module: "PatchBackend",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LCUEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LCUEntityData as Default>::default())),
+            create_boxed: || Box::new(<LCUEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(LCUEntityData, realm),
             },
             FieldInfoData {
                 name: "Automatic",
+                name_hash: 812067256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LCUEntityData, automatic),
@@ -317,6 +338,7 @@ impl TypeObject for LCUEntityData {
 
 pub static LCUENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LCUEntityData-Array",
+    name_hash: 4278457152,
     flags: MemberInfoFlags::new(145),
     module: "PatchBackend",
     data: TypeInfoData::Array("LCUEntityData"),
@@ -325,7 +347,8 @@ pub static LCUENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientLCUEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -344,12 +367,15 @@ impl super::entity::EntityBusPeerTrait for ClientLCUEntity {
 
 pub static CLIENTLCUENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLCUEntity",
+    name_hash: 3276115357,
     flags: MemberInfoFlags::new(101),
     module: "PatchBackend",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientLCUEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientLCUEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientLCUEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -379,6 +405,7 @@ impl TypeObject for ClientLCUEntity {
 
 pub static CLIENTLCUENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientLCUEntity-Array",
+    name_hash: 123009321,
     flags: MemberInfoFlags::new(145),
     module: "PatchBackend",
     data: TypeInfoData::Array("ClientLCUEntity"),

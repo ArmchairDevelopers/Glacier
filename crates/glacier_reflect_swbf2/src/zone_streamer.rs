@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -68,7 +69,8 @@ pub(crate) fn register_zone_streamer_types(registry: &mut TypeRegistry) {
     registry.register_type(ZONESTREAMERFOCUSENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerZoneDestroyMessage {
 }
 
@@ -80,11 +82,13 @@ impl ZoneStreamerZoneDestroyMessageTrait for ZoneStreamerZoneDestroyMessage {
 
 pub static ZONESTREAMERZONEDESTROYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneDestroyMessage",
+    name_hash: 3363607783,
     flags: MemberInfoFlags::new(36937),
     module: "ZoneStreamer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerZoneDestroyMessage as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerZoneDestroyMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -111,7 +115,8 @@ impl TypeObject for ZoneStreamerZoneDestroyMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerZoneInitMessage {
 }
 
@@ -123,11 +128,13 @@ impl ZoneStreamerZoneInitMessageTrait for ZoneStreamerZoneInitMessage {
 
 pub static ZONESTREAMERZONEINITMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneInitMessage",
+    name_hash: 1006053279,
     flags: MemberInfoFlags::new(36937),
     module: "ZoneStreamer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerZoneInitMessage as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerZoneInitMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -154,7 +161,8 @@ impl TypeObject for ZoneStreamerZoneInitMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerZoneChangedMessage {
 }
 
@@ -166,11 +174,13 @@ impl ZoneStreamerZoneChangedMessageTrait for ZoneStreamerZoneChangedMessage {
 
 pub static ZONESTREAMERZONECHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneChangedMessage",
+    name_hash: 2856100295,
     flags: MemberInfoFlags::new(36937),
     module: "ZoneStreamer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerZoneChangedMessage as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerZoneChangedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -197,7 +207,8 @@ impl TypeObject for ZoneStreamerZoneChangedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerShutdownMessage {
 }
 
@@ -209,11 +220,13 @@ impl ZoneStreamerShutdownMessageTrait for ZoneStreamerShutdownMessage {
 
 pub static ZONESTREAMERSHUTDOWNMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerShutdownMessage",
+    name_hash: 3422073107,
     flags: MemberInfoFlags::new(36937),
     module: "ZoneStreamer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerShutdownMessage as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerShutdownMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -240,7 +253,8 @@ impl TypeObject for ZoneStreamerShutdownMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerAnnounceMessage {
 }
 
@@ -252,11 +266,13 @@ impl ZoneStreamerAnnounceMessageTrait for ZoneStreamerAnnounceMessage {
 
 pub static ZONESTREAMERANNOUNCEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerAnnounceMessage",
+    name_hash: 1040514792,
     flags: MemberInfoFlags::new(36937),
     module: "ZoneStreamer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerAnnounceMessage as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerAnnounceMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -283,7 +299,8 @@ impl TypeObject for ZoneStreamerAnnounceMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerNotificationEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub control_entity: glacier_util::guid::Guid,
@@ -335,22 +352,27 @@ impl super::core::DataContainerTrait for ZoneStreamerNotificationEntityData {
 
 pub static ZONESTREAMERNOTIFICATIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerNotificationEntityData",
+    name_hash: 2268839542,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerNotificationEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerNotificationEntityData as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerNotificationEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ControlEntity",
+                name_hash: 1837063353,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(ZoneStreamerNotificationEntityData, control_entity),
             },
             FieldInfoData {
                 name: "BundleName",
+                name_hash: 461157046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ZoneStreamerNotificationEntityData, bundle_name),
@@ -382,6 +404,7 @@ impl TypeObject for ZoneStreamerNotificationEntityData {
 
 pub static ZONESTREAMERNOTIFICATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerNotificationEntityData-Array",
+    name_hash: 3088720706,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerNotificationEntityData"),
@@ -390,17 +413,18 @@ pub static ZONESTREAMERNOTIFICATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VistaZoneInfo {
     pub neighbours: Vec<i16>,
-    pub objects: Vec<VistaZoneMeshInfo>,
+    pub objects: Vec<BoxedTypeObject /* VistaZoneMeshInfo */>,
 }
 
 pub trait VistaZoneInfoTrait: TypeObject {
     fn neighbours(&self) -> &Vec<i16>;
     fn neighbours_mut(&mut self) -> &mut Vec<i16>;
-    fn objects(&self) -> &Vec<VistaZoneMeshInfo>;
-    fn objects_mut(&mut self) -> &mut Vec<VistaZoneMeshInfo>;
+    fn objects(&self) -> &Vec<BoxedTypeObject /* VistaZoneMeshInfo */>;
+    fn objects_mut(&mut self) -> &mut Vec<BoxedTypeObject /* VistaZoneMeshInfo */>;
 }
 
 impl VistaZoneInfoTrait for VistaZoneInfo {
@@ -410,31 +434,35 @@ impl VistaZoneInfoTrait for VistaZoneInfo {
     fn neighbours_mut(&mut self) -> &mut Vec<i16> {
         &mut self.neighbours
     }
-    fn objects(&self) -> &Vec<VistaZoneMeshInfo> {
+    fn objects(&self) -> &Vec<BoxedTypeObject /* VistaZoneMeshInfo */> {
         &self.objects
     }
-    fn objects_mut(&mut self) -> &mut Vec<VistaZoneMeshInfo> {
+    fn objects_mut(&mut self) -> &mut Vec<BoxedTypeObject /* VistaZoneMeshInfo */> {
         &mut self.objects
     }
 }
 
 pub static VISTAZONEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VistaZoneInfo",
+    name_hash: 89911724,
     flags: MemberInfoFlags::new(73),
     module: "ZoneStreamer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VistaZoneInfo as Default>::default())),
+            create_boxed: || Box::new(<VistaZoneInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Neighbours",
+                name_hash: 53250673,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int16-Array",
                 rust_offset: offset_of!(VistaZoneInfo, neighbours),
             },
             FieldInfoData {
                 name: "Objects",
+                name_hash: 105488131,
                 flags: MemberInfoFlags::new(144),
                 field_type: "VistaZoneMeshInfo-Array",
                 rust_offset: offset_of!(VistaZoneInfo, objects),
@@ -466,6 +494,7 @@ impl TypeObject for VistaZoneInfo {
 
 pub static VISTAZONEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VistaZoneInfo-Array",
+    name_hash: 1223172376,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("VistaZoneInfo"),
@@ -474,24 +503,25 @@ pub static VISTAZONEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VistaZoneMeshInfo {
-    pub object: Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>,
+    pub object: Option<LockedTypeObject /* super::entity::ObjectBlueprint */>,
     pub transform: super::core::LinearTransform,
 }
 
 pub trait VistaZoneMeshInfoTrait: TypeObject {
-    fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
-    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn object(&self) -> &Option<LockedTypeObject /* super::entity::ObjectBlueprint */>;
+    fn object_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectBlueprint */>;
     fn transform(&self) -> &super::core::LinearTransform;
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl VistaZoneMeshInfoTrait for VistaZoneMeshInfo {
-    fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+    fn object(&self) -> &Option<LockedTypeObject /* super::entity::ObjectBlueprint */> {
         &self.object
     }
-    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+    fn object_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectBlueprint */> {
         &mut self.object
     }
     fn transform(&self) -> &super::core::LinearTransform {
@@ -504,21 +534,25 @@ impl VistaZoneMeshInfoTrait for VistaZoneMeshInfo {
 
 pub static VISTAZONEMESHINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VistaZoneMeshInfo",
+    name_hash: 3672083167,
     flags: MemberInfoFlags::new(73),
     module: "ZoneStreamer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VistaZoneMeshInfo as Default>::default())),
+            create_boxed: || Box::new(<VistaZoneMeshInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Object",
+                name_hash: 2866508144,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ObjectBlueprint",
                 rust_offset: offset_of!(VistaZoneMeshInfo, object),
             },
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(VistaZoneMeshInfo, transform),
@@ -550,6 +584,7 @@ impl TypeObject for VistaZoneMeshInfo {
 
 pub static VISTAZONEMESHINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VistaZoneMeshInfo-Array",
+    name_hash: 3408928747,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("VistaZoneMeshInfo"),
@@ -558,25 +593,26 @@ pub static VISTAZONEMESHINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerVistaEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub zone_infos: Vec<VistaZoneInfo>,
+    pub zone_infos: Vec<BoxedTypeObject /* VistaZoneInfo */>,
     pub control_entity: glacier_util::guid::Guid,
 }
 
 pub trait ZoneStreamerVistaEntityDataTrait: super::entity::EntityDataTrait {
-    fn zone_infos(&self) -> &Vec<VistaZoneInfo>;
-    fn zone_infos_mut(&mut self) -> &mut Vec<VistaZoneInfo>;
+    fn zone_infos(&self) -> &Vec<BoxedTypeObject /* VistaZoneInfo */>;
+    fn zone_infos_mut(&mut self) -> &mut Vec<BoxedTypeObject /* VistaZoneInfo */>;
     fn control_entity(&self) -> &glacier_util::guid::Guid;
     fn control_entity_mut(&mut self) -> &mut glacier_util::guid::Guid;
 }
 
 impl ZoneStreamerVistaEntityDataTrait for ZoneStreamerVistaEntityData {
-    fn zone_infos(&self) -> &Vec<VistaZoneInfo> {
+    fn zone_infos(&self) -> &Vec<BoxedTypeObject /* VistaZoneInfo */> {
         &self.zone_infos
     }
-    fn zone_infos_mut(&mut self) -> &mut Vec<VistaZoneInfo> {
+    fn zone_infos_mut(&mut self) -> &mut Vec<BoxedTypeObject /* VistaZoneInfo */> {
         &mut self.zone_infos
     }
     fn control_entity(&self) -> &glacier_util::guid::Guid {
@@ -610,22 +646,27 @@ impl super::core::DataContainerTrait for ZoneStreamerVistaEntityData {
 
 pub static ZONESTREAMERVISTAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerVistaEntityData",
+    name_hash: 3257529250,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerVistaEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerVistaEntityData as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerVistaEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ZoneInfos",
+                name_hash: 779639654,
                 flags: MemberInfoFlags::new(144),
                 field_type: "VistaZoneInfo-Array",
                 rust_offset: offset_of!(ZoneStreamerVistaEntityData, zone_infos),
             },
             FieldInfoData {
                 name: "ControlEntity",
+                name_hash: 1837063353,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(ZoneStreamerVistaEntityData, control_entity),
@@ -657,6 +698,7 @@ impl TypeObject for ZoneStreamerVistaEntityData {
 
 pub static ZONESTREAMERVISTAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerVistaEntityData-Array",
+    name_hash: 321458710,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerVistaEntityData"),
@@ -665,7 +707,8 @@ pub static ZONESTREAMERVISTAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerSubWorldRod {
     pub _glacier_base: super::entity::SubWorldReferenceObjectData,
 }
@@ -695,10 +738,10 @@ impl super::entity::SubWorldReferenceObjectDataTrait for ZoneStreamerSubWorldRod
     fn bundle_heap_mut(&mut self) -> &mut super::entity::BundleHeapInfo {
         self._glacier_base.bundle_heap_mut()
     }
-    fn inclusion_settings(&self) -> &Option<Arc<Mutex<dyn super::entity::SubWorldInclusionSettingsTrait>>> {
+    fn inclusion_settings(&self) -> &Option<LockedTypeObject /* super::entity::SubWorldInclusionSettings */> {
         self._glacier_base.inclusion_settings()
     }
-    fn inclusion_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SubWorldInclusionSettingsTrait>>> {
+    fn inclusion_settings_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::SubWorldInclusionSettings */> {
         self._glacier_base.inclusion_settings_mut()
     }
     fn auto_load(&self) -> &bool {
@@ -767,10 +810,10 @@ impl super::entity::SubWorldReferenceObjectDataTrait for ZoneStreamerSubWorldRod
     fn use_peer_filtering_mut(&mut self) -> &mut bool {
         self._glacier_base.use_peer_filtering_mut()
     }
-    fn parents(&self) -> &Vec<super::entity::SharedBundleReference> {
+    fn parents(&self) -> &Vec<BoxedTypeObject /* super::entity::SharedBundleReference */> {
         self._glacier_base.parents()
     }
-    fn parents_mut(&mut self) -> &mut Vec<super::entity::SharedBundleReference> {
+    fn parents_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::entity::SharedBundleReference */> {
         self._glacier_base.parents_mut()
     }
 }
@@ -782,16 +825,16 @@ impl super::entity::ReferenceObjectDataTrait for ZoneStreamerSubWorldRod {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
@@ -858,12 +901,15 @@ impl super::core::DataContainerTrait for ZoneStreamerSubWorldRod {
 
 pub static ZONESTREAMERSUBWORLDROD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerSubWorldRod",
+    name_hash: 955163151,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SUBWORLDREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerSubWorldRod, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerSubWorldRod as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerSubWorldRod as Default>::default()),
         },
         fields: &[
         ],
@@ -893,6 +939,7 @@ impl TypeObject for ZoneStreamerSubWorldRod {
 
 pub static ZONESTREAMERSUBWORLDROD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerSubWorldRod-Array",
+    name_hash: 742465211,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerSubWorldRod"),
@@ -901,7 +948,8 @@ pub static ZONESTREAMERSUBWORLDROD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerEntityData {
     pub _glacier_base: super::entity::SpatialEntityData,
     pub client_side_only: bool,
@@ -971,28 +1019,34 @@ impl super::core::DataContainerTrait for ZoneStreamerEntityData {
 
 pub static ZONESTREAMERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntityData",
+    name_hash: 2392254299,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerEntityData as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ClientSideOnly",
+                name_hash: 3628043763,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerEntityData, client_side_only),
             },
             FieldInfoData {
                 name: "EnableDefaultFocus",
+                name_hash: 4014959939,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerEntityData, enable_default_focus),
             },
             FieldInfoData {
                 name: "Info",
+                name_hash: 2088908747,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ZoneStreamerInfo",
                 rust_offset: offset_of!(ZoneStreamerEntityData, info),
@@ -1024,6 +1078,7 @@ impl TypeObject for ZoneStreamerEntityData {
 
 pub static ZONESTREAMERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntityData-Array",
+    name_hash: 1977298543,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerEntityData"),
@@ -1032,11 +1087,12 @@ pub static ZONESTREAMERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerInfo {
     pub grid_resource: glacier_reflect::builtin::ResourceRef,
     pub sub_level_path: String,
-    pub zone_infos: Vec<ZoneStreamerZoneInfo>,
+    pub zone_infos: Vec<BoxedTypeObject /* ZoneStreamerZoneInfo */>,
     pub bundle_parents: Vec<i16>,
     pub bundle_names: Vec<String>,
 }
@@ -1046,8 +1102,8 @@ pub trait ZoneStreamerInfoTrait: TypeObject {
     fn grid_resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
     fn sub_level_path(&self) -> &String;
     fn sub_level_path_mut(&mut self) -> &mut String;
-    fn zone_infos(&self) -> &Vec<ZoneStreamerZoneInfo>;
-    fn zone_infos_mut(&mut self) -> &mut Vec<ZoneStreamerZoneInfo>;
+    fn zone_infos(&self) -> &Vec<BoxedTypeObject /* ZoneStreamerZoneInfo */>;
+    fn zone_infos_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ZoneStreamerZoneInfo */>;
     fn bundle_parents(&self) -> &Vec<i16>;
     fn bundle_parents_mut(&mut self) -> &mut Vec<i16>;
     fn bundle_names(&self) -> &Vec<String>;
@@ -1067,10 +1123,10 @@ impl ZoneStreamerInfoTrait for ZoneStreamerInfo {
     fn sub_level_path_mut(&mut self) -> &mut String {
         &mut self.sub_level_path
     }
-    fn zone_infos(&self) -> &Vec<ZoneStreamerZoneInfo> {
+    fn zone_infos(&self) -> &Vec<BoxedTypeObject /* ZoneStreamerZoneInfo */> {
         &self.zone_infos
     }
-    fn zone_infos_mut(&mut self) -> &mut Vec<ZoneStreamerZoneInfo> {
+    fn zone_infos_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ZoneStreamerZoneInfo */> {
         &mut self.zone_infos
     }
     fn bundle_parents(&self) -> &Vec<i16> {
@@ -1089,39 +1145,46 @@ impl ZoneStreamerInfoTrait for ZoneStreamerInfo {
 
 pub static ZONESTREAMERINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerInfo",
+    name_hash: 442861694,
     flags: MemberInfoFlags::new(73),
     module: "ZoneStreamer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerInfo as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "GridResource",
+                name_hash: 1502537591,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(ZoneStreamerInfo, grid_resource),
             },
             FieldInfoData {
                 name: "SubLevelPath",
+                name_hash: 1494405850,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ZoneStreamerInfo, sub_level_path),
             },
             FieldInfoData {
                 name: "ZoneInfos",
+                name_hash: 779639654,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ZoneStreamerZoneInfo-Array",
                 rust_offset: offset_of!(ZoneStreamerInfo, zone_infos),
             },
             FieldInfoData {
                 name: "BundleParents",
+                name_hash: 1850034782,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int16-Array",
                 rust_offset: offset_of!(ZoneStreamerInfo, bundle_parents),
             },
             FieldInfoData {
                 name: "BundleNames",
+                name_hash: 2333280517,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(ZoneStreamerInfo, bundle_names),
@@ -1153,6 +1216,7 @@ impl TypeObject for ZoneStreamerInfo {
 
 pub static ZONESTREAMERINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerInfo-Array",
+    name_hash: 4235381066,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerInfo"),
@@ -1161,7 +1225,8 @@ pub static ZONESTREAMERINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerZoneInfo {
     pub neighbours: Vec<i16>,
 }
@@ -1182,15 +1247,18 @@ impl ZoneStreamerZoneInfoTrait for ZoneStreamerZoneInfo {
 
 pub static ZONESTREAMERZONEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneInfo",
+    name_hash: 4010846208,
     flags: MemberInfoFlags::new(73),
     module: "ZoneStreamer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerZoneInfo as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerZoneInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Neighbours",
+                name_hash: 53250673,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int16-Array",
                 rust_offset: offset_of!(ZoneStreamerZoneInfo, neighbours),
@@ -1222,6 +1290,7 @@ impl TypeObject for ZoneStreamerZoneInfo {
 
 pub static ZONESTREAMERZONEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneInfo-Array",
+    name_hash: 2542620212,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerZoneInfo"),
@@ -1244,6 +1313,7 @@ pub enum ZoneStreamerRasterNodeUsage {
 
 pub static ZONESTREAMERRASTERNODEUSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerRasterNodeUsage",
+    name_hash: 3651274966,
     flags: MemberInfoFlags::new(49429),
     module: "ZoneStreamer",
     data: TypeInfoData::Enum,
@@ -1272,6 +1342,7 @@ impl TypeObject for ZoneStreamerRasterNodeUsage {
 
 pub static ZONESTREAMERRASTERNODEUSAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerRasterNodeUsage-Array",
+    name_hash: 2435001954,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerRasterNodeUsage"),
@@ -1280,7 +1351,8 @@ pub static ZONESTREAMERRASTERNODEUSAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerSettings {
     pub _glacier_base: super::core::DataContainer,
     pub test_zone_heights: bool,
@@ -1467,124 +1539,146 @@ impl super::core::DataContainerTrait for ZoneStreamerSettings {
 
 pub static ZONESTREAMERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerSettings",
+    name_hash: 2922374965,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerSettings as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TestZoneHeights",
+                name_hash: 1773128001,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, test_zone_heights),
             },
             FieldInfoData {
                 name: "PinVisitedZones",
+                name_hash: 6954415,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, pin_visited_zones),
             },
             FieldInfoData {
                 name: "PauseAll",
+                name_hash: 3633190422,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, pause_all),
             },
             FieldInfoData {
                 name: "DrawStats",
+                name_hash: 2413142628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw_stats),
             },
             FieldInfoData {
                 name: "Draw3dDebug",
+                name_hash: 2192425635,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw3d_debug),
             },
             FieldInfoData {
                 name: "Draw3dNameScale",
+                name_hash: 3601377133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw3d_name_scale),
             },
             FieldInfoData {
                 name: "Draw2dDebug",
+                name_hash: 986193826,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_debug),
             },
             FieldInfoData {
                 name: "Draw2dScale",
+                name_hash: 956911307,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_scale),
             },
             FieldInfoData {
                 name: "Draw2dZones",
+                name_hash: 964932734,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_zones),
             },
             FieldInfoData {
                 name: "Draw2dRotate",
+                name_hash: 1484115370,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_rotate),
             },
             FieldInfoData {
                 name: "Draw2dZoneStates",
+                name_hash: 1688952553,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_zone_states),
             },
             FieldInfoData {
                 name: "Draw2dCentroids",
+                name_hash: 3854046828,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_centroids),
             },
             FieldInfoData {
                 name: "Draw2dPointSize",
+                name_hash: 843156954,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_point_size),
             },
             FieldInfoData {
                 name: "Draw2dBgAlpha",
+                name_hash: 636207266,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_bg_alpha),
             },
             FieldInfoData {
                 name: "Draw2dNames",
+                name_hash: 988841831,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw2d_names),
             },
             FieldInfoData {
                 name: "DrawTerrainTiles",
+                name_hash: 2365395061,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw_terrain_tiles),
             },
             FieldInfoData {
                 name: "DrawTerrainTileLoadedOnly",
+                name_hash: 1122817141,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw_terrain_tile_loaded_only),
             },
             FieldInfoData {
                 name: "DrawTerrainTileToDraw",
+                name_hash: 1285380029,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ZoneStreamerSettings, draw_terrain_tile_to_draw),
             },
             FieldInfoData {
                 name: "SelectedStreamer",
+                name_hash: 3247159111,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ZoneStreamerSettings, selected_streamer),
@@ -1616,6 +1710,7 @@ impl TypeObject for ZoneStreamerSettings {
 
 pub static ZONESTREAMERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerSettings-Array",
+    name_hash: 1596516225,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerSettings"),
@@ -1624,7 +1719,8 @@ pub static ZONESTREAMERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerFocusEntityData {
     pub _glacier_base: ZoneStreamerLogicEntityData,
     pub focus_point: super::core::LinearTransform,
@@ -1685,22 +1781,27 @@ impl super::core::DataContainerTrait for ZoneStreamerFocusEntityData {
 
 pub static ZONESTREAMERFOCUSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerFocusEntityData",
+    name_hash: 2382181911,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerFocusEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerFocusEntityData as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerFocusEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FocusPoint",
+                name_hash: 2983182053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(ZoneStreamerFocusEntityData, focus_point),
             },
             FieldInfoData {
                 name: "AutoEnabled",
+                name_hash: 3489342063,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerFocusEntityData, auto_enabled),
@@ -1732,6 +1833,7 @@ impl TypeObject for ZoneStreamerFocusEntityData {
 
 pub static ZONESTREAMERFOCUSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerFocusEntityData-Array",
+    name_hash: 3422690979,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerFocusEntityData"),
@@ -1740,7 +1842,8 @@ pub static ZONESTREAMERFOCUSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerZoneProxyEntityData {
     pub _glacier_base: ZoneStreamerLogicEntityData,
     pub zone_and_region_names: Vec<String>,
@@ -1792,16 +1895,20 @@ impl super::core::DataContainerTrait for ZoneStreamerZoneProxyEntityData {
 
 pub static ZONESTREAMERZONEPROXYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneProxyEntityData",
+    name_hash: 495050857,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerZoneProxyEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerZoneProxyEntityData as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerZoneProxyEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ZoneAndRegionNames",
+                name_hash: 3820785404,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(ZoneStreamerZoneProxyEntityData, zone_and_region_names),
@@ -1833,6 +1940,7 @@ impl TypeObject for ZoneStreamerZoneProxyEntityData {
 
 pub static ZONESTREAMERZONEPROXYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneProxyEntityData-Array",
+    name_hash: 1172174685,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerZoneProxyEntityData"),
@@ -1841,7 +1949,8 @@ pub static ZONESTREAMERZONEPROXYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerTransitionEntityData {
     pub _glacier_base: ZoneStreamerLogicEntityData,
     pub auto_begin: bool,
@@ -1893,16 +2002,20 @@ impl super::core::DataContainerTrait for ZoneStreamerTransitionEntityData {
 
 pub static ZONESTREAMERTRANSITIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerTransitionEntityData",
+    name_hash: 3137346772,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerTransitionEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerTransitionEntityData as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerTransitionEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AutoBegin",
+                name_hash: 775570125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerTransitionEntityData, auto_begin),
@@ -1934,6 +2047,7 @@ impl TypeObject for ZoneStreamerTransitionEntityData {
 
 pub static ZONESTREAMERTRANSITIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerTransitionEntityData-Array",
+    name_hash: 1938278752,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerTransitionEntityData"),
@@ -1942,7 +2056,8 @@ pub static ZONESTREAMERTRANSITIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerControlEntityData {
     pub _glacier_base: ZoneStreamerLogicEntityData,
     pub start_paused: bool,
@@ -1994,16 +2109,20 @@ impl super::core::DataContainerTrait for ZoneStreamerControlEntityData {
 
 pub static ZONESTREAMERCONTROLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerControlEntityData",
+    name_hash: 2593494748,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerControlEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerControlEntityData as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerControlEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StartPaused",
+                name_hash: 735997331,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ZoneStreamerControlEntityData, start_paused),
@@ -2035,6 +2154,7 @@ impl TypeObject for ZoneStreamerControlEntityData {
 
 pub static ZONESTREAMERCONTROLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerControlEntityData-Array",
+    name_hash: 1917853544,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerControlEntityData"),
@@ -2043,7 +2163,8 @@ pub static ZONESTREAMERCONTROLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerLogicEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -2086,16 +2207,20 @@ impl super::core::DataContainerTrait for ZoneStreamerLogicEntityData {
 
 pub static ZONESTREAMERLOGICENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerLogicEntityData",
+    name_hash: 1931611669,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerLogicEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerLogicEntityData as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerLogicEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(ZoneStreamerLogicEntityData, realm),
@@ -2127,6 +2252,7 @@ impl TypeObject for ZoneStreamerLogicEntityData {
 
 pub static ZONESTREAMERLOGICENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerLogicEntityData-Array",
+    name_hash: 2234547617,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerLogicEntityData"),
@@ -2135,7 +2261,8 @@ pub static ZONESTREAMERLOGICENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerZoneProxyEntity {
     pub _glacier_base: ZoneStreamerLogicEntity,
 }
@@ -2157,12 +2284,15 @@ impl super::entity::EntityBusPeerTrait for ZoneStreamerZoneProxyEntity {
 
 pub static ZONESTREAMERZONEPROXYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneProxyEntity",
+    name_hash: 1983147161,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerZoneProxyEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerZoneProxyEntity as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerZoneProxyEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2192,6 +2322,7 @@ impl TypeObject for ZoneStreamerZoneProxyEntity {
 
 pub static ZONESTREAMERZONEPROXYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerZoneProxyEntity-Array",
+    name_hash: 2389666349,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerZoneProxyEntity"),
@@ -2200,7 +2331,8 @@ pub static ZONESTREAMERZONEPROXYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerVistaEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2219,12 +2351,15 @@ impl super::entity::EntityBusPeerTrait for ZoneStreamerVistaEntity {
 
 pub static ZONESTREAMERVISTAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerVistaEntity",
+    name_hash: 864279442,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerVistaEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerVistaEntity as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerVistaEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2254,6 +2389,7 @@ impl TypeObject for ZoneStreamerVistaEntity {
 
 pub static ZONESTREAMERVISTAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerVistaEntity-Array",
+    name_hash: 3870827174,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerVistaEntity"),
@@ -2262,7 +2398,8 @@ pub static ZONESTREAMERVISTAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerTransitionEntity {
     pub _glacier_base: ZoneStreamerLogicEntity,
 }
@@ -2284,12 +2421,15 @@ impl super::entity::EntityBusPeerTrait for ZoneStreamerTransitionEntity {
 
 pub static ZONESTREAMERTRANSITIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerTransitionEntity",
+    name_hash: 3357970916,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerTransitionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerTransitionEntity as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerTransitionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2319,6 +2459,7 @@ impl TypeObject for ZoneStreamerTransitionEntity {
 
 pub static ZONESTREAMERTRANSITIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerTransitionEntity-Array",
+    name_hash: 3564541392,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerTransitionEntity"),
@@ -2327,7 +2468,8 @@ pub static ZONESTREAMERTRANSITIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerNotificationEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2346,12 +2488,15 @@ impl super::entity::EntityBusPeerTrait for ZoneStreamerNotificationEntity {
 
 pub static ZONESTREAMERNOTIFICATIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerNotificationEntity",
+    name_hash: 3393849670,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerNotificationEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerNotificationEntity as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerNotificationEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2381,6 +2526,7 @@ impl TypeObject for ZoneStreamerNotificationEntity {
 
 pub static ZONESTREAMERNOTIFICATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerNotificationEntity-Array",
+    name_hash: 223790834,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerNotificationEntity"),
@@ -2389,7 +2535,8 @@ pub static ZONESTREAMERNOTIFICATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerLogicEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2408,12 +2555,15 @@ impl super::entity::EntityBusPeerTrait for ZoneStreamerLogicEntity {
 
 pub static ZONESTREAMERLOGICENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerLogicEntity",
+    name_hash: 3841837797,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerLogicEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerLogicEntity as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerLogicEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2443,6 +2593,7 @@ impl TypeObject for ZoneStreamerLogicEntity {
 
 pub static ZONESTREAMERLOGICENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerLogicEntity-Array",
+    name_hash: 2499810257,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerLogicEntity"),
@@ -2451,7 +2602,8 @@ pub static ZONESTREAMERLOGICENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerGrid {
 }
 
@@ -2463,12 +2615,15 @@ impl ZoneStreamerGridTrait for ZoneStreamerGrid {
 
 pub static ZONESTREAMERGRID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerGrid",
+    name_hash: 442912008,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerGrid as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerGrid as Default>::default()),
         },
         fields: &[
         ],
@@ -2498,6 +2653,7 @@ impl TypeObject for ZoneStreamerGrid {
 
 pub static ZONESTREAMERGRID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerGrid-Array",
+    name_hash: 3125415740,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerGrid"),
@@ -2506,7 +2662,8 @@ pub static ZONESTREAMERGRID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerEntityBase {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2525,12 +2682,15 @@ impl super::entity::EntityBusPeerTrait for ZoneStreamerEntityBase {
 
 pub static ZONESTREAMERENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntityBase",
+    name_hash: 2391899454,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerEntityBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerEntityBase as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerEntityBase as Default>::default()),
         },
         fields: &[
         ],
@@ -2560,6 +2720,7 @@ impl TypeObject for ZoneStreamerEntityBase {
 
 pub static ZONESTREAMERENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntityBase-Array",
+    name_hash: 3955461514,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerEntityBase"),
@@ -2568,7 +2729,8 @@ pub static ZONESTREAMERENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerEntity {
     pub _glacier_base: ZoneStreamerEntityBase,
 }
@@ -2590,12 +2752,15 @@ impl super::entity::EntityBusPeerTrait for ZoneStreamerEntity {
 
 pub static ZONESTREAMERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntity",
+    name_hash: 1092611627,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerEntity as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2625,6 +2790,7 @@ impl TypeObject for ZoneStreamerEntity {
 
 pub static ZONESTREAMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerEntity-Array",
+    name_hash: 698846623,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerEntity"),
@@ -2633,7 +2799,8 @@ pub static ZONESTREAMERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerControlEntity {
     pub _glacier_base: ZoneStreamerLogicEntity,
 }
@@ -2655,12 +2822,15 @@ impl super::entity::EntityBusPeerTrait for ZoneStreamerControlEntity {
 
 pub static ZONESTREAMERCONTROLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerControlEntity",
+    name_hash: 3846195180,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerControlEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerControlEntity as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerControlEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2690,6 +2860,7 @@ impl TypeObject for ZoneStreamerControlEntity {
 
 pub static ZONESTREAMERCONTROLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerControlEntity-Array",
+    name_hash: 3389007832,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerControlEntity"),
@@ -2698,7 +2869,8 @@ pub static ZONESTREAMERCONTROLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RealmProxy {
     pub _glacier_base: ZoneStreamerEntityBase,
 }
@@ -2720,12 +2892,15 @@ impl super::entity::EntityBusPeerTrait for RealmProxy {
 
 pub static REALMPROXY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RealmProxy",
+    name_hash: 3096907102,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(RealmProxy, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RealmProxy as Default>::default())),
+            create_boxed: || Box::new(<RealmProxy as Default>::default()),
         },
         fields: &[
         ],
@@ -2755,6 +2930,7 @@ impl TypeObject for RealmProxy {
 
 pub static REALMPROXY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RealmProxy-Array",
+    name_hash: 3160993514,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("RealmProxy"),
@@ -2763,7 +2939,8 @@ pub static REALMPROXY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneStreamerFocusEntity {
     pub _glacier_base: ZoneStreamerLogicEntity,
 }
@@ -2785,12 +2962,15 @@ impl super::entity::EntityBusPeerTrait for ZoneStreamerFocusEntity {
 
 pub static ZONESTREAMERFOCUSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerFocusEntity",
+    name_hash: 1646199527,
     flags: MemberInfoFlags::new(101),
     module: "ZoneStreamer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ZONESTREAMERLOGICENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneStreamerFocusEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneStreamerFocusEntity as Default>::default())),
+            create_boxed: || Box::new(<ZoneStreamerFocusEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2820,6 +3000,7 @@ impl TypeObject for ZoneStreamerFocusEntity {
 
 pub static ZONESTREAMERFOCUSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneStreamerFocusEntity-Array",
+    name_hash: 4258759891,
     flags: MemberInfoFlags::new(145),
     module: "ZoneStreamer",
     data: TypeInfoData::Array("ZoneStreamerFocusEntity"),

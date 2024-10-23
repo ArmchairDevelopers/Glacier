@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -49,10 +50,11 @@ pub(crate) fn register_effect_types(registry: &mut TypeRegistry) {
     registry.register_type(EFFECTENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VisualEnvironmentEffectEntityData {
     pub _glacier_base: super::entity::ChildEffectEntityData,
-    pub visual_environment: Option<Arc<Mutex<dyn super::world_sim::VisualEnvironmentBlueprintTrait>>>,
+    pub visual_environment: Option<LockedTypeObject /* super::world_sim::VisualEnvironmentBlueprint */>,
     pub lifetime: f32,
     pub lifetime_curve: super::core::Vec4,
     pub sample_on_start_only: bool,
@@ -63,8 +65,8 @@ pub struct VisualEnvironmentEffectEntityData {
 }
 
 pub trait VisualEnvironmentEffectEntityDataTrait: super::entity::ChildEffectEntityDataTrait {
-    fn visual_environment(&self) -> &Option<Arc<Mutex<dyn super::world_sim::VisualEnvironmentBlueprintTrait>>>;
-    fn visual_environment_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_sim::VisualEnvironmentBlueprintTrait>>>;
+    fn visual_environment(&self) -> &Option<LockedTypeObject /* super::world_sim::VisualEnvironmentBlueprint */>;
+    fn visual_environment_mut(&mut self) -> &mut Option<LockedTypeObject /* super::world_sim::VisualEnvironmentBlueprint */>;
     fn lifetime(&self) -> &f32;
     fn lifetime_mut(&mut self) -> &mut f32;
     fn lifetime_curve(&self) -> &super::core::Vec4;
@@ -82,10 +84,10 @@ pub trait VisualEnvironmentEffectEntityDataTrait: super::entity::ChildEffectEnti
 }
 
 impl VisualEnvironmentEffectEntityDataTrait for VisualEnvironmentEffectEntityData {
-    fn visual_environment(&self) -> &Option<Arc<Mutex<dyn super::world_sim::VisualEnvironmentBlueprintTrait>>> {
+    fn visual_environment(&self) -> &Option<LockedTypeObject /* super::world_sim::VisualEnvironmentBlueprint */> {
         &self.visual_environment
     }
-    fn visual_environment_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_sim::VisualEnvironmentBlueprintTrait>>> {
+    fn visual_environment_mut(&mut self) -> &mut Option<LockedTypeObject /* super::world_sim::VisualEnvironmentBlueprint */> {
         &mut self.visual_environment
     }
     fn lifetime(&self) -> &f32 {
@@ -133,10 +135,10 @@ impl VisualEnvironmentEffectEntityDataTrait for VisualEnvironmentEffectEntityDat
 }
 
 impl super::entity::ChildEffectEntityDataTrait for VisualEnvironmentEffectEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn start_delay(&self) -> &f32 {
@@ -203,58 +205,69 @@ impl super::core::DataContainerTrait for VisualEnvironmentEffectEntityData {
 
 pub static VISUALENVIRONMENTEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualEnvironmentEffectEntityData",
+    name_hash: 1152441208,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::CHILDEFFECTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VisualEnvironmentEffectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VisualEnvironmentEffectEntityData as Default>::default())),
+            create_boxed: || Box::new(<VisualEnvironmentEffectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "VisualEnvironment",
+                name_hash: 1724714788,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VisualEnvironmentBlueprint",
                 rust_offset: offset_of!(VisualEnvironmentEffectEntityData, visual_environment),
             },
             FieldInfoData {
                 name: "Lifetime",
+                name_hash: 2450521238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualEnvironmentEffectEntityData, lifetime),
             },
             FieldInfoData {
                 name: "LifetimeCurve",
+                name_hash: 1623248993,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(VisualEnvironmentEffectEntityData, lifetime_curve),
             },
             FieldInfoData {
                 name: "SampleOnStartOnly",
+                name_hash: 3530277558,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualEnvironmentEffectEntityData, sample_on_start_only),
             },
             FieldInfoData {
                 name: "CullAngleCurve",
+                name_hash: 3589421957,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(VisualEnvironmentEffectEntityData, cull_angle_curve),
             },
             FieldInfoData {
                 name: "CullDistance",
+                name_hash: 1000432400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(VisualEnvironmentEffectEntityData, cull_distance),
             },
             FieldInfoData {
                 name: "CullDistanceCurve",
+                name_hash: 3239208743,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(VisualEnvironmentEffectEntityData, cull_distance_curve),
             },
             FieldInfoData {
                 name: "HideOccluded",
+                name_hash: 4087602902,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualEnvironmentEffectEntityData, hide_occluded),
@@ -286,6 +299,7 @@ impl TypeObject for VisualEnvironmentEffectEntityData {
 
 pub static VISUALENVIRONMENTEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualEnvironmentEffectEntityData-Array",
+    name_hash: 3653530956,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("VisualEnvironmentEffectEntityData"),
@@ -294,7 +308,8 @@ pub static VISUALENVIRONMENTEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SoundDynamicState {
     pub transform: super::core::LinearTransform,
     pub state: SoundState,
@@ -342,33 +357,39 @@ impl SoundDynamicStateTrait for SoundDynamicState {
 
 pub static SOUNDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundDynamicState",
+    name_hash: 2103844868,
     flags: MemberInfoFlags::new(73),
     module: "Effect",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SoundDynamicState as Default>::default())),
+            create_boxed: || Box::new(<SoundDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(SoundDynamicState, transform),
             },
             FieldInfoData {
                 name: "State",
+                name_hash: 230748402,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundState",
                 rust_offset: offset_of!(SoundDynamicState, state),
             },
             FieldInfoData {
                 name: "Params",
+                name_hash: 3371566681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectParams",
                 rust_offset: offset_of!(SoundDynamicState, params),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(SoundDynamicState, field_flag_changed0),
@@ -400,6 +421,7 @@ impl TypeObject for SoundDynamicState {
 
 pub static SOUNDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundDynamicState-Array",
+    name_hash: 1063023664,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("SoundDynamicState"),
@@ -421,6 +443,7 @@ pub enum SoundState {
 
 pub static SOUNDSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundState",
+    name_hash: 123875281,
     flags: MemberInfoFlags::new(49429),
     module: "Effect",
     data: TypeInfoData::Enum,
@@ -449,6 +472,7 @@ impl TypeObject for SoundState {
 
 pub static SOUNDSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundState-Array",
+    name_hash: 485442021,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("SoundState"),
@@ -457,9 +481,10 @@ pub static SOUNDSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SoundStaticState {
-    pub asset: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
+    pub asset: Option<LockedTypeObject /* super::audio::SoundAsset */>,
     pub is_local_player: bool,
     pub is_first_person: bool,
     pub group_guid: glacier_util::guid::Guid,
@@ -469,8 +494,8 @@ pub struct SoundStaticState {
 }
 
 pub trait SoundStaticStateTrait: TypeObject {
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn asset(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
     fn is_local_player(&self) -> &bool;
     fn is_local_player_mut(&mut self) -> &mut bool;
     fn is_first_person(&self) -> &bool;
@@ -486,10 +511,10 @@ pub trait SoundStaticStateTrait: TypeObject {
 }
 
 impl SoundStaticStateTrait for SoundStaticState {
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.asset
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.asset
     }
     fn is_local_player(&self) -> &bool {
@@ -532,51 +557,60 @@ impl SoundStaticStateTrait for SoundStaticState {
 
 pub static SOUNDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundStaticState",
+    name_hash: 181574537,
     flags: MemberInfoFlags::new(73),
     module: "Effect",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SoundStaticState as Default>::default())),
+            create_boxed: || Box::new(<SoundStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Asset",
+                name_hash: 205976053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(SoundStaticState, asset),
             },
             FieldInfoData {
                 name: "IsLocalPlayer",
+                name_hash: 4130238145,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SoundStaticState, is_local_player),
             },
             FieldInfoData {
                 name: "IsFirstPerson",
+                name_hash: 824639024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SoundStaticState, is_first_person),
             },
             FieldInfoData {
                 name: "GroupGuid",
+                name_hash: 3178497637,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(SoundStaticState, group_guid),
             },
             FieldInfoData {
                 name: "MaxInstanceCountInGroup",
+                name_hash: 2852823779,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(SoundStaticState, max_instance_count_in_group),
             },
             FieldInfoData {
                 name: "KillOnMaxCount",
+                name_hash: 3200869329,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SoundStaticState, kill_on_max_count),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(SoundStaticState, field_flag_changed0),
@@ -608,6 +642,7 @@ impl TypeObject for SoundStaticState {
 
 pub static SOUNDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundStaticState-Array",
+    name_hash: 3273789757,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("SoundStaticState"),
@@ -616,7 +651,8 @@ pub static SOUNDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocationEffectEntityData {
     pub _glacier_base: super::entity::ChildEffectEntityData,
     pub location: LocationType,
@@ -646,10 +682,10 @@ impl LocationEffectEntityDataTrait for LocationEffectEntityData {
 }
 
 impl super::entity::ChildEffectEntityDataTrait for LocationEffectEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn start_delay(&self) -> &f32 {
@@ -716,22 +752,27 @@ impl super::core::DataContainerTrait for LocationEffectEntityData {
 
 pub static LOCATIONEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocationEffectEntityData",
+    name_hash: 4107865508,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::CHILDEFFECTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LocationEffectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocationEffectEntityData as Default>::default())),
+            create_boxed: || Box::new(<LocationEffectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Location",
+                name_hash: 1975932280,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocationType",
                 rust_offset: offset_of!(LocationEffectEntityData, location),
             },
             FieldInfoData {
                 name: "CtrlPointIndex",
+                name_hash: 3944416990,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(LocationEffectEntityData, ctrl_point_index),
@@ -763,6 +804,7 @@ impl TypeObject for LocationEffectEntityData {
 
 pub static LOCATIONEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocationEffectEntityData-Array",
+    name_hash: 1045094672,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("LocationEffectEntityData"),
@@ -784,6 +826,7 @@ pub enum LocationType {
 
 pub static LOCATIONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocationType",
+    name_hash: 4080747712,
     flags: MemberInfoFlags::new(49429),
     module: "Effect",
     data: TypeInfoData::Enum,
@@ -812,6 +855,7 @@ impl TypeObject for LocationType {
 
 pub static LOCATIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocationType-Array",
+    name_hash: 3568204660,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("LocationType"),
@@ -820,10 +864,11 @@ pub static LOCATIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LightEffectEntityData {
     pub _glacier_base: super::entity::ChildEffectEntityData,
-    pub light: Option<Arc<Mutex<dyn super::world_sim::LocalLightEntityDataTrait>>>,
+    pub light: Option<LockedTypeObject /* super::world_sim::LocalLightEntityData */>,
     pub lifetime: f32,
     pub looping: bool,
     pub random_intensity_freq: f32,
@@ -839,8 +884,8 @@ pub struct LightEffectEntityData {
 }
 
 pub trait LightEffectEntityDataTrait: super::entity::ChildEffectEntityDataTrait {
-    fn light(&self) -> &Option<Arc<Mutex<dyn super::world_sim::LocalLightEntityDataTrait>>>;
-    fn light_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_sim::LocalLightEntityDataTrait>>>;
+    fn light(&self) -> &Option<LockedTypeObject /* super::world_sim::LocalLightEntityData */>;
+    fn light_mut(&mut self) -> &mut Option<LockedTypeObject /* super::world_sim::LocalLightEntityData */>;
     fn lifetime(&self) -> &f32;
     fn lifetime_mut(&mut self) -> &mut f32;
     fn looping(&self) -> &bool;
@@ -868,10 +913,10 @@ pub trait LightEffectEntityDataTrait: super::entity::ChildEffectEntityDataTrait 
 }
 
 impl LightEffectEntityDataTrait for LightEffectEntityData {
-    fn light(&self) -> &Option<Arc<Mutex<dyn super::world_sim::LocalLightEntityDataTrait>>> {
+    fn light(&self) -> &Option<LockedTypeObject /* super::world_sim::LocalLightEntityData */> {
         &self.light
     }
-    fn light_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::world_sim::LocalLightEntityDataTrait>>> {
+    fn light_mut(&mut self) -> &mut Option<LockedTypeObject /* super::world_sim::LocalLightEntityData */> {
         &mut self.light
     }
     fn lifetime(&self) -> &f32 {
@@ -949,10 +994,10 @@ impl LightEffectEntityDataTrait for LightEffectEntityData {
 }
 
 impl super::entity::ChildEffectEntityDataTrait for LightEffectEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn start_delay(&self) -> &f32 {
@@ -1019,88 +1064,104 @@ impl super::core::DataContainerTrait for LightEffectEntityData {
 
 pub static LIGHTEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightEffectEntityData",
+    name_hash: 2093116551,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::CHILDEFFECTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LightEffectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LightEffectEntityData as Default>::default())),
+            create_boxed: || Box::new(<LightEffectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Light",
+                name_hash: 217821467,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalLightEntityData",
                 rust_offset: offset_of!(LightEffectEntityData, light),
             },
             FieldInfoData {
                 name: "Lifetime",
+                name_hash: 2450521238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LightEffectEntityData, lifetime),
             },
             FieldInfoData {
                 name: "Looping",
+                name_hash: 1366646169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LightEffectEntityData, looping),
             },
             FieldInfoData {
                 name: "RandomIntensityFreq",
+                name_hash: 1094292689,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LightEffectEntityData, random_intensity_freq),
             },
             FieldInfoData {
                 name: "SpawnProbability",
+                name_hash: 2017232915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(LightEffectEntityData, spawn_probability),
             },
             FieldInfoData {
                 name: "LocalPlayerOnly",
+                name_hash: 4035338447,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LightEffectEntityData, local_player_only),
             },
             FieldInfoData {
                 name: "IntensityMultiplier",
+                name_hash: 2261365857,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LightEffectEntityData, intensity_multiplier),
             },
             FieldInfoData {
                 name: "TubeWidth",
+                name_hash: 2425078821,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LightEffectEntityData, tube_width),
             },
             FieldInfoData {
                 name: "RandomIntensityMin",
+                name_hash: 1074368347,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LightEffectEntityData, random_intensity_min),
             },
             FieldInfoData {
                 name: "RandomIntensityMax",
+                name_hash: 1074368581,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LightEffectEntityData, random_intensity_max),
             },
             FieldInfoData {
                 name: "IntensityCurve",
+                name_hash: 256417757,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(LightEffectEntityData, intensity_curve),
             },
             FieldInfoData {
                 name: "IntensityMin",
+                name_hash: 67275904,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LightEffectEntityData, intensity_min),
             },
             FieldInfoData {
                 name: "IntensityMax",
+                name_hash: 67275678,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LightEffectEntityData, intensity_max),
@@ -1132,6 +1193,7 @@ impl TypeObject for LightEffectEntityData {
 
 pub static LIGHTEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightEffectEntityData-Array",
+    name_hash: 1893952819,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("LightEffectEntityData"),
@@ -1140,22 +1202,23 @@ pub static LIGHTEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterSystemComponent {
     pub _glacier_base: super::entity::SubWorldDataComponent,
-    pub exclusion_volumes: Option<Arc<Mutex<dyn super::emitter_base::EmitterExclusionVolumesBaseAssetTrait>>>,
+    pub exclusion_volumes: Option<LockedTypeObject /* super::emitter_base::EmitterExclusionVolumesBaseAsset */>,
 }
 
 pub trait EmitterSystemComponentTrait: super::entity::SubWorldDataComponentTrait {
-    fn exclusion_volumes(&self) -> &Option<Arc<Mutex<dyn super::emitter_base::EmitterExclusionVolumesBaseAssetTrait>>>;
-    fn exclusion_volumes_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::emitter_base::EmitterExclusionVolumesBaseAssetTrait>>>;
+    fn exclusion_volumes(&self) -> &Option<LockedTypeObject /* super::emitter_base::EmitterExclusionVolumesBaseAsset */>;
+    fn exclusion_volumes_mut(&mut self) -> &mut Option<LockedTypeObject /* super::emitter_base::EmitterExclusionVolumesBaseAsset */>;
 }
 
 impl EmitterSystemComponentTrait for EmitterSystemComponent {
-    fn exclusion_volumes(&self) -> &Option<Arc<Mutex<dyn super::emitter_base::EmitterExclusionVolumesBaseAssetTrait>>> {
+    fn exclusion_volumes(&self) -> &Option<LockedTypeObject /* super::emitter_base::EmitterExclusionVolumesBaseAsset */> {
         &self.exclusion_volumes
     }
-    fn exclusion_volumes_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::emitter_base::EmitterExclusionVolumesBaseAssetTrait>>> {
+    fn exclusion_volumes_mut(&mut self) -> &mut Option<LockedTypeObject /* super::emitter_base::EmitterExclusionVolumesBaseAsset */> {
         &mut self.exclusion_volumes
     }
 }
@@ -1168,16 +1231,20 @@ impl super::core::DataContainerTrait for EmitterSystemComponent {
 
 pub static EMITTERSYSTEMCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterSystemComponent",
+    name_hash: 3317949529,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SUBWORLDDATACOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterSystemComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterSystemComponent as Default>::default())),
+            create_boxed: || Box::new(<EmitterSystemComponent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExclusionVolumes",
+                name_hash: 482118946,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterExclusionVolumesBaseAsset",
                 rust_offset: offset_of!(EmitterSystemComponent, exclusion_volumes),
@@ -1209,6 +1276,7 @@ impl TypeObject for EmitterSystemComponent {
 
 pub static EMITTERSYSTEMCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterSystemComponent-Array",
+    name_hash: 308654701,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("EmitterSystemComponent"),
@@ -1217,7 +1285,8 @@ pub static EMITTERSYSTEMCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterExclusionVolumeData {
     pub _glacier_base: super::entity::OBBData,
     pub id: u32,
@@ -1278,16 +1347,20 @@ impl super::core::DataContainerTrait for EmitterExclusionVolumeData {
 
 pub static EMITTEREXCLUSIONVOLUMEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolumeData",
+    name_hash: 3949464887,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::OBBDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterExclusionVolumeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterExclusionVolumeData as Default>::default())),
+            create_boxed: || Box::new(<EmitterExclusionVolumeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterExclusionVolumeData, id),
@@ -1319,6 +1392,7 @@ impl TypeObject for EmitterExclusionVolumeData {
 
 pub static EMITTEREXCLUSIONVOLUMEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolumeData-Array",
+    name_hash: 1704855171,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("EmitterExclusionVolumeData"),
@@ -1327,31 +1401,32 @@ pub static EMITTEREXCLUSIONVOLUMEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterEntityData {
     pub _glacier_base: EmitterChildEffectEntityData,
-    pub emitter: Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>,
-    pub property_id_lookup_table: Vec<super::emitter_base::PropertyIdLookup>,
+    pub emitter: Option<LockedTypeObject /* super::emitter_base::EmitterBaseAsset */>,
+    pub property_id_lookup_table: Vec<BoxedTypeObject /* super::emitter_base::PropertyIdLookup */>,
 }
 
 pub trait EmitterEntityDataTrait: EmitterChildEffectEntityDataTrait {
-    fn emitter(&self) -> &Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>;
-    fn emitter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>;
-    fn property_id_lookup_table(&self) -> &Vec<super::emitter_base::PropertyIdLookup>;
-    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<super::emitter_base::PropertyIdLookup>;
+    fn emitter(&self) -> &Option<LockedTypeObject /* super::emitter_base::EmitterBaseAsset */>;
+    fn emitter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::emitter_base::EmitterBaseAsset */>;
+    fn property_id_lookup_table(&self) -> &Vec<BoxedTypeObject /* super::emitter_base::PropertyIdLookup */>;
+    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::emitter_base::PropertyIdLookup */>;
 }
 
 impl EmitterEntityDataTrait for EmitterEntityData {
-    fn emitter(&self) -> &Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>> {
+    fn emitter(&self) -> &Option<LockedTypeObject /* super::emitter_base::EmitterBaseAsset */> {
         &self.emitter
     }
-    fn emitter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>> {
+    fn emitter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::emitter_base::EmitterBaseAsset */> {
         &mut self.emitter
     }
-    fn property_id_lookup_table(&self) -> &Vec<super::emitter_base::PropertyIdLookup> {
+    fn property_id_lookup_table(&self) -> &Vec<BoxedTypeObject /* super::emitter_base::PropertyIdLookup */> {
         &self.property_id_lookup_table
     }
-    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<super::emitter_base::PropertyIdLookup> {
+    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::emitter_base::PropertyIdLookup */> {
         &mut self.property_id_lookup_table
     }
 }
@@ -1438,10 +1513,10 @@ impl EmitterChildEffectEntityDataTrait for EmitterEntityData {
 }
 
 impl super::entity::ChildEffectEntityDataTrait for EmitterEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn start_delay(&self) -> &f32 {
@@ -1508,22 +1583,27 @@ impl super::core::DataContainerTrait for EmitterEntityData {
 
 pub static EMITTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterEntityData",
+    name_hash: 1531329240,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EMITTERCHILDEFFECTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterEntityData as Default>::default())),
+            create_boxed: || Box::new(<EmitterEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Emitter",
+                name_hash: 23395891,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterBaseAsset",
                 rust_offset: offset_of!(EmitterEntityData, emitter),
             },
             FieldInfoData {
                 name: "PropertyIdLookupTable",
+                name_hash: 169442835,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PropertyIdLookup-Array",
                 rust_offset: offset_of!(EmitterEntityData, property_id_lookup_table),
@@ -1555,6 +1635,7 @@ impl TypeObject for EmitterEntityData {
 
 pub static EMITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterEntityData-Array",
+    name_hash: 615257452,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("EmitterEntityData"),
@@ -1563,34 +1644,35 @@ pub static EMITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterGraphEntityData {
     pub _glacier_base: EmitterChildEffectEntityData,
-    pub emitter_graph: Option<Arc<Mutex<dyn super::emitter_base::EmitterGraphBaseAssetTrait>>>,
+    pub emitter_graph: Option<LockedTypeObject /* super::emitter_base::EmitterGraphBaseAsset */>,
     pub emitter_graph_overrides: super::effect_base::EmitterGraphOverrides,
-    pub emitter_graph_params: Vec<super::effect_base::EmitterExposedInput>,
-    pub emitter_graph_vertex_shader_textures: Vec<super::effect_base::EmitterExposedTextureInput>,
-    pub property_id_lookup_table: Vec<super::emitter_base::PropertyIdLookup>,
+    pub emitter_graph_params: Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */>,
+    pub emitter_graph_vertex_shader_textures: Vec<BoxedTypeObject /* super::effect_base::EmitterExposedTextureInput */>,
+    pub property_id_lookup_table: Vec<BoxedTypeObject /* super::emitter_base::PropertyIdLookup */>,
 }
 
 pub trait EmitterGraphEntityDataTrait: EmitterChildEffectEntityDataTrait {
-    fn emitter_graph(&self) -> &Option<Arc<Mutex<dyn super::emitter_base::EmitterGraphBaseAssetTrait>>>;
-    fn emitter_graph_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::emitter_base::EmitterGraphBaseAssetTrait>>>;
+    fn emitter_graph(&self) -> &Option<LockedTypeObject /* super::emitter_base::EmitterGraphBaseAsset */>;
+    fn emitter_graph_mut(&mut self) -> &mut Option<LockedTypeObject /* super::emitter_base::EmitterGraphBaseAsset */>;
     fn emitter_graph_overrides(&self) -> &super::effect_base::EmitterGraphOverrides;
     fn emitter_graph_overrides_mut(&mut self) -> &mut super::effect_base::EmitterGraphOverrides;
-    fn emitter_graph_params(&self) -> &Vec<super::effect_base::EmitterExposedInput>;
-    fn emitter_graph_params_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedInput>;
-    fn emitter_graph_vertex_shader_textures(&self) -> &Vec<super::effect_base::EmitterExposedTextureInput>;
-    fn emitter_graph_vertex_shader_textures_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedTextureInput>;
-    fn property_id_lookup_table(&self) -> &Vec<super::emitter_base::PropertyIdLookup>;
-    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<super::emitter_base::PropertyIdLookup>;
+    fn emitter_graph_params(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */>;
+    fn emitter_graph_params_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */>;
+    fn emitter_graph_vertex_shader_textures(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EmitterExposedTextureInput */>;
+    fn emitter_graph_vertex_shader_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EmitterExposedTextureInput */>;
+    fn property_id_lookup_table(&self) -> &Vec<BoxedTypeObject /* super::emitter_base::PropertyIdLookup */>;
+    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::emitter_base::PropertyIdLookup */>;
 }
 
 impl EmitterGraphEntityDataTrait for EmitterGraphEntityData {
-    fn emitter_graph(&self) -> &Option<Arc<Mutex<dyn super::emitter_base::EmitterGraphBaseAssetTrait>>> {
+    fn emitter_graph(&self) -> &Option<LockedTypeObject /* super::emitter_base::EmitterGraphBaseAsset */> {
         &self.emitter_graph
     }
-    fn emitter_graph_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::emitter_base::EmitterGraphBaseAssetTrait>>> {
+    fn emitter_graph_mut(&mut self) -> &mut Option<LockedTypeObject /* super::emitter_base::EmitterGraphBaseAsset */> {
         &mut self.emitter_graph
     }
     fn emitter_graph_overrides(&self) -> &super::effect_base::EmitterGraphOverrides {
@@ -1599,22 +1681,22 @@ impl EmitterGraphEntityDataTrait for EmitterGraphEntityData {
     fn emitter_graph_overrides_mut(&mut self) -> &mut super::effect_base::EmitterGraphOverrides {
         &mut self.emitter_graph_overrides
     }
-    fn emitter_graph_params(&self) -> &Vec<super::effect_base::EmitterExposedInput> {
+    fn emitter_graph_params(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */> {
         &self.emitter_graph_params
     }
-    fn emitter_graph_params_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedInput> {
+    fn emitter_graph_params_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */> {
         &mut self.emitter_graph_params
     }
-    fn emitter_graph_vertex_shader_textures(&self) -> &Vec<super::effect_base::EmitterExposedTextureInput> {
+    fn emitter_graph_vertex_shader_textures(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EmitterExposedTextureInput */> {
         &self.emitter_graph_vertex_shader_textures
     }
-    fn emitter_graph_vertex_shader_textures_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedTextureInput> {
+    fn emitter_graph_vertex_shader_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EmitterExposedTextureInput */> {
         &mut self.emitter_graph_vertex_shader_textures
     }
-    fn property_id_lookup_table(&self) -> &Vec<super::emitter_base::PropertyIdLookup> {
+    fn property_id_lookup_table(&self) -> &Vec<BoxedTypeObject /* super::emitter_base::PropertyIdLookup */> {
         &self.property_id_lookup_table
     }
-    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<super::emitter_base::PropertyIdLookup> {
+    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::emitter_base::PropertyIdLookup */> {
         &mut self.property_id_lookup_table
     }
 }
@@ -1701,10 +1783,10 @@ impl EmitterChildEffectEntityDataTrait for EmitterGraphEntityData {
 }
 
 impl super::entity::ChildEffectEntityDataTrait for EmitterGraphEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn start_delay(&self) -> &f32 {
@@ -1771,40 +1853,48 @@ impl super::core::DataContainerTrait for EmitterGraphEntityData {
 
 pub static EMITTERGRAPHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphEntityData",
+    name_hash: 4184457012,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EMITTERCHILDEFFECTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterGraphEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterGraphEntityData as Default>::default())),
+            create_boxed: || Box::new(<EmitterGraphEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EmitterGraph",
+                name_hash: 2041067167,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphBaseAsset",
                 rust_offset: offset_of!(EmitterGraphEntityData, emitter_graph),
             },
             FieldInfoData {
                 name: "EmitterGraphOverrides",
+                name_hash: 3103421752,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphOverrides",
                 rust_offset: offset_of!(EmitterGraphEntityData, emitter_graph_overrides),
             },
             FieldInfoData {
                 name: "EmitterGraphParams",
+                name_hash: 4229400387,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterExposedInput-Array",
                 rust_offset: offset_of!(EmitterGraphEntityData, emitter_graph_params),
             },
             FieldInfoData {
                 name: "EmitterGraphVertexShaderTextures",
+                name_hash: 738173874,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterExposedTextureInput-Array",
                 rust_offset: offset_of!(EmitterGraphEntityData, emitter_graph_vertex_shader_textures),
             },
             FieldInfoData {
                 name: "PropertyIdLookupTable",
+                name_hash: 169442835,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PropertyIdLookup-Array",
                 rust_offset: offset_of!(EmitterGraphEntityData, property_id_lookup_table),
@@ -1836,6 +1926,7 @@ impl TypeObject for EmitterGraphEntityData {
 
 pub static EMITTERGRAPHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphEntityData-Array",
+    name_hash: 3213720192,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("EmitterGraphEntityData"),
@@ -1844,7 +1935,8 @@ pub static EMITTERGRAPHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterChildEffectEntityData {
     pub _glacier_base: super::entity::ChildEffectEntityData,
     pub local_player_only: bool,
@@ -1973,10 +2065,10 @@ impl EmitterChildEffectEntityDataTrait for EmitterChildEffectEntityData {
 }
 
 impl super::entity::ChildEffectEntityDataTrait for EmitterChildEffectEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn start_delay(&self) -> &f32 {
@@ -2043,88 +2135,104 @@ impl super::core::DataContainerTrait for EmitterChildEffectEntityData {
 
 pub static EMITTERCHILDEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterChildEffectEntityData",
+    name_hash: 474062021,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::CHILDEFFECTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterChildEffectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterChildEffectEntityData as Default>::default())),
+            create_boxed: || Box::new(<EmitterChildEffectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LocalPlayerOnly",
+                name_hash: 4035338447,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, local_player_only),
             },
             FieldInfoData {
                 name: "KillWhenDistanceCulled",
+                name_hash: 1804997319,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, kill_when_distance_culled),
             },
             FieldInfoData {
                 name: "SpawnOutsideViewRadius",
+                name_hash: 3760047582,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, spawn_outside_view_radius),
             },
             FieldInfoData {
                 name: "SpawnProbabilityRandomType",
+                name_hash: 542280112,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SpawnProbabilityRandomType",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, spawn_probability_random_type),
             },
             FieldInfoData {
                 name: "SpawnProbabilityRangeMin",
+                name_hash: 2384064582,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, spawn_probability_range_min),
             },
             FieldInfoData {
                 name: "SpawnProbability",
+                name_hash: 2017232915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, spawn_probability),
             },
             FieldInfoData {
                 name: "DrawOrderSlot",
+                name_hash: 2482084975,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, draw_order_slot),
             },
             FieldInfoData {
                 name: "MaxNearbyInstanceCount",
+                name_hash: 820916920,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, max_nearby_instance_count),
             },
             FieldInfoData {
                 name: "NearbyRadius",
+                name_hash: 4280871454,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, nearby_radius),
             },
             FieldInfoData {
                 name: "LightProbeSampleMethod",
+                name_hash: 3131262888,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LightProbeSampleMethod",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, light_probe_sample_method),
             },
             FieldInfoData {
                 name: "LightProbeSampleOffsetMethod",
+                name_hash: 2268715077,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LightProbeSampleOffsetMethod",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, light_probe_sample_offset_method),
             },
             FieldInfoData {
                 name: "LightProbeSampleOffset",
+                name_hash: 2900577786,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, light_probe_sample_offset),
             },
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterChildEffectEntityData, auto_start),
@@ -2156,6 +2264,7 @@ impl TypeObject for EmitterChildEffectEntityData {
 
 pub static EMITTERCHILDEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterChildEffectEntityData-Array",
+    name_hash: 4204352753,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("EmitterChildEffectEntityData"),
@@ -2175,6 +2284,7 @@ pub enum SpawnProbabilityRandomType {
 
 pub static SPAWNPROBABILITYRANDOMTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnProbabilityRandomType",
+    name_hash: 542280112,
     flags: MemberInfoFlags::new(49429),
     module: "Effect",
     data: TypeInfoData::Enum,
@@ -2203,6 +2313,7 @@ impl TypeObject for SpawnProbabilityRandomType {
 
 pub static SPAWNPROBABILITYRANDOMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnProbabilityRandomType-Array",
+    name_hash: 1145337604,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("SpawnProbabilityRandomType"),
@@ -2211,7 +2322,8 @@ pub static SPAWNPROBABILITYRANDOMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectSystemSettings {
     pub _glacier_base: super::core::DataContainer,
     pub effect_quality_level: super::core::QualityLevel,
@@ -2254,28 +2366,34 @@ impl super::core::DataContainerTrait for EffectSystemSettings {
 
 pub static EFFECTSYSTEMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectSystemSettings",
+    name_hash: 2118011442,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(EffectSystemSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectSystemSettings as Default>::default())),
+            create_boxed: || Box::new(<EffectSystemSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EffectQualityLevel",
+                name_hash: 4015281385,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityLevel",
                 rust_offset: offset_of!(EffectSystemSettings, effect_quality_level),
             },
             FieldInfoData {
                 name: "EnterLevelDisableEffectTime",
+                name_hash: 2536316269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EffectSystemSettings, enter_level_disable_effect_time),
             },
             FieldInfoData {
                 name: "EmitterRootViewDuplicationEnable",
+                name_hash: 4057852579,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EffectSystemSettings, emitter_root_view_duplication_enable),
@@ -2307,6 +2425,7 @@ impl TypeObject for EffectSystemSettings {
 
 pub static EFFECTSYSTEMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectSystemSettings-Array",
+    name_hash: 3948351622,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("EffectSystemSettings"),
@@ -2315,22 +2434,23 @@ pub static EFFECTSYSTEMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectSystemComponent {
     pub _glacier_base: super::entity::SubWorldDataComponent,
-    pub effect_parameter_list: Option<Arc<Mutex<dyn super::effect_base::EffectParameterListTrait>>>,
+    pub effect_parameter_list: Option<LockedTypeObject /* super::effect_base::EffectParameterList */>,
 }
 
 pub trait EffectSystemComponentTrait: super::entity::SubWorldDataComponentTrait {
-    fn effect_parameter_list(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterListTrait>>>;
-    fn effect_parameter_list_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterListTrait>>>;
+    fn effect_parameter_list(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameterList */>;
+    fn effect_parameter_list_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameterList */>;
 }
 
 impl EffectSystemComponentTrait for EffectSystemComponent {
-    fn effect_parameter_list(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterListTrait>>> {
+    fn effect_parameter_list(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameterList */> {
         &self.effect_parameter_list
     }
-    fn effect_parameter_list_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterListTrait>>> {
+    fn effect_parameter_list_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameterList */> {
         &mut self.effect_parameter_list
     }
 }
@@ -2343,16 +2463,20 @@ impl super::core::DataContainerTrait for EffectSystemComponent {
 
 pub static EFFECTSYSTEMCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectSystemComponent",
+    name_hash: 119105848,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SUBWORLDDATACOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(EffectSystemComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectSystemComponent as Default>::default())),
+            create_boxed: || Box::new(<EffectSystemComponent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EffectParameterList",
+                name_hash: 3033485049,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectParameterList",
                 rust_offset: offset_of!(EffectSystemComponent, effect_parameter_list),
@@ -2384,6 +2508,7 @@ impl TypeObject for EffectSystemComponent {
 
 pub static EFFECTSYSTEMCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectSystemComponent-Array",
+    name_hash: 1645499020,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("EffectSystemComponent"),
@@ -2392,10 +2517,11 @@ pub static EFFECTSYSTEMCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BlueprintEffectEntityData {
     pub _glacier_base: super::entity::ChildEffectEntityData,
-    pub blueprint: Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>>,
+    pub blueprint: Option<LockedTypeObject /* super::entity::Blueprint */>,
     pub lifetime: f32,
     pub lifetime_curve: super::core::Vec4,
     pub dimmer: f32,
@@ -2404,8 +2530,8 @@ pub struct BlueprintEffectEntityData {
 }
 
 pub trait BlueprintEffectEntityDataTrait: super::entity::ChildEffectEntityDataTrait {
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>>;
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>>;
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */>;
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */>;
     fn lifetime(&self) -> &f32;
     fn lifetime_mut(&mut self) -> &mut f32;
     fn lifetime_curve(&self) -> &super::core::Vec4;
@@ -2419,10 +2545,10 @@ pub trait BlueprintEffectEntityDataTrait: super::entity::ChildEffectEntityDataTr
 }
 
 impl BlueprintEffectEntityDataTrait for BlueprintEffectEntityData {
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */> {
         &self.blueprint
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */> {
         &mut self.blueprint
     }
     fn lifetime(&self) -> &f32 {
@@ -2458,10 +2584,10 @@ impl BlueprintEffectEntityDataTrait for BlueprintEffectEntityData {
 }
 
 impl super::entity::ChildEffectEntityDataTrait for BlueprintEffectEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn start_delay(&self) -> &f32 {
@@ -2528,46 +2654,55 @@ impl super::core::DataContainerTrait for BlueprintEffectEntityData {
 
 pub static BLUEPRINTEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintEffectEntityData",
+    name_hash: 1027154646,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::CHILDEFFECTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BlueprintEffectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BlueprintEffectEntityData as Default>::default())),
+            create_boxed: || Box::new(<BlueprintEffectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Blueprint",
+                name_hash: 4232469066,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Blueprint",
                 rust_offset: offset_of!(BlueprintEffectEntityData, blueprint),
             },
             FieldInfoData {
                 name: "Lifetime",
+                name_hash: 2450521238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BlueprintEffectEntityData, lifetime),
             },
             FieldInfoData {
                 name: "LifetimeCurve",
+                name_hash: 1623248993,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(BlueprintEffectEntityData, lifetime_curve),
             },
             FieldInfoData {
                 name: "Dimmer",
+                name_hash: 2598809151,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BlueprintEffectEntityData, dimmer),
             },
             FieldInfoData {
                 name: "SpawnProbability",
+                name_hash: 2017232915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(BlueprintEffectEntityData, spawn_probability),
             },
             FieldInfoData {
                 name: "LocalPlayerOnly",
+                name_hash: 4035338447,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BlueprintEffectEntityData, local_player_only),
@@ -2599,6 +2734,7 @@ impl TypeObject for BlueprintEffectEntityData {
 
 pub static BLUEPRINTEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintEffectEntityData-Array",
+    name_hash: 1948633186,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("BlueprintEffectEntityData"),
@@ -2607,7 +2743,8 @@ pub static BLUEPRINTEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectAsset {
     pub _glacier_base: super::effect_base::EffectBlueprint,
 }
@@ -2634,34 +2771,34 @@ impl super::effect_base::EffectBlueprintTrait for EffectAsset {
 }
 
 impl super::entity::ObjectBlueprintTrait for EffectAsset {
-    fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+    fn object(&self) -> &Option<LockedTypeObject /* super::entity::EntityData */> {
         self._glacier_base.object()
     }
-    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+    fn object_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::EntityData */> {
         self._glacier_base.object_mut()
     }
 }
 
 impl super::entity::BlueprintTrait for EffectAsset {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl super::entity::EntityBusDataTrait for EffectAsset {
-    fn event_connections(&self) -> &Vec<super::entity::EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* super::entity::EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<super::entity::EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::entity::EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -2673,22 +2810,22 @@ impl super::core::DataBusDataTrait for EffectAsset {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -2707,12 +2844,15 @@ impl super::core::DataContainerTrait for EffectAsset {
 
 pub static EFFECTASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectAsset",
+    name_hash: 1397533730,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::effect_base::EFFECTBLUEPRINT_TYPE_INFO),
+        super_class_offset: offset_of!(EffectAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectAsset as Default>::default())),
+            create_boxed: || Box::new(<EffectAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -2742,6 +2882,7 @@ impl TypeObject for EffectAsset {
 
 pub static EFFECTASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectAsset-Array",
+    name_hash: 3465816726,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("EffectAsset"),
@@ -2750,10 +2891,11 @@ pub static EFFECTASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectEntityData {
     pub _glacier_base: super::entity::SpatialEntityData,
-    pub components: Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>,
+    pub components: Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>>,
     pub max_active_instance_count: super::core::QualityScalableInt,
     pub cull_distance: super::core::QualityScalableFloat,
     pub kill_by_water: bool,
@@ -2766,8 +2908,8 @@ pub struct EffectEntityData {
 }
 
 pub trait EffectEntityDataTrait: super::entity::SpatialEntityDataTrait {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>>;
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>>;
     fn max_active_instance_count(&self) -> &super::core::QualityScalableInt;
     fn max_active_instance_count_mut(&mut self) -> &mut super::core::QualityScalableInt;
     fn cull_distance(&self) -> &super::core::QualityScalableFloat;
@@ -2789,10 +2931,10 @@ pub trait EffectEntityDataTrait: super::entity::SpatialEntityDataTrait {
 }
 
 impl EffectEntityDataTrait for EffectEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         &self.components
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         &mut self.components
     }
     fn max_active_instance_count(&self) -> &super::core::QualityScalableInt {
@@ -2883,70 +3025,83 @@ impl super::core::DataContainerTrait for EffectEntityData {
 
 pub static EFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectEntityData",
+    name_hash: 3639205785,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EffectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectEntityData as Default>::default())),
+            create_boxed: || Box::new(<EffectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Components",
+                name_hash: 3391050425,
                 flags: MemberInfoFlags::new(144),
                 field_type: "GameObjectData-Array",
                 rust_offset: offset_of!(EffectEntityData, components),
             },
             FieldInfoData {
                 name: "MaxActiveInstanceCount",
+                name_hash: 2295537879,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableInt",
                 rust_offset: offset_of!(EffectEntityData, max_active_instance_count),
             },
             FieldInfoData {
                 name: "CullDistance",
+                name_hash: 1000432400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EffectEntityData, cull_distance),
             },
             FieldInfoData {
                 name: "KillByWater",
+                name_hash: 1161865769,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EffectEntityData, kill_by_water),
             },
             FieldInfoData {
                 name: "StartDelay",
+                name_hash: 2731915920,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EffectEntityData, start_delay),
             },
             FieldInfoData {
                 name: "KillOnMaxCount",
+                name_hash: 3200869329,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EffectEntityData, kill_on_max_count),
             },
             FieldInfoData {
                 name: "AttachToSpawnSurface",
+                name_hash: 4224066779,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EffectEntityData, attach_to_spawn_surface),
             },
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableBool",
                 rust_offset: offset_of!(EffectEntityData, enable),
             },
             FieldInfoData {
                 name: "OverrideDrawOrder",
+                name_hash: 3411677887,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EffectEntityData, override_draw_order),
             },
             FieldInfoData {
                 name: "KeepAlive",
+                name_hash: 2097661609,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EffectEntityData, keep_alive),
@@ -2978,6 +3133,7 @@ impl TypeObject for EffectEntityData {
 
 pub static EFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectEntityData-Array",
+    name_hash: 3459194157,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("EffectEntityData"),
@@ -2986,7 +3142,8 @@ pub static EFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectEntity {
     pub _glacier_base: super::entity::SpatialEntity,
 }
@@ -3008,12 +3165,15 @@ impl super::entity::EntityBusPeerTrait for EffectEntity {
 
 pub static EFFECTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectEntity",
+    name_hash: 3356366953,
     flags: MemberInfoFlags::new(101),
     module: "Effect",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(EffectEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectEntity as Default>::default())),
+            create_boxed: || Box::new(<EffectEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3043,6 +3203,7 @@ impl TypeObject for EffectEntity {
 
 pub static EFFECTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectEntity-Array",
+    name_hash: 1723084637,
     flags: MemberInfoFlags::new(145),
     module: "Effect",
     data: TypeInfoData::Array("EffectEntity"),

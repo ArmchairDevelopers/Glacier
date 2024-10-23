@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -25,23 +26,24 @@ pub(crate) fn register_deformation_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTDEFORMATIONCOMPONENT_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DeformationComponentData {
     pub _glacier_base: super::entity::GameComponentData,
-    pub skeleton_asset: Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>,
-    pub deformation_asset: Option<Arc<Mutex<dyn DeformationAssetTrait>>>,
-    pub bone_to_part_mapping: Vec<BoneToPartMapping>,
+    pub skeleton_asset: Option<LockedTypeObject /* super::entity::SkeletonAsset */>,
+    pub deformation_asset: Option<LockedTypeObject /* DeformationAsset */>,
+    pub bone_to_part_mapping: Vec<BoxedTypeObject /* BoneToPartMapping */>,
     pub impulse_scale: f32,
     pub mass: f32,
 }
 
 pub trait DeformationComponentDataTrait: super::entity::GameComponentDataTrait {
-    fn skeleton_asset(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
-    fn skeleton_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>>;
-    fn deformation_asset(&self) -> &Option<Arc<Mutex<dyn DeformationAssetTrait>>>;
-    fn deformation_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DeformationAssetTrait>>>;
-    fn bone_to_part_mapping(&self) -> &Vec<BoneToPartMapping>;
-    fn bone_to_part_mapping_mut(&mut self) -> &mut Vec<BoneToPartMapping>;
+    fn skeleton_asset(&self) -> &Option<LockedTypeObject /* super::entity::SkeletonAsset */>;
+    fn skeleton_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::SkeletonAsset */>;
+    fn deformation_asset(&self) -> &Option<LockedTypeObject /* DeformationAsset */>;
+    fn deformation_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* DeformationAsset */>;
+    fn bone_to_part_mapping(&self) -> &Vec<BoxedTypeObject /* BoneToPartMapping */>;
+    fn bone_to_part_mapping_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BoneToPartMapping */>;
     fn impulse_scale(&self) -> &f32;
     fn impulse_scale_mut(&mut self) -> &mut f32;
     fn mass(&self) -> &f32;
@@ -49,22 +51,22 @@ pub trait DeformationComponentDataTrait: super::entity::GameComponentDataTrait {
 }
 
 impl DeformationComponentDataTrait for DeformationComponentData {
-    fn skeleton_asset(&self) -> &Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
+    fn skeleton_asset(&self) -> &Option<LockedTypeObject /* super::entity::SkeletonAsset */> {
         &self.skeleton_asset
     }
-    fn skeleton_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::SkeletonAssetTrait>>> {
+    fn skeleton_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::SkeletonAsset */> {
         &mut self.skeleton_asset
     }
-    fn deformation_asset(&self) -> &Option<Arc<Mutex<dyn DeformationAssetTrait>>> {
+    fn deformation_asset(&self) -> &Option<LockedTypeObject /* DeformationAsset */> {
         &self.deformation_asset
     }
-    fn deformation_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DeformationAssetTrait>>> {
+    fn deformation_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* DeformationAsset */> {
         &mut self.deformation_asset
     }
-    fn bone_to_part_mapping(&self) -> &Vec<BoneToPartMapping> {
+    fn bone_to_part_mapping(&self) -> &Vec<BoxedTypeObject /* BoneToPartMapping */> {
         &self.bone_to_part_mapping
     }
-    fn bone_to_part_mapping_mut(&mut self) -> &mut Vec<BoneToPartMapping> {
+    fn bone_to_part_mapping_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BoneToPartMapping */> {
         &mut self.bone_to_part_mapping
     }
     fn impulse_scale(&self) -> &f32 {
@@ -91,10 +93,10 @@ impl super::entity::ComponentDataTrait for DeformationComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -137,40 +139,48 @@ impl super::core::DataContainerTrait for DeformationComponentData {
 
 pub static DEFORMATIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeformationComponentData",
+    name_hash: 2073644176,
     flags: MemberInfoFlags::new(101),
     module: "Deformation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DeformationComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DeformationComponentData as Default>::default())),
+            create_boxed: || Box::new(<DeformationComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SkeletonAsset",
+                name_hash: 2375870068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SkeletonAsset",
                 rust_offset: offset_of!(DeformationComponentData, skeleton_asset),
             },
             FieldInfoData {
                 name: "DeformationAsset",
+                name_hash: 2876334623,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DeformationAsset",
                 rust_offset: offset_of!(DeformationComponentData, deformation_asset),
             },
             FieldInfoData {
                 name: "BoneToPartMapping",
+                name_hash: 4129985443,
                 flags: MemberInfoFlags::new(144),
                 field_type: "BoneToPartMapping-Array",
                 rust_offset: offset_of!(DeformationComponentData, bone_to_part_mapping),
             },
             FieldInfoData {
                 name: "ImpulseScale",
+                name_hash: 2604535654,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DeformationComponentData, impulse_scale),
             },
             FieldInfoData {
                 name: "Mass",
+                name_hash: 2088779625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DeformationComponentData, mass),
@@ -202,6 +212,7 @@ impl TypeObject for DeformationComponentData {
 
 pub static DEFORMATIONCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeformationComponentData-Array",
+    name_hash: 95558308,
     flags: MemberInfoFlags::new(145),
     module: "Deformation",
     data: TypeInfoData::Array("DeformationComponentData"),
@@ -210,7 +221,8 @@ pub static DEFORMATIONCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoneToPartMapping {
     pub bone_index: u32,
     pub part_index: u32,
@@ -240,21 +252,25 @@ impl BoneToPartMappingTrait for BoneToPartMapping {
 
 pub static BONETOPARTMAPPING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoneToPartMapping",
+    name_hash: 4129985443,
     flags: MemberInfoFlags::new(36937),
     module: "Deformation",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoneToPartMapping as Default>::default())),
+            create_boxed: || Box::new(<BoneToPartMapping as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BoneIndex",
+                name_hash: 945811261,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(BoneToPartMapping, bone_index),
             },
             FieldInfoData {
                 name: "PartIndex",
+                name_hash: 3213901068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(BoneToPartMapping, part_index),
@@ -286,6 +302,7 @@ impl TypeObject for BoneToPartMapping {
 
 pub static BONETOPARTMAPPING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoneToPartMapping-Array",
+    name_hash: 2180577047,
     flags: MemberInfoFlags::new(145),
     module: "Deformation",
     data: TypeInfoData::Array("BoneToPartMapping"),
@@ -294,7 +311,8 @@ pub static BONETOPARTMAPPING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DeformationAsset {
     pub _glacier_base: super::core::Asset,
     pub soft_bodies_simulation_resource: glacier_reflect::builtin::ResourceRef,
@@ -328,16 +346,20 @@ impl super::core::DataContainerTrait for DeformationAsset {
 
 pub static DEFORMATIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeformationAsset",
+    name_hash: 2876334623,
     flags: MemberInfoFlags::new(101),
     module: "Deformation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(DeformationAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DeformationAsset as Default>::default())),
+            create_boxed: || Box::new(<DeformationAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SoftBodiesSimulationResource",
+                name_hash: 2734343044,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(DeformationAsset, soft_bodies_simulation_resource),
@@ -369,6 +391,7 @@ impl TypeObject for DeformationAsset {
 
 pub static DEFORMATIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeformationAsset-Array",
+    name_hash: 1969661611,
     flags: MemberInfoFlags::new(145),
     module: "Deformation",
     data: TypeInfoData::Array("DeformationAsset"),
@@ -377,7 +400,8 @@ pub static DEFORMATIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDeformationComponent {
     pub _glacier_base: super::entity::Component,
 }
@@ -396,12 +420,15 @@ impl super::entity::EntityBusPeerTrait for ServerDeformationComponent {
 
 pub static SERVERDEFORMATIONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDeformationComponent",
+    name_hash: 847254469,
     flags: MemberInfoFlags::new(101),
     module: "Deformation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::COMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDeformationComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDeformationComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerDeformationComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -431,6 +458,7 @@ impl TypeObject for ServerDeformationComponent {
 
 pub static SERVERDEFORMATIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDeformationComponent-Array",
+    name_hash: 2576681969,
     flags: MemberInfoFlags::new(145),
     module: "Deformation",
     data: TypeInfoData::Array("ServerDeformationComponent"),
@@ -439,7 +467,8 @@ pub static SERVERDEFORMATIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DeformationResource {
 }
 
@@ -451,12 +480,15 @@ impl DeformationResourceTrait for DeformationResource {
 
 pub static DEFORMATIONRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeformationResource",
+    name_hash: 476960165,
     flags: MemberInfoFlags::new(101),
     module: "Deformation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DeformationResource as Default>::default())),
+            create_boxed: || Box::new(<DeformationResource as Default>::default()),
         },
         fields: &[
         ],
@@ -486,6 +518,7 @@ impl TypeObject for DeformationResource {
 
 pub static DEFORMATIONRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeformationResource-Array",
+    name_hash: 422374929,
     flags: MemberInfoFlags::new(145),
     module: "Deformation",
     data: TypeInfoData::Array("DeformationResource"),
@@ -494,7 +527,8 @@ pub static DEFORMATIONRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DeformationManager {
     pub _glacier_base: super::physics::IglooSubsystem,
 }
@@ -510,12 +544,15 @@ impl super::physics::IglooSubsystemTrait for DeformationManager {
 
 pub static DEFORMATIONMANAGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeformationManager",
+    name_hash: 2619995452,
     flags: MemberInfoFlags::new(101),
     module: "Deformation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::physics::IGLOOSUBSYSTEM_TYPE_INFO),
+        super_class_offset: offset_of!(DeformationManager, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DeformationManager as Default>::default())),
+            create_boxed: || Box::new(<DeformationManager as Default>::default()),
         },
         fields: &[
         ],
@@ -545,6 +582,7 @@ impl TypeObject for DeformationManager {
 
 pub static DEFORMATIONMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeformationManager-Array",
+    name_hash: 2107477128,
     flags: MemberInfoFlags::new(145),
     module: "Deformation",
     data: TypeInfoData::Array("DeformationManager"),
@@ -553,7 +591,8 @@ pub static DEFORMATIONMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDeformationComponent {
     pub _glacier_base: super::entity::Component,
 }
@@ -572,12 +611,15 @@ impl super::entity::EntityBusPeerTrait for ClientDeformationComponent {
 
 pub static CLIENTDEFORMATIONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDeformationComponent",
+    name_hash: 1017635481,
     flags: MemberInfoFlags::new(101),
     module: "Deformation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::COMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientDeformationComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDeformationComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientDeformationComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -607,6 +649,7 @@ impl TypeObject for ClientDeformationComponent {
 
 pub static CLIENTDEFORMATIONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDeformationComponent-Array",
+    name_hash: 1998807085,
     flags: MemberInfoFlags::new(145),
     module: "Deformation",
     data: TypeInfoData::Array("ClientDeformationComponent"),

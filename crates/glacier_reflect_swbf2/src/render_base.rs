@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -238,7 +239,8 @@ pub(crate) fn register_render_base_types(registry: &mut TypeRegistry) {
     registry.register_type(FSCRIPT_PROCEDURALBONEGLOBALSENTITYDATA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VertexShaderFragmentDynamicState {
 }
 
@@ -250,11 +252,13 @@ impl VertexShaderFragmentDynamicStateTrait for VertexShaderFragmentDynamicState 
 
 pub static VERTEXSHADERFRAGMENTDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VertexShaderFragmentDynamicState",
+    name_hash: 3827294886,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VertexShaderFragmentDynamicState as Default>::default())),
+            create_boxed: || Box::new(<VertexShaderFragmentDynamicState as Default>::default()),
         },
         fields: &[
         ],
@@ -284,6 +288,7 @@ impl TypeObject for VertexShaderFragmentDynamicState {
 
 pub static VERTEXSHADERFRAGMENTDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VertexShaderFragmentDynamicState-Array",
+    name_hash: 3637899026,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("VertexShaderFragmentDynamicState"),
@@ -292,7 +297,8 @@ pub static VERTEXSHADERFRAGMENTDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VertexShaderFragmentStaticState {
     pub fragment_path: String,
     pub field_flag_changed0: u8,
@@ -322,21 +328,25 @@ impl VertexShaderFragmentStaticStateTrait for VertexShaderFragmentStaticState {
 
 pub static VERTEXSHADERFRAGMENTSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VertexShaderFragmentStaticState",
+    name_hash: 3427144747,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VertexShaderFragmentStaticState as Default>::default())),
+            create_boxed: || Box::new(<VertexShaderFragmentStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FragmentPath",
+                name_hash: 1239277640,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VertexShaderFragmentStaticState, fragment_path),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(VertexShaderFragmentStaticState, field_flag_changed0),
@@ -368,6 +378,7 @@ impl TypeObject for VertexShaderFragmentStaticState {
 
 pub static VERTEXSHADERFRAGMENTSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VertexShaderFragmentStaticState-Array",
+    name_hash: 508703647,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("VertexShaderFragmentStaticState"),
@@ -376,7 +387,8 @@ pub static VERTEXSHADERFRAGMENTSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TextureUnloadOnDemandDynamicState {
     pub texture_state: TextureUnloadOnDemandLifeState,
     pub tick_update: u32,
@@ -415,27 +427,32 @@ impl TextureUnloadOnDemandDynamicStateTrait for TextureUnloadOnDemandDynamicStat
 
 pub static TEXTUREUNLOADONDEMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureUnloadOnDemandDynamicState",
+    name_hash: 2445618531,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TextureUnloadOnDemandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<TextureUnloadOnDemandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TextureState",
+                name_hash: 2138163533,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureUnloadOnDemandLifeState",
                 rust_offset: offset_of!(TextureUnloadOnDemandDynamicState, texture_state),
             },
             FieldInfoData {
                 name: "TickUpdate",
+                name_hash: 3160947585,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TextureUnloadOnDemandDynamicState, tick_update),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TextureUnloadOnDemandDynamicState, field_flag_changed0),
@@ -467,6 +484,7 @@ impl TypeObject for TextureUnloadOnDemandDynamicState {
 
 pub static TEXTUREUNLOADONDEMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureUnloadOnDemandDynamicState-Array",
+    name_hash: 1003741527,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("TextureUnloadOnDemandDynamicState"),
@@ -475,7 +493,8 @@ pub static TEXTUREUNLOADONDEMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TextureUnloadOnDemandStaticState {
     pub identifier: u32,
     pub texture_handle: u16,
@@ -514,27 +533,32 @@ impl TextureUnloadOnDemandStaticStateTrait for TextureUnloadOnDemandStaticState 
 
 pub static TEXTUREUNLOADONDEMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureUnloadOnDemandStaticState",
+    name_hash: 1159471310,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TextureUnloadOnDemandStaticState as Default>::default())),
+            create_boxed: || Box::new(<TextureUnloadOnDemandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Identifier",
+                name_hash: 3512790342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TextureUnloadOnDemandStaticState, identifier),
             },
             FieldInfoData {
                 name: "TextureHandle",
+                name_hash: 2395413040,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TextureUnloadOnDemandStaticState, texture_handle),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TextureUnloadOnDemandStaticState, field_flag_changed0),
@@ -566,6 +590,7 @@ impl TypeObject for TextureUnloadOnDemandStaticState {
 
 pub static TEXTUREUNLOADONDEMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureUnloadOnDemandStaticState-Array",
+    name_hash: 414964346,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("TextureUnloadOnDemandStaticState"),
@@ -586,6 +611,7 @@ pub enum TextureUnloadOnDemandLifeState {
 
 pub static TEXTUREUNLOADONDEMANDLIFESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureUnloadOnDemandLifeState",
+    name_hash: 763135344,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -614,6 +640,7 @@ impl TypeObject for TextureUnloadOnDemandLifeState {
 
 pub static TEXTUREUNLOADONDEMANDLIFESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureUnloadOnDemandLifeState-Array",
+    name_hash: 3634905924,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("TextureUnloadOnDemandLifeState"),
@@ -622,7 +649,8 @@ pub static TEXTUREUNLOADONDEMANDLIFESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VertexShaderFragmentHandle {
 }
 
@@ -634,11 +662,13 @@ impl VertexShaderFragmentHandleTrait for VertexShaderFragmentHandle {
 
 pub static VERTEXSHADERFRAGMENTHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VertexShaderFragmentHandle",
+    name_hash: 275768590,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VertexShaderFragmentHandle as Default>::default())),
+            create_boxed: || Box::new(<VertexShaderFragmentHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -668,6 +698,7 @@ impl TypeObject for VertexShaderFragmentHandle {
 
 pub static VERTEXSHADERFRAGMENTHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VertexShaderFragmentHandle-Array",
+    name_hash: 2719059514,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("VertexShaderFragmentHandle"),
@@ -676,7 +707,8 @@ pub static VERTEXSHADERFRAGMENTHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RenderBufferHandle {
 }
 
@@ -688,11 +720,13 @@ impl RenderBufferHandleTrait for RenderBufferHandle {
 
 pub static RENDERBUFFERHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderBufferHandle",
+    name_hash: 3560937381,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RenderBufferHandle as Default>::default())),
+            create_boxed: || Box::new(<RenderBufferHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -722,6 +756,7 @@ impl TypeObject for RenderBufferHandle {
 
 pub static RENDERBUFFERHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderBufferHandle-Array",
+    name_hash: 1271410705,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("RenderBufferHandle"),
@@ -730,7 +765,8 @@ pub static RENDERBUFFERHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TextureResourceHandle {
 }
 
@@ -742,11 +778,13 @@ impl TextureResourceHandleTrait for TextureResourceHandle {
 
 pub static TEXTURERESOURCEHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureResourceHandle",
+    name_hash: 3767977914,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TextureResourceHandle as Default>::default())),
+            create_boxed: || Box::new(<TextureResourceHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -776,6 +814,7 @@ impl TypeObject for TextureResourceHandle {
 
 pub static TEXTURERESOURCEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureResourceHandle-Array",
+    name_hash: 2666990094,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("TextureResourceHandle"),
@@ -784,7 +823,8 @@ pub static TEXTURERESOURCEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderParameterBlockHandle {
 }
 
@@ -796,11 +836,13 @@ impl ShaderParameterBlockHandleTrait for ShaderParameterBlockHandle {
 
 pub static SHADERPARAMETERBLOCKHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterBlockHandle",
+    name_hash: 3840534630,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderParameterBlockHandle as Default>::default())),
+            create_boxed: || Box::new(<ShaderParameterBlockHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -830,6 +872,7 @@ impl TypeObject for ShaderParameterBlockHandle {
 
 pub static SHADERPARAMETERBLOCKHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterBlockHandle-Array",
+    name_hash: 1588397394,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderParameterBlockHandle"),
@@ -838,7 +881,8 @@ pub static SHADERPARAMETERBLOCKHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RenderViewHandle {
 }
 
@@ -850,11 +894,13 @@ impl RenderViewHandleTrait for RenderViewHandle {
 
 pub static RENDERVIEWHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderViewHandle",
+    name_hash: 58026024,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RenderViewHandle as Default>::default())),
+            create_boxed: || Box::new(<RenderViewHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -884,6 +930,7 @@ impl TypeObject for RenderViewHandle {
 
 pub static RENDERVIEWHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderViewHandle-Array",
+    name_hash: 1772145052,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("RenderViewHandle"),
@@ -892,7 +939,8 @@ pub static RENDERVIEWHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CullIdHandle {
 }
 
@@ -904,11 +952,13 @@ impl CullIdHandleTrait for CullIdHandle {
 
 pub static CULLIDHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CullIdHandle",
+    name_hash: 3860917684,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CullIdHandle as Default>::default())),
+            create_boxed: || Box::new(<CullIdHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -938,6 +988,7 @@ impl TypeObject for CullIdHandle {
 
 pub static CULLIDHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CullIdHandle-Array",
+    name_hash: 2374863104,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("CullIdHandle"),
@@ -946,39 +997,40 @@ pub static CULLIDHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SurfaceShaderInstanceDataStruct {
-    pub shader: Option<Arc<Mutex<dyn SurfaceShaderBaseAssetTrait>>>,
+    pub shader: Option<LockedTypeObject /* SurfaceShaderBaseAsset */>,
     pub surface_shader_name: String,
-    pub bool_parameters: Vec<BoolShaderParameter>,
-    pub vector_parameters: Vec<VectorShaderParameter>,
-    pub vector_array_parameters: Vec<VectorArrayShaderParameter>,
-    pub texture_parameters: Vec<TextureShaderParameter>,
-    pub conditional_parameters: Vec<ConditionalShaderParameter>,
+    pub bool_parameters: Vec<BoxedTypeObject /* BoolShaderParameter */>,
+    pub vector_parameters: Vec<BoxedTypeObject /* VectorShaderParameter */>,
+    pub vector_array_parameters: Vec<BoxedTypeObject /* VectorArrayShaderParameter */>,
+    pub texture_parameters: Vec<BoxedTypeObject /* TextureShaderParameter */>,
+    pub conditional_parameters: Vec<BoxedTypeObject /* ConditionalShaderParameter */>,
 }
 
 pub trait SurfaceShaderInstanceDataStructTrait: TypeObject {
-    fn shader(&self) -> &Option<Arc<Mutex<dyn SurfaceShaderBaseAssetTrait>>>;
-    fn shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SurfaceShaderBaseAssetTrait>>>;
+    fn shader(&self) -> &Option<LockedTypeObject /* SurfaceShaderBaseAsset */>;
+    fn shader_mut(&mut self) -> &mut Option<LockedTypeObject /* SurfaceShaderBaseAsset */>;
     fn surface_shader_name(&self) -> &String;
     fn surface_shader_name_mut(&mut self) -> &mut String;
-    fn bool_parameters(&self) -> &Vec<BoolShaderParameter>;
-    fn bool_parameters_mut(&mut self) -> &mut Vec<BoolShaderParameter>;
-    fn vector_parameters(&self) -> &Vec<VectorShaderParameter>;
-    fn vector_parameters_mut(&mut self) -> &mut Vec<VectorShaderParameter>;
-    fn vector_array_parameters(&self) -> &Vec<VectorArrayShaderParameter>;
-    fn vector_array_parameters_mut(&mut self) -> &mut Vec<VectorArrayShaderParameter>;
-    fn texture_parameters(&self) -> &Vec<TextureShaderParameter>;
-    fn texture_parameters_mut(&mut self) -> &mut Vec<TextureShaderParameter>;
-    fn conditional_parameters(&self) -> &Vec<ConditionalShaderParameter>;
-    fn conditional_parameters_mut(&mut self) -> &mut Vec<ConditionalShaderParameter>;
+    fn bool_parameters(&self) -> &Vec<BoxedTypeObject /* BoolShaderParameter */>;
+    fn bool_parameters_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BoolShaderParameter */>;
+    fn vector_parameters(&self) -> &Vec<BoxedTypeObject /* VectorShaderParameter */>;
+    fn vector_parameters_mut(&mut self) -> &mut Vec<BoxedTypeObject /* VectorShaderParameter */>;
+    fn vector_array_parameters(&self) -> &Vec<BoxedTypeObject /* VectorArrayShaderParameter */>;
+    fn vector_array_parameters_mut(&mut self) -> &mut Vec<BoxedTypeObject /* VectorArrayShaderParameter */>;
+    fn texture_parameters(&self) -> &Vec<BoxedTypeObject /* TextureShaderParameter */>;
+    fn texture_parameters_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TextureShaderParameter */>;
+    fn conditional_parameters(&self) -> &Vec<BoxedTypeObject /* ConditionalShaderParameter */>;
+    fn conditional_parameters_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ConditionalShaderParameter */>;
 }
 
 impl SurfaceShaderInstanceDataStructTrait for SurfaceShaderInstanceDataStruct {
-    fn shader(&self) -> &Option<Arc<Mutex<dyn SurfaceShaderBaseAssetTrait>>> {
+    fn shader(&self) -> &Option<LockedTypeObject /* SurfaceShaderBaseAsset */> {
         &self.shader
     }
-    fn shader_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SurfaceShaderBaseAssetTrait>>> {
+    fn shader_mut(&mut self) -> &mut Option<LockedTypeObject /* SurfaceShaderBaseAsset */> {
         &mut self.shader
     }
     fn surface_shader_name(&self) -> &String {
@@ -987,85 +1039,94 @@ impl SurfaceShaderInstanceDataStructTrait for SurfaceShaderInstanceDataStruct {
     fn surface_shader_name_mut(&mut self) -> &mut String {
         &mut self.surface_shader_name
     }
-    fn bool_parameters(&self) -> &Vec<BoolShaderParameter> {
+    fn bool_parameters(&self) -> &Vec<BoxedTypeObject /* BoolShaderParameter */> {
         &self.bool_parameters
     }
-    fn bool_parameters_mut(&mut self) -> &mut Vec<BoolShaderParameter> {
+    fn bool_parameters_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BoolShaderParameter */> {
         &mut self.bool_parameters
     }
-    fn vector_parameters(&self) -> &Vec<VectorShaderParameter> {
+    fn vector_parameters(&self) -> &Vec<BoxedTypeObject /* VectorShaderParameter */> {
         &self.vector_parameters
     }
-    fn vector_parameters_mut(&mut self) -> &mut Vec<VectorShaderParameter> {
+    fn vector_parameters_mut(&mut self) -> &mut Vec<BoxedTypeObject /* VectorShaderParameter */> {
         &mut self.vector_parameters
     }
-    fn vector_array_parameters(&self) -> &Vec<VectorArrayShaderParameter> {
+    fn vector_array_parameters(&self) -> &Vec<BoxedTypeObject /* VectorArrayShaderParameter */> {
         &self.vector_array_parameters
     }
-    fn vector_array_parameters_mut(&mut self) -> &mut Vec<VectorArrayShaderParameter> {
+    fn vector_array_parameters_mut(&mut self) -> &mut Vec<BoxedTypeObject /* VectorArrayShaderParameter */> {
         &mut self.vector_array_parameters
     }
-    fn texture_parameters(&self) -> &Vec<TextureShaderParameter> {
+    fn texture_parameters(&self) -> &Vec<BoxedTypeObject /* TextureShaderParameter */> {
         &self.texture_parameters
     }
-    fn texture_parameters_mut(&mut self) -> &mut Vec<TextureShaderParameter> {
+    fn texture_parameters_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TextureShaderParameter */> {
         &mut self.texture_parameters
     }
-    fn conditional_parameters(&self) -> &Vec<ConditionalShaderParameter> {
+    fn conditional_parameters(&self) -> &Vec<BoxedTypeObject /* ConditionalShaderParameter */> {
         &self.conditional_parameters
     }
-    fn conditional_parameters_mut(&mut self) -> &mut Vec<ConditionalShaderParameter> {
+    fn conditional_parameters_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ConditionalShaderParameter */> {
         &mut self.conditional_parameters
     }
 }
 
 pub static SURFACESHADERINSTANCEDATASTRUCT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SurfaceShaderInstanceDataStruct",
+    name_hash: 3060958167,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SurfaceShaderInstanceDataStruct as Default>::default())),
+            create_boxed: || Box::new(<SurfaceShaderInstanceDataStruct as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Shader",
+                name_hash: 3352909900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(SurfaceShaderInstanceDataStruct, shader),
             },
             FieldInfoData {
                 name: "SurfaceShaderName",
+                name_hash: 2683011966,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(SurfaceShaderInstanceDataStruct, surface_shader_name),
             },
             FieldInfoData {
                 name: "BoolParameters",
+                name_hash: 1729647825,
                 flags: MemberInfoFlags::new(144),
                 field_type: "BoolShaderParameter-Array",
                 rust_offset: offset_of!(SurfaceShaderInstanceDataStruct, bool_parameters),
             },
             FieldInfoData {
                 name: "VectorParameters",
+                name_hash: 3213368934,
                 flags: MemberInfoFlags::new(144),
                 field_type: "VectorShaderParameter-Array",
                 rust_offset: offset_of!(SurfaceShaderInstanceDataStruct, vector_parameters),
             },
             FieldInfoData {
                 name: "VectorArrayParameters",
+                name_hash: 2449140063,
                 flags: MemberInfoFlags::new(144),
                 field_type: "VectorArrayShaderParameter-Array",
                 rust_offset: offset_of!(SurfaceShaderInstanceDataStruct, vector_array_parameters),
             },
             FieldInfoData {
                 name: "TextureParameters",
+                name_hash: 2131743936,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TextureShaderParameter-Array",
                 rust_offset: offset_of!(SurfaceShaderInstanceDataStruct, texture_parameters),
             },
             FieldInfoData {
                 name: "ConditionalParameters",
+                name_hash: 408685633,
                 flags: MemberInfoFlags::new(8336),
                 field_type: "ConditionalShaderParameter-Array",
                 rust_offset: offset_of!(SurfaceShaderInstanceDataStruct, conditional_parameters),
@@ -1097,6 +1158,7 @@ impl TypeObject for SurfaceShaderInstanceDataStruct {
 
 pub static SURFACESHADERINSTANCEDATASTRUCT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SurfaceShaderInstanceDataStruct-Array",
+    name_hash: 2933554403,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("SurfaceShaderInstanceDataStruct"),
@@ -1105,7 +1167,8 @@ pub static SURFACESHADERINSTANCEDATASTRUCT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SurfaceShaderBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -1130,12 +1193,15 @@ impl super::core::DataContainerTrait for SurfaceShaderBaseAsset {
 
 pub static SURFACESHADERBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SurfaceShaderBaseAsset",
+    name_hash: 322043900,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(SurfaceShaderBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SurfaceShaderBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<SurfaceShaderBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -1165,6 +1231,7 @@ impl TypeObject for SurfaceShaderBaseAsset {
 
 pub static SURFACESHADERBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SurfaceShaderBaseAsset-Array",
+    name_hash: 2481891272,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("SurfaceShaderBaseAsset"),
@@ -1173,11 +1240,12 @@ pub static SURFACESHADERBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VectorArrayShaderParameter {
     pub parameter_name: String,
     pub parameter_type: ShaderParameterType,
-    pub values: Vec<super::core::Vec4>,
+    pub values: Vec<BoxedTypeObject /* super::core::Vec4 */>,
 }
 
 pub trait VectorArrayShaderParameterTrait: TypeObject {
@@ -1185,8 +1253,8 @@ pub trait VectorArrayShaderParameterTrait: TypeObject {
     fn parameter_name_mut(&mut self) -> &mut String;
     fn parameter_type(&self) -> &ShaderParameterType;
     fn parameter_type_mut(&mut self) -> &mut ShaderParameterType;
-    fn values(&self) -> &Vec<super::core::Vec4>;
-    fn values_mut(&mut self) -> &mut Vec<super::core::Vec4>;
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */>;
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */>;
 }
 
 impl VectorArrayShaderParameterTrait for VectorArrayShaderParameter {
@@ -1202,37 +1270,42 @@ impl VectorArrayShaderParameterTrait for VectorArrayShaderParameter {
     fn parameter_type_mut(&mut self) -> &mut ShaderParameterType {
         &mut self.parameter_type
     }
-    fn values(&self) -> &Vec<super::core::Vec4> {
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &self.values
     }
-    fn values_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &mut self.values
     }
 }
 
 pub static VECTORARRAYSHADERPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorArrayShaderParameter",
+    name_hash: 388751429,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VectorArrayShaderParameter as Default>::default())),
+            create_boxed: || Box::new(<VectorArrayShaderParameter as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VectorArrayShaderParameter, parameter_name),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShaderParameterType",
                 rust_offset: offset_of!(VectorArrayShaderParameter, parameter_type),
             },
             FieldInfoData {
                 name: "Values",
+                name_hash: 3142410589,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec4-Array",
                 rust_offset: offset_of!(VectorArrayShaderParameter, values),
@@ -1264,6 +1337,7 @@ impl TypeObject for VectorArrayShaderParameter {
 
 pub static VECTORARRAYSHADERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorArrayShaderParameter-Array",
+    name_hash: 4161288305,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("VectorArrayShaderParameter"),
@@ -1272,17 +1346,18 @@ pub static VECTORARRAYSHADERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TextureShaderParameter {
     pub parameter_name: String,
-    pub value: Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>,
+    pub value: Option<LockedTypeObject /* TextureBaseAsset */>,
 }
 
 pub trait TextureShaderParameterTrait: TypeObject {
     fn parameter_name(&self) -> &String;
     fn parameter_name_mut(&mut self) -> &mut String;
-    fn value(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
+    fn value(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn value_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */>;
 }
 
 impl TextureShaderParameterTrait for TextureShaderParameter {
@@ -1292,31 +1367,35 @@ impl TextureShaderParameterTrait for TextureShaderParameter {
     fn parameter_name_mut(&mut self) -> &mut String {
         &mut self.parameter_name
     }
-    fn value(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn value(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */> {
         &self.value
     }
-    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn value_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */> {
         &mut self.value
     }
 }
 
 pub static TEXTURESHADERPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureShaderParameter",
+    name_hash: 2924734906,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TextureShaderParameter as Default>::default())),
+            create_boxed: || Box::new(<TextureShaderParameter as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TextureShaderParameter, parameter_name),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(TextureShaderParameter, value),
@@ -1348,6 +1427,7 @@ impl TypeObject for TextureShaderParameter {
 
 pub static TEXTURESHADERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureShaderParameter-Array",
+    name_hash: 1116056590,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("TextureShaderParameter"),
@@ -1356,7 +1436,8 @@ pub static TEXTURESHADERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VectorShaderParameter {
     pub parameter_name: String,
     pub parameter_type: ShaderParameterType,
@@ -1395,27 +1476,32 @@ impl VectorShaderParameterTrait for VectorShaderParameter {
 
 pub static VECTORSHADERPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorShaderParameter",
+    name_hash: 587082268,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VectorShaderParameter as Default>::default())),
+            create_boxed: || Box::new(<VectorShaderParameter as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VectorShaderParameter, parameter_name),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShaderParameterType",
                 rust_offset: offset_of!(VectorShaderParameter, parameter_type),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(VectorShaderParameter, value),
@@ -1447,6 +1533,7 @@ impl TypeObject for VectorShaderParameter {
 
 pub static VECTORSHADERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorShaderParameter-Array",
+    name_hash: 2405835304,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("VectorShaderParameter"),
@@ -1455,17 +1542,18 @@ pub static VECTORSHADERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConditionalShaderParameter {
     pub value: String,
-    pub conditional_asset: Option<Arc<Mutex<dyn ExternalShaderConditionalAssetTrait>>>,
+    pub conditional_asset: Option<LockedTypeObject /* ExternalShaderConditionalAsset */>,
 }
 
 pub trait ConditionalShaderParameterTrait: TypeObject {
     fn value(&self) -> &String;
     fn value_mut(&mut self) -> &mut String;
-    fn conditional_asset(&self) -> &Option<Arc<Mutex<dyn ExternalShaderConditionalAssetTrait>>>;
-    fn conditional_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ExternalShaderConditionalAssetTrait>>>;
+    fn conditional_asset(&self) -> &Option<LockedTypeObject /* ExternalShaderConditionalAsset */>;
+    fn conditional_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* ExternalShaderConditionalAsset */>;
 }
 
 impl ConditionalShaderParameterTrait for ConditionalShaderParameter {
@@ -1475,31 +1563,35 @@ impl ConditionalShaderParameterTrait for ConditionalShaderParameter {
     fn value_mut(&mut self) -> &mut String {
         &mut self.value
     }
-    fn conditional_asset(&self) -> &Option<Arc<Mutex<dyn ExternalShaderConditionalAssetTrait>>> {
+    fn conditional_asset(&self) -> &Option<LockedTypeObject /* ExternalShaderConditionalAsset */> {
         &self.conditional_asset
     }
-    fn conditional_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ExternalShaderConditionalAssetTrait>>> {
+    fn conditional_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* ExternalShaderConditionalAsset */> {
         &mut self.conditional_asset
     }
 }
 
 pub static CONDITIONALSHADERPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalShaderParameter",
+    name_hash: 4029690395,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConditionalShaderParameter as Default>::default())),
+            create_boxed: || Box::new(<ConditionalShaderParameter as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "CString",
                 rust_offset: offset_of!(ConditionalShaderParameter, value),
             },
             FieldInfoData {
                 name: "ConditionalAsset",
+                name_hash: 1608037227,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "ExternalShaderConditionalAsset",
                 rust_offset: offset_of!(ConditionalShaderParameter, conditional_asset),
@@ -1531,6 +1623,7 @@ impl TypeObject for ConditionalShaderParameter {
 
 pub static CONDITIONALSHADERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalShaderParameter-Array",
+    name_hash: 12699823,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ConditionalShaderParameter"),
@@ -1539,7 +1632,8 @@ pub static CONDITIONALSHADERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolShaderParameter {
     pub parameter_name: String,
     pub value: bool,
@@ -1569,21 +1663,25 @@ impl BoolShaderParameterTrait for BoolShaderParameter {
 
 pub static BOOLSHADERPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolShaderParameter",
+    name_hash: 933942411,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolShaderParameter as Default>::default())),
+            create_boxed: || Box::new(<BoolShaderParameter as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(BoolShaderParameter, parameter_name),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoolShaderParameter, value),
@@ -1615,6 +1713,7 @@ impl TypeObject for BoolShaderParameter {
 
 pub static BOOLSHADERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolShaderParameter-Array",
+    name_hash: 2209973055,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("BoolShaderParameter"),
@@ -1623,7 +1722,8 @@ pub static BOOLSHADERPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderParameterDesc {
     pub part0: u64,
     pub part1: u64,
@@ -1653,21 +1753,25 @@ impl ShaderParameterDescTrait for ShaderParameterDesc {
 
 pub static SHADERPARAMETERDESC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterDesc",
+    name_hash: 610745748,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderParameterDesc as Default>::default())),
+            create_boxed: || Box::new(<ShaderParameterDesc as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Part0",
+                name_hash: 232319426,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(ShaderParameterDesc, part0),
             },
             FieldInfoData {
                 name: "Part1",
+                name_hash: 232319427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(ShaderParameterDesc, part1),
@@ -1699,6 +1803,7 @@ impl TypeObject for ShaderParameterDesc {
 
 pub static SHADERPARAMETERDESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterDesc-Array",
+    name_hash: 145783200,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderParameterDesc"),
@@ -1720,6 +1825,7 @@ pub enum ShaderIndirectSpecularParamType {
 
 pub static SHADERINDIRECTSPECULARPARAMTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderIndirectSpecularParamType",
+    name_hash: 2253001182,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -1748,6 +1854,7 @@ impl TypeObject for ShaderIndirectSpecularParamType {
 
 pub static SHADERINDIRECTSPECULARPARAMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderIndirectSpecularParamType-Array",
+    name_hash: 711807850,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderIndirectSpecularParamType"),
@@ -1774,6 +1881,7 @@ pub enum ShaderParameterType {
 
 pub static SHADERPARAMETERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterType",
+    name_hash: 611307773,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -1802,6 +1910,7 @@ impl TypeObject for ShaderParameterType {
 
 pub static SHADERPARAMETERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterType-Array",
+    name_hash: 292601289,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderParameterType"),
@@ -1823,6 +1932,7 @@ pub enum ExternalValueConstantType {
 
 pub static EXTERNALVALUECONSTANTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalValueConstantType",
+    name_hash: 1864261461,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -1851,6 +1961,7 @@ impl TypeObject for ExternalValueConstantType {
 
 pub static EXTERNALVALUECONSTANTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalValueConstantType-Array",
+    name_hash: 4046503777,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ExternalValueConstantType"),
@@ -1871,6 +1982,7 @@ pub enum ShaderShadowmapQuality {
 
 pub static SHADERSHADOWMAPQUALITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderShadowmapQuality",
+    name_hash: 1540628667,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -1899,6 +2011,7 @@ impl TypeObject for ShaderShadowmapQuality {
 
 pub static SHADERSHADOWMAPQUALITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderShadowmapQuality-Array",
+    name_hash: 2817157135,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderShadowmapQuality"),
@@ -1907,60 +2020,61 @@ pub static SHADERSHADOWMAPQUALITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderParameterBlockDynamicState {
-    pub vecs: Vec<ShaderBlockVec>,
-    pub bools: Vec<ShaderBlockBool>,
-    pub conditionals: Vec<ShaderBlockConditional>,
-    pub textures: Vec<ShaderBlockTexture>,
-    pub render_buffers: Vec<ShaderBlockRenderBuffer>,
+    pub vecs: Vec<BoxedTypeObject /* ShaderBlockVec */>,
+    pub bools: Vec<BoxedTypeObject /* ShaderBlockBool */>,
+    pub conditionals: Vec<BoxedTypeObject /* ShaderBlockConditional */>,
+    pub textures: Vec<BoxedTypeObject /* ShaderBlockTexture */>,
+    pub render_buffers: Vec<BoxedTypeObject /* ShaderBlockRenderBuffer */>,
     pub field_flag_changed0: u8,
 }
 
 pub trait ShaderParameterBlockDynamicStateTrait: TypeObject {
-    fn vecs(&self) -> &Vec<ShaderBlockVec>;
-    fn vecs_mut(&mut self) -> &mut Vec<ShaderBlockVec>;
-    fn bools(&self) -> &Vec<ShaderBlockBool>;
-    fn bools_mut(&mut self) -> &mut Vec<ShaderBlockBool>;
-    fn conditionals(&self) -> &Vec<ShaderBlockConditional>;
-    fn conditionals_mut(&mut self) -> &mut Vec<ShaderBlockConditional>;
-    fn textures(&self) -> &Vec<ShaderBlockTexture>;
-    fn textures_mut(&mut self) -> &mut Vec<ShaderBlockTexture>;
-    fn render_buffers(&self) -> &Vec<ShaderBlockRenderBuffer>;
-    fn render_buffers_mut(&mut self) -> &mut Vec<ShaderBlockRenderBuffer>;
+    fn vecs(&self) -> &Vec<BoxedTypeObject /* ShaderBlockVec */>;
+    fn vecs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShaderBlockVec */>;
+    fn bools(&self) -> &Vec<BoxedTypeObject /* ShaderBlockBool */>;
+    fn bools_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShaderBlockBool */>;
+    fn conditionals(&self) -> &Vec<BoxedTypeObject /* ShaderBlockConditional */>;
+    fn conditionals_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShaderBlockConditional */>;
+    fn textures(&self) -> &Vec<BoxedTypeObject /* ShaderBlockTexture */>;
+    fn textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShaderBlockTexture */>;
+    fn render_buffers(&self) -> &Vec<BoxedTypeObject /* ShaderBlockRenderBuffer */>;
+    fn render_buffers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShaderBlockRenderBuffer */>;
     fn field_flag_changed0(&self) -> &u8;
     fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl ShaderParameterBlockDynamicStateTrait for ShaderParameterBlockDynamicState {
-    fn vecs(&self) -> &Vec<ShaderBlockVec> {
+    fn vecs(&self) -> &Vec<BoxedTypeObject /* ShaderBlockVec */> {
         &self.vecs
     }
-    fn vecs_mut(&mut self) -> &mut Vec<ShaderBlockVec> {
+    fn vecs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShaderBlockVec */> {
         &mut self.vecs
     }
-    fn bools(&self) -> &Vec<ShaderBlockBool> {
+    fn bools(&self) -> &Vec<BoxedTypeObject /* ShaderBlockBool */> {
         &self.bools
     }
-    fn bools_mut(&mut self) -> &mut Vec<ShaderBlockBool> {
+    fn bools_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShaderBlockBool */> {
         &mut self.bools
     }
-    fn conditionals(&self) -> &Vec<ShaderBlockConditional> {
+    fn conditionals(&self) -> &Vec<BoxedTypeObject /* ShaderBlockConditional */> {
         &self.conditionals
     }
-    fn conditionals_mut(&mut self) -> &mut Vec<ShaderBlockConditional> {
+    fn conditionals_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShaderBlockConditional */> {
         &mut self.conditionals
     }
-    fn textures(&self) -> &Vec<ShaderBlockTexture> {
+    fn textures(&self) -> &Vec<BoxedTypeObject /* ShaderBlockTexture */> {
         &self.textures
     }
-    fn textures_mut(&mut self) -> &mut Vec<ShaderBlockTexture> {
+    fn textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShaderBlockTexture */> {
         &mut self.textures
     }
-    fn render_buffers(&self) -> &Vec<ShaderBlockRenderBuffer> {
+    fn render_buffers(&self) -> &Vec<BoxedTypeObject /* ShaderBlockRenderBuffer */> {
         &self.render_buffers
     }
-    fn render_buffers_mut(&mut self) -> &mut Vec<ShaderBlockRenderBuffer> {
+    fn render_buffers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ShaderBlockRenderBuffer */> {
         &mut self.render_buffers
     }
     fn field_flag_changed0(&self) -> &u8 {
@@ -1973,45 +2087,53 @@ impl ShaderParameterBlockDynamicStateTrait for ShaderParameterBlockDynamicState 
 
 pub static SHADERPARAMETERBLOCKDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterBlockDynamicState",
+    name_hash: 1046957774,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderParameterBlockDynamicState as Default>::default())),
+            create_boxed: || Box::new(<ShaderParameterBlockDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Vecs",
+                name_hash: 2089241926,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ShaderBlockVec-Array",
                 rust_offset: offset_of!(ShaderParameterBlockDynamicState, vecs),
             },
             FieldInfoData {
                 name: "Bools",
+                name_hash: 211343960,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ShaderBlockBool-Array",
                 rust_offset: offset_of!(ShaderParameterBlockDynamicState, bools),
             },
             FieldInfoData {
                 name: "Conditionals",
+                name_hash: 1074683848,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ShaderBlockConditional-Array",
                 rust_offset: offset_of!(ShaderParameterBlockDynamicState, conditionals),
             },
             FieldInfoData {
                 name: "Textures",
+                name_hash: 2027158633,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ShaderBlockTexture-Array",
                 rust_offset: offset_of!(ShaderParameterBlockDynamicState, textures),
             },
             FieldInfoData {
                 name: "RenderBuffers",
+                name_hash: 957202204,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ShaderBlockRenderBuffer-Array",
                 rust_offset: offset_of!(ShaderParameterBlockDynamicState, render_buffers),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(ShaderParameterBlockDynamicState, field_flag_changed0),
@@ -2043,6 +2165,7 @@ impl TypeObject for ShaderParameterBlockDynamicState {
 
 pub static SHADERPARAMETERBLOCKDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterBlockDynamicState-Array",
+    name_hash: 2503051386,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderParameterBlockDynamicState"),
@@ -2051,7 +2174,8 @@ pub static SHADERPARAMETERBLOCKDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderBlockRenderBuffer {
     pub name: ShaderBlockParameter,
     pub value: RenderBufferHandle,
@@ -2081,21 +2205,25 @@ impl ShaderBlockRenderBufferTrait for ShaderBlockRenderBuffer {
 
 pub static SHADERBLOCKRENDERBUFFER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockRenderBuffer",
+    name_hash: 3437272303,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderBlockRenderBuffer as Default>::default())),
+            create_boxed: || Box::new(<ShaderBlockRenderBuffer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShaderBlockParameter",
                 rust_offset: offset_of!(ShaderBlockRenderBuffer, name),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RenderBufferHandle",
                 rust_offset: offset_of!(ShaderBlockRenderBuffer, value),
@@ -2127,6 +2255,7 @@ impl TypeObject for ShaderBlockRenderBuffer {
 
 pub static SHADERBLOCKRENDERBUFFER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockRenderBuffer-Array",
+    name_hash: 2154035931,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderBlockRenderBuffer"),
@@ -2135,7 +2264,8 @@ pub static SHADERBLOCKRENDERBUFFER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderBlockTexture {
     pub name: ShaderBlockParameter,
     pub value: TextureResourceHandle,
@@ -2165,21 +2295,25 @@ impl ShaderBlockTextureTrait for ShaderBlockTexture {
 
 pub static SHADERBLOCKTEXTURE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockTexture",
+    name_hash: 3359783610,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderBlockTexture as Default>::default())),
+            create_boxed: || Box::new(<ShaderBlockTexture as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShaderBlockParameter",
                 rust_offset: offset_of!(ShaderBlockTexture, name),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureResourceHandle",
                 rust_offset: offset_of!(ShaderBlockTexture, value),
@@ -2211,6 +2345,7 @@ impl TypeObject for ShaderBlockTexture {
 
 pub static SHADERBLOCKTEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockTexture-Array",
+    name_hash: 3291266318,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderBlockTexture"),
@@ -2219,17 +2354,18 @@ pub static SHADERBLOCKTEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderBlockVec {
     pub name: ShaderBlockParameter,
-    pub values: Vec<super::core::Vec4>,
+    pub values: Vec<BoxedTypeObject /* super::core::Vec4 */>,
 }
 
 pub trait ShaderBlockVecTrait: TypeObject {
     fn name(&self) -> &ShaderBlockParameter;
     fn name_mut(&mut self) -> &mut ShaderBlockParameter;
-    fn values(&self) -> &Vec<super::core::Vec4>;
-    fn values_mut(&mut self) -> &mut Vec<super::core::Vec4>;
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */>;
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */>;
 }
 
 impl ShaderBlockVecTrait for ShaderBlockVec {
@@ -2239,31 +2375,35 @@ impl ShaderBlockVecTrait for ShaderBlockVec {
     fn name_mut(&mut self) -> &mut ShaderBlockParameter {
         &mut self.name
     }
-    fn values(&self) -> &Vec<super::core::Vec4> {
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &self.values
     }
-    fn values_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &mut self.values
     }
 }
 
 pub static SHADERBLOCKVEC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockVec",
+    name_hash: 3052311925,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderBlockVec as Default>::default())),
+            create_boxed: || Box::new(<ShaderBlockVec as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShaderBlockParameter",
                 rust_offset: offset_of!(ShaderBlockVec, name),
             },
             FieldInfoData {
                 name: "Values",
+                name_hash: 3142410589,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec4-Array",
                 rust_offset: offset_of!(ShaderBlockVec, values),
@@ -2295,6 +2435,7 @@ impl TypeObject for ShaderBlockVec {
 
 pub static SHADERBLOCKVEC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockVec-Array",
+    name_hash: 445744705,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderBlockVec"),
@@ -2303,7 +2444,8 @@ pub static SHADERBLOCKVEC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderBlockConditional {
     pub name: ShaderBlockParameter,
     pub value: u8,
@@ -2333,21 +2475,25 @@ impl ShaderBlockConditionalTrait for ShaderBlockConditional {
 
 pub static SHADERBLOCKCONDITIONAL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockConditional",
+    name_hash: 1979232571,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderBlockConditional as Default>::default())),
+            create_boxed: || Box::new(<ShaderBlockConditional as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShaderBlockParameter",
                 rust_offset: offset_of!(ShaderBlockConditional, name),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(ShaderBlockConditional, value),
@@ -2379,6 +2525,7 @@ impl TypeObject for ShaderBlockConditional {
 
 pub static SHADERBLOCKCONDITIONAL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockConditional-Array",
+    name_hash: 207181967,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderBlockConditional"),
@@ -2387,7 +2534,8 @@ pub static SHADERBLOCKCONDITIONAL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderBlockBool {
     pub name: ShaderBlockParameter,
     pub value: bool,
@@ -2417,21 +2565,25 @@ impl ShaderBlockBoolTrait for ShaderBlockBool {
 
 pub static SHADERBLOCKBOOL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockBool",
+    name_hash: 1941608171,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderBlockBool as Default>::default())),
+            create_boxed: || Box::new(<ShaderBlockBool as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShaderBlockParameter",
                 rust_offset: offset_of!(ShaderBlockBool, name),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ShaderBlockBool, value),
@@ -2463,6 +2615,7 @@ impl TypeObject for ShaderBlockBool {
 
 pub static SHADERBLOCKBOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockBool-Array",
+    name_hash: 1678886623,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderBlockBool"),
@@ -2471,7 +2624,8 @@ pub static SHADERBLOCKBOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderBlockParameter {
     pub part0: u64,
     pub part1: u64,
@@ -2501,21 +2655,25 @@ impl ShaderBlockParameterTrait for ShaderBlockParameter {
 
 pub static SHADERBLOCKPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockParameter",
+    name_hash: 1109709260,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderBlockParameter as Default>::default())),
+            create_boxed: || Box::new(<ShaderBlockParameter as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Part0",
+                name_hash: 232319426,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(ShaderBlockParameter, part0),
             },
             FieldInfoData {
                 name: "Part1",
+                name_hash: 232319427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(ShaderBlockParameter, part1),
@@ -2547,6 +2705,7 @@ impl TypeObject for ShaderBlockParameter {
 
 pub static SHADERBLOCKPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderBlockParameter-Array",
+    name_hash: 629985912,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderBlockParameter"),
@@ -2555,7 +2714,8 @@ pub static SHADERBLOCKPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderParameterBlockStaticState {
 }
 
@@ -2567,11 +2727,13 @@ impl ShaderParameterBlockStaticStateTrait for ShaderParameterBlockStaticState {
 
 pub static SHADERPARAMETERBLOCKSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterBlockStaticState",
+    name_hash: 36782211,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderParameterBlockStaticState as Default>::default())),
+            create_boxed: || Box::new(<ShaderParameterBlockStaticState as Default>::default()),
         },
         fields: &[
         ],
@@ -2601,6 +2763,7 @@ impl TypeObject for ShaderParameterBlockStaticState {
 
 pub static SHADERPARAMETERBLOCKSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderParameterBlockStaticState-Array",
+    name_hash: 3923874615,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderParameterBlockStaticState"),
@@ -2609,7 +2772,8 @@ pub static SHADERPARAMETERBLOCKSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScreenshotDynamicState {
     pub force_auto_render: bool,
     pub trigger_auto_render_delay: i32,
@@ -2657,33 +2821,39 @@ impl ScreenshotDynamicStateTrait for ScreenshotDynamicState {
 
 pub static SCREENSHOTDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScreenshotDynamicState",
+    name_hash: 2107437675,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScreenshotDynamicState as Default>::default())),
+            create_boxed: || Box::new(<ScreenshotDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ForceAutoRender",
+                name_hash: 2138844989,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ScreenshotDynamicState, force_auto_render),
             },
             FieldInfoData {
                 name: "TriggerAutoRenderDelay",
+                name_hash: 3899383213,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ScreenshotDynamicState, trigger_auto_render_delay),
             },
             FieldInfoData {
                 name: "IsFrozen",
+                name_hash: 878127861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ScreenshotDynamicState, is_frozen),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(ScreenshotDynamicState, field_flag_changed0),
@@ -2715,6 +2885,7 @@ impl TypeObject for ScreenshotDynamicState {
 
 pub static SCREENSHOTDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScreenshotDynamicState-Array",
+    name_hash: 1076544095,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ScreenshotDynamicState"),
@@ -2723,7 +2894,8 @@ pub static SCREENSHOTDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScreenshotState {
     pub explicit_file_name: String,
     pub format: ScreenshotFormat,
@@ -2933,141 +3105,165 @@ impl ScreenshotStateTrait for ScreenshotState {
 
 pub static SCREENSHOTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScreenshotState",
+    name_hash: 4107409630,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScreenshotState as Default>::default())),
+            create_boxed: || Box::new(<ScreenshotState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExplicitFileName",
+                name_hash: 407439154,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ScreenshotState, explicit_file_name),
             },
             FieldInfoData {
                 name: "Format",
+                name_hash: 2533062662,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ScreenshotFormat",
                 rust_offset: offset_of!(ScreenshotState, format),
             },
             FieldInfoData {
                 name: "LayerMode",
+                name_hash: 3033736037,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ScreenshotLayerMode",
                 rust_offset: offset_of!(ScreenshotState, layer_mode),
             },
             FieldInfoData {
                 name: "FrameNamingMode",
+                name_hash: 1460071513,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ScreenshotFrameNamingMode",
                 rust_offset: offset_of!(ScreenshotState, frame_naming_mode),
             },
             FieldInfoData {
                 name: "AntiAliasMultiplier",
+                name_hash: 2328526858,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ScreenshotState, anti_alias_multiplier),
             },
             FieldInfoData {
                 name: "ResolutionMultiplier",
+                name_hash: 2246570464,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ScreenshotState, resolution_multiplier),
             },
             FieldInfoData {
                 name: "PngCompressionLevel",
+                name_hash: 3219559460,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ScreenshotState, png_compression_level),
             },
             FieldInfoData {
                 name: "AlphaEnable",
+                name_hash: 170894480,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ScreenshotState, alpha_enable),
             },
             FieldInfoData {
                 name: "SurroundCapture",
+                name_hash: 2111158007,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ScreenshotState, surround_capture),
             },
             FieldInfoData {
                 name: "UseNativeFileSystem",
+                name_hash: 1983778052,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ScreenshotState, use_native_file_system),
             },
             FieldInfoData {
                 name: "StartingXPos",
+                name_hash: 2281452561,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ScreenshotState, starting_x_pos),
             },
             FieldInfoData {
                 name: "StartingYPos",
+                name_hash: 2281420976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ScreenshotState, starting_y_pos),
             },
             FieldInfoData {
                 name: "Width",
+                name_hash: 226981187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ScreenshotState, width),
             },
             FieldInfoData {
                 name: "Height",
+                name_hash: 3054065626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ScreenshotState, height),
             },
             FieldInfoData {
                 name: "DelayFrames",
+                name_hash: 3472788958,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ScreenshotState, delay_frames),
             },
             FieldInfoData {
                 name: "UploadToJuice",
+                name_hash: 2124891245,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ScreenshotState, upload_to_juice),
             },
             FieldInfoData {
                 name: "Overwrite",
+                name_hash: 2461982646,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ScreenshotState, overwrite),
             },
             FieldInfoData {
                 name: "AutoRenderDelay",
+                name_hash: 2936964373,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ScreenshotState, auto_render_delay),
             },
             FieldInfoData {
                 name: "FramePadding",
+                name_hash: 3055891305,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ScreenshotState, frame_padding),
             },
             FieldInfoData {
                 name: "ByFrame",
+                name_hash: 3260914819,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ScreenshotState, by_frame),
             },
             FieldInfoData {
                 name: "ResetCounter",
+                name_hash: 1609600292,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ScreenshotState, reset_counter),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ScreenshotState, field_flag_changed0),
@@ -3099,6 +3295,7 @@ impl TypeObject for ScreenshotState {
 
 pub static SCREENSHOTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScreenshotState-Array",
+    name_hash: 916363882,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ScreenshotState"),
@@ -3118,6 +3315,7 @@ pub enum ScreenshotFrameNamingMode {
 
 pub static SCREENSHOTFRAMENAMINGMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScreenshotFrameNamingMode",
+    name_hash: 2357727669,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -3146,6 +3344,7 @@ impl TypeObject for ScreenshotFrameNamingMode {
 
 pub static SCREENSHOTFRAMENAMINGMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScreenshotFrameNamingMode-Array",
+    name_hash: 714535425,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ScreenshotFrameNamingMode"),
@@ -3167,6 +3366,7 @@ pub enum ScreenshotLayerMode {
 
 pub static SCREENSHOTLAYERMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScreenshotLayerMode",
+    name_hash: 273662345,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -3195,6 +3395,7 @@ impl TypeObject for ScreenshotLayerMode {
 
 pub static SCREENSHOTLAYERMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScreenshotLayerMode-Array",
+    name_hash: 1466152765,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ScreenshotLayerMode"),
@@ -3220,6 +3421,7 @@ pub enum ScreenshotFormat {
 
 pub static SCREENSHOTFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScreenshotFormat",
+    name_hash: 1888753834,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -3248,6 +3450,7 @@ impl TypeObject for ScreenshotFormat {
 
 pub static SCREENSHOTFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScreenshotFormat-Array",
+    name_hash: 3596243742,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ScreenshotFormat"),
@@ -3256,7 +3459,8 @@ pub static SCREENSHOTFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ViewDefinition {
     pub view_id: LocalPlayerViewId,
     pub view_type: ViewDefinitionType,
@@ -3349,63 +3553,74 @@ impl ViewDefinitionTrait for ViewDefinition {
 
 pub static VIEWDEFINITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ViewDefinition",
+    name_hash: 2445407965,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ViewDefinition as Default>::default())),
+            create_boxed: || Box::new(<ViewDefinition as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ViewId",
+                name_hash: 3151570821,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalPlayerViewId",
                 rust_offset: offset_of!(ViewDefinition, view_id),
             },
             FieldInfoData {
                 name: "ViewType",
+                name_hash: 382764592,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ViewDefinitionType",
                 rust_offset: offset_of!(ViewDefinition, view_type),
             },
             FieldInfoData {
                 name: "ScreenIndex",
+                name_hash: 564266743,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ViewDefinition, screen_index),
             },
             FieldInfoData {
                 name: "NormalizedSize",
+                name_hash: 4027809921,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ViewDefinition, normalized_size),
             },
             FieldInfoData {
                 name: "OffsetX",
+                name_hash: 267273584,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ViewDefinition, offset_x),
             },
             FieldInfoData {
                 name: "OffsetY",
+                name_hash: 267273585,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ViewDefinition, offset_y),
             },
             FieldInfoData {
                 name: "Width",
+                name_hash: 226981187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ViewDefinition, width),
             },
             FieldInfoData {
                 name: "Height",
+                name_hash: 3054065626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ViewDefinition, height),
             },
             FieldInfoData {
                 name: "FovScale",
+                name_hash: 932487074,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ViewDefinition, fov_scale),
@@ -3437,6 +3652,7 @@ impl TypeObject for ViewDefinition {
 
 pub static VIEWDEFINITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ViewDefinition-Array",
+    name_hash: 2609337065,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ViewDefinition"),
@@ -3460,6 +3676,7 @@ pub enum ViewDefinitionType {
 
 pub static VIEWDEFINITIONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ViewDefinitionType",
+    name_hash: 4248675621,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -3488,6 +3705,7 @@ impl TypeObject for ViewDefinitionType {
 
 pub static VIEWDEFINITIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ViewDefinitionType-Array",
+    name_hash: 3984219537,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ViewDefinitionType"),
@@ -3496,7 +3714,8 @@ pub static VIEWDEFINITIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicalCameraDesc {
     pub exposure_compensation: f32,
     pub e_v100: f32,
@@ -3643,99 +3862,116 @@ impl PhysicalCameraDescTrait for PhysicalCameraDesc {
 
 pub static PHYSICALCAMERADESC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicalCameraDesc",
+    name_hash: 3562953720,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicalCameraDesc as Default>::default())),
+            create_boxed: || Box::new(<PhysicalCameraDesc as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExposureCompensation",
+                name_hash: 3835253666,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicalCameraDesc, exposure_compensation),
             },
             FieldInfoData {
                 name: "EV100",
+                name_hash: 202560455,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicalCameraDesc, e_v100),
             },
             FieldInfoData {
                 name: "ShutterSpeed",
+                name_hash: 488177211,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicalCameraDesc, shutter_speed),
             },
             FieldInfoData {
                 name: "Aperture",
+                name_hash: 1885994293,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicalCameraDesc, aperture),
             },
             FieldInfoData {
                 name: "ISO",
+                name_hash: 193452880,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicalCameraDesc, i_s_o),
             },
             FieldInfoData {
                 name: "FocalLength",
+                name_hash: 1499741854,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicalCameraDesc, focal_length),
             },
             FieldInfoData {
                 name: "Fov",
+                name_hash: 193443802,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicalCameraDesc, fov),
             },
             FieldInfoData {
                 name: "FocusDistance",
+                name_hash: 1402926186,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicalCameraDesc, focus_distance),
             },
             FieldInfoData {
                 name: "SensorWidth",
+                name_hash: 2576703797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicalCameraDesc, sensor_width),
             },
             FieldInfoData {
                 name: "SensorHeight",
+                name_hash: 105242156,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicalCameraDesc, sensor_height),
             },
             FieldInfoData {
                 name: "SpotMeterScale",
+                name_hash: 1691011758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicalCameraDesc, spot_meter_scale),
             },
             FieldInfoData {
                 name: "SpotMeterOffset",
+                name_hash: 754812987,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(PhysicalCameraDesc, spot_meter_offset),
             },
             FieldInfoData {
                 name: "UseLensBreathing",
+                name_hash: 1986999834,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicalCameraDesc, use_lens_breathing),
             },
             FieldInfoData {
                 name: "UseCameraExposure",
+                name_hash: 4060892620,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicalCameraDesc, use_camera_exposure),
             },
             FieldInfoData {
                 name: "AutoExposureMethod",
+                name_hash: 2459920774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AutoExposureMethod",
                 rust_offset: offset_of!(PhysicalCameraDesc, auto_exposure_method),
@@ -3767,6 +4003,7 @@ impl TypeObject for PhysicalCameraDesc {
 
 pub static PHYSICALCAMERADESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicalCameraDesc-Array",
+    name_hash: 1387288012,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("PhysicalCameraDesc"),
@@ -3789,6 +4026,7 @@ pub enum AutoExposureMethod {
 
 pub static AUTOEXPOSUREMETHOD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoExposureMethod",
+    name_hash: 2459920774,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -3817,6 +4055,7 @@ impl TypeObject for AutoExposureMethod {
 
 pub static AUTOEXPOSUREMETHOD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoExposureMethod-Array",
+    name_hash: 225646258,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("AutoExposureMethod"),
@@ -3825,7 +4064,8 @@ pub static AUTOEXPOSUREMETHOD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RenderViewDynamicState {
     pub transform: super::state_stream::TransformSpaceHandle,
     pub visible: bool,
@@ -3850,7 +4090,7 @@ pub struct RenderViewDynamicState {
     pub use_physical_camera_changed: bool,
     pub camera_cut_sync_id: u32,
     pub screen_index: u32,
-    pub cull_ids: Vec<CullIdHandle>,
+    pub cull_ids: Vec<BoxedTypeObject /* CullIdHandle */>,
     pub render_view_feature_mask: u32,
     pub field_flag_changed0: u32,
 }
@@ -3902,8 +4142,8 @@ pub trait RenderViewDynamicStateTrait: TypeObject {
     fn camera_cut_sync_id_mut(&mut self) -> &mut u32;
     fn screen_index(&self) -> &u32;
     fn screen_index_mut(&mut self) -> &mut u32;
-    fn cull_ids(&self) -> &Vec<CullIdHandle>;
-    fn cull_ids_mut(&mut self) -> &mut Vec<CullIdHandle>;
+    fn cull_ids(&self) -> &Vec<BoxedTypeObject /* CullIdHandle */>;
+    fn cull_ids_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CullIdHandle */>;
     fn render_view_feature_mask(&self) -> &u32;
     fn render_view_feature_mask_mut(&mut self) -> &mut u32;
     fn field_flag_changed0(&self) -> &u32;
@@ -4049,10 +4289,10 @@ impl RenderViewDynamicStateTrait for RenderViewDynamicState {
     fn screen_index_mut(&mut self) -> &mut u32 {
         &mut self.screen_index
     }
-    fn cull_ids(&self) -> &Vec<CullIdHandle> {
+    fn cull_ids(&self) -> &Vec<BoxedTypeObject /* CullIdHandle */> {
         &self.cull_ids
     }
-    fn cull_ids_mut(&mut self) -> &mut Vec<CullIdHandle> {
+    fn cull_ids_mut(&mut self) -> &mut Vec<BoxedTypeObject /* CullIdHandle */> {
         &mut self.cull_ids
     }
     fn render_view_feature_mask(&self) -> &u32 {
@@ -4071,165 +4311,193 @@ impl RenderViewDynamicStateTrait for RenderViewDynamicState {
 
 pub static RENDERVIEWDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderViewDynamicState",
+    name_hash: 478842368,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RenderViewDynamicState as Default>::default())),
+            create_boxed: || Box::new(<RenderViewDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TransformSpaceHandle",
                 rust_offset: offset_of!(RenderViewDynamicState, transform),
             },
             FieldInfoData {
                 name: "Visible",
+                name_hash: 901540267,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RenderViewDynamicState, visible),
             },
             FieldInfoData {
                 name: "Viewport",
+                name_hash: 383721937,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ViewportRect",
                 rust_offset: offset_of!(RenderViewDynamicState, viewport),
             },
             FieldInfoData {
                 name: "ViewportOffset",
+                name_hash: 508215548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(RenderViewDynamicState, viewport_offset),
             },
             FieldInfoData {
                 name: "PhysicalCameraEnabled",
+                name_hash: 1372525228,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RenderViewDynamicState, physical_camera_enabled),
             },
             FieldInfoData {
                 name: "PhysicalCameraDesc",
+                name_hash: 3562953720,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicalCameraDesc",
                 rust_offset: offset_of!(RenderViewDynamicState, physical_camera_desc),
             },
             FieldInfoData {
                 name: "SecondaryStreamingViewEnabled",
+                name_hash: 2826236843,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RenderViewDynamicState, secondary_streaming_view_enabled),
             },
             FieldInfoData {
                 name: "SecondaryStreamingViewTransform",
+                name_hash: 1708662082,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(RenderViewDynamicState, secondary_streaming_view_transform),
             },
             FieldInfoData {
                 name: "SecondaryStreamingViewFovRad",
+                name_hash: 1207016038,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RenderViewDynamicState, secondary_streaming_view_fov_rad),
             },
             FieldInfoData {
                 name: "NearPlane",
+                name_hash: 3156145579,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RenderViewDynamicState, near_plane),
             },
             FieldInfoData {
                 name: "FarPlane",
+                name_hash: 192290566,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RenderViewDynamicState, far_plane),
             },
             FieldInfoData {
                 name: "Aspect",
+                name_hash: 2502134069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RenderViewDynamicState, aspect),
             },
             FieldInfoData {
                 name: "FovRad",
+                name_hash: 2532876589,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RenderViewDynamicState, fov_rad),
             },
             FieldInfoData {
                 name: "BlurAmount",
+                name_hash: 1214786336,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RenderViewDynamicState, blur_amount),
             },
             FieldInfoData {
                 name: "DofFocusDistance",
+                name_hash: 787106375,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RenderViewDynamicState, dof_focus_distance),
             },
             FieldInfoData {
                 name: "ShadowmapMinFov",
+                name_hash: 4182219946,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RenderViewDynamicState, shadowmap_min_fov),
             },
             FieldInfoData {
                 name: "ShadowmapDistanceScale",
+                name_hash: 1779063684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RenderViewDynamicState, shadowmap_distance_scale),
             },
             FieldInfoData {
                 name: "LuminanceTextureUVScale",
+                name_hash: 2817003995,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RenderViewDynamicState, luminance_texture_u_v_scale),
             },
             FieldInfoData {
                 name: "WorldFadeAmount",
+                name_hash: 4277814925,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RenderViewDynamicState, world_fade_amount),
             },
             FieldInfoData {
                 name: "CameraCutThisFrame",
+                name_hash: 1757275813,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RenderViewDynamicState, camera_cut_this_frame),
             },
             FieldInfoData {
                 name: "UsePhysicalCameraChanged",
+                name_hash: 4196134728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RenderViewDynamicState, use_physical_camera_changed),
             },
             FieldInfoData {
                 name: "CameraCutSyncId",
+                name_hash: 4095127188,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RenderViewDynamicState, camera_cut_sync_id),
             },
             FieldInfoData {
                 name: "ScreenIndex",
+                name_hash: 564266743,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RenderViewDynamicState, screen_index),
             },
             FieldInfoData {
                 name: "CullIds",
+                name_hash: 4217999213,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CullIdHandle-Array",
                 rust_offset: offset_of!(RenderViewDynamicState, cull_ids),
             },
             FieldInfoData {
                 name: "RenderViewFeatureMask",
+                name_hash: 2622689090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RenderViewDynamicState, render_view_feature_mask),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RenderViewDynamicState, field_flag_changed0),
@@ -4261,6 +4529,7 @@ impl TypeObject for RenderViewDynamicState {
 
 pub static RENDERVIEWDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderViewDynamicState-Array",
+    name_hash: 240890932,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("RenderViewDynamicState"),
@@ -4269,10 +4538,11 @@ pub static RENDERVIEWDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RenderViewStaticState {
     pub priority: u32,
-    pub target_texture: Option<Arc<Mutex<dyn RenderTextureBaseAssetTrait>>>,
+    pub target_texture: Option<LockedTypeObject /* RenderTextureBaseAsset */>,
     pub debug_name: String,
     pub field_flag_changed0: u8,
 }
@@ -4280,8 +4550,8 @@ pub struct RenderViewStaticState {
 pub trait RenderViewStaticStateTrait: TypeObject {
     fn priority(&self) -> &u32;
     fn priority_mut(&mut self) -> &mut u32;
-    fn target_texture(&self) -> &Option<Arc<Mutex<dyn RenderTextureBaseAssetTrait>>>;
-    fn target_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RenderTextureBaseAssetTrait>>>;
+    fn target_texture(&self) -> &Option<LockedTypeObject /* RenderTextureBaseAsset */>;
+    fn target_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* RenderTextureBaseAsset */>;
     fn debug_name(&self) -> &String;
     fn debug_name_mut(&mut self) -> &mut String;
     fn field_flag_changed0(&self) -> &u8;
@@ -4295,10 +4565,10 @@ impl RenderViewStaticStateTrait for RenderViewStaticState {
     fn priority_mut(&mut self) -> &mut u32 {
         &mut self.priority
     }
-    fn target_texture(&self) -> &Option<Arc<Mutex<dyn RenderTextureBaseAssetTrait>>> {
+    fn target_texture(&self) -> &Option<LockedTypeObject /* RenderTextureBaseAsset */> {
         &self.target_texture
     }
-    fn target_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RenderTextureBaseAssetTrait>>> {
+    fn target_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* RenderTextureBaseAsset */> {
         &mut self.target_texture
     }
     fn debug_name(&self) -> &String {
@@ -4317,33 +4587,39 @@ impl RenderViewStaticStateTrait for RenderViewStaticState {
 
 pub static RENDERVIEWSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderViewStaticState",
+    name_hash: 3352672013,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RenderViewStaticState as Default>::default())),
+            create_boxed: || Box::new(<RenderViewStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Priority",
+                name_hash: 3062102871,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RenderViewStaticState, priority),
             },
             FieldInfoData {
                 name: "TargetTexture",
+                name_hash: 1040220331,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RenderTextureBaseAsset",
                 rust_offset: offset_of!(RenderViewStaticState, target_texture),
             },
             FieldInfoData {
                 name: "DebugName",
+                name_hash: 859955379,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(RenderViewStaticState, debug_name),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(RenderViewStaticState, field_flag_changed0),
@@ -4375,6 +4651,7 @@ impl TypeObject for RenderViewStaticState {
 
 pub static RENDERVIEWSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderViewStaticState-Array",
+    name_hash: 4180376249,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("RenderViewStaticState"),
@@ -4383,7 +4660,8 @@ pub static RENDERVIEWSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScissorRect {
 }
 
@@ -4395,11 +4673,13 @@ impl ScissorRectTrait for ScissorRect {
 
 pub static SCISSORRECT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScissorRect",
+    name_hash: 890591873,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScissorRect as Default>::default())),
+            create_boxed: || Box::new(<ScissorRect as Default>::default()),
         },
         fields: &[
         ],
@@ -4429,6 +4709,7 @@ impl TypeObject for ScissorRect {
 
 pub static SCISSORRECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScissorRect-Array",
+    name_hash: 2277028917,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ScissorRect"),
@@ -4437,7 +4718,8 @@ pub static SCISSORRECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ViewportRect {
 }
 
@@ -4449,11 +4731,13 @@ impl ViewportRectTrait for ViewportRect {
 
 pub static VIEWPORTRECT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ViewportRect",
+    name_hash: 3525608849,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ViewportRect as Default>::default())),
+            create_boxed: || Box::new(<ViewportRect as Default>::default()),
         },
         fields: &[
         ],
@@ -4483,6 +4767,7 @@ impl TypeObject for ViewportRect {
 
 pub static VIEWPORTRECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ViewportRect-Array",
+    name_hash: 1271850789,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ViewportRect"),
@@ -4491,7 +4776,8 @@ pub static VIEWPORTRECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshComputeBaseNode {
     pub _glacier_base: super::core::Node,
 }
@@ -4510,12 +4796,15 @@ impl super::core::DataContainerTrait for MeshComputeBaseNode {
 
 pub static MESHCOMPUTEBASENODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshComputeBaseNode",
+    name_hash: 3210401654,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::NODE_TYPE_INFO),
+        super_class_offset: offset_of!(MeshComputeBaseNode, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshComputeBaseNode as Default>::default())),
+            create_boxed: || Box::new(<MeshComputeBaseNode as Default>::default()),
         },
         fields: &[
         ],
@@ -4545,6 +4834,7 @@ impl TypeObject for MeshComputeBaseNode {
 
 pub static MESHCOMPUTEBASENODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshComputeBaseNode-Array",
+    name_hash: 3144154178,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("MeshComputeBaseNode"),
@@ -4553,7 +4843,8 @@ pub static MESHCOMPUTEBASENODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshComputeBaseAsset {
     pub _glacier_base: super::core::NodeGraph,
 }
@@ -4581,12 +4872,15 @@ impl super::core::DataContainerTrait for MeshComputeBaseAsset {
 
 pub static MESHCOMPUTEBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshComputeBaseAsset",
+    name_hash: 2855466630,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::NODEGRAPH_TYPE_INFO),
+        super_class_offset: offset_of!(MeshComputeBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshComputeBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<MeshComputeBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -4616,6 +4910,7 @@ impl TypeObject for MeshComputeBaseAsset {
 
 pub static MESHCOMPUTEBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshComputeBaseAsset-Array",
+    name_hash: 448553906,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("MeshComputeBaseAsset"),
@@ -4624,7 +4919,8 @@ pub static MESHCOMPUTEBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StaticEnlightenBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -4649,12 +4945,15 @@ impl super::core::DataContainerTrait for StaticEnlightenBaseAsset {
 
 pub static STATICENLIGHTENBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticEnlightenBaseAsset",
+    name_hash: 3955843622,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(StaticEnlightenBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StaticEnlightenBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<StaticEnlightenBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -4684,6 +4983,7 @@ impl TypeObject for StaticEnlightenBaseAsset {
 
 pub static STATICENLIGHTENBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticEnlightenBaseAsset-Array",
+    name_hash: 3699445394,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("StaticEnlightenBaseAsset"),
@@ -4692,7 +4992,8 @@ pub static STATICENLIGHTENBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnlightenRuntimeConfigBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -4717,12 +5018,15 @@ impl super::core::DataContainerTrait for EnlightenRuntimeConfigBaseAsset {
 
 pub static ENLIGHTENRUNTIMECONFIGBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnlightenRuntimeConfigBaseAsset",
+    name_hash: 3861184680,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EnlightenRuntimeConfigBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnlightenRuntimeConfigBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<EnlightenRuntimeConfigBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -4752,6 +5056,7 @@ impl TypeObject for EnlightenRuntimeConfigBaseAsset {
 
 pub static ENLIGHTENRUNTIMECONFIGBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnlightenRuntimeConfigBaseAsset-Array",
+    name_hash: 1690354204,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("EnlightenRuntimeConfigBaseAsset"),
@@ -4760,7 +5065,8 @@ pub static ENLIGHTENRUNTIMECONFIGBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnlightenShaderDatabaseBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -4785,12 +5091,15 @@ impl super::core::DataContainerTrait for EnlightenShaderDatabaseBaseAsset {
 
 pub static ENLIGHTENSHADERDATABASEBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnlightenShaderDatabaseBaseAsset",
+    name_hash: 1751461362,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EnlightenShaderDatabaseBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnlightenShaderDatabaseBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<EnlightenShaderDatabaseBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -4820,6 +5129,7 @@ impl TypeObject for EnlightenShaderDatabaseBaseAsset {
 
 pub static ENLIGHTENSHADERDATABASEBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnlightenShaderDatabaseBaseAsset-Array",
+    name_hash: 4030301382,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("EnlightenShaderDatabaseBaseAsset"),
@@ -4828,7 +5138,8 @@ pub static ENLIGHTENSHADERDATABASEBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnlightenBaseAsset {
     pub _glacier_base: super::core::Asset,
     pub mix_feature_mode: RadiosityMixMode,
@@ -4862,16 +5173,20 @@ impl super::core::DataContainerTrait for EnlightenBaseAsset {
 
 pub static ENLIGHTENBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnlightenBaseAsset",
+    name_hash: 179724670,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EnlightenBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnlightenBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<EnlightenBaseAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MixFeatureMode",
+                name_hash: 2747978510,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RadiosityMixMode",
                 rust_offset: offset_of!(EnlightenBaseAsset, mix_feature_mode),
@@ -4903,6 +5218,7 @@ impl TypeObject for EnlightenBaseAsset {
 
 pub static ENLIGHTENBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnlightenBaseAsset-Array",
+    name_hash: 105013834,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("EnlightenBaseAsset"),
@@ -4911,7 +5227,8 @@ pub static ENLIGHTENBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshLodGroupBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -4936,12 +5253,15 @@ impl super::core::DataContainerTrait for MeshLodGroupBaseAsset {
 
 pub static MESHLODGROUPBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshLodGroupBaseAsset",
+    name_hash: 364617515,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(MeshLodGroupBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshLodGroupBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<MeshLodGroupBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -4971,6 +5291,7 @@ impl TypeObject for MeshLodGroupBaseAsset {
 
 pub static MESHLODGROUPBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshLodGroupBaseAsset-Array",
+    name_hash: 3397648031,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("MeshLodGroupBaseAsset"),
@@ -4979,7 +5300,8 @@ pub static MESHLODGROUPBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -5004,12 +5326,15 @@ impl super::core::DataContainerTrait for MeshBaseAsset {
 
 pub static MESHBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshBaseAsset",
+    name_hash: 827981843,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(MeshBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<MeshBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -5039,6 +5364,7 @@ impl TypeObject for MeshBaseAsset {
 
 pub static MESHBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshBaseAsset-Array",
+    name_hash: 3608066727,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("MeshBaseAsset"),
@@ -5059,6 +5385,7 @@ pub enum RadiosityMixMode {
 
 pub static RADIOSITYMIXMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RadiosityMixMode",
+    name_hash: 1456126492,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -5087,6 +5414,7 @@ impl TypeObject for RadiosityMixMode {
 
 pub static RADIOSITYMIXMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RadiosityMixMode-Array",
+    name_hash: 777957928,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("RadiosityMixMode"),
@@ -5108,6 +5436,7 @@ pub enum RadiosityBackfaceType {
 
 pub static RADIOSITYBACKFACETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RadiosityBackfaceType",
+    name_hash: 1080239633,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -5136,6 +5465,7 @@ impl TypeObject for RadiosityBackfaceType {
 
 pub static RADIOSITYBACKFACETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RadiosityBackfaceType-Array",
+    name_hash: 3550734245,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("RadiosityBackfaceType"),
@@ -5157,6 +5487,7 @@ pub enum MeshType {
 
 pub static MESHTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshType",
+    name_hash: 1821946062,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -5185,6 +5516,7 @@ impl TypeObject for MeshType {
 
 pub static MESHTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshType-Array",
+    name_hash: 2942593658,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("MeshType"),
@@ -5206,6 +5538,7 @@ pub enum CloudShadowType {
 
 pub static CLOUDSHADOWTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CloudShadowType",
+    name_hash: 2732995882,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -5234,6 +5567,7 @@ impl TypeObject for CloudShadowType {
 
 pub static CLOUDSHADOWTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CloudShadowType-Array",
+    name_hash: 3656372126,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("CloudShadowType"),
@@ -5256,6 +5590,7 @@ pub enum TextureAddress {
 
 pub static TEXTUREADDRESS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureAddress",
+    name_hash: 2446272940,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -5284,6 +5619,7 @@ impl TypeObject for TextureAddress {
 
 pub static TEXTUREADDRESS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureAddress-Array",
+    name_hash: 3706018072,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("TextureAddress"),
@@ -5292,7 +5628,8 @@ pub static TEXTUREADDRESS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RenderTextureBaseAsset {
     pub _glacier_base: TextureBaseAsset,
 }
@@ -5326,12 +5663,15 @@ impl super::core::DataContainerTrait for RenderTextureBaseAsset {
 
 pub static RENDERTEXTUREBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderTextureBaseAsset",
+    name_hash: 3928913525,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TEXTUREBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(RenderTextureBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RenderTextureBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<RenderTextureBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -5361,6 +5701,7 @@ impl TypeObject for RenderTextureBaseAsset {
 
 pub static RENDERTEXTUREBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderTextureBaseAsset-Array",
+    name_hash: 829826881,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("RenderTextureBaseAsset"),
@@ -5369,7 +5710,8 @@ pub static RENDERTEXTUREBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IPGraphCrossReferenceTextureAsset {
     pub _glacier_base: TextureBaseAsset,
     pub source_overlay_id: u32,
@@ -5412,16 +5754,20 @@ impl super::core::DataContainerTrait for IPGraphCrossReferenceTextureAsset {
 
 pub static IPGRAPHCROSSREFERENCETEXTUREASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IPGraphCrossReferenceTextureAsset",
+    name_hash: 2476484298,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TEXTUREBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(IPGraphCrossReferenceTextureAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IPGraphCrossReferenceTextureAsset as Default>::default())),
+            create_boxed: || Box::new(<IPGraphCrossReferenceTextureAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SourceOverlayId",
+                name_hash: 3866351343,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(IPGraphCrossReferenceTextureAsset, source_overlay_id),
@@ -5453,6 +5799,7 @@ impl TypeObject for IPGraphCrossReferenceTextureAsset {
 
 pub static IPGRAPHCROSSREFERENCETEXTUREASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IPGraphCrossReferenceTextureAsset-Array",
+    name_hash: 57193086,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("IPGraphCrossReferenceTextureAsset"),
@@ -5461,7 +5808,8 @@ pub static IPGRAPHCROSSREFERENCETEXTUREASSET_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TextureBaseAsset {
     pub _glacier_base: super::core::Asset,
     pub resource: glacier_reflect::builtin::ResourceRef,
@@ -5495,16 +5843,20 @@ impl super::core::DataContainerTrait for TextureBaseAsset {
 
 pub static TEXTUREBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureBaseAsset",
+    name_hash: 2397250879,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TextureBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TextureBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<TextureBaseAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Resource",
+                name_hash: 74513935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(TextureBaseAsset, resource),
@@ -5536,6 +5888,7 @@ impl TypeObject for TextureBaseAsset {
 
 pub static TEXTUREBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureBaseAsset-Array",
+    name_hash: 831158923,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("TextureBaseAsset"),
@@ -5544,7 +5897,8 @@ pub static TEXTUREBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PerformanceSummaryMessage {
 }
 
@@ -5556,11 +5910,13 @@ impl PerformanceSummaryMessageTrait for PerformanceSummaryMessage {
 
 pub static PERFORMANCESUMMARYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerformanceSummaryMessage",
+    name_hash: 3106766522,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PerformanceSummaryMessage as Default>::default())),
+            create_boxed: || Box::new(<PerformanceSummaryMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5587,7 +5943,8 @@ impl TypeObject for PerformanceSummaryMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PerformanceClientMessage {
 }
 
@@ -5599,11 +5956,13 @@ impl PerformanceClientMessageTrait for PerformanceClientMessage {
 
 pub static PERFORMANCECLIENTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerformanceClientMessage",
+    name_hash: 3075451471,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PerformanceClientMessage as Default>::default())),
+            create_boxed: || Box::new(<PerformanceClientMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5630,7 +5989,8 @@ impl TypeObject for PerformanceClientMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PerformanceShaderMessage {
 }
 
@@ -5642,11 +6002,13 @@ impl PerformanceShaderMessageTrait for PerformanceShaderMessage {
 
 pub static PERFORMANCESHADERMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerformanceShaderMessage",
+    name_hash: 352510015,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PerformanceShaderMessage as Default>::default())),
+            create_boxed: || Box::new(<PerformanceShaderMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5673,7 +6035,8 @@ impl TypeObject for PerformanceShaderMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShaderStatsMessage {
 }
 
@@ -5685,11 +6048,13 @@ impl ShaderStatsMessageTrait for ShaderStatsMessage {
 
 pub static SHADERSTATSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderStatsMessage",
+    name_hash: 3328020742,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShaderStatsMessage as Default>::default())),
+            create_boxed: || Box::new(<ShaderStatsMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5719,6 +6084,7 @@ impl TypeObject for ShaderStatsMessage {
 
 pub static SHADERSTATSMESSAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShaderStatsMessage-Array",
+    name_hash: 873520690,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShaderStatsMessage"),
@@ -5727,7 +6093,8 @@ pub static SHADERSTATSMESSAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PerformanceMessage {
 }
 
@@ -5739,11 +6106,13 @@ impl PerformanceMessageTrait for PerformanceMessage {
 
 pub static PERFORMANCEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerformanceMessage",
+    name_hash: 363317206,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PerformanceMessage as Default>::default())),
+            create_boxed: || Box::new(<PerformanceMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -5773,6 +6142,7 @@ impl TypeObject for PerformanceMessage {
 
 pub static PERFORMANCEMESSAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerformanceMessage-Array",
+    name_hash: 2956733794,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("PerformanceMessage"),
@@ -5781,7 +6151,8 @@ pub static PERFORMANCEMESSAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RenderBufferDynamicState {
 }
 
@@ -5793,11 +6164,13 @@ impl RenderBufferDynamicStateTrait for RenderBufferDynamicState {
 
 pub static RENDERBUFFERDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderBufferDynamicState",
+    name_hash: 1119389453,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RenderBufferDynamicState as Default>::default())),
+            create_boxed: || Box::new(<RenderBufferDynamicState as Default>::default()),
         },
         fields: &[
         ],
@@ -5827,6 +6200,7 @@ impl TypeObject for RenderBufferDynamicState {
 
 pub static RENDERBUFFERDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderBufferDynamicState-Array",
+    name_hash: 3874114233,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("RenderBufferDynamicState"),
@@ -5835,7 +6209,8 @@ pub static RENDERBUFFERDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RenderBufferStaticState {
     pub element_count: i32,
     pub element_size: i32,
@@ -5874,27 +6249,32 @@ impl RenderBufferStaticStateTrait for RenderBufferStaticState {
 
 pub static RENDERBUFFERSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderBufferStaticState",
+    name_hash: 489478112,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RenderBufferStaticState as Default>::default())),
+            create_boxed: || Box::new(<RenderBufferStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ElementCount",
+                name_hash: 2694707672,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RenderBufferStaticState, element_count),
             },
             FieldInfoData {
                 name: "ElementSize",
+                name_hash: 1252436830,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RenderBufferStaticState, element_size),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(RenderBufferStaticState, field_flag_changed0),
@@ -5926,6 +6306,7 @@ impl TypeObject for RenderBufferStaticState {
 
 pub static RENDERBUFFERSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderBufferStaticState-Array",
+    name_hash: 2707008980,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("RenderBufferStaticState"),
@@ -5934,7 +6315,8 @@ pub static RENDERBUFFERSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LensReflectionComponentState {
     pub enable: bool,
     pub inner_color: super::core::Vec3,
@@ -6081,99 +6463,116 @@ impl LensReflectionComponentStateTrait for LensReflectionComponentState {
 
 pub static LENSREFLECTIONCOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LensReflectionComponentState",
+    name_hash: 1451092814,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LensReflectionComponentState as Default>::default())),
+            create_boxed: || Box::new(<LensReflectionComponentState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LensReflectionComponentState, enable),
             },
             FieldInfoData {
                 name: "InnerColor",
+                name_hash: 3374890150,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LensReflectionComponentState, inner_color),
             },
             FieldInfoData {
                 name: "OuterColor",
+                name_hash: 612897,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LensReflectionComponentState, outer_color),
             },
             FieldInfoData {
                 name: "MixStart",
+                name_hash: 3575692409,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LensReflectionComponentState, mix_start),
             },
             FieldInfoData {
                 name: "MixStop",
+                name_hash: 1019407393,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LensReflectionComponentState, mix_stop),
             },
             FieldInfoData {
                 name: "InputExponent",
+                name_hash: 776049408,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LensReflectionComponentState, input_exponent),
             },
             FieldInfoData {
                 name: "LuminanceThreshold",
+                name_hash: 1241347368,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LensReflectionComponentState, luminance_threshold),
             },
             FieldInfoData {
                 name: "InputScale",
+                name_hash: 1587879627,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LensReflectionComponentState, input_scale),
             },
             FieldInfoData {
                 name: "MaxOpacity",
+                name_hash: 2540807304,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LensReflectionComponentState, max_opacity),
             },
             FieldInfoData {
                 name: "TransposeReflection",
+                name_hash: 3278608625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LensReflectionComponentState, transpose_reflection),
             },
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LensReflectionComponentState, scale),
             },
             FieldInfoData {
                 name: "DistortionFactor",
+                name_hash: 958260131,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LensReflectionComponentState, distortion_factor),
             },
             FieldInfoData {
                 name: "VerticalStretch",
+                name_hash: 1754109592,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LensReflectionComponentState, vertical_stretch),
             },
             FieldInfoData {
                 name: "FieldFlagOverride0",
+                name_hash: 3558987183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(LensReflectionComponentState, field_flag_override0),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(LensReflectionComponentState, field_flag_changed0),
@@ -6205,6 +6604,7 @@ impl TypeObject for LensReflectionComponentState {
 
 pub static LENSREFLECTIONCOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LensReflectionComponentState-Array",
+    name_hash: 3756754170,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("LensReflectionComponentState"),
@@ -6223,6 +6623,7 @@ pub enum LensReflectionComponentCount {
 
 pub static LENSREFLECTIONCOMPONENTCOUNT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LensReflectionComponentCount",
+    name_hash: 1469211706,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -6251,6 +6652,7 @@ impl TypeObject for LensReflectionComponentCount {
 
 pub static LENSREFLECTIONCOMPONENTCOUNT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LensReflectionComponentCount-Array",
+    name_hash: 542508686,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("LensReflectionComponentCount"),
@@ -6259,7 +6661,8 @@ pub static LENSREFLECTIONCOMPONENTCOUNT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FilmicEffectsComponentState {
     pub enable: bool,
     pub enable_chromatic_abberation: bool,
@@ -6296,7 +6699,7 @@ pub struct FilmicEffectsComponentState {
     pub heat_ripple_far_distance: f32,
     pub heat_ripple_near_gain: f32,
     pub heat_ripple_far_gain: f32,
-    pub heat_ripple_texture: Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>,
+    pub heat_ripple_texture: Option<LockedTypeObject /* TextureBaseAsset */>,
     pub field_flag_override0: u32,
     pub field_flag_override1: u8,
     pub field_flag_changed0: u32,
@@ -6374,8 +6777,8 @@ pub trait FilmicEffectsComponentStateTrait: TypeObject {
     fn heat_ripple_near_gain_mut(&mut self) -> &mut f32;
     fn heat_ripple_far_gain(&self) -> &f32;
     fn heat_ripple_far_gain_mut(&mut self) -> &mut f32;
-    fn heat_ripple_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn heat_ripple_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
+    fn heat_ripple_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn heat_ripple_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */>;
     fn field_flag_override0(&self) -> &u32;
     fn field_flag_override0_mut(&mut self) -> &mut u32;
     fn field_flag_override1(&self) -> &u8;
@@ -6597,10 +7000,10 @@ impl FilmicEffectsComponentStateTrait for FilmicEffectsComponentState {
     fn heat_ripple_far_gain_mut(&mut self) -> &mut f32 {
         &mut self.heat_ripple_far_gain
     }
-    fn heat_ripple_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn heat_ripple_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */> {
         &self.heat_ripple_texture
     }
-    fn heat_ripple_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn heat_ripple_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */> {
         &mut self.heat_ripple_texture
     }
     fn field_flag_override0(&self) -> &u32 {
@@ -6631,249 +7034,291 @@ impl FilmicEffectsComponentStateTrait for FilmicEffectsComponentState {
 
 pub static FILMICEFFECTSCOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FilmicEffectsComponentState",
+    name_hash: 1987829341,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FilmicEffectsComponentState as Default>::default())),
+            create_boxed: || Box::new(<FilmicEffectsComponentState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmicEffectsComponentState, enable),
             },
             FieldInfoData {
                 name: "EnableChromaticAbberation",
+                name_hash: 719555499,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmicEffectsComponentState, enable_chromatic_abberation),
             },
             FieldInfoData {
                 name: "ChromaticAbberationScale",
+                name_hash: 1567322450,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, chromatic_abberation_scale),
             },
             FieldInfoData {
                 name: "ChromaticAbberationAspectRatio",
+                name_hash: 3324507163,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, chromatic_abberation_aspect_ratio),
             },
             FieldInfoData {
                 name: "EnableVignetting",
+                name_hash: 42611607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmicEffectsComponentState, enable_vignetting),
             },
             FieldInfoData {
                 name: "VignettingFalloff",
+                name_hash: 1304518750,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, vignetting_falloff),
             },
             FieldInfoData {
                 name: "VignettingLuminancePercent",
+                name_hash: 2473024119,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, vignetting_luminance_percent),
             },
             FieldInfoData {
                 name: "EnableLensDistortion",
+                name_hash: 4265111259,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmicEffectsComponentState, enable_lens_distortion),
             },
             FieldInfoData {
                 name: "LensDistortionGain",
+                name_hash: 690138779,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, lens_distortion_gain),
             },
             FieldInfoData {
                 name: "LensDistortionCubicGain",
+                name_hash: 3901189765,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, lens_distortion_cubic_gain),
             },
             FieldInfoData {
                 name: "LensDistortionStretch",
+                name_hash: 3060785525,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, lens_distortion_stretch),
             },
             FieldInfoData {
                 name: "EnableFrameFlash",
+                name_hash: 1356739593,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmicEffectsComponentState, enable_frame_flash),
             },
             FieldInfoData {
                 name: "FrameFlashGain",
+                name_hash: 3283124873,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, frame_flash_gain),
             },
             FieldInfoData {
                 name: "EnableDepthFlash",
+                name_hash: 2649334041,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmicEffectsComponentState, enable_depth_flash),
             },
             FieldInfoData {
                 name: "DepthFlashAtmosColor",
+                name_hash: 263902401,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FilmicEffectsComponentState, depth_flash_atmos_color),
             },
             FieldInfoData {
                 name: "DepthFlashHalfDistance",
+                name_hash: 3419186008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, depth_flash_half_distance),
             },
             FieldInfoData {
                 name: "EnableDistanceBlur",
+                name_hash: 2066303470,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmicEffectsComponentState, enable_distance_blur),
             },
             FieldInfoData {
                 name: "DistanceBlurGain",
+                name_hash: 896656238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, distance_blur_gain),
             },
             FieldInfoData {
                 name: "DistanceBlurHalfDistance",
+                name_hash: 1660198127,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, distance_blur_half_distance),
             },
             FieldInfoData {
                 name: "EnableEdgeBlur",
+                name_hash: 421166670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmicEffectsComponentState, enable_edge_blur),
             },
             FieldInfoData {
                 name: "EdgeBlurGain",
+                name_hash: 3467145294,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, edge_blur_gain),
             },
             FieldInfoData {
                 name: "EdgeBlurDepthTargetScale",
+                name_hash: 3728465835,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, edge_blur_depth_target_scale),
             },
             FieldInfoData {
                 name: "EdgeBlurFadeNearDepth",
+                name_hash: 1183704348,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, edge_blur_fade_near_depth),
             },
             FieldInfoData {
                 name: "EdgeBlurFadeFarDepth",
+                name_hash: 3876252849,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, edge_blur_fade_far_depth),
             },
             FieldInfoData {
                 name: "EdgeBlurMatteDilateSize",
+                name_hash: 3506289170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, edge_blur_matte_dilate_size),
             },
             FieldInfoData {
                 name: "EdgeBlurMatteBlurKernelSize",
+                name_hash: 3596733457,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, edge_blur_matte_blur_kernel_size),
             },
             FieldInfoData {
                 name: "EnableHeatRipple",
+                name_hash: 3402643726,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmicEffectsComponentState, enable_heat_ripple),
             },
             FieldInfoData {
                 name: "HeatRippleGain",
+                name_hash: 3931695630,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, heat_ripple_gain),
             },
             FieldInfoData {
                 name: "HeatRippleHorizontalSpeed",
+                name_hash: 594042166,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, heat_ripple_horizontal_speed),
             },
             FieldInfoData {
                 name: "HeatRippleVerticalSpeed",
+                name_hash: 3970787674,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, heat_ripple_vertical_speed),
             },
             FieldInfoData {
                 name: "HeatRippleNoiseScale",
+                name_hash: 2146617545,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, heat_ripple_noise_scale),
             },
             FieldInfoData {
                 name: "HeatRippleNearDistance",
+                name_hash: 733929140,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, heat_ripple_near_distance),
             },
             FieldInfoData {
                 name: "HeatRippleFarDistance",
+                name_hash: 3308888761,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, heat_ripple_far_distance),
             },
             FieldInfoData {
                 name: "HeatRippleNearGain",
+                name_hash: 3103800022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, heat_ripple_near_gain),
             },
             FieldInfoData {
                 name: "HeatRippleFarGain",
+                name_hash: 396192283,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, heat_ripple_far_gain),
             },
             FieldInfoData {
                 name: "HeatRippleTexture",
+                name_hash: 1559314672,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(FilmicEffectsComponentState, heat_ripple_texture),
             },
             FieldInfoData {
                 name: "FieldFlagOverride0",
+                name_hash: 3558987183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, field_flag_override0),
             },
             FieldInfoData {
                 name: "FieldFlagOverride1",
+                name_hash: 3558987182,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(FilmicEffectsComponentState, field_flag_override1),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FilmicEffectsComponentState, field_flag_changed0),
             },
             FieldInfoData {
                 name: "FieldFlagChanged1",
+                name_hash: 4279507096,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(FilmicEffectsComponentState, field_flag_changed1),
@@ -6905,6 +7350,7 @@ impl TypeObject for FilmicEffectsComponentState {
 
 pub static FILMICEFFECTSCOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FilmicEffectsComponentState-Array",
+    name_hash: 2968574569,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("FilmicEffectsComponentState"),
@@ -6913,11 +7359,12 @@ pub static FILMICEFFECTSCOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DebugComponentState {
     pub enable: bool,
     pub fullscreen: bool,
-    pub debug_texture: Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>,
+    pub debug_texture: Option<LockedTypeObject /* TextureBaseAsset */>,
     pub field_flag_override0: u8,
     pub field_flag_changed0: u8,
 }
@@ -6927,8 +7374,8 @@ pub trait DebugComponentStateTrait: TypeObject {
     fn enable_mut(&mut self) -> &mut bool;
     fn fullscreen(&self) -> &bool;
     fn fullscreen_mut(&mut self) -> &mut bool;
-    fn debug_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn debug_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
+    fn debug_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn debug_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */>;
     fn field_flag_override0(&self) -> &u8;
     fn field_flag_override0_mut(&mut self) -> &mut u8;
     fn field_flag_changed0(&self) -> &u8;
@@ -6948,10 +7395,10 @@ impl DebugComponentStateTrait for DebugComponentState {
     fn fullscreen_mut(&mut self) -> &mut bool {
         &mut self.fullscreen
     }
-    fn debug_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn debug_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */> {
         &self.debug_texture
     }
-    fn debug_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn debug_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */> {
         &mut self.debug_texture
     }
     fn field_flag_override0(&self) -> &u8 {
@@ -6970,39 +7417,46 @@ impl DebugComponentStateTrait for DebugComponentState {
 
 pub static DEBUGCOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DebugComponentState",
+    name_hash: 3073500204,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DebugComponentState as Default>::default())),
+            create_boxed: || Box::new(<DebugComponentState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DebugComponentState, enable),
             },
             FieldInfoData {
                 name: "Fullscreen",
+                name_hash: 2248877754,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DebugComponentState, fullscreen),
             },
             FieldInfoData {
                 name: "DebugTexture",
+                name_hash: 3615235787,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(DebugComponentState, debug_texture),
             },
             FieldInfoData {
                 name: "FieldFlagOverride0",
+                name_hash: 3558987183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(DebugComponentState, field_flag_override0),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(DebugComponentState, field_flag_changed0),
@@ -7034,6 +7488,7 @@ impl TypeObject for DebugComponentState {
 
 pub static DEBUGCOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DebugComponentState-Array",
+    name_hash: 1359606680,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("DebugComponentState"),
@@ -7042,7 +7497,8 @@ pub static DEBUGCOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LensScopeComponentState {
     pub enable: bool,
     pub blur_scale: f32,
@@ -7153,75 +7609,88 @@ impl LensScopeComponentStateTrait for LensScopeComponentState {
 
 pub static LENSSCOPECOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LensScopeComponentState",
+    name_hash: 2132438691,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LensScopeComponentState as Default>::default())),
+            create_boxed: || Box::new(<LensScopeComponentState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LensScopeComponentState, enable),
             },
             FieldInfoData {
                 name: "BlurScale",
+                name_hash: 3568105332,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LensScopeComponentState, blur_scale),
             },
             FieldInfoData {
                 name: "BlurCenter",
+                name_hash: 1149921575,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(LensScopeComponentState, blur_center),
             },
             FieldInfoData {
                 name: "ChromaticAberrationColor1",
+                name_hash: 4192735318,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LensScopeComponentState, chromatic_aberration_color1),
             },
             FieldInfoData {
                 name: "ChromaticAberrationColor2",
+                name_hash: 4192735317,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LensScopeComponentState, chromatic_aberration_color2),
             },
             FieldInfoData {
                 name: "ChromaticAberrationStrengths",
+                name_hash: 1096301260,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(LensScopeComponentState, chromatic_aberration_strengths),
             },
             FieldInfoData {
                 name: "ChromaticAberrationDisplacement1",
+                name_hash: 2269770716,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(LensScopeComponentState, chromatic_aberration_displacement1),
             },
             FieldInfoData {
                 name: "ChromaticAberrationDisplacement2",
+                name_hash: 2269770719,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(LensScopeComponentState, chromatic_aberration_displacement2),
             },
             FieldInfoData {
                 name: "RadialBlendDistanceCoefficients",
+                name_hash: 3576198450,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(LensScopeComponentState, radial_blend_distance_coefficients),
             },
             FieldInfoData {
                 name: "FieldFlagOverride0",
+                name_hash: 3558987183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(LensScopeComponentState, field_flag_override0),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(LensScopeComponentState, field_flag_changed0),
@@ -7253,6 +7722,7 @@ impl TypeObject for LensScopeComponentState {
 
 pub static LENSSCOPECOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LensScopeComponentState-Array",
+    name_hash: 3558937111,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("LensScopeComponentState"),
@@ -7261,14 +7731,15 @@ pub static LENSSCOPECOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FilmGrainComponentState {
     pub enable: bool,
     pub texture_scale: super::core::Vec2,
     pub color_scale: super::core::Vec3,
     pub linear_filtering_enable: bool,
     pub random_enable: bool,
-    pub texture: Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>,
+    pub texture: Option<LockedTypeObject /* TextureBaseAsset */>,
     pub grain_grey_fraction: f32,
     pub grain_luminance_control_enable: bool,
     pub grain_shadow_threshold: f32,
@@ -7290,8 +7761,8 @@ pub trait FilmGrainComponentStateTrait: TypeObject {
     fn linear_filtering_enable_mut(&mut self) -> &mut bool;
     fn random_enable(&self) -> &bool;
     fn random_enable_mut(&mut self) -> &mut bool;
-    fn texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
+    fn texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */>;
     fn grain_grey_fraction(&self) -> &f32;
     fn grain_grey_fraction_mut(&mut self) -> &mut f32;
     fn grain_luminance_control_enable(&self) -> &bool;
@@ -7341,10 +7812,10 @@ impl FilmGrainComponentStateTrait for FilmGrainComponentState {
     fn random_enable_mut(&mut self) -> &mut bool {
         &mut self.random_enable
     }
-    fn texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */> {
         &self.texture
     }
-    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */> {
         &mut self.texture
     }
     fn grain_grey_fraction(&self) -> &f32 {
@@ -7399,93 +7870,109 @@ impl FilmGrainComponentStateTrait for FilmGrainComponentState {
 
 pub static FILMGRAINCOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FilmGrainComponentState",
+    name_hash: 3652010592,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FilmGrainComponentState as Default>::default())),
+            create_boxed: || Box::new(<FilmGrainComponentState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmGrainComponentState, enable),
             },
             FieldInfoData {
                 name: "TextureScale",
+                name_hash: 2137417890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(FilmGrainComponentState, texture_scale),
             },
             FieldInfoData {
                 name: "ColorScale",
+                name_hash: 4213919872,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FilmGrainComponentState, color_scale),
             },
             FieldInfoData {
                 name: "LinearFilteringEnable",
+                name_hash: 1423958617,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmGrainComponentState, linear_filtering_enable),
             },
             FieldInfoData {
                 name: "RandomEnable",
+                name_hash: 3235429567,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmGrainComponentState, random_enable),
             },
             FieldInfoData {
                 name: "Texture",
+                name_hash: 3185041626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(FilmGrainComponentState, texture),
             },
             FieldInfoData {
                 name: "GrainGreyFraction",
+                name_hash: 1185964629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmGrainComponentState, grain_grey_fraction),
             },
             FieldInfoData {
                 name: "GrainLuminanceControlEnable",
+                name_hash: 3240462698,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FilmGrainComponentState, grain_luminance_control_enable),
             },
             FieldInfoData {
                 name: "GrainShadowThreshold",
+                name_hash: 470333543,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmGrainComponentState, grain_shadow_threshold),
             },
             FieldInfoData {
                 name: "GrainHighlightThreshold",
+                name_hash: 3928763761,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmGrainComponentState, grain_highlight_threshold),
             },
             FieldInfoData {
                 name: "GrainShadowIntensity",
+                name_hash: 335553951,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmGrainComponentState, grain_shadow_intensity),
             },
             FieldInfoData {
                 name: "GrainHighlightIntensity",
+                name_hash: 1097601417,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FilmGrainComponentState, grain_highlight_intensity),
             },
             FieldInfoData {
                 name: "FieldFlagOverride0",
+                name_hash: 3558987183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(FilmGrainComponentState, field_flag_override0),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(FilmGrainComponentState, field_flag_changed0),
@@ -7517,6 +8004,7 @@ impl TypeObject for FilmGrainComponentState {
 
 pub static FILMGRAINCOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FilmGrainComponentState-Array",
+    name_hash: 3625973844,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("FilmGrainComponentState"),
@@ -7525,7 +8013,8 @@ pub static FILMGRAINCOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VignetteComponentState {
     pub enable: bool,
     pub scale: super::core::Vec2,
@@ -7600,51 +8089,60 @@ impl VignetteComponentStateTrait for VignetteComponentState {
 
 pub static VIGNETTECOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VignetteComponentState",
+    name_hash: 1364547819,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VignetteComponentState as Default>::default())),
+            create_boxed: || Box::new(<VignetteComponentState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VignetteComponentState, enable),
             },
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(VignetteComponentState, scale),
             },
             FieldInfoData {
                 name: "Exponent",
+                name_hash: 4228690070,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VignetteComponentState, exponent),
             },
             FieldInfoData {
                 name: "Color",
+                name_hash: 212387320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VignetteComponentState, color),
             },
             FieldInfoData {
                 name: "Opacity",
+                name_hash: 972165084,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VignetteComponentState, opacity),
             },
             FieldInfoData {
                 name: "FieldFlagOverride0",
+                name_hash: 3558987183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(VignetteComponentState, field_flag_override0),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(VignetteComponentState, field_flag_changed0),
@@ -7676,6 +8174,7 @@ impl TypeObject for VignetteComponentState {
 
 pub static VIGNETTECOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VignetteComponentState-Array",
+    name_hash: 792070367,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("VignetteComponentState"),
@@ -7684,7 +8183,8 @@ pub static VIGNETTECOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DofComponentState {
     pub enable: bool,
     pub physical_camera_tweak_enable: bool,
@@ -7707,7 +8207,7 @@ pub struct DofComponentState {
     pub radial_blur_position_common_dof: super::core::Vec2,
     pub simple_dof_blur_filter: BlurFilter,
     pub simple_dof_standard_deviation: f32,
-    pub sprite_dof_bokeh_texture: Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>,
+    pub sprite_dof_bokeh_texture: Option<LockedTypeObject /* TextureBaseAsset */>,
     pub focus_dof_near_start: f32,
     pub focus_dof_near_end: f32,
     pub focus_dof_far_start: f32,
@@ -7741,7 +8241,7 @@ pub struct DofComponentState {
     pub ironsights_dof_circle_fade_distance: f32,
     pub masked_blur_enabled: bool,
     pub masked_blur_amount: f32,
-    pub masked_blur_texture: Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>,
+    pub masked_blur_texture: Option<LockedTypeObject /* TextureBaseAsset */>,
     pub circular_dof_anti_band_artifact: bool,
     pub use_camera_settings: bool,
     pub simple_dof_max_blur: f32,
@@ -7807,8 +8307,8 @@ pub trait DofComponentStateTrait: TypeObject {
     fn simple_dof_blur_filter_mut(&mut self) -> &mut BlurFilter;
     fn simple_dof_standard_deviation(&self) -> &f32;
     fn simple_dof_standard_deviation_mut(&mut self) -> &mut f32;
-    fn sprite_dof_bokeh_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn sprite_dof_bokeh_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
+    fn sprite_dof_bokeh_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn sprite_dof_bokeh_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */>;
     fn focus_dof_near_start(&self) -> &f32;
     fn focus_dof_near_start_mut(&mut self) -> &mut f32;
     fn focus_dof_near_end(&self) -> &f32;
@@ -7875,8 +8375,8 @@ pub trait DofComponentStateTrait: TypeObject {
     fn masked_blur_enabled_mut(&mut self) -> &mut bool;
     fn masked_blur_amount(&self) -> &f32;
     fn masked_blur_amount_mut(&mut self) -> &mut f32;
-    fn masked_blur_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn masked_blur_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
+    fn masked_blur_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn masked_blur_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */>;
     fn circular_dof_anti_band_artifact(&self) -> &bool;
     fn circular_dof_anti_band_artifact_mut(&mut self) -> &mut bool;
     fn use_camera_settings(&self) -> &bool;
@@ -8046,10 +8546,10 @@ impl DofComponentStateTrait for DofComponentState {
     fn simple_dof_standard_deviation_mut(&mut self) -> &mut f32 {
         &mut self.simple_dof_standard_deviation
     }
-    fn sprite_dof_bokeh_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn sprite_dof_bokeh_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */> {
         &self.sprite_dof_bokeh_texture
     }
-    fn sprite_dof_bokeh_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn sprite_dof_bokeh_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */> {
         &mut self.sprite_dof_bokeh_texture
     }
     fn focus_dof_near_start(&self) -> &f32 {
@@ -8250,10 +8750,10 @@ impl DofComponentStateTrait for DofComponentState {
     fn masked_blur_amount_mut(&mut self) -> &mut f32 {
         &mut self.masked_blur_amount
     }
-    fn masked_blur_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn masked_blur_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */> {
         &self.masked_blur_texture
     }
-    fn masked_blur_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn masked_blur_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */> {
         &mut self.masked_blur_texture
     }
     fn circular_dof_anti_band_artifact(&self) -> &bool {
@@ -8380,465 +8880,543 @@ impl DofComponentStateTrait for DofComponentState {
 
 pub static DOFCOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DofComponentState",
+    name_hash: 1779701136,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DofComponentState as Default>::default())),
+            create_boxed: || Box::new(<DofComponentState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, enable),
             },
             FieldInfoData {
                 name: "PhysicalCameraTweakEnable",
+                name_hash: 1785551076,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, physical_camera_tweak_enable),
             },
             FieldInfoData {
                 name: "PbcBackgroundBlurAdd",
+                name_hash: 901239186,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, pbc_background_blur_add),
             },
             FieldInfoData {
                 name: "PbcForegroundBlurAdd",
+                name_hash: 2018279431,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, pbc_foreground_blur_add),
             },
             FieldInfoData {
                 name: "PbcFocusRangeAdd",
+                name_hash: 1019206790,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, pbc_focus_range_add),
             },
             FieldInfoData {
                 name: "DofSource",
+                name_hash: 950333397,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DofSource",
                 rust_offset: offset_of!(DofComponentState, dof_source),
             },
             FieldInfoData {
                 name: "DebugDrawFocusPlane",
+                name_hash: 3635244910,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, debug_draw_focus_plane),
             },
             FieldInfoData {
                 name: "FocusDofMaxBlur",
+                name_hash: 1446373721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, focus_dof_max_blur),
             },
             FieldInfoData {
                 name: "BlurFactor",
+                name_hash: 1041839905,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, blur_factor),
             },
             FieldInfoData {
                 name: "BlurAdd",
+                name_hash: 2736421901,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, blur_add),
             },
             FieldInfoData {
                 name: "FocusDistance",
+                name_hash: 1402926186,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, focus_distance),
             },
             FieldInfoData {
                 name: "RadialBlurEnableCommonDof",
+                name_hash: 1085634046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, radial_blur_enable_common_dof),
             },
             FieldInfoData {
                 name: "RadialBlurAmountCommonDof",
+                name_hash: 3667075923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, radial_blur_amount_common_dof),
             },
             FieldInfoData {
                 name: "RadialBlurStartRadiusCommonDof",
+                name_hash: 55966087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, radial_blur_start_radius_common_dof),
             },
             FieldInfoData {
                 name: "RadialBlurTransitionWidthCommonDof",
+                name_hash: 2751794550,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, radial_blur_transition_width_common_dof),
             },
             FieldInfoData {
                 name: "RadialBlurTiltCommonDof",
+                name_hash: 3828531834,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, radial_blur_tilt_common_dof),
             },
             FieldInfoData {
                 name: "RadialBlurHorizontalScaleCommonDof",
+                name_hash: 1672599225,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, radial_blur_horizontal_scale_common_dof),
             },
             FieldInfoData {
                 name: "RadialBlurAspectRatioBlend",
+                name_hash: 176453519,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, radial_blur_aspect_ratio_blend),
             },
             FieldInfoData {
                 name: "RadialBlurPositionCommonDof",
+                name_hash: 2835010022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(DofComponentState, radial_blur_position_common_dof),
             },
             FieldInfoData {
                 name: "SimpleDofBlurFilter",
+                name_hash: 86030895,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BlurFilter",
                 rust_offset: offset_of!(DofComponentState, simple_dof_blur_filter),
             },
             FieldInfoData {
                 name: "SimpleDofStandardDeviation",
+                name_hash: 2497195038,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, simple_dof_standard_deviation),
             },
             FieldInfoData {
                 name: "SpriteDofBokehTexture",
+                name_hash: 2786014965,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(DofComponentState, sprite_dof_bokeh_texture),
             },
             FieldInfoData {
                 name: "FocusDofNearStart",
+                name_hash: 3405518716,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, focus_dof_near_start),
             },
             FieldInfoData {
                 name: "FocusDofNearEnd",
+                name_hash: 610502643,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, focus_dof_near_end),
             },
             FieldInfoData {
                 name: "FocusDofFarStart",
+                name_hash: 813257329,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, focus_dof_far_start),
             },
             FieldInfoData {
                 name: "FocusDofFarEnd",
+                name_hash: 1523137022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, focus_dof_far_end),
             },
             FieldInfoData {
                 name: "PbrFocusLengthDof",
+                name_hash: 1641991032,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, pbr_focus_length_dof),
             },
             FieldInfoData {
                 name: "PbrFilmWidthDof",
+                name_hash: 337426240,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, pbr_film_width_dof),
             },
             FieldInfoData {
                 name: "PbrFStopDof",
+                name_hash: 1382814070,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, pbr_f_stop_dof),
             },
             FieldInfoData {
                 name: "OpticalVignettingEnable",
+                name_hash: 2306107067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, optical_vignetting_enable),
             },
             FieldInfoData {
                 name: "OpticalVignettingAmount",
+                name_hash: 2158069878,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, optical_vignetting_amount),
             },
             FieldInfoData {
                 name: "OpticalVignettingAspectRatio",
+                name_hash: 3506125291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, optical_vignetting_aspect_ratio),
             },
             FieldInfoData {
                 name: "OpticalVignettingAnamorphicSqueeze",
+                name_hash: 3858295678,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, optical_vignetting_anamorphic_squeeze),
             },
             FieldInfoData {
                 name: "OpticalVignettingSizeCompensation",
+                name_hash: 4184173259,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, optical_vignetting_size_compensation),
             },
             FieldInfoData {
                 name: "OpticalVignettingOperation",
+                name_hash: 538386799,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VignettingOperation",
                 rust_offset: offset_of!(DofComponentState, optical_vignetting_operation),
             },
             FieldInfoData {
                 name: "RGBBokehTextureEnable",
+                name_hash: 1085391527,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, r_g_b_bokeh_texture_enable),
             },
             FieldInfoData {
                 name: "BokehChromaticAberrationEnable",
+                name_hash: 1508110512,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, bokeh_chromatic_aberration_enable),
             },
             FieldInfoData {
                 name: "BokehChromaticAberrationScale",
+                name_hash: 1451086665,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, bokeh_chromatic_aberration_scale),
             },
             FieldInfoData {
                 name: "BokehChromaticAberrationRadius",
+                name_hash: 908365961,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, bokeh_chromatic_aberration_radius),
             },
             FieldInfoData {
                 name: "BokehChromaticAberrationWidth",
+                name_hash: 1456045079,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, bokeh_chromatic_aberration_width),
             },
             FieldInfoData {
                 name: "BokehChromaticAberrationRadiusThreshold",
+                name_hash: 899127326,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, bokeh_chromatic_aberration_radius_threshold),
             },
             FieldInfoData {
                 name: "BokehChromaticAberrationRadiusThresholdWidth",
+                name_hash: 471556920,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, bokeh_chromatic_aberration_radius_threshold_width),
             },
             FieldInfoData {
                 name: "BokehChromaticAberrationEnergyThreshold",
+                name_hash: 1769197892,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, bokeh_chromatic_aberration_energy_threshold),
             },
             FieldInfoData {
                 name: "BokehChromaticAberrationFgColor",
+                name_hash: 3915894445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(DofComponentState, bokeh_chromatic_aberration_fg_color),
             },
             FieldInfoData {
                 name: "BokehChromaticAberrationBgColor",
+                name_hash: 3357793961,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(DofComponentState, bokeh_chromatic_aberration_bg_color),
             },
             FieldInfoData {
                 name: "IronsightsDofActive",
+                name_hash: 2799950124,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, ironsights_dof_active),
             },
             FieldInfoData {
                 name: "IronsightsDofExtraBlur",
+                name_hash: 819037875,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, ironsights_dof_extra_blur),
             },
             FieldInfoData {
                 name: "HipToIronsightsFade",
+                name_hash: 277879393,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, hip_to_ironsights_fade),
             },
             FieldInfoData {
                 name: "IronsightsDofStartFade",
+                name_hash: 1280961990,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, ironsights_dof_start_fade),
             },
             FieldInfoData {
                 name: "IronsightsFocalDistance",
+                name_hash: 3215920393,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, ironsights_focal_distance),
             },
             FieldInfoData {
                 name: "IronsightsDofCircleBlur",
+                name_hash: 4182898939,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, ironsights_dof_circle_blur),
             },
             FieldInfoData {
                 name: "IronsightsDofCircleDistance",
+                name_hash: 1414796657,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, ironsights_dof_circle_distance),
             },
             FieldInfoData {
                 name: "IronsightsDofCircleFadeDistance",
+                name_hash: 2447009239,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, ironsights_dof_circle_fade_distance),
             },
             FieldInfoData {
                 name: "MaskedBlurEnabled",
+                name_hash: 2880668252,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, masked_blur_enabled),
             },
             FieldInfoData {
                 name: "MaskedBlurAmount",
+                name_hash: 3966956661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, masked_blur_amount),
             },
             FieldInfoData {
                 name: "MaskedBlurTexture",
+                name_hash: 2606608390,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(DofComponentState, masked_blur_texture),
             },
             FieldInfoData {
                 name: "CircularDofAntiBandArtifact",
+                name_hash: 1997287676,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, circular_dof_anti_band_artifact),
             },
             FieldInfoData {
                 name: "UseCameraSettings",
+                name_hash: 2758800058,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofComponentState, use_camera_settings),
             },
             FieldInfoData {
                 name: "SimpleDofMaxBlur",
+                name_hash: 3941549275,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, simple_dof_max_blur),
             },
             FieldInfoData {
                 name: "SimpleDofNearStart",
+                name_hash: 3018422910,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, simple_dof_near_start),
             },
             FieldInfoData {
                 name: "SimpleDofNearEnd",
+                name_hash: 2235069425,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, simple_dof_near_end),
             },
             FieldInfoData {
                 name: "SimpleDofFarStart",
+                name_hash: 3335007923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, simple_dof_far_start),
             },
             FieldInfoData {
                 name: "SimpleDofFarEnd",
+                name_hash: 3264740924,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, simple_dof_far_end),
             },
             FieldInfoData {
                 name: "SpriteDofNearStart",
+                name_hash: 2888976985,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, sprite_dof_near_start),
             },
             FieldInfoData {
                 name: "SpriteDofNearEnd",
+                name_hash: 3686330070,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, sprite_dof_near_end),
             },
             FieldInfoData {
                 name: "SpriteDofFarStart",
+                name_hash: 1060314868,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, sprite_dof_far_start),
             },
             FieldInfoData {
                 name: "SpriteDofFarEnd",
+                name_hash: 3317846907,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, sprite_dof_far_end),
             },
             FieldInfoData {
                 name: "SpriteDofMaxBlur",
+                name_hash: 1691922748,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, sprite_dof_max_blur),
             },
             FieldInfoData {
                 name: "Anisotropy",
+                name_hash: 1136321887,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, anisotropy),
             },
             FieldInfoData {
                 name: "FullScreenBlurAddCommonDof",
+                name_hash: 1453759218,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DofComponentState, full_screen_blur_add_common_dof),
             },
             FieldInfoData {
                 name: "FieldFlagOverride0",
+                name_hash: 3558987183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DofComponentState, field_flag_override0),
             },
             FieldInfoData {
                 name: "FieldFlagOverride1",
+                name_hash: 3558987182,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DofComponentState, field_flag_override1),
             },
             FieldInfoData {
                 name: "FieldFlagOverride2",
+                name_hash: 3558987181,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(DofComponentState, field_flag_override2),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DofComponentState, field_flag_changed0),
             },
             FieldInfoData {
                 name: "FieldFlagChanged1",
+                name_hash: 4279507096,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DofComponentState, field_flag_changed1),
             },
             FieldInfoData {
                 name: "FieldFlagChanged2",
+                name_hash: 4279507099,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(DofComponentState, field_flag_changed2),
@@ -8870,6 +9448,7 @@ impl TypeObject for DofComponentState {
 
 pub static DOFCOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DofComponentState-Array",
+    name_hash: 3781141412,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("DofComponentState"),
@@ -8890,6 +9469,7 @@ pub enum VignettingOperation {
 
 pub static VIGNETTINGOPERATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VignettingOperation",
+    name_hash: 4153852163,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -8918,6 +9498,7 @@ impl TypeObject for VignettingOperation {
 
 pub static VIGNETTINGOPERATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VignettingOperation-Array",
+    name_hash: 847606711,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("VignettingOperation"),
@@ -8938,6 +9519,7 @@ pub enum DofSource {
 
 pub static DOFSOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DofSource",
+    name_hash: 950333397,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -8966,6 +9548,7 @@ impl TypeObject for DofSource {
 
 pub static DOFSOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DofSource-Array",
+    name_hash: 2256646113,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("DofSource"),
@@ -8974,7 +9557,8 @@ pub static DOFSOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ColorCorrectionComponentState {
     pub enable: bool,
     pub brightness: super::core::Vec3,
@@ -8982,10 +9566,10 @@ pub struct ColorCorrectionComponentState {
     pub saturation: super::core::Vec3,
     pub hue: f32,
     pub color_grading_enable: bool,
-    pub color_grading_texture: Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>,
+    pub color_grading_texture: Option<LockedTypeObject /* TextureBaseAsset */>,
     pub color_grading_max_hdr_value: f32,
-    pub hdr_color_grading_lut: Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>,
-    pub color_grading_stack: Vec<ColorGrading>,
+    pub hdr_color_grading_lut: Option<LockedTypeObject /* TextureBaseAsset */>,
+    pub color_grading_stack: Vec<BoxedTypeObject /* ColorGrading */>,
     pub field_flag_override0: u16,
     pub field_flag_changed0: u16,
 }
@@ -9003,14 +9587,14 @@ pub trait ColorCorrectionComponentStateTrait: TypeObject {
     fn hue_mut(&mut self) -> &mut f32;
     fn color_grading_enable(&self) -> &bool;
     fn color_grading_enable_mut(&mut self) -> &mut bool;
-    fn color_grading_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn color_grading_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
+    fn color_grading_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn color_grading_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */>;
     fn color_grading_max_hdr_value(&self) -> &f32;
     fn color_grading_max_hdr_value_mut(&mut self) -> &mut f32;
-    fn hdr_color_grading_lut(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn hdr_color_grading_lut_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn color_grading_stack(&self) -> &Vec<ColorGrading>;
-    fn color_grading_stack_mut(&mut self) -> &mut Vec<ColorGrading>;
+    fn hdr_color_grading_lut(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn hdr_color_grading_lut_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn color_grading_stack(&self) -> &Vec<BoxedTypeObject /* ColorGrading */>;
+    fn color_grading_stack_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ColorGrading */>;
     fn field_flag_override0(&self) -> &u16;
     fn field_flag_override0_mut(&mut self) -> &mut u16;
     fn field_flag_changed0(&self) -> &u16;
@@ -9054,10 +9638,10 @@ impl ColorCorrectionComponentStateTrait for ColorCorrectionComponentState {
     fn color_grading_enable_mut(&mut self) -> &mut bool {
         &mut self.color_grading_enable
     }
-    fn color_grading_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn color_grading_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */> {
         &self.color_grading_texture
     }
-    fn color_grading_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn color_grading_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */> {
         &mut self.color_grading_texture
     }
     fn color_grading_max_hdr_value(&self) -> &f32 {
@@ -9066,16 +9650,16 @@ impl ColorCorrectionComponentStateTrait for ColorCorrectionComponentState {
     fn color_grading_max_hdr_value_mut(&mut self) -> &mut f32 {
         &mut self.color_grading_max_hdr_value
     }
-    fn hdr_color_grading_lut(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn hdr_color_grading_lut(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */> {
         &self.hdr_color_grading_lut
     }
-    fn hdr_color_grading_lut_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn hdr_color_grading_lut_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */> {
         &mut self.hdr_color_grading_lut
     }
-    fn color_grading_stack(&self) -> &Vec<ColorGrading> {
+    fn color_grading_stack(&self) -> &Vec<BoxedTypeObject /* ColorGrading */> {
         &self.color_grading_stack
     }
-    fn color_grading_stack_mut(&mut self) -> &mut Vec<ColorGrading> {
+    fn color_grading_stack_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ColorGrading */> {
         &mut self.color_grading_stack
     }
     fn field_flag_override0(&self) -> &u16 {
@@ -9094,81 +9678,95 @@ impl ColorCorrectionComponentStateTrait for ColorCorrectionComponentState {
 
 pub static COLORCORRECTIONCOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorCorrectionComponentState",
+    name_hash: 2149145398,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ColorCorrectionComponentState as Default>::default())),
+            create_boxed: || Box::new(<ColorCorrectionComponentState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ColorCorrectionComponentState, enable),
             },
             FieldInfoData {
                 name: "Brightness",
+                name_hash: 2298333740,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ColorCorrectionComponentState, brightness),
             },
             FieldInfoData {
                 name: "Contrast",
+                name_hash: 332991719,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ColorCorrectionComponentState, contrast),
             },
             FieldInfoData {
                 name: "Saturation",
+                name_hash: 2572315705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ColorCorrectionComponentState, saturation),
             },
             FieldInfoData {
                 name: "Hue",
+                name_hash: 193458845,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ColorCorrectionComponentState, hue),
             },
             FieldInfoData {
                 name: "ColorGradingEnable",
+                name_hash: 1205773449,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ColorCorrectionComponentState, color_grading_enable),
             },
             FieldInfoData {
                 name: "ColorGradingTexture",
+                name_hash: 432198551,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(ColorCorrectionComponentState, color_grading_texture),
             },
             FieldInfoData {
                 name: "ColorGradingMaxHdrValue",
+                name_hash: 3560565833,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ColorCorrectionComponentState, color_grading_max_hdr_value),
             },
             FieldInfoData {
                 name: "HdrColorGradingLut",
+                name_hash: 2353069819,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(ColorCorrectionComponentState, hdr_color_grading_lut),
             },
             FieldInfoData {
                 name: "ColorGradingStack",
+                name_hash: 3953128838,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ColorGrading-Array",
                 rust_offset: offset_of!(ColorCorrectionComponentState, color_grading_stack),
             },
             FieldInfoData {
                 name: "FieldFlagOverride0",
+                name_hash: 3558987183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(ColorCorrectionComponentState, field_flag_override0),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(ColorCorrectionComponentState, field_flag_changed0),
@@ -9200,6 +9798,7 @@ impl TypeObject for ColorCorrectionComponentState {
 
 pub static COLORCORRECTIONCOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorCorrectionComponentState-Array",
+    name_hash: 1689948034,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ColorCorrectionComponentState"),
@@ -9208,17 +9807,18 @@ pub static COLORCORRECTIONCOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ColorGrading {
     pub visibility: f32,
-    pub texture: Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>,
+    pub texture: Option<LockedTypeObject /* TextureBaseAsset */>,
 }
 
 pub trait ColorGradingTrait: TypeObject {
     fn visibility(&self) -> &f32;
     fn visibility_mut(&mut self) -> &mut f32;
-    fn texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
+    fn texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */>;
 }
 
 impl ColorGradingTrait for ColorGrading {
@@ -9228,31 +9828,35 @@ impl ColorGradingTrait for ColorGrading {
     fn visibility_mut(&mut self) -> &mut f32 {
         &mut self.visibility
     }
-    fn texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */> {
         &self.texture
     }
-    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */> {
         &mut self.texture
     }
 }
 
 pub static COLORGRADING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorGrading",
+    name_hash: 1627128744,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ColorGrading as Default>::default())),
+            create_boxed: || Box::new(<ColorGrading as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Visibility",
+                name_hash: 1708270083,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ColorGrading, visibility),
             },
             FieldInfoData {
                 name: "Texture",
+                name_hash: 3185041626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(ColorGrading, texture),
@@ -9284,6 +9888,7 @@ impl TypeObject for ColorGrading {
 
 pub static COLORGRADING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorGrading-Array",
+    name_hash: 1401816348,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ColorGrading"),
@@ -9292,7 +9897,8 @@ pub static COLORGRADING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TonemapComponentState {
     pub e_v: f32,
     pub exposure_compensation: f32,
@@ -9333,11 +9939,11 @@ pub struct TonemapComponentState {
     pub f_f_t_kernel_rotation: f32,
     pub f_f_t_spike_scale_limit_enable: bool,
     pub f_f_t_spike_scale_limit: f32,
-    pub f_f_t_kernel_texture: Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>,
+    pub f_f_t_kernel_texture: Option<LockedTypeObject /* TextureBaseAsset */>,
     pub chromostereopsis_enable: bool,
     pub chromostereopsis_scale: f32,
     pub chromostereopsis_offset: f32,
-    pub lens_dirt_texture: Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>,
+    pub lens_dirt_texture: Option<LockedTypeObject /* TextureBaseAsset */>,
     pub lens_dirt_bias: super::core::Vec3,
     pub lens_dirt_factor: super::core::Vec3,
     pub lens_dirt_exponent: super::core::Vec3,
@@ -9426,16 +10032,16 @@ pub trait TonemapComponentStateTrait: TypeObject {
     fn f_f_t_spike_scale_limit_enable_mut(&mut self) -> &mut bool;
     fn f_f_t_spike_scale_limit(&self) -> &f32;
     fn f_f_t_spike_scale_limit_mut(&mut self) -> &mut f32;
-    fn f_f_t_kernel_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn f_f_t_kernel_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
+    fn f_f_t_kernel_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn f_f_t_kernel_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */>;
     fn chromostereopsis_enable(&self) -> &bool;
     fn chromostereopsis_enable_mut(&mut self) -> &mut bool;
     fn chromostereopsis_scale(&self) -> &f32;
     fn chromostereopsis_scale_mut(&mut self) -> &mut f32;
     fn chromostereopsis_offset(&self) -> &f32;
     fn chromostereopsis_offset_mut(&mut self) -> &mut f32;
-    fn lens_dirt_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
-    fn lens_dirt_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>>;
+    fn lens_dirt_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */>;
+    fn lens_dirt_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */>;
     fn lens_dirt_bias(&self) -> &super::core::Vec3;
     fn lens_dirt_bias_mut(&mut self) -> &mut super::core::Vec3;
     fn lens_dirt_factor(&self) -> &super::core::Vec3;
@@ -9687,10 +10293,10 @@ impl TonemapComponentStateTrait for TonemapComponentState {
     fn f_f_t_spike_scale_limit_mut(&mut self) -> &mut f32 {
         &mut self.f_f_t_spike_scale_limit
     }
-    fn f_f_t_kernel_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn f_f_t_kernel_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */> {
         &self.f_f_t_kernel_texture
     }
-    fn f_f_t_kernel_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn f_f_t_kernel_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */> {
         &mut self.f_f_t_kernel_texture
     }
     fn chromostereopsis_enable(&self) -> &bool {
@@ -9711,10 +10317,10 @@ impl TonemapComponentStateTrait for TonemapComponentState {
     fn chromostereopsis_offset_mut(&mut self) -> &mut f32 {
         &mut self.chromostereopsis_offset
     }
-    fn lens_dirt_texture(&self) -> &Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn lens_dirt_texture(&self) -> &Option<LockedTypeObject /* TextureBaseAsset */> {
         &self.lens_dirt_texture
     }
-    fn lens_dirt_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TextureBaseAssetTrait>>> {
+    fn lens_dirt_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* TextureBaseAsset */> {
         &mut self.lens_dirt_texture
     }
     fn lens_dirt_bias(&self) -> &super::core::Vec3 {
@@ -9763,315 +10369,368 @@ impl TonemapComponentStateTrait for TonemapComponentState {
 
 pub static TONEMAPCOMPONENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TonemapComponentState",
+    name_hash: 2303884817,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TonemapComponentState as Default>::default())),
+            create_boxed: || Box::new(<TonemapComponentState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EV",
+                name_hash: 5861814,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, e_v),
             },
             FieldInfoData {
                 name: "ExposureCompensation",
+                name_hash: 3835253666,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, exposure_compensation),
             },
             FieldInfoData {
                 name: "AutoExposureDarkestExclude",
+                name_hash: 3080832577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, auto_exposure_darkest_exclude),
             },
             FieldInfoData {
                 name: "AutoExposureBrightestExclude",
+                name_hash: 2568352575,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, auto_exposure_brightest_exclude),
             },
             FieldInfoData {
                 name: "DarkAdaptationTime",
+                name_hash: 4223681457,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, dark_adaptation_time),
             },
             FieldInfoData {
                 name: "LightAdaptationTime",
+                name_hash: 1294532883,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, light_adaptation_time),
             },
             FieldInfoData {
                 name: "AutomaticExposure",
+                name_hash: 2944222923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TonemapComponentState, automatic_exposure),
             },
             FieldInfoData {
                 name: "AutoExposureMethod",
+                name_hash: 2459920774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AutoExposureMethod",
                 rust_offset: offset_of!(TonemapComponentState, auto_exposure_method),
             },
             FieldInfoData {
                 name: "AutoExposureHigherThreshold",
+                name_hash: 2518435447,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, auto_exposure_higher_threshold),
             },
             FieldInfoData {
                 name: "AutoExposureLowerThreshold",
+                name_hash: 1630508205,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, auto_exposure_lower_threshold),
             },
             FieldInfoData {
                 name: "ClampEV",
+                name_hash: 3926418085,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TonemapComponentState, clamp_e_v),
             },
             FieldInfoData {
                 name: "MinEV",
+                name_hash: 209959548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, min_e_v),
             },
             FieldInfoData {
                 name: "MaxEV",
+                name_hash: 210236514,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, max_e_v),
             },
             FieldInfoData {
                 name: "SpotMeterScale",
+                name_hash: 1691011758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, spot_meter_scale),
             },
             FieldInfoData {
                 name: "SpotMeterOffsetX",
+                name_hash: 3433992131,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, spot_meter_offset_x),
             },
             FieldInfoData {
                 name: "SpotMeterOffsetY",
+                name_hash: 3433992130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, spot_meter_offset_y),
             },
             FieldInfoData {
                 name: "TonemapMethod",
+                name_hash: 3755826422,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TonemapMethod",
                 rust_offset: offset_of!(TonemapComponentState, tonemap_method),
             },
             FieldInfoData {
                 name: "BloomDirection",
+                name_hash: 2087543971,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BloomDirection",
                 rust_offset: offset_of!(TonemapComponentState, bloom_direction),
             },
             FieldInfoData {
                 name: "DirectionalBloomClamp",
+                name_hash: 412181149,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, directional_bloom_clamp),
             },
             FieldInfoData {
                 name: "BloomScale",
+                name_hash: 4088580734,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TonemapComponentState, bloom_scale),
             },
             FieldInfoData {
                 name: "BloomSoftClip",
+                name_hash: 1299202430,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, bloom_soft_clip),
             },
             FieldInfoData {
                 name: "BloomMethod",
+                name_hash: 1234106681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BloomMethod",
                 rust_offset: offset_of!(TonemapComponentState, bloom_method),
             },
             FieldInfoData {
                 name: "GaussianSharpness",
+                name_hash: 1959747971,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, gaussian_sharpness),
             },
             FieldInfoData {
                 name: "Gaussian1Color",
+                name_hash: 2424245948,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TonemapComponentState, gaussian1_color),
             },
             FieldInfoData {
                 name: "Gaussian1Weight",
+                name_hash: 3452950817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, gaussian1_weight),
             },
             FieldInfoData {
                 name: "Gaussian2Color",
+                name_hash: 2612809567,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TonemapComponentState, gaussian2_color),
             },
             FieldInfoData {
                 name: "Gaussian2Weight",
+                name_hash: 1090287458,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, gaussian2_weight),
             },
             FieldInfoData {
                 name: "Gaussian3Color",
+                name_hash: 2649575294,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TonemapComponentState, gaussian3_color),
             },
             FieldInfoData {
                 name: "Gaussian3Weight",
+                name_hash: 2303349411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, gaussian3_weight),
             },
             FieldInfoData {
                 name: "Gaussian4Color",
+                name_hash: 2543742745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TonemapComponentState, gaussian4_color),
             },
             FieldInfoData {
                 name: "Gaussian4Weight",
+                name_hash: 2807188964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, gaussian4_weight),
             },
             FieldInfoData {
                 name: "Gaussian5Color",
+                name_hash: 2580508472,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TonemapComponentState, gaussian5_color),
             },
             FieldInfoData {
                 name: "Gaussian5Weight",
+                name_hash: 4020250917,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, gaussian5_weight),
             },
             FieldInfoData {
                 name: "FFTThreshold",
+                name_hash: 3666551654,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, f_f_t_threshold),
             },
             FieldInfoData {
                 name: "FFTCutoff",
+                name_hash: 1748013500,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, f_f_t_cutoff),
             },
             FieldInfoData {
                 name: "FFTKernelScale",
+                name_hash: 4023353778,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, f_f_t_kernel_scale),
             },
             FieldInfoData {
                 name: "FFTKernelRotation",
+                name_hash: 26388510,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, f_f_t_kernel_rotation),
             },
             FieldInfoData {
                 name: "FFTSpikeScaleLimitEnable",
+                name_hash: 2112144505,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TonemapComponentState, f_f_t_spike_scale_limit_enable),
             },
             FieldInfoData {
                 name: "FFTSpikeScaleLimit",
+                name_hash: 3293863768,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, f_f_t_spike_scale_limit),
             },
             FieldInfoData {
                 name: "FFTKernelTexture",
+                name_hash: 1466708597,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(TonemapComponentState, f_f_t_kernel_texture),
             },
             FieldInfoData {
                 name: "ChromostereopsisEnable",
+                name_hash: 2087966035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TonemapComponentState, chromostereopsis_enable),
             },
             FieldInfoData {
                 name: "ChromostereopsisScale",
+                name_hash: 952871242,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, chromostereopsis_scale),
             },
             FieldInfoData {
                 name: "ChromostereopsisOffset",
+                name_hash: 2469845791,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TonemapComponentState, chromostereopsis_offset),
             },
             FieldInfoData {
                 name: "LensDirtTexture",
+                name_hash: 2276589093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(TonemapComponentState, lens_dirt_texture),
             },
             FieldInfoData {
                 name: "LensDirtBias",
+                name_hash: 1825533059,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TonemapComponentState, lens_dirt_bias),
             },
             FieldInfoData {
                 name: "LensDirtFactor",
+                name_hash: 3896846199,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TonemapComponentState, lens_dirt_factor),
             },
             FieldInfoData {
                 name: "LensDirtExponent",
+                name_hash: 3999517577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TonemapComponentState, lens_dirt_exponent),
             },
             FieldInfoData {
                 name: "FieldFlagOverride0",
+                name_hash: 3558987183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TonemapComponentState, field_flag_override0),
             },
             FieldInfoData {
                 name: "FieldFlagOverride1",
+                name_hash: 3558987182,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TonemapComponentState, field_flag_override1),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TonemapComponentState, field_flag_changed0),
             },
             FieldInfoData {
                 name: "FieldFlagChanged1",
+                name_hash: 4279507096,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TonemapComponentState, field_flag_changed1),
@@ -10103,6 +10762,7 @@ impl TypeObject for TonemapComponentState {
 
 pub static TONEMAPCOMPONENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TonemapComponentState-Array",
+    name_hash: 3635756965,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("TonemapComponentState"),
@@ -10125,6 +10785,7 @@ pub enum TonemapMethod {
 
 pub static TONEMAPMETHOD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TonemapMethod",
+    name_hash: 3755826422,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10153,6 +10814,7 @@ impl TypeObject for TonemapMethod {
 
 pub static TONEMAPMETHOD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TonemapMethod-Array",
+    name_hash: 874029506,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("TonemapMethod"),
@@ -10161,7 +10823,8 @@ pub static TONEMAPMETHOD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubSurfaceProfile {
     pub preset: SubSurfaceProfilePreset,
     pub scattering_enable: bool,
@@ -10290,87 +10953,102 @@ impl SubSurfaceProfileTrait for SubSurfaceProfile {
 
 pub static SUBSURFACEPROFILE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubSurfaceProfile",
+    name_hash: 389277887,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubSurfaceProfile as Default>::default())),
+            create_boxed: || Box::new(<SubSurfaceProfile as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Preset",
+                name_hash: 3358716448,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SubSurfaceProfilePreset",
                 rust_offset: offset_of!(SubSurfaceProfile, preset),
             },
             FieldInfoData {
                 name: "ScatteringEnable",
+                name_hash: 823524610,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubSurfaceProfile, scattering_enable),
             },
             FieldInfoData {
                 name: "ScatteringScale",
+                name_hash: 822282043,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SubSurfaceProfile, scattering_scale),
             },
             FieldInfoData {
                 name: "ScatteringSpikeAmount",
+                name_hash: 1093608011,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SubSurfaceProfile, scattering_spike_amount),
             },
             FieldInfoData {
                 name: "RadiusR",
+                name_hash: 1473252911,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SubSurfaceProfile, radius_r),
             },
             FieldInfoData {
                 name: "RadiusG",
+                name_hash: 1473252922,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SubSurfaceProfile, radius_g),
             },
             FieldInfoData {
                 name: "RadiusB",
+                name_hash: 1473252927,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SubSurfaceProfile, radius_b),
             },
             FieldInfoData {
                 name: "TranslucencyEnable",
+                name_hash: 2137038517,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubSurfaceProfile, translucency_enable),
             },
             FieldInfoData {
                 name: "AutomaticThicknessEnable",
+                name_hash: 3217348367,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubSurfaceProfile, automatic_thickness_enable),
             },
             FieldInfoData {
                 name: "TranslucencyScale",
+                name_hash: 317261612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SubSurfaceProfile, translucency_scale),
             },
             FieldInfoData {
                 name: "TranslucencyBaseColorAmount",
+                name_hash: 2790514768,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SubSurfaceProfile, translucency_base_color_amount),
             },
             FieldInfoData {
                 name: "TranslucencyMultiplier",
+                name_hash: 1979945055,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SubSurfaceProfile, translucency_multiplier),
             },
             FieldInfoData {
                 name: "TranslucencyShadowBias",
+                name_hash: 3531592075,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SubSurfaceProfile, translucency_shadow_bias),
@@ -10402,6 +11080,7 @@ impl TypeObject for SubSurfaceProfile {
 
 pub static SUBSURFACEPROFILE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubSurfaceProfile-Array",
+    name_hash: 3477069323,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("SubSurfaceProfile"),
@@ -10421,6 +11100,7 @@ pub enum SubSurfaceProfilePreset {
 
 pub static SUBSURFACEPROFILEPRESET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubSurfaceProfilePreset",
+    name_hash: 439827482,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10449,6 +11129,7 @@ impl TypeObject for SubSurfaceProfilePreset {
 
 pub static SUBSURFACEPROFILEPRESET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubSurfaceProfilePreset-Array",
+    name_hash: 1578188590,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("SubSurfaceProfilePreset"),
@@ -10468,6 +11149,7 @@ pub enum ColorGradingQualityMode {
 
 pub static COLORGRADINGQUALITYMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorGradingQualityMode",
+    name_hash: 1163099526,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10496,6 +11178,7 @@ impl TypeObject for ColorGradingQualityMode {
 
 pub static COLORGRADINGQUALITYMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorGradingQualityMode-Array",
+    name_hash: 2212899506,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ColorGradingQualityMode"),
@@ -10516,6 +11199,7 @@ pub enum BloomDirection {
 
 pub static BLOOMDIRECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BloomDirection",
+    name_hash: 2087543971,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10544,6 +11228,7 @@ impl TypeObject for BloomDirection {
 
 pub static BLOOMDIRECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BloomDirection-Array",
+    name_hash: 2102691863,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("BloomDirection"),
@@ -10564,6 +11249,7 @@ pub enum BloomMethod {
 
 pub static BLOOMMETHOD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BloomMethod",
+    name_hash: 1234106681,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10592,6 +11278,7 @@ impl TypeObject for BloomMethod {
 
 pub static BLOOMMETHOD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BloomMethod-Array",
+    name_hash: 2135762829,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("BloomMethod"),
@@ -10616,6 +11303,7 @@ pub enum BlurFilter {
 
 pub static BLURFILTER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlurFilter",
+    name_hash: 1032953036,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10644,6 +11332,7 @@ impl TypeObject for BlurFilter {
 
 pub static BLURFILTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlurFilter-Array",
+    name_hash: 1881529720,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("BlurFilter"),
@@ -10668,6 +11357,7 @@ pub enum LocalPlayerViewId {
 
 pub static LOCALPLAYERVIEWID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerViewId",
+    name_hash: 362014619,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10696,6 +11386,7 @@ impl TypeObject for LocalPlayerViewId {
 
 pub static LOCALPLAYERVIEWID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerViewId-Array",
+    name_hash: 3463945775,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("LocalPlayerViewId"),
@@ -10716,6 +11407,7 @@ pub enum DistantIBLLocationType {
 
 pub static DISTANTIBLLOCATIONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistantIBLLocationType",
+    name_hash: 831723990,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10744,6 +11436,7 @@ impl TypeObject for DistantIBLLocationType {
 
 pub static DISTANTIBLLOCATIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistantIBLLocationType-Array",
+    name_hash: 4158455650,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("DistantIBLLocationType"),
@@ -10768,6 +11461,7 @@ pub enum LightTilePassType {
 
 pub static LIGHTTILEPASSTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightTilePassType",
+    name_hash: 3627374982,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10796,6 +11490,7 @@ impl TypeObject for LightTilePassType {
 
 pub static LIGHTTILEPASSTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightTilePassType-Array",
+    name_hash: 129828530,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("LightTilePassType"),
@@ -10816,6 +11511,7 @@ pub enum LocalIBLMode {
 
 pub static LOCALIBLMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalIBLMode",
+    name_hash: 2184672364,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10844,6 +11540,7 @@ impl TypeObject for LocalIBLMode {
 
 pub static LOCALIBLMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalIBLMode-Array",
+    name_hash: 2210837592,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("LocalIBLMode"),
@@ -10866,6 +11563,7 @@ pub enum PunctualLightType {
 
 pub static PUNCTUALLIGHTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PunctualLightType",
+    name_hash: 2394147175,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10894,6 +11592,7 @@ impl TypeObject for PunctualLightType {
 
 pub static PUNCTUALLIGHTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PunctualLightType-Array",
+    name_hash: 1367812947,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("PunctualLightType"),
@@ -10914,6 +11613,7 @@ pub enum RectangularLightShape {
 
 pub static RECTANGULARLIGHTSHAPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RectangularLightShape",
+    name_hash: 3825512822,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10942,6 +11642,7 @@ impl TypeObject for RectangularLightShape {
 
 pub static RECTANGULARLIGHTSHAPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RectangularLightShape-Array",
+    name_hash: 311252546,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("RectangularLightShape"),
@@ -10961,6 +11662,7 @@ pub enum LightUnitType {
 
 pub static LIGHTUNITTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightUnitType",
+    name_hash: 86044165,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -10989,6 +11691,7 @@ impl TypeObject for LightUnitType {
 
 pub static LIGHTUNITTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightUnitType-Array",
+    name_hash: 1128568241,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("LightUnitType"),
@@ -10997,11 +11700,12 @@ pub static LIGHTUNITTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PipelineExternalShaderConditional {
     pub condition_name: String,
     pub default_index: i32,
-    pub branches: Vec<PipelineExternalShaderConditionalBranch>,
+    pub branches: Vec<BoxedTypeObject /* PipelineExternalShaderConditionalBranch */>,
     pub is_global: bool,
 }
 
@@ -11010,8 +11714,8 @@ pub trait PipelineExternalShaderConditionalTrait: TypeObject {
     fn condition_name_mut(&mut self) -> &mut String;
     fn default_index(&self) -> &i32;
     fn default_index_mut(&mut self) -> &mut i32;
-    fn branches(&self) -> &Vec<PipelineExternalShaderConditionalBranch>;
-    fn branches_mut(&mut self) -> &mut Vec<PipelineExternalShaderConditionalBranch>;
+    fn branches(&self) -> &Vec<BoxedTypeObject /* PipelineExternalShaderConditionalBranch */>;
+    fn branches_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PipelineExternalShaderConditionalBranch */>;
     fn is_global(&self) -> &bool;
     fn is_global_mut(&mut self) -> &mut bool;
 }
@@ -11029,10 +11733,10 @@ impl PipelineExternalShaderConditionalTrait for PipelineExternalShaderConditiona
     fn default_index_mut(&mut self) -> &mut i32 {
         &mut self.default_index
     }
-    fn branches(&self) -> &Vec<PipelineExternalShaderConditionalBranch> {
+    fn branches(&self) -> &Vec<BoxedTypeObject /* PipelineExternalShaderConditionalBranch */> {
         &self.branches
     }
-    fn branches_mut(&mut self) -> &mut Vec<PipelineExternalShaderConditionalBranch> {
+    fn branches_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PipelineExternalShaderConditionalBranch */> {
         &mut self.branches
     }
     fn is_global(&self) -> &bool {
@@ -11045,33 +11749,39 @@ impl PipelineExternalShaderConditionalTrait for PipelineExternalShaderConditiona
 
 pub static PIPELINEEXTERNALSHADERCONDITIONAL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PipelineExternalShaderConditional",
+    name_hash: 3865366157,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PipelineExternalShaderConditional as Default>::default())),
+            create_boxed: || Box::new(<PipelineExternalShaderConditional as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ConditionName",
+                name_hash: 1105872305,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(PipelineExternalShaderConditional, condition_name),
             },
             FieldInfoData {
                 name: "DefaultIndex",
+                name_hash: 2048165968,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PipelineExternalShaderConditional, default_index),
             },
             FieldInfoData {
                 name: "Branches",
+                name_hash: 2969495431,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PipelineExternalShaderConditionalBranch-Array",
                 rust_offset: offset_of!(PipelineExternalShaderConditional, branches),
             },
             FieldInfoData {
                 name: "IsGlobal",
+                name_hash: 922836500,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PipelineExternalShaderConditional, is_global),
@@ -11103,6 +11813,7 @@ impl TypeObject for PipelineExternalShaderConditional {
 
 pub static PIPELINEEXTERNALSHADERCONDITIONAL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PipelineExternalShaderConditional-Array",
+    name_hash: 2140025401,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("PipelineExternalShaderConditional"),
@@ -11111,7 +11822,8 @@ pub static PIPELINEEXTERNALSHADERCONDITIONAL_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PipelineExternalShaderConditionalBranch {
     pub branch_name: String,
     pub condition_name: String,
@@ -11159,33 +11871,39 @@ impl PipelineExternalShaderConditionalBranchTrait for PipelineExternalShaderCond
 
 pub static PIPELINEEXTERNALSHADERCONDITIONALBRANCH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PipelineExternalShaderConditionalBranch",
+    name_hash: 2092422777,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PipelineExternalShaderConditionalBranch as Default>::default())),
+            create_boxed: || Box::new(<PipelineExternalShaderConditionalBranch as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BranchName",
+                name_hash: 3964518326,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(PipelineExternalShaderConditionalBranch, branch_name),
             },
             FieldInfoData {
                 name: "ConditionName",
+                name_hash: 1105872305,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(PipelineExternalShaderConditionalBranch, condition_name),
             },
             FieldInfoData {
                 name: "Index",
+                name_hash: 214509467,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PipelineExternalShaderConditionalBranch, index),
             },
             FieldInfoData {
                 name: "IsGlobal",
+                name_hash: 922836500,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PipelineExternalShaderConditionalBranch, is_global),
@@ -11217,6 +11935,7 @@ impl TypeObject for PipelineExternalShaderConditionalBranch {
 
 pub static PIPELINEEXTERNALSHADERCONDITIONALBRANCH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PipelineExternalShaderConditionalBranch-Array",
+    name_hash: 3200726349,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("PipelineExternalShaderConditionalBranch"),
@@ -11225,22 +11944,23 @@ pub static PIPELINEEXTERNALSHADERCONDITIONALBRANCH_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ExternalShaderConditionalFilterAsset {
     pub _glacier_base: super::core::Asset,
-    pub inludees: Vec<ExternalShaderConditionalSelection>,
+    pub inludees: Vec<BoxedTypeObject /* ExternalShaderConditionalSelection */>,
 }
 
 pub trait ExternalShaderConditionalFilterAssetTrait: super::core::AssetTrait {
-    fn inludees(&self) -> &Vec<ExternalShaderConditionalSelection>;
-    fn inludees_mut(&mut self) -> &mut Vec<ExternalShaderConditionalSelection>;
+    fn inludees(&self) -> &Vec<BoxedTypeObject /* ExternalShaderConditionalSelection */>;
+    fn inludees_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ExternalShaderConditionalSelection */>;
 }
 
 impl ExternalShaderConditionalFilterAssetTrait for ExternalShaderConditionalFilterAsset {
-    fn inludees(&self) -> &Vec<ExternalShaderConditionalSelection> {
+    fn inludees(&self) -> &Vec<BoxedTypeObject /* ExternalShaderConditionalSelection */> {
         &self.inludees
     }
-    fn inludees_mut(&mut self) -> &mut Vec<ExternalShaderConditionalSelection> {
+    fn inludees_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ExternalShaderConditionalSelection */> {
         &mut self.inludees
     }
 }
@@ -11259,16 +11979,20 @@ impl super::core::DataContainerTrait for ExternalShaderConditionalFilterAsset {
 
 pub static EXTERNALSHADERCONDITIONALFILTERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalShaderConditionalFilterAsset",
+    name_hash: 3287724447,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(ExternalShaderConditionalFilterAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ExternalShaderConditionalFilterAsset as Default>::default())),
+            create_boxed: || Box::new(<ExternalShaderConditionalFilterAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Inludees",
+                name_hash: 3986614892,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ExternalShaderConditionalSelection-Array",
                 rust_offset: offset_of!(ExternalShaderConditionalFilterAsset, inludees),
@@ -11300,6 +12024,7 @@ impl TypeObject for ExternalShaderConditionalFilterAsset {
 
 pub static EXTERNALSHADERCONDITIONALFILTERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalShaderConditionalFilterAsset-Array",
+    name_hash: 3549009451,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ExternalShaderConditionalFilterAsset"),
@@ -11308,11 +12033,12 @@ pub static EXTERNALSHADERCONDITIONALFILTERASSET_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ExternalShaderConditionalSelection {
     pub condition_name: String,
     pub branch_name: String,
-    pub external_shader_conditional: Option<Arc<Mutex<dyn ExternalShaderConditionalAssetTrait>>>,
+    pub external_shader_conditional: Option<LockedTypeObject /* ExternalShaderConditionalAsset */>,
 }
 
 pub trait ExternalShaderConditionalSelectionTrait: TypeObject {
@@ -11320,8 +12046,8 @@ pub trait ExternalShaderConditionalSelectionTrait: TypeObject {
     fn condition_name_mut(&mut self) -> &mut String;
     fn branch_name(&self) -> &String;
     fn branch_name_mut(&mut self) -> &mut String;
-    fn external_shader_conditional(&self) -> &Option<Arc<Mutex<dyn ExternalShaderConditionalAssetTrait>>>;
-    fn external_shader_conditional_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ExternalShaderConditionalAssetTrait>>>;
+    fn external_shader_conditional(&self) -> &Option<LockedTypeObject /* ExternalShaderConditionalAsset */>;
+    fn external_shader_conditional_mut(&mut self) -> &mut Option<LockedTypeObject /* ExternalShaderConditionalAsset */>;
 }
 
 impl ExternalShaderConditionalSelectionTrait for ExternalShaderConditionalSelection {
@@ -11337,37 +12063,42 @@ impl ExternalShaderConditionalSelectionTrait for ExternalShaderConditionalSelect
     fn branch_name_mut(&mut self) -> &mut String {
         &mut self.branch_name
     }
-    fn external_shader_conditional(&self) -> &Option<Arc<Mutex<dyn ExternalShaderConditionalAssetTrait>>> {
+    fn external_shader_conditional(&self) -> &Option<LockedTypeObject /* ExternalShaderConditionalAsset */> {
         &self.external_shader_conditional
     }
-    fn external_shader_conditional_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ExternalShaderConditionalAssetTrait>>> {
+    fn external_shader_conditional_mut(&mut self) -> &mut Option<LockedTypeObject /* ExternalShaderConditionalAsset */> {
         &mut self.external_shader_conditional
     }
 }
 
 pub static EXTERNALSHADERCONDITIONALSELECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalShaderConditionalSelection",
+    name_hash: 596481007,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ExternalShaderConditionalSelection as Default>::default())),
+            create_boxed: || Box::new(<ExternalShaderConditionalSelection as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ConditionName",
+                name_hash: 1105872305,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ExternalShaderConditionalSelection, condition_name),
             },
             FieldInfoData {
                 name: "BranchName",
+                name_hash: 3964518326,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ExternalShaderConditionalSelection, branch_name),
             },
             FieldInfoData {
                 name: "ExternalShaderConditional",
+                name_hash: 4096812207,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ExternalShaderConditionalAsset",
                 rust_offset: offset_of!(ExternalShaderConditionalSelection, external_shader_conditional),
@@ -11399,6 +12130,7 @@ impl TypeObject for ExternalShaderConditionalSelection {
 
 pub static EXTERNALSHADERCONDITIONALSELECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalShaderConditionalSelection-Array",
+    name_hash: 2561552859,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ExternalShaderConditionalSelection"),
@@ -11407,7 +12139,8 @@ pub static EXTERNALSHADERCONDITIONALSELECTION_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ExternalShaderBooleanDescription {
     pub _glacier_base: ExternalShaderConditionalAsset,
 }
@@ -11465,12 +12198,15 @@ impl super::core::DataContainerTrait for ExternalShaderBooleanDescription {
 
 pub static EXTERNALSHADERBOOLEANDESCRIPTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalShaderBooleanDescription",
+    name_hash: 3061913203,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EXTERNALSHADERCONDITIONALASSET_TYPE_INFO),
+        super_class_offset: offset_of!(ExternalShaderBooleanDescription, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ExternalShaderBooleanDescription as Default>::default())),
+            create_boxed: || Box::new(<ExternalShaderBooleanDescription as Default>::default()),
         },
         fields: &[
         ],
@@ -11500,6 +12236,7 @@ impl TypeObject for ExternalShaderBooleanDescription {
 
 pub static EXTERNALSHADERBOOLEANDESCRIPTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalShaderBooleanDescription-Array",
+    name_hash: 1370313287,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ExternalShaderBooleanDescription"),
@@ -11508,7 +12245,8 @@ pub static EXTERNALSHADERBOOLEANDESCRIPTION_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ExternalShaderSwitchDescription {
     pub _glacier_base: ExternalShaderConditionalAsset,
 }
@@ -11566,12 +12304,15 @@ impl super::core::DataContainerTrait for ExternalShaderSwitchDescription {
 
 pub static EXTERNALSHADERSWITCHDESCRIPTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalShaderSwitchDescription",
+    name_hash: 2430153797,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EXTERNALSHADERCONDITIONALASSET_TYPE_INFO),
+        super_class_offset: offset_of!(ExternalShaderSwitchDescription, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ExternalShaderSwitchDescription as Default>::default())),
+            create_boxed: || Box::new(<ExternalShaderSwitchDescription as Default>::default()),
         },
         fields: &[
         ],
@@ -11601,6 +12342,7 @@ impl TypeObject for ExternalShaderSwitchDescription {
 
 pub static EXTERNALSHADERSWITCHDESCRIPTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalShaderSwitchDescription-Array",
+    name_hash: 1533316209,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ExternalShaderSwitchDescription"),
@@ -11609,7 +12351,8 @@ pub static EXTERNALSHADERSWITCHDESCRIPTION_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ExternalShaderConditionalAsset {
     pub _glacier_base: super::core::Asset,
     pub condition_name: String,
@@ -11679,40 +12422,48 @@ impl super::core::DataContainerTrait for ExternalShaderConditionalAsset {
 
 pub static EXTERNALSHADERCONDITIONALASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalShaderConditionalAsset",
+    name_hash: 4076334175,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(ExternalShaderConditionalAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ExternalShaderConditionalAsset as Default>::default())),
+            create_boxed: || Box::new(<ExternalShaderConditionalAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ConditionName",
+                name_hash: 1105872305,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ExternalShaderConditionalAsset, condition_name),
             },
             FieldInfoData {
                 name: "Description",
+                name_hash: 1636673251,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ExternalShaderConditionalAsset, description),
             },
             FieldInfoData {
                 name: "Branches",
+                name_hash: 2969495431,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(ExternalShaderConditionalAsset, branches),
             },
             FieldInfoData {
                 name: "DefaultValue",
+                name_hash: 2066049125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ExternalShaderConditionalAsset, default_value),
             },
             FieldInfoData {
                 name: "IsGlobal",
+                name_hash: 922836500,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ExternalShaderConditionalAsset, is_global),
@@ -11744,6 +12495,7 @@ impl TypeObject for ExternalShaderConditionalAsset {
 
 pub static EXTERNALSHADERCONDITIONALASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalShaderConditionalAsset-Array",
+    name_hash: 3815481707,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ExternalShaderConditionalAsset"),
@@ -11766,6 +12518,7 @@ pub enum ShadowCacheDepthBias {
 
 pub static SHADOWCACHEDEPTHBIAS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowCacheDepthBias",
+    name_hash: 3374485723,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -11794,6 +12547,7 @@ impl TypeObject for ShadowCacheDepthBias {
 
 pub static SHADOWCACHEDEPTHBIAS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowCacheDepthBias-Array",
+    name_hash: 3688888303,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShadowCacheDepthBias"),
@@ -11816,6 +12570,7 @@ pub enum ShadowCacheMode {
 
 pub static SHADOWCACHEMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowCacheMode",
+    name_hash: 1922729868,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -11844,6 +12599,7 @@ impl TypeObject for ShadowCacheMode {
 
 pub static SHADOWCACHEMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowCacheMode-Array",
+    name_hash: 3114260408,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("ShadowCacheMode"),
@@ -11852,7 +12608,8 @@ pub static SHADOWCACHEMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DecalAtlasTile {
     pub tile_index_x: f32,
     pub tile_index_y: f32,
@@ -11918,45 +12675,53 @@ impl DecalAtlasTileTrait for DecalAtlasTile {
 
 pub static DECALATLASTILE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalAtlasTile",
+    name_hash: 3863338805,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DecalAtlasTile as Default>::default())),
+            create_boxed: || Box::new(<DecalAtlasTile as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TileIndexX",
+                name_hash: 2534612119,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalAtlasTile, tile_index_x),
             },
             FieldInfoData {
                 name: "TileIndexY",
+                name_hash: 2534612118,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalAtlasTile, tile_index_y),
             },
             FieldInfoData {
                 name: "TileCountX",
+                name_hash: 2473222698,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalAtlasTile, tile_count_x),
             },
             FieldInfoData {
                 name: "TileCountY",
+                name_hash: 2473222699,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalAtlasTile, tile_count_y),
             },
             FieldInfoData {
                 name: "FlipX",
+                name_hash: 207056974,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalAtlasTile, flip_x),
             },
             FieldInfoData {
                 name: "FlipY",
+                name_hash: 207056975,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalAtlasTile, flip_y),
@@ -11988,6 +12753,7 @@ impl TypeObject for DecalAtlasTile {
 
 pub static DECALATLASTILE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalAtlasTile-Array",
+    name_hash: 4258848641,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("DecalAtlasTile"),
@@ -11996,7 +12762,8 @@ pub static DECALATLASTILE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DecalTemplateBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -12021,12 +12788,15 @@ impl super::core::DataContainerTrait for DecalTemplateBaseAsset {
 
 pub static DECALTEMPLATEBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalTemplateBaseAsset",
+    name_hash: 156221023,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(DecalTemplateBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DecalTemplateBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<DecalTemplateBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -12056,6 +12826,7 @@ impl TypeObject for DecalTemplateBaseAsset {
 
 pub static DECALTEMPLATEBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalTemplateBaseAsset-Array",
+    name_hash: 1691939691,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("DecalTemplateBaseAsset"),
@@ -12077,6 +12848,7 @@ pub enum DecalType {
 
 pub static DECALTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalType",
+    name_hash: 3246067474,
     flags: MemberInfoFlags::new(49429),
     module: "RenderBase",
     data: TypeInfoData::Enum,
@@ -12105,6 +12877,7 @@ impl TypeObject for DecalType {
 
 pub static DECALTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalType-Array",
+    name_hash: 690484774,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("DecalType"),
@@ -12113,7 +12886,8 @@ pub static DECALTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CullIdDynamicState {
 }
 
@@ -12125,11 +12899,13 @@ impl CullIdDynamicStateTrait for CullIdDynamicState {
 
 pub static CULLIDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CullIdDynamicState",
+    name_hash: 3135591836,
     flags: MemberInfoFlags::new(36937),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CullIdDynamicState as Default>::default())),
+            create_boxed: || Box::new(<CullIdDynamicState as Default>::default()),
         },
         fields: &[
         ],
@@ -12159,6 +12935,7 @@ impl TypeObject for CullIdDynamicState {
 
 pub static CULLIDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CullIdDynamicState-Array",
+    name_hash: 3185569192,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("CullIdDynamicState"),
@@ -12167,7 +12944,8 @@ pub static CULLIDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CullIdStaticState {
     pub affect_child_views: bool,
     pub field_flag_changed0: u8,
@@ -12197,21 +12975,25 @@ impl CullIdStaticStateTrait for CullIdStaticState {
 
 pub static CULLIDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CullIdStaticState",
+    name_hash: 3363339793,
     flags: MemberInfoFlags::new(73),
     module: "RenderBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CullIdStaticState as Default>::default())),
+            create_boxed: || Box::new(<CullIdStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AffectChildViews",
+                name_hash: 2875673058,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CullIdStaticState, affect_child_views),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(CullIdStaticState, field_flag_changed0),
@@ -12243,6 +13025,7 @@ impl TypeObject for CullIdStaticState {
 
 pub static CULLIDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CullIdStaticState-Array",
+    name_hash: 1549483941,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("CullIdStaticState"),
@@ -12251,7 +13034,8 @@ pub static CULLIDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OutlineColorsComponentData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -12267,12 +13051,15 @@ impl super::core::DataContainerTrait for OutlineColorsComponentData {
 
 pub static OUTLINECOLORSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OutlineColorsComponentData",
+    name_hash: 3846756980,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(OutlineColorsComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OutlineColorsComponentData as Default>::default())),
+            create_boxed: || Box::new(<OutlineColorsComponentData as Default>::default()),
         },
         fields: &[
         ],
@@ -12302,6 +13089,7 @@ impl TypeObject for OutlineColorsComponentData {
 
 pub static OUTLINECOLORSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OutlineColorsComponentData-Array",
+    name_hash: 1893729856,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("OutlineColorsComponentData"),
@@ -12310,7 +13098,8 @@ pub static OUTLINECOLORSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OccluderRealPlaneEntityData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -12326,12 +13115,15 @@ impl super::core::DataContainerTrait for OccluderRealPlaneEntityData {
 
 pub static OCCLUDERREALPLANEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OccluderRealPlaneEntityData",
+    name_hash: 3293069319,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(OccluderRealPlaneEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OccluderRealPlaneEntityData as Default>::default())),
+            create_boxed: || Box::new(<OccluderRealPlaneEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -12361,6 +13153,7 @@ impl TypeObject for OccluderRealPlaneEntityData {
 
 pub static OCCLUDERREALPLANEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OccluderRealPlaneEntityData-Array",
+    name_hash: 1163518131,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("OccluderRealPlaneEntityData"),
@@ -12369,7 +13162,8 @@ pub static OCCLUDERREALPLANEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FogVolumeEntityData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -12385,12 +13179,15 @@ impl super::core::DataContainerTrait for FogVolumeEntityData {
 
 pub static FOGVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FogVolumeEntityData",
+    name_hash: 1696352296,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(FogVolumeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FogVolumeEntityData as Default>::default())),
+            create_boxed: || Box::new(<FogVolumeEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -12420,6 +13217,7 @@ impl TypeObject for FogVolumeEntityData {
 
 pub static FOGVOLUMEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FogVolumeEntityData-Array",
+    name_hash: 3840911772,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("FogVolumeEntityData"),
@@ -12428,7 +13226,8 @@ pub static FOGVOLUMEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LayerTextureConfigAsset {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -12444,12 +13243,15 @@ impl super::core::DataContainerTrait for LayerTextureConfigAsset {
 
 pub static LAYERTEXTURECONFIGASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayerTextureConfigAsset",
+    name_hash: 2940281347,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LayerTextureConfigAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LayerTextureConfigAsset as Default>::default())),
+            create_boxed: || Box::new(<LayerTextureConfigAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -12479,6 +13281,7 @@ impl TypeObject for LayerTextureConfigAsset {
 
 pub static LAYERTEXTURECONFIGASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayerTextureConfigAsset-Array",
+    name_hash: 1387566263,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("LayerTextureConfigAsset"),
@@ -12487,7 +13290,8 @@ pub static LAYERTEXTURECONFIGASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LayerTextureConfig {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -12503,12 +13307,15 @@ impl super::core::DataContainerTrait for LayerTextureConfig {
 
 pub static LAYERTEXTURECONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayerTextureConfig",
+    name_hash: 2220107123,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LayerTextureConfig, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LayerTextureConfig as Default>::default())),
+            create_boxed: || Box::new(<LayerTextureConfig as Default>::default()),
         },
         fields: &[
         ],
@@ -12538,6 +13345,7 @@ impl TypeObject for LayerTextureConfig {
 
 pub static LAYERTEXTURECONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayerTextureConfig-Array",
+    name_hash: 2605687111,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("LayerTextureConfig"),
@@ -12546,7 +13354,8 @@ pub static LAYERTEXTURECONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FScriptVerletChainEntityData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -12562,12 +13371,15 @@ impl super::core::DataContainerTrait for FScriptVerletChainEntityData {
 
 pub static FSCRIPT_VERLETCHAINENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FScript_VerletChainEntityData",
+    name_hash: 3019827849,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(FScriptVerletChainEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FScriptVerletChainEntityData as Default>::default())),
+            create_boxed: || Box::new(<FScriptVerletChainEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -12597,6 +13409,7 @@ impl TypeObject for FScriptVerletChainEntityData {
 
 pub static FSCRIPT_VERLETCHAINENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FScript_VerletChainEntityData-Array",
+    name_hash: 3591217213,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("FScript_VerletChainEntityData"),
@@ -12605,7 +13418,8 @@ pub static FSCRIPT_VERLETCHAINENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FScriptProceduralBoneGlobalsEntityData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -12621,12 +13435,15 @@ impl super::core::DataContainerTrait for FScriptProceduralBoneGlobalsEntityData 
 
 pub static FSCRIPT_PROCEDURALBONEGLOBALSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FScript_ProceduralBoneGlobalsEntityData",
+    name_hash: 4197959043,
     flags: MemberInfoFlags::new(101),
     module: "RenderBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(FScriptProceduralBoneGlobalsEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FScriptProceduralBoneGlobalsEntityData as Default>::default())),
+            create_boxed: || Box::new(<FScriptProceduralBoneGlobalsEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -12656,6 +13473,7 @@ impl TypeObject for FScriptProceduralBoneGlobalsEntityData {
 
 pub static FSCRIPT_PROCEDURALBONEGLOBALSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FScript_ProceduralBoneGlobalsEntityData-Array",
+    name_hash: 1341642807,
     flags: MemberInfoFlags::new(145),
     module: "RenderBase",
     data: TypeInfoData::Array("FScript_ProceduralBoneGlobalsEntityData"),

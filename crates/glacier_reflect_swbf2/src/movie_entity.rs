@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -15,10 +16,11 @@ pub(crate) fn register_movie_entity_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTMOVIEENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MovieEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub movie: Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>,
+    pub movie: Option<LockedTypeObject /* super::movie_base::MovieTextureBaseAsset */>,
     pub external_time: f32,
     pub is_normal_map: bool,
     pub is_looping: bool,
@@ -29,8 +31,8 @@ pub struct MovieEntityData {
 }
 
 pub trait MovieEntityDataTrait: super::entity::EntityDataTrait {
-    fn movie(&self) -> &Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>;
-    fn movie_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>;
+    fn movie(&self) -> &Option<LockedTypeObject /* super::movie_base::MovieTextureBaseAsset */>;
+    fn movie_mut(&mut self) -> &mut Option<LockedTypeObject /* super::movie_base::MovieTextureBaseAsset */>;
     fn external_time(&self) -> &f32;
     fn external_time_mut(&mut self) -> &mut f32;
     fn is_normal_map(&self) -> &bool;
@@ -48,10 +50,10 @@ pub trait MovieEntityDataTrait: super::entity::EntityDataTrait {
 }
 
 impl MovieEntityDataTrait for MovieEntityData {
-    fn movie(&self) -> &Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>> {
+    fn movie(&self) -> &Option<LockedTypeObject /* super::movie_base::MovieTextureBaseAsset */> {
         &self.movie
     }
-    fn movie_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>> {
+    fn movie_mut(&mut self) -> &mut Option<LockedTypeObject /* super::movie_base::MovieTextureBaseAsset */> {
         &mut self.movie
     }
     fn external_time(&self) -> &f32 {
@@ -121,58 +123,69 @@ impl super::core::DataContainerTrait for MovieEntityData {
 
 pub static MOVIEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieEntityData",
+    name_hash: 3650725078,
     flags: MemberInfoFlags::new(101),
     module: "MovieEntity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MovieEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MovieEntityData as Default>::default())),
+            create_boxed: || Box::new(<MovieEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Movie",
+                name_hash: 210030653,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MovieTextureBaseAsset",
                 rust_offset: offset_of!(MovieEntityData, movie),
             },
             FieldInfoData {
                 name: "ExternalTime",
+                name_hash: 2162678253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MovieEntityData, external_time),
             },
             FieldInfoData {
                 name: "IsNormalMap",
+                name_hash: 797341680,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieEntityData, is_normal_map),
             },
             FieldInfoData {
                 name: "IsLooping",
+                name_hash: 1137411139,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieEntityData, is_looping),
             },
             FieldInfoData {
                 name: "PreBuffer",
+                name_hash: 1333695138,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieEntityData, pre_buffer),
             },
             FieldInfoData {
                 name: "Volume",
+                name_hash: 3158011725,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MovieEntityData, volume),
             },
             FieldInfoData {
                 name: "RenderableCount",
+                name_hash: 1982187302,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(MovieEntityData, renderable_count),
             },
             FieldInfoData {
                 name: "ThreadCount",
+                name_hash: 886477064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(MovieEntityData, thread_count),
@@ -204,6 +217,7 @@ impl TypeObject for MovieEntityData {
 
 pub static MOVIEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieEntityData-Array",
+    name_hash: 3948923490,
     flags: MemberInfoFlags::new(145),
     module: "MovieEntity",
     data: TypeInfoData::Array("MovieEntityData"),
@@ -212,7 +226,8 @@ pub static MOVIEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientMovieEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -231,12 +246,15 @@ impl super::entity::EntityBusPeerTrait for ClientMovieEntity {
 
 pub static CLIENTMOVIEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMovieEntity",
+    name_hash: 3371971903,
     flags: MemberInfoFlags::new(101),
     module: "MovieEntity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientMovieEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientMovieEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientMovieEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -266,6 +284,7 @@ impl TypeObject for ClientMovieEntity {
 
 pub static CLIENTMOVIEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMovieEntity-Array",
+    name_hash: 2117044875,
     flags: MemberInfoFlags::new(145),
     module: "MovieEntity",
     data: TypeInfoData::Array("ClientMovieEntity"),

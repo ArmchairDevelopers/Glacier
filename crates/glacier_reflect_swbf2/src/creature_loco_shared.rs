@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -157,7 +158,8 @@ pub(crate) fn register_creature_loco_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(CLAPPLYINFLUENCEENTITYDATA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureWaypointNetState {
     pub g_u_i_d: super::a_i_tools::AIWaypointGUID,
 }
@@ -178,15 +180,18 @@ impl CreatureWaypointNetStateTrait for CreatureWaypointNetState {
 
 pub static CREATUREWAYPOINTNETSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypointNetState",
+    name_hash: 2208700653,
     flags: MemberInfoFlags::new(73),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureWaypointNetState as Default>::default())),
+            create_boxed: || Box::new(<CreatureWaypointNetState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "GUID",
+                name_hash: 2088756378,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AIWaypointGUID",
                 rust_offset: offset_of!(CreatureWaypointNetState, g_u_i_d),
@@ -218,6 +223,7 @@ impl TypeObject for CreatureWaypointNetState {
 
 pub static CREATUREWAYPOINTNETSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypointNetState-Array",
+    name_hash: 313146841,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureWaypointNetState"),
@@ -226,7 +232,8 @@ pub static CREATUREWAYPOINTNETSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AIWaypointExtraAlignInfo {
     pub align_pos: super::core::Vec3,
     pub align_facing: f32,
@@ -256,21 +263,25 @@ impl AIWaypointExtraAlignInfoTrait for AIWaypointExtraAlignInfo {
 
 pub static AIWAYPOINTEXTRAALIGNINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointExtraAlignInfo",
+    name_hash: 445018391,
     flags: MemberInfoFlags::new(36937),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AIWaypointExtraAlignInfo as Default>::default())),
+            create_boxed: || Box::new(<AIWaypointExtraAlignInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AlignPos",
+                name_hash: 3435759524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AIWaypointExtraAlignInfo, align_pos),
             },
             FieldInfoData {
                 name: "AlignFacing",
+                name_hash: 2929439948,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AIWaypointExtraAlignInfo, align_facing),
@@ -302,6 +313,7 @@ impl TypeObject for AIWaypointExtraAlignInfo {
 
 pub static AIWAYPOINTEXTRAALIGNINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointExtraAlignInfo-Array",
+    name_hash: 2269878691,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("AIWaypointExtraAlignInfo"),
@@ -310,7 +322,8 @@ pub static AIWAYPOINTEXTRAALIGNINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AIWaypointExtraCreatureLoco {
     pub desired_facing: f32,
     pub speed_level: i32,
@@ -367,39 +380,46 @@ impl AIWaypointExtraCreatureLocoTrait for AIWaypointExtraCreatureLoco {
 
 pub static AIWAYPOINTEXTRACREATURELOCO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointExtraCreatureLoco",
+    name_hash: 1178270680,
     flags: MemberInfoFlags::new(36937),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AIWaypointExtraCreatureLoco as Default>::default())),
+            create_boxed: || Box::new(<AIWaypointExtraCreatureLoco as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DesiredFacing",
+                name_hash: 1478411657,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AIWaypointExtraCreatureLoco, desired_facing),
             },
             FieldInfoData {
                 name: "SpeedLevel",
+                name_hash: 4082906260,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AIWaypointExtraCreatureLoco, speed_level),
             },
             FieldInfoData {
                 name: "Stop",
+                name_hash: 2089401213,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AIWaypointExtraCreatureLoco, stop),
             },
             FieldInfoData {
                 name: "Backwards",
+                name_hash: 3259643549,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AIWaypointExtraCreatureLoco, backwards),
             },
             FieldInfoData {
                 name: "ForceHeight",
+                name_hash: 4279577831,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AIWaypointExtraCreatureLoco, force_height),
@@ -431,6 +451,7 @@ impl TypeObject for AIWaypointExtraCreatureLoco {
 
 pub static AIWAYPOINTEXTRACREATURELOCO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIWaypointExtraCreatureLoco-Array",
+    name_hash: 510498412,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("AIWaypointExtraCreatureLoco"),
@@ -439,10 +460,11 @@ pub static AIWAYPOINTEXTRACREATURELOCO_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreaturePlayAnimationWaypointData {
     pub _glacier_base: CreatureMoveWaypointData,
-    pub play_animation: Option<Arc<Mutex<dyn super::game_shared::PlayAnimationDataTrait>>>,
+    pub play_animation: Option<LockedTypeObject /* super::game_shared::PlayAnimationData */>,
     pub stop_at_waypoint: bool,
     pub align_joint: String,
     pub align_transform: super::core::LinearTransform,
@@ -451,8 +473,8 @@ pub struct CreaturePlayAnimationWaypointData {
 }
 
 pub trait CreaturePlayAnimationWaypointDataTrait: CreatureMoveWaypointDataTrait {
-    fn play_animation(&self) -> &Option<Arc<Mutex<dyn super::game_shared::PlayAnimationDataTrait>>>;
-    fn play_animation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::PlayAnimationDataTrait>>>;
+    fn play_animation(&self) -> &Option<LockedTypeObject /* super::game_shared::PlayAnimationData */>;
+    fn play_animation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::PlayAnimationData */>;
     fn stop_at_waypoint(&self) -> &bool;
     fn stop_at_waypoint_mut(&mut self) -> &mut bool;
     fn align_joint(&self) -> &String;
@@ -466,10 +488,10 @@ pub trait CreaturePlayAnimationWaypointDataTrait: CreatureMoveWaypointDataTrait 
 }
 
 impl CreaturePlayAnimationWaypointDataTrait for CreaturePlayAnimationWaypointData {
-    fn play_animation(&self) -> &Option<Arc<Mutex<dyn super::game_shared::PlayAnimationDataTrait>>> {
+    fn play_animation(&self) -> &Option<LockedTypeObject /* super::game_shared::PlayAnimationData */> {
         &self.play_animation
     }
-    fn play_animation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::PlayAnimationDataTrait>>> {
+    fn play_animation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::PlayAnimationData */> {
         &mut self.play_animation
     }
     fn stop_at_waypoint(&self) -> &bool {
@@ -569,46 +591,55 @@ impl super::core::DataContainerTrait for CreaturePlayAnimationWaypointData {
 
 pub static CREATUREPLAYANIMATIONWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreaturePlayAnimationWaypointData",
+    name_hash: 828908615,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREMOVEWAYPOINTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreaturePlayAnimationWaypointData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreaturePlayAnimationWaypointData as Default>::default())),
+            create_boxed: || Box::new(<CreaturePlayAnimationWaypointData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PlayAnimation",
+                name_hash: 587711351,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PlayAnimationData",
                 rust_offset: offset_of!(CreaturePlayAnimationWaypointData, play_animation),
             },
             FieldInfoData {
                 name: "StopAtWaypoint",
+                name_hash: 3933480875,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CreaturePlayAnimationWaypointData, stop_at_waypoint),
             },
             FieldInfoData {
                 name: "AlignJoint",
+                name_hash: 595360126,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CreaturePlayAnimationWaypointData, align_joint),
             },
             FieldInfoData {
                 name: "AlignTransform",
+                name_hash: 4277081604,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(CreaturePlayAnimationWaypointData, align_transform),
             },
             FieldInfoData {
                 name: "EnterPosition",
+                name_hash: 3491628148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CreaturePlayAnimationWaypointData, enter_position),
             },
             FieldInfoData {
                 name: "ExitPosition",
+                name_hash: 3249548956,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CreaturePlayAnimationWaypointData, exit_position),
@@ -640,6 +671,7 @@ impl TypeObject for CreaturePlayAnimationWaypointData {
 
 pub static CREATUREPLAYANIMATIONWAYPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreaturePlayAnimationWaypointData-Array",
+    name_hash: 3776165235,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreaturePlayAnimationWaypointData"),
@@ -648,7 +680,8 @@ pub static CREATUREPLAYANIMATIONWAYPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreaturePauseWaypointData {
     pub _glacier_base: CreatureMoveWaypointData,
     pub pause_settings_for_slow_speed: CreaturePauseData,
@@ -742,22 +775,27 @@ impl super::core::DataContainerTrait for CreaturePauseWaypointData {
 
 pub static CREATUREPAUSEWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreaturePauseWaypointData",
+    name_hash: 3498776711,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREMOVEWAYPOINTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreaturePauseWaypointData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreaturePauseWaypointData as Default>::default())),
+            create_boxed: || Box::new(<CreaturePauseWaypointData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PauseSettingsForSlowSpeed",
+                name_hash: 3995322633,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreaturePauseData",
                 rust_offset: offset_of!(CreaturePauseWaypointData, pause_settings_for_slow_speed),
             },
             FieldInfoData {
                 name: "PauseSettingsForFastSpeed",
+                name_hash: 474436622,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreaturePauseData",
                 rust_offset: offset_of!(CreaturePauseWaypointData, pause_settings_for_fast_speed),
@@ -789,6 +827,7 @@ impl TypeObject for CreaturePauseWaypointData {
 
 pub static CREATUREPAUSEWAYPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreaturePauseWaypointData-Array",
+    name_hash: 2608666931,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreaturePauseWaypointData"),
@@ -797,7 +836,8 @@ pub static CREATUREPAUSEWAYPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreaturePauseData {
     pub probability: f32,
     pub minimum_duration: f32,
@@ -836,27 +876,32 @@ impl CreaturePauseDataTrait for CreaturePauseData {
 
 pub static CREATUREPAUSEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreaturePauseData",
+    name_hash: 1522608452,
     flags: MemberInfoFlags::new(36937),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreaturePauseData as Default>::default())),
+            create_boxed: || Box::new(<CreaturePauseData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Probability",
+                name_hash: 35957416,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CreaturePauseData, probability),
             },
             FieldInfoData {
                 name: "MinimumDuration",
+                name_hash: 1994224333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CreaturePauseData, minimum_duration),
             },
             FieldInfoData {
                 name: "MaximumDuration",
+                name_hash: 2297858771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CreaturePauseData, maximum_duration),
@@ -888,6 +933,7 @@ impl TypeObject for CreaturePauseData {
 
 pub static CREATUREPAUSEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreaturePauseData-Array",
+    name_hash: 2288872944,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreaturePauseData"),
@@ -896,7 +942,8 @@ pub static CREATUREPAUSEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureMoveWaypointData {
     pub _glacier_base: super::pathfinding_shared::WaypointData,
     pub override_creature_angle: bool,
@@ -987,46 +1034,55 @@ impl super::core::DataContainerTrait for CreatureMoveWaypointData {
 
 pub static CREATUREMOVEWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureMoveWaypointData",
+    name_hash: 4075664068,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::pathfinding_shared::WAYPOINTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureMoveWaypointData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureMoveWaypointData as Default>::default())),
+            create_boxed: || Box::new(<CreatureMoveWaypointData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OverrideCreatureAngle",
+                name_hash: 1140067411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CreatureMoveWaypointData, override_creature_angle),
             },
             FieldInfoData {
                 name: "WorldAngle",
+                name_hash: 612547046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CreatureMoveWaypointData, world_angle),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CreatureMoveWaypointData, radius),
             },
             FieldInfoData {
                 name: "SpeedLevel",
+                name_hash: 4082906260,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureSpeedLevel",
                 rust_offset: offset_of!(CreatureMoveWaypointData, speed_level),
             },
             FieldInfoData {
                 name: "MoveBackward",
+                name_hash: 2048481599,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CreatureMoveWaypointData, move_backward),
             },
             FieldInfoData {
                 name: "Explicit_Height",
+                name_hash: 4082008051,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CreatureMoveWaypointData, explicit_height),
@@ -1058,6 +1114,7 @@ impl TypeObject for CreatureMoveWaypointData {
 
 pub static CREATUREMOVEWAYPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureMoveWaypointData-Array",
+    name_hash: 4181399408,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureMoveWaypointData"),
@@ -1078,6 +1135,7 @@ pub enum CreatureSpeedLevel {
 
 pub static CREATURESPEEDLEVEL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureSpeedLevel",
+    name_hash: 2217914295,
     flags: MemberInfoFlags::new(49429),
     module: "CreatureLocoShared",
     data: TypeInfoData::Enum,
@@ -1106,6 +1164,7 @@ impl TypeObject for CreatureSpeedLevel {
 
 pub static CREATURESPEEDLEVEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureSpeedLevel-Array",
+    name_hash: 3313010947,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureSpeedLevel"),
@@ -1114,7 +1173,8 @@ pub static CREATURESPEEDLEVEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureWaypointsShapeData {
     pub _glacier_base: super::pathfinding_shared::WaypointsShapeData,
 }
@@ -1126,19 +1186,19 @@ impl CreatureWaypointsShapeDataTrait for CreatureWaypointsShapeData {
 }
 
 impl super::pathfinding_shared::WaypointsShapeDataTrait for CreatureWaypointsShapeData {
-    fn waypoints(&self) -> &Vec<Option<Arc<Mutex<dyn super::pathfinding_shared::WaypointDataTrait>>>> {
+    fn waypoints(&self) -> &Vec<Option<LockedTypeObject /* super::pathfinding_shared::WaypointData */>> {
         self._glacier_base.waypoints()
     }
-    fn waypoints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::pathfinding_shared::WaypointDataTrait>>>> {
+    fn waypoints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::pathfinding_shared::WaypointData */>> {
         self._glacier_base.waypoints_mut()
     }
 }
 
 impl super::entity::VectorShapeDataTrait for CreatureWaypointsShapeData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -1193,12 +1253,15 @@ impl super::core::DataContainerTrait for CreatureWaypointsShapeData {
 
 pub static CREATUREWAYPOINTSSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypointsShapeData",
+    name_hash: 505028105,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::pathfinding_shared::WAYPOINTSSHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureWaypointsShapeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureWaypointsShapeData as Default>::default())),
+            create_boxed: || Box::new(<CreatureWaypointsShapeData as Default>::default()),
         },
         fields: &[
         ],
@@ -1228,6 +1291,7 @@ impl TypeObject for CreatureWaypointsShapeData {
 
 pub static CREATUREWAYPOINTSSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypointsShapeData-Array",
+    name_hash: 2141287357,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureWaypointsShapeData"),
@@ -1236,22 +1300,23 @@ pub static CREATUREWAYPOINTSSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureLocoSettings {
     pub _glacier_base: super::core::DataContainerPolicyAsset,
-    pub state_settingss: Vec<Option<Arc<Mutex<dyn LocomotionStateSettingsTrait>>>>,
+    pub state_settingss: Vec<Option<LockedTypeObject /* LocomotionStateSettings */>>,
 }
 
 pub trait CreatureLocoSettingsTrait: super::core::DataContainerPolicyAssetTrait {
-    fn state_settingss(&self) -> &Vec<Option<Arc<Mutex<dyn LocomotionStateSettingsTrait>>>>;
-    fn state_settingss_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LocomotionStateSettingsTrait>>>>;
+    fn state_settingss(&self) -> &Vec<Option<LockedTypeObject /* LocomotionStateSettings */>>;
+    fn state_settingss_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* LocomotionStateSettings */>>;
 }
 
 impl CreatureLocoSettingsTrait for CreatureLocoSettings {
-    fn state_settingss(&self) -> &Vec<Option<Arc<Mutex<dyn LocomotionStateSettingsTrait>>>> {
+    fn state_settingss(&self) -> &Vec<Option<LockedTypeObject /* LocomotionStateSettings */>> {
         &self.state_settingss
     }
-    fn state_settingss_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LocomotionStateSettingsTrait>>>> {
+    fn state_settingss_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* LocomotionStateSettings */>> {
         &mut self.state_settingss
     }
 }
@@ -1273,16 +1338,20 @@ impl super::core::DataContainerTrait for CreatureLocoSettings {
 
 pub static CREATURELOCOSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoSettings",
+    name_hash: 998106988,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINERPOLICYASSET_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureLocoSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureLocoSettings as Default>::default())),
+            create_boxed: || Box::new(<CreatureLocoSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StateSettingss",
+                name_hash: 2077614180,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LocomotionStateSettings-Array",
                 rust_offset: offset_of!(CreatureLocoSettings, state_settingss),
@@ -1314,6 +1383,7 @@ impl TypeObject for CreatureLocoSettings {
 
 pub static CREATURELOCOSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoSettings-Array",
+    name_hash: 47671128,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureLocoSettings"),
@@ -1322,7 +1392,8 @@ pub static CREATURELOCOSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PushSettings {
     pub _glacier_base: LocomotionStateSettings,
     pub can_be_pushed_by: PushSettingsFilter,
@@ -1359,22 +1430,27 @@ impl super::core::DataContainerTrait for PushSettings {
 
 pub static PUSHSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PushSettings",
+    name_hash: 955779102,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(PushSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PushSettings as Default>::default())),
+            create_boxed: || Box::new(<PushSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CanBePushedBy",
+                name_hash: 3470458282,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PushSettingsFilter",
                 rust_offset: offset_of!(PushSettings, can_be_pushed_by),
             },
             FieldInfoData {
                 name: "IsPushedByPlayer",
+                name_hash: 59793640,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PushSettings, is_pushed_by_player),
@@ -1406,6 +1482,7 @@ impl TypeObject for PushSettings {
 
 pub static PUSHSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PushSettings-Array",
+    name_hash: 377141546,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("PushSettings"),
@@ -1427,6 +1504,7 @@ pub enum PushSettingsFilter {
 
 pub static PUSHSETTINGSFILTER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PushSettingsFilter",
+    name_hash: 1299126302,
     flags: MemberInfoFlags::new(49429),
     module: "CreatureLocoShared",
     data: TypeInfoData::Enum,
@@ -1455,6 +1533,7 @@ impl TypeObject for PushSettingsFilter {
 
 pub static PUSHSETTINGSFILTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PushSettingsFilter-Array",
+    name_hash: 201181482,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("PushSettingsFilter"),
@@ -1463,7 +1542,8 @@ pub static PUSHSETTINGSFILTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SizeSettings {
     pub _glacier_base: LocomotionStateSettings,
     pub radius: f32,
@@ -1500,22 +1580,27 @@ impl super::core::DataContainerTrait for SizeSettings {
 
 pub static SIZESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SizeSettings",
+    name_hash: 694112901,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(SizeSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SizeSettings as Default>::default())),
+            create_boxed: || Box::new(<SizeSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SizeSettings, radius),
             },
             FieldInfoData {
                 name: "Length",
+                name_hash: 2906827577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SizeSettings, length),
@@ -1547,6 +1632,7 @@ impl TypeObject for SizeSettings {
 
 pub static SIZESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SizeSettings-Array",
+    name_hash: 1524390449,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("SizeSettings"),
@@ -1555,22 +1641,23 @@ pub static SIZESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldEventActionsSettings {
     pub _glacier_base: LocomotionStateSettings,
-    pub event_actions: Vec<Option<Arc<Mutex<dyn WorldEventActionventParametersTrait>>>>,
+    pub event_actions: Vec<Option<LockedTypeObject /* WorldEventActionventParameters */>>,
 }
 
 pub trait WorldEventActionsSettingsTrait: LocomotionStateSettingsTrait {
-    fn event_actions(&self) -> &Vec<Option<Arc<Mutex<dyn WorldEventActionventParametersTrait>>>>;
-    fn event_actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn WorldEventActionventParametersTrait>>>>;
+    fn event_actions(&self) -> &Vec<Option<LockedTypeObject /* WorldEventActionventParameters */>>;
+    fn event_actions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* WorldEventActionventParameters */>>;
 }
 
 impl WorldEventActionsSettingsTrait for WorldEventActionsSettings {
-    fn event_actions(&self) -> &Vec<Option<Arc<Mutex<dyn WorldEventActionventParametersTrait>>>> {
+    fn event_actions(&self) -> &Vec<Option<LockedTypeObject /* WorldEventActionventParameters */>> {
         &self.event_actions
     }
-    fn event_actions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn WorldEventActionventParametersTrait>>>> {
+    fn event_actions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* WorldEventActionventParameters */>> {
         &mut self.event_actions
     }
 }
@@ -1583,16 +1670,20 @@ impl super::core::DataContainerTrait for WorldEventActionsSettings {
 
 pub static WORLDEVENTACTIONSSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldEventActionsSettings",
+    name_hash: 3290091459,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(WorldEventActionsSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldEventActionsSettings as Default>::default())),
+            create_boxed: || Box::new(<WorldEventActionsSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EventActions",
+                name_hash: 2610395972,
                 flags: MemberInfoFlags::new(144),
                 field_type: "WorldEventActionventParameters-Array",
                 rust_offset: offset_of!(WorldEventActionsSettings, event_actions),
@@ -1624,6 +1715,7 @@ impl TypeObject for WorldEventActionsSettings {
 
 pub static WORLDEVENTACTIONSSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldEventActionsSettings-Array",
+    name_hash: 3015267063,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("WorldEventActionsSettings"),
@@ -1632,7 +1724,8 @@ pub static WORLDEVENTACTIONSSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldEventActionventParameters {
     pub _glacier_base: super::core::DataContainer,
     pub event_type: CreatureLocoExternalInfluenceType,
@@ -1765,88 +1858,104 @@ impl super::core::DataContainerTrait for WorldEventActionventParameters {
 
 pub static WORLDEVENTACTIONVENTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldEventActionventParameters",
+    name_hash: 1041425798,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(WorldEventActionventParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldEventActionventParameters as Default>::default())),
+            create_boxed: || Box::new(<WorldEventActionventParameters as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EventType",
+                name_hash: 4133155473,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureLocoExternalInfluenceType",
                 rust_offset: offset_of!(WorldEventActionventParameters, event_type),
             },
             FieldInfoData {
                 name: "ConsiderationRange",
+                name_hash: 900761516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldEventActionventParameters, consideration_range),
             },
             FieldInfoData {
                 name: "MinimumNumber",
+                name_hash: 470671920,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WorldEventActionventParameters, minimum_number),
             },
             FieldInfoData {
                 name: "TimeWindow",
+                name_hash: 1462092796,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldEventActionventParameters, time_window),
             },
             FieldInfoData {
                 name: "ProbabilityOfAction",
+                name_hash: 558005791,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldEventActionventParameters, probability_of_action),
             },
             FieldInfoData {
                 name: "AlignmentRate",
+                name_hash: 3518157080,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldEventActionventParameters, alignment_rate),
             },
             FieldInfoData {
                 name: "MinimumImpactRadius",
+                name_hash: 3560598185,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldEventActionventParameters, minimum_impact_radius),
             },
             FieldInfoData {
                 name: "fakePhysiscs",
+                name_hash: 1989972148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WorldEventActionventParameters, fake_physiscs),
             },
             FieldInfoData {
                 name: "FakeMass",
+                name_hash: 4195917664,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldEventActionventParameters, fake_mass),
             },
             FieldInfoData {
                 name: "StopDelay",
+                name_hash: 376932808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldEventActionventParameters, stop_delay),
             },
             FieldInfoData {
                 name: "CooldownTime",
+                name_hash: 613462861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldEventActionventParameters, cooldown_time),
             },
             FieldInfoData {
                 name: "ActionType",
+                name_hash: 1114728387,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureLocoExternalInfluenceReactionType",
                 rust_offset: offset_of!(WorldEventActionventParameters, action_type),
             },
             FieldInfoData {
                 name: "ActionAlignment",
+                name_hash: 2687699524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureLocoExternalInfluenceReactionAlignment",
                 rust_offset: offset_of!(WorldEventActionventParameters, action_alignment),
@@ -1878,6 +1987,7 @@ impl TypeObject for WorldEventActionventParameters {
 
 pub static WORLDEVENTACTIONVENTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldEventActionventParameters-Array",
+    name_hash: 2022937266,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("WorldEventActionventParameters"),
@@ -1898,6 +2008,7 @@ pub enum CreatureLocoExternalInfluenceReactionAlignment {
 
 pub static CREATURELOCOEXTERNALINFLUENCEREACTIONALIGNMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoExternalInfluenceReactionAlignment",
+    name_hash: 314007095,
     flags: MemberInfoFlags::new(49429),
     module: "CreatureLocoShared",
     data: TypeInfoData::Enum,
@@ -1926,6 +2037,7 @@ impl TypeObject for CreatureLocoExternalInfluenceReactionAlignment {
 
 pub static CREATURELOCOEXTERNALINFLUENCEREACTIONALIGNMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoExternalInfluenceReactionAlignment-Array",
+    name_hash: 3110475651,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureLocoExternalInfluenceReactionAlignment"),
@@ -1945,6 +2057,7 @@ pub enum CreatureLocoExternalInfluenceReactionType {
 
 pub static CREATURELOCOEXTERNALINFLUENCEREACTIONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoExternalInfluenceReactionType",
+    name_hash: 2835354704,
     flags: MemberInfoFlags::new(49429),
     module: "CreatureLocoShared",
     data: TypeInfoData::Enum,
@@ -1973,6 +2086,7 @@ impl TypeObject for CreatureLocoExternalInfluenceReactionType {
 
 pub static CREATURELOCOEXTERNALINFLUENCEREACTIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoExternalInfluenceReactionType-Array",
+    name_hash: 1900262116,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureLocoExternalInfluenceReactionType"),
@@ -2002,6 +2116,7 @@ pub enum CreatureLocoExternalInfluenceType {
 
 pub static CREATURELOCOEXTERNALINFLUENCETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoExternalInfluenceType",
+    name_hash: 139642105,
     flags: MemberInfoFlags::new(49429),
     module: "CreatureLocoShared",
     data: TypeInfoData::Enum,
@@ -2030,6 +2145,7 @@ impl TypeObject for CreatureLocoExternalInfluenceType {
 
 pub static CREATURELOCOEXTERNALINFLUENCETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoExternalInfluenceType-Array",
+    name_hash: 930808781,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureLocoExternalInfluenceType"),
@@ -2038,7 +2154,8 @@ pub static CREATURELOCOEXTERNALINFLUENCETYPE_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProceduralMovementStateSettings {
     pub _glacier_base: LocomotionStateSettings,
     pub slow_speed: LocoStateSpeedRange,
@@ -2138,64 +2255,76 @@ impl super::core::DataContainerTrait for ProceduralMovementStateSettings {
 
 pub static PROCEDURALMOVEMENTSTATESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProceduralMovementStateSettings",
+    name_hash: 983600817,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(ProceduralMovementStateSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProceduralMovementStateSettings as Default>::default())),
+            create_boxed: || Box::new(<ProceduralMovementStateSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SlowSpeed",
+                name_hash: 487723845,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocoStateSpeedRange",
                 rust_offset: offset_of!(ProceduralMovementStateSettings, slow_speed),
             },
             FieldInfoData {
                 name: "MediumSpeed",
+                name_hash: 1235200671,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocoStateSpeedRange",
                 rust_offset: offset_of!(ProceduralMovementStateSettings, medium_speed),
             },
             FieldInfoData {
                 name: "FastSpeed",
+                name_hash: 2209151298,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocoStateSpeedRange",
                 rust_offset: offset_of!(ProceduralMovementStateSettings, fast_speed),
             },
             FieldInfoData {
                 name: "Acceleration",
+                name_hash: 62601415,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProceduralMovementStateSettings, acceleration),
             },
             FieldInfoData {
                 name: "Deceleration",
+                name_hash: 8356516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProceduralMovementStateSettings, deceleration),
             },
             FieldInfoData {
                 name: "ForwardSpeedRate",
+                name_hash: 2168172859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProceduralMovementStateSettings, forward_speed_rate),
             },
             FieldInfoData {
                 name: "LateralSpeedRate",
+                name_hash: 3331951811,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProceduralMovementStateSettings, lateral_speed_rate),
             },
             FieldInfoData {
                 name: "ReverseSpeedRate",
+                name_hash: 3776075808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProceduralMovementStateSettings, reverse_speed_rate),
             },
             FieldInfoData {
                 name: "HeightChangeOnCenterpoint",
+                name_hash: 2345483898,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ProceduralMovementStateSettings, height_change_on_centerpoint),
@@ -2227,6 +2356,7 @@ impl TypeObject for ProceduralMovementStateSettings {
 
 pub static PROCEDURALMOVEMENTSTATESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProceduralMovementStateSettings-Array",
+    name_hash: 421101829,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("ProceduralMovementStateSettings"),
@@ -2235,7 +2365,8 @@ pub static PROCEDURALMOVEMENTSTATESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocoStateSpeedRange {
     pub max_speed: f32,
     pub min_speed: f32,
@@ -2265,21 +2396,25 @@ impl LocoStateSpeedRangeTrait for LocoStateSpeedRange {
 
 pub static LOCOSTATESPEEDRANGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocoStateSpeedRange",
+    name_hash: 1933417925,
     flags: MemberInfoFlags::new(36937),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocoStateSpeedRange as Default>::default())),
+            create_boxed: || Box::new(<LocoStateSpeedRange as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxSpeed",
+                name_hash: 396228950,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LocoStateSpeedRange, max_speed),
             },
             FieldInfoData {
                 name: "MinSpeed",
+                name_hash: 3368183944,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LocoStateSpeedRange, min_speed),
@@ -2311,6 +2446,7 @@ impl TypeObject for LocoStateSpeedRange {
 
 pub static LOCOSTATESPEEDRANGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocoStateSpeedRange-Array",
+    name_hash: 2563905009,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("LocoStateSpeedRange"),
@@ -2319,7 +2455,8 @@ pub static LOCOSTATESPEEDRANGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AvoidanceSteeringSettings {
     pub _glacier_base: LocomotionStateSettings,
     pub settings_data: AvoidanceData,
@@ -2347,16 +2484,20 @@ impl super::core::DataContainerTrait for AvoidanceSteeringSettings {
 
 pub static AVOIDANCESTEERINGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AvoidanceSteeringSettings",
+    name_hash: 227176297,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(AvoidanceSteeringSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AvoidanceSteeringSettings as Default>::default())),
+            create_boxed: || Box::new(<AvoidanceSteeringSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SettingsData",
+                name_hash: 1796915632,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AvoidanceData",
                 rust_offset: offset_of!(AvoidanceSteeringSettings, settings_data),
@@ -2388,6 +2529,7 @@ impl TypeObject for AvoidanceSteeringSettings {
 
 pub static AVOIDANCESTEERINGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AvoidanceSteeringSettings-Array",
+    name_hash: 3822437981,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("AvoidanceSteeringSettings"),
@@ -2396,7 +2538,8 @@ pub static AVOIDANCESTEERINGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AvoidanceData {
     pub time_to_consider: f32,
     pub obstical_width: f32,
@@ -2480,57 +2623,67 @@ impl AvoidanceDataTrait for AvoidanceData {
 
 pub static AVOIDANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AvoidanceData",
+    name_hash: 994119017,
     flags: MemberInfoFlags::new(36937),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AvoidanceData as Default>::default())),
+            create_boxed: || Box::new(<AvoidanceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TimeToConsider",
+                name_hash: 3567902240,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AvoidanceData, time_to_consider),
             },
             FieldInfoData {
                 name: "ObsticalWidth",
+                name_hash: 101421326,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AvoidanceData, obstical_width),
             },
             FieldInfoData {
                 name: "AvoidsWeaponsFire",
+                name_hash: 4077587530,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AvoidanceData, avoids_weapons_fire),
             },
             FieldInfoData {
                 name: "BehaviourTowardsPlayers",
+                name_hash: 20023572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AIAvoidancePlayerBehaviour",
                 rust_offset: offset_of!(AvoidanceData, behaviour_towards_players),
             },
             FieldInfoData {
                 name: "AvoidanceConeWidth",
+                name_hash: 2771190968,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AvoidanceData, avoidance_cone_width),
             },
             FieldInfoData {
                 name: "MaxRepulsionWeight",
+                name_hash: 3419328852,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AvoidanceData, max_repulsion_weight),
             },
             FieldInfoData {
                 name: "RepulsionGainRate",
+                name_hash: 2461170595,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AvoidanceData, repulsion_gain_rate),
             },
             FieldInfoData {
                 name: "RepulsionDecayRate",
+                name_hash: 2486488536,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AvoidanceData, repulsion_decay_rate),
@@ -2562,6 +2715,7 @@ impl TypeObject for AvoidanceData {
 
 pub static AVOIDANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AvoidanceData-Array",
+    name_hash: 1938482269,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("AvoidanceData"),
@@ -2582,6 +2736,7 @@ pub enum AIAvoidancePlayerBehaviour {
 
 pub static AIAVOIDANCEPLAYERBEHAVIOUR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIAvoidancePlayerBehaviour",
+    name_hash: 340029147,
     flags: MemberInfoFlags::new(49429),
     module: "CreatureLocoShared",
     data: TypeInfoData::Enum,
@@ -2610,6 +2765,7 @@ impl TypeObject for AIAvoidancePlayerBehaviour {
 
 pub static AIAVOIDANCEPLAYERBEHAVIOUR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIAvoidancePlayerBehaviour-Array",
+    name_hash: 1013994991,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("AIAvoidancePlayerBehaviour"),
@@ -2618,7 +2774,8 @@ pub static AIAVOIDANCEPLAYERBEHAVIOUR_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CurveSteeringSettings {
     pub _glacier_base: LocomotionStateSettings,
     pub base_settings_data: BasicSteeringSettingsData,
@@ -2655,22 +2812,27 @@ impl super::core::DataContainerTrait for CurveSteeringSettings {
 
 pub static CURVESTEERINGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurveSteeringSettings",
+    name_hash: 2031929506,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(CurveSteeringSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CurveSteeringSettings as Default>::default())),
+            create_boxed: || Box::new(<CurveSteeringSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BaseSettingsData",
+                name_hash: 852293925,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BasicSteeringSettingsData",
                 rust_offset: offset_of!(CurveSteeringSettings, base_settings_data),
             },
             FieldInfoData {
                 name: "SettingsData",
+                name_hash: 1796915632,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CurveSteeringSettingsData",
                 rust_offset: offset_of!(CurveSteeringSettings, settings_data),
@@ -2702,6 +2864,7 @@ impl TypeObject for CurveSteeringSettings {
 
 pub static CURVESTEERINGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurveSteeringSettings-Array",
+    name_hash: 3962021654,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CurveSteeringSettings"),
@@ -2710,7 +2873,8 @@ pub static CURVESTEERINGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CurveSteeringSettingsData {
     pub foo: bool,
 }
@@ -2731,15 +2895,18 @@ impl CurveSteeringSettingsDataTrait for CurveSteeringSettingsData {
 
 pub static CURVESTEERINGSETTINGSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurveSteeringSettingsData",
+    name_hash: 3583099794,
     flags: MemberInfoFlags::new(36937),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CurveSteeringSettingsData as Default>::default())),
+            create_boxed: || Box::new(<CurveSteeringSettingsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "foo",
+                name_hash: 193410979,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CurveSteeringSettingsData, foo),
@@ -2771,6 +2938,7 @@ impl TypeObject for CurveSteeringSettingsData {
 
 pub static CURVESTEERINGSETTINGSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurveSteeringSettingsData-Array",
+    name_hash: 3851684518,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CurveSteeringSettingsData"),
@@ -2779,7 +2947,8 @@ pub static CURVESTEERINGSETTINGSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BasicSteeringSettingsData {
     pub response_time: f32,
     pub maximum_angle_deflection: f32,
@@ -2818,27 +2987,32 @@ impl BasicSteeringSettingsDataTrait for BasicSteeringSettingsData {
 
 pub static BASICSTEERINGSETTINGSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BasicSteeringSettingsData",
+    name_hash: 2473110015,
     flags: MemberInfoFlags::new(36937),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BasicSteeringSettingsData as Default>::default())),
+            create_boxed: || Box::new(<BasicSteeringSettingsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ResponseTime",
+                name_hash: 2407755795,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BasicSteeringSettingsData, response_time),
             },
             FieldInfoData {
                 name: "MaximumAngleDeflection",
+                name_hash: 1418653725,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BasicSteeringSettingsData, maximum_angle_deflection),
             },
             FieldInfoData {
                 name: "ErrorDistance",
+                name_hash: 2288970398,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BasicSteeringSettingsData, error_distance),
@@ -2870,6 +3044,7 @@ impl TypeObject for BasicSteeringSettingsData {
 
 pub static BASICSTEERINGSETTINGSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BasicSteeringSettingsData-Array",
+    name_hash: 2442432459,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("BasicSteeringSettingsData"),
@@ -2878,7 +3053,8 @@ pub static BASICSTEERINGSETTINGSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CommonClientSettings {
     pub _glacier_base: LocomotionStateSettings,
 }
@@ -2897,12 +3073,15 @@ impl super::core::DataContainerTrait for CommonClientSettings {
 
 pub static COMMONCLIENTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CommonClientSettings",
+    name_hash: 1756389172,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(CommonClientSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CommonClientSettings as Default>::default())),
+            create_boxed: || Box::new(<CommonClientSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -2932,6 +3111,7 @@ impl TypeObject for CommonClientSettings {
 
 pub static COMMONCLIENTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CommonClientSettings-Array",
+    name_hash: 1900812928,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CommonClientSettings"),
@@ -2940,7 +3120,8 @@ pub static COMMONCLIENTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlayAnimSettings {
     pub _glacier_base: LocomotionStateSettings,
 }
@@ -2959,12 +3140,15 @@ impl super::core::DataContainerTrait for PlayAnimSettings {
 
 pub static PLAYANIMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayAnimSettings",
+    name_hash: 3609639983,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(PlayAnimSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlayAnimSettings as Default>::default())),
+            create_boxed: || Box::new(<PlayAnimSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -2994,6 +3178,7 @@ impl TypeObject for PlayAnimSettings {
 
 pub static PLAYANIMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayAnimSettings-Array",
+    name_hash: 709921179,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("PlayAnimSettings"),
@@ -3002,7 +3187,8 @@ pub static PLAYANIMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TurnSettings {
     pub _glacier_base: LocomotionStateSettings,
 }
@@ -3021,12 +3207,15 @@ impl super::core::DataContainerTrait for TurnSettings {
 
 pub static TURNSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TurnSettings",
+    name_hash: 3449864573,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(TurnSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TurnSettings as Default>::default())),
+            create_boxed: || Box::new(<TurnSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -3056,6 +3245,7 @@ impl TypeObject for TurnSettings {
 
 pub static TURNSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TurnSettings-Array",
+    name_hash: 4105440841,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("TurnSettings"),
@@ -3064,7 +3254,8 @@ pub static TURNSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StopSettings {
     pub _glacier_base: LocomotionStateSettings,
     pub base_deceleration_rate: f32,
@@ -3092,16 +3283,20 @@ impl super::core::DataContainerTrait for StopSettings {
 
 pub static STOPSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StopSettings",
+    name_hash: 3584244536,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(StopSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StopSettings as Default>::default())),
+            create_boxed: || Box::new(<StopSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BaseDecelerationRate",
+                name_hash: 728247827,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StopSettings, base_deceleration_rate),
@@ -3133,6 +3328,7 @@ impl TypeObject for StopSettings {
 
 pub static STOPSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StopSettings-Array",
+    name_hash: 2033427596,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("StopSettings"),
@@ -3141,7 +3337,8 @@ pub static STOPSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StartSettings {
     pub _glacier_base: LocomotionStateSettings,
     pub base_acceleration_rate: f32,
@@ -3169,16 +3366,20 @@ impl super::core::DataContainerTrait for StartSettings {
 
 pub static STARTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StartSettings",
+    name_hash: 3957895520,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(StartSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StartSettings as Default>::default())),
+            create_boxed: || Box::new(<StartSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BaseAccelerationRate",
+                name_hash: 1483876976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StartSettings, base_acceleration_rate),
@@ -3210,6 +3411,7 @@ impl TypeObject for StartSettings {
 
 pub static STARTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StartSettings-Array",
+    name_hash: 3941771092,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("StartSettings"),
@@ -3218,7 +3420,8 @@ pub static STARTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MoveCycleSettings {
     pub _glacier_base: LocomotionStateSettings,
 }
@@ -3237,12 +3440,15 @@ impl super::core::DataContainerTrait for MoveCycleSettings {
 
 pub static MOVECYCLESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MoveCycleSettings",
+    name_hash: 4013444449,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(MoveCycleSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MoveCycleSettings as Default>::default())),
+            create_boxed: || Box::new(<MoveCycleSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -3272,6 +3478,7 @@ impl TypeObject for MoveCycleSettings {
 
 pub static MOVECYCLESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MoveCycleSettings-Array",
+    name_hash: 1366476885,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("MoveCycleSettings"),
@@ -3280,7 +3487,8 @@ pub static MOVECYCLESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IdleSettings {
     pub _glacier_base: LocomotionStateSettings,
 }
@@ -3299,12 +3507,15 @@ impl super::core::DataContainerTrait for IdleSettings {
 
 pub static IDLESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IdleSettings",
+    name_hash: 1012402692,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONSTATESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(IdleSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IdleSettings as Default>::default())),
+            create_boxed: || Box::new(<IdleSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -3334,6 +3545,7 @@ impl TypeObject for IdleSettings {
 
 pub static IDLESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IdleSettings-Array",
+    name_hash: 1788206640,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("IdleSettings"),
@@ -3342,7 +3554,8 @@ pub static IDLESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocomotionStateSettings {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -3358,12 +3571,15 @@ impl super::core::DataContainerTrait for LocomotionStateSettings {
 
 pub static LOCOMOTIONSTATESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocomotionStateSettings",
+    name_hash: 860018822,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LocomotionStateSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocomotionStateSettings as Default>::default())),
+            create_boxed: || Box::new(<LocomotionStateSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -3393,6 +3609,7 @@ impl TypeObject for LocomotionStateSettings {
 
 pub static LOCOMOTIONSTATESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocomotionStateSettings-Array",
+    name_hash: 3702375858,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("LocomotionStateSettings"),
@@ -3401,7 +3618,8 @@ pub static LOCOMOTIONSTATESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureLocoServerAuthEntityData {
     pub _glacier_base: CreatureLocoEntityData,
     pub realm: super::core::Realm,
@@ -3462,16 +3680,20 @@ impl super::core::DataContainerTrait for CreatureLocoServerAuthEntityData {
 
 pub static CREATURELOCOSERVERAUTHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoServerAuthEntityData",
+    name_hash: 646654063,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATURELOCOENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureLocoServerAuthEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureLocoServerAuthEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureLocoServerAuthEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CreatureLocoServerAuthEntityData, realm),
@@ -3503,6 +3725,7 @@ impl TypeObject for CreatureLocoServerAuthEntityData {
 
 pub static CREATURELOCOSERVERAUTHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoServerAuthEntityData-Array",
+    name_hash: 1302931035,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureLocoServerAuthEntityData"),
@@ -3511,7 +3734,8 @@ pub static CREATURELOCOSERVERAUTHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureLocoEntityData {
     pub _glacier_base: super::a_i_tools::LocoEntityData,
     pub pin_to_ground: bool,
@@ -3566,22 +3790,27 @@ impl super::core::DataContainerTrait for CreatureLocoEntityData {
 
 pub static CREATURELOCOENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoEntityData",
+    name_hash: 234292290,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::a_i_tools::LOCOENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureLocoEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureLocoEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureLocoEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PinToGround",
+                name_hash: 2522797324,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CreatureLocoEntityData, pin_to_ground),
             },
             FieldInfoData {
                 name: "EnableUpdates",
+                name_hash: 771920806,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CreatureLocoEntityData, enable_updates),
@@ -3613,6 +3842,7 @@ impl TypeObject for CreatureLocoEntityData {
 
 pub static CREATURELOCOENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoEntityData-Array",
+    name_hash: 2589217782,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureLocoEntityData"),
@@ -3621,7 +3851,8 @@ pub static CREATURELOCOENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureBaseWaypointProviderEntityData {
     pub _glacier_base: super::entity::EntityData,
 }
@@ -3655,12 +3886,15 @@ impl super::core::DataContainerTrait for CreatureBaseWaypointProviderEntityData 
 
 pub static CREATUREBASEWAYPOINTPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureBaseWaypointProviderEntityData",
+    name_hash: 2482173722,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureBaseWaypointProviderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureBaseWaypointProviderEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureBaseWaypointProviderEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -3690,6 +3924,7 @@ impl TypeObject for CreatureBaseWaypointProviderEntityData {
 
 pub static CREATUREBASEWAYPOINTPROVIDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureBaseWaypointProviderEntityData-Array",
+    name_hash: 3261938222,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureBaseWaypointProviderEntityData"),
@@ -3698,31 +3933,32 @@ pub static CREATUREBASEWAYPOINTPROVIDERENTITYDATA_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureConfigurationProviderEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub default_settings: Option<Arc<Mutex<dyn CreatureLocoSettingsTrait>>>,
-    pub ant_bindings: Option<Arc<Mutex<dyn CreatureLocoBindingsTrait>>>,
+    pub default_settings: Option<LockedTypeObject /* CreatureLocoSettings */>,
+    pub ant_bindings: Option<LockedTypeObject /* CreatureLocoBindings */>,
 }
 
 pub trait CreatureConfigurationProviderEntityDataTrait: super::entity::EntityDataTrait {
-    fn default_settings(&self) -> &Option<Arc<Mutex<dyn CreatureLocoSettingsTrait>>>;
-    fn default_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CreatureLocoSettingsTrait>>>;
-    fn ant_bindings(&self) -> &Option<Arc<Mutex<dyn CreatureLocoBindingsTrait>>>;
-    fn ant_bindings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CreatureLocoBindingsTrait>>>;
+    fn default_settings(&self) -> &Option<LockedTypeObject /* CreatureLocoSettings */>;
+    fn default_settings_mut(&mut self) -> &mut Option<LockedTypeObject /* CreatureLocoSettings */>;
+    fn ant_bindings(&self) -> &Option<LockedTypeObject /* CreatureLocoBindings */>;
+    fn ant_bindings_mut(&mut self) -> &mut Option<LockedTypeObject /* CreatureLocoBindings */>;
 }
 
 impl CreatureConfigurationProviderEntityDataTrait for CreatureConfigurationProviderEntityData {
-    fn default_settings(&self) -> &Option<Arc<Mutex<dyn CreatureLocoSettingsTrait>>> {
+    fn default_settings(&self) -> &Option<LockedTypeObject /* CreatureLocoSettings */> {
         &self.default_settings
     }
-    fn default_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CreatureLocoSettingsTrait>>> {
+    fn default_settings_mut(&mut self) -> &mut Option<LockedTypeObject /* CreatureLocoSettings */> {
         &mut self.default_settings
     }
-    fn ant_bindings(&self) -> &Option<Arc<Mutex<dyn CreatureLocoBindingsTrait>>> {
+    fn ant_bindings(&self) -> &Option<LockedTypeObject /* CreatureLocoBindings */> {
         &self.ant_bindings
     }
-    fn ant_bindings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CreatureLocoBindingsTrait>>> {
+    fn ant_bindings_mut(&mut self) -> &mut Option<LockedTypeObject /* CreatureLocoBindings */> {
         &mut self.ant_bindings
     }
 }
@@ -3750,22 +3986,27 @@ impl super::core::DataContainerTrait for CreatureConfigurationProviderEntityData
 
 pub static CREATURECONFIGURATIONPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureConfigurationProviderEntityData",
+    name_hash: 806905468,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureConfigurationProviderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureConfigurationProviderEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureConfigurationProviderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DefaultSettings",
+                name_hash: 2073556011,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureLocoSettings",
                 rust_offset: offset_of!(CreatureConfigurationProviderEntityData, default_settings),
             },
             FieldInfoData {
                 name: "AntBindings",
+                name_hash: 2658793676,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureLocoBindings",
                 rust_offset: offset_of!(CreatureConfigurationProviderEntityData, ant_bindings),
@@ -3797,6 +4038,7 @@ impl TypeObject for CreatureConfigurationProviderEntityData {
 
 pub static CREATURECONFIGURATIONPROVIDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureConfigurationProviderEntityData-Array",
+    name_hash: 1990717000,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureConfigurationProviderEntityData"),
@@ -3805,22 +4047,23 @@ pub static CREATURECONFIGURATIONPROVIDERENTITYDATA_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureLocoBindings {
     pub _glacier_base: super::core::DataContainerPolicyAsset,
-    pub state_parameters: Vec<Option<Arc<Mutex<dyn LocomotionParamBlockTrait>>>>,
+    pub state_parameters: Vec<Option<LockedTypeObject /* LocomotionParamBlock */>>,
 }
 
 pub trait CreatureLocoBindingsTrait: super::core::DataContainerPolicyAssetTrait {
-    fn state_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn LocomotionParamBlockTrait>>>>;
-    fn state_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LocomotionParamBlockTrait>>>>;
+    fn state_parameters(&self) -> &Vec<Option<LockedTypeObject /* LocomotionParamBlock */>>;
+    fn state_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* LocomotionParamBlock */>>;
 }
 
 impl CreatureLocoBindingsTrait for CreatureLocoBindings {
-    fn state_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn LocomotionParamBlockTrait>>>> {
+    fn state_parameters(&self) -> &Vec<Option<LockedTypeObject /* LocomotionParamBlock */>> {
         &self.state_parameters
     }
-    fn state_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LocomotionParamBlockTrait>>>> {
+    fn state_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* LocomotionParamBlock */>> {
         &mut self.state_parameters
     }
 }
@@ -3842,16 +4085,20 @@ impl super::core::DataContainerTrait for CreatureLocoBindings {
 
 pub static CREATURELOCOBINDINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoBindings",
+    name_hash: 223890203,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINERPOLICYASSET_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureLocoBindings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureLocoBindings as Default>::default())),
+            create_boxed: || Box::new(<CreatureLocoBindings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StateParameters",
+                name_hash: 1288744360,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LocomotionParamBlock-Array",
                 rust_offset: offset_of!(CreatureLocoBindings, state_parameters),
@@ -3883,6 +4130,7 @@ impl TypeObject for CreatureLocoBindings {
 
 pub static CREATURELOCOBINDINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoBindings-Array",
+    name_hash: 3419972015,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureLocoBindings"),
@@ -3891,7 +4139,8 @@ pub static CREATURELOCOBINDINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventReactionParamData {
     pub _glacier_base: LocomotionParamBlock,
     pub reaction_binding: CreatureReactionBinding,
@@ -3919,16 +4168,20 @@ impl super::core::DataContainerTrait for EventReactionParamData {
 
 pub static EVENTREACTIONPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventReactionParamData",
+    name_hash: 1070914239,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONPARAMBLOCK_TYPE_INFO),
+        super_class_offset: offset_of!(EventReactionParamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventReactionParamData as Default>::default())),
+            create_boxed: || Box::new(<EventReactionParamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ReactionBinding",
+                name_hash: 473362765,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureReactionBinding",
                 rust_offset: offset_of!(EventReactionParamData, reaction_binding),
@@ -3960,6 +4213,7 @@ impl TypeObject for EventReactionParamData {
 
 pub static EVENTREACTIONPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventReactionParamData-Array",
+    name_hash: 2102284299,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("EventReactionParamData"),
@@ -3968,7 +4222,8 @@ pub static EVENTREACTIONPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureReactionBinding {
     pub reaction_trigger: super::ant::AntRef,
     pub reaction_from_stop: super::ant::AntRef,
@@ -4007,27 +4262,32 @@ impl CreatureReactionBindingTrait for CreatureReactionBinding {
 
 pub static CREATUREREACTIONBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureReactionBinding",
+    name_hash: 1058584910,
     flags: MemberInfoFlags::new(32841),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureReactionBinding as Default>::default())),
+            create_boxed: || Box::new(<CreatureReactionBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ReactionTrigger",
+                name_hash: 1158317556,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureReactionBinding, reaction_trigger),
             },
             FieldInfoData {
                 name: "ReactionFromStop",
+                name_hash: 4142318338,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureReactionBinding, reaction_from_stop),
             },
             FieldInfoData {
                 name: "ReactionEventType",
+                name_hash: 543807768,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureReactionBinding, reaction_event_type),
@@ -4059,6 +4319,7 @@ impl TypeObject for CreatureReactionBinding {
 
 pub static CREATUREREACTIONBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureReactionBinding-Array",
+    name_hash: 2968048378,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureReactionBinding"),
@@ -4067,7 +4328,8 @@ pub static CREATUREREACTIONBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProceduralMotionParamData {
     pub _glacier_base: LocomotionParamBlock,
 }
@@ -4086,12 +4348,15 @@ impl super::core::DataContainerTrait for ProceduralMotionParamData {
 
 pub static PROCEDURALMOTIONPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProceduralMotionParamData",
+    name_hash: 279951073,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONPARAMBLOCK_TYPE_INFO),
+        super_class_offset: offset_of!(ProceduralMotionParamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProceduralMotionParamData as Default>::default())),
+            create_boxed: || Box::new(<ProceduralMotionParamData as Default>::default()),
         },
         fields: &[
         ],
@@ -4121,6 +4386,7 @@ impl TypeObject for ProceduralMotionParamData {
 
 pub static PROCEDURALMOTIONPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProceduralMotionParamData-Array",
+    name_hash: 2419282389,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("ProceduralMotionParamData"),
@@ -4129,7 +4395,8 @@ pub static PROCEDURALMOTIONPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CommonClientBindingsParamData {
     pub _glacier_base: LocomotionParamBlock,
     pub common_binding: CreatureCommonBinding,
@@ -4166,22 +4433,27 @@ impl super::core::DataContainerTrait for CommonClientBindingsParamData {
 
 pub static COMMONCLIENTBINDINGSPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CommonClientBindingsParamData",
+    name_hash: 3486463836,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONPARAMBLOCK_TYPE_INFO),
+        super_class_offset: offset_of!(CommonClientBindingsParamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CommonClientBindingsParamData as Default>::default())),
+            create_boxed: || Box::new(<CommonClientBindingsParamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CommonBinding",
+                name_hash: 4195069481,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureCommonBinding",
                 rust_offset: offset_of!(CommonClientBindingsParamData, common_binding),
             },
             FieldInfoData {
                 name: "MiscBinding",
+                name_hash: 1683022000,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureMiscBinding",
                 rust_offset: offset_of!(CommonClientBindingsParamData, misc_binding),
@@ -4213,6 +4485,7 @@ impl TypeObject for CommonClientBindingsParamData {
 
 pub static COMMONCLIENTBINDINGSPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CommonClientBindingsParamData-Array",
+    name_hash: 3512737768,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CommonClientBindingsParamData"),
@@ -4221,7 +4494,8 @@ pub static COMMONCLIENTBINDINGSPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlayAnimParamData {
     pub _glacier_base: LocomotionParamBlock,
     pub play_animation_binding: CreaturePlayAnimationBinding,
@@ -4249,16 +4523,20 @@ impl super::core::DataContainerTrait for PlayAnimParamData {
 
 pub static PLAYANIMPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayAnimParamData",
+    name_hash: 2073992085,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONPARAMBLOCK_TYPE_INFO),
+        super_class_offset: offset_of!(PlayAnimParamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlayAnimParamData as Default>::default())),
+            create_boxed: || Box::new(<PlayAnimParamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PlayAnimationBinding",
+                name_hash: 204672886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreaturePlayAnimationBinding",
                 rust_offset: offset_of!(PlayAnimParamData, play_animation_binding),
@@ -4290,6 +4568,7 @@ impl TypeObject for PlayAnimParamData {
 
 pub static PLAYANIMPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayAnimParamData-Array",
+    name_hash: 1262562081,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("PlayAnimParamData"),
@@ -4298,7 +4577,8 @@ pub static PLAYANIMPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TurnParamData {
     pub _glacier_base: LocomotionParamBlock,
     pub turn_binding: CreatureTurnBinding,
@@ -4335,22 +4615,27 @@ impl super::core::DataContainerTrait for TurnParamData {
 
 pub static TURNPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TurnParamData",
+    name_hash: 1126180487,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONPARAMBLOCK_TYPE_INFO),
+        super_class_offset: offset_of!(TurnParamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TurnParamData as Default>::default())),
+            create_boxed: || Box::new(<TurnParamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TurnBinding",
+                name_hash: 3125900313,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureTurnBinding",
                 rust_offset: offset_of!(TurnParamData, turn_binding),
             },
             FieldInfoData {
                 name: "TurnContextDatabase",
+                name_hash: 3701415554,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(TurnParamData, turn_context_database),
@@ -4382,6 +4667,7 @@ impl TypeObject for TurnParamData {
 
 pub static TURNPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TurnParamData-Array",
+    name_hash: 2569316147,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("TurnParamData"),
@@ -4390,7 +4676,8 @@ pub static TURNPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StopParamData {
     pub _glacier_base: LocomotionParamBlock,
     pub stop_binding: CreatureStopBinding,
@@ -4427,22 +4714,27 @@ impl super::core::DataContainerTrait for StopParamData {
 
 pub static STOPPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StopParamData",
+    name_hash: 1075870562,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONPARAMBLOCK_TYPE_INFO),
+        super_class_offset: offset_of!(StopParamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StopParamData as Default>::default())),
+            create_boxed: || Box::new(<StopParamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StopBinding",
+                name_hash: 1878332220,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureStopBinding",
                 rust_offset: offset_of!(StopParamData, stop_binding),
             },
             FieldInfoData {
                 name: "StopContextDatabase",
+                name_hash: 3197838439,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(StopParamData, stop_context_database),
@@ -4474,6 +4766,7 @@ impl TypeObject for StopParamData {
 
 pub static STOPPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StopParamData-Array",
+    name_hash: 1510353494,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("StopParamData"),
@@ -4482,7 +4775,8 @@ pub static STOPPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StartParamData {
     pub _glacier_base: LocomotionParamBlock,
     pub start_binding: CreatureStartBinding,
@@ -4519,22 +4813,27 @@ impl super::core::DataContainerTrait for StartParamData {
 
 pub static STARTPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StartParamData",
+    name_hash: 158051898,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONPARAMBLOCK_TYPE_INFO),
+        super_class_offset: offset_of!(StartParamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StartParamData as Default>::default())),
+            create_boxed: || Box::new(<StartParamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StartBinding",
+                name_hash: 1518951652,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureStartBinding",
                 rust_offset: offset_of!(StartParamData, start_binding),
             },
             FieldInfoData {
                 name: "StartContextDatabase",
+                name_hash: 2856155711,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(StartParamData, start_context_database),
@@ -4566,6 +4865,7 @@ impl TypeObject for StartParamData {
 
 pub static STARTPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StartParamData-Array",
+    name_hash: 1719586958,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("StartParamData"),
@@ -4574,7 +4874,8 @@ pub static STARTPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MoveCycleParamData {
     pub _glacier_base: LocomotionParamBlock,
     pub loco_binding: CreatureLocoBinding,
@@ -4620,28 +4921,34 @@ impl super::core::DataContainerTrait for MoveCycleParamData {
 
 pub static MOVECYCLEPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MoveCycleParamData",
+    name_hash: 1499614235,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONPARAMBLOCK_TYPE_INFO),
+        super_class_offset: offset_of!(MoveCycleParamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MoveCycleParamData as Default>::default())),
+            create_boxed: || Box::new(<MoveCycleParamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LocoBinding",
+                name_hash: 3998703787,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureLocoBinding",
                 rust_offset: offset_of!(MoveCycleParamData, loco_binding),
             },
             FieldInfoData {
                 name: "LocoContextDatabase",
+                name_hash: 2287409520,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(MoveCycleParamData, loco_context_database),
             },
             FieldInfoData {
                 name: "AccelContextDatabase",
+                name_hash: 2813625079,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(MoveCycleParamData, accel_context_database),
@@ -4673,6 +4980,7 @@ impl TypeObject for MoveCycleParamData {
 
 pub static MOVECYCLEPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MoveCycleParamData-Array",
+    name_hash: 1906270895,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("MoveCycleParamData"),
@@ -4681,7 +4989,8 @@ pub static MOVECYCLEPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IdleParamData {
     pub _glacier_base: LocomotionParamBlock,
     pub idle_binding: CreatureIdleBinding,
@@ -4709,16 +5018,20 @@ impl super::core::DataContainerTrait for IdleParamData {
 
 pub static IDLEPARAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IdleParamData",
+    name_hash: 1840153310,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCOMOTIONPARAMBLOCK_TYPE_INFO),
+        super_class_offset: offset_of!(IdleParamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IdleParamData as Default>::default())),
+            create_boxed: || Box::new(<IdleParamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IdleBinding",
+                name_hash: 1785764032,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureIdleBinding",
                 rust_offset: offset_of!(IdleParamData, idle_binding),
@@ -4750,6 +5063,7 @@ impl TypeObject for IdleParamData {
 
 pub static IDLEPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IdleParamData-Array",
+    name_hash: 2174911594,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("IdleParamData"),
@@ -4758,7 +5072,8 @@ pub static IDLEPARAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreaturePlayAnimationBinding {
     pub branch_in_phase: super::ant::AntRef,
     pub align_translation: super::ant::AntRef,
@@ -4806,33 +5121,39 @@ impl CreaturePlayAnimationBindingTrait for CreaturePlayAnimationBinding {
 
 pub static CREATUREPLAYANIMATIONBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreaturePlayAnimationBinding",
+    name_hash: 325850261,
     flags: MemberInfoFlags::new(32841),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreaturePlayAnimationBinding as Default>::default())),
+            create_boxed: || Box::new(<CreaturePlayAnimationBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BranchInPhase",
+                name_hash: 1342936601,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreaturePlayAnimationBinding, branch_in_phase),
             },
             FieldInfoData {
                 name: "AlignTranslation",
+                name_hash: 2225081507,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreaturePlayAnimationBinding, align_translation),
             },
             FieldInfoData {
                 name: "AlignFacingRotation",
+                name_hash: 126380056,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreaturePlayAnimationBinding, align_facing_rotation),
             },
             FieldInfoData {
                 name: "AntInPlayAnimation",
+                name_hash: 1506720907,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreaturePlayAnimationBinding, ant_in_play_animation),
@@ -4864,6 +5185,7 @@ impl TypeObject for CreaturePlayAnimationBinding {
 
 pub static CREATUREPLAYANIMATIONBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreaturePlayAnimationBinding-Array",
+    name_hash: 260400161,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreaturePlayAnimationBinding"),
@@ -4872,7 +5194,8 @@ pub static CREATUREPLAYANIMATIONBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureTurnBinding {
     pub turn_angle: super::ant::AntRef,
     pub turn_phase: super::ant::AntRef,
@@ -4911,27 +5234,32 @@ impl CreatureTurnBindingTrait for CreatureTurnBinding {
 
 pub static CREATURETURNBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureTurnBinding",
+    name_hash: 3659345050,
     flags: MemberInfoFlags::new(32841),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureTurnBinding as Default>::default())),
+            create_boxed: || Box::new(<CreatureTurnBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TurnAngle",
+                name_hash: 1794636345,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureTurnBinding, turn_angle),
             },
             FieldInfoData {
                 name: "TurnPhase",
+                name_hash: 1767510615,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureTurnBinding, turn_phase),
             },
             FieldInfoData {
                 name: "TurnTrigger",
+                name_hash: 2399847584,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureTurnBinding, turn_trigger),
@@ -4963,6 +5291,7 @@ impl TypeObject for CreatureTurnBinding {
 
 pub static CREATURETURNBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureTurnBinding-Array",
+    name_hash: 3418984366,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureTurnBinding"),
@@ -4971,7 +5300,8 @@ pub static CREATURETURNBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureStopBinding {
     pub stop_angle: super::ant::AntRef,
     pub stop_relative_facing_angle: super::ant::AntRef,
@@ -5019,33 +5349,39 @@ impl CreatureStopBindingTrait for CreatureStopBinding {
 
 pub static CREATURESTOPBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureStopBinding",
+    name_hash: 3410629119,
     flags: MemberInfoFlags::new(32841),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureStopBinding as Default>::default())),
+            create_boxed: || Box::new(<CreatureStopBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StopAngle",
+                name_hash: 382134812,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureStopBinding, stop_angle),
             },
             FieldInfoData {
                 name: "StopRelativeFacingAngle",
+                name_hash: 336815148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureStopBinding, stop_relative_facing_angle),
             },
             FieldInfoData {
                 name: "StopPhase",
+                name_hash: 362251506,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureStopBinding, stop_phase),
             },
             FieldInfoData {
                 name: "StopTrigger",
+                name_hash: 3634481157,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureStopBinding, stop_trigger),
@@ -5077,6 +5413,7 @@ impl TypeObject for CreatureStopBinding {
 
 pub static CREATURESTOPBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureStopBinding-Array",
+    name_hash: 384038859,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureStopBinding"),
@@ -5085,7 +5422,8 @@ pub static CREATURESTOPBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureStartBinding {
     pub start_facing_offset: super::ant::AntRef,
     pub start_motion_delta: super::ant::AntRef,
@@ -5124,27 +5462,32 @@ impl CreatureStartBindingTrait for CreatureStartBinding {
 
 pub static CREATURESTARTBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureStartBinding",
+    name_hash: 1118841671,
     flags: MemberInfoFlags::new(32841),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureStartBinding as Default>::default())),
+            create_boxed: || Box::new(<CreatureStartBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StartFacingOffset",
+                name_hash: 1240517068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureStartBinding, start_facing_offset),
             },
             FieldInfoData {
                 name: "StartMotionDelta",
+                name_hash: 2898920643,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureStartBinding, start_motion_delta),
             },
             FieldInfoData {
                 name: "StartTrigger",
+                name_hash: 1544445405,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureStartBinding, start_trigger),
@@ -5176,6 +5519,7 @@ impl TypeObject for CreatureStartBinding {
 
 pub static CREATURESTARTBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureStartBinding-Array",
+    name_hash: 2684681331,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureStartBinding"),
@@ -5184,7 +5528,8 @@ pub static CREATURESTARTBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureMiscBinding {
     pub current_speed: super::ant::AntRef,
     pub loco_speed_multiplier: super::ant::AntRef,
@@ -5286,69 +5631,81 @@ impl CreatureMiscBindingTrait for CreatureMiscBinding {
 
 pub static CREATUREMISCBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureMiscBinding",
+    name_hash: 2505897843,
     flags: MemberInfoFlags::new(32841),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureMiscBinding as Default>::default())),
+            create_boxed: || Box::new(<CreatureMiscBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CurrentSpeed",
+                name_hash: 1147086443,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureMiscBinding, current_speed),
             },
             FieldInfoData {
                 name: "LocoSpeedMultiplier",
+                name_hash: 4190937190,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureMiscBinding, loco_speed_multiplier),
             },
             FieldInfoData {
                 name: "G_Force",
+                name_hash: 873749824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureMiscBinding, g_force),
             },
             FieldInfoData {
                 name: "RelativePitch",
+                name_hash: 2899981463,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureMiscBinding, relative_pitch),
             },
             FieldInfoData {
                 name: "PathSteering",
+                name_hash: 4252676381,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureMiscBinding, path_steering),
             },
             FieldInfoData {
                 name: "RelativeSteering",
+                name_hash: 2727529540,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureMiscBinding, relative_steering),
             },
             FieldInfoData {
                 name: "RawDelatTraj",
+                name_hash: 2435425204,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureMiscBinding, raw_delat_traj),
             },
             FieldInfoData {
                 name: "SpeedMode",
+                name_hash: 1034730625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureMiscBinding, speed_mode),
             },
             FieldInfoData {
                 name: "AwarenessXTarget",
+                name_hash: 473094183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureMiscBinding, awareness_x_target),
             },
             FieldInfoData {
                 name: "AwarenessYTarget",
+                name_hash: 2635107494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureMiscBinding, awareness_y_target),
@@ -5380,6 +5737,7 @@ impl TypeObject for CreatureMiscBinding {
 
 pub static CREATUREMISCBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureMiscBinding-Array",
+    name_hash: 2553148231,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureMiscBinding"),
@@ -5388,7 +5746,8 @@ pub static CREATUREMISCBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureLocoBinding {
     pub transition_speed_mode: super::ant::AntRef,
     pub trigger_speed_transition: super::ant::AntRef,
@@ -5454,45 +5813,53 @@ impl CreatureLocoBindingTrait for CreatureLocoBinding {
 
 pub static CREATURELOCOBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoBinding",
+    name_hash: 2219343464,
     flags: MemberInfoFlags::new(32841),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureLocoBinding as Default>::default())),
+            create_boxed: || Box::new(<CreatureLocoBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TransitionSpeedMode",
+                name_hash: 3245495342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureLocoBinding, transition_speed_mode),
             },
             FieldInfoData {
                 name: "TriggerSpeedTransition",
+                name_hash: 1165477621,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureLocoBinding, trigger_speed_transition),
             },
             FieldInfoData {
                 name: "AccelDecelPhase",
+                name_hash: 2365668073,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureLocoBinding, accel_decel_phase),
             },
             FieldInfoData {
                 name: "LocoTurnPhase",
+                name_hash: 3549154360,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureLocoBinding, loco_turn_phase),
             },
             FieldInfoData {
                 name: "LocoEndPhase",
+                name_hash: 2866156362,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureLocoBinding, loco_end_phase),
             },
             FieldInfoData {
                 name: "LocoTrigger",
+                name_hash: 1098179538,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureLocoBinding, loco_trigger),
@@ -5524,6 +5891,7 @@ impl TypeObject for CreatureLocoBinding {
 
 pub static CREATURELOCOBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoBinding-Array",
+    name_hash: 3015151708,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureLocoBinding"),
@@ -5532,7 +5900,8 @@ pub static CREATURELOCOBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureIdleBinding {
     pub idle_turn_angle: super::ant::AntRef,
     pub idle_turn_trigger: super::ant::AntRef,
@@ -5562,21 +5931,25 @@ impl CreatureIdleBindingTrait for CreatureIdleBinding {
 
 pub static CREATUREIDLEBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureIdleBinding",
+    name_hash: 4032307395,
     flags: MemberInfoFlags::new(32841),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureIdleBinding as Default>::default())),
+            create_boxed: || Box::new(<CreatureIdleBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IdleTurnAngle",
+                name_hash: 2077676861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureIdleBinding, idle_turn_angle),
             },
             FieldInfoData {
                 name: "IdleTurnTrigger",
+                name_hash: 4250635940,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureIdleBinding, idle_turn_trigger),
@@ -5608,6 +5981,7 @@ impl TypeObject for CreatureIdleBinding {
 
 pub static CREATUREIDLEBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureIdleBinding-Array",
+    name_hash: 2263835639,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureIdleBinding"),
@@ -5616,11 +5990,12 @@ pub static CREATUREIDLEBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureCommonBinding {
     pub warp_angle: super::ant::AntRef,
     pub breakout_early: super::ant::AntRef,
-    pub early_out_branch_types: Vec<EarlyOutType>,
+    pub early_out_branch_types: Vec<BoxedTypeObject /* EarlyOutType */>,
 }
 
 pub trait CreatureCommonBindingTrait: TypeObject {
@@ -5628,8 +6003,8 @@ pub trait CreatureCommonBindingTrait: TypeObject {
     fn warp_angle_mut(&mut self) -> &mut super::ant::AntRef;
     fn breakout_early(&self) -> &super::ant::AntRef;
     fn breakout_early_mut(&mut self) -> &mut super::ant::AntRef;
-    fn early_out_branch_types(&self) -> &Vec<EarlyOutType>;
-    fn early_out_branch_types_mut(&mut self) -> &mut Vec<EarlyOutType>;
+    fn early_out_branch_types(&self) -> &Vec<BoxedTypeObject /* EarlyOutType */>;
+    fn early_out_branch_types_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EarlyOutType */>;
 }
 
 impl CreatureCommonBindingTrait for CreatureCommonBinding {
@@ -5645,37 +6020,42 @@ impl CreatureCommonBindingTrait for CreatureCommonBinding {
     fn breakout_early_mut(&mut self) -> &mut super::ant::AntRef {
         &mut self.breakout_early
     }
-    fn early_out_branch_types(&self) -> &Vec<EarlyOutType> {
+    fn early_out_branch_types(&self) -> &Vec<BoxedTypeObject /* EarlyOutType */> {
         &self.early_out_branch_types
     }
-    fn early_out_branch_types_mut(&mut self) -> &mut Vec<EarlyOutType> {
+    fn early_out_branch_types_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EarlyOutType */> {
         &mut self.early_out_branch_types
     }
 }
 
 pub static CREATURECOMMONBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureCommonBinding",
+    name_hash: 1336345322,
     flags: MemberInfoFlags::new(73),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureCommonBinding as Default>::default())),
+            create_boxed: || Box::new(<CreatureCommonBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WarpAngle",
+                name_hash: 4016048048,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureCommonBinding, warp_angle),
             },
             FieldInfoData {
                 name: "BreakoutEarly",
+                name_hash: 2052653751,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CreatureCommonBinding, breakout_early),
             },
             FieldInfoData {
                 name: "EarlyOutBranchTypes",
+                name_hash: 565046167,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EarlyOutType-Array",
                 rust_offset: offset_of!(CreatureCommonBinding, early_out_branch_types),
@@ -5707,6 +6087,7 @@ impl TypeObject for CreatureCommonBinding {
 
 pub static CREATURECOMMONBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureCommonBinding-Array",
+    name_hash: 733195742,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureCommonBinding"),
@@ -5715,7 +6096,8 @@ pub static CREATURECOMMONBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EarlyOutType {
     pub early_out_branch_type: super::ant::AntRef,
 }
@@ -5736,15 +6118,18 @@ impl EarlyOutTypeTrait for EarlyOutType {
 
 pub static EARLYOUTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EarlyOutType",
+    name_hash: 3753545040,
     flags: MemberInfoFlags::new(32841),
     module: "CreatureLocoShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EarlyOutType as Default>::default())),
+            create_boxed: || Box::new(<EarlyOutType as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EarlyOutBranchType",
+                name_hash: 2750283620,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(EarlyOutType, early_out_branch_type),
@@ -5776,6 +6161,7 @@ impl TypeObject for EarlyOutType {
 
 pub static EARLYOUTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EarlyOutType-Array",
+    name_hash: 2452941796,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("EarlyOutType"),
@@ -5784,7 +6170,8 @@ pub static EARLYOUTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocomotionParamBlock {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -5800,12 +6187,15 @@ impl super::core::DataContainerTrait for LocomotionParamBlock {
 
 pub static LOCOMOTIONPARAMBLOCK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocomotionParamBlock",
+    name_hash: 534775250,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LocomotionParamBlock, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocomotionParamBlock as Default>::default())),
+            create_boxed: || Box::new(<LocomotionParamBlock as Default>::default()),
         },
         fields: &[
         ],
@@ -5835,6 +6225,7 @@ impl TypeObject for LocomotionParamBlock {
 
 pub static LOCOMOTIONPARAMBLOCK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocomotionParamBlock-Array",
+    name_hash: 4260052326,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("LocomotionParamBlock"),
@@ -5843,7 +6234,8 @@ pub static LOCOMOTIONPARAMBLOCK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowWaypointUnspawnEntityData {
     pub _glacier_base: CreatureFollowBaseData,
     pub realm: super::core::Realm,
@@ -5889,16 +6281,20 @@ impl super::core::DataContainerTrait for CreatureFollowWaypointUnspawnEntityData
 
 pub static CREATUREFOLLOWWAYPOINTUNSPAWNENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointUnspawnEntityData",
+    name_hash: 4187330239,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowWaypointUnspawnEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowWaypointUnspawnEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowWaypointUnspawnEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CreatureFollowWaypointUnspawnEntityData, realm),
@@ -5930,6 +6326,7 @@ impl TypeObject for CreatureFollowWaypointUnspawnEntityData {
 
 pub static CREATUREFOLLOWWAYPOINTUNSPAWNENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointUnspawnEntityData-Array",
+    name_hash: 1269566475,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureFollowWaypointUnspawnEntityData"),
@@ -5938,7 +6335,8 @@ pub static CREATUREFOLLOWWAYPOINTUNSPAWNENTITYDATA_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowWaypointClosestChooserEntityData {
     pub _glacier_base: CreatureFollowBaseData,
     pub realm: super::core::Realm,
@@ -5993,22 +6391,27 @@ impl super::core::DataContainerTrait for CreatureFollowWaypointClosestChooserEnt
 
 pub static CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointClosestChooserEntityData",
+    name_hash: 3871755041,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowWaypointClosestChooserEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowWaypointClosestChooserEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowWaypointClosestChooserEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CreatureFollowWaypointClosestChooserEntityData, realm),
             },
             FieldInfoData {
                 name: "BehaviourType",
+                name_hash: 3800211076,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CL_WaypointListChooser_ClosestToType",
                 rust_offset: offset_of!(CreatureFollowWaypointClosestChooserEntityData, behaviour_type),
@@ -6040,6 +6443,7 @@ impl TypeObject for CreatureFollowWaypointClosestChooserEntityData {
 
 pub static CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointClosestChooserEntityData-Array",
+    name_hash: 4280800661,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureFollowWaypointClosestChooserEntityData"),
@@ -6060,6 +6464,7 @@ pub enum CLWaypointListChooserClosestToType {
 
 pub static CL_WAYPOINTLISTCHOOSER_CLOSESTTOTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_WaypointListChooser_ClosestToType",
+    name_hash: 1567704534,
     flags: MemberInfoFlags::new(49429),
     module: "CreatureLocoShared",
     data: TypeInfoData::Enum,
@@ -6088,6 +6493,7 @@ impl TypeObject for CLWaypointListChooserClosestToType {
 
 pub static CL_WAYPOINTLISTCHOOSER_CLOSESTTOTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_WaypointListChooser_ClosestToType-Array",
+    name_hash: 346827618,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CL_WaypointListChooser_ClosestToType"),
@@ -6096,7 +6502,8 @@ pub static CL_WAYPOINTLISTCHOOSER_CLOSESTTOTYPE_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowWaypointOccupancyChooserEntityData {
     pub _glacier_base: CreatureFollowBaseData,
     pub realm: super::core::Realm,
@@ -6160,28 +6567,34 @@ impl super::core::DataContainerTrait for CreatureFollowWaypointOccupancyChooserE
 
 pub static CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointOccupancyChooserEntityData",
+    name_hash: 4193742959,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowWaypointOccupancyChooserEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowWaypointOccupancyChooserEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowWaypointOccupancyChooserEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CreatureFollowWaypointOccupancyChooserEntityData, realm),
             },
             FieldInfoData {
                 name: "EnableAvailable",
+                name_hash: 2595306749,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CreatureFollowWaypointOccupancyChooserEntityData, enable_available),
             },
             FieldInfoData {
                 name: "OccupancyLimit",
+                name_hash: 564957167,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CreatureFollowWaypointOccupancyChooserEntityData, occupancy_limit),
@@ -6213,6 +6626,7 @@ impl TypeObject for CreatureFollowWaypointOccupancyChooserEntityData {
 
 pub static CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointOccupancyChooserEntityData-Array",
+    name_hash: 1663790683,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureFollowWaypointOccupancyChooserEntityData"),
@@ -6221,7 +6635,8 @@ pub static CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITYDATA_ARRAY_TYPE_INFO: &'s
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowWaypointBoolChooserEntityData {
     pub _glacier_base: CreatureFollowBaseData,
     pub realm: super::core::Realm,
@@ -6294,34 +6709,41 @@ impl super::core::DataContainerTrait for CreatureFollowWaypointBoolChooserEntity
 
 pub static CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointBoolChooserEntityData",
+    name_hash: 3016886686,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowWaypointBoolChooserEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowWaypointBoolChooserEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowWaypointBoolChooserEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CreatureFollowWaypointBoolChooserEntityData, realm),
             },
             FieldInfoData {
                 name: "ChanceOfTrue",
+                name_hash: 2911350360,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CreatureFollowWaypointBoolChooserEntityData, chance_of_true),
             },
             FieldInfoData {
                 name: "EnableRandomChoice",
+                name_hash: 2189940852,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CreatureFollowWaypointBoolChooserEntityData, enable_random_choice),
             },
             FieldInfoData {
                 name: "SelectionCondition",
+                name_hash: 3531671286,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CreatureFollowWaypointBoolChooserEntityData, selection_condition),
@@ -6353,6 +6775,7 @@ impl TypeObject for CreatureFollowWaypointBoolChooserEntityData {
 
 pub static CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointBoolChooserEntityData-Array",
+    name_hash: 1143986858,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureFollowWaypointBoolChooserEntityData"),
@@ -6361,7 +6784,8 @@ pub static CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITYDATA_ARRAY_TYPE_INFO: &'static
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowWaypointsEntityData {
     pub _glacier_base: CreatureFollowWaypointSegmentEntityData,
 }
@@ -6443,12 +6867,15 @@ impl super::core::DataContainerTrait for CreatureFollowWaypointsEntityData {
 
 pub static CREATUREFOLLOWWAYPOINTSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointsEntityData",
+    name_hash: 2446679852,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWWAYPOINTSEGMENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowWaypointsEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowWaypointsEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowWaypointsEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -6478,6 +6905,7 @@ impl TypeObject for CreatureFollowWaypointsEntityData {
 
 pub static CREATUREFOLLOWWAYPOINTSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointsEntityData-Array",
+    name_hash: 2501750424,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureFollowWaypointsEntityData"),
@@ -6486,7 +6914,8 @@ pub static CREATUREFOLLOWWAYPOINTSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowWaypointSegmentEntityData {
     pub _glacier_base: CreatureFollowBaseData,
     pub realm: super::core::Realm,
@@ -6586,52 +7015,62 @@ impl super::core::DataContainerTrait for CreatureFollowWaypointSegmentEntityData
 
 pub static CREATUREFOLLOWWAYPOINTSEGMENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointSegmentEntityData",
+    name_hash: 3797968604,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowWaypointSegmentEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowWaypointSegmentEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowWaypointSegmentEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CreatureFollowWaypointSegmentEntityData, realm),
             },
             FieldInfoData {
                 name: "TypeOfRoute",
+                name_hash: 2152665933,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RouteType",
                 rust_offset: offset_of!(CreatureFollowWaypointSegmentEntityData, type_of_route),
             },
             FieldInfoData {
                 name: "Start_Point",
+                name_hash: 800533238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CL_WaypointList_StartType",
                 rust_offset: offset_of!(CreatureFollowWaypointSegmentEntityData, start_point),
             },
             FieldInfoData {
                 name: "IsReversable",
+                name_hash: 79968528,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CreatureFollowWaypointSegmentEntityData, is_reversable),
             },
             FieldInfoData {
                 name: "MaxRepititions",
+                name_hash: 2552613229,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CreatureFollowWaypointSegmentEntityData, max_repititions),
             },
             FieldInfoData {
                 name: "SpeedOverride",
+                name_hash: 1484058166,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureSpeedLevel",
                 rust_offset: offset_of!(CreatureFollowWaypointSegmentEntityData, speed_override),
             },
             FieldInfoData {
                 name: "ForceExplicitHeight",
+                name_hash: 1198395505,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CreatureFollowWaypointSegmentEntityData, force_explicit_height),
@@ -6663,6 +7102,7 @@ impl TypeObject for CreatureFollowWaypointSegmentEntityData {
 
 pub static CREATUREFOLLOWWAYPOINTSEGMENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointSegmentEntityData-Array",
+    name_hash: 989261672,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureFollowWaypointSegmentEntityData"),
@@ -6671,7 +7111,8 @@ pub static CREATUREFOLLOWWAYPOINTSEGMENTENTITYDATA_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowBaseData {
     pub _glacier_base: super::entity::EntityData,
 }
@@ -6705,12 +7146,15 @@ impl super::core::DataContainerTrait for CreatureFollowBaseData {
 
 pub static CREATUREFOLLOWBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowBaseData",
+    name_hash: 1088263762,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowBaseData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowBaseData as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowBaseData as Default>::default()),
         },
         fields: &[
         ],
@@ -6740,6 +7184,7 @@ impl TypeObject for CreatureFollowBaseData {
 
 pub static CREATUREFOLLOWBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowBaseData-Array",
+    name_hash: 1743990246,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureFollowBaseData"),
@@ -6748,7 +7193,8 @@ pub static CREATUREFOLLOWBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowWaypointProviderEntityData {
     pub _glacier_base: CreatureBaseWaypointProviderEntityData,
 }
@@ -6785,12 +7231,15 @@ impl super::core::DataContainerTrait for CreatureFollowWaypointProviderEntityDat
 
 pub static CREATUREFOLLOWWAYPOINTPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointProviderEntityData",
+    name_hash: 2497212190,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREBASEWAYPOINTPROVIDERENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowWaypointProviderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowWaypointProviderEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowWaypointProviderEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -6820,6 +7269,7 @@ impl TypeObject for CreatureFollowWaypointProviderEntityData {
 
 pub static CREATUREFOLLOWWAYPOINTPROVIDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointProviderEntityData-Array",
+    name_hash: 2295095338,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureFollowWaypointProviderEntityData"),
@@ -6840,6 +7290,7 @@ pub enum CLWaypointListStartType {
 
 pub static CL_WAYPOINTLIST_STARTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_WaypointList_StartType",
+    name_hash: 2067505715,
     flags: MemberInfoFlags::new(49429),
     module: "CreatureLocoShared",
     data: TypeInfoData::Enum,
@@ -6868,6 +7319,7 @@ impl TypeObject for CLWaypointListStartType {
 
 pub static CL_WAYPOINTLIST_STARTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_WaypointList_StartType-Array",
+    name_hash: 3419254151,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CL_WaypointList_StartType"),
@@ -6876,7 +7328,8 @@ pub static CL_WAYPOINTLIST_STARTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureCollisionGroupData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -6937,28 +7390,34 @@ impl super::core::DataContainerTrait for CreatureCollisionGroupData {
 
 pub static CREATURECOLLISIONGROUPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureCollisionGroupData",
+    name_hash: 9825559,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureCollisionGroupData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureCollisionGroupData as Default>::default())),
+            create_boxed: || Box::new(<CreatureCollisionGroupData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CreatureCollisionGroupData, realm),
             },
             FieldInfoData {
                 name: "AvoidanceThreshold",
+                name_hash: 3735141134,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CreatureCollisionGroupData, avoidance_threshold),
             },
             FieldInfoData {
                 name: "AverageGroupSize",
+                name_hash: 648416380,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CreatureCollisionGroupData, average_group_size),
@@ -6990,6 +7449,7 @@ impl TypeObject for CreatureCollisionGroupData {
 
 pub static CREATURECOLLISIONGROUPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureCollisionGroupData-Array",
+    name_hash: 2986874275,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CreatureCollisionGroupData"),
@@ -6998,7 +7458,8 @@ pub static CREATURECOLLISIONGROUPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLInfluenceFilterEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -7050,22 +7511,27 @@ impl super::core::DataContainerTrait for CLInfluenceFilterEntityData {
 
 pub static CLINFLUENCEFILTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceFilterEntityData",
+    name_hash: 3804637524,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CLInfluenceFilterEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLInfluenceFilterEntityData as Default>::default())),
+            create_boxed: || Box::new(<CLInfluenceFilterEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CLInfluenceFilterEntityData, realm),
             },
             FieldInfoData {
                 name: "InfluenceType",
+                name_hash: 3733453000,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureLocoExternalInfluenceType",
                 rust_offset: offset_of!(CLInfluenceFilterEntityData, influence_type),
@@ -7097,6 +7563,7 @@ impl TypeObject for CLInfluenceFilterEntityData {
 
 pub static CLINFLUENCEFILTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceFilterEntityData-Array",
+    name_hash: 264582624,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CLInfluenceFilterEntityData"),
@@ -7105,7 +7572,8 @@ pub static CLINFLUENCEFILTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLInfluenceCompareEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -7166,28 +7634,34 @@ impl super::core::DataContainerTrait for CLInfluenceCompareEntityData {
 
 pub static CLINFLUENCECOMPAREENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceCompareEntityData",
+    name_hash: 4043555923,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CLInfluenceCompareEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLInfluenceCompareEntityData as Default>::default())),
+            create_boxed: || Box::new(<CLInfluenceCompareEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CLInfluenceCompareEntityData, realm),
             },
             FieldInfoData {
                 name: "Influence_A",
+                name_hash: 733060430,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureLocoExternalInfluenceType",
                 rust_offset: offset_of!(CLInfluenceCompareEntityData, influence_a),
             },
             FieldInfoData {
                 name: "Influence_B",
+                name_hash: 733060429,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureLocoExternalInfluenceType",
                 rust_offset: offset_of!(CLInfluenceCompareEntityData, influence_b),
@@ -7219,6 +7693,7 @@ impl TypeObject for CLInfluenceCompareEntityData {
 
 pub static CLINFLUENCECOMPAREENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceCompareEntityData-Array",
+    name_hash: 3174723431,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CLInfluenceCompareEntityData"),
@@ -7227,7 +7702,8 @@ pub static CLINFLUENCECOMPAREENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLApplyInfluenceEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub influence_type: CreatureLocoExternalInfluenceType,
@@ -7324,52 +7800,62 @@ impl super::core::DataContainerTrait for CLApplyInfluenceEntityData {
 
 pub static CLAPPLYINFLUENCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLApplyInfluenceEntityData",
+    name_hash: 433884416,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLocoShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CLApplyInfluenceEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLApplyInfluenceEntityData as Default>::default())),
+            create_boxed: || Box::new(<CLApplyInfluenceEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InfluenceType",
+                name_hash: 3733453000,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CreatureLocoExternalInfluenceType",
                 rust_offset: offset_of!(CLApplyInfluenceEntityData, influence_type),
             },
             FieldInfoData {
                 name: "Location",
+                name_hash: 1975932280,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CLApplyInfluenceEntityData, location),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CLApplyInfluenceEntityData, radius),
             },
             FieldInfoData {
                 name: "Direction",
+                name_hash: 2698949952,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CLApplyInfluenceEntityData, direction),
             },
             FieldInfoData {
                 name: "ConeAngle",
+                name_hash: 1789813827,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CLApplyInfluenceEntityData, cone_angle),
             },
             FieldInfoData {
                 name: "IsOmnidirectional",
+                name_hash: 3562509554,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CLApplyInfluenceEntityData, is_omnidirectional),
             },
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CLApplyInfluenceEntityData, realm),
@@ -7401,6 +7887,7 @@ impl TypeObject for CLApplyInfluenceEntityData {
 
 pub static CLAPPLYINFLUENCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLApplyInfluenceEntityData-Array",
+    name_hash: 1190196020,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLocoShared",
     data: TypeInfoData::Array("CLApplyInfluenceEntityData"),

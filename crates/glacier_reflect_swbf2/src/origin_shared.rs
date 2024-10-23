@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -20,7 +21,8 @@ pub(crate) fn register_origin_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(ORIGINERRORMESSAGE_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OriginSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enabled: bool,
@@ -189,106 +191,125 @@ impl super::core::DataContainerTrait for OriginSettings {
 
 pub static ORIGINSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginSettings",
+    name_hash: 365371284,
     flags: MemberInfoFlags::new(101),
     module: "OriginShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(OriginSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OriginSettings as Default>::default())),
+            create_boxed: || Box::new(<OriginSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OriginSettings, enabled),
             },
             FieldInfoData {
                 name: "RequiredForOnline",
+                name_hash: 3364915896,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OriginSettings, required_for_online),
             },
             FieldInfoData {
                 name: "RequireLatestForOnlineFeatures",
+                name_hash: 4249662432,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OriginSettings, require_latest_for_online_features),
             },
             FieldInfoData {
                 name: "ContentId",
+                name_hash: 2421535169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(OriginSettings, content_id),
             },
             FieldInfoData {
                 name: "Title",
+                name_hash: 227868805,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(OriginSettings, title),
             },
             FieldInfoData {
                 name: "MultiplayerId",
+                name_hash: 1167665682,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(OriginSettings, multiplayer_id),
             },
             FieldInfoData {
                 name: "Language",
+                name_hash: 3872303031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(OriginSettings, language),
             },
             FieldInfoData {
                 name: "Log",
+                name_hash: 193454145,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OriginSettings, log),
             },
             FieldInfoData {
                 name: "AllowProductionEnvironment",
+                name_hash: 1482613578,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OriginSettings, allow_production_environment),
             },
             FieldInfoData {
                 name: "AchievementsSecret",
+                name_hash: 3934567399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(OriginSettings, achievements_secret),
             },
             FieldInfoData {
                 name: "AchievementsTimeout",
+                name_hash: 2994633066,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(OriginSettings, achievements_timeout),
             },
             FieldInfoData {
                 name: "EntitlementsTimeout",
+                name_hash: 3098141140,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(OriginSettings, entitlements_timeout),
             },
             FieldInfoData {
                 name: "InstallerGame",
+                name_hash: 1050689021,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(OriginSettings, installer_game),
             },
             FieldInfoData {
                 name: "InstallerStudio",
+                name_hash: 980235843,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(OriginSettings, installer_studio),
             },
             FieldInfoData {
                 name: "DisableInLiveEditMode",
+                name_hash: 3766604927,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OriginSettings, disable_in_live_edit_mode),
             },
             FieldInfoData {
                 name: "AutoRestartOriginSDK",
+                name_hash: 3874357461,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OriginSettings, auto_restart_origin_s_d_k),
@@ -320,6 +341,7 @@ impl TypeObject for OriginSettings {
 
 pub static ORIGINSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginSettings-Array",
+    name_hash: 787602336,
     flags: MemberInfoFlags::new(145),
     module: "OriginShared",
     data: TypeInfoData::Array("OriginSettings"),
@@ -328,7 +350,8 @@ pub static ORIGINSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OriginCoreNotAvailableMessage {
 }
 
@@ -340,11 +363,13 @@ impl OriginCoreNotAvailableMessageTrait for OriginCoreNotAvailableMessage {
 
 pub static ORIGINCORENOTAVAILABLEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginCoreNotAvailableMessage",
+    name_hash: 1577531373,
     flags: MemberInfoFlags::new(36937),
     module: "OriginShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OriginCoreNotAvailableMessage as Default>::default())),
+            create_boxed: || Box::new(<OriginCoreNotAvailableMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -371,7 +396,8 @@ impl TypeObject for OriginCoreNotAvailableMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OriginNotLoadedMessage {
 }
 
@@ -383,11 +409,13 @@ impl OriginNotLoadedMessageTrait for OriginNotLoadedMessage {
 
 pub static ORIGINNOTLOADEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginNotLoadedMessage",
+    name_hash: 2454470696,
     flags: MemberInfoFlags::new(36937),
     module: "OriginShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OriginNotLoadedMessage as Default>::default())),
+            create_boxed: || Box::new(<OriginNotLoadedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -414,7 +442,8 @@ impl TypeObject for OriginNotLoadedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OriginOnlineMessage {
 }
 
@@ -426,11 +455,13 @@ impl OriginOnlineMessageTrait for OriginOnlineMessage {
 
 pub static ORIGINONLINEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginOnlineMessage",
+    name_hash: 600856309,
     flags: MemberInfoFlags::new(73),
     module: "OriginShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OriginOnlineMessage as Default>::default())),
+            create_boxed: || Box::new(<OriginOnlineMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -457,7 +488,8 @@ impl TypeObject for OriginOnlineMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OriginResponseMessageBase {
 }
 
@@ -469,11 +501,13 @@ impl OriginResponseMessageBaseTrait for OriginResponseMessageBase {
 
 pub static ORIGINRESPONSEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginResponseMessageBase",
+    name_hash: 1989457068,
     flags: MemberInfoFlags::new(36937),
     module: "OriginShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OriginResponseMessageBase as Default>::default())),
+            create_boxed: || Box::new(<OriginResponseMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -500,7 +534,8 @@ impl TypeObject for OriginResponseMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OriginRequestMessageBase {
 }
 
@@ -512,11 +547,13 @@ impl OriginRequestMessageBaseTrait for OriginRequestMessageBase {
 
 pub static ORIGINREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginRequestMessageBase",
+    name_hash: 1782103998,
     flags: MemberInfoFlags::new(36937),
     module: "OriginShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OriginRequestMessageBase as Default>::default())),
+            create_boxed: || Box::new(<OriginRequestMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -543,7 +580,8 @@ impl TypeObject for OriginRequestMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OriginJoinableMessageBase {
 }
 
@@ -555,11 +593,13 @@ impl OriginJoinableMessageBaseTrait for OriginJoinableMessageBase {
 
 pub static ORIGINJOINABLEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginJoinableMessageBase",
+    name_hash: 2204703911,
     flags: MemberInfoFlags::new(36937),
     module: "OriginShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OriginJoinableMessageBase as Default>::default())),
+            create_boxed: || Box::new(<OriginJoinableMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -586,7 +626,8 @@ impl TypeObject for OriginJoinableMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OriginErrorMessage {
 }
 
@@ -598,11 +639,13 @@ impl OriginErrorMessageTrait for OriginErrorMessage {
 
 pub static ORIGINERRORMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginErrorMessage",
+    name_hash: 4255685058,
     flags: MemberInfoFlags::new(36937),
     module: "OriginShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OriginErrorMessage as Default>::default())),
+            create_boxed: || Box::new(<OriginErrorMessage as Default>::default()),
         },
         fields: &[
         ],

@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -17,7 +18,8 @@ pub(crate) fn register_decal_volume_base_types(registry: &mut TypeRegistry) {
     registry.register_type(ENVIRONMENTDECALVOLUMETEMPLATEBASEDATA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnvironmentDecalVolumeDynamicState {
     pub transform: super::core::LinearTransform,
     pub enabled: bool,
@@ -101,57 +103,67 @@ impl EnvironmentDecalVolumeDynamicStateTrait for EnvironmentDecalVolumeDynamicSt
 
 pub static ENVIRONMENTDECALVOLUMEDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnvironmentDecalVolumeDynamicState",
+    name_hash: 790289365,
     flags: MemberInfoFlags::new(36937),
     module: "DecalVolumeBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnvironmentDecalVolumeDynamicState as Default>::default())),
+            create_boxed: || Box::new(<EnvironmentDecalVolumeDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(EnvironmentDecalVolumeDynamicState, transform),
             },
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EnvironmentDecalVolumeDynamicState, enabled),
             },
             FieldInfoData {
                 name: "OverrideTemplateCullingDistance",
+                name_hash: 2641928820,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EnvironmentDecalVolumeDynamicState, override_template_culling_distance),
             },
             FieldInfoData {
                 name: "Alpha",
+                name_hash: 205677681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EnvironmentDecalVolumeDynamicState, alpha),
             },
             FieldInfoData {
                 name: "InstanceParams",
+                name_hash: 976408944,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EnvironmentDecalVolumeDynamicState, instance_params),
             },
             FieldInfoData {
                 name: "Row",
+                name_hash: 193465295,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(EnvironmentDecalVolumeDynamicState, row),
             },
             FieldInfoData {
                 name: "Column",
+                name_hash: 2713816499,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(EnvironmentDecalVolumeDynamicState, column),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(EnvironmentDecalVolumeDynamicState, field_flag_changed0),
@@ -183,6 +195,7 @@ impl TypeObject for EnvironmentDecalVolumeDynamicState {
 
 pub static ENVIRONMENTDECALVOLUMEDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnvironmentDecalVolumeDynamicState-Array",
+    name_hash: 1891146721,
     flags: MemberInfoFlags::new(145),
     module: "DecalVolumeBase",
     data: TypeInfoData::Array("EnvironmentDecalVolumeDynamicState"),
@@ -191,16 +204,17 @@ pub static ENVIRONMENTDECALVOLUMEDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnvironmentDecalVolumeStaticState {
-    pub template_data: Option<Arc<Mutex<dyn EnvironmentDecalVolumeTemplateBaseDataTrait>>>,
+    pub template_data: Option<LockedTypeObject /* EnvironmentDecalVolumeTemplateBaseData */>,
     pub culling_distance: super::core::QualityScalableFloat,
     pub field_flag_changed0: u8,
 }
 
 pub trait EnvironmentDecalVolumeStaticStateTrait: TypeObject {
-    fn template_data(&self) -> &Option<Arc<Mutex<dyn EnvironmentDecalVolumeTemplateBaseDataTrait>>>;
-    fn template_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EnvironmentDecalVolumeTemplateBaseDataTrait>>>;
+    fn template_data(&self) -> &Option<LockedTypeObject /* EnvironmentDecalVolumeTemplateBaseData */>;
+    fn template_data_mut(&mut self) -> &mut Option<LockedTypeObject /* EnvironmentDecalVolumeTemplateBaseData */>;
     fn culling_distance(&self) -> &super::core::QualityScalableFloat;
     fn culling_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn field_flag_changed0(&self) -> &u8;
@@ -208,10 +222,10 @@ pub trait EnvironmentDecalVolumeStaticStateTrait: TypeObject {
 }
 
 impl EnvironmentDecalVolumeStaticStateTrait for EnvironmentDecalVolumeStaticState {
-    fn template_data(&self) -> &Option<Arc<Mutex<dyn EnvironmentDecalVolumeTemplateBaseDataTrait>>> {
+    fn template_data(&self) -> &Option<LockedTypeObject /* EnvironmentDecalVolumeTemplateBaseData */> {
         &self.template_data
     }
-    fn template_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EnvironmentDecalVolumeTemplateBaseDataTrait>>> {
+    fn template_data_mut(&mut self) -> &mut Option<LockedTypeObject /* EnvironmentDecalVolumeTemplateBaseData */> {
         &mut self.template_data
     }
     fn culling_distance(&self) -> &super::core::QualityScalableFloat {
@@ -230,27 +244,32 @@ impl EnvironmentDecalVolumeStaticStateTrait for EnvironmentDecalVolumeStaticStat
 
 pub static ENVIRONMENTDECALVOLUMESTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnvironmentDecalVolumeStaticState",
+    name_hash: 4172165688,
     flags: MemberInfoFlags::new(73),
     module: "DecalVolumeBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnvironmentDecalVolumeStaticState as Default>::default())),
+            create_boxed: || Box::new(<EnvironmentDecalVolumeStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TemplateData",
+                name_hash: 673762469,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EnvironmentDecalVolumeTemplateBaseData",
                 rust_offset: offset_of!(EnvironmentDecalVolumeStaticState, template_data),
             },
             FieldInfoData {
                 name: "CullingDistance",
+                name_hash: 1073297232,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EnvironmentDecalVolumeStaticState, culling_distance),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(EnvironmentDecalVolumeStaticState, field_flag_changed0),
@@ -282,6 +301,7 @@ impl TypeObject for EnvironmentDecalVolumeStaticState {
 
 pub static ENVIRONMENTDECALVOLUMESTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnvironmentDecalVolumeStaticState-Array",
+    name_hash: 2891701132,
     flags: MemberInfoFlags::new(145),
     module: "DecalVolumeBase",
     data: TypeInfoData::Array("EnvironmentDecalVolumeStaticState"),
@@ -290,7 +310,8 @@ pub static ENVIRONMENTDECALVOLUMESTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnvironmentDecalVolumeTemplateBaseData {
     pub _glacier_base: super::core::Asset,
 }
@@ -315,12 +336,15 @@ impl super::core::DataContainerTrait for EnvironmentDecalVolumeTemplateBaseData 
 
 pub static ENVIRONMENTDECALVOLUMETEMPLATEBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnvironmentDecalVolumeTemplateBaseData",
+    name_hash: 3478767586,
     flags: MemberInfoFlags::new(101),
     module: "DecalVolumeBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EnvironmentDecalVolumeTemplateBaseData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnvironmentDecalVolumeTemplateBaseData as Default>::default())),
+            create_boxed: || Box::new(<EnvironmentDecalVolumeTemplateBaseData as Default>::default()),
         },
         fields: &[
         ],
@@ -350,6 +374,7 @@ impl TypeObject for EnvironmentDecalVolumeTemplateBaseData {
 
 pub static ENVIRONMENTDECALVOLUMETEMPLATEBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnvironmentDecalVolumeTemplateBaseData-Array",
+    name_hash: 1999034070,
     flags: MemberInfoFlags::new(145),
     module: "DecalVolumeBase",
     data: TypeInfoData::Array("EnvironmentDecalVolumeTemplateBaseData"),

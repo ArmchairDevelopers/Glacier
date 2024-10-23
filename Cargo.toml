@@ -19,6 +19,7 @@ tokio = { version = "1.28.2", features = [
     "time",
     "net",
 ] }
+bytes = "1.7.2"
 
 [[example]]
 name = "decompile_game"
@@ -31,4 +32,14 @@ hidden = true
 [[example]]
 name = "print_type"
 path = "examples/reflect/print_type.rs"
+doc-scrape-examples = true
+
+[[example]]
+name = "ebx_read_levellist"
+path = "examples/fs/ebx_read_levellist.rs"
+doc-scrape-examples = true
+
+[[example]]
+name = "ebx_read_droideka"
+path = "examples/fs/ebx_read_droideka.rs"
 doc-scrape-examples = true

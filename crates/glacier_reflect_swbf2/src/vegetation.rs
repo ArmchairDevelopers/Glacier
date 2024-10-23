@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -29,7 +30,8 @@ pub(crate) fn register_vegetation_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTVEGETATIONTREEENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VegetationSystemSettings {
     pub _glacier_base: super::core::DataContainer,
     pub destruction_enable: bool,
@@ -225,130 +227,153 @@ impl super::core::DataContainerTrait for VegetationSystemSettings {
 
 pub static VEGETATIONSYSTEMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationSystemSettings",
+    name_hash: 1040614397,
     flags: MemberInfoFlags::new(101),
     module: "Vegetation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(VegetationSystemSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VegetationSystemSettings as Default>::default())),
+            create_boxed: || Box::new(<VegetationSystemSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DestructionEnable",
+                name_hash: 3898235578,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, destruction_enable),
             },
             FieldInfoData {
                 name: "MaxActiveDistance",
+                name_hash: 2638833886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationSystemSettings, max_active_distance),
             },
             FieldInfoData {
                 name: "MaxEffectDistance",
+                name_hash: 309741285,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationSystemSettings, max_effect_distance),
             },
             FieldInfoData {
                 name: "MaxActiveBones",
+                name_hash: 2559067432,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VegetationSystemSettings, max_active_bones),
             },
             FieldInfoData {
                 name: "MaxWiggleDistance",
+                name_hash: 4138955877,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationSystemSettings, max_wiggle_distance),
             },
             FieldInfoData {
                 name: "DissolveEnable",
+                name_hash: 84402905,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, dissolve_enable),
             },
             FieldInfoData {
                 name: "SimulationEaseOutTime",
+                name_hash: 3187152671,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationSystemSettings, simulation_ease_out_time),
             },
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, enable),
             },
             FieldInfoData {
                 name: "TimeScale",
+                name_hash: 169511528,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationSystemSettings, time_scale),
             },
             FieldInfoData {
                 name: "EnableJobs",
+                name_hash: 1190923856,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, enable_jobs),
             },
             FieldInfoData {
                 name: "JobCount",
+                name_hash: 4166996065,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VegetationSystemSettings, job_count),
             },
             FieldInfoData {
                 name: "DrawNodes",
+                name_hash: 2398188982,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, draw_nodes),
             },
             FieldInfoData {
                 name: "DrawNodeIDs",
+                name_hash: 287641659,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, draw_node_i_ds),
             },
             FieldInfoData {
                 name: "DrawNodeStiffness",
+                name_hash: 285040416,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, draw_node_stiffness),
             },
             FieldInfoData {
                 name: "DrawNonSimulatedAsRigid",
+                name_hash: 1584906195,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, draw_non_simulated_as_rigid),
             },
             FieldInfoData {
                 name: "DrawActiveInstanceBoxesEnable",
+                name_hash: 3544041922,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, draw_active_instance_boxes_enable),
             },
             FieldInfoData {
                 name: "DrawEffectDebugInfoEnable",
+                name_hash: 3500128844,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, draw_effect_debug_info_enable),
             },
             FieldInfoData {
                 name: "DrawDamageDebugInfoEnable",
+                name_hash: 48494608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, draw_damage_debug_info_enable),
             },
             FieldInfoData {
                 name: "DrawStatsEnable",
+                name_hash: 711726149,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, draw_stats_enable),
             },
             FieldInfoData {
                 name: "ProceduralAnimationEnable",
+                name_hash: 1764606103,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationSystemSettings, procedural_animation_enable),
@@ -380,6 +405,7 @@ impl TypeObject for VegetationSystemSettings {
 
 pub static VEGETATIONSYSTEMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationSystemSettings-Array",
+    name_hash: 2080485577,
     flags: MemberInfoFlags::new(145),
     module: "Vegetation",
     data: TypeInfoData::Array("VegetationSystemSettings"),
@@ -388,7 +414,8 @@ pub static VEGETATIONSYSTEMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VegetationTreeBreakNodeState {
     pub break_node_bit: bool,
     pub trans: super::core::Vec3,
@@ -427,27 +454,32 @@ impl VegetationTreeBreakNodeStateTrait for VegetationTreeBreakNodeState {
 
 pub static VEGETATIONTREEBREAKNODESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationTreeBreakNodeState",
+    name_hash: 2900498387,
     flags: MemberInfoFlags::new(36937),
     module: "Vegetation",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VegetationTreeBreakNodeState as Default>::default())),
+            create_boxed: || Box::new(<VegetationTreeBreakNodeState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BreakNodeBit",
+                name_hash: 2635024069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationTreeBreakNodeState, break_node_bit),
             },
             FieldInfoData {
                 name: "Trans",
+                name_hash: 227190399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VegetationTreeBreakNodeState, trans),
             },
             FieldInfoData {
                 name: "Rotation",
+                name_hash: 48673745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(VegetationTreeBreakNodeState, rotation),
@@ -479,6 +511,7 @@ impl TypeObject for VegetationTreeBreakNodeState {
 
 pub static VEGETATIONTREEBREAKNODESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationTreeBreakNodeState-Array",
+    name_hash: 107569895,
     flags: MemberInfoFlags::new(145),
     module: "Vegetation",
     data: TypeInfoData::Array("VegetationTreeBreakNodeState"),
@@ -487,7 +520,8 @@ pub static VEGETATIONTREEBREAKNODESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VegetationTreeBreakNodeDestruction {
     pub break_node_bit: bool,
     pub height: f32,
@@ -526,27 +560,32 @@ impl VegetationTreeBreakNodeDestructionTrait for VegetationTreeBreakNodeDestruct
 
 pub static VEGETATIONTREEBREAKNODEDESTRUCTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationTreeBreakNodeDestruction",
+    name_hash: 2708040314,
     flags: MemberInfoFlags::new(36937),
     module: "Vegetation",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VegetationTreeBreakNodeDestruction as Default>::default())),
+            create_boxed: || Box::new(<VegetationTreeBreakNodeDestruction as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BreakNodeBit",
+                name_hash: 2635024069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationTreeBreakNodeDestruction, break_node_bit),
             },
             FieldInfoData {
                 name: "Height",
+                name_hash: 3054065626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeBreakNodeDestruction, height),
             },
             FieldInfoData {
                 name: "PartIndex",
+                name_hash: 3213901068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VegetationTreeBreakNodeDestruction, part_index),
@@ -578,6 +617,7 @@ impl TypeObject for VegetationTreeBreakNodeDestruction {
 
 pub static VEGETATIONTREEBREAKNODEDESTRUCTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationTreeBreakNodeDestruction-Array",
+    name_hash: 1108901198,
     flags: MemberInfoFlags::new(145),
     module: "Vegetation",
     data: TypeInfoData::Array("VegetationTreeBreakNodeDestruction"),
@@ -586,7 +626,8 @@ pub static VEGETATIONTREEBREAKNODEDESTRUCTION_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VegetationTreeEntityData {
     pub _glacier_base: VegetationBaseEntityData,
     pub stiffness: f32,
@@ -616,7 +657,7 @@ pub struct VegetationTreeEntityData {
     pub stem_break_effect: VegetationEffectSlot,
     pub branch_break_effect: VegetationEffectSlot,
     pub impact_effect: VegetationEffectSlot,
-    pub wind_effect: Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>,
+    pub wind_effect: Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>,
     pub min_respawn_time: f32,
     pub stem_effect_node_threshold: u32,
     pub shadow_l_o_d_offset: u32,
@@ -679,8 +720,8 @@ pub trait VegetationTreeEntityDataTrait: VegetationBaseEntityDataTrait {
     fn branch_break_effect_mut(&mut self) -> &mut VegetationEffectSlot;
     fn impact_effect(&self) -> &VegetationEffectSlot;
     fn impact_effect_mut(&mut self) -> &mut VegetationEffectSlot;
-    fn wind_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
-    fn wind_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn wind_effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
+    fn wind_effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
     fn min_respawn_time(&self) -> &f32;
     fn min_respawn_time_mut(&mut self) -> &mut f32;
     fn stem_effect_node_threshold(&self) -> &u32;
@@ -856,10 +897,10 @@ impl VegetationTreeEntityDataTrait for VegetationTreeEntityData {
     fn impact_effect_mut(&mut self) -> &mut VegetationEffectSlot {
         &mut self.impact_effect
     }
-    fn wind_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn wind_effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &self.wind_effect
     }
-    fn wind_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn wind_effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &mut self.wind_effect
     }
     fn min_respawn_time(&self) -> &f32 {
@@ -931,16 +972,16 @@ impl VegetationBaseEntityDataTrait for VegetationTreeEntityData {
     fn bone_is_stem_mut(&mut self) -> &mut Vec<bool> {
         self._glacier_base.bone_is_stem_mut()
     }
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         self._glacier_base.mesh()
     }
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         self._glacier_base.mesh_mut()
     }
-    fn rigid_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
+    fn rigid_bodies(&self) -> &Vec<Option<LockedTypeObject /* super::physics::RigidBodyData */>> {
         self._glacier_base.rigid_bodies()
     }
-    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
+    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::physics::RigidBodyData */>> {
         self._glacier_base.rigid_bodies_mut()
     }
 }
@@ -955,16 +996,16 @@ impl super::entity::GameComponentEntityDataTrait for VegetationTreeEntityData {
 }
 
 impl super::entity::ComponentEntityDataTrait for VegetationTreeEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -1025,208 +1066,244 @@ impl super::core::DataContainerTrait for VegetationTreeEntityData {
 
 pub static VEGETATIONTREEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationTreeEntityData",
+    name_hash: 2102677968,
     flags: MemberInfoFlags::new(101),
     module: "Vegetation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VEGETATIONBASEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VegetationTreeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VegetationTreeEntityData as Default>::default())),
+            create_boxed: || Box::new(<VegetationTreeEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Stiffness",
+                name_hash: 721813632,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, stiffness),
             },
             FieldInfoData {
                 name: "Damping",
+                name_hash: 3862601053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, damping),
             },
             FieldInfoData {
                 name: "StemMass",
+                name_hash: 3249249158,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, stem_mass),
             },
             FieldInfoData {
                 name: "StiffnessSpread",
+                name_hash: 393858929,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, stiffness_spread),
             },
             FieldInfoData {
                 name: "DampingSpread",
+                name_hash: 3654959468,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, damping_spread),
             },
             FieldInfoData {
                 name: "MassSpread",
+                name_hash: 3335040984,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, mass_spread),
             },
             FieldInfoData {
                 name: "StemLockedUpTo",
+                name_hash: 3527237886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, stem_locked_up_to),
             },
             FieldInfoData {
                 name: "StemBoneCount",
+                name_hash: 4140582895,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VegetationTreeEntityData, stem_bone_count),
             },
             FieldInfoData {
                 name: "BreakableJointThreshold",
+                name_hash: 2951351665,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, breakable_joint_threshold),
             },
             FieldInfoData {
                 name: "ConstantFalloff",
+                name_hash: 918730195,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationTreeEntityData, constant_falloff),
             },
             FieldInfoData {
                 name: "BoundingBoxScaleFactor",
+                name_hash: 3835398359,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, bounding_box_scale_factor),
             },
             FieldInfoData {
                 name: "Indestructable",
+                name_hash: 464130430,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationTreeEntityData, indestructable),
             },
             FieldInfoData {
                 name: "PartsTimeToLive",
+                name_hash: 209652569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, parts_time_to_live),
             },
             FieldInfoData {
                 name: "LinearVelocityDamping",
+                name_hash: 1004384727,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, linear_velocity_damping),
             },
             FieldInfoData {
                 name: "AngularVelocityDamping",
+                name_hash: 2367237320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, angular_velocity_damping),
             },
             FieldInfoData {
                 name: "Friction",
+                name_hash: 306207591,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, friction),
             },
             FieldInfoData {
                 name: "Restitution",
+                name_hash: 2298929185,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, restitution),
             },
             FieldInfoData {
                 name: "StemPhysicsWidth",
+                name_hash: 3773105703,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, stem_physics_width),
             },
             FieldInfoData {
                 name: "StemPhysicsHeightScale",
+                name_hash: 968139206,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, stem_physics_height_scale),
             },
             FieldInfoData {
                 name: "BranchPhysicsWidth",
+                name_hash: 2028462780,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, branch_physics_width),
             },
             FieldInfoData {
                 name: "BranchPhysicsHeightScale",
+                name_hash: 3596469085,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, branch_physics_height_scale),
             },
             FieldInfoData {
                 name: "DestructionMassScale",
+                name_hash: 101589487,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, destruction_mass_scale),
             },
             FieldInfoData {
                 name: "InertiaModifier",
+                name_hash: 3532865534,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VegetationTreeEntityData, inertia_modifier),
             },
             FieldInfoData {
                 name: "CenterOfMassVerticalScale",
+                name_hash: 2894567649,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, center_of_mass_vertical_scale),
             },
             FieldInfoData {
                 name: "StemBreakEffect",
+                name_hash: 2818645282,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VegetationEffectSlot",
                 rust_offset: offset_of!(VegetationTreeEntityData, stem_break_effect),
             },
             FieldInfoData {
                 name: "BranchBreakEffect",
+                name_hash: 1809843993,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VegetationEffectSlot",
                 rust_offset: offset_of!(VegetationTreeEntityData, branch_break_effect),
             },
             FieldInfoData {
                 name: "ImpactEffect",
+                name_hash: 2147535120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VegetationEffectSlot",
                 rust_offset: offset_of!(VegetationTreeEntityData, impact_effect),
             },
             FieldInfoData {
                 name: "WindEffect",
+                name_hash: 2533736230,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectBlueprint",
                 rust_offset: offset_of!(VegetationTreeEntityData, wind_effect),
             },
             FieldInfoData {
                 name: "MinRespawnTime",
+                name_hash: 2022883894,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationTreeEntityData, min_respawn_time),
             },
             FieldInfoData {
                 name: "StemEffectNodeThreshold",
+                name_hash: 2900269930,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VegetationTreeEntityData, stem_effect_node_threshold),
             },
             FieldInfoData {
                 name: "ShadowLODOffset",
+                name_hash: 1990024297,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VegetationTreeEntityData, shadow_l_o_d_offset),
             },
             FieldInfoData {
                 name: "TranslucencyEnabled",
+                name_hash: 1802794289,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VegetationTreeEntityData, translucency_enabled),
             },
             FieldInfoData {
                 name: "TranslucencyVolumeCenter",
+                name_hash: 1131296183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VegetationTreeEntityData, translucency_volume_center),
@@ -1258,6 +1335,7 @@ impl TypeObject for VegetationTreeEntityData {
 
 pub static VEGETATIONTREEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationTreeEntityData-Array",
+    name_hash: 1378881636,
     flags: MemberInfoFlags::new(145),
     module: "Vegetation",
     data: TypeInfoData::Array("VegetationTreeEntityData"),
@@ -1266,9 +1344,10 @@ pub static VEGETATIONTREEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VegetationEffectSlot {
-    pub effect: Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>,
+    pub effect: Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>,
     pub strength_min: f32,
     pub strength_max: f32,
     pub size_min: f32,
@@ -1276,8 +1355,8 @@ pub struct VegetationEffectSlot {
 }
 
 pub trait VegetationEffectSlotTrait: TypeObject {
-    fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
-    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
+    fn effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
     fn strength_min(&self) -> &f32;
     fn strength_min_mut(&mut self) -> &mut f32;
     fn strength_max(&self) -> &f32;
@@ -1289,10 +1368,10 @@ pub trait VegetationEffectSlotTrait: TypeObject {
 }
 
 impl VegetationEffectSlotTrait for VegetationEffectSlot {
-    fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &self.effect
     }
-    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &mut self.effect
     }
     fn strength_min(&self) -> &f32 {
@@ -1323,39 +1402,46 @@ impl VegetationEffectSlotTrait for VegetationEffectSlot {
 
 pub static VEGETATIONEFFECTSLOT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationEffectSlot",
+    name_hash: 2732371950,
     flags: MemberInfoFlags::new(73),
     module: "Vegetation",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VegetationEffectSlot as Default>::default())),
+            create_boxed: || Box::new(<VegetationEffectSlot as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Effect",
+                name_hash: 2332983090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectBlueprint",
                 rust_offset: offset_of!(VegetationEffectSlot, effect),
             },
             FieldInfoData {
                 name: "StrengthMin",
+                name_hash: 382626730,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationEffectSlot, strength_min),
             },
             FieldInfoData {
                 name: "StrengthMax",
+                name_hash: 382626996,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationEffectSlot, strength_max),
             },
             FieldInfoData {
                 name: "SizeMin",
+                name_hash: 3200697194,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationEffectSlot, size_min),
             },
             FieldInfoData {
                 name: "SizeMax",
+                name_hash: 3200697460,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VegetationEffectSlot, size_max),
@@ -1387,6 +1473,7 @@ impl TypeObject for VegetationEffectSlot {
 
 pub static VEGETATIONEFFECTSLOT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationEffectSlot-Array",
+    name_hash: 2398537946,
     flags: MemberInfoFlags::new(145),
     module: "Vegetation",
     data: TypeInfoData::Array("VegetationEffectSlot"),
@@ -1395,7 +1482,8 @@ pub static VEGETATIONEFFECTSLOT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VegetationBaseEntityData {
     pub _glacier_base: super::entity::GameComponentEntityData,
     pub base_pose_transforms: super::core::SparseTransformArray,
@@ -1404,8 +1492,8 @@ pub struct VegetationBaseEntityData {
     pub part_hierarchy: Vec<i32>,
     pub part_initial_healths: Vec<f32>,
     pub bone_is_stem: Vec<bool>,
-    pub mesh: Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>,
-    pub rigid_bodies: Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>>,
+    pub mesh: Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>,
+    pub rigid_bodies: Vec<Option<LockedTypeObject /* super::physics::RigidBodyData */>>,
 }
 
 pub trait VegetationBaseEntityDataTrait: super::entity::GameComponentEntityDataTrait {
@@ -1421,10 +1509,10 @@ pub trait VegetationBaseEntityDataTrait: super::entity::GameComponentEntityDataT
     fn part_initial_healths_mut(&mut self) -> &mut Vec<f32>;
     fn bone_is_stem(&self) -> &Vec<bool>;
     fn bone_is_stem_mut(&mut self) -> &mut Vec<bool>;
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
-    fn rigid_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>>;
-    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>>;
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>;
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>;
+    fn rigid_bodies(&self) -> &Vec<Option<LockedTypeObject /* super::physics::RigidBodyData */>>;
+    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::physics::RigidBodyData */>>;
 }
 
 impl VegetationBaseEntityDataTrait for VegetationBaseEntityData {
@@ -1464,16 +1552,16 @@ impl VegetationBaseEntityDataTrait for VegetationBaseEntityData {
     fn bone_is_stem_mut(&mut self) -> &mut Vec<bool> {
         &mut self.bone_is_stem
     }
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         &self.mesh
     }
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         &mut self.mesh
     }
-    fn rigid_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
+    fn rigid_bodies(&self) -> &Vec<Option<LockedTypeObject /* super::physics::RigidBodyData */>> {
         &self.rigid_bodies
     }
-    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::RigidBodyDataTrait>>>> {
+    fn rigid_bodies_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::physics::RigidBodyData */>> {
         &mut self.rigid_bodies
     }
 }
@@ -1488,16 +1576,16 @@ impl super::entity::GameComponentEntityDataTrait for VegetationBaseEntityData {
 }
 
 impl super::entity::ComponentEntityDataTrait for VegetationBaseEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -1558,58 +1646,69 @@ impl super::core::DataContainerTrait for VegetationBaseEntityData {
 
 pub static VEGETATIONBASEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationBaseEntityData",
+    name_hash: 262092099,
     flags: MemberInfoFlags::new(101),
     module: "Vegetation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VegetationBaseEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VegetationBaseEntityData as Default>::default())),
+            create_boxed: || Box::new(<VegetationBaseEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BasePoseTransforms",
+                name_hash: 2949884966,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SparseTransformArray",
                 rust_offset: offset_of!(VegetationBaseEntityData, base_pose_transforms),
             },
             FieldInfoData {
                 name: "Hierarchy",
+                name_hash: 2981249554,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(VegetationBaseEntityData, hierarchy),
             },
             FieldInfoData {
                 name: "PartIndirection",
+                name_hash: 307876816,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(VegetationBaseEntityData, part_indirection),
             },
             FieldInfoData {
                 name: "PartHierarchy",
+                name_hash: 3544065669,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(VegetationBaseEntityData, part_hierarchy),
             },
             FieldInfoData {
                 name: "PartInitialHealths",
+                name_hash: 1403213219,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(VegetationBaseEntityData, part_initial_healths),
             },
             FieldInfoData {
                 name: "BoneIsStem",
+                name_hash: 1168072854,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Boolean-Array",
                 rust_offset: offset_of!(VegetationBaseEntityData, bone_is_stem),
             },
             FieldInfoData {
                 name: "Mesh",
+                name_hash: 2088783990,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MeshBaseAsset",
                 rust_offset: offset_of!(VegetationBaseEntityData, mesh),
             },
             FieldInfoData {
                 name: "RigidBodies",
+                name_hash: 3015855522,
                 flags: MemberInfoFlags::new(144),
                 field_type: "RigidBodyData-Array",
                 rust_offset: offset_of!(VegetationBaseEntityData, rigid_bodies),
@@ -1641,6 +1740,7 @@ impl TypeObject for VegetationBaseEntityData {
 
 pub static VEGETATIONBASEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationBaseEntityData-Array",
+    name_hash: 3377715319,
     flags: MemberInfoFlags::new(145),
     module: "Vegetation",
     data: TypeInfoData::Array("VegetationBaseEntityData"),
@@ -1649,7 +1749,8 @@ pub static VEGETATIONBASEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VegetationTreeEntity {
     pub _glacier_base: super::entity::ComponentEntity,
 }
@@ -1674,12 +1775,15 @@ impl super::entity::EntityBusPeerTrait for VegetationTreeEntity {
 
 pub static VEGETATIONTREEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationTreeEntity",
+    name_hash: 3840689888,
     flags: MemberInfoFlags::new(101),
     module: "Vegetation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::COMPONENTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(VegetationTreeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VegetationTreeEntity as Default>::default())),
+            create_boxed: || Box::new(<VegetationTreeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1709,6 +1813,7 @@ impl TypeObject for VegetationTreeEntity {
 
 pub static VEGETATIONTREEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VegetationTreeEntity-Array",
+    name_hash: 2091932884,
     flags: MemberInfoFlags::new(145),
     module: "Vegetation",
     data: TypeInfoData::Array("VegetationTreeEntity"),
@@ -1717,7 +1822,8 @@ pub static VEGETATIONTREEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerVegetationTreeEntity {
     pub _glacier_base: VegetationTreeEntity,
 }
@@ -1745,12 +1851,15 @@ impl super::entity::EntityBusPeerTrait for ServerVegetationTreeEntity {
 
 pub static SERVERVEGETATIONTREEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerVegetationTreeEntity",
+    name_hash: 219382405,
     flags: MemberInfoFlags::new(101),
     module: "Vegetation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VEGETATIONTREEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerVegetationTreeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerVegetationTreeEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerVegetationTreeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1780,6 +1889,7 @@ impl TypeObject for ServerVegetationTreeEntity {
 
 pub static SERVERVEGETATIONTREEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerVegetationTreeEntity-Array",
+    name_hash: 552897073,
     flags: MemberInfoFlags::new(145),
     module: "Vegetation",
     data: TypeInfoData::Array("ServerVegetationTreeEntity"),
@@ -1788,7 +1898,8 @@ pub static SERVERVEGETATIONTREEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientVegetationTreeEntity {
     pub _glacier_base: VegetationTreeEntity,
 }
@@ -1816,12 +1927,15 @@ impl super::entity::EntityBusPeerTrait for ClientVegetationTreeEntity {
 
 pub static CLIENTVEGETATIONTREEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientVegetationTreeEntity",
+    name_hash: 3576978009,
     flags: MemberInfoFlags::new(101),
     module: "Vegetation",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VEGETATIONTREEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientVegetationTreeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientVegetationTreeEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientVegetationTreeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1851,6 +1965,7 @@ impl TypeObject for ClientVegetationTreeEntity {
 
 pub static CLIENTVEGETATIONTREEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientVegetationTreeEntity-Array",
+    name_hash: 1305913453,
     flags: MemberInfoFlags::new(145),
     module: "Vegetation",
     data: TypeInfoData::Array("ClientVegetationTreeEntity"),

@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -50,6 +51,7 @@ pub enum MovieTexture2AssetFormat {
 
 pub static MOVIETEXTURE2ASSETFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieTexture2AssetFormat",
+    name_hash: 253722691,
     flags: MemberInfoFlags::new(49429),
     module: "MovieBase",
     data: TypeInfoData::Enum,
@@ -78,6 +80,7 @@ impl TypeObject for MovieTexture2AssetFormat {
 
 pub static MOVIETEXTURE2ASSETFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieTexture2AssetFormat-Array",
+    name_hash: 3097518967,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("MovieTexture2AssetFormat"),
@@ -86,7 +89,8 @@ pub static MOVIETEXTURE2ASSETFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MovieTexture2Asset {
     pub _glacier_base: MovieTextureBaseAsset,
     pub chunk_guid: glacier_util::guid::Guid,
@@ -195,64 +199,76 @@ impl super::core::DataContainerTrait for MovieTexture2Asset {
 
 pub static MOVIETEXTURE2ASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieTexture2Asset",
+    name_hash: 2821566784,
     flags: MemberInfoFlags::new(101),
     module: "MovieBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MOVIETEXTUREBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(MovieTexture2Asset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MovieTexture2Asset as Default>::default())),
+            create_boxed: || Box::new(<MovieTexture2Asset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ChunkGuid",
+                name_hash: 3693055745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(MovieTexture2Asset, chunk_guid),
             },
             FieldInfoData {
                 name: "ChunkSize",
+                name_hash: 3692630139,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(MovieTexture2Asset, chunk_size),
             },
             FieldInfoData {
                 name: "SubtitleChunkGuid",
+                name_hash: 3946824677,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(MovieTexture2Asset, subtitle_chunk_guid),
             },
             FieldInfoData {
                 name: "SubtitleChunkSize",
+                name_hash: 3946120031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(MovieTexture2Asset, subtitle_chunk_size),
             },
             FieldInfoData {
                 name: "HasLocalizedAudioTracks",
+                name_hash: 300816458,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieTexture2Asset, has_localized_audio_tracks),
             },
             FieldInfoData {
                 name: "MovieFilename",
+                name_hash: 2088885052,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(MovieTexture2Asset, movie_filename),
             },
             FieldInfoData {
                 name: "SubtitleFilename",
+                name_hash: 1908521376,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(MovieTexture2Asset, subtitle_filename),
             },
             FieldInfoData {
                 name: "Flipped",
+                name_hash: 2146772423,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieTexture2Asset, flipped),
             },
             FieldInfoData {
                 name: "UseStereo",
+                name_hash: 301807836,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieTexture2Asset, use_stereo),
@@ -284,6 +300,7 @@ impl TypeObject for MovieTexture2Asset {
 
 pub static MOVIETEXTURE2ASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieTexture2Asset-Array",
+    name_hash: 98584564,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("MovieTexture2Asset"),
@@ -292,7 +309,8 @@ pub static MOVIETEXTURE2ASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioStream {
     pub name: String,
     pub codec: AudioCodecType,
@@ -376,57 +394,67 @@ impl AudioStreamTrait for AudioStream {
 
 pub static AUDIOSTREAM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioStream",
+    name_hash: 466546895,
     flags: MemberInfoFlags::new(73),
     module: "MovieBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioStream as Default>::default())),
+            create_boxed: || Box::new(<AudioStream as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(AudioStream, name),
             },
             FieldInfoData {
                 name: "Codec",
+                name_hash: 212395563,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioCodecType",
                 rust_offset: offset_of!(AudioStream, codec),
             },
             FieldInfoData {
                 name: "Language",
+                name_hash: 3872303031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(AudioStream, language),
             },
             FieldInfoData {
                 name: "Length",
+                name_hash: 2906827577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioStream, length),
             },
             FieldInfoData {
                 name: "SampleRate",
+                name_hash: 604757697,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(AudioStream, sample_rate),
             },
             FieldInfoData {
                 name: "BitRate",
+                name_hash: 2614557176,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(AudioStream, bit_rate),
             },
             FieldInfoData {
                 name: "Channels",
+                name_hash: 1585412981,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(AudioStream, channels),
             },
             FieldInfoData {
                 name: "AudioFilename",
+                name_hash: 605297778,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(AudioStream, audio_filename),
@@ -458,6 +486,7 @@ impl TypeObject for AudioStream {
 
 pub static AUDIOSTREAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioStream-Array",
+    name_hash: 2818653691,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("AudioStream"),
@@ -466,7 +495,8 @@ pub static AUDIOSTREAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VideoStream {
     pub name: String,
     pub r#type: VideoStreamType,
@@ -559,63 +589,74 @@ impl VideoStreamTrait for VideoStream {
 
 pub static VIDEOSTREAM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VideoStream",
+    name_hash: 365984008,
     flags: MemberInfoFlags::new(73),
     module: "MovieBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VideoStream as Default>::default())),
+            create_boxed: || Box::new(<VideoStream as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VideoStream, name),
             },
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VideoStreamType",
                 rust_offset: offset_of!(VideoStream, r#type),
             },
             FieldInfoData {
                 name: "Codec",
+                name_hash: 212395563,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VideoCodecType",
                 rust_offset: offset_of!(VideoStream, codec),
             },
             FieldInfoData {
                 name: "Width",
+                name_hash: 226981187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VideoStream, width),
             },
             FieldInfoData {
                 name: "Height",
+                name_hash: 3054065626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VideoStream, height),
             },
             FieldInfoData {
                 name: "Length",
+                name_hash: 2906827577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VideoStream, length),
             },
             FieldInfoData {
                 name: "BitRate",
+                name_hash: 2614557176,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VideoStream, bit_rate),
             },
             FieldInfoData {
                 name: "Frames",
+                name_hash: 2535963883,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VideoStream, frames),
             },
             FieldInfoData {
                 name: "Fps",
+                name_hash: 193444064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VideoStream, fps),
@@ -647,6 +688,7 @@ impl TypeObject for VideoStream {
 
 pub static VIDEOSTREAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VideoStream-Array",
+    name_hash: 530922300,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("VideoStream"),
@@ -667,6 +709,7 @@ pub enum AudioCodecType {
 
 pub static AUDIOCODECTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioCodecType",
+    name_hash: 3551783077,
     flags: MemberInfoFlags::new(49429),
     module: "MovieBase",
     data: TypeInfoData::Enum,
@@ -695,6 +738,7 @@ impl TypeObject for AudioCodecType {
 
 pub static AUDIOCODECTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioCodecType-Array",
+    name_hash: 1064648977,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("AudioCodecType"),
@@ -718,6 +762,7 @@ pub enum VideoCodecType {
 
 pub static VIDEOCODECTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VideoCodecType",
+    name_hash: 3883851586,
     flags: MemberInfoFlags::new(49429),
     module: "MovieBase",
     data: TypeInfoData::Enum,
@@ -746,6 +791,7 @@ impl TypeObject for VideoCodecType {
 
 pub static VIDEOCODECTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VideoCodecType-Array",
+    name_hash: 1326739190,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("VideoCodecType"),
@@ -765,6 +811,7 @@ pub enum VideoStreamType {
 
 pub static VIDEOSTREAMTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VideoStreamType",
+    name_hash: 203612336,
     flags: MemberInfoFlags::new(49429),
     module: "MovieBase",
     data: TypeInfoData::Enum,
@@ -793,6 +840,7 @@ impl TypeObject for VideoStreamType {
 
 pub static VIDEOSTREAMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VideoStreamType-Array",
+    name_hash: 3602517508,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("VideoStreamType"),
@@ -801,7 +849,8 @@ pub static VIDEOSTREAMTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MovieTextureAsset {
     pub _glacier_base: MovieTextureBaseAsset,
     pub chunk_guid: glacier_util::guid::Guid,
@@ -901,58 +950,69 @@ impl super::core::DataContainerTrait for MovieTextureAsset {
 
 pub static MOVIETEXTUREASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieTextureAsset",
+    name_hash: 831810802,
     flags: MemberInfoFlags::new(101),
     module: "MovieBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MOVIETEXTUREBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(MovieTextureAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MovieTextureAsset as Default>::default())),
+            create_boxed: || Box::new(<MovieTextureAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ChunkGuid",
+                name_hash: 3693055745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(MovieTextureAsset, chunk_guid),
             },
             FieldInfoData {
                 name: "ChunkSize",
+                name_hash: 3692630139,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(MovieTextureAsset, chunk_size),
             },
             FieldInfoData {
                 name: "SubtitleChunkGuid",
+                name_hash: 3946824677,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(MovieTextureAsset, subtitle_chunk_guid),
             },
             FieldInfoData {
                 name: "SubtitleChunkSize",
+                name_hash: 3946120031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(MovieTextureAsset, subtitle_chunk_size),
             },
             FieldInfoData {
                 name: "HasLocalizedAudioTracks",
+                name_hash: 300816458,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieTextureAsset, has_localized_audio_tracks),
             },
             FieldInfoData {
                 name: "OverrideBackgroundMusic",
+                name_hash: 2360371614,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieTextureAsset, override_background_music),
             },
             FieldInfoData {
                 name: "HasVp6",
+                name_hash: 3059605743,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieTextureAsset, has_vp6),
             },
             FieldInfoData {
                 name: "HasVp8",
+                name_hash: 3059605729,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieTextureAsset, has_vp8),
@@ -984,6 +1044,7 @@ impl TypeObject for MovieTextureAsset {
 
 pub static MOVIETEXTUREASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieTextureAsset-Array",
+    name_hash: 899417030,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("MovieTextureAsset"),
@@ -992,7 +1053,8 @@ pub static MOVIETEXTUREASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MovieTextureBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -1017,12 +1079,15 @@ impl super::core::DataContainerTrait for MovieTextureBaseAsset {
 
 pub static MOVIETEXTUREBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieTextureBaseAsset",
+    name_hash: 2700537223,
     flags: MemberInfoFlags::new(101),
     module: "MovieBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(MovieTextureBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MovieTextureBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<MovieTextureBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -1052,6 +1117,7 @@ impl TypeObject for MovieTextureBaseAsset {
 
 pub static MOVIETEXTUREBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieTextureBaseAsset-Array",
+    name_hash: 78949939,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("MovieTextureBaseAsset"),
@@ -1060,7 +1126,8 @@ pub static MOVIETEXTUREBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MovieDynamicState {
     pub external_time: f32,
     pub volume: f32,
@@ -1126,45 +1193,53 @@ impl MovieDynamicStateTrait for MovieDynamicState {
 
 pub static MOVIEDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieDynamicState",
+    name_hash: 2303060543,
     flags: MemberInfoFlags::new(36937),
     module: "MovieBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MovieDynamicState as Default>::default())),
+            create_boxed: || Box::new(<MovieDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExternalTime",
+                name_hash: 2162678253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MovieDynamicState, external_time),
             },
             FieldInfoData {
                 name: "Volume",
+                name_hash: 3158011725,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MovieDynamicState, volume),
             },
             FieldInfoData {
                 name: "Play",
+                name_hash: 2089460481,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieDynamicState, play),
             },
             FieldInfoData {
                 name: "EnableStateStreamDestroyDependencyBugWorkaround",
+                name_hash: 334754288,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieDynamicState, enable_state_stream_destroy_dependency_bug_workaround),
             },
             FieldInfoData {
                 name: "FieldFlagOverride0",
+                name_hash: 3558987183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(MovieDynamicState, field_flag_override0),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(MovieDynamicState, field_flag_changed0),
@@ -1196,6 +1271,7 @@ impl TypeObject for MovieDynamicState {
 
 pub static MOVIEDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieDynamicState-Array",
+    name_hash: 2116878219,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("MovieDynamicState"),
@@ -1204,9 +1280,10 @@ pub static MOVIEDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MovieStaticState {
-    pub movie_texture: Option<Arc<Mutex<dyn MovieTextureBaseAssetTrait>>>,
+    pub movie_texture: Option<LockedTypeObject /* MovieTextureBaseAsset */>,
     pub movie_name: String,
     pub subtitle_name: String,
     pub audio_track_id: String,
@@ -1215,8 +1292,8 @@ pub struct MovieStaticState {
     pub preload: bool,
     pub use_sim_time: bool,
     pub pause_on_ending: bool,
-    pub shader_block_handles: Vec<super::render_base::ShaderParameterBlockHandle>,
-    pub shader_block_textures: Vec<super::render_base::ShaderBlockTexture>,
+    pub shader_block_handles: Vec<BoxedTypeObject /* super::render_base::ShaderParameterBlockHandle */>,
+    pub shader_block_textures: Vec<BoxedTypeObject /* super::render_base::ShaderBlockTexture */>,
     pub texture_count: i32,
     pub decoder_threads: i32,
     pub stop_frame: i32,
@@ -1226,8 +1303,8 @@ pub struct MovieStaticState {
 }
 
 pub trait MovieStaticStateTrait: TypeObject {
-    fn movie_texture(&self) -> &Option<Arc<Mutex<dyn MovieTextureBaseAssetTrait>>>;
-    fn movie_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MovieTextureBaseAssetTrait>>>;
+    fn movie_texture(&self) -> &Option<LockedTypeObject /* MovieTextureBaseAsset */>;
+    fn movie_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* MovieTextureBaseAsset */>;
     fn movie_name(&self) -> &String;
     fn movie_name_mut(&mut self) -> &mut String;
     fn subtitle_name(&self) -> &String;
@@ -1244,10 +1321,10 @@ pub trait MovieStaticStateTrait: TypeObject {
     fn use_sim_time_mut(&mut self) -> &mut bool;
     fn pause_on_ending(&self) -> &bool;
     fn pause_on_ending_mut(&mut self) -> &mut bool;
-    fn shader_block_handles(&self) -> &Vec<super::render_base::ShaderParameterBlockHandle>;
-    fn shader_block_handles_mut(&mut self) -> &mut Vec<super::render_base::ShaderParameterBlockHandle>;
-    fn shader_block_textures(&self) -> &Vec<super::render_base::ShaderBlockTexture>;
-    fn shader_block_textures_mut(&mut self) -> &mut Vec<super::render_base::ShaderBlockTexture>;
+    fn shader_block_handles(&self) -> &Vec<BoxedTypeObject /* super::render_base::ShaderParameterBlockHandle */>;
+    fn shader_block_handles_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::render_base::ShaderParameterBlockHandle */>;
+    fn shader_block_textures(&self) -> &Vec<BoxedTypeObject /* super::render_base::ShaderBlockTexture */>;
+    fn shader_block_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::render_base::ShaderBlockTexture */>;
     fn texture_count(&self) -> &i32;
     fn texture_count_mut(&mut self) -> &mut i32;
     fn decoder_threads(&self) -> &i32;
@@ -1263,10 +1340,10 @@ pub trait MovieStaticStateTrait: TypeObject {
 }
 
 impl MovieStaticStateTrait for MovieStaticState {
-    fn movie_texture(&self) -> &Option<Arc<Mutex<dyn MovieTextureBaseAssetTrait>>> {
+    fn movie_texture(&self) -> &Option<LockedTypeObject /* MovieTextureBaseAsset */> {
         &self.movie_texture
     }
-    fn movie_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MovieTextureBaseAssetTrait>>> {
+    fn movie_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* MovieTextureBaseAsset */> {
         &mut self.movie_texture
     }
     fn movie_name(&self) -> &String {
@@ -1317,16 +1394,16 @@ impl MovieStaticStateTrait for MovieStaticState {
     fn pause_on_ending_mut(&mut self) -> &mut bool {
         &mut self.pause_on_ending
     }
-    fn shader_block_handles(&self) -> &Vec<super::render_base::ShaderParameterBlockHandle> {
+    fn shader_block_handles(&self) -> &Vec<BoxedTypeObject /* super::render_base::ShaderParameterBlockHandle */> {
         &self.shader_block_handles
     }
-    fn shader_block_handles_mut(&mut self) -> &mut Vec<super::render_base::ShaderParameterBlockHandle> {
+    fn shader_block_handles_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::render_base::ShaderParameterBlockHandle */> {
         &mut self.shader_block_handles
     }
-    fn shader_block_textures(&self) -> &Vec<super::render_base::ShaderBlockTexture> {
+    fn shader_block_textures(&self) -> &Vec<BoxedTypeObject /* super::render_base::ShaderBlockTexture */> {
         &self.shader_block_textures
     }
-    fn shader_block_textures_mut(&mut self) -> &mut Vec<super::render_base::ShaderBlockTexture> {
+    fn shader_block_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::render_base::ShaderBlockTexture */> {
         &mut self.shader_block_textures
     }
     fn texture_count(&self) -> &i32 {
@@ -1369,111 +1446,130 @@ impl MovieStaticStateTrait for MovieStaticState {
 
 pub static MOVIESTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieStaticState",
+    name_hash: 3597615762,
     flags: MemberInfoFlags::new(73),
     module: "MovieBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MovieStaticState as Default>::default())),
+            create_boxed: || Box::new(<MovieStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MovieTexture",
+                name_hash: 646397026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MovieTextureBaseAsset",
                 rust_offset: offset_of!(MovieStaticState, movie_texture),
             },
             FieldInfoData {
                 name: "MovieName",
+                name_hash: 1720873978,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(MovieStaticState, movie_name),
             },
             FieldInfoData {
                 name: "SubtitleName",
+                name_hash: 428940390,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(MovieStaticState, subtitle_name),
             },
             FieldInfoData {
                 name: "AudioTrackId",
+                name_hash: 3970046769,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(MovieStaticState, audio_track_id),
             },
             FieldInfoData {
                 name: "EnableSubtitles",
+                name_hash: 2563389299,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieStaticState, enable_subtitles),
             },
             FieldInfoData {
                 name: "Loop",
+                name_hash: 2089019673,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieStaticState, r#loop),
             },
             FieldInfoData {
                 name: "Preload",
+                name_hash: 3463266116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieStaticState, preload),
             },
             FieldInfoData {
                 name: "UseSimTime",
+                name_hash: 2478855716,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieStaticState, use_sim_time),
             },
             FieldInfoData {
                 name: "PauseOnEnding",
+                name_hash: 3821927929,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MovieStaticState, pause_on_ending),
             },
             FieldInfoData {
                 name: "ShaderBlockHandles",
+                name_hash: 2334291932,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ShaderParameterBlockHandle-Array",
                 rust_offset: offset_of!(MovieStaticState, shader_block_handles),
             },
             FieldInfoData {
                 name: "ShaderBlockTextures",
+                name_hash: 3498676617,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ShaderBlockTexture-Array",
                 rust_offset: offset_of!(MovieStaticState, shader_block_textures),
             },
             FieldInfoData {
                 name: "TextureCount",
+                name_hash: 2156227705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(MovieStaticState, texture_count),
             },
             FieldInfoData {
                 name: "DecoderThreads",
+                name_hash: 1438475910,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(MovieStaticState, decoder_threads),
             },
             FieldInfoData {
                 name: "StopFrame",
+                name_hash: 382959072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(MovieStaticState, stop_frame),
             },
             FieldInfoData {
                 name: "LanguageOverride",
+                name_hash: 3061006915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LanguageFormat",
                 rust_offset: offset_of!(MovieStaticState, language_override),
             },
             FieldInfoData {
                 name: "IfIDeleteThisOtherStuffBreaks",
+                name_hash: 2148327398,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShaderBlockBool",
                 rust_offset: offset_of!(MovieStaticState, if_i_delete_this_other_stuff_breaks),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(MovieStaticState, field_flag_changed0),
@@ -1505,6 +1601,7 @@ impl TypeObject for MovieStaticState {
 
 pub static MOVIESTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieStaticState-Array",
+    name_hash: 2085931430,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("MovieStaticState"),
@@ -1513,7 +1610,8 @@ pub static MOVIESTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MovieHandle {
 }
 
@@ -1525,11 +1623,13 @@ impl MovieHandleTrait for MovieHandle {
 
 pub static MOVIEHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieHandle",
+    name_hash: 1655637271,
     flags: MemberInfoFlags::new(73),
     module: "MovieBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MovieHandle as Default>::default())),
+            create_boxed: || Box::new(<MovieHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -1559,6 +1659,7 @@ impl TypeObject for MovieHandle {
 
 pub static MOVIEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieHandle-Array",
+    name_hash: 4170395043,
     flags: MemberInfoFlags::new(145),
     module: "MovieBase",
     data: TypeInfoData::Array("MovieHandle"),
@@ -1567,7 +1668,8 @@ pub static MOVIEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UICancelAllSubtitlesMessage {
 }
 
@@ -1579,11 +1681,13 @@ impl UICancelAllSubtitlesMessageTrait for UICancelAllSubtitlesMessage {
 
 pub static UICANCELALLSUBTITLESMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UICancelAllSubtitlesMessage",
+    name_hash: 4130404386,
     flags: MemberInfoFlags::new(36937),
     module: "MovieBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UICancelAllSubtitlesMessage as Default>::default())),
+            create_boxed: || Box::new(<UICancelAllSubtitlesMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1610,7 +1714,8 @@ impl TypeObject for UICancelAllSubtitlesMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UICancelSubtitleMessage {
 }
 
@@ -1622,11 +1727,13 @@ impl UICancelSubtitleMessageTrait for UICancelSubtitleMessage {
 
 pub static UICANCELSUBTITLEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UICancelSubtitleMessage",
+    name_hash: 45154864,
     flags: MemberInfoFlags::new(73),
     module: "MovieBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UICancelSubtitleMessage as Default>::default())),
+            create_boxed: || Box::new(<UICancelSubtitleMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1653,7 +1760,8 @@ impl TypeObject for UICancelSubtitleMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UISubtitleMessage {
 }
 
@@ -1665,11 +1773,13 @@ impl UISubtitleMessageTrait for UISubtitleMessage {
 
 pub static UISUBTITLEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UISubtitleMessage",
+    name_hash: 3281517334,
     flags: MemberInfoFlags::new(73),
     module: "MovieBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UISubtitleMessage as Default>::default())),
+            create_boxed: || Box::new(<UISubtitleMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1696,7 +1806,8 @@ impl TypeObject for UISubtitleMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIPlayVideoMessage {
 }
 
@@ -1708,11 +1819,13 @@ impl UIPlayVideoMessageTrait for UIPlayVideoMessage {
 
 pub static UIPLAYVIDEOMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIPlayVideoMessage",
+    name_hash: 3582159591,
     flags: MemberInfoFlags::new(73),
     module: "MovieBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIPlayVideoMessage as Default>::default())),
+            create_boxed: || Box::new(<UIPlayVideoMessage as Default>::default()),
         },
         fields: &[
         ],

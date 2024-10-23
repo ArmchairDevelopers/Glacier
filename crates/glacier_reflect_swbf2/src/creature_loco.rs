@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -83,7 +84,8 @@ pub(crate) fn register_creature_loco_types(registry: &mut TypeRegistry) {
     registry.register_type(SERVERCREATURELOCOMOTORENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCreatureFollowWaypointsEntity {
     pub _glacier_base: ServerCreatureFollowWaypointSegmentEntity,
 }
@@ -108,12 +110,15 @@ impl super::entity::EntityBusPeerTrait for ServerCreatureFollowWaypointsEntity {
 
 pub static SERVERCREATUREFOLLOWWAYPOINTSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointsEntity",
+    name_hash: 688844889,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCreatureFollowWaypointsEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCreatureFollowWaypointsEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCreatureFollowWaypointsEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -143,6 +148,7 @@ impl TypeObject for ServerCreatureFollowWaypointsEntity {
 
 pub static SERVERCREATUREFOLLOWWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointsEntity-Array",
+    name_hash: 1019854445,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ServerCreatureFollowWaypointsEntity"),
@@ -151,7 +157,8 @@ pub static SERVERCREATUREFOLLOWWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCreatureFollowWaypointSegmentEntity {
     pub _glacier_base: CreatureFollowBaseEntity,
 }
@@ -173,12 +180,15 @@ impl super::entity::EntityBusPeerTrait for ServerCreatureFollowWaypointSegmentEn
 
 pub static SERVERCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointSegmentEntity",
+    name_hash: 4019297577,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCreatureFollowWaypointSegmentEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCreatureFollowWaypointSegmentEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCreatureFollowWaypointSegmentEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -208,6 +218,7 @@ impl TypeObject for ServerCreatureFollowWaypointSegmentEntity {
 
 pub static SERVERCREATUREFOLLOWWAYPOINTSEGMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointSegmentEntity-Array",
+    name_hash: 2653422493,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ServerCreatureFollowWaypointSegmentEntity"),
@@ -216,7 +227,8 @@ pub static SERVERCREATUREFOLLOWWAYPOINTSEGMENTENTITY_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCreatureCollisionGroupEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -235,12 +247,15 @@ impl super::entity::EntityBusPeerTrait for ServerCreatureCollisionGroupEntity {
 
 pub static SERVERCREATURECOLLISIONGROUPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureCollisionGroupEntity",
+    name_hash: 717101145,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCreatureCollisionGroupEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCreatureCollisionGroupEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCreatureCollisionGroupEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -270,6 +285,7 @@ impl TypeObject for ServerCreatureCollisionGroupEntity {
 
 pub static SERVERCREATURECOLLISIONGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureCollisionGroupEntity-Array",
+    name_hash: 2671175277,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ServerCreatureCollisionGroupEntity"),
@@ -278,7 +294,8 @@ pub static SERVERCREATURECOLLISIONGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IMovementProvider {
 }
 
@@ -290,12 +307,15 @@ impl IMovementProviderTrait for IMovementProvider {
 
 pub static IMOVEMENTPROVIDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IMovementProvider",
+    name_hash: 1963913358,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IMovementProvider as Default>::default())),
+            create_boxed: || Box::new(<IMovementProvider as Default>::default()),
         },
         fields: &[
         ],
@@ -325,6 +345,7 @@ impl TypeObject for IMovementProvider {
 
 pub static IMOVEMENTPROVIDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IMovementProvider-Array",
+    name_hash: 4289411514,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("IMovementProvider"),
@@ -333,7 +354,8 @@ pub static IMOVEMENTPROVIDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ISteeringProvider {
 }
 
@@ -345,12 +367,15 @@ impl ISteeringProviderTrait for ISteeringProvider {
 
 pub static ISTEERINGPROVIDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ISteeringProvider",
+    name_hash: 1728881624,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ISteeringProvider as Default>::default())),
+            create_boxed: || Box::new(<ISteeringProvider as Default>::default()),
         },
         fields: &[
         ],
@@ -380,6 +405,7 @@ impl TypeObject for ISteeringProvider {
 
 pub static ISTEERINGPROVIDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ISteeringProvider-Array",
+    name_hash: 266157676,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ISteeringProvider"),
@@ -388,7 +414,8 @@ pub static ISTEERINGPROVIDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureWaypointPlayAnimation {
     pub _glacier_base: CreatureWaypoint,
 }
@@ -404,12 +431,15 @@ impl CreatureWaypointTrait for CreatureWaypointPlayAnimation {
 
 pub static CREATUREWAYPOINT_PLAYANIMATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint_PlayAnimation",
+    name_hash: 3537698760,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREWAYPOINT_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureWaypointPlayAnimation, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureWaypointPlayAnimation as Default>::default())),
+            create_boxed: || Box::new(<CreatureWaypointPlayAnimation as Default>::default()),
         },
         fields: &[
         ],
@@ -439,6 +469,7 @@ impl TypeObject for CreatureWaypointPlayAnimation {
 
 pub static CREATUREWAYPOINT_PLAYANIMATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint_PlayAnimation-Array",
+    name_hash: 904909436,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureWaypoint_PlayAnimation"),
@@ -447,7 +478,8 @@ pub static CREATUREWAYPOINT_PLAYANIMATION_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureWaypointPause {
     pub _glacier_base: CreatureWaypoint,
 }
@@ -463,12 +495,15 @@ impl CreatureWaypointTrait for CreatureWaypointPause {
 
 pub static CREATUREWAYPOINT_PAUSE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint_Pause",
+    name_hash: 3214906184,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREWAYPOINT_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureWaypointPause, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureWaypointPause as Default>::default())),
+            create_boxed: || Box::new(<CreatureWaypointPause as Default>::default()),
         },
         fields: &[
         ],
@@ -498,6 +533,7 @@ impl TypeObject for CreatureWaypointPause {
 
 pub static CREATUREWAYPOINT_PAUSE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint_Pause-Array",
+    name_hash: 1513293308,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureWaypoint_Pause"),
@@ -506,7 +542,8 @@ pub static CREATUREWAYPOINT_PAUSE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureWaypoint {
 }
 
@@ -518,12 +555,15 @@ impl CreatureWaypointTrait for CreatureWaypoint {
 
 pub static CREATUREWAYPOINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint",
+    name_hash: 4085496549,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureWaypoint as Default>::default())),
+            create_boxed: || Box::new(<CreatureWaypoint as Default>::default()),
         },
         fields: &[
         ],
@@ -553,6 +593,7 @@ impl TypeObject for CreatureWaypoint {
 
 pub static CREATUREWAYPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureWaypoint-Array",
+    name_hash: 1278870481,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureWaypoint"),
@@ -561,7 +602,8 @@ pub static CREATUREWAYPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLProceduralMotion {
     pub _glacier_base: IMovementProvider,
 }
@@ -577,12 +619,15 @@ impl IMovementProviderTrait for CLProceduralMotion {
 
 pub static CL_PROCEDURALMOTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_ProceduralMotion",
+    name_hash: 949260910,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IMOVEMENTPROVIDER_TYPE_INFO),
+        super_class_offset: offset_of!(CLProceduralMotion, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLProceduralMotion as Default>::default())),
+            create_boxed: || Box::new(<CLProceduralMotion as Default>::default()),
         },
         fields: &[
         ],
@@ -612,6 +657,7 @@ impl TypeObject for CLProceduralMotion {
 
 pub static CL_PROCEDURALMOTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_ProceduralMotion-Array",
+    name_hash: 3098446682,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CL_ProceduralMotion"),
@@ -620,7 +666,8 @@ pub static CL_PROCEDURALMOTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLCurveSteering {
     pub _glacier_base: ISteeringProvider,
 }
@@ -636,12 +683,15 @@ impl ISteeringProviderTrait for CLCurveSteering {
 
 pub static CL_CURVESTEERING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_CurveSteering",
+    name_hash: 3368270615,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ISTEERINGPROVIDER_TYPE_INFO),
+        super_class_offset: offset_of!(CLCurveSteering, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLCurveSteering as Default>::default())),
+            create_boxed: || Box::new(<CLCurveSteering as Default>::default()),
         },
         fields: &[
         ],
@@ -671,6 +721,7 @@ impl TypeObject for CLCurveSteering {
 
 pub static CL_CURVESTEERING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CL_CurveSteering-Array",
+    name_hash: 2228773795,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CL_CurveSteering"),
@@ -679,7 +730,8 @@ pub static CL_CURVESTEERING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLColAvoidingSteering {
     pub _glacier_base: CLCurveSteering,
 }
@@ -698,12 +750,15 @@ impl ISteeringProviderTrait for CLColAvoidingSteering {
 
 pub static CLCOLAVOIDINGSTEERING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLColAvoidingSteering",
+    name_hash: 601321930,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CL_CURVESTEERING_TYPE_INFO),
+        super_class_offset: offset_of!(CLColAvoidingSteering, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLColAvoidingSteering as Default>::default())),
+            create_boxed: || Box::new(<CLColAvoidingSteering as Default>::default()),
         },
         fields: &[
         ],
@@ -733,6 +788,7 @@ impl TypeObject for CLColAvoidingSteering {
 
 pub static CLCOLAVOIDINGSTEERING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLColAvoidingSteering-Array",
+    name_hash: 3819978110,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CLColAvoidingSteering"),
@@ -741,7 +797,8 @@ pub static CLCOLAVOIDINGSTEERING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IAssessor {
 }
 
@@ -753,12 +810,15 @@ impl IAssessorTrait for IAssessor {
 
 pub static IASSESSOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IAssessor",
+    name_hash: 2483990421,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IAssessor as Default>::default())),
+            create_boxed: || Box::new(<IAssessor as Default>::default()),
         },
         fields: &[
         ],
@@ -788,6 +848,7 @@ impl TypeObject for IAssessor {
 
 pub static IASSESSOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IAssessor-Array",
+    name_hash: 2221948705,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("IAssessor"),
@@ -796,7 +857,8 @@ pub static IASSESSOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLClientState {
     pub _glacier_base: CLState,
 }
@@ -815,12 +877,15 @@ impl IAssessorTrait for CLClientState {
 
 pub static CLCLIENTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLClientState",
+    name_hash: 3388397284,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLSTATE_TYPE_INFO),
+        super_class_offset: offset_of!(CLClientState, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLClientState as Default>::default())),
+            create_boxed: || Box::new(<CLClientState as Default>::default()),
         },
         fields: &[
         ],
@@ -850,6 +915,7 @@ impl TypeObject for CLClientState {
 
 pub static CLCLIENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLClientState-Array",
+    name_hash: 1688640208,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CLClientState"),
@@ -858,7 +924,8 @@ pub static CLCLIENTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLState {
     pub _glacier_base: IAssessor,
 }
@@ -874,12 +941,15 @@ impl IAssessorTrait for CLState {
 
 pub static CLSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLState",
+    name_hash: 866975357,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IASSESSOR_TYPE_INFO),
+        super_class_offset: offset_of!(CLState, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLState as Default>::default())),
+            create_boxed: || Box::new(<CLState as Default>::default()),
         },
         fields: &[
         ],
@@ -909,6 +979,7 @@ impl TypeObject for CLState {
 
 pub static CLSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLState-Array",
+    name_hash: 1413090121,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CLState"),
@@ -917,7 +988,8 @@ pub static CLSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLConduitState {
     pub _glacier_base: CLState,
 }
@@ -936,12 +1008,15 @@ impl IAssessorTrait for CLConduitState {
 
 pub static CLCONDUITSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLConduitState",
+    name_hash: 757824691,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLSTATE_TYPE_INFO),
+        super_class_offset: offset_of!(CLConduitState, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLConduitState as Default>::default())),
+            create_boxed: || Box::new(<CLConduitState as Default>::default()),
         },
         fields: &[
         ],
@@ -971,6 +1046,7 @@ impl TypeObject for CLConduitState {
 
 pub static CLCONDUITSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLConduitState-Array",
+    name_hash: 2312595463,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CLConduitState"),
@@ -979,7 +1055,8 @@ pub static CLCONDUITSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCreatureSpawnEntity {
     pub _glacier_base: super::dice_commons::ClientBlueprintSpawnEntity,
 }
@@ -1007,12 +1084,15 @@ impl super::entity::EntityBusPeerTrait for ClientCreatureSpawnEntity {
 
 pub static CLIENTCREATURESPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureSpawnEntity",
+    name_hash: 419339743,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::dice_commons::CLIENTBLUEPRINTSPAWNENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCreatureSpawnEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCreatureSpawnEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCreatureSpawnEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1042,6 +1122,7 @@ impl TypeObject for ClientCreatureSpawnEntity {
 
 pub static CLIENTCREATURESPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureSpawnEntity-Array",
+    name_hash: 1997632235,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ClientCreatureSpawnEntity"),
@@ -1050,7 +1131,8 @@ pub static CLIENTCREATURESPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCreatureSpawnEntity {
     pub _glacier_base: super::dice_commons::ServerBlueprintSpawnEntity,
 }
@@ -1078,12 +1160,15 @@ impl super::entity::EntityBusPeerTrait for ServerCreatureSpawnEntity {
 
 pub static SERVERCREATURESPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureSpawnEntity",
+    name_hash: 2055447555,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::dice_commons::SERVERBLUEPRINTSPAWNENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCreatureSpawnEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCreatureSpawnEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCreatureSpawnEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1113,6 +1198,7 @@ impl TypeObject for ServerCreatureSpawnEntity {
 
 pub static SERVERCREATURESPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureSpawnEntity-Array",
+    name_hash: 441489079,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ServerCreatureSpawnEntity"),
@@ -1121,7 +1207,8 @@ pub static SERVERCREATURESPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureLocoEntity {
     pub _glacier_base: super::a_i_tools::LocoEntity,
 }
@@ -1143,12 +1230,15 @@ impl super::entity::EntityBusPeerTrait for CreatureLocoEntity {
 
 pub static CREATURELOCOENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoEntity",
+    name_hash: 1897448306,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::a_i_tools::LOCOENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureLocoEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureLocoEntity as Default>::default())),
+            create_boxed: || Box::new(<CreatureLocoEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1178,6 +1268,7 @@ impl TypeObject for CreatureLocoEntity {
 
 pub static CREATURELOCOENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureLocoEntity-Array",
+    name_hash: 2510764614,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureLocoEntity"),
@@ -1186,7 +1277,8 @@ pub static CREATURELOCOENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowWaypointUnspawnEntity {
     pub _glacier_base: CreatureFollowBaseEntity,
 }
@@ -1208,12 +1300,15 @@ impl super::entity::EntityBusPeerTrait for CreatureFollowWaypointUnspawnEntity {
 
 pub static CREATUREFOLLOWWAYPOINTUNSPAWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointUnspawnEntity",
+    name_hash: 260601551,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowWaypointUnspawnEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowWaypointUnspawnEntity as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowWaypointUnspawnEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1243,6 +1338,7 @@ impl TypeObject for CreatureFollowWaypointUnspawnEntity {
 
 pub static CREATUREFOLLOWWAYPOINTUNSPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointUnspawnEntity-Array",
+    name_hash: 3192341499,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureFollowWaypointUnspawnEntity"),
@@ -1251,7 +1347,8 @@ pub static CREATUREFOLLOWWAYPOINTUNSPAWNENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowBaseEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1270,12 +1367,15 @@ impl super::entity::EntityBusPeerTrait for CreatureFollowBaseEntity {
 
 pub static CREATUREFOLLOWBASEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowBaseEntity",
+    name_hash: 3965562297,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowBaseEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowBaseEntity as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowBaseEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1305,6 +1405,7 @@ impl TypeObject for CreatureFollowBaseEntity {
 
 pub static CREATUREFOLLOWBASEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowBaseEntity-Array",
+    name_hash: 4101061645,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureFollowBaseEntity"),
@@ -1313,7 +1414,8 @@ pub static CREATUREFOLLOWBASEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCreatureFollowWaypointProviderEntity {
     pub _glacier_base: CreatureBaseWaypointProviderEntity,
 }
@@ -1335,12 +1437,15 @@ impl super::entity::EntityBusPeerTrait for ServerCreatureFollowWaypointProviderE
 
 pub static SERVERCREATUREFOLLOWWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointProviderEntity",
+    name_hash: 1239115595,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREBASEWAYPOINTPROVIDERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCreatureFollowWaypointProviderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCreatureFollowWaypointProviderEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCreatureFollowWaypointProviderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1370,6 +1475,7 @@ impl TypeObject for ServerCreatureFollowWaypointProviderEntity {
 
 pub static SERVERCREATUREFOLLOWWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureFollowWaypointProviderEntity-Array",
+    name_hash: 3807176319,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ServerCreatureFollowWaypointProviderEntity"),
@@ -1378,7 +1484,8 @@ pub static SERVERCREATUREFOLLOWWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCreatureFollowWaypointProviderEntity {
     pub _glacier_base: CreatureBaseWaypointProviderEntity,
 }
@@ -1400,12 +1507,15 @@ impl super::entity::EntityBusPeerTrait for ClientCreatureFollowWaypointProviderE
 
 pub static CLIENTCREATUREFOLLOWWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointProviderEntity",
+    name_hash: 3743477271,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREBASEWAYPOINTPROVIDERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCreatureFollowWaypointProviderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCreatureFollowWaypointProviderEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCreatureFollowWaypointProviderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1435,6 +1545,7 @@ impl TypeObject for ClientCreatureFollowWaypointProviderEntity {
 
 pub static CLIENTCREATUREFOLLOWWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointProviderEntity-Array",
+    name_hash: 118478499,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ClientCreatureFollowWaypointProviderEntity"),
@@ -1443,7 +1554,8 @@ pub static CLIENTCREATUREFOLLOWWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowWaypointClosestChooserEntity {
     pub _glacier_base: CreatureFollowBaseEntity,
 }
@@ -1465,12 +1577,15 @@ impl super::entity::EntityBusPeerTrait for CreatureFollowWaypointClosestChooserE
 
 pub static CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointClosestChooserEntity",
+    name_hash: 3784309841,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowWaypointClosestChooserEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowWaypointClosestChooserEntity as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowWaypointClosestChooserEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1500,6 +1615,7 @@ impl TypeObject for CreatureFollowWaypointClosestChooserEntity {
 
 pub static CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointClosestChooserEntity-Array",
+    name_hash: 174354021,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureFollowWaypointClosestChooserEntity"),
@@ -1508,7 +1624,8 @@ pub static CREATUREFOLLOWWAYPOINTCLOSESTCHOOSERENTITY_ARRAY_TYPE_INFO: &'static 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowWaypointOccupancyChooserEntity {
     pub _glacier_base: CreatureFollowBaseEntity,
 }
@@ -1530,12 +1647,15 @@ impl super::entity::EntityBusPeerTrait for CreatureFollowWaypointOccupancyChoose
 
 pub static CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointOccupancyChooserEntity",
+    name_hash: 245394335,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowWaypointOccupancyChooserEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowWaypointOccupancyChooserEntity as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowWaypointOccupancyChooserEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1565,6 +1685,7 @@ impl TypeObject for CreatureFollowWaypointOccupancyChooserEntity {
 
 pub static CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointOccupancyChooserEntity-Array",
+    name_hash: 2299973675,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureFollowWaypointOccupancyChooserEntity"),
@@ -1573,7 +1694,8 @@ pub static CREATUREFOLLOWWAYPOINTOCCUPANCYCHOOSERENTITY_ARRAY_TYPE_INFO: &'stati
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureFollowWaypointBoolChooserEntity {
     pub _glacier_base: CreatureFollowBaseEntity,
 }
@@ -1595,12 +1717,15 @@ impl super::entity::EntityBusPeerTrait for CreatureFollowWaypointBoolChooserEnti
 
 pub static CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointBoolChooserEntity",
+    name_hash: 3105311406,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureFollowWaypointBoolChooserEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureFollowWaypointBoolChooserEntity as Default>::default())),
+            create_boxed: || Box::new(<CreatureFollowWaypointBoolChooserEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1630,6 +1755,7 @@ impl TypeObject for CreatureFollowWaypointBoolChooserEntity {
 
 pub static CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureFollowWaypointBoolChooserEntity-Array",
+    name_hash: 909816602,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureFollowWaypointBoolChooserEntity"),
@@ -1638,7 +1764,8 @@ pub static CREATUREFOLLOWWAYPOINTBOOLCHOOSERENTITY_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureConfigurationProviderEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1657,12 +1784,15 @@ impl super::entity::EntityBusPeerTrait for CreatureConfigurationProviderEntity {
 
 pub static CREATURECONFIGURATIONPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureConfigurationProviderEntity",
+    name_hash: 1848491596,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureConfigurationProviderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureConfigurationProviderEntity as Default>::default())),
+            create_boxed: || Box::new(<CreatureConfigurationProviderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1692,6 +1822,7 @@ impl TypeObject for CreatureConfigurationProviderEntity {
 
 pub static CREATURECONFIGURATIONPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureConfigurationProviderEntity-Array",
+    name_hash: 1689591544,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureConfigurationProviderEntity"),
@@ -1700,7 +1831,8 @@ pub static CREATURECONFIGURATIONPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureBaseWaypointProviderEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1719,12 +1851,15 @@ impl super::entity::EntityBusPeerTrait for CreatureBaseWaypointProviderEntity {
 
 pub static CREATUREBASEWAYPOINTPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureBaseWaypointProviderEntity",
+    name_hash: 1830909994,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureBaseWaypointProviderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureBaseWaypointProviderEntity as Default>::default())),
+            create_boxed: || Box::new(<CreatureBaseWaypointProviderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1754,6 +1889,7 @@ impl TypeObject for CreatureBaseWaypointProviderEntity {
 
 pub static CREATUREBASEWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureBaseWaypointProviderEntity-Array",
+    name_hash: 2723238558,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureBaseWaypointProviderEntity"),
@@ -1762,7 +1898,8 @@ pub static CREATUREBASEWAYPOINTPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLInfluenceFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1781,12 +1918,15 @@ impl super::entity::EntityBusPeerTrait for CLInfluenceFilterEntity {
 
 pub static CLINFLUENCEFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceFilterEntity",
+    name_hash: 3654966884,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CLInfluenceFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLInfluenceFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<CLInfluenceFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1816,6 +1956,7 @@ impl TypeObject for CLInfluenceFilterEntity {
 
 pub static CLINFLUENCEFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceFilterEntity-Array",
+    name_hash: 99730000,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CLInfluenceFilterEntity"),
@@ -1824,7 +1965,8 @@ pub static CLINFLUENCEFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLInfluenceCompareEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1843,12 +1985,15 @@ impl super::entity::EntityBusPeerTrait for CLInfluenceCompareEntity {
 
 pub static CLINFLUENCECOMPAREENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceCompareEntity",
+    name_hash: 2893352739,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CLInfluenceCompareEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLInfluenceCompareEntity as Default>::default())),
+            create_boxed: || Box::new(<CLInfluenceCompareEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1878,6 +2023,7 @@ impl TypeObject for CLInfluenceCompareEntity {
 
 pub static CLINFLUENCECOMPAREENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLInfluenceCompareEntity-Array",
+    name_hash: 1184407,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CLInfluenceCompareEntity"),
@@ -1886,7 +2032,8 @@ pub static CLINFLUENCECOMPAREENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CLApplyInfluenceEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1905,12 +2052,15 @@ impl super::entity::EntityBusPeerTrait for CLApplyInfluenceEntity {
 
 pub static CLAPPLYINFLUENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLApplyInfluenceEntity",
+    name_hash: 1239760432,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CLApplyInfluenceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CLApplyInfluenceEntity as Default>::default())),
+            create_boxed: || Box::new(<CLApplyInfluenceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1940,6 +2090,7 @@ impl TypeObject for CLApplyInfluenceEntity {
 
 pub static CLAPPLYINFLUENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CLApplyInfluenceEntity-Array",
+    name_hash: 1126992772,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CLApplyInfluenceEntity"),
@@ -1948,7 +2099,8 @@ pub static CLAPPLYINFLUENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCreatureLocoMotorEntity {
     pub _glacier_base: CreatureLocoEntity,
 }
@@ -1973,12 +2125,15 @@ impl super::entity::EntityBusPeerTrait for ClientCreatureLocoMotorEntity {
 
 pub static CLIENTCREATURELOCOMOTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureLocoMotorEntity",
+    name_hash: 223047424,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATURELOCOENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCreatureLocoMotorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCreatureLocoMotorEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCreatureLocoMotorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2008,6 +2163,7 @@ impl TypeObject for ClientCreatureLocoMotorEntity {
 
 pub static CLIENTCREATURELOCOMOTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureLocoMotorEntity-Array",
+    name_hash: 2122405172,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ClientCreatureLocoMotorEntity"),
@@ -2016,7 +2172,8 @@ pub static CLIENTCREATURELOCOMOTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCreatureFollowWaypointsEntity {
     pub _glacier_base: ClientCreatureFollowWaypointSegmentEntity,
 }
@@ -2041,12 +2198,15 @@ impl super::entity::EntityBusPeerTrait for ClientCreatureFollowWaypointsEntity {
 
 pub static CLIENTCREATUREFOLLOWWAYPOINTSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointsEntity",
+    name_hash: 3090853637,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCreatureFollowWaypointsEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCreatureFollowWaypointsEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCreatureFollowWaypointsEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2076,6 +2236,7 @@ impl TypeObject for ClientCreatureFollowWaypointsEntity {
 
 pub static CLIENTCREATUREFOLLOWWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointsEntity-Array",
+    name_hash: 3437958833,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ClientCreatureFollowWaypointsEntity"),
@@ -2084,7 +2245,8 @@ pub static CLIENTCREATUREFOLLOWWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCreatureFollowWaypointSegmentEntity {
     pub _glacier_base: CreatureFollowBaseEntity,
 }
@@ -2106,12 +2268,15 @@ impl super::entity::EntityBusPeerTrait for ClientCreatureFollowWaypointSegmentEn
 
 pub static CLIENTCREATUREFOLLOWWAYPOINTSEGMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointSegmentEntity",
+    name_hash: 204493557,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATUREFOLLOWBASEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCreatureFollowWaypointSegmentEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCreatureFollowWaypointSegmentEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCreatureFollowWaypointSegmentEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2141,6 +2306,7 @@ impl TypeObject for ClientCreatureFollowWaypointSegmentEntity {
 
 pub static CLIENTCREATUREFOLLOWWAYPOINTSEGMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureFollowWaypointSegmentEntity-Array",
+    name_hash: 2576049089,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ClientCreatureFollowWaypointSegmentEntity"),
@@ -2149,7 +2315,8 @@ pub static CLIENTCREATUREFOLLOWWAYPOINTSEGMENTENTITY_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCreatureCollisionGroupEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2168,12 +2335,15 @@ impl super::entity::EntityBusPeerTrait for ClientCreatureCollisionGroupEntity {
 
 pub static CLIENTCREATURECOLLISIONGROUPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureCollisionGroupEntity",
+    name_hash: 3908193285,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCreatureCollisionGroupEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCreatureCollisionGroupEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientCreatureCollisionGroupEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2203,6 +2373,7 @@ impl TypeObject for ClientCreatureCollisionGroupEntity {
 
 pub static CLIENTCREATURECOLLISIONGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCreatureCollisionGroupEntity-Array",
+    name_hash: 3794039729,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ClientCreatureCollisionGroupEntity"),
@@ -2211,7 +2382,8 @@ pub static CLIENTCREATURECOLLISIONGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreatureSpawnEntityData {
     pub _glacier_base: super::dice_commons_shared::BlueprintSpawnReferenceObjectData,
 }
@@ -2292,16 +2464,16 @@ impl super::entity::ReferenceObjectDataTrait for CreatureSpawnEntityData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
@@ -2368,12 +2540,15 @@ impl super::core::DataContainerTrait for CreatureSpawnEntityData {
 
 pub static CREATURESPAWNENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureSpawnEntityData",
+    name_hash: 1048880438,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::dice_commons_shared::BLUEPRINTSPAWNREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreatureSpawnEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreatureSpawnEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreatureSpawnEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -2403,6 +2578,7 @@ impl TypeObject for CreatureSpawnEntityData {
 
 pub static CREATURESPAWNENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreatureSpawnEntityData-Array",
+    name_hash: 1559583106,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("CreatureSpawnEntityData"),
@@ -2411,7 +2587,8 @@ pub static CREATURESPAWNENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCreatureLocoMotorEntity {
     pub _glacier_base: CreatureLocoEntity,
 }
@@ -2436,12 +2613,15 @@ impl super::entity::EntityBusPeerTrait for ServerCreatureLocoMotorEntity {
 
 pub static SERVERCREATURELOCOMOTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureLocoMotorEntity",
+    name_hash: 4168452444,
     flags: MemberInfoFlags::new(101),
     module: "CreatureLoco",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CREATURELOCOENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCreatureLocoMotorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCreatureLocoMotorEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCreatureLocoMotorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2471,6 +2651,7 @@ impl TypeObject for ServerCreatureLocoMotorEntity {
 
 pub static SERVERCREATURELOCOMOTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreatureLocoMotorEntity-Array",
+    name_hash: 2247881192,
     flags: MemberInfoFlags::new(145),
     module: "CreatureLoco",
     data: TypeInfoData::Array("ServerCreatureLocoMotorEntity"),

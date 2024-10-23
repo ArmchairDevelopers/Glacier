@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -25,7 +26,8 @@ pub(crate) fn register_wind_types(registry: &mut TypeRegistry) {
     registry.register_type(LOCALWINDFORCETYPE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Baked3DAs2x2DTexWindForceBase {
     pub position: super::core::Vec3,
     pub direction_x: super::core::Vec3,
@@ -36,8 +38,8 @@ pub struct Baked3DAs2x2DTexWindForceBase {
     pub scaled_direction_z: super::core::Vec3,
     pub texture_velocity_z_x_scale: super::core::Vec3,
     pub texture_velocity_z_y_scale: super::core::Vec3,
-    pub texture_velocity_z_x: Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>,
-    pub texture_velocity_z_y: Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>,
+    pub texture_velocity_z_x: Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>,
+    pub texture_velocity_z_y: Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>,
     pub aabb_min_x: f32,
     pub aabb_max_x: f32,
     pub aabb_min_y: f32,
@@ -75,10 +77,10 @@ pub trait Baked3DAs2x2DTexWindForceBaseTrait: TypeObject {
     fn texture_velocity_z_x_scale_mut(&mut self) -> &mut super::core::Vec3;
     fn texture_velocity_z_y_scale(&self) -> &super::core::Vec3;
     fn texture_velocity_z_y_scale_mut(&mut self) -> &mut super::core::Vec3;
-    fn texture_velocity_z_x(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
-    fn texture_velocity_z_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
-    fn texture_velocity_z_y(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
-    fn texture_velocity_z_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture_velocity_z_x(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
+    fn texture_velocity_z_x_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
+    fn texture_velocity_z_y(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
+    fn texture_velocity_z_y_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
     fn aabb_min_x(&self) -> &f32;
     fn aabb_min_x_mut(&mut self) -> &mut f32;
     fn aabb_max_x(&self) -> &f32;
@@ -168,16 +170,16 @@ impl Baked3DAs2x2DTexWindForceBaseTrait for Baked3DAs2x2DTexWindForceBase {
     fn texture_velocity_z_y_scale_mut(&mut self) -> &mut super::core::Vec3 {
         &mut self.texture_velocity_z_y_scale
     }
-    fn texture_velocity_z_x(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn texture_velocity_z_x(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &self.texture_velocity_z_x
     }
-    fn texture_velocity_z_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn texture_velocity_z_x_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &mut self.texture_velocity_z_x
     }
-    fn texture_velocity_z_y(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn texture_velocity_z_y(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &self.texture_velocity_z_y
     }
-    fn texture_velocity_z_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn texture_velocity_z_y_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &mut self.texture_velocity_z_y
     }
     fn aabb_min_x(&self) -> &f32 {
@@ -280,171 +282,200 @@ impl Baked3DAs2x2DTexWindForceBaseTrait for Baked3DAs2x2DTexWindForceBase {
 
 pub static BAKED3DAS2X2DTEXWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Baked3DAs2x2DTexWindForceBase",
+    name_hash: 901774912,
     flags: MemberInfoFlags::new(73),
     module: "Wind",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Baked3DAs2x2DTexWindForceBase as Default>::default())),
+            create_boxed: || Box::new(<Baked3DAs2x2DTexWindForceBase as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Position",
+                name_hash: 3402582524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, position),
             },
             FieldInfoData {
                 name: "DirectionX",
+                name_hash: 3166002456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, direction_x),
             },
             FieldInfoData {
                 name: "DirectionY",
+                name_hash: 3166002457,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, direction_y),
             },
             FieldInfoData {
                 name: "DirectionZ",
+                name_hash: 3166002458,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, direction_z),
             },
             FieldInfoData {
                 name: "ScaledDirectionX",
+                name_hash: 3368698436,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, scaled_direction_x),
             },
             FieldInfoData {
                 name: "ScaledDirectionY",
+                name_hash: 3368698437,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, scaled_direction_y),
             },
             FieldInfoData {
                 name: "ScaledDirectionZ",
+                name_hash: 3368698438,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, scaled_direction_z),
             },
             FieldInfoData {
                 name: "TextureVelocityZXScale",
+                name_hash: 117516951,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, texture_velocity_z_x_scale),
             },
             FieldInfoData {
                 name: "TextureVelocityZYScale",
+                name_hash: 80757686,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, texture_velocity_z_y_scale),
             },
             FieldInfoData {
                 name: "TextureVelocityZX",
+                name_hash: 2329830479,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, texture_velocity_z_x),
             },
             FieldInfoData {
                 name: "TextureVelocityZY",
+                name_hash: 2329830478,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, texture_velocity_z_y),
             },
             FieldInfoData {
                 name: "AabbMinX",
+                name_hash: 1616335543,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_min_x),
             },
             FieldInfoData {
                 name: "AabbMaxX",
+                name_hash: 1616344169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_max_x),
             },
             FieldInfoData {
                 name: "AabbMinY",
+                name_hash: 1616335542,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_min_y),
             },
             FieldInfoData {
                 name: "AabbMaxY",
+                name_hash: 1616344168,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_max_y),
             },
             FieldInfoData {
                 name: "AabbMinZ",
+                name_hash: 1616335541,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_min_z),
             },
             FieldInfoData {
                 name: "AabbMaxZ",
+                name_hash: 1616344171,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, aabb_max_z),
             },
             FieldInfoData {
                 name: "InvAttenuation",
+                name_hash: 2881120982,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, inv_attenuation),
             },
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, id),
             },
             FieldInfoData {
                 name: "Groups",
+                name_hash: 2573340009,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, groups),
             },
             FieldInfoData {
                 name: "Strength",
+                name_hash: 3531643328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, strength),
             },
             FieldInfoData {
                 name: "Variation",
+                name_hash: 2945980116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, variation),
             },
             FieldInfoData {
                 name: "VariationRate",
+                name_hash: 1485055286,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, variation_rate),
             },
             FieldInfoData {
                 name: "MicroVariation",
+                name_hash: 880089358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, micro_variation),
             },
             FieldInfoData {
                 name: "Hardness",
+                name_hash: 3328149841,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, hardness),
             },
             FieldInfoData {
                 name: "ForceAsInstantVelocity",
+                name_hash: 381884134,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, force_as_instant_velocity),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(Baked3DAs2x2DTexWindForceBase, field_flag_changed0),
@@ -476,6 +507,7 @@ impl TypeObject for Baked3DAs2x2DTexWindForceBase {
 
 pub static BAKED3DAS2X2DTEXWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Baked3DAs2x2DTexWindForceBase-Array",
+    name_hash: 1027101940,
     flags: MemberInfoFlags::new(145),
     module: "Wind",
     data: TypeInfoData::Array("Baked3DAs2x2DTexWindForceBase"),
@@ -484,7 +516,8 @@ pub static BAKED3DAS2X2DTEXWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConeWindForceBase {
     pub position: super::core::Vec3,
     pub direction: super::core::Vec3,
@@ -631,99 +664,116 @@ impl ConeWindForceBaseTrait for ConeWindForceBase {
 
 pub static CONEWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConeWindForceBase",
+    name_hash: 4105193054,
     flags: MemberInfoFlags::new(36937),
     module: "Wind",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConeWindForceBase as Default>::default())),
+            create_boxed: || Box::new(<ConeWindForceBase as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Position",
+                name_hash: 3402582524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ConeWindForceBase, position),
             },
             FieldInfoData {
                 name: "Direction",
+                name_hash: 2698949952,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ConeWindForceBase, direction),
             },
             FieldInfoData {
                 name: "InnerRadius",
+                name_hash: 3334193859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, inner_radius),
             },
             FieldInfoData {
                 name: "OuterRadius",
+                name_hash: 3440386404,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, outer_radius),
             },
             FieldInfoData {
                 name: "CosInnerAngle",
+                name_hash: 1650105829,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, cos_inner_angle),
             },
             FieldInfoData {
                 name: "CosOuterAngle",
+                name_hash: 2821452258,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, cos_outer_angle),
             },
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ConeWindForceBase, id),
             },
             FieldInfoData {
                 name: "Groups",
+                name_hash: 2573340009,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ConeWindForceBase, groups),
             },
             FieldInfoData {
                 name: "Strength",
+                name_hash: 3531643328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, strength),
             },
             FieldInfoData {
                 name: "Variation",
+                name_hash: 2945980116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, variation),
             },
             FieldInfoData {
                 name: "VariationRate",
+                name_hash: 1485055286,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, variation_rate),
             },
             FieldInfoData {
                 name: "MicroVariation",
+                name_hash: 880089358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, micro_variation),
             },
             FieldInfoData {
                 name: "Hardness",
+                name_hash: 3328149841,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, hardness),
             },
             FieldInfoData {
                 name: "ForceAsInstantVelocity",
+                name_hash: 381884134,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConeWindForceBase, force_as_instant_velocity),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(ConeWindForceBase, field_flag_changed0),
@@ -755,6 +805,7 @@ impl TypeObject for ConeWindForceBase {
 
 pub static CONEWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConeWindForceBase-Array",
+    name_hash: 2663966698,
     flags: MemberInfoFlags::new(145),
     module: "Wind",
     data: TypeInfoData::Array("ConeWindForceBase"),
@@ -763,7 +814,8 @@ pub static CONEWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SphereWindForceBase {
     pub position: super::core::Vec3,
     pub radius: f32,
@@ -874,75 +926,88 @@ impl SphereWindForceBaseTrait for SphereWindForceBase {
 
 pub static SPHEREWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereWindForceBase",
+    name_hash: 3981527040,
     flags: MemberInfoFlags::new(36937),
     module: "Wind",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SphereWindForceBase as Default>::default())),
+            create_boxed: || Box::new(<SphereWindForceBase as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Position",
+                name_hash: 3402582524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(SphereWindForceBase, position),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, radius),
             },
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(SphereWindForceBase, id),
             },
             FieldInfoData {
                 name: "Groups",
+                name_hash: 2573340009,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(SphereWindForceBase, groups),
             },
             FieldInfoData {
                 name: "Strength",
+                name_hash: 3531643328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, strength),
             },
             FieldInfoData {
                 name: "Variation",
+                name_hash: 2945980116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, variation),
             },
             FieldInfoData {
                 name: "VariationRate",
+                name_hash: 1485055286,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, variation_rate),
             },
             FieldInfoData {
                 name: "MicroVariation",
+                name_hash: 880089358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, micro_variation),
             },
             FieldInfoData {
                 name: "Hardness",
+                name_hash: 3328149841,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, hardness),
             },
             FieldInfoData {
                 name: "ForceAsInstantVelocity",
+                name_hash: 381884134,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SphereWindForceBase, force_as_instant_velocity),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(SphereWindForceBase, field_flag_changed0),
@@ -974,6 +1039,7 @@ impl TypeObject for SphereWindForceBase {
 
 pub static SPHEREWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereWindForceBase-Array",
+    name_hash: 2881875508,
     flags: MemberInfoFlags::new(145),
     module: "Wind",
     data: TypeInfoData::Array("SphereWindForceBase"),
@@ -982,7 +1048,8 @@ pub static SPHEREWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocalWindForce {
     pub id: u32,
     pub groups: u32,
@@ -1066,57 +1133,67 @@ impl LocalWindForceTrait for LocalWindForce {
 
 pub static LOCALWINDFORCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForce",
+    name_hash: 926927585,
     flags: MemberInfoFlags::new(36937),
     module: "Wind",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocalWindForce as Default>::default())),
+            create_boxed: || Box::new(<LocalWindForce as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(LocalWindForce, id),
             },
             FieldInfoData {
                 name: "Groups",
+                name_hash: 2573340009,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(LocalWindForce, groups),
             },
             FieldInfoData {
                 name: "Strength",
+                name_hash: 3531643328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, strength),
             },
             FieldInfoData {
                 name: "Variation",
+                name_hash: 2945980116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, variation),
             },
             FieldInfoData {
                 name: "VariationRate",
+                name_hash: 1485055286,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, variation_rate),
             },
             FieldInfoData {
                 name: "MicroVariation",
+                name_hash: 880089358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, micro_variation),
             },
             FieldInfoData {
                 name: "Hardness",
+                name_hash: 3328149841,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, hardness),
             },
             FieldInfoData {
                 name: "ForceAsInstantVelocity",
+                name_hash: 381884134,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LocalWindForce, force_as_instant_velocity),
@@ -1148,6 +1225,7 @@ impl TypeObject for LocalWindForce {
 
 pub static LOCALWINDFORCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForce-Array",
+    name_hash: 4018300373,
     flags: MemberInfoFlags::new(145),
     module: "Wind",
     data: TypeInfoData::Array("LocalWindForce"),
@@ -1156,7 +1234,8 @@ pub static LOCALWINDFORCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DirectionWindForceBase {
     pub direction: super::core::Vec3,
     pub strength: f32,
@@ -1249,63 +1328,74 @@ impl DirectionWindForceBaseTrait for DirectionWindForceBase {
 
 pub static DIRECTIONWINDFORCEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DirectionWindForceBase",
+    name_hash: 1175222108,
     flags: MemberInfoFlags::new(36937),
     module: "Wind",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DirectionWindForceBase as Default>::default())),
+            create_boxed: || Box::new(<DirectionWindForceBase as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Direction",
+                name_hash: 2698949952,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(DirectionWindForceBase, direction),
             },
             FieldInfoData {
                 name: "Strength",
+                name_hash: 3531643328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, strength),
             },
             FieldInfoData {
                 name: "Variation",
+                name_hash: 2945980116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, variation),
             },
             FieldInfoData {
                 name: "VariationRate",
+                name_hash: 1485055286,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, variation_rate),
             },
             FieldInfoData {
                 name: "MicroVariation",
+                name_hash: 880089358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, micro_variation),
             },
             FieldInfoData {
                 name: "TurbulenceMultiplier",
+                name_hash: 3220379915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, turbulence_multiplier),
             },
             FieldInfoData {
                 name: "TurbulenceScale",
+                name_hash: 72072184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DirectionWindForceBase, turbulence_scale),
             },
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DirectionWindForceBase, id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(DirectionWindForceBase, field_flag_changed0),
@@ -1337,6 +1427,7 @@ impl TypeObject for DirectionWindForceBase {
 
 pub static DIRECTIONWINDFORCEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DirectionWindForceBase-Array",
+    name_hash: 3498926056,
     flags: MemberInfoFlags::new(145),
     module: "Wind",
     data: TypeInfoData::Array("DirectionWindForceBase"),
@@ -1360,6 +1451,7 @@ pub enum LocalWindForceGroup {
 
 pub static LOCALWINDFORCEGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForceGroup",
+    name_hash: 3668058942,
     flags: MemberInfoFlags::new(49429),
     module: "Wind",
     data: TypeInfoData::Enum,
@@ -1388,6 +1480,7 @@ impl TypeObject for LocalWindForceGroup {
 
 pub static LOCALWINDFORCEGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForceGroup-Array",
+    name_hash: 1194898314,
     flags: MemberInfoFlags::new(145),
     module: "Wind",
     data: TypeInfoData::Array("LocalWindForceGroup"),
@@ -1408,6 +1501,7 @@ pub enum LocalWindForceType {
 
 pub static LOCALWINDFORCETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForceType",
+    name_hash: 371765913,
     flags: MemberInfoFlags::new(49429),
     module: "Wind",
     data: TypeInfoData::Enum,
@@ -1436,6 +1530,7 @@ impl TypeObject for LocalWindForceType {
 
 pub static LOCALWINDFORCETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalWindForceType-Array",
+    name_hash: 3254792237,
     flags: MemberInfoFlags::new(145),
     module: "Wind",
     data: TypeInfoData::Array("LocalWindForceType"),

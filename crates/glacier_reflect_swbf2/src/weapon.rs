@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -75,7 +76,8 @@ pub(crate) fn register_weapon_types(registry: &mut TypeRegistry) {
     registry.register_type(SERVERGHOSTPROJECTILEENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWeapon {
     pub _glacier_base: Weapon,
 }
@@ -94,12 +96,15 @@ impl super::game_common::ToolTrait for ClientWeapon {
 
 pub static CLIENTWEAPON_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeapon",
+    name_hash: 677544254,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPON_TYPE_INFO),
+        super_class_offset: offset_of!(ClientWeapon, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWeapon as Default>::default())),
+            create_boxed: || Box::new(<ClientWeapon as Default>::default()),
         },
         fields: &[
         ],
@@ -129,6 +134,7 @@ impl TypeObject for ClientWeapon {
 
 pub static CLIENTWEAPON_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeapon-Array",
+    name_hash: 3343356298,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ClientWeapon"),
@@ -137,7 +143,8 @@ pub static CLIENTWEAPON_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientProxyProjectileEntity {
     pub _glacier_base: ClientProjectileEntity,
 }
@@ -174,12 +181,15 @@ impl super::entity::EntityBusPeerTrait for ClientProxyProjectileEntity {
 
 pub static CLIENTPROXYPROJECTILEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientProxyProjectileEntity",
+    name_hash: 855276574,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTPROJECTILEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientProxyProjectileEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientProxyProjectileEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientProxyProjectileEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -209,6 +219,7 @@ impl TypeObject for ClientProxyProjectileEntity {
 
 pub static CLIENTPROXYPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientProxyProjectileEntity-Array",
+    name_hash: 1837378858,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ClientProxyProjectileEntity"),
@@ -217,7 +228,8 @@ pub static CLIENTPROXYPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientProxyMissileEntity {
     pub _glacier_base: ClientProxyProjectileEntity,
 }
@@ -257,12 +269,15 @@ impl super::entity::EntityBusPeerTrait for ClientProxyMissileEntity {
 
 pub static CLIENTPROXYMISSILEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientProxyMissileEntity",
+    name_hash: 3696323183,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTPROXYPROJECTILEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientProxyMissileEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientProxyMissileEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientProxyMissileEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -292,6 +307,7 @@ impl TypeObject for ClientProxyMissileEntity {
 
 pub static CLIENTPROXYMISSILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientProxyMissileEntity-Array",
+    name_hash: 1134094427,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ClientProxyMissileEntity"),
@@ -300,7 +316,8 @@ pub static CLIENTPROXYMISSILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientProjectileEntity {
     pub _glacier_base: super::gameplay_client_server::ClientPhysicsEntity,
 }
@@ -334,12 +351,15 @@ impl super::entity::EntityBusPeerTrait for ClientProjectileEntity {
 
 pub static CLIENTPROJECTILEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientProjectileEntity",
+    name_hash: 3660163090,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTPHYSICSENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientProjectileEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientProjectileEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientProjectileEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -369,6 +389,7 @@ impl TypeObject for ClientProjectileEntity {
 
 pub static CLIENTPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientProjectileEntity-Array",
+    name_hash: 447041318,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ClientProjectileEntity"),
@@ -377,7 +398,8 @@ pub static CLIENTPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientMissileEntity {
     pub _glacier_base: ClientGhostProjectileEntity,
 }
@@ -417,12 +439,15 @@ impl super::entity::EntityBusPeerTrait for ClientMissileEntity {
 
 pub static CLIENTMISSILEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMissileEntity",
+    name_hash: 210432227,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTGHOSTPROJECTILEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientMissileEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientMissileEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientMissileEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -452,6 +477,7 @@ impl TypeObject for ClientMissileEntity {
 
 pub static CLIENTMISSILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMissileEntity-Array",
+    name_hash: 264127703,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ClientMissileEntity"),
@@ -460,7 +486,8 @@ pub static CLIENTMISSILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientGhostProjectileEntity {
     pub _glacier_base: ClientProjectileEntity,
 }
@@ -497,12 +524,15 @@ impl super::entity::EntityBusPeerTrait for ClientGhostProjectileEntity {
 
 pub static CLIENTGHOSTPROJECTILEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGhostProjectileEntity",
+    name_hash: 3358179637,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTPROJECTILEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientGhostProjectileEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientGhostProjectileEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientGhostProjectileEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -532,6 +562,7 @@ impl TypeObject for ClientGhostProjectileEntity {
 
 pub static CLIENTGHOSTPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientGhostProjectileEntity-Array",
+    name_hash: 1738424705,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ClientGhostProjectileEntity"),
@@ -540,7 +571,8 @@ pub static CLIENTGHOSTPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientBulletEntity {
     pub _glacier_base: ClientProjectileEntity,
 }
@@ -577,12 +609,15 @@ impl super::entity::EntityBusPeerTrait for ClientBulletEntity {
 
 pub static CLIENTBULLETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBulletEntity",
+    name_hash: 3728503905,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTPROJECTILEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientBulletEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientBulletEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientBulletEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -612,6 +647,7 @@ impl TypeObject for ClientBulletEntity {
 
 pub static CLIENTBULLETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBulletEntity-Array",
+    name_hash: 2461544277,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ClientBulletEntity"),
@@ -620,7 +656,8 @@ pub static CLIENTBULLETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWeaponInputRouterComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -645,12 +682,15 @@ impl super::entity::EntityBusPeerTrait for ClientWeaponInputRouterComponent {
 
 pub static CLIENTWEAPONINPUTROUTERCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponInputRouterComponent",
+    name_hash: 2808216876,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientWeaponInputRouterComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWeaponInputRouterComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientWeaponInputRouterComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -680,6 +720,7 @@ impl TypeObject for ClientWeaponInputRouterComponent {
 
 pub static CLIENTWEAPONINPUTROUTERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponInputRouterComponent-Array",
+    name_hash: 354995352,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ClientWeaponInputRouterComponent"),
@@ -688,7 +729,8 @@ pub static CLIENTWEAPONINPUTROUTERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWeaponComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -713,12 +755,15 @@ impl super::entity::EntityBusPeerTrait for ClientWeaponComponent {
 
 pub static CLIENTWEAPONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponComponent",
+    name_hash: 3215723281,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientWeaponComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWeaponComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientWeaponComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -748,6 +793,7 @@ impl TypeObject for ClientWeaponComponent {
 
 pub static CLIENTWEAPONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponComponent-Array",
+    name_hash: 2168753317,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ClientWeaponComponent"),
@@ -756,7 +802,8 @@ pub static CLIENTWEAPONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientMissilePhysicsComponent {
     pub _glacier_base: super::physics::PartPhysicsComponent,
 }
@@ -781,12 +828,15 @@ impl super::entity::EntityBusPeerTrait for ClientMissilePhysicsComponent {
 
 pub static CLIENTMISSILEPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMissilePhysicsComponent",
+    name_hash: 2348342780,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::physics::PARTPHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientMissilePhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientMissilePhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientMissilePhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -816,6 +866,7 @@ impl TypeObject for ClientMissilePhysicsComponent {
 
 pub static CLIENTMISSILEPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMissilePhysicsComponent-Array",
+    name_hash: 165938632,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ClientMissilePhysicsComponent"),
@@ -824,7 +875,8 @@ pub static CLIENTMISSILEPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientCharacterSimpleWeaponComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -849,12 +901,15 @@ impl super::entity::EntityBusPeerTrait for ClientCharacterSimpleWeaponComponent 
 
 pub static CLIENTCHARACTERSIMPLEWEAPONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterSimpleWeaponComponent",
+    name_hash: 2474442438,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientCharacterSimpleWeaponComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientCharacterSimpleWeaponComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientCharacterSimpleWeaponComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -884,6 +939,7 @@ impl TypeObject for ClientCharacterSimpleWeaponComponent {
 
 pub static CLIENTCHARACTERSIMPLEWEAPONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientCharacterSimpleWeaponComponent-Array",
+    name_hash: 1833688178,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ClientCharacterSimpleWeaponComponent"),
@@ -892,7 +948,8 @@ pub static CLIENTCHARACTERSIMPLEWEAPONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerBulletEntity {
     pub _glacier_base: ServerProjectileEntity,
 }
@@ -929,12 +986,15 @@ impl super::entity::EntityBusPeerTrait for ServerBulletEntity {
 
 pub static SERVERBULLETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBulletEntity",
+    name_hash: 830024893,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERPROJECTILEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerBulletEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerBulletEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerBulletEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -964,6 +1024,7 @@ impl TypeObject for ServerBulletEntity {
 
 pub static SERVERBULLETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBulletEntity-Array",
+    name_hash: 2804918537,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ServerBulletEntity"),
@@ -972,7 +1033,8 @@ pub static SERVERBULLETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponInputRouterComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -997,12 +1059,15 @@ impl super::entity::EntityBusPeerTrait for ServerWeaponInputRouterComponent {
 
 pub static SERVERWEAPONINPUTROUTERCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponInputRouterComponent",
+    name_hash: 1391295344,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerWeaponInputRouterComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponInputRouterComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponInputRouterComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1032,6 +1097,7 @@ impl TypeObject for ServerWeaponInputRouterComponent {
 
 pub static SERVERWEAPONINPUTROUTERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponInputRouterComponent-Array",
+    name_hash: 3363420484,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ServerWeaponInputRouterComponent"),
@@ -1040,7 +1106,8 @@ pub static SERVERWEAPONINPUTROUTERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -1065,12 +1132,15 @@ impl super::entity::EntityBusPeerTrait for ServerWeaponComponent {
 
 pub static SERVERWEAPONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponComponent",
+    name_hash: 3380312397,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerWeaponComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1100,6 +1170,7 @@ impl TypeObject for ServerWeaponComponent {
 
 pub static SERVERWEAPONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponComponent-Array",
+    name_hash: 3127242105,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ServerWeaponComponent"),
@@ -1108,7 +1179,8 @@ pub static SERVERWEAPONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerMissilePhysicsComponent {
     pub _glacier_base: super::physics::PartPhysicsComponent,
 }
@@ -1133,12 +1205,15 @@ impl super::entity::EntityBusPeerTrait for ServerMissilePhysicsComponent {
 
 pub static SERVERMISSILEPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerMissilePhysicsComponent",
+    name_hash: 2127967520,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::physics::PARTPHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerMissilePhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerMissilePhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerMissilePhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1168,6 +1243,7 @@ impl TypeObject for ServerMissilePhysicsComponent {
 
 pub static SERVERMISSILEPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerMissilePhysicsComponent-Array",
+    name_hash: 220723860,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ServerMissilePhysicsComponent"),
@@ -1176,7 +1252,8 @@ pub static SERVERMISSILEPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCharacterSimpleWeaponComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -1201,12 +1278,15 @@ impl super::entity::EntityBusPeerTrait for ServerCharacterSimpleWeaponComponent 
 
 pub static SERVERCHARACTERSIMPLEWEAPONCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCharacterSimpleWeaponComponent",
+    name_hash: 2365398810,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCharacterSimpleWeaponComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCharacterSimpleWeaponComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerCharacterSimpleWeaponComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1236,6 +1316,7 @@ impl TypeObject for ServerCharacterSimpleWeaponComponent {
 
 pub static SERVERCHARACTERSIMPLEWEAPONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCharacterSimpleWeaponComponent-Array",
+    name_hash: 4101333550,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ServerCharacterSimpleWeaponComponent"),
@@ -1244,7 +1325,8 @@ pub static SERVERCHARACTERSIMPLEWEAPONCOMPONENT_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Weapon {
     pub _glacier_base: super::game_common::Tool,
 }
@@ -1260,12 +1342,15 @@ impl super::game_common::ToolTrait for Weapon {
 
 pub static WEAPON_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Weapon",
+    name_hash: 3190562823,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_common::TOOL_TYPE_INFO),
+        super_class_offset: offset_of!(Weapon, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Weapon as Default>::default())),
+            create_boxed: || Box::new(<Weapon as Default>::default()),
         },
         fields: &[
         ],
@@ -1295,6 +1380,7 @@ impl TypeObject for Weapon {
 
 pub static WEAPON_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Weapon-Array",
+    name_hash: 3534078131,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("Weapon"),
@@ -1303,7 +1389,8 @@ pub static WEAPON_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponOverrideAIDataMessage {
 }
 
@@ -1315,11 +1402,13 @@ impl ServerWeaponOverrideAIDataMessageTrait for ServerWeaponOverrideAIDataMessag
 
 pub static SERVERWEAPONOVERRIDEAIDATAMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponOverrideAIDataMessage",
+    name_hash: 708359205,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponOverrideAIDataMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponOverrideAIDataMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1346,7 +1435,8 @@ impl TypeObject for ServerWeaponOverrideAIDataMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponProjectileTimeoutMessage {
 }
 
@@ -1358,11 +1448,13 @@ impl ServerWeaponProjectileTimeoutMessageTrait for ServerWeaponProjectileTimeout
 
 pub static SERVERWEAPONPROJECTILETIMEOUTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponProjectileTimeoutMessage",
+    name_hash: 1728544551,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponProjectileTimeoutMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponProjectileTimeoutMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1389,7 +1481,8 @@ impl TypeObject for ServerWeaponProjectileTimeoutMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponReplacedMessage {
 }
 
@@ -1401,11 +1494,13 @@ impl ServerWeaponReplacedMessageTrait for ServerWeaponReplacedMessage {
 
 pub static SERVERWEAPONREPLACEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponReplacedMessage",
+    name_hash: 3263226401,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponReplacedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponReplacedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1432,7 +1527,8 @@ impl TypeObject for ServerWeaponReplacedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponWeaponComponentActivateMessage {
 }
 
@@ -1444,11 +1540,13 @@ impl ServerWeaponWeaponComponentActivateMessageTrait for ServerWeaponWeaponCompo
 
 pub static SERVERWEAPONWEAPONCOMPONENTACTIVATEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponWeaponComponentActivateMessage",
+    name_hash: 2945324925,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponWeaponComponentActivateMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponWeaponComponentActivateMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1475,7 +1573,8 @@ impl TypeObject for ServerWeaponWeaponComponentActivateMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponWeaponComponentReloadMessage {
 }
 
@@ -1487,11 +1586,13 @@ impl ServerWeaponWeaponComponentReloadMessageTrait for ServerWeaponWeaponCompone
 
 pub static SERVERWEAPONWEAPONCOMPONENTRELOADMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponWeaponComponentReloadMessage",
+    name_hash: 4137254645,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponWeaponComponentReloadMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponWeaponComponentReloadMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1518,7 +1619,8 @@ impl TypeObject for ServerWeaponWeaponComponentReloadMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponPlayerResupplyMessage {
 }
 
@@ -1530,11 +1632,13 @@ impl ServerWeaponPlayerResupplyMessageTrait for ServerWeaponPlayerResupplyMessag
 
 pub static SERVERWEAPONPLAYERRESUPPLYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponPlayerResupplyMessage",
+    name_hash: 895339998,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponPlayerResupplyMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponPlayerResupplyMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1561,7 +1665,8 @@ impl TypeObject for ServerWeaponPlayerResupplyMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponPlayerReloadMessage {
 }
 
@@ -1573,11 +1678,13 @@ impl ServerWeaponPlayerReloadMessageTrait for ServerWeaponPlayerReloadMessage {
 
 pub static SERVERWEAPONPLAYERRELOADMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponPlayerReloadMessage",
+    name_hash: 1426645739,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponPlayerReloadMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponPlayerReloadMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1604,7 +1711,8 @@ impl TypeObject for ServerWeaponPlayerReloadMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponPlayerWeaponRemovedMessage {
 }
 
@@ -1616,11 +1724,13 @@ impl ServerWeaponPlayerWeaponRemovedMessageTrait for ServerWeaponPlayerWeaponRem
 
 pub static SERVERWEAPONPLAYERWEAPONREMOVEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponPlayerWeaponRemovedMessage",
+    name_hash: 3717992986,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponPlayerWeaponRemovedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponPlayerWeaponRemovedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1647,7 +1757,8 @@ impl TypeObject for ServerWeaponPlayerWeaponRemovedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponPlayerWeaponReloadEndMessage {
 }
 
@@ -1659,11 +1770,13 @@ impl ServerWeaponPlayerWeaponReloadEndMessageTrait for ServerWeaponPlayerWeaponR
 
 pub static SERVERWEAPONPLAYERWEAPONRELOADENDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponPlayerWeaponReloadEndMessage",
+    name_hash: 1998716934,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponPlayerWeaponReloadEndMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponPlayerWeaponReloadEndMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1690,7 +1803,8 @@ impl TypeObject for ServerWeaponPlayerWeaponReloadEndMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponPlayerPrimaryFireShotSpawnedMessage {
 }
 
@@ -1702,11 +1816,13 @@ impl ServerWeaponPlayerPrimaryFireShotSpawnedMessageTrait for ServerWeaponPlayer
 
 pub static SERVERWEAPONPLAYERPRIMARYFIRESHOTSPAWNEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponPlayerPrimaryFireShotSpawnedMessage",
+    name_hash: 3551054132,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponPlayerPrimaryFireShotSpawnedMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponPlayerPrimaryFireShotSpawnedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1733,7 +1849,8 @@ impl TypeObject for ServerWeaponPlayerPrimaryFireShotSpawnedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponPlayerPrimaryOutOfAmmoMessage {
 }
 
@@ -1745,11 +1862,13 @@ impl ServerWeaponPlayerPrimaryOutOfAmmoMessageTrait for ServerWeaponPlayerPrimar
 
 pub static SERVERWEAPONPLAYERPRIMARYOUTOFAMMOMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponPlayerPrimaryOutOfAmmoMessage",
+    name_hash: 1617274975,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponPlayerPrimaryOutOfAmmoMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponPlayerPrimaryOutOfAmmoMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1776,7 +1895,8 @@ impl TypeObject for ServerWeaponPlayerPrimaryOutOfAmmoMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponArtilleryFiredMessage {
 }
 
@@ -1788,11 +1908,13 @@ impl ServerWeaponArtilleryFiredMessageTrait for ServerWeaponArtilleryFiredMessag
 
 pub static SERVERWEAPONARTILLERYFIREDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponArtilleryFiredMessage",
+    name_hash: 942868469,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponArtilleryFiredMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponArtilleryFiredMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1819,7 +1941,8 @@ impl TypeObject for ServerWeaponArtilleryFiredMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponLaserDesignatorMessage {
 }
 
@@ -1831,11 +1954,13 @@ impl ServerWeaponLaserDesignatorMessageTrait for ServerWeaponLaserDesignatorMess
 
 pub static SERVERWEAPONLASERDESIGNATORMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponLaserDesignatorMessage",
+    name_hash: 54549466,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponLaserDesignatorMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponLaserDesignatorMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1862,7 +1987,8 @@ impl TypeObject for ServerWeaponLaserDesignatorMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeaponMortarStrikeMessage {
 }
 
@@ -1874,11 +2000,13 @@ impl ServerWeaponMortarStrikeMessageTrait for ServerWeaponMortarStrikeMessage {
 
 pub static SERVERWEAPONMORTARSTRIKEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeaponMortarStrikeMessage",
+    name_hash: 1498630892,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeaponMortarStrikeMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerWeaponMortarStrikeMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1905,7 +2033,8 @@ impl TypeObject for ServerWeaponMortarStrikeMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWeaponReplacedMessage {
 }
 
@@ -1917,11 +2046,13 @@ impl ClientWeaponReplacedMessageTrait for ClientWeaponReplacedMessage {
 
 pub static CLIENTWEAPONREPLACEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponReplacedMessage",
+    name_hash: 194803965,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWeaponReplacedMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientWeaponReplacedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1948,7 +2079,8 @@ impl TypeObject for ClientWeaponReplacedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWeaponWeaponComponentActivateMessage {
 }
 
@@ -1960,11 +2092,13 @@ impl ClientWeaponWeaponComponentActivateMessageTrait for ClientWeaponWeaponCompo
 
 pub static CLIENTWEAPONWEAPONCOMPONENTACTIVATEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponWeaponComponentActivateMessage",
+    name_hash: 4143651873,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWeaponWeaponComponentActivateMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientWeaponWeaponComponentActivateMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1991,7 +2125,8 @@ impl TypeObject for ClientWeaponWeaponComponentActivateMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWeaponPlayerPrimaryOutOfAmmoMessage {
 }
 
@@ -2003,11 +2138,13 @@ impl ClientWeaponPlayerPrimaryOutOfAmmoMessageTrait for ClientWeaponPlayerPrimar
 
 pub static CLIENTWEAPONPLAYERPRIMARYOUTOFAMMOMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponPlayerPrimaryOutOfAmmoMessage",
+    name_hash: 2687654659,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWeaponPlayerPrimaryOutOfAmmoMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientWeaponPlayerPrimaryOutOfAmmoMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2034,7 +2171,8 @@ impl TypeObject for ClientWeaponPlayerPrimaryOutOfAmmoMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWeaponPlayerWeaponReloadEndMessage {
 }
 
@@ -2046,11 +2184,13 @@ impl ClientWeaponPlayerWeaponReloadEndMessageTrait for ClientWeaponPlayerWeaponR
 
 pub static CLIENTWEAPONPLAYERWEAPONRELOADENDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponPlayerWeaponReloadEndMessage",
+    name_hash: 731651546,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWeaponPlayerWeaponReloadEndMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientWeaponPlayerWeaponReloadEndMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2077,7 +2217,8 @@ impl TypeObject for ClientWeaponPlayerWeaponReloadEndMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWeaponPlayerWeaponReloadBeginMessage {
 }
 
@@ -2089,11 +2230,13 @@ impl ClientWeaponPlayerWeaponReloadBeginMessageTrait for ClientWeaponPlayerWeapo
 
 pub static CLIENTWEAPONPLAYERWEAPONRELOADBEGINMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponPlayerWeaponReloadBeginMessage",
+    name_hash: 2459664722,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWeaponPlayerWeaponReloadBeginMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientWeaponPlayerWeaponReloadBeginMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2120,7 +2263,8 @@ impl TypeObject for ClientWeaponPlayerWeaponReloadBeginMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWeaponPlayerPrimaryWeaponFireMessage {
 }
 
@@ -2132,11 +2276,13 @@ impl ClientWeaponPlayerPrimaryWeaponFireMessageTrait for ClientWeaponPlayerPrima
 
 pub static CLIENTWEAPONPLAYERPRIMARYWEAPONFIREMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponPlayerPrimaryWeaponFireMessage",
+    name_hash: 3754611504,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWeaponPlayerPrimaryWeaponFireMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientWeaponPlayerPrimaryWeaponFireMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2163,7 +2309,8 @@ impl TypeObject for ClientWeaponPlayerPrimaryWeaponFireMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWeaponPlayerWeaponChangeCorrectionMessage {
 }
 
@@ -2175,11 +2322,13 @@ impl ClientWeaponPlayerWeaponChangeCorrectionMessageTrait for ClientWeaponPlayer
 
 pub static CLIENTWEAPONPLAYERWEAPONCHANGECORRECTIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponPlayerWeaponChangeCorrectionMessage",
+    name_hash: 3349923540,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWeaponPlayerWeaponChangeCorrectionMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientWeaponPlayerWeaponChangeCorrectionMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2206,7 +2355,8 @@ impl TypeObject for ClientWeaponPlayerWeaponChangeCorrectionMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWeaponPlayerWeaponChangeMessage {
 }
 
@@ -2218,11 +2368,13 @@ impl ClientWeaponPlayerWeaponChangeMessageTrait for ClientWeaponPlayerWeaponChan
 
 pub static CLIENTWEAPONPLAYERWEAPONCHANGEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWeaponPlayerWeaponChangeMessage",
+    name_hash: 638585794,
     flags: MemberInfoFlags::new(36937),
     module: "Weapon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWeaponPlayerWeaponChangeMessage as Default>::default())),
+            create_boxed: || Box::new(<ClientWeaponPlayerWeaponChangeMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2249,7 +2401,8 @@ impl TypeObject for ClientWeaponPlayerWeaponChangeMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWeapon {
     pub _glacier_base: Weapon,
 }
@@ -2268,12 +2421,15 @@ impl super::game_common::ToolTrait for ServerWeapon {
 
 pub static SERVERWEAPON_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeapon",
+    name_hash: 117672034,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPON_TYPE_INFO),
+        super_class_offset: offset_of!(ServerWeapon, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWeapon as Default>::default())),
+            create_boxed: || Box::new(<ServerWeapon as Default>::default()),
         },
         fields: &[
         ],
@@ -2303,6 +2459,7 @@ impl TypeObject for ServerWeapon {
 
 pub static SERVERWEAPON_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWeapon-Array",
+    name_hash: 876541782,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ServerWeapon"),
@@ -2311,7 +2468,8 @@ pub static SERVERWEAPON_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerProjectileEntity {
     pub _glacier_base: super::game_server::ServerPhysicsEntity,
 }
@@ -2345,12 +2503,15 @@ impl super::entity::EntityBusPeerTrait for ServerProjectileEntity {
 
 pub static SERVERPROJECTILEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerProjectileEntity",
+    name_hash: 925949518,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_server::SERVERPHYSICSENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerProjectileEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerProjectileEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerProjectileEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2380,6 +2541,7 @@ impl TypeObject for ServerProjectileEntity {
 
 pub static SERVERPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerProjectileEntity-Array",
+    name_hash: 2244524026,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ServerProjectileEntity"),
@@ -2388,7 +2550,8 @@ pub static SERVERPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerMissileEntity {
     pub _glacier_base: ServerGhostProjectileEntity,
 }
@@ -2428,12 +2591,15 @@ impl super::entity::EntityBusPeerTrait for ServerMissileEntity {
 
 pub static SERVERMISSILEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerMissileEntity",
+    name_hash: 2898240575,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERGHOSTPROJECTILEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerMissileEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerMissileEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerMissileEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2463,6 +2629,7 @@ impl TypeObject for ServerMissileEntity {
 
 pub static SERVERMISSILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerMissileEntity-Array",
+    name_hash: 1753889163,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ServerMissileEntity"),
@@ -2471,7 +2638,8 @@ pub static SERVERMISSILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerGhostProjectileEntity {
     pub _glacier_base: ServerProjectileEntity,
 }
@@ -2508,12 +2676,15 @@ impl super::entity::EntityBusPeerTrait for ServerGhostProjectileEntity {
 
 pub static SERVERGHOSTPROJECTILEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGhostProjectileEntity",
+    name_hash: 2658727273,
     flags: MemberInfoFlags::new(101),
     module: "Weapon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERPROJECTILEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerGhostProjectileEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerGhostProjectileEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerGhostProjectileEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2543,6 +2714,7 @@ impl TypeObject for ServerGhostProjectileEntity {
 
 pub static SERVERGHOSTPROJECTILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerGhostProjectileEntity-Array",
+    name_hash: 3943746653,
     flags: MemberInfoFlags::new(145),
     module: "Weapon",
     data: TypeInfoData::Array("ServerGhostProjectileEntity"),

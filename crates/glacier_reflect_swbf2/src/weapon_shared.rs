@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -169,7 +170,8 @@ pub(crate) fn register_weapon_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(WEAPONUNLOCKASSET_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponMiscModifierSettings {
     pub enable_breath_control: bool,
     pub can_be_in_supported_shooting: bool,
@@ -226,39 +228,46 @@ impl WeaponMiscModifierSettingsTrait for WeaponMiscModifierSettings {
 
 pub static WEAPONMISCMODIFIERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponMiscModifierSettings",
+    name_hash: 1023399809,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponMiscModifierSettings as Default>::default())),
+            create_boxed: || Box::new(<WeaponMiscModifierSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EnableBreathControl",
+                name_hash: 613505579,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponMiscModifierSettings, enable_breath_control),
             },
             FieldInfoData {
                 name: "CanBeInSupportedShooting",
+                name_hash: 2187452328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponMiscModifierSettings, can_be_in_supported_shooting),
             },
             FieldInfoData {
                 name: "UnZoomOnBoltAction",
+                name_hash: 1438634691,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponMiscModifierSettings, un_zoom_on_bolt_action),
             },
             FieldInfoData {
                 name: "HoldBoltActionUntilZoomRelease",
+                name_hash: 3133940949,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponMiscModifierSettings, hold_bolt_action_until_zoom_release),
             },
             FieldInfoData {
                 name: "IsSilenced",
+                name_hash: 1644964768,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponMiscModifierSettings, is_silenced),
@@ -290,6 +299,7 @@ impl TypeObject for WeaponMiscModifierSettings {
 
 pub static WEAPONMISCMODIFIERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponMiscModifierSettings-Array",
+    name_hash: 2261578037,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponMiscModifierSettings"),
@@ -298,7 +308,8 @@ pub static WEAPONMISCMODIFIERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponSwayData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -314,12 +325,15 @@ impl super::core::DataContainerTrait for WeaponSwayData {
 
 pub static WEAPONSWAYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponSwayData",
+    name_hash: 2851754891,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponSwayData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponSwayData as Default>::default())),
+            create_boxed: || Box::new(<WeaponSwayData as Default>::default()),
         },
         fields: &[
         ],
@@ -349,6 +363,7 @@ impl TypeObject for WeaponSwayData {
 
 pub static WEAPONSWAYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponSwayData-Array",
+    name_hash: 1500267071,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponSwayData"),
@@ -367,6 +382,7 @@ pub enum Constants {
 
 pub static CONSTANTS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Constants",
+    name_hash: 2658787400,
     flags: MemberInfoFlags::new(49429),
     module: "WeaponShared",
     data: TypeInfoData::Enum,
@@ -395,6 +411,7 @@ impl TypeObject for Constants {
 
 pub static CONSTANTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Constants-Array",
+    name_hash: 3100840700,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("Constants"),
@@ -413,6 +430,7 @@ pub enum WeaponUnlocks {
 
 pub static WEAPONUNLOCKS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponUnlocks",
+    name_hash: 2456600100,
     flags: MemberInfoFlags::new(49429),
     module: "WeaponShared",
     data: TypeInfoData::Enum,
@@ -441,6 +459,7 @@ impl TypeObject for WeaponUnlocks {
 
 pub static WEAPONUNLOCKS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponUnlocks-Array",
+    name_hash: 83947920,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponUnlocks"),
@@ -470,6 +489,7 @@ pub enum WeaponSlot {
 
 pub static WEAPONSLOT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponSlot",
+    name_hash: 933194083,
     flags: MemberInfoFlags::new(49429),
     module: "WeaponShared",
     data: TypeInfoData::Enum,
@@ -498,6 +518,7 @@ impl TypeObject for WeaponSlot {
 
 pub static WEAPONSLOT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponSlot-Array",
+    name_hash: 57351511,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponSlot"),
@@ -529,6 +550,7 @@ pub enum GearSlot {
 
 pub static GEARSLOT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearSlot",
+    name_hash: 930851280,
     flags: MemberInfoFlags::new(49429),
     module: "WeaponShared",
     data: TypeInfoData::Enum,
@@ -557,6 +579,7 @@ impl TypeObject for GearSlot {
 
 pub static GEARSLOT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearSlot-Array",
+    name_hash: 3531171940,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("GearSlot"),
@@ -565,14 +588,15 @@ pub static GEARSLOT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterSimpleWeaponComponentData {
     pub _glacier_base: super::entity::GameComponentData,
     pub realm: super::core::Realm,
     pub damage_giver_name: String,
     pub weapon_offset: super::core::LinearTransform,
     pub fire_target: super::core::LinearTransform,
-    pub weapon_firing: Option<Arc<Mutex<dyn WeaponFiringDataTrait>>>,
+    pub weapon_firing: Option<LockedTypeObject /* WeaponFiringData */>,
 }
 
 pub trait CharacterSimpleWeaponComponentDataTrait: super::entity::GameComponentDataTrait {
@@ -584,8 +608,8 @@ pub trait CharacterSimpleWeaponComponentDataTrait: super::entity::GameComponentD
     fn weapon_offset_mut(&mut self) -> &mut super::core::LinearTransform;
     fn fire_target(&self) -> &super::core::LinearTransform;
     fn fire_target_mut(&mut self) -> &mut super::core::LinearTransform;
-    fn weapon_firing(&self) -> &Option<Arc<Mutex<dyn WeaponFiringDataTrait>>>;
-    fn weapon_firing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponFiringDataTrait>>>;
+    fn weapon_firing(&self) -> &Option<LockedTypeObject /* WeaponFiringData */>;
+    fn weapon_firing_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponFiringData */>;
 }
 
 impl CharacterSimpleWeaponComponentDataTrait for CharacterSimpleWeaponComponentData {
@@ -613,10 +637,10 @@ impl CharacterSimpleWeaponComponentDataTrait for CharacterSimpleWeaponComponentD
     fn fire_target_mut(&mut self) -> &mut super::core::LinearTransform {
         &mut self.fire_target
     }
-    fn weapon_firing(&self) -> &Option<Arc<Mutex<dyn WeaponFiringDataTrait>>> {
+    fn weapon_firing(&self) -> &Option<LockedTypeObject /* WeaponFiringData */> {
         &self.weapon_firing
     }
-    fn weapon_firing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponFiringDataTrait>>> {
+    fn weapon_firing_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponFiringData */> {
         &mut self.weapon_firing
     }
 }
@@ -631,10 +655,10 @@ impl super::entity::ComponentDataTrait for CharacterSimpleWeaponComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -677,40 +701,48 @@ impl super::core::DataContainerTrait for CharacterSimpleWeaponComponentData {
 
 pub static CHARACTERSIMPLEWEAPONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterSimpleWeaponComponentData",
+    name_hash: 2548539279,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterSimpleWeaponComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterSimpleWeaponComponentData as Default>::default())),
+            create_boxed: || Box::new(<CharacterSimpleWeaponComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CharacterSimpleWeaponComponentData, realm),
             },
             FieldInfoData {
                 name: "DamageGiverName",
+                name_hash: 38100006,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CharacterSimpleWeaponComponentData, damage_giver_name),
             },
             FieldInfoData {
                 name: "WeaponOffset",
+                name_hash: 2173072170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(CharacterSimpleWeaponComponentData, weapon_offset),
             },
             FieldInfoData {
                 name: "FireTarget",
+                name_hash: 3787489900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(CharacterSimpleWeaponComponentData, fire_target),
             },
             FieldInfoData {
                 name: "WeaponFiring",
+                name_hash: 1823157050,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WeaponFiringData",
                 rust_offset: offset_of!(CharacterSimpleWeaponComponentData, weapon_firing),
@@ -742,6 +774,7 @@ impl TypeObject for CharacterSimpleWeaponComponentData {
 
 pub static CHARACTERSIMPLEWEAPONCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterSimpleWeaponComponentData-Array",
+    name_hash: 2959227963,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("CharacterSimpleWeaponComponentData"),
@@ -750,7 +783,8 @@ pub static CHARACTERSIMPLEWEAPONCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponInputRouterComponentData {
     pub _glacier_base: super::entity::GameComponentData,
     pub max_fire_rate: f32,
@@ -789,10 +823,10 @@ impl super::entity::ComponentDataTrait for WeaponInputRouterComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -835,22 +869,27 @@ impl super::core::DataContainerTrait for WeaponInputRouterComponentData {
 
 pub static WEAPONINPUTROUTERCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponInputRouterComponentData",
+    name_hash: 4238774053,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponInputRouterComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponInputRouterComponentData as Default>::default())),
+            create_boxed: || Box::new(<WeaponInputRouterComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxFireRate",
+                name_hash: 369835659,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponInputRouterComponentData, max_fire_rate),
             },
             FieldInfoData {
                 name: "RotationCount",
+                name_hash: 821183634,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WeaponInputRouterComponentData, rotation_count),
@@ -882,6 +921,7 @@ impl TypeObject for WeaponInputRouterComponentData {
 
 pub static WEAPONINPUTROUTERCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponInputRouterComponentData-Array",
+    name_hash: 2523580305,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponInputRouterComponentData"),
@@ -890,15 +930,16 @@ pub static WEAPONINPUTROUTERCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponComponentData {
     pub _glacier_base: super::entity::BoneComponentData,
     pub projectile_spawn_offset: super::core::Vec3,
     pub sequential_firing: bool,
-    pub weapon_firing: Option<Arc<Mutex<dyn WeaponFiringDataTrait>>>,
+    pub weapon_firing: Option<LockedTypeObject /* WeaponFiringData */>,
     pub damage_giver_name: String,
-    pub a_i_data: Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>>,
-    pub custom_weapon_type: Option<Arc<Mutex<dyn WeaponDataTrait>>>,
+    pub a_i_data: Option<LockedTypeObject /* super::gameplay_sim::GameAIWeaponData */>,
+    pub custom_weapon_type: Option<LockedTypeObject /* WeaponData */>,
     pub impulse_strength: f32,
     pub classification: super::game_shared::WeaponClassification,
     pub reload_time_multiplier: f32,
@@ -917,14 +958,14 @@ pub trait WeaponComponentDataTrait: super::entity::BoneComponentDataTrait {
     fn projectile_spawn_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn sequential_firing(&self) -> &bool;
     fn sequential_firing_mut(&mut self) -> &mut bool;
-    fn weapon_firing(&self) -> &Option<Arc<Mutex<dyn WeaponFiringDataTrait>>>;
-    fn weapon_firing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponFiringDataTrait>>>;
+    fn weapon_firing(&self) -> &Option<LockedTypeObject /* WeaponFiringData */>;
+    fn weapon_firing_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponFiringData */>;
     fn damage_giver_name(&self) -> &String;
     fn damage_giver_name_mut(&mut self) -> &mut String;
-    fn a_i_data(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>>;
-    fn a_i_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>>;
-    fn custom_weapon_type(&self) -> &Option<Arc<Mutex<dyn WeaponDataTrait>>>;
-    fn custom_weapon_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponDataTrait>>>;
+    fn a_i_data(&self) -> &Option<LockedTypeObject /* super::gameplay_sim::GameAIWeaponData */>;
+    fn a_i_data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::gameplay_sim::GameAIWeaponData */>;
+    fn custom_weapon_type(&self) -> &Option<LockedTypeObject /* WeaponData */>;
+    fn custom_weapon_type_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponData */>;
     fn impulse_strength(&self) -> &f32;
     fn impulse_strength_mut(&mut self) -> &mut f32;
     fn classification(&self) -> &super::game_shared::WeaponClassification;
@@ -962,10 +1003,10 @@ impl WeaponComponentDataTrait for WeaponComponentData {
     fn sequential_firing_mut(&mut self) -> &mut bool {
         &mut self.sequential_firing
     }
-    fn weapon_firing(&self) -> &Option<Arc<Mutex<dyn WeaponFiringDataTrait>>> {
+    fn weapon_firing(&self) -> &Option<LockedTypeObject /* WeaponFiringData */> {
         &self.weapon_firing
     }
-    fn weapon_firing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponFiringDataTrait>>> {
+    fn weapon_firing_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponFiringData */> {
         &mut self.weapon_firing
     }
     fn damage_giver_name(&self) -> &String {
@@ -974,16 +1015,16 @@ impl WeaponComponentDataTrait for WeaponComponentData {
     fn damage_giver_name_mut(&mut self) -> &mut String {
         &mut self.damage_giver_name
     }
-    fn a_i_data(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>> {
+    fn a_i_data(&self) -> &Option<LockedTypeObject /* super::gameplay_sim::GameAIWeaponData */> {
         &self.a_i_data
     }
-    fn a_i_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::GameAIWeaponDataTrait>>> {
+    fn a_i_data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::gameplay_sim::GameAIWeaponData */> {
         &mut self.a_i_data
     }
-    fn custom_weapon_type(&self) -> &Option<Arc<Mutex<dyn WeaponDataTrait>>> {
+    fn custom_weapon_type(&self) -> &Option<LockedTypeObject /* WeaponData */> {
         &self.custom_weapon_type
     }
-    fn custom_weapon_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponDataTrait>>> {
+    fn custom_weapon_type_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponData */> {
         &mut self.custom_weapon_type
     }
     fn impulse_strength(&self) -> &f32 {
@@ -1067,10 +1108,10 @@ impl super::entity::ComponentDataTrait for WeaponComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -1113,112 +1154,132 @@ impl super::core::DataContainerTrait for WeaponComponentData {
 
 pub static WEAPONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponComponentData",
+    name_hash: 2059040248,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::BONECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponComponentData as Default>::default())),
+            create_boxed: || Box::new(<WeaponComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ProjectileSpawnOffset",
+                name_hash: 36316966,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(WeaponComponentData, projectile_spawn_offset),
             },
             FieldInfoData {
                 name: "SequentialFiring",
+                name_hash: 2022632657,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponComponentData, sequential_firing),
             },
             FieldInfoData {
                 name: "WeaponFiring",
+                name_hash: 1823157050,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WeaponFiringData",
                 rust_offset: offset_of!(WeaponComponentData, weapon_firing),
             },
             FieldInfoData {
                 name: "DamageGiverName",
+                name_hash: 38100006,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(WeaponComponentData, damage_giver_name),
             },
             FieldInfoData {
                 name: "AIData",
+                name_hash: 2529950045,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameAIWeaponData",
                 rust_offset: offset_of!(WeaponComponentData, a_i_data),
             },
             FieldInfoData {
                 name: "CustomWeaponType",
+                name_hash: 3603058156,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WeaponData",
                 rust_offset: offset_of!(WeaponComponentData, custom_weapon_type),
             },
             FieldInfoData {
                 name: "ImpulseStrength",
+                name_hash: 722393051,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponComponentData, impulse_strength),
             },
             FieldInfoData {
                 name: "Classification",
+                name_hash: 1196599827,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WeaponClassification",
                 rust_offset: offset_of!(WeaponComponentData, classification),
             },
             FieldInfoData {
                 name: "ReloadTimeMultiplier",
+                name_hash: 2574353098,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponComponentData, reload_time_multiplier),
             },
             FieldInfoData {
                 name: "DamageMultiplier",
+                name_hash: 2936063845,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponComponentData, damage_multiplier),
             },
             FieldInfoData {
                 name: "ExplosionDamageMultiplier",
+                name_hash: 1685883856,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponComponentData, explosion_damage_multiplier),
             },
             FieldInfoData {
                 name: "OverheatDropPerSecondMultiplier",
+                name_hash: 273863558,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponComponentData, overheat_drop_per_second_multiplier),
             },
             FieldInfoData {
                 name: "RateOfFireMultiplier",
+                name_hash: 1714855261,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponComponentData, rate_of_fire_multiplier),
             },
             FieldInfoData {
                 name: "LockTimeMultiplier",
+                name_hash: 1309101584,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponComponentData, lock_time_multiplier),
             },
             FieldInfoData {
                 name: "LockingAcceptanceAngleMultiplier",
+                name_hash: 4054344813,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponComponentData, locking_acceptance_angle_multiplier),
             },
             FieldInfoData {
                 name: "TargetPositionOverride",
+                name_hash: 3740413593,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(WeaponComponentData, target_position_override),
             },
             FieldInfoData {
                 name: "WeaponItemHash",
+                name_hash: 3522794400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WeaponComponentData, weapon_item_hash),
@@ -1250,6 +1311,7 @@ impl TypeObject for WeaponComponentData {
 
 pub static WEAPONCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponComponentData-Array",
+    name_hash: 3090673612,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponComponentData"),
@@ -1258,7 +1320,8 @@ pub static WEAPONCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponOverheatCombinableModifier {
     pub _glacier_base: WeaponOverheatModifier,
 }
@@ -1367,12 +1430,15 @@ impl super::core::DataContainerTrait for WeaponOverheatCombinableModifier {
 
 pub static WEAPONOVERHEATCOMBINABLEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponOverheatCombinableModifier",
+    name_hash: 653221640,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONOVERHEATMODIFIER_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponOverheatCombinableModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponOverheatCombinableModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponOverheatCombinableModifier as Default>::default()),
         },
         fields: &[
         ],
@@ -1402,6 +1468,7 @@ impl TypeObject for WeaponOverheatCombinableModifier {
 
 pub static WEAPONOVERHEATCOMBINABLEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponOverheatCombinableModifier-Array",
+    name_hash: 3789070652,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponOverheatCombinableModifier"),
@@ -1410,7 +1477,8 @@ pub static WEAPONOVERHEATCOMBINABLEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponOverheatModifier {
     pub _glacier_base: WeaponModifierDynamicBase,
     pub heat_per_bullet: f32,
@@ -1552,82 +1620,97 @@ impl super::core::DataContainerTrait for WeaponOverheatModifier {
 
 pub static WEAPONOVERHEATMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponOverheatModifier",
+    name_hash: 2664469606,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERDYNAMICBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponOverheatModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponOverheatModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponOverheatModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HeatPerBullet",
+                name_hash: 2230088284,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, heat_per_bullet),
             },
             FieldInfoData {
                 name: "HeatDropPerSecond",
+                name_hash: 2173208259,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, heat_drop_per_second),
             },
             FieldInfoData {
                 name: "HeatIncreasePerSecond",
+                name_hash: 3418659534,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, heat_increase_per_second),
             },
             FieldInfoData {
                 name: "OverheatedPenaltyTime",
+                name_hash: 3296677436,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, overheated_penalty_time),
             },
             FieldInfoData {
                 name: "OverheatThreshold",
+                name_hash: 160337860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, overheat_threshold),
             },
             FieldInfoData {
                 name: "OverheatDropDelay",
+                name_hash: 3839495503,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, overheat_drop_delay),
             },
             FieldInfoData {
                 name: "HeatPerBulletMultiplier",
+                name_hash: 3041604887,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, heat_per_bullet_multiplier),
             },
             FieldInfoData {
                 name: "HeatDropPerSecondMultiplier",
+                name_hash: 2799802120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, heat_drop_per_second_multiplier),
             },
             FieldInfoData {
                 name: "HeatIncreasePerSecondMultiplier",
+                name_hash: 2371165573,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, heat_increase_per_second_multiplier),
             },
             FieldInfoData {
                 name: "OverheatedPenaltyTimeMultiplier",
+                name_hash: 3575847351,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, overheated_penalty_time_multiplier),
             },
             FieldInfoData {
                 name: "OverheatDropDelayMultiplier",
+                name_hash: 2155728004,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, overheat_drop_delay_multiplier),
             },
             FieldInfoData {
                 name: "OverheatedDropMultiplier",
+                name_hash: 3890601008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponOverheatModifier, overheated_drop_multiplier),
@@ -1659,6 +1742,7 @@ impl TypeObject for WeaponOverheatModifier {
 
 pub static WEAPONOVERHEATMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponOverheatModifier-Array",
+    name_hash: 2380575058,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponOverheatModifier"),
@@ -1667,7 +1751,8 @@ pub static WEAPONOVERHEATMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponRecoilCombinableModifier {
     pub _glacier_base: WeaponRecoilModifier,
 }
@@ -1800,12 +1885,15 @@ impl super::core::DataContainerTrait for WeaponRecoilCombinableModifier {
 
 pub static WEAPONRECOILCOMBINABLEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponRecoilCombinableModifier",
+    name_hash: 2143728288,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONRECOILMODIFIER_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponRecoilCombinableModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponRecoilCombinableModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponRecoilCombinableModifier as Default>::default()),
         },
         fields: &[
         ],
@@ -1835,6 +1923,7 @@ impl TypeObject for WeaponRecoilCombinableModifier {
 
 pub static WEAPONRECOILCOMBINABLEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponRecoilCombinableModifier-Array",
+    name_hash: 2933954580,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponRecoilCombinableModifier"),
@@ -1843,7 +1932,8 @@ pub static WEAPONRECOILCOMBINABLEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponRecoilModifier {
     pub _glacier_base: WeaponModifierDynamicBase,
     pub max_recoil_angle_x: f32,
@@ -2021,106 +2111,125 @@ impl super::core::DataContainerTrait for WeaponRecoilModifier {
 
 pub static WEAPONRECOILMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponRecoilModifier",
+    name_hash: 910860878,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERDYNAMICBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponRecoilModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponRecoilModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponRecoilModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxRecoilAngleX",
+                name_hash: 1566215510,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, max_recoil_angle_x),
             },
             FieldInfoData {
                 name: "MinRecoilAngleX",
+                name_hash: 2010820808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, min_recoil_angle_x),
             },
             FieldInfoData {
                 name: "MaxRecoilAngleY",
+                name_hash: 1566215511,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, max_recoil_angle_y),
             },
             FieldInfoData {
                 name: "MinRecoilAngleY",
+                name_hash: 2010820809,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, min_recoil_angle_y),
             },
             FieldInfoData {
                 name: "MaxRecoilAngleZ",
+                name_hash: 1566215508,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, max_recoil_angle_z),
             },
             FieldInfoData {
                 name: "MinRecoilAngleZ",
+                name_hash: 2010820810,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, min_recoil_angle_z),
             },
             FieldInfoData {
                 name: "MaxRecoilFov",
+                name_hash: 2812200304,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, max_recoil_fov),
             },
             FieldInfoData {
                 name: "MinRecoilFov",
+                name_hash: 3551417774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, min_recoil_fov),
             },
             FieldInfoData {
                 name: "MaxRecoilAngleXMultiplier",
+                name_hash: 151916061,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, max_recoil_angle_x_multiplier),
             },
             FieldInfoData {
                 name: "MinRecoilAngleXMultiplier",
+                name_hash: 3388417667,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, min_recoil_angle_x_multiplier),
             },
             FieldInfoData {
                 name: "MaxRecoilAngleYMultiplier",
+                name_hash: 3452971676,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, max_recoil_angle_y_multiplier),
             },
             FieldInfoData {
                 name: "MinRecoilAngleYMultiplier",
+                name_hash: 2394505986,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, min_recoil_angle_y_multiplier),
             },
             FieldInfoData {
                 name: "MaxRecoilAngleZMultiplier",
+                name_hash: 2907124255,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, max_recoil_angle_z_multiplier),
             },
             FieldInfoData {
                 name: "MinRecoilAngleZMultiplier",
+                name_hash: 633209473,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, min_recoil_angle_z_multiplier),
             },
             FieldInfoData {
                 name: "MaxRecoilFovMultiplier",
+                name_hash: 884425211,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, max_recoil_fov_multiplier),
             },
             FieldInfoData {
                 name: "MinRecoilFovMultiplier",
+                name_hash: 274047269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponRecoilModifier, min_recoil_fov_multiplier),
@@ -2152,6 +2261,7 @@ impl TypeObject for WeaponRecoilModifier {
 
 pub static WEAPONRECOILMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponRecoilModifier-Array",
+    name_hash: 1243970554,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponRecoilModifier"),
@@ -2160,22 +2270,23 @@ pub static WEAPONRECOILMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponOwnerModifier {
     pub _glacier_base: WeaponModifierDynamicBase,
-    pub unlock: Option<Arc<Mutex<dyn WeaponUnlockAssetTrait>>>,
+    pub unlock: Option<LockedTypeObject /* WeaponUnlockAsset */>,
 }
 
 pub trait WeaponOwnerModifierTrait: WeaponModifierDynamicBaseTrait {
-    fn unlock(&self) -> &Option<Arc<Mutex<dyn WeaponUnlockAssetTrait>>>;
-    fn unlock_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponUnlockAssetTrait>>>;
+    fn unlock(&self) -> &Option<LockedTypeObject /* WeaponUnlockAsset */>;
+    fn unlock_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponUnlockAsset */>;
 }
 
 impl WeaponOwnerModifierTrait for WeaponOwnerModifier {
-    fn unlock(&self) -> &Option<Arc<Mutex<dyn WeaponUnlockAssetTrait>>> {
+    fn unlock(&self) -> &Option<LockedTypeObject /* WeaponUnlockAsset */> {
         &self.unlock
     }
-    fn unlock_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponUnlockAssetTrait>>> {
+    fn unlock_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponUnlockAsset */> {
         &mut self.unlock
     }
 }
@@ -2203,16 +2314,20 @@ impl super::core::DataContainerTrait for WeaponOwnerModifier {
 
 pub static WEAPONOWNERMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponOwnerModifier",
+    name_hash: 1934898641,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERDYNAMICBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponOwnerModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponOwnerModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponOwnerModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Unlock",
+                name_hash: 2968292597,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WeaponUnlockAsset",
                 rust_offset: offset_of!(WeaponOwnerModifier, unlock),
@@ -2244,6 +2359,7 @@ impl TypeObject for WeaponOwnerModifier {
 
 pub static WEAPONOWNERMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponOwnerModifier-Array",
+    name_hash: 332253157,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponOwnerModifier"),
@@ -2252,7 +2368,8 @@ pub static WEAPONOWNERMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponDispersionCombinableModifier {
     pub _glacier_base: WeaponDispersionModifier,
 }
@@ -2325,12 +2442,15 @@ impl super::core::DataContainerTrait for WeaponDispersionCombinableModifier {
 
 pub static WEAPONDISPERSIONCOMBINABLEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponDispersionCombinableModifier",
+    name_hash: 2266354812,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONDISPERSIONMODIFIER_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponDispersionCombinableModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponDispersionCombinableModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponDispersionCombinableModifier as Default>::default()),
         },
         fields: &[
         ],
@@ -2360,6 +2480,7 @@ impl TypeObject for WeaponDispersionCombinableModifier {
 
 pub static WEAPONDISPERSIONCOMBINABLEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponDispersionCombinableModifier-Array",
+    name_hash: 3716144200,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponDispersionCombinableModifier"),
@@ -2368,7 +2489,8 @@ pub static WEAPONDISPERSIONCOMBINABLEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponDispersionModifier {
     pub _glacier_base: WeaponModifierDynamicBase,
     pub horizontal_modifier: f32,
@@ -2456,46 +2578,55 @@ impl super::core::DataContainerTrait for WeaponDispersionModifier {
 
 pub static WEAPONDISPERSIONMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponDispersionModifier",
+    name_hash: 151635474,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERDYNAMICBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponDispersionModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponDispersionModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponDispersionModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HorizontalModifier",
+                name_hash: 1914928364,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponDispersionModifier, horizontal_modifier),
             },
             FieldInfoData {
                 name: "VerticalModifier",
+                name_hash: 3573710656,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponDispersionModifier, vertical_modifier),
             },
             FieldInfoData {
                 name: "IncreasePerShot",
+                name_hash: 95639814,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponDispersionModifier, increase_per_shot),
             },
             FieldInfoData {
                 name: "DecreasePerSecond",
+                name_hash: 3208554608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponDispersionModifier, decrease_per_second),
             },
             FieldInfoData {
                 name: "IncreasePerShotMultiplier",
+                name_hash: 571530445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponDispersionModifier, increase_per_shot_multiplier),
             },
             FieldInfoData {
                 name: "DecreasePerSecondMultiplier",
+                name_hash: 3553551611,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponDispersionModifier, decrease_per_second_multiplier),
@@ -2527,6 +2658,7 @@ impl TypeObject for WeaponDispersionModifier {
 
 pub static WEAPONDISPERSIONMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponDispersionModifier-Array",
+    name_hash: 1151593766,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponDispersionModifier"),
@@ -2535,22 +2667,23 @@ pub static WEAPONDISPERSIONMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponCrosshairTypeModifier {
     pub _glacier_base: WeaponModifierBase,
-    pub crosshair_type: Option<Arc<Mutex<dyn super::game_shared::CrosshairTypeAssetTrait>>>,
+    pub crosshair_type: Option<LockedTypeObject /* super::game_shared::CrosshairTypeAsset */>,
 }
 
 pub trait WeaponCrosshairTypeModifierTrait: WeaponModifierBaseTrait {
-    fn crosshair_type(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CrosshairTypeAssetTrait>>>;
-    fn crosshair_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CrosshairTypeAssetTrait>>>;
+    fn crosshair_type(&self) -> &Option<LockedTypeObject /* super::game_shared::CrosshairTypeAsset */>;
+    fn crosshair_type_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::CrosshairTypeAsset */>;
 }
 
 impl WeaponCrosshairTypeModifierTrait for WeaponCrosshairTypeModifier {
-    fn crosshair_type(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CrosshairTypeAssetTrait>>> {
+    fn crosshair_type(&self) -> &Option<LockedTypeObject /* super::game_shared::CrosshairTypeAsset */> {
         &self.crosshair_type
     }
-    fn crosshair_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CrosshairTypeAssetTrait>>> {
+    fn crosshair_type_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::CrosshairTypeAsset */> {
         &mut self.crosshair_type
     }
 }
@@ -2575,16 +2708,20 @@ impl super::core::DataContainerTrait for WeaponCrosshairTypeModifier {
 
 pub static WEAPONCROSSHAIRTYPEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponCrosshairTypeModifier",
+    name_hash: 1454310052,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponCrosshairTypeModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponCrosshairTypeModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponCrosshairTypeModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CrosshairType",
+                name_hash: 839051281,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CrosshairTypeAsset",
                 rust_offset: offset_of!(WeaponCrosshairTypeModifier, crosshair_type),
@@ -2616,6 +2753,7 @@ impl TypeObject for WeaponCrosshairTypeModifier {
 
 pub static WEAPONCROSSHAIRTYPEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponCrosshairTypeModifier-Array",
+    name_hash: 1745131024,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponCrosshairTypeModifier"),
@@ -2624,7 +2762,8 @@ pub static WEAPONCROSSHAIRTYPEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponMagazineModifier {
     pub _glacier_base: WeaponModifierBase,
     pub magazine_capacity: i32,
@@ -2682,28 +2821,34 @@ impl super::core::DataContainerTrait for WeaponMagazineModifier {
 
 pub static WEAPONMAGAZINEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponMagazineModifier",
+    name_hash: 2705655170,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponMagazineModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponMagazineModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponMagazineModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MagazineCapacity",
+                name_hash: 1634670339,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WeaponMagazineModifier, magazine_capacity),
             },
             FieldInfoData {
                 name: "NumberOfMagazines",
+                name_hash: 2684433166,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WeaponMagazineModifier, number_of_magazines),
             },
             FieldInfoData {
                 name: "SpawnWithoutAmmo",
+                name_hash: 4137126140,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponMagazineModifier, spawn_without_ammo),
@@ -2735,6 +2880,7 @@ impl TypeObject for WeaponMagazineModifier {
 
 pub static WEAPONMAGAZINEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponMagazineModifier-Array",
+    name_hash: 530449590,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponMagazineModifier"),
@@ -2743,7 +2889,8 @@ pub static WEAPONMAGAZINEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponFireLogicCombinableModifier {
     pub _glacier_base: WeaponFireLogicModifier,
 }
@@ -2804,12 +2951,15 @@ impl super::core::DataContainerTrait for WeaponFireLogicCombinableModifier {
 
 pub static WEAPONFIRELOGICCOMBINABLEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFireLogicCombinableModifier",
+    name_hash: 2267498504,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONFIRELOGICMODIFIER_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponFireLogicCombinableModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponFireLogicCombinableModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponFireLogicCombinableModifier as Default>::default()),
         },
         fields: &[
         ],
@@ -2839,6 +2989,7 @@ impl TypeObject for WeaponFireLogicCombinableModifier {
 
 pub static WEAPONFIRELOGICCOMBINABLEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFireLogicCombinableModifier-Array",
+    name_hash: 278612540,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponFireLogicCombinableModifier"),
@@ -2847,7 +2998,8 @@ pub static WEAPONFIRELOGICCOMBINABLEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponFireLogicModifier {
     pub _glacier_base: WeaponModifierDynamicBase,
     pub rate_of_fire: f32,
@@ -2917,34 +3069,41 @@ impl super::core::DataContainerTrait for WeaponFireLogicModifier {
 
 pub static WEAPONFIRELOGICMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFireLogicModifier",
+    name_hash: 3613474150,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERDYNAMICBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponFireLogicModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponFireLogicModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponFireLogicModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RateOfFire",
+                name_hash: 3866082710,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponFireLogicModifier, rate_of_fire),
             },
             FieldInfoData {
                 name: "RateOfFireForBurst",
+                name_hash: 1393806543,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponFireLogicModifier, rate_of_fire_for_burst),
             },
             FieldInfoData {
                 name: "RateOfFireMultiplier",
+                name_hash: 1714855261,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponFireLogicModifier, rate_of_fire_multiplier),
             },
             FieldInfoData {
                 name: "RateOfFireForBurstMultiplier",
+                name_hash: 2743921668,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponFireLogicModifier, rate_of_fire_for_burst_multiplier),
@@ -2976,6 +3135,7 @@ impl TypeObject for WeaponFireLogicModifier {
 
 pub static WEAPONFIRELOGICMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFireLogicModifier-Array",
+    name_hash: 613423698,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponFireLogicModifier"),
@@ -2984,7 +3144,8 @@ pub static WEAPONFIRELOGICMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponShotCombinableModifier {
     pub _glacier_base: WeaponShotModifier,
 }
@@ -3057,12 +3218,15 @@ impl super::core::DataContainerTrait for WeaponShotCombinableModifier {
 
 pub static WEAPONSHOTCOMBINABLEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponShotCombinableModifier",
+    name_hash: 1899717758,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONSHOTMODIFIER_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponShotCombinableModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponShotCombinableModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponShotCombinableModifier as Default>::default()),
         },
         fields: &[
         ],
@@ -3092,6 +3256,7 @@ impl TypeObject for WeaponShotCombinableModifier {
 
 pub static WEAPONSHOTCOMBINABLEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponShotCombinableModifier-Array",
+    name_hash: 1799202122,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponShotCombinableModifier"),
@@ -3100,7 +3265,8 @@ pub static WEAPONSHOTCOMBINABLEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponShotModifier {
     pub _glacier_base: WeaponModifierDynamicBase,
     pub initial_speed: super::core::Vec3,
@@ -3188,46 +3354,55 @@ impl super::core::DataContainerTrait for WeaponShotModifier {
 
 pub static WEAPONSHOTMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponShotModifier",
+    name_hash: 1419222928,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERDYNAMICBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponShotModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponShotModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponShotModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InitialSpeed",
+                name_hash: 3681055580,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(WeaponShotModifier, initial_speed),
             },
             FieldInfoData {
                 name: "NumberOfBulletsPerShell",
+                name_hash: 464437027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WeaponShotModifier, number_of_bullets_per_shell),
             },
             FieldInfoData {
                 name: "NumberOfBulletsPerBurst",
+                name_hash: 491113727,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WeaponShotModifier, number_of_bullets_per_burst),
             },
             FieldInfoData {
                 name: "InitialSpeedMultiplier",
+                name_hash: 3011278359,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponShotModifier, initial_speed_multiplier),
             },
             FieldInfoData {
                 name: "NumberOfBulletsPerShellMultiplier",
+                name_hash: 2636457384,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponShotModifier, number_of_bullets_per_shell_multiplier),
             },
             FieldInfoData {
                 name: "NumberOfBulletsPerBurstMultiplier",
+                name_hash: 2709430388,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponShotModifier, number_of_bullets_per_burst_multiplier),
@@ -3259,6 +3434,7 @@ impl TypeObject for WeaponShotModifier {
 
 pub static WEAPONSHOTMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponShotModifier-Array",
+    name_hash: 1189260708,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponShotModifier"),
@@ -3267,34 +3443,35 @@ pub static WEAPONSHOTMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponProjectileModifier {
     pub _glacier_base: WeaponModifierDynamicBase,
-    pub projectile_data: Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>>,
-    pub projectile: Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>>,
+    pub projectile_data: Option<LockedTypeObject /* ProjectileEntityData */>,
+    pub projectile: Option<LockedTypeObject /* ProjectileBlueprint */>,
     pub max_count: i32,
 }
 
 pub trait WeaponProjectileModifierTrait: WeaponModifierDynamicBaseTrait {
-    fn projectile_data(&self) -> &Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>>;
-    fn projectile_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>>;
-    fn projectile(&self) -> &Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>>;
-    fn projectile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>>;
+    fn projectile_data(&self) -> &Option<LockedTypeObject /* ProjectileEntityData */>;
+    fn projectile_data_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileEntityData */>;
+    fn projectile(&self) -> &Option<LockedTypeObject /* ProjectileBlueprint */>;
+    fn projectile_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileBlueprint */>;
     fn max_count(&self) -> &i32;
     fn max_count_mut(&mut self) -> &mut i32;
 }
 
 impl WeaponProjectileModifierTrait for WeaponProjectileModifier {
-    fn projectile_data(&self) -> &Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>> {
+    fn projectile_data(&self) -> &Option<LockedTypeObject /* ProjectileEntityData */> {
         &self.projectile_data
     }
-    fn projectile_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>> {
+    fn projectile_data_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileEntityData */> {
         &mut self.projectile_data
     }
-    fn projectile(&self) -> &Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>> {
+    fn projectile(&self) -> &Option<LockedTypeObject /* ProjectileBlueprint */> {
         &self.projectile
     }
-    fn projectile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>> {
+    fn projectile_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileBlueprint */> {
         &mut self.projectile
     }
     fn max_count(&self) -> &i32 {
@@ -3328,28 +3505,34 @@ impl super::core::DataContainerTrait for WeaponProjectileModifier {
 
 pub static WEAPONPROJECTILEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponProjectileModifier",
+    name_hash: 414286341,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERDYNAMICBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponProjectileModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponProjectileModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponProjectileModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ProjectileData",
+                name_hash: 2690942720,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProjectileEntityData",
                 rust_offset: offset_of!(WeaponProjectileModifier, projectile_data),
             },
             FieldInfoData {
                 name: "Projectile",
+                name_hash: 3883939888,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProjectileBlueprint",
                 rust_offset: offset_of!(WeaponProjectileModifier, projectile),
             },
             FieldInfoData {
                 name: "MaxCount",
+                name_hash: 415061138,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WeaponProjectileModifier, max_count),
@@ -3381,6 +3564,7 @@ impl TypeObject for WeaponProjectileModifier {
 
 pub static WEAPONPROJECTILEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponProjectileModifier-Array",
+    name_hash: 1844718001,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponProjectileModifier"),
@@ -3389,25 +3573,26 @@ pub static WEAPONPROJECTILEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponSoundModifier {
     pub _glacier_base: WeaponModifierDynamicBase,
-    pub sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
+    pub sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
     pub mute_primary_sound_when_active: bool,
 }
 
 pub trait WeaponSoundModifierTrait: WeaponModifierDynamicBaseTrait {
-    fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
     fn mute_primary_sound_when_active(&self) -> &bool;
     fn mute_primary_sound_when_active_mut(&mut self) -> &mut bool;
 }
 
 impl WeaponSoundModifierTrait for WeaponSoundModifier {
-    fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.sound
     }
-    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.sound
     }
     fn mute_primary_sound_when_active(&self) -> &bool {
@@ -3441,22 +3626,27 @@ impl super::core::DataContainerTrait for WeaponSoundModifier {
 
 pub static WEAPONSOUNDMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponSoundModifier",
+    name_hash: 2482439603,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERDYNAMICBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponSoundModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponSoundModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponSoundModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Sound",
+                name_hash: 231353798,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(WeaponSoundModifier, sound),
             },
             FieldInfoData {
                 name: "MutePrimarySoundWhenActive",
+                name_hash: 3151260539,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponSoundModifier, mute_primary_sound_when_active),
@@ -3488,6 +3678,7 @@ impl TypeObject for WeaponSoundModifier {
 
 pub static WEAPONSOUNDMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponSoundModifier-Array",
+    name_hash: 2271588615,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponSoundModifier"),
@@ -3496,31 +3687,32 @@ pub static WEAPONSOUNDMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponFiringEffectsModifier {
     pub _glacier_base: WeaponModifierDynamicBase,
-    pub fire_effects1p: Vec<FireEffectData>,
-    pub fire_effects3p: Vec<FireEffectData>,
+    pub fire_effects1p: Vec<BoxedTypeObject /* FireEffectData */>,
+    pub fire_effects3p: Vec<BoxedTypeObject /* FireEffectData */>,
 }
 
 pub trait WeaponFiringEffectsModifierTrait: WeaponModifierDynamicBaseTrait {
-    fn fire_effects1p(&self) -> &Vec<FireEffectData>;
-    fn fire_effects1p_mut(&mut self) -> &mut Vec<FireEffectData>;
-    fn fire_effects3p(&self) -> &Vec<FireEffectData>;
-    fn fire_effects3p_mut(&mut self) -> &mut Vec<FireEffectData>;
+    fn fire_effects1p(&self) -> &Vec<BoxedTypeObject /* FireEffectData */>;
+    fn fire_effects1p_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FireEffectData */>;
+    fn fire_effects3p(&self) -> &Vec<BoxedTypeObject /* FireEffectData */>;
+    fn fire_effects3p_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FireEffectData */>;
 }
 
 impl WeaponFiringEffectsModifierTrait for WeaponFiringEffectsModifier {
-    fn fire_effects1p(&self) -> &Vec<FireEffectData> {
+    fn fire_effects1p(&self) -> &Vec<BoxedTypeObject /* FireEffectData */> {
         &self.fire_effects1p
     }
-    fn fire_effects1p_mut(&mut self) -> &mut Vec<FireEffectData> {
+    fn fire_effects1p_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FireEffectData */> {
         &mut self.fire_effects1p
     }
-    fn fire_effects3p(&self) -> &Vec<FireEffectData> {
+    fn fire_effects3p(&self) -> &Vec<BoxedTypeObject /* FireEffectData */> {
         &self.fire_effects3p
     }
-    fn fire_effects3p_mut(&mut self) -> &mut Vec<FireEffectData> {
+    fn fire_effects3p_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FireEffectData */> {
         &mut self.fire_effects3p
     }
 }
@@ -3548,22 +3740,27 @@ impl super::core::DataContainerTrait for WeaponFiringEffectsModifier {
 
 pub static WEAPONFIRINGEFFECTSMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringEffectsModifier",
+    name_hash: 4024544681,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERDYNAMICBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponFiringEffectsModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponFiringEffectsModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponFiringEffectsModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FireEffects1p",
+                name_hash: 3749424600,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FireEffectData-Array",
                 rust_offset: offset_of!(WeaponFiringEffectsModifier, fire_effects1p),
             },
             FieldInfoData {
                 name: "FireEffects3p",
+                name_hash: 3749424538,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FireEffectData-Array",
                 rust_offset: offset_of!(WeaponFiringEffectsModifier, fire_effects3p),
@@ -3595,6 +3792,7 @@ impl TypeObject for WeaponFiringEffectsModifier {
 
 pub static WEAPONFIRINGEFFECTSMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringEffectsModifier-Array",
+    name_hash: 3143791645,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponFiringEffectsModifier"),
@@ -3603,22 +3801,23 @@ pub static WEAPONFIRINGEFFECTSMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponFiringDataModifier {
     pub _glacier_base: WeaponModifierBase,
-    pub weapon_firing: Option<Arc<Mutex<dyn WeaponFiringDataTrait>>>,
+    pub weapon_firing: Option<LockedTypeObject /* WeaponFiringData */>,
 }
 
 pub trait WeaponFiringDataModifierTrait: WeaponModifierBaseTrait {
-    fn weapon_firing(&self) -> &Option<Arc<Mutex<dyn WeaponFiringDataTrait>>>;
-    fn weapon_firing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponFiringDataTrait>>>;
+    fn weapon_firing(&self) -> &Option<LockedTypeObject /* WeaponFiringData */>;
+    fn weapon_firing_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponFiringData */>;
 }
 
 impl WeaponFiringDataModifierTrait for WeaponFiringDataModifier {
-    fn weapon_firing(&self) -> &Option<Arc<Mutex<dyn WeaponFiringDataTrait>>> {
+    fn weapon_firing(&self) -> &Option<LockedTypeObject /* WeaponFiringData */> {
         &self.weapon_firing
     }
-    fn weapon_firing_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponFiringDataTrait>>> {
+    fn weapon_firing_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponFiringData */> {
         &mut self.weapon_firing
     }
 }
@@ -3643,16 +3842,20 @@ impl super::core::DataContainerTrait for WeaponFiringDataModifier {
 
 pub static WEAPONFIRINGDATAMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringDataModifier",
+    name_hash: 1155530429,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponFiringDataModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponFiringDataModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponFiringDataModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WeaponFiring",
+                name_hash: 1823157050,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WeaponFiringData",
                 rust_offset: offset_of!(WeaponFiringDataModifier, weapon_firing),
@@ -3684,6 +3887,7 @@ impl TypeObject for WeaponFiringDataModifier {
 
 pub static WEAPONFIRINGDATAMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringDataModifier-Array",
+    name_hash: 1961622281,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponFiringDataModifier"),
@@ -3692,7 +3896,8 @@ pub static WEAPONFIRINGDATAMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponMiscModifier {
     pub _glacier_base: WeaponModifierBase,
     pub enable_breath_control: bool,
@@ -3768,40 +3973,48 @@ impl super::core::DataContainerTrait for WeaponMiscModifier {
 
 pub static WEAPONMISCMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponMiscModifier",
+    name_hash: 582823428,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponMiscModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponMiscModifier as Default>::default())),
+            create_boxed: || Box::new(<WeaponMiscModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EnableBreathControl",
+                name_hash: 613505579,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponMiscModifier, enable_breath_control),
             },
             FieldInfoData {
                 name: "CanBeInSupportedShooting",
+                name_hash: 2187452328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponMiscModifier, can_be_in_supported_shooting),
             },
             FieldInfoData {
                 name: "UnZoomOnBoltAction",
+                name_hash: 1438634691,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponMiscModifier, un_zoom_on_bolt_action),
             },
             FieldInfoData {
                 name: "HoldBoltActionUntilZoomRelease",
+                name_hash: 3133940949,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponMiscModifier, hold_bolt_action_until_zoom_release),
             },
             FieldInfoData {
                 name: "IsSilenced",
+                name_hash: 1644964768,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponMiscModifier, is_silenced),
@@ -3833,6 +4046,7 @@ impl TypeObject for WeaponMiscModifier {
 
 pub static WEAPONMISCMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponMiscModifier-Array",
+    name_hash: 4182114864,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponMiscModifier"),
@@ -3841,7 +4055,8 @@ pub static WEAPONMISCMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponModifierDynamicBase {
     pub _glacier_base: WeaponModifierBase,
 }
@@ -3872,12 +4087,15 @@ impl super::core::DataContainerTrait for WeaponModifierDynamicBase {
 
 pub static WEAPONMODIFIERDYNAMICBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponModifierDynamicBase",
+    name_hash: 3904287888,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONMODIFIERBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponModifierDynamicBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponModifierDynamicBase as Default>::default())),
+            create_boxed: || Box::new(<WeaponModifierDynamicBase as Default>::default()),
         },
         fields: &[
         ],
@@ -3907,6 +4125,7 @@ impl TypeObject for WeaponModifierDynamicBase {
 
 pub static WEAPONMODIFIERDYNAMICBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponModifierDynamicBase-Array",
+    name_hash: 3174924964,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponModifierDynamicBase"),
@@ -3915,7 +4134,8 @@ pub static WEAPONMODIFIERDYNAMICBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponModifierBase {
     pub _glacier_base: super::core::DataContainer,
     pub apply_order: i32,
@@ -3949,22 +4169,27 @@ impl super::core::DataContainerTrait for WeaponModifierBase {
 
 pub static WEAPONMODIFIERBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponModifierBase",
+    name_hash: 76686565,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponModifierBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponModifierBase as Default>::default())),
+            create_boxed: || Box::new(<WeaponModifierBase as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ApplyOrder",
+                name_hash: 4069599615,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WeaponModifierBase, apply_order),
             },
             FieldInfoData {
                 name: "DynamicUpdateEnabled",
+                name_hash: 1076632388,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponModifierBase, dynamic_update_enabled),
@@ -3996,6 +4221,7 @@ impl TypeObject for WeaponModifierBase {
 
 pub static WEAPONMODIFIERBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponModifierBase-Array",
+    name_hash: 217050577,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponModifierBase"),
@@ -4004,7 +4230,8 @@ pub static WEAPONMODIFIERBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LaserPainterData {
     pub _glacier_base: LockingWeaponData,
     pub time_object_is_painted: f32,
@@ -4025,16 +4252,16 @@ impl LaserPainterDataTrait for LaserPainterData {
 }
 
 impl LockingWeaponDataTrait for LaserPainterData {
-    fn locking_controller(&self) -> &Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn locking_controller(&self) -> &Option<LockedTypeObject /* LockingControllerData */> {
         self._glacier_base.locking_controller()
     }
-    fn locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn locking_controller_mut(&mut self) -> &mut Option<LockedTypeObject /* LockingControllerData */> {
         self._glacier_base.locking_controller_mut()
     }
-    fn secondary_locking_controller(&self) -> &Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn secondary_locking_controller(&self) -> &Option<LockedTypeObject /* LockingControllerData */> {
         self._glacier_base.secondary_locking_controller()
     }
-    fn secondary_locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn secondary_locking_controller_mut(&mut self) -> &mut Option<LockedTypeObject /* LockingControllerData */> {
         self._glacier_base.secondary_locking_controller_mut()
     }
     fn override_locking_controller_settings(&self) -> &bool {
@@ -4116,16 +4343,20 @@ impl super::core::DataContainerTrait for LaserPainterData {
 
 pub static LASERPAINTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LaserPainterData",
+    name_hash: 1045078793,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCKINGWEAPONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LaserPainterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LaserPainterData as Default>::default())),
+            create_boxed: || Box::new(<LaserPainterData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TimeObjectIsPainted",
+                name_hash: 641195484,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LaserPainterData, time_object_is_painted),
@@ -4157,6 +4388,7 @@ impl TypeObject for LaserPainterData {
 
 pub static LASERPAINTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LaserPainterData-Array",
+    name_hash: 90290365,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("LaserPainterData"),
@@ -4165,13 +4397,14 @@ pub static LASERPAINTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LaserDesignatorData {
     pub _glacier_base: LockingWeaponData,
     pub post_lock_time: f32,
     pub bomber_time: f32,
     pub bomb_warn_time: f32,
-    pub bomber_sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
+    pub bomber_sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
 }
 
 pub trait LaserDesignatorDataTrait: LockingWeaponDataTrait {
@@ -4181,8 +4414,8 @@ pub trait LaserDesignatorDataTrait: LockingWeaponDataTrait {
     fn bomber_time_mut(&mut self) -> &mut f32;
     fn bomb_warn_time(&self) -> &f32;
     fn bomb_warn_time_mut(&mut self) -> &mut f32;
-    fn bomber_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn bomber_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn bomber_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn bomber_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
 }
 
 impl LaserDesignatorDataTrait for LaserDesignatorData {
@@ -4204,25 +4437,25 @@ impl LaserDesignatorDataTrait for LaserDesignatorData {
     fn bomb_warn_time_mut(&mut self) -> &mut f32 {
         &mut self.bomb_warn_time
     }
-    fn bomber_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn bomber_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.bomber_sound
     }
-    fn bomber_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn bomber_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.bomber_sound
     }
 }
 
 impl LockingWeaponDataTrait for LaserDesignatorData {
-    fn locking_controller(&self) -> &Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn locking_controller(&self) -> &Option<LockedTypeObject /* LockingControllerData */> {
         self._glacier_base.locking_controller()
     }
-    fn locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn locking_controller_mut(&mut self) -> &mut Option<LockedTypeObject /* LockingControllerData */> {
         self._glacier_base.locking_controller_mut()
     }
-    fn secondary_locking_controller(&self) -> &Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn secondary_locking_controller(&self) -> &Option<LockedTypeObject /* LockingControllerData */> {
         self._glacier_base.secondary_locking_controller()
     }
-    fn secondary_locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn secondary_locking_controller_mut(&mut self) -> &mut Option<LockedTypeObject /* LockingControllerData */> {
         self._glacier_base.secondary_locking_controller_mut()
     }
     fn override_locking_controller_settings(&self) -> &bool {
@@ -4304,34 +4537,41 @@ impl super::core::DataContainerTrait for LaserDesignatorData {
 
 pub static LASERDESIGNATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LaserDesignatorData",
+    name_hash: 1843720614,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOCKINGWEAPONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LaserDesignatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LaserDesignatorData as Default>::default())),
+            create_boxed: || Box::new(<LaserDesignatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PostLockTime",
+                name_hash: 4004851651,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LaserDesignatorData, post_lock_time),
             },
             FieldInfoData {
                 name: "BomberTime",
+                name_hash: 3089415333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LaserDesignatorData, bomber_time),
             },
             FieldInfoData {
                 name: "BombWarnTime",
+                name_hash: 2755941208,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LaserDesignatorData, bomb_warn_time),
             },
             FieldInfoData {
                 name: "BomberSound",
+                name_hash: 3167598099,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(LaserDesignatorData, bomber_sound),
@@ -4363,6 +4603,7 @@ impl TypeObject for LaserDesignatorData {
 
 pub static LASERDESIGNATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LaserDesignatorData-Array",
+    name_hash: 2347384338,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("LaserDesignatorData"),
@@ -4371,11 +4612,12 @@ pub static LASERDESIGNATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LockingWeaponData {
     pub _glacier_base: WeaponData,
-    pub locking_controller: Option<Arc<Mutex<dyn LockingControllerDataTrait>>>,
-    pub secondary_locking_controller: Option<Arc<Mutex<dyn LockingControllerDataTrait>>>,
+    pub locking_controller: Option<LockedTypeObject /* LockingControllerData */>,
+    pub secondary_locking_controller: Option<LockedTypeObject /* LockingControllerData */>,
     pub override_locking_controller_settings: bool,
     pub is_homing: bool,
     pub is_guided: bool,
@@ -4387,10 +4629,10 @@ pub struct LockingWeaponData {
 }
 
 pub trait LockingWeaponDataTrait: WeaponDataTrait {
-    fn locking_controller(&self) -> &Option<Arc<Mutex<dyn LockingControllerDataTrait>>>;
-    fn locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LockingControllerDataTrait>>>;
-    fn secondary_locking_controller(&self) -> &Option<Arc<Mutex<dyn LockingControllerDataTrait>>>;
-    fn secondary_locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LockingControllerDataTrait>>>;
+    fn locking_controller(&self) -> &Option<LockedTypeObject /* LockingControllerData */>;
+    fn locking_controller_mut(&mut self) -> &mut Option<LockedTypeObject /* LockingControllerData */>;
+    fn secondary_locking_controller(&self) -> &Option<LockedTypeObject /* LockingControllerData */>;
+    fn secondary_locking_controller_mut(&mut self) -> &mut Option<LockedTypeObject /* LockingControllerData */>;
     fn override_locking_controller_settings(&self) -> &bool;
     fn override_locking_controller_settings_mut(&mut self) -> &mut bool;
     fn is_homing(&self) -> &bool;
@@ -4410,16 +4652,16 @@ pub trait LockingWeaponDataTrait: WeaponDataTrait {
 }
 
 impl LockingWeaponDataTrait for LockingWeaponData {
-    fn locking_controller(&self) -> &Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn locking_controller(&self) -> &Option<LockedTypeObject /* LockingControllerData */> {
         &self.locking_controller
     }
-    fn locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn locking_controller_mut(&mut self) -> &mut Option<LockedTypeObject /* LockingControllerData */> {
         &mut self.locking_controller
     }
-    fn secondary_locking_controller(&self) -> &Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn secondary_locking_controller(&self) -> &Option<LockedTypeObject /* LockingControllerData */> {
         &self.secondary_locking_controller
     }
-    fn secondary_locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn secondary_locking_controller_mut(&mut self) -> &mut Option<LockedTypeObject /* LockingControllerData */> {
         &mut self.secondary_locking_controller
     }
     fn override_locking_controller_settings(&self) -> &bool {
@@ -4501,70 +4743,83 @@ impl super::core::DataContainerTrait for LockingWeaponData {
 
 pub static LOCKINGWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LockingWeaponData",
+    name_hash: 837219740,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LockingWeaponData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LockingWeaponData as Default>::default())),
+            create_boxed: || Box::new(<LockingWeaponData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LockingController",
+                name_hash: 1783566994,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LockingControllerData",
                 rust_offset: offset_of!(LockingWeaponData, locking_controller),
             },
             FieldInfoData {
                 name: "SecondaryLockingController",
+                name_hash: 212156840,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LockingControllerData",
                 rust_offset: offset_of!(LockingWeaponData, secondary_locking_controller),
             },
             FieldInfoData {
                 name: "OverrideLockingControllerSettings",
+                name_hash: 1916490723,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingWeaponData, override_locking_controller_settings),
             },
             FieldInfoData {
                 name: "IsHoming",
+                name_hash: 962805909,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingWeaponData, is_homing),
             },
             FieldInfoData {
                 name: "IsGuided",
+                name_hash: 911651905,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingWeaponData, is_guided),
             },
             FieldInfoData {
                 name: "IsGuidedWhenZoomed",
+                name_hash: 951364163,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingWeaponData, is_guided_when_zoomed),
             },
             FieldInfoData {
                 name: "IsGuidedHoming",
+                name_hash: 399064139,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingWeaponData, is_guided_homing),
             },
             FieldInfoData {
                 name: "FireOnlyWhenLockedOn",
+                name_hash: 708469046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingWeaponData, fire_only_when_locked_on),
             },
             FieldInfoData {
                 name: "GuideOnlyWhenLockedOn",
+                name_hash: 1926737172,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingWeaponData, guide_only_when_locked_on),
             },
             FieldInfoData {
                 name: "WarnLock",
+                name_hash: 2457242500,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WarnTarget",
                 rust_offset: offset_of!(LockingWeaponData, warn_lock),
@@ -4596,6 +4851,7 @@ impl TypeObject for LockingWeaponData {
 
 pub static LOCKINGWEAPONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LockingWeaponData-Array",
+    name_hash: 395939240,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("LockingWeaponData"),
@@ -4604,7 +4860,8 @@ pub static LOCKINGWEAPONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ArtilleryStrikeWeaponData {
     pub _glacier_base: WeaponData,
     pub max_strike_distance: f32,
@@ -4613,7 +4870,7 @@ pub struct ArtilleryStrikeWeaponData {
     pub max_random_spawn_height: f32,
     pub increase_spawn_height_with_distance: bool,
     pub spawn_height_multiplier: f32,
-    pub camera: Option<Arc<Mutex<dyn super::gameplay_sim::TargetCameraDataTrait>>>,
+    pub camera: Option<LockedTypeObject /* super::gameplay_sim::TargetCameraData */>,
     pub aiming_camera_height: f32,
     pub strike_camera_height: f32,
     pub aiming_camera_offset: f32,
@@ -4644,8 +4901,8 @@ pub trait ArtilleryStrikeWeaponDataTrait: WeaponDataTrait {
     fn increase_spawn_height_with_distance_mut(&mut self) -> &mut bool;
     fn spawn_height_multiplier(&self) -> &f32;
     fn spawn_height_multiplier_mut(&mut self) -> &mut f32;
-    fn camera(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::TargetCameraDataTrait>>>;
-    fn camera_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::TargetCameraDataTrait>>>;
+    fn camera(&self) -> &Option<LockedTypeObject /* super::gameplay_sim::TargetCameraData */>;
+    fn camera_mut(&mut self) -> &mut Option<LockedTypeObject /* super::gameplay_sim::TargetCameraData */>;
     fn aiming_camera_height(&self) -> &f32;
     fn aiming_camera_height_mut(&mut self) -> &mut f32;
     fn strike_camera_height(&self) -> &f32;
@@ -4715,10 +4972,10 @@ impl ArtilleryStrikeWeaponDataTrait for ArtilleryStrikeWeaponData {
     fn spawn_height_multiplier_mut(&mut self) -> &mut f32 {
         &mut self.spawn_height_multiplier
     }
-    fn camera(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::TargetCameraDataTrait>>> {
+    fn camera(&self) -> &Option<LockedTypeObject /* super::gameplay_sim::TargetCameraData */> {
         &self.camera
     }
-    fn camera_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::TargetCameraDataTrait>>> {
+    fn camera_mut(&mut self) -> &mut Option<LockedTypeObject /* super::gameplay_sim::TargetCameraData */> {
         &mut self.camera
     }
     fn aiming_camera_height(&self) -> &f32 {
@@ -4842,142 +5099,167 @@ impl super::core::DataContainerTrait for ArtilleryStrikeWeaponData {
 
 pub static ARTILLERYSTRIKEWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArtilleryStrikeWeaponData",
+    name_hash: 1198720901,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ArtilleryStrikeWeaponData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ArtilleryStrikeWeaponData as Default>::default())),
+            create_boxed: || Box::new(<ArtilleryStrikeWeaponData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxStrikeDistance",
+                name_hash: 3419412896,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, max_strike_distance),
             },
             FieldInfoData {
                 name: "StrikeRadius",
+                name_hash: 4030357871,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, strike_radius),
             },
             FieldInfoData {
                 name: "SpawnHeight",
+                name_hash: 2780846849,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, spawn_height),
             },
             FieldInfoData {
                 name: "MaxRandomSpawnHeight",
+                name_hash: 2881356526,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, max_random_spawn_height),
             },
             FieldInfoData {
                 name: "IncreaseSpawnHeightWithDistance",
+                name_hash: 398131684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, increase_spawn_height_with_distance),
             },
             FieldInfoData {
                 name: "SpawnHeightMultiplier",
+                name_hash: 167841610,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, spawn_height_multiplier),
             },
             FieldInfoData {
                 name: "Camera",
+                name_hash: 2716359356,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TargetCameraData",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, camera),
             },
             FieldInfoData {
                 name: "AimingCameraHeight",
+                name_hash: 1398477510,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, aiming_camera_height),
             },
             FieldInfoData {
                 name: "StrikeCameraHeight",
+                name_hash: 3381601297,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, strike_camera_height),
             },
             FieldInfoData {
                 name: "AimingCameraOffset",
+                name_hash: 1509617716,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, aiming_camera_offset),
             },
             FieldInfoData {
                 name: "StrikeCameraOffset",
+                name_hash: 2966290851,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, strike_camera_offset),
             },
             FieldInfoData {
                 name: "AimingCameraFov",
+                name_hash: 2378493510,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, aiming_camera_fov),
             },
             FieldInfoData {
                 name: "DelayBeforeAimingCamera",
+                name_hash: 619983381,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, delay_before_aiming_camera),
             },
             FieldInfoData {
                 name: "StrikeCameraFov",
+                name_hash: 441695729,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, strike_camera_fov),
             },
             FieldInfoData {
                 name: "FireCameraTime",
+                name_hash: 3536152465,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, fire_camera_time),
             },
             FieldInfoData {
                 name: "StrikeCameraTime",
+                name_hash: 1691832603,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, strike_camera_time),
             },
             FieldInfoData {
                 name: "ValidMinDistance",
+                name_hash: 3318112506,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, valid_min_distance),
             },
             FieldInfoData {
                 name: "ValidMaxDistance",
+                name_hash: 1927644132,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, valid_max_distance),
             },
             FieldInfoData {
                 name: "ValidMaxAngle",
+                name_hash: 815739846,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, valid_max_angle),
             },
             FieldInfoData {
                 name: "EnableProjectileTrails",
+                name_hash: 2901124096,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, enable_projectile_trails),
             },
             FieldInfoData {
                 name: "EnableCameraRotation",
+                name_hash: 3948441033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, enable_camera_rotation),
             },
             FieldInfoData {
                 name: "ArtilleryDispersion",
+                name_hash: 1373489959,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ArtilleryDispersionData",
                 rust_offset: offset_of!(ArtilleryStrikeWeaponData, artillery_dispersion),
@@ -5009,6 +5291,7 @@ impl TypeObject for ArtilleryStrikeWeaponData {
 
 pub static ARTILLERYSTRIKEWEAPONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArtilleryStrikeWeaponData-Array",
+    name_hash: 1747177265,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("ArtilleryStrikeWeaponData"),
@@ -5017,7 +5300,8 @@ pub static ARTILLERYSTRIKEWEAPONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ArtilleryDispersionData {
     pub dispersion_active: bool,
     pub max_dispersion: f32,
@@ -5092,51 +5376,60 @@ impl ArtilleryDispersionDataTrait for ArtilleryDispersionData {
 
 pub static ARTILLERYDISPERSIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArtilleryDispersionData",
+    name_hash: 1420722263,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ArtilleryDispersionData as Default>::default())),
+            create_boxed: || Box::new(<ArtilleryDispersionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DispersionActive",
+                name_hash: 1652102635,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ArtilleryDispersionData, dispersion_active),
             },
             FieldInfoData {
                 name: "MaxDispersion",
+                name_hash: 3364316851,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryDispersionData, max_dispersion),
             },
             FieldInfoData {
                 name: "DispersionAimMove",
+                name_hash: 3496872435,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryDispersionData, dispersion_aim_move),
             },
             FieldInfoData {
                 name: "DispersionAimMoveThreshold",
+                name_hash: 697473060,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryDispersionData, dispersion_aim_move_threshold),
             },
             FieldInfoData {
                 name: "DispersionFiring",
+                name_hash: 1541939034,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryDispersionData, dispersion_firing),
             },
             FieldInfoData {
                 name: "DispersionDeployment",
+                name_hash: 583542238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryDispersionData, dispersion_deployment),
             },
             FieldInfoData {
                 name: "DecreasePerSecond",
+                name_hash: 3208554608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArtilleryDispersionData, decrease_per_second),
@@ -5168,6 +5461,7 @@ impl TypeObject for ArtilleryDispersionData {
 
 pub static ARTILLERYDISPERSIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArtilleryDispersionData-Array",
+    name_hash: 2655115619,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("ArtilleryDispersionData"),
@@ -5176,7 +5470,8 @@ pub static ARTILLERYDISPERSIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MortarStrikeWeaponData {
     pub _glacier_base: WeaponData,
     pub holding_tolerance: f32,
@@ -5252,34 +5547,41 @@ impl super::core::DataContainerTrait for MortarStrikeWeaponData {
 
 pub static MORTARSTRIKEWEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MortarStrikeWeaponData",
+    name_hash: 3312514290,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WEAPONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MortarStrikeWeaponData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MortarStrikeWeaponData as Default>::default())),
+            create_boxed: || Box::new(<MortarStrikeWeaponData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HoldingTolerance",
+                name_hash: 1278440067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MortarStrikeWeaponData, holding_tolerance),
             },
             FieldInfoData {
                 name: "MaxStrikeDistance",
+                name_hash: 3419412896,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MortarStrikeWeaponData, max_strike_distance),
             },
             FieldInfoData {
                 name: "StrikeRadius",
+                name_hash: 4030357871,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MortarStrikeWeaponData, strike_radius),
             },
             FieldInfoData {
                 name: "MaxRandomSpawnHeight",
+                name_hash: 2881356526,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MortarStrikeWeaponData, max_random_spawn_height),
@@ -5311,6 +5613,7 @@ impl TypeObject for MortarStrikeWeaponData {
 
 pub static MORTARSTRIKEWEAPONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MortarStrikeWeaponData-Array",
+    name_hash: 784239558,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("MortarStrikeWeaponData"),
@@ -5319,7 +5622,8 @@ pub static MORTARSTRIKEWEAPONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponData {
     pub _glacier_base: super::gameplay_sim::ToolData,
     pub show_laser_painted_vehicles: bool,
@@ -5362,22 +5666,27 @@ impl super::core::DataContainerTrait for WeaponData {
 
 pub static WEAPONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponData",
+    name_hash: 932650231,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_sim::TOOLDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponData as Default>::default())),
+            create_boxed: || Box::new(<WeaponData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ShowLaserPaintedVehicles",
+                name_hash: 3679743847,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponData, show_laser_painted_vehicles),
             },
             FieldInfoData {
                 name: "ApplyPowerToSpeed",
+                name_hash: 3422010098,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponData, apply_power_to_speed),
@@ -5409,6 +5718,7 @@ impl TypeObject for WeaponData {
 
 pub static WEAPONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponData-Array",
+    name_hash: 1192093379,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponData"),
@@ -5417,7 +5727,8 @@ pub static WEAPONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponFiringDataAsset {
     pub _glacier_base: super::entity::GameDataContainerAsset,
 }
@@ -5429,10 +5740,10 @@ impl WeaponFiringDataAssetTrait for WeaponFiringDataAsset {
 }
 
 impl super::entity::GameDataContainerAssetTrait for WeaponFiringDataAsset {
-    fn data(&self) -> &Option<Arc<Mutex<dyn super::core::GameDataContainerTrait>>> {
+    fn data(&self) -> &Option<LockedTypeObject /* super::core::GameDataContainer */> {
         self._glacier_base.data()
     }
-    fn data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::GameDataContainerTrait>>> {
+    fn data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::GameDataContainer */> {
         self._glacier_base.data_mut()
     }
 }
@@ -5451,12 +5762,15 @@ impl super::core::DataContainerTrait for WeaponFiringDataAsset {
 
 pub static WEAPONFIRINGDATAASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringDataAsset",
+    name_hash: 3421492762,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMEDATACONTAINERASSET_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponFiringDataAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponFiringDataAsset as Default>::default())),
+            create_boxed: || Box::new(<WeaponFiringDataAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -5486,6 +5800,7 @@ impl TypeObject for WeaponFiringDataAsset {
 
 pub static WEAPONFIRINGDATAASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringDataAsset-Array",
+    name_hash: 39147822,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponFiringDataAsset"),
@@ -5494,10 +5809,11 @@ pub static WEAPONFIRINGDATAASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponFiringData {
     pub _glacier_base: super::core::GameDataContainer,
-    pub primary_fire: Option<Arc<Mutex<dyn FiringFunctionDataTrait>>>,
+    pub primary_fire: Option<LockedTypeObject /* FiringFunctionData */>,
     pub secondary_fire: SecondaryFireData,
     pub tertiary_fire: TertiaryFireData,
     pub deploy_time: f32,
@@ -5506,7 +5822,7 @@ pub struct WeaponFiringData {
     pub alt_deploy_time: f32,
     pub alt_deploy_id: i32,
     pub use_auto_aiming: bool,
-    pub weapon_sway: Option<Arc<Mutex<dyn WeaponSwayDataTrait>>>,
+    pub weapon_sway: Option<LockedTypeObject /* WeaponSwayData */>,
     pub inflict_self_damage: bool,
     pub rumble: RumbleFiringData,
     pub support_delay_stand: f32,
@@ -5519,8 +5835,8 @@ pub struct WeaponFiringData {
 }
 
 pub trait WeaponFiringDataTrait: super::core::GameDataContainerTrait {
-    fn primary_fire(&self) -> &Option<Arc<Mutex<dyn FiringFunctionDataTrait>>>;
-    fn primary_fire_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FiringFunctionDataTrait>>>;
+    fn primary_fire(&self) -> &Option<LockedTypeObject /* FiringFunctionData */>;
+    fn primary_fire_mut(&mut self) -> &mut Option<LockedTypeObject /* FiringFunctionData */>;
     fn secondary_fire(&self) -> &SecondaryFireData;
     fn secondary_fire_mut(&mut self) -> &mut SecondaryFireData;
     fn tertiary_fire(&self) -> &TertiaryFireData;
@@ -5537,8 +5853,8 @@ pub trait WeaponFiringDataTrait: super::core::GameDataContainerTrait {
     fn alt_deploy_id_mut(&mut self) -> &mut i32;
     fn use_auto_aiming(&self) -> &bool;
     fn use_auto_aiming_mut(&mut self) -> &mut bool;
-    fn weapon_sway(&self) -> &Option<Arc<Mutex<dyn WeaponSwayDataTrait>>>;
-    fn weapon_sway_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSwayDataTrait>>>;
+    fn weapon_sway(&self) -> &Option<LockedTypeObject /* WeaponSwayData */>;
+    fn weapon_sway_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponSwayData */>;
     fn inflict_self_damage(&self) -> &bool;
     fn inflict_self_damage_mut(&mut self) -> &mut bool;
     fn rumble(&self) -> &RumbleFiringData;
@@ -5560,10 +5876,10 @@ pub trait WeaponFiringDataTrait: super::core::GameDataContainerTrait {
 }
 
 impl WeaponFiringDataTrait for WeaponFiringData {
-    fn primary_fire(&self) -> &Option<Arc<Mutex<dyn FiringFunctionDataTrait>>> {
+    fn primary_fire(&self) -> &Option<LockedTypeObject /* FiringFunctionData */> {
         &self.primary_fire
     }
-    fn primary_fire_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FiringFunctionDataTrait>>> {
+    fn primary_fire_mut(&mut self) -> &mut Option<LockedTypeObject /* FiringFunctionData */> {
         &mut self.primary_fire
     }
     fn secondary_fire(&self) -> &SecondaryFireData {
@@ -5614,10 +5930,10 @@ impl WeaponFiringDataTrait for WeaponFiringData {
     fn use_auto_aiming_mut(&mut self) -> &mut bool {
         &mut self.use_auto_aiming
     }
-    fn weapon_sway(&self) -> &Option<Arc<Mutex<dyn WeaponSwayDataTrait>>> {
+    fn weapon_sway(&self) -> &Option<LockedTypeObject /* WeaponSwayData */> {
         &self.weapon_sway
     }
-    fn weapon_sway_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSwayDataTrait>>> {
+    fn weapon_sway_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponSwayData */> {
         &mut self.weapon_sway
     }
     fn inflict_self_damage(&self) -> &bool {
@@ -5684,124 +6000,146 @@ impl super::core::DataContainerTrait for WeaponFiringData {
 
 pub static WEAPONFIRINGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringData",
+    name_hash: 3628051978,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::GAMEDATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponFiringData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponFiringData as Default>::default())),
+            create_boxed: || Box::new(<WeaponFiringData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PrimaryFire",
+                name_hash: 1894912945,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FiringFunctionData",
                 rust_offset: offset_of!(WeaponFiringData, primary_fire),
             },
             FieldInfoData {
                 name: "SecondaryFire",
+                name_hash: 367243079,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SecondaryFireData",
                 rust_offset: offset_of!(WeaponFiringData, secondary_fire),
             },
             FieldInfoData {
                 name: "TertiaryFire",
+                name_hash: 3060723369,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TertiaryFireData",
                 rust_offset: offset_of!(WeaponFiringData, tertiary_fire),
             },
             FieldInfoData {
                 name: "DeployTime",
+                name_hash: 2275884507,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponFiringData, deploy_time),
             },
             FieldInfoData {
                 name: "ReactivateCooldownTime",
+                name_hash: 732426371,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponFiringData, reactivate_cooldown_time),
             },
             FieldInfoData {
                 name: "DisableZoomOnDeployTime",
+                name_hash: 3731232633,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponFiringData, disable_zoom_on_deploy_time),
             },
             FieldInfoData {
                 name: "AltDeployTime",
+                name_hash: 1924470306,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponFiringData, alt_deploy_time),
             },
             FieldInfoData {
                 name: "AltDeployId",
+                name_hash: 1819931514,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WeaponFiringData, alt_deploy_id),
             },
             FieldInfoData {
                 name: "UseAutoAiming",
+                name_hash: 2972101868,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponFiringData, use_auto_aiming),
             },
             FieldInfoData {
                 name: "WeaponSway",
+                name_hash: 933173371,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WeaponSwayData",
                 rust_offset: offset_of!(WeaponFiringData, weapon_sway),
             },
             FieldInfoData {
                 name: "InflictSelfDamage",
+                name_hash: 4046344033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponFiringData, inflict_self_damage),
             },
             FieldInfoData {
                 name: "Rumble",
+                name_hash: 3275215748,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RumbleFiringData",
                 rust_offset: offset_of!(WeaponFiringData, rumble),
             },
             FieldInfoData {
                 name: "SupportDelayStand",
+                name_hash: 3920813299,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponFiringData, support_delay_stand),
             },
             FieldInfoData {
                 name: "SupportDelayProne",
+                name_hash: 3926871609,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponFiringData, support_delay_prone),
             },
             FieldInfoData {
                 name: "ShowEnemyNametagOnAim",
+                name_hash: 64653709,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponFiringData, show_enemy_nametag_on_aim),
             },
             FieldInfoData {
                 name: "ReloadWholeMags",
+                name_hash: 3901798901,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponFiringData, reload_whole_mags),
             },
             FieldInfoData {
                 name: "DisableReloadWhileSprinting",
+                name_hash: 2335508285,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponFiringData, disable_reload_while_sprinting),
             },
             FieldInfoData {
                 name: "AbortReloadOnSprint",
+                name_hash: 923004157,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponFiringData, abort_reload_on_sprint),
             },
             FieldInfoData {
                 name: "UseRemoteDamageGiverInfo",
+                name_hash: 39035080,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponFiringData, use_remote_damage_giver_info),
@@ -5833,6 +6171,7 @@ impl TypeObject for WeaponFiringData {
 
 pub static WEAPONFIRINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringData-Array",
+    name_hash: 563374398,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponFiringData"),
@@ -5841,7 +6180,8 @@ pub static WEAPONFIRINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TertiaryFireData {
     pub wait_on_trigger_release: bool,
     pub wait_on_primary_trigger_release: bool,
@@ -5898,39 +6238,46 @@ impl TertiaryFireDataTrait for TertiaryFireData {
 
 pub static TERTIARYFIREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TertiaryFireData",
+    name_hash: 470267353,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TertiaryFireData as Default>::default())),
+            create_boxed: || Box::new(<TertiaryFireData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WaitOnTriggerRelease",
+                name_hash: 2887852830,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TertiaryFireData, wait_on_trigger_release),
             },
             FieldInfoData {
                 name: "WaitOnPrimaryTriggerRelease",
+                name_hash: 1308144914,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TertiaryFireData, wait_on_primary_trigger_release),
             },
             FieldInfoData {
                 name: "FiringDelay",
+                name_hash: 1661067117,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TertiaryFireData, firing_delay),
             },
             FieldInfoData {
                 name: "PendingFireWindow",
+                name_hash: 3361504206,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TertiaryFireData, pending_fire_window),
             },
             FieldInfoData {
                 name: "PendingFireIgnoreFireRateWindow",
+                name_hash: 1667285324,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TertiaryFireData, pending_fire_ignore_fire_rate_window),
@@ -5962,6 +6309,7 @@ impl TypeObject for TertiaryFireData {
 
 pub static TERTIARYFIREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TertiaryFireData-Array",
+    name_hash: 2543887341,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("TertiaryFireData"),
@@ -5970,7 +6318,8 @@ pub static TERTIARYFIREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SecondaryFireData {
     pub wait_on_trigger_release: bool,
     pub wait_on_primary_trigger_release: bool,
@@ -6027,39 +6376,46 @@ impl SecondaryFireDataTrait for SecondaryFireData {
 
 pub static SECONDARYFIREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SecondaryFireData",
+    name_hash: 3007859511,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SecondaryFireData as Default>::default())),
+            create_boxed: || Box::new(<SecondaryFireData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WaitOnTriggerRelease",
+                name_hash: 2887852830,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SecondaryFireData, wait_on_trigger_release),
             },
             FieldInfoData {
                 name: "WaitOnPrimaryTriggerRelease",
+                name_hash: 1308144914,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SecondaryFireData, wait_on_primary_trigger_release),
             },
             FieldInfoData {
                 name: "FiringDelay",
+                name_hash: 1661067117,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SecondaryFireData, firing_delay),
             },
             FieldInfoData {
                 name: "PendingFireWindow",
+                name_hash: 3361504206,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SecondaryFireData, pending_fire_window),
             },
             FieldInfoData {
                 name: "PendingFireIgnoreFireRateWindow",
+                name_hash: 1667285324,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SecondaryFireData, pending_fire_ignore_fire_rate_window),
@@ -6091,6 +6447,7 @@ impl TypeObject for SecondaryFireData {
 
 pub static SECONDARYFIREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SecondaryFireData-Array",
+    name_hash: 808764547,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("SecondaryFireData"),
@@ -6099,7 +6456,8 @@ pub static SECONDARYFIREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponFiringRareNetStateData {
     pub is_detonator_active: bool,
     pub fire_logic_type: FireLogicType,
@@ -6129,21 +6487,25 @@ impl WeaponFiringRareNetStateDataTrait for WeaponFiringRareNetStateData {
 
 pub static WEAPONFIRINGRARENETSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringRareNetStateData",
+    name_hash: 505399398,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponFiringRareNetStateData as Default>::default())),
+            create_boxed: || Box::new(<WeaponFiringRareNetStateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IsDetonatorActive",
+                name_hash: 1971743151,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponFiringRareNetStateData, is_detonator_active),
             },
             FieldInfoData {
                 name: "FireLogicType",
+                name_hash: 1365968171,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FireLogicType",
                 rust_offset: offset_of!(WeaponFiringRareNetStateData, fire_logic_type),
@@ -6175,6 +6537,7 @@ impl TypeObject for WeaponFiringRareNetStateData {
 
 pub static WEAPONFIRINGRARENETSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringRareNetStateData-Array",
+    name_hash: 3771393362,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponFiringRareNetStateData"),
@@ -6183,7 +6546,8 @@ pub static WEAPONFIRINGRARENETSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponFiringNetStateData {
     pub write_weapon_state: WeaponNetworkState,
     pub fired_count: u32,
@@ -6276,63 +6640,74 @@ impl WeaponFiringNetStateDataTrait for WeaponFiringNetStateData {
 
 pub static WEAPONFIRINGNETSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringNetStateData",
+    name_hash: 3215523650,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponFiringNetStateData as Default>::default())),
+            create_boxed: || Box::new(<WeaponFiringNetStateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WriteWeaponState",
+                name_hash: 885040877,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WeaponNetworkState",
                 rust_offset: offset_of!(WeaponFiringNetStateData, write_weapon_state),
             },
             FieldInfoData {
                 name: "FiredCount",
+                name_hash: 1562358202,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WeaponFiringNetStateData, fired_count),
             },
             FieldInfoData {
                 name: "TickBits",
+                name_hash: 3079854204,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WeaponFiringNetStateData, tick_bits),
             },
             FieldInfoData {
                 name: "PrimaryHeat",
+                name_hash: 1894283025,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponFiringNetStateData, primary_heat),
             },
             FieldInfoData {
                 name: "ReloadStage",
+                name_hash: 2940481456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WeaponFiringNetStateData, reload_stage),
             },
             FieldInfoData {
                 name: "ChargeUp",
+                name_hash: 1617805722,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WeaponFiringNetStateData, charge_up),
             },
             FieldInfoData {
                 name: "InPreFire",
+                name_hash: 2353757885,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponFiringNetStateData, in_pre_fire),
             },
             FieldInfoData {
                 name: "PrimaryIsOverheated",
+                name_hash: 3772723940,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WeaponFiringNetStateData, primary_is_overheated),
             },
             FieldInfoData {
                 name: "FiredHoldAndReleaseModifier",
+                name_hash: 2736996067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WeaponFiringNetStateData, fired_hold_and_release_modifier),
@@ -6364,6 +6739,7 @@ impl TypeObject for WeaponFiringNetStateData {
 
 pub static WEAPONFIRINGNETSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringNetStateData-Array",
+    name_hash: 1716948726,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponFiringNetStateData"),
@@ -6387,6 +6763,7 @@ pub enum WeaponNetworkState {
 
 pub static WEAPONNETWORKSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponNetworkState",
+    name_hash: 2366516750,
     flags: MemberInfoFlags::new(49429),
     module: "WeaponShared",
     data: TypeInfoData::Enum,
@@ -6415,6 +6792,7 @@ impl TypeObject for WeaponNetworkState {
 
 pub static WEAPONNETWORKSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponNetworkState-Array",
+    name_hash: 4169307962,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponNetworkState"),
@@ -6451,6 +6829,7 @@ pub enum WeaponFiringEvent {
 
 pub static WEAPONFIRINGEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringEvent",
+    name_hash: 3769091382,
     flags: MemberInfoFlags::new(49429),
     module: "WeaponShared",
     data: TypeInfoData::Enum,
@@ -6479,6 +6858,7 @@ impl TypeObject for WeaponFiringEvent {
 
 pub static WEAPONFIRINGEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponFiringEvent-Array",
+    name_hash: 351304066,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponFiringEvent"),
@@ -6487,7 +6867,8 @@ pub static WEAPONFIRINGEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponSuppressionData {
     pub _glacier_base: super::core::DataContainer,
     pub max_multiplier: f32,
@@ -6539,34 +6920,41 @@ impl super::core::DataContainerTrait for WeaponSuppressionData {
 
 pub static WEAPONSUPPRESSIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponSuppressionData",
+    name_hash: 3583296334,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponSuppressionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponSuppressionData as Default>::default())),
+            create_boxed: || Box::new(<WeaponSuppressionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxMultiplier",
+                name_hash: 441185306,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponSuppressionData, max_multiplier),
             },
             FieldInfoData {
                 name: "MinMultiplier",
+                name_hash: 3723256324,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponSuppressionData, min_multiplier),
             },
             FieldInfoData {
                 name: "MinDistance",
+                name_hash: 1885855628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponSuppressionData, min_distance),
             },
             FieldInfoData {
                 name: "MaxDistance",
+                name_hash: 3520454034,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponSuppressionData, max_distance),
@@ -6598,6 +6986,7 @@ impl TypeObject for WeaponSuppressionData {
 
 pub static WEAPONSUPPRESSIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponSuppressionData-Array",
+    name_hash: 4207172858,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponSuppressionData"),
@@ -6606,7 +6995,8 @@ pub static WEAPONSUPPRESSIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RumbleFiringData {
     pub low_rumble: f32,
     pub high_rumble: f32,
@@ -6645,27 +7035,32 @@ impl RumbleFiringDataTrait for RumbleFiringData {
 
 pub static RUMBLEFIRINGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RumbleFiringData",
+    name_hash: 3823996553,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RumbleFiringData as Default>::default())),
+            create_boxed: || Box::new(<RumbleFiringData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LowRumble",
+                name_hash: 4150294224,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RumbleFiringData, low_rumble),
             },
             FieldInfoData {
                 name: "HighRumble",
+                name_hash: 2083796746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RumbleFiringData, high_rumble),
             },
             FieldInfoData {
                 name: "RumbleDuration",
+                name_hash: 1471546714,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RumbleFiringData, rumble_duration),
@@ -6697,6 +7092,7 @@ impl TypeObject for RumbleFiringData {
 
 pub static RUMBLEFIRINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RumbleFiringData-Array",
+    name_hash: 258425917,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("RumbleFiringData"),
@@ -6705,13 +7101,14 @@ pub static RUMBLEFIRINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FiringFunctionData {
     pub _glacier_base: super::core::GameDataContainer,
     pub weapon_dispersion: WeaponDispersion,
-    pub fire_effects1p: Vec<FireEffectData>,
-    pub fire_effects3p: Vec<FireEffectData>,
-    pub sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
+    pub fire_effects1p: Vec<BoxedTypeObject /* FireEffectData */>,
+    pub fire_effects3p: Vec<BoxedTypeObject /* FireEffectData */>,
+    pub sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
     pub shot: ShotConfigData,
     pub fire_logic: FireLogicData,
     pub ammo: AmmoConfigData,
@@ -6724,12 +7121,12 @@ pub struct FiringFunctionData {
 pub trait FiringFunctionDataTrait: super::core::GameDataContainerTrait {
     fn weapon_dispersion(&self) -> &WeaponDispersion;
     fn weapon_dispersion_mut(&mut self) -> &mut WeaponDispersion;
-    fn fire_effects1p(&self) -> &Vec<FireEffectData>;
-    fn fire_effects1p_mut(&mut self) -> &mut Vec<FireEffectData>;
-    fn fire_effects3p(&self) -> &Vec<FireEffectData>;
-    fn fire_effects3p_mut(&mut self) -> &mut Vec<FireEffectData>;
-    fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn fire_effects1p(&self) -> &Vec<BoxedTypeObject /* FireEffectData */>;
+    fn fire_effects1p_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FireEffectData */>;
+    fn fire_effects3p(&self) -> &Vec<BoxedTypeObject /* FireEffectData */>;
+    fn fire_effects3p_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FireEffectData */>;
+    fn sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
     fn shot(&self) -> &ShotConfigData;
     fn shot_mut(&mut self) -> &mut ShotConfigData;
     fn fire_logic(&self) -> &FireLogicData;
@@ -6753,22 +7150,22 @@ impl FiringFunctionDataTrait for FiringFunctionData {
     fn weapon_dispersion_mut(&mut self) -> &mut WeaponDispersion {
         &mut self.weapon_dispersion
     }
-    fn fire_effects1p(&self) -> &Vec<FireEffectData> {
+    fn fire_effects1p(&self) -> &Vec<BoxedTypeObject /* FireEffectData */> {
         &self.fire_effects1p
     }
-    fn fire_effects1p_mut(&mut self) -> &mut Vec<FireEffectData> {
+    fn fire_effects1p_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FireEffectData */> {
         &mut self.fire_effects1p
     }
-    fn fire_effects3p(&self) -> &Vec<FireEffectData> {
+    fn fire_effects3p(&self) -> &Vec<BoxedTypeObject /* FireEffectData */> {
         &self.fire_effects3p
     }
-    fn fire_effects3p_mut(&mut self) -> &mut Vec<FireEffectData> {
+    fn fire_effects3p_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FireEffectData */> {
         &mut self.fire_effects3p
     }
-    fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.sound
     }
-    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.sound
     }
     fn shot(&self) -> &ShotConfigData {
@@ -6823,76 +7220,90 @@ impl super::core::DataContainerTrait for FiringFunctionData {
 
 pub static FIRINGFUNCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FiringFunctionData",
+    name_hash: 3115868874,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::GAMEDATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(FiringFunctionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FiringFunctionData as Default>::default())),
+            create_boxed: || Box::new(<FiringFunctionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WeaponDispersion",
+                name_hash: 1873092453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WeaponDispersion",
                 rust_offset: offset_of!(FiringFunctionData, weapon_dispersion),
             },
             FieldInfoData {
                 name: "FireEffects1p",
+                name_hash: 3749424600,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FireEffectData-Array",
                 rust_offset: offset_of!(FiringFunctionData, fire_effects1p),
             },
             FieldInfoData {
                 name: "FireEffects3p",
+                name_hash: 3749424538,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FireEffectData-Array",
                 rust_offset: offset_of!(FiringFunctionData, fire_effects3p),
             },
             FieldInfoData {
                 name: "Sound",
+                name_hash: 231353798,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(FiringFunctionData, sound),
             },
             FieldInfoData {
                 name: "Shot",
+                name_hash: 2089430885,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShotConfigData",
                 rust_offset: offset_of!(FiringFunctionData, shot),
             },
             FieldInfoData {
                 name: "FireLogic",
+                name_hash: 1556251859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FireLogicData",
                 rust_offset: offset_of!(FiringFunctionData, fire_logic),
             },
             FieldInfoData {
                 name: "Ammo",
+                name_hash: 2088639403,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AmmoConfigData",
                 rust_offset: offset_of!(FiringFunctionData, ammo),
             },
             FieldInfoData {
                 name: "OverHeat",
+                name_hash: 3716934067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "OverHeatData",
                 rust_offset: offset_of!(FiringFunctionData, over_heat),
             },
             FieldInfoData {
                 name: "UsePrimaryAmmo",
+                name_hash: 1249980612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FiringFunctionData, use_primary_ammo),
             },
             FieldInfoData {
                 name: "UnlimitedAmmoForAI",
+                name_hash: 2708726775,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FiringFunctionData, unlimited_ammo_for_a_i),
             },
             FieldInfoData {
                 name: "SelfHealTimeWhenDeployed",
+                name_hash: 462585362,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FiringFunctionData, self_heal_time_when_deployed),
@@ -6924,6 +7335,7 @@ impl TypeObject for FiringFunctionData {
 
 pub static FIRINGFUNCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FiringFunctionData-Array",
+    name_hash: 4106350206,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("FiringFunctionData"),
@@ -6932,7 +7344,8 @@ pub static FIRINGFUNCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponDispersion {
     pub stand_dispersion: FiringDispersionData,
     pub crouch_dispersion: FiringDispersionData,
@@ -7016,57 +7429,67 @@ impl WeaponDispersionTrait for WeaponDispersion {
 
 pub static WEAPONDISPERSION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponDispersion",
+    name_hash: 1873092453,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponDispersion as Default>::default())),
+            create_boxed: || Box::new(<WeaponDispersion as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StandDispersion",
+                name_hash: 1584552523,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FiringDispersionData",
                 rust_offset: offset_of!(WeaponDispersion, stand_dispersion),
             },
             FieldInfoData {
                 name: "CrouchDispersion",
+                name_hash: 429011943,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FiringDispersionData",
                 rust_offset: offset_of!(WeaponDispersion, crouch_dispersion),
             },
             FieldInfoData {
                 name: "ProneDispersion",
+                name_hash: 1226401409,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FiringDispersionData",
                 rust_offset: offset_of!(WeaponDispersion, prone_dispersion),
             },
             FieldInfoData {
                 name: "JumpDispersionAngle",
+                name_hash: 1831944196,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponDispersion, jump_dispersion_angle),
             },
             FieldInfoData {
                 name: "ProneTransitionDispersionAngle",
+                name_hash: 4178809039,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponDispersion, prone_transition_dispersion_angle),
             },
             FieldInfoData {
                 name: "MoveDispersionAngle",
+                name_hash: 371686199,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponDispersion, move_dispersion_angle),
             },
             FieldInfoData {
                 name: "MoveZoomedDispersionAngle",
+                name_hash: 2897726465,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponDispersion, move_zoomed_dispersion_angle),
             },
             FieldInfoData {
                 name: "DecreasePerSecond",
+                name_hash: 3208554608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WeaponDispersion, decrease_per_second),
@@ -7098,6 +7521,7 @@ impl TypeObject for WeaponDispersion {
 
 pub static WEAPONDISPERSION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponDispersion-Array",
+    name_hash: 3656697937,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponDispersion"),
@@ -7106,7 +7530,8 @@ pub static WEAPONDISPERSION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OverHeatData {
     pub heat_per_bullet: f32,
     pub heat_drop_per_second: f32,
@@ -7181,51 +7606,60 @@ impl OverHeatDataTrait for OverHeatData {
 
 pub static OVERHEATDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OverHeatData",
+    name_hash: 807756483,
     flags: MemberInfoFlags::new(73),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OverHeatData as Default>::default())),
+            create_boxed: || Box::new(<OverHeatData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HeatPerBullet",
+                name_hash: 2230088284,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OverHeatData, heat_per_bullet),
             },
             FieldInfoData {
                 name: "HeatDropPerSecond",
+                name_hash: 2173208259,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OverHeatData, heat_drop_per_second),
             },
             FieldInfoData {
                 name: "HeatIncreasePerSecond",
+                name_hash: 3418659534,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OverHeatData, heat_increase_per_second),
             },
             FieldInfoData {
                 name: "OverHeatDropDelay",
+                name_hash: 290540335,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OverHeatData, over_heat_drop_delay),
             },
             FieldInfoData {
                 name: "OverHeatPenaltyTime",
+                name_hash: 1305646237,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OverHeatData, over_heat_penalty_time),
             },
             FieldInfoData {
                 name: "OverHeatThreshold",
+                name_hash: 1042108772,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OverHeatData, over_heat_threshold),
             },
             FieldInfoData {
                 name: "OverHeatEffect",
+                name_hash: 3498278916,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FireEffectData",
                 rust_offset: offset_of!(OverHeatData, over_heat_effect),
@@ -7257,6 +7691,7 @@ impl TypeObject for OverHeatData {
 
 pub static OVERHEATDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OverHeatData-Array",
+    name_hash: 807806455,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("OverHeatData"),
@@ -7265,9 +7700,10 @@ pub static OVERHEATDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FireEffectData {
-    pub effect: Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>,
+    pub effect: Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>,
     pub offset: super::core::Vec3,
     pub rotation: super::core::Vec3,
     pub zoom_offset: super::core::Vec3,
@@ -7280,8 +7716,8 @@ pub struct FireEffectData {
 }
 
 pub trait FireEffectDataTrait: TypeObject {
-    fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
-    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
+    fn effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
     fn offset(&self) -> &super::core::Vec3;
     fn offset_mut(&mut self) -> &mut super::core::Vec3;
     fn rotation(&self) -> &super::core::Vec3;
@@ -7303,10 +7739,10 @@ pub trait FireEffectDataTrait: TypeObject {
 }
 
 impl FireEffectDataTrait for FireEffectData {
-    fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &self.effect
     }
-    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &mut self.effect
     }
     fn offset(&self) -> &super::core::Vec3 {
@@ -7367,69 +7803,81 @@ impl FireEffectDataTrait for FireEffectData {
 
 pub static FIREEFFECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FireEffectData",
+    name_hash: 3470469370,
     flags: MemberInfoFlags::new(73),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FireEffectData as Default>::default())),
+            create_boxed: || Box::new(<FireEffectData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Effect",
+                name_hash: 2332983090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectBlueprint",
                 rust_offset: offset_of!(FireEffectData, effect),
             },
             FieldInfoData {
                 name: "Offset",
+                name_hash: 2871410728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FireEffectData, offset),
             },
             FieldInfoData {
                 name: "Rotation",
+                name_hash: 48673745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FireEffectData, rotation),
             },
             FieldInfoData {
                 name: "ZoomOffset",
+                name_hash: 4245097407,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FireEffectData, zoom_offset),
             },
             FieldInfoData {
                 name: "UseZoomOffset",
+                name_hash: 3904716028,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireEffectData, use_zoom_offset),
             },
             FieldInfoData {
                 name: "ZoomRotation",
+                name_hash: 3320560134,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FireEffectData, zoom_rotation),
             },
             FieldInfoData {
                 name: "UseZoomRotation",
+                name_hash: 3031914373,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireEffectData, use_zoom_rotation),
             },
             FieldInfoData {
                 name: "DisableDuringZoom",
+                name_hash: 3735365637,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireEffectData, disable_during_zoom),
             },
             FieldInfoData {
                 name: "UpdateTransform",
+                name_hash: 2409007832,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireEffectData, update_transform),
             },
             FieldInfoData {
                 name: "StopLoopingEffects",
+                name_hash: 3709447781,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireEffectData, stop_looping_effects),
@@ -7461,6 +7909,7 @@ impl TypeObject for FireEffectData {
 
 pub static FIREEFFECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FireEffectData-Array",
+    name_hash: 914299854,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("FireEffectData"),
@@ -7469,7 +7918,8 @@ pub static FIREEFFECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FiringDispersionData {
     pub min_angle: f32,
     pub max_angle: f32,
@@ -7517,33 +7967,39 @@ impl FiringDispersionDataTrait for FiringDispersionData {
 
 pub static FIRINGDISPERSIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FiringDispersionData",
+    name_hash: 745570346,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FiringDispersionData as Default>::default())),
+            create_boxed: || Box::new(<FiringDispersionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MinAngle",
+                name_hash: 3356124462,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FiringDispersionData, min_angle),
             },
             FieldInfoData {
                 name: "MaxAngle",
+                name_hash: 417488496,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FiringDispersionData, max_angle),
             },
             FieldInfoData {
                 name: "IncreasePerShot",
+                name_hash: 95639814,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FiringDispersionData, increase_per_shot),
             },
             FieldInfoData {
                 name: "DecreasePerSecond",
+                name_hash: 3208554608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FiringDispersionData, decrease_per_second),
@@ -7575,6 +8031,7 @@ impl TypeObject for FiringDispersionData {
 
 pub static FIRINGDISPERSIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FiringDispersionData-Array",
+    name_hash: 851860126,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("FiringDispersionData"),
@@ -7583,7 +8040,8 @@ pub static FIRINGDISPERSIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FireLogicData {
     pub hold_and_release: HoldAndReleaseData,
     pub bolt_action: BoltActionData,
@@ -7910,219 +8368,256 @@ impl FireLogicDataTrait for FireLogicData {
 
 pub static FIRELOGICDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FireLogicData",
+    name_hash: 1366516899,
     flags: MemberInfoFlags::new(73),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FireLogicData as Default>::default())),
+            create_boxed: || Box::new(<FireLogicData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HoldAndRelease",
+                name_hash: 990430632,
                 flags: MemberInfoFlags::new(0),
                 field_type: "HoldAndReleaseData",
                 rust_offset: offset_of!(FireLogicData, hold_and_release),
             },
             FieldInfoData {
                 name: "BoltAction",
+                name_hash: 2541973070,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoltActionData",
                 rust_offset: offset_of!(FireLogicData, bolt_action),
             },
             FieldInfoData {
                 name: "Recoil",
+                name_hash: 3293845435,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RecoilData",
                 rust_offset: offset_of!(FireLogicData, recoil),
             },
             FieldInfoData {
                 name: "FireInputAction",
+                name_hash: 2678055381,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(FireLogicData, fire_input_action),
             },
             FieldInfoData {
                 name: "ReloadInputAction",
+                name_hash: 3775146780,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(FireLogicData, reload_input_action),
             },
             FieldInfoData {
                 name: "CycleFireModeInputAction",
+                name_hash: 1729611942,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(FireLogicData, cycle_fire_mode_input_action),
             },
             FieldInfoData {
                 name: "ChargeInputAction",
+                name_hash: 3470951671,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(FireLogicData, charge_input_action),
             },
             FieldInfoData {
                 name: "TriggerPullWeight",
+                name_hash: 2750237048,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, trigger_pull_weight),
             },
             FieldInfoData {
                 name: "RateOfFire",
+                name_hash: 3866082710,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, rate_of_fire),
             },
             FieldInfoData {
                 name: "RateOfFireForBurst",
+                name_hash: 1393806543,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, rate_of_fire_for_burst),
             },
             FieldInfoData {
                 name: "BurstsPerMinute",
+                name_hash: 2886919901,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, bursts_per_minute),
             },
             FieldInfoData {
                 name: "CorrectedAutomaticFireReplication",
+                name_hash: 1051613411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireLogicData, corrected_automatic_fire_replication),
             },
             FieldInfoData {
                 name: "ClientFireRateMultiplier",
+                name_hash: 4266906285,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, client_fire_rate_multiplier),
             },
             FieldInfoData {
                 name: "ReloadDelay",
+                name_hash: 2958021633,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, reload_delay),
             },
             FieldInfoData {
                 name: "HoldOffReloadUntilFireRelease",
+                name_hash: 957247311,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireLogicData, hold_off_reload_until_fire_release),
             },
             FieldInfoData {
                 name: "HoldOffReloadUntilZoomRelease",
+                name_hash: 3888370560,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireLogicData, hold_off_reload_until_zoom_release),
             },
             FieldInfoData {
                 name: "ForceReloadActionOnFireTrigger",
+                name_hash: 2262034806,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireLogicData, force_reload_action_on_fire_trigger),
             },
             FieldInfoData {
                 name: "ReloadTime",
+                name_hash: 1390571137,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, reload_time),
             },
             FieldInfoData {
                 name: "ReloadTimerArray",
+                name_hash: 1035134858,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(FireLogicData, reload_timer_array),
             },
             FieldInfoData {
                 name: "ReloadTimeBulletsLeft",
+                name_hash: 257608303,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, reload_time_bullets_left),
             },
             FieldInfoData {
                 name: "ReloadThreshold",
+                name_hash: 607792483,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, reload_threshold),
             },
             FieldInfoData {
                 name: "PreFireDelay",
+                name_hash: 52152975,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, pre_fire_delay),
             },
             FieldInfoData {
                 name: "PendingFireWindow",
+                name_hash: 3361504206,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, pending_fire_window),
             },
             FieldInfoData {
                 name: "PendingFireIgnoreFireRateWindow",
+                name_hash: 1667285324,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, pending_fire_ignore_fire_rate_window),
             },
             FieldInfoData {
                 name: "ResetPreFireWaitOnRelease",
+                name_hash: 1571355692,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireLogicData, reset_pre_fire_wait_on_release),
             },
             FieldInfoData {
                 name: "UseChargeUpLogic",
+                name_hash: 1344489207,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireLogicData, use_charge_up_logic),
             },
             FieldInfoData {
                 name: "ChargeUpIncrease",
+                name_hash: 1366308222,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, charge_up_increase),
             },
             FieldInfoData {
                 name: "ChargeUpDecrease",
+                name_hash: 1290964760,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, charge_up_decrease),
             },
             FieldInfoData {
                 name: "AutomaticDelay",
+                name_hash: 3726024813,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FireLogicData, automatic_delay),
             },
             FieldInfoData {
                 name: "ReloadLogic",
+                name_hash: 2967140250,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ReloadLogic",
                 rust_offset: offset_of!(FireLogicData, reload_logic),
             },
             FieldInfoData {
                 name: "ReloadType",
+                name_hash: 1390588396,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ReloadType",
                 rust_offset: offset_of!(FireLogicData, reload_type),
             },
             FieldInfoData {
                 name: "FireLogicType",
+                name_hash: 1365968171,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FireLogicType",
                 rust_offset: offset_of!(FireLogicData, fire_logic_type),
             },
             FieldInfoData {
                 name: "FireLogicTypeArray",
+                name_hash: 4279400946,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FireLogicType-Array",
                 rust_offset: offset_of!(FireLogicData, fire_logic_type_array),
             },
             FieldInfoData {
                 name: "AlwaysAutoReload",
+                name_hash: 3053142090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireLogicData, always_auto_reload),
             },
             FieldInfoData {
                 name: "AutoReloadIgnoreFireTriggerPressed",
+                name_hash: 3107288677,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FireLogicData, auto_reload_ignore_fire_trigger_pressed),
@@ -8154,6 +8649,7 @@ impl TypeObject for FireLogicData {
 
 pub static FIRELOGICDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FireLogicData-Array",
+    name_hash: 2128250903,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("FireLogicData"),
@@ -8162,7 +8658,8 @@ pub static FIRELOGICDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RecoilData {
     pub max_recoil_angle_x: f32,
     pub min_recoil_angle_x: f32,
@@ -8255,63 +8752,74 @@ impl RecoilDataTrait for RecoilData {
 
 pub static RECOILDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RecoilData",
+    name_hash: 2078627019,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RecoilData as Default>::default())),
+            create_boxed: || Box::new(<RecoilData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxRecoilAngleX",
+                name_hash: 1566215510,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RecoilData, max_recoil_angle_x),
             },
             FieldInfoData {
                 name: "MinRecoilAngleX",
+                name_hash: 2010820808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RecoilData, min_recoil_angle_x),
             },
             FieldInfoData {
                 name: "MaxRecoilAngleY",
+                name_hash: 1566215511,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RecoilData, max_recoil_angle_y),
             },
             FieldInfoData {
                 name: "MinRecoilAngleY",
+                name_hash: 2010820809,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RecoilData, min_recoil_angle_y),
             },
             FieldInfoData {
                 name: "MaxRecoilAngleZ",
+                name_hash: 1566215508,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RecoilData, max_recoil_angle_z),
             },
             FieldInfoData {
                 name: "MinRecoilAngleZ",
+                name_hash: 2010820810,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RecoilData, min_recoil_angle_z),
             },
             FieldInfoData {
                 name: "MaxRecoilFov",
+                name_hash: 2812200304,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RecoilData, max_recoil_fov),
             },
             FieldInfoData {
                 name: "MinRecoilFov",
+                name_hash: 3551417774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RecoilData, min_recoil_fov),
             },
             FieldInfoData {
                 name: "RecoilFollowsDispersion",
+                name_hash: 4254392955,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RecoilData, recoil_follows_dispersion),
@@ -8343,6 +8851,7 @@ impl TypeObject for RecoilData {
 
 pub static RECOILDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RecoilData-Array",
+    name_hash: 3742561279,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("RecoilData"),
@@ -8362,6 +8871,7 @@ pub enum ReloadLogic {
 
 pub static RELOADLOGIC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReloadLogic",
+    name_hash: 2967140250,
     flags: MemberInfoFlags::new(49429),
     module: "WeaponShared",
     data: TypeInfoData::Enum,
@@ -8390,6 +8900,7 @@ impl TypeObject for ReloadLogic {
 
 pub static RELOADLOGIC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReloadLogic-Array",
+    name_hash: 1785961134,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("ReloadLogic"),
@@ -8410,6 +8921,7 @@ pub enum ReloadType {
 
 pub static RELOADTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReloadType",
+    name_hash: 1390588396,
     flags: MemberInfoFlags::new(49429),
     module: "WeaponShared",
     data: TypeInfoData::Enum,
@@ -8438,6 +8950,7 @@ impl TypeObject for ReloadType {
 
 pub static RELOADTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReloadType-Array",
+    name_hash: 105517528,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("ReloadType"),
@@ -8462,6 +8975,7 @@ pub enum FireLogicType {
 
 pub static FIRELOGICTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FireLogicType",
+    name_hash: 1365968171,
     flags: MemberInfoFlags::new(49429),
     module: "WeaponShared",
     data: TypeInfoData::Enum,
@@ -8490,6 +9004,7 @@ impl TypeObject for FireLogicType {
 
 pub static FIRELOGICTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FireLogicType-Array",
+    name_hash: 2175263903,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("FireLogicType"),
@@ -8498,7 +9013,8 @@ pub static FIRELOGICTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoltActionData {
     pub bolt_action_delay: f32,
     pub bolt_action_time: f32,
@@ -8573,51 +9089,60 @@ impl BoltActionDataTrait for BoltActionData {
 
 pub static BOLTACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoltActionData",
+    name_hash: 1831888766,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoltActionData as Default>::default())),
+            create_boxed: || Box::new(<BoltActionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BoltActionDelay",
+                name_hash: 322896091,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BoltActionData, bolt_action_delay),
             },
             FieldInfoData {
                 name: "BoltActionTime",
+                name_hash: 1832454555,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BoltActionData, bolt_action_time),
             },
             FieldInfoData {
                 name: "HoldBoltActionUntilFireRelease",
+                name_hash: 832817818,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoltActionData, hold_bolt_action_until_fire_release),
             },
             FieldInfoData {
                 name: "HoldBoltActionUntilZoomRelease",
+                name_hash: 3133940949,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoltActionData, hold_bolt_action_until_zoom_release),
             },
             FieldInfoData {
                 name: "ForceBoltActionOnFireTrigger",
+                name_hash: 1053477586,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoltActionData, force_bolt_action_on_fire_trigger),
             },
             FieldInfoData {
                 name: "UnZoomOnBoltAction",
+                name_hash: 1438634691,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoltActionData, un_zoom_on_bolt_action),
             },
             FieldInfoData {
                 name: "ReturnToZoomAfterBoltAction",
+                name_hash: 3074155596,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoltActionData, return_to_zoom_after_bolt_action),
@@ -8649,6 +9174,7 @@ impl TypeObject for BoltActionData {
 
 pub static BOLTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoltActionData-Array",
+    name_hash: 3114854474,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("BoltActionData"),
@@ -8657,7 +9183,8 @@ pub static BOLTACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HoldAndReleaseData {
     pub max_hold_time: f32,
     pub min_power_modifier: f32,
@@ -8768,75 +9295,88 @@ impl HoldAndReleaseDataTrait for HoldAndReleaseData {
 
 pub static HOLDANDRELEASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoldAndReleaseData",
+    name_hash: 2011632792,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HoldAndReleaseData as Default>::default())),
+            create_boxed: || Box::new(<HoldAndReleaseData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxHoldTime",
+                name_hash: 2026966059,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HoldAndReleaseData, max_hold_time),
             },
             FieldInfoData {
                 name: "MinPowerModifier",
+                name_hash: 1396894279,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HoldAndReleaseData, min_power_modifier),
             },
             FieldInfoData {
                 name: "MaxPowerModifier",
+                name_hash: 4200451609,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HoldAndReleaseData, max_power_modifier),
             },
             FieldInfoData {
                 name: "PowerIncreasePerSecond",
+                name_hash: 1198568329,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HoldAndReleaseData, power_increase_per_second),
             },
             FieldInfoData {
                 name: "Delay",
+                name_hash: 208768368,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HoldAndReleaseData, delay),
             },
             FieldInfoData {
                 name: "ForceFireWhenKilledHolding",
+                name_hash: 2172080088,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(HoldAndReleaseData, force_fire_when_killed_holding),
             },
             FieldInfoData {
                 name: "KilledHoldingPowerModifier",
+                name_hash: 1213290625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HoldAndReleaseData, killed_holding_power_modifier),
             },
             FieldInfoData {
                 name: "PreciseReplicatedPowerModifier",
+                name_hash: 3455547747,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(HoldAndReleaseData, precise_replicated_power_modifier),
             },
             FieldInfoData {
                 name: "SecondaryActionCancelHoldAndRelease",
+                name_hash: 2330274122,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(HoldAndReleaseData, secondary_action_cancel_hold_and_release),
             },
             FieldInfoData {
                 name: "HoldAndReleaseWhenZooming",
+                name_hash: 1712974923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(HoldAndReleaseData, hold_and_release_when_zooming),
             },
             FieldInfoData {
                 name: "HoldUntilFireRelease",
+                name_hash: 981745553,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(HoldAndReleaseData, hold_until_fire_release),
@@ -8868,6 +9408,7 @@ impl TypeObject for HoldAndReleaseData {
 
 pub static HOLDANDRELEASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HoldAndReleaseData-Array",
+    name_hash: 162873004,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("HoldAndReleaseData"),
@@ -8876,19 +9417,20 @@ pub static HOLDANDRELEASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShotConfigData {
     pub initial_position: super::core::Vec3,
     pub initial_direction: super::core::Vec3,
-    pub initial_direction_scale_by_pitch: Vec<InitialDirectionScaleByPitchData>,
+    pub initial_direction_scale_by_pitch: Vec<BoxedTypeObject /* InitialDirectionScaleByPitchData */>,
     pub initial_speed: super::core::Vec3,
-    pub initial_speed_scale_by_pitch: Vec<InitialSpeedScaleByPitchData>,
+    pub initial_speed_scale_by_pitch: Vec<BoxedTypeObject /* InitialSpeedScaleByPitchData */>,
     pub inherit_weapon_speed_amount: f32,
-    pub muzzle_explosion: Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>,
-    pub projectile_data: Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>>,
-    pub secondary_projectile_data: Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>>,
-    pub projectile: Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>>,
-    pub secondary_projectile: Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>>,
+    pub muzzle_explosion: Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>,
+    pub projectile_data: Option<LockedTypeObject /* ProjectileEntityData */>,
+    pub secondary_projectile_data: Option<LockedTypeObject /* ProjectileEntityData */>,
+    pub projectile: Option<LockedTypeObject /* ProjectileBlueprint */>,
+    pub secondary_projectile: Option<LockedTypeObject /* ProjectileBlueprint */>,
     pub spawn_delay: f32,
     pub number_of_bullets_per_shell: u32,
     pub number_of_bullets_per_shot: u32,
@@ -8905,24 +9447,24 @@ pub trait ShotConfigDataTrait: TypeObject {
     fn initial_position_mut(&mut self) -> &mut super::core::Vec3;
     fn initial_direction(&self) -> &super::core::Vec3;
     fn initial_direction_mut(&mut self) -> &mut super::core::Vec3;
-    fn initial_direction_scale_by_pitch(&self) -> &Vec<InitialDirectionScaleByPitchData>;
-    fn initial_direction_scale_by_pitch_mut(&mut self) -> &mut Vec<InitialDirectionScaleByPitchData>;
+    fn initial_direction_scale_by_pitch(&self) -> &Vec<BoxedTypeObject /* InitialDirectionScaleByPitchData */>;
+    fn initial_direction_scale_by_pitch_mut(&mut self) -> &mut Vec<BoxedTypeObject /* InitialDirectionScaleByPitchData */>;
     fn initial_speed(&self) -> &super::core::Vec3;
     fn initial_speed_mut(&mut self) -> &mut super::core::Vec3;
-    fn initial_speed_scale_by_pitch(&self) -> &Vec<InitialSpeedScaleByPitchData>;
-    fn initial_speed_scale_by_pitch_mut(&mut self) -> &mut Vec<InitialSpeedScaleByPitchData>;
+    fn initial_speed_scale_by_pitch(&self) -> &Vec<BoxedTypeObject /* InitialSpeedScaleByPitchData */>;
+    fn initial_speed_scale_by_pitch_mut(&mut self) -> &mut Vec<BoxedTypeObject /* InitialSpeedScaleByPitchData */>;
     fn inherit_weapon_speed_amount(&self) -> &f32;
     fn inherit_weapon_speed_amount_mut(&mut self) -> &mut f32;
-    fn muzzle_explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>;
-    fn muzzle_explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>;
-    fn projectile_data(&self) -> &Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>>;
-    fn projectile_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>>;
-    fn secondary_projectile_data(&self) -> &Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>>;
-    fn secondary_projectile_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>>;
-    fn projectile(&self) -> &Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>>;
-    fn projectile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>>;
-    fn secondary_projectile(&self) -> &Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>>;
-    fn secondary_projectile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>>;
+    fn muzzle_explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>;
+    fn muzzle_explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>;
+    fn projectile_data(&self) -> &Option<LockedTypeObject /* ProjectileEntityData */>;
+    fn projectile_data_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileEntityData */>;
+    fn secondary_projectile_data(&self) -> &Option<LockedTypeObject /* ProjectileEntityData */>;
+    fn secondary_projectile_data_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileEntityData */>;
+    fn projectile(&self) -> &Option<LockedTypeObject /* ProjectileBlueprint */>;
+    fn projectile_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileBlueprint */>;
+    fn secondary_projectile(&self) -> &Option<LockedTypeObject /* ProjectileBlueprint */>;
+    fn secondary_projectile_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileBlueprint */>;
     fn spawn_delay(&self) -> &f32;
     fn spawn_delay_mut(&mut self) -> &mut f32;
     fn number_of_bullets_per_shell(&self) -> &u32;
@@ -8956,10 +9498,10 @@ impl ShotConfigDataTrait for ShotConfigData {
     fn initial_direction_mut(&mut self) -> &mut super::core::Vec3 {
         &mut self.initial_direction
     }
-    fn initial_direction_scale_by_pitch(&self) -> &Vec<InitialDirectionScaleByPitchData> {
+    fn initial_direction_scale_by_pitch(&self) -> &Vec<BoxedTypeObject /* InitialDirectionScaleByPitchData */> {
         &self.initial_direction_scale_by_pitch
     }
-    fn initial_direction_scale_by_pitch_mut(&mut self) -> &mut Vec<InitialDirectionScaleByPitchData> {
+    fn initial_direction_scale_by_pitch_mut(&mut self) -> &mut Vec<BoxedTypeObject /* InitialDirectionScaleByPitchData */> {
         &mut self.initial_direction_scale_by_pitch
     }
     fn initial_speed(&self) -> &super::core::Vec3 {
@@ -8968,10 +9510,10 @@ impl ShotConfigDataTrait for ShotConfigData {
     fn initial_speed_mut(&mut self) -> &mut super::core::Vec3 {
         &mut self.initial_speed
     }
-    fn initial_speed_scale_by_pitch(&self) -> &Vec<InitialSpeedScaleByPitchData> {
+    fn initial_speed_scale_by_pitch(&self) -> &Vec<BoxedTypeObject /* InitialSpeedScaleByPitchData */> {
         &self.initial_speed_scale_by_pitch
     }
-    fn initial_speed_scale_by_pitch_mut(&mut self) -> &mut Vec<InitialSpeedScaleByPitchData> {
+    fn initial_speed_scale_by_pitch_mut(&mut self) -> &mut Vec<BoxedTypeObject /* InitialSpeedScaleByPitchData */> {
         &mut self.initial_speed_scale_by_pitch
     }
     fn inherit_weapon_speed_amount(&self) -> &f32 {
@@ -8980,34 +9522,34 @@ impl ShotConfigDataTrait for ShotConfigData {
     fn inherit_weapon_speed_amount_mut(&mut self) -> &mut f32 {
         &mut self.inherit_weapon_speed_amount
     }
-    fn muzzle_explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn muzzle_explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         &self.muzzle_explosion
     }
-    fn muzzle_explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn muzzle_explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         &mut self.muzzle_explosion
     }
-    fn projectile_data(&self) -> &Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>> {
+    fn projectile_data(&self) -> &Option<LockedTypeObject /* ProjectileEntityData */> {
         &self.projectile_data
     }
-    fn projectile_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>> {
+    fn projectile_data_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileEntityData */> {
         &mut self.projectile_data
     }
-    fn secondary_projectile_data(&self) -> &Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>> {
+    fn secondary_projectile_data(&self) -> &Option<LockedTypeObject /* ProjectileEntityData */> {
         &self.secondary_projectile_data
     }
-    fn secondary_projectile_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileEntityDataTrait>>> {
+    fn secondary_projectile_data_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileEntityData */> {
         &mut self.secondary_projectile_data
     }
-    fn projectile(&self) -> &Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>> {
+    fn projectile(&self) -> &Option<LockedTypeObject /* ProjectileBlueprint */> {
         &self.projectile
     }
-    fn projectile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>> {
+    fn projectile_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileBlueprint */> {
         &mut self.projectile
     }
-    fn secondary_projectile(&self) -> &Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>> {
+    fn secondary_projectile(&self) -> &Option<LockedTypeObject /* ProjectileBlueprint */> {
         &self.secondary_projectile
     }
-    fn secondary_projectile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProjectileBlueprintTrait>>> {
+    fn secondary_projectile_mut(&mut self) -> &mut Option<LockedTypeObject /* ProjectileBlueprint */> {
         &mut self.secondary_projectile
     }
     fn spawn_delay(&self) -> &f32 {
@@ -9068,129 +9610,151 @@ impl ShotConfigDataTrait for ShotConfigData {
 
 pub static SHOTCONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShotConfigData",
+    name_hash: 38484159,
     flags: MemberInfoFlags::new(73),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShotConfigData as Default>::default())),
+            create_boxed: || Box::new(<ShotConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InitialPosition",
+                name_hash: 3791803234,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ShotConfigData, initial_position),
             },
             FieldInfoData {
                 name: "InitialDirection",
+                name_hash: 1073214622,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ShotConfigData, initial_direction),
             },
             FieldInfoData {
                 name: "InitialDirectionScaleByPitch",
+                name_hash: 314764859,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InitialDirectionScaleByPitchData-Array",
                 rust_offset: offset_of!(ShotConfigData, initial_direction_scale_by_pitch),
             },
             FieldInfoData {
                 name: "InitialSpeed",
+                name_hash: 3681055580,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ShotConfigData, initial_speed),
             },
             FieldInfoData {
                 name: "InitialSpeedScaleByPitch",
+                name_hash: 4049759481,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InitialSpeedScaleByPitchData-Array",
                 rust_offset: offset_of!(ShotConfigData, initial_speed_scale_by_pitch),
             },
             FieldInfoData {
                 name: "InheritWeaponSpeedAmount",
+                name_hash: 3681006953,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ShotConfigData, inherit_weapon_speed_amount),
             },
             FieldInfoData {
                 name: "MuzzleExplosion",
+                name_hash: 2257917377,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ExplosionEntityData",
                 rust_offset: offset_of!(ShotConfigData, muzzle_explosion),
             },
             FieldInfoData {
                 name: "ProjectileData",
+                name_hash: 2690942720,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProjectileEntityData",
                 rust_offset: offset_of!(ShotConfigData, projectile_data),
             },
             FieldInfoData {
                 name: "SecondaryProjectileData",
+                name_hash: 2405794234,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProjectileEntityData",
                 rust_offset: offset_of!(ShotConfigData, secondary_projectile_data),
             },
             FieldInfoData {
                 name: "Projectile",
+                name_hash: 3883939888,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProjectileBlueprint",
                 rust_offset: offset_of!(ShotConfigData, projectile),
             },
             FieldInfoData {
                 name: "SecondaryProjectile",
+                name_hash: 2606311818,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProjectileBlueprint",
                 rust_offset: offset_of!(ShotConfigData, secondary_projectile),
             },
             FieldInfoData {
                 name: "SpawnDelay",
+                name_hash: 3473198411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ShotConfigData, spawn_delay),
             },
             FieldInfoData {
                 name: "NumberOfBulletsPerShell",
+                name_hash: 464437027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ShotConfigData, number_of_bullets_per_shell),
             },
             FieldInfoData {
                 name: "NumberOfBulletsPerShot",
+                name_hash: 404525501,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ShotConfigData, number_of_bullets_per_shot),
             },
             FieldInfoData {
                 name: "NumberOfBulletsPerBurst",
+                name_hash: 491113727,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ShotConfigData, number_of_bullets_per_burst),
             },
             FieldInfoData {
                 name: "RelativeTargetAiming",
+                name_hash: 3309775045,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ShotConfigData, relative_target_aiming),
             },
             FieldInfoData {
                 name: "ForceSpawnToCamera",
+                name_hash: 1364356545,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ShotConfigData, force_spawn_to_camera),
             },
             FieldInfoData {
                 name: "SpawnVisualAtWeaponBone",
+                name_hash: 3532019419,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ShotConfigData, spawn_visual_at_weapon_bone),
             },
             FieldInfoData {
                 name: "WeaponBone",
+                name_hash: 932584161,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameplayBones",
                 rust_offset: offset_of!(ShotConfigData, weapon_bone),
             },
             FieldInfoData {
                 name: "ActiveForceSpawnToCamera",
+                name_hash: 2063799309,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ShotConfigData, active_force_spawn_to_camera),
@@ -9222,6 +9786,7 @@ impl TypeObject for ShotConfigData {
 
 pub static SHOTCONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShotConfigData-Array",
+    name_hash: 2727554571,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("ShotConfigData"),
@@ -9230,7 +9795,8 @@ pub static SHOTCONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InitialSpeedScaleByPitchData {
     pub pitch: f32,
     pub initial_speed_scale: super::core::Vec3,
@@ -9260,21 +9826,25 @@ impl InitialSpeedScaleByPitchDataTrait for InitialSpeedScaleByPitchData {
 
 pub static INITIALSPEEDSCALEBYPITCHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InitialSpeedScaleByPitchData",
+    name_hash: 2255878153,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InitialSpeedScaleByPitchData as Default>::default())),
+            create_boxed: || Box::new(<InitialSpeedScaleByPitchData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Pitch",
+                name_hash: 232604323,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InitialSpeedScaleByPitchData, pitch),
             },
             FieldInfoData {
                 name: "InitialSpeedScale",
+                name_hash: 1318906980,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(InitialSpeedScaleByPitchData, initial_speed_scale),
@@ -9306,6 +9876,7 @@ impl TypeObject for InitialSpeedScaleByPitchData {
 
 pub static INITIALSPEEDSCALEBYPITCHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InitialSpeedScaleByPitchData-Array",
+    name_hash: 2549665213,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("InitialSpeedScaleByPitchData"),
@@ -9314,7 +9885,8 @@ pub static INITIALSPEEDSCALEBYPITCHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InitialDirectionScaleByPitchData {
     pub pitch: f32,
     pub initial_direction_scale: super::core::Vec3,
@@ -9344,21 +9916,25 @@ impl InitialDirectionScaleByPitchDataTrait for InitialDirectionScaleByPitchData 
 
 pub static INITIALDIRECTIONSCALEBYPITCHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InitialDirectionScaleByPitchData",
+    name_hash: 2061200203,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InitialDirectionScaleByPitchData as Default>::default())),
+            create_boxed: || Box::new(<InitialDirectionScaleByPitchData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Pitch",
+                name_hash: 232604323,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InitialDirectionScaleByPitchData, pitch),
             },
             FieldInfoData {
                 name: "InitialDirectionScale",
+                name_hash: 1744402022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(InitialDirectionScaleByPitchData, initial_direction_scale),
@@ -9390,6 +9966,7 @@ impl TypeObject for InitialDirectionScaleByPitchData {
 
 pub static INITIALDIRECTIONSCALEBYPITCHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InitialDirectionScaleByPitchData-Array",
+    name_hash: 3168791167,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("InitialDirectionScaleByPitchData"),
@@ -9398,7 +9975,8 @@ pub static INITIALDIRECTIONSCALEBYPITCHDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HealingSphereData {
     pub radius: f32,
     pub health_inc_speed: f32,
@@ -9428,21 +10006,25 @@ impl HealingSphereDataTrait for HealingSphereData {
 
 pub static HEALINGSPHEREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HealingSphereData",
+    name_hash: 3087727980,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HealingSphereData as Default>::default())),
+            create_boxed: || Box::new(<HealingSphereData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HealingSphereData, radius),
             },
             FieldInfoData {
                 name: "HealthIncSpeed",
+                name_hash: 2425137914,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HealingSphereData, health_inc_speed),
@@ -9474,6 +10056,7 @@ impl TypeObject for HealingSphereData {
 
 pub static HEALINGSPHEREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HealingSphereData-Array",
+    name_hash: 1985805656,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("HealingSphereData"),
@@ -9482,12 +10065,13 @@ pub static HEALINGSPHEREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MissileEntityData {
     pub _glacier_base: GhostedProjectileEntityData,
-    pub engine_effect: Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>,
-    pub dud_explosion: Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>,
-    pub fly_by_sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
+    pub engine_effect: Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>,
+    pub dud_explosion: Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>,
+    pub fly_by_sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
     pub engine_strength: f32,
     pub max_speed: f32,
     pub engine_time_to_ignition: f32,
@@ -9508,7 +10092,7 @@ pub struct MissileEntityData {
     pub default_team: super::gameplay_sim::TeamId,
     pub warn_target: WarnTarget,
     pub warn_on_pointing_missile: bool,
-    pub locking_controller: Option<Arc<Mutex<dyn LockingControllerDataTrait>>>,
+    pub locking_controller: Option<LockedTypeObject /* LockingControllerData */>,
     pub lockable_info: MissileLockableInfoData,
     pub unguided_data: MissileUnguidedData,
     pub near_target_detonation: NearTargetDetonationData,
@@ -9526,12 +10110,12 @@ pub struct MissileEntityData {
 }
 
 pub trait MissileEntityDataTrait: GhostedProjectileEntityDataTrait {
-    fn engine_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
-    fn engine_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
-    fn dud_explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>;
-    fn dud_explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>;
-    fn fly_by_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn fly_by_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn engine_effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
+    fn engine_effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
+    fn dud_explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>;
+    fn dud_explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>;
+    fn fly_by_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn fly_by_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
     fn engine_strength(&self) -> &f32;
     fn engine_strength_mut(&mut self) -> &mut f32;
     fn max_speed(&self) -> &f32;
@@ -9572,8 +10156,8 @@ pub trait MissileEntityDataTrait: GhostedProjectileEntityDataTrait {
     fn warn_target_mut(&mut self) -> &mut WarnTarget;
     fn warn_on_pointing_missile(&self) -> &bool;
     fn warn_on_pointing_missile_mut(&mut self) -> &mut bool;
-    fn locking_controller(&self) -> &Option<Arc<Mutex<dyn LockingControllerDataTrait>>>;
-    fn locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LockingControllerDataTrait>>>;
+    fn locking_controller(&self) -> &Option<LockedTypeObject /* LockingControllerData */>;
+    fn locking_controller_mut(&mut self) -> &mut Option<LockedTypeObject /* LockingControllerData */>;
     fn lockable_info(&self) -> &MissileLockableInfoData;
     fn lockable_info_mut(&mut self) -> &mut MissileLockableInfoData;
     fn unguided_data(&self) -> &MissileUnguidedData;
@@ -9605,22 +10189,22 @@ pub trait MissileEntityDataTrait: GhostedProjectileEntityDataTrait {
 }
 
 impl MissileEntityDataTrait for MissileEntityData {
-    fn engine_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn engine_effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &self.engine_effect
     }
-    fn engine_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn engine_effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &mut self.engine_effect
     }
-    fn dud_explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn dud_explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         &self.dud_explosion
     }
-    fn dud_explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn dud_explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         &mut self.dud_explosion
     }
-    fn fly_by_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn fly_by_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.fly_by_sound
     }
-    fn fly_by_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn fly_by_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.fly_by_sound
     }
     fn engine_strength(&self) -> &f32 {
@@ -9743,10 +10327,10 @@ impl MissileEntityDataTrait for MissileEntityData {
     fn warn_on_pointing_missile_mut(&mut self) -> &mut bool {
         &mut self.warn_on_pointing_missile
     }
-    fn locking_controller(&self) -> &Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn locking_controller(&self) -> &Option<LockedTypeObject /* LockingControllerData */> {
         &self.locking_controller
     }
-    fn locking_controller_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LockingControllerDataTrait>>> {
+    fn locking_controller_mut(&mut self) -> &mut Option<LockedTypeObject /* LockingControllerData */> {
         &mut self.locking_controller
     }
     fn lockable_info(&self) -> &MissileLockableInfoData {
@@ -9869,16 +10453,16 @@ impl GhostedProjectileEntityDataTrait for MissileEntityData {
 }
 
 impl MeshProjectileEntityDataTrait for MissileEntityData {
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         self._glacier_base.mesh()
     }
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         self._glacier_base.mesh_mut()
     }
-    fn trail_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn trail_effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         self._glacier_base.trail_effect()
     }
-    fn trail_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn trail_effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         self._glacier_base.trail_effect_mut()
     }
     fn is_attachable(&self) -> &bool {
@@ -10004,16 +10588,16 @@ impl ProjectileEntityDataTrait for MissileEntityData {
     fn server_projectile_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.server_projectile_disabled_mut()
     }
-    fn explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         self._glacier_base.explosion()
     }
-    fn explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         self._glacier_base.explosion_mut()
     }
-    fn suppression_data(&self) -> &Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>> {
+    fn suppression_data(&self) -> &Option<LockedTypeObject /* WeaponSuppressionData */> {
         self._glacier_base.suppression_data()
     }
-    fn suppression_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>> {
+    fn suppression_data_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponSuppressionData */> {
         self._glacier_base.suppression_data_mut()
     }
     fn ammunition_type(&self) -> &String {
@@ -10040,10 +10624,10 @@ impl ProjectileEntityDataTrait for MissileEntityData {
     fn hide_on_detonation_mut(&mut self) -> &mut bool {
         self._glacier_base.hide_on_detonation_mut()
     }
-    fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info(&self) -> &Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         self._glacier_base.voice_over_info()
     }
-    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         self._glacier_base.voice_over_info_mut()
     }
 }
@@ -10061,16 +10645,16 @@ impl super::entity::GameComponentEntityDataTrait for MissileEntityData {
 }
 
 impl super::entity::ComponentEntityDataTrait for MissileEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -10131,238 +10715,279 @@ impl super::core::DataContainerTrait for MissileEntityData {
 
 pub static MISSILEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MissileEntityData",
+    name_hash: 3593468682,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(GHOSTEDPROJECTILEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MissileEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MissileEntityData as Default>::default())),
+            create_boxed: || Box::new(<MissileEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EngineEffect",
+                name_hash: 2238351068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectBlueprint",
                 rust_offset: offset_of!(MissileEntityData, engine_effect),
             },
             FieldInfoData {
                 name: "DudExplosion",
+                name_hash: 123118469,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ExplosionEntityData",
                 rust_offset: offset_of!(MissileEntityData, dud_explosion),
             },
             FieldInfoData {
                 name: "FlyBySound",
+                name_hash: 3743063886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(MissileEntityData, fly_by_sound),
             },
             FieldInfoData {
                 name: "EngineStrength",
+                name_hash: 1553827310,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, engine_strength),
             },
             FieldInfoData {
                 name: "MaxSpeed",
+                name_hash: 396228950,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, max_speed),
             },
             FieldInfoData {
                 name: "EngineTimeToIgnition",
+                name_hash: 916282736,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, engine_time_to_ignition),
             },
             FieldInfoData {
                 name: "EngineTimeToLive",
+                name_hash: 41196403,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, engine_time_to_live),
             },
             FieldInfoData {
                 name: "TimeToActivateGuidingSystem",
+                name_hash: 2537799752,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, time_to_activate_guiding_system),
             },
             FieldInfoData {
                 name: "TimeToArm",
+                name_hash: 177776085,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, time_to_arm),
             },
             FieldInfoData {
                 name: "MaxTurnAngle",
+                name_hash: 2995598829,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, max_turn_angle),
             },
             FieldInfoData {
                 name: "MinTurnAngle",
+                name_hash: 1816933171,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, min_turn_angle),
             },
             FieldInfoData {
                 name: "TurnAngleMultiplier",
+                name_hash: 3783836082,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, turn_angle_multiplier),
             },
             FieldInfoData {
                 name: "TurnYFirst",
+                name_hash: 2423585435,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MissileEntityData, turn_y_first),
             },
             FieldInfoData {
                 name: "Drag",
+                name_hash: 2088752789,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, drag),
             },
             FieldInfoData {
                 name: "Gravity",
+                name_hash: 3295092963,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, gravity),
             },
             FieldInfoData {
                 name: "ApplyGravityWhenGuided",
+                name_hash: 407646333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MissileEntityData, apply_gravity_when_guided),
             },
             FieldInfoData {
                 name: "FlyBySoundRadius",
+                name_hash: 3728826774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, fly_by_sound_radius),
             },
             FieldInfoData {
                 name: "FlyBySoundSpeed",
+                name_hash: 4276155561,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, fly_by_sound_speed),
             },
             FieldInfoData {
                 name: "ImpactImpulse",
+                name_hash: 59311612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, impact_impulse),
             },
             FieldInfoData {
                 name: "Damage",
+                name_hash: 2589892334,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, damage),
             },
             FieldInfoData {
                 name: "DefaultTeam",
+                name_hash: 2015081331,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TeamId",
                 rust_offset: offset_of!(MissileEntityData, default_team),
             },
             FieldInfoData {
                 name: "WarnTarget",
+                name_hash: 1103784926,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WarnTarget",
                 rust_offset: offset_of!(MissileEntityData, warn_target),
             },
             FieldInfoData {
                 name: "WarnOnPointingMissile",
+                name_hash: 288907718,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MissileEntityData, warn_on_pointing_missile),
             },
             FieldInfoData {
                 name: "LockingController",
+                name_hash: 1783566994,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LockingControllerData",
                 rust_offset: offset_of!(MissileEntityData, locking_controller),
             },
             FieldInfoData {
                 name: "LockableInfo",
+                name_hash: 632168042,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MissileLockableInfoData",
                 rust_offset: offset_of!(MissileEntityData, lockable_info),
             },
             FieldInfoData {
                 name: "UnguidedData",
+                name_hash: 952180624,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MissileUnguidedData",
                 rust_offset: offset_of!(MissileEntityData, unguided_data),
             },
             FieldInfoData {
                 name: "NearTargetDetonation",
+                name_hash: 3676526149,
                 flags: MemberInfoFlags::new(0),
                 field_type: "NearTargetDetonationData",
                 rust_offset: offset_of!(MissileEntityData, near_target_detonation),
             },
             FieldInfoData {
                 name: "EnableBanking",
+                name_hash: 1830158498,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MissileEntityData, enable_banking),
             },
             FieldInfoData {
                 name: "MaxBankAngle",
+                name_hash: 306549910,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, max_bank_angle),
             },
             FieldInfoData {
                 name: "BankingSpeed",
+                name_hash: 3469733156,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, banking_speed),
             },
             FieldInfoData {
                 name: "Icon",
+                name_hash: 2088920302,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(MissileEntityData, icon),
             },
             FieldInfoData {
                 name: "TargetIcon",
+                name_hash: 329061247,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(MissileEntityData, target_icon),
             },
             FieldInfoData {
                 name: "TargetIconEnemy",
+                name_hash: 1393236581,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(MissileEntityData, target_icon_enemy),
             },
             FieldInfoData {
                 name: "MinGhostFrequency",
+                name_hash: 2196612396,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileEntityData, min_ghost_frequency),
             },
             FieldInfoData {
                 name: "StartEffectsOnSpawn",
+                name_hash: 4020696987,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MissileEntityData, start_effects_on_spawn),
             },
             FieldInfoData {
                 name: "IsBulletCollision",
+                name_hash: 2138758087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MissileEntityData, is_bullet_collision),
             },
             FieldInfoData {
                 name: "ExtrapolateAcceleration",
+                name_hash: 35611198,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MissileEntityData, extrapolate_acceleration),
             },
             FieldInfoData {
                 name: "CalculatePositionBasedOnVelocity",
+                name_hash: 702678175,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MissileEntityData, calculate_position_based_on_velocity),
@@ -10394,6 +11019,7 @@ impl TypeObject for MissileEntityData {
 
 pub static MISSILEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MissileEntityData-Array",
+    name_hash: 399144510,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("MissileEntityData"),
@@ -10402,7 +11028,8 @@ pub static MISSILEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NearTargetDetonationData {
     pub detonate_near_target: bool,
     pub detonation_radius: f32,
@@ -10450,33 +11077,39 @@ impl NearTargetDetonationDataTrait for NearTargetDetonationData {
 
 pub static NEARTARGETDETONATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NearTargetDetonationData",
+    name_hash: 3449364789,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NearTargetDetonationData as Default>::default())),
+            create_boxed: || Box::new(<NearTargetDetonationData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DetonateNearTarget",
+                name_hash: 2722241128,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NearTargetDetonationData, detonate_near_target),
             },
             FieldInfoData {
                 name: "DetonationRadius",
+                name_hash: 3488213844,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NearTargetDetonationData, detonation_radius),
             },
             FieldInfoData {
                 name: "MaxDetonationDelay",
+                name_hash: 23395725,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NearTargetDetonationData, max_detonation_delay),
             },
             FieldInfoData {
                 name: "MinDetonationDelay",
+                name_hash: 1672486355,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NearTargetDetonationData, min_detonation_delay),
@@ -10508,6 +11141,7 @@ impl TypeObject for NearTargetDetonationData {
 
 pub static NEARTARGETDETONATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NearTargetDetonationData-Array",
+    name_hash: 1528144257,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("NearTargetDetonationData"),
@@ -10516,7 +11150,8 @@ pub static NEARTARGETDETONATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MissileUnguidedData {
     pub use_static_position: bool,
     pub static_position: super::core::Vec2,
@@ -10564,33 +11199,39 @@ impl MissileUnguidedDataTrait for MissileUnguidedData {
 
 pub static MISSILEUNGUIDEDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MissileUnguidedData",
+    name_hash: 332190324,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MissileUnguidedData as Default>::default())),
+            create_boxed: || Box::new(<MissileUnguidedData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "UseStaticPosition",
+                name_hash: 753327591,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MissileUnguidedData, use_static_position),
             },
             FieldInfoData {
                 name: "StaticPosition",
+                name_hash: 242876836,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(MissileUnguidedData, static_position),
             },
             FieldInfoData {
                 name: "UseTargetPosition",
+                name_hash: 1827844270,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MissileUnguidedData, use_target_position),
             },
             FieldInfoData {
                 name: "TargetPositionOffset",
+                name_hash: 3190891072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(MissileUnguidedData, target_position_offset),
@@ -10622,6 +11263,7 @@ impl TypeObject for MissileUnguidedData {
 
 pub static MISSILEUNGUIDEDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MissileUnguidedData-Array",
+    name_hash: 2692611648,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("MissileUnguidedData"),
@@ -10630,7 +11272,8 @@ pub static MISSILEUNGUIDEDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MissileLockableInfoData {
     pub heat_signature: f32,
     pub radar_signature: f32,
@@ -10660,21 +11303,25 @@ impl MissileLockableInfoDataTrait for MissileLockableInfoData {
 
 pub static MISSILELOCKABLEINFODATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MissileLockableInfoData",
+    name_hash: 1421140862,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MissileLockableInfoData as Default>::default())),
+            create_boxed: || Box::new(<MissileLockableInfoData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HeatSignature",
+                name_hash: 2221510681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileLockableInfoData, heat_signature),
             },
             FieldInfoData {
                 name: "RadarSignature",
+                name_hash: 1808737829,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MissileLockableInfoData, radar_signature),
@@ -10706,6 +11353,7 @@ impl TypeObject for MissileLockableInfoData {
 
 pub static MISSILELOCKABLEINFODATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MissileLockableInfoData-Array",
+    name_hash: 1771725898,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("MissileLockableInfoData"),
@@ -10714,10 +11362,11 @@ pub static MISSILELOCKABLEINFODATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LockingControllerData {
     pub _glacier_base: super::core::DataContainer,
-    pub zoom_level_lock: Vec<ZoomLevelLockData>,
+    pub zoom_level_lock: Vec<BoxedTypeObject /* ZoomLevelLockData */>,
     pub lock_time: f32,
     pub un_lock_time: f32,
     pub release_time: f32,
@@ -10748,8 +11397,8 @@ pub struct LockingControllerData {
 }
 
 pub trait LockingControllerDataTrait: super::core::DataContainerTrait {
-    fn zoom_level_lock(&self) -> &Vec<ZoomLevelLockData>;
-    fn zoom_level_lock_mut(&mut self) -> &mut Vec<ZoomLevelLockData>;
+    fn zoom_level_lock(&self) -> &Vec<BoxedTypeObject /* ZoomLevelLockData */>;
+    fn zoom_level_lock_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ZoomLevelLockData */>;
     fn lock_time(&self) -> &f32;
     fn lock_time_mut(&mut self) -> &mut f32;
     fn un_lock_time(&self) -> &f32;
@@ -10807,10 +11456,10 @@ pub trait LockingControllerDataTrait: super::core::DataContainerTrait {
 }
 
 impl LockingControllerDataTrait for LockingControllerData {
-    fn zoom_level_lock(&self) -> &Vec<ZoomLevelLockData> {
+    fn zoom_level_lock(&self) -> &Vec<BoxedTypeObject /* ZoomLevelLockData */> {
         &self.zoom_level_lock
     }
-    fn zoom_level_lock_mut(&mut self) -> &mut Vec<ZoomLevelLockData> {
+    fn zoom_level_lock_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ZoomLevelLockData */> {
         &mut self.zoom_level_lock
     }
     fn lock_time(&self) -> &f32 {
@@ -10982,178 +11631,209 @@ impl super::core::DataContainerTrait for LockingControllerData {
 
 pub static LOCKINGCONTROLLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LockingControllerData",
+    name_hash: 1236839074,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LockingControllerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LockingControllerData as Default>::default())),
+            create_boxed: || Box::new(<LockingControllerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ZoomLevelLock",
+                name_hash: 1609958223,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ZoomLevelLockData-Array",
                 rust_offset: offset_of!(LockingControllerData, zoom_level_lock),
             },
             FieldInfoData {
                 name: "LockTime",
+                name_hash: 1982096347,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, lock_time),
             },
             FieldInfoData {
                 name: "UnLockTime",
+                name_hash: 1362482368,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, un_lock_time),
             },
             FieldInfoData {
                 name: "ReleaseTime",
+                name_hash: 892319833,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, release_time),
             },
             FieldInfoData {
                 name: "ReleaseOnNewTargetTime",
+                name_hash: 133838421,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, release_on_new_target_time),
             },
             FieldInfoData {
                 name: "SampleRate",
+                name_hash: 604757697,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, sample_rate),
             },
             FieldInfoData {
                 name: "HoldStillThreshold",
+                name_hash: 3981331987,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, hold_still_threshold),
             },
             FieldInfoData {
                 name: "CheckVisibilityLength",
+                name_hash: 3580554745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, check_visibility_length),
             },
             FieldInfoData {
                 name: "RayLength",
+                name_hash: 714575027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, ray_length),
             },
             FieldInfoData {
                 name: "LockOnVisibleTargetsOnly",
+                name_hash: 1817419671,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, lock_on_visible_targets_only),
             },
             FieldInfoData {
                 name: "RequireAmmoToLock",
+                name_hash: 1624603382,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, require_ammo_to_lock),
             },
             FieldInfoData {
                 name: "PositionOnly",
+                name_hash: 3572870760,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, position_only),
             },
             FieldInfoData {
                 name: "UseUnlockTimeWithPositionOnly",
+                name_hash: 876039692,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, use_unlock_time_with_position_only),
             },
             FieldInfoData {
                 name: "LockOnWorldSpacePos",
+                name_hash: 2930832517,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, lock_on_world_space_pos),
             },
             FieldInfoData {
                 name: "AcceptanceAngle",
+                name_hash: 66845485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, acceptance_angle),
             },
             FieldInfoData {
                 name: "AngleConstant",
+                name_hash: 2438038842,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, angle_constant),
             },
             FieldInfoData {
                 name: "DistanceConstant",
+                name_hash: 1734890008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, distance_constant),
             },
             FieldInfoData {
                 name: "NormalizeConstantWeights",
+                name_hash: 2137597165,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, normalize_constant_weights),
             },
             FieldInfoData {
                 name: "CheckTargetLockStrengthOnRaycast",
+                name_hash: 2461239378,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, check_target_lock_strength_on_raycast),
             },
             FieldInfoData {
                 name: "Sensitivity",
+                name_hash: 2124383208,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, sensitivity),
             },
             FieldInfoData {
                 name: "MinimumLockTime",
+                name_hash: 1585650381,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LockingControllerData, minimum_lock_time),
             },
             FieldInfoData {
                 name: "LockOnVehicles",
+                name_hash: 368525092,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, lock_on_vehicles),
             },
             FieldInfoData {
                 name: "LockOnEmptyVehicles",
+                name_hash: 633097329,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, lock_on_empty_vehicles),
             },
             FieldInfoData {
                 name: "LockOnCharacters",
+                name_hash: 3662913221,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, lock_on_characters),
             },
             FieldInfoData {
                 name: "LockOnCharactersInOpenEntries",
+                name_hash: 479264644,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, lock_on_characters_in_open_entries),
             },
             FieldInfoData {
                 name: "IgnoreHeigthLockDistance",
+                name_hash: 1465082762,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, ignore_heigth_lock_distance),
             },
             FieldInfoData {
                 name: "LockInCombatAreaOnly",
+                name_hash: 2572107708,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingControllerData, lock_in_combat_area_only),
             },
             FieldInfoData {
                 name: "LockingWeaponData",
+                name_hash: 837219740,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LockingAndHomingData",
                 rust_offset: offset_of!(LockingControllerData, locking_weapon_data),
@@ -11185,6 +11865,7 @@ impl TypeObject for LockingControllerData {
 
 pub static LOCKINGCONTROLLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LockingControllerData-Array",
+    name_hash: 1856309526,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("LockingControllerData"),
@@ -11193,7 +11874,8 @@ pub static LOCKINGCONTROLLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LockingAndHomingData {
     pub is_homing: bool,
     pub is_guided: bool,
@@ -11259,45 +11941,53 @@ impl LockingAndHomingDataTrait for LockingAndHomingData {
 
 pub static LOCKINGANDHOMINGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LockingAndHomingData",
+    name_hash: 4072506911,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LockingAndHomingData as Default>::default())),
+            create_boxed: || Box::new(<LockingAndHomingData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IsHoming",
+                name_hash: 962805909,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingAndHomingData, is_homing),
             },
             FieldInfoData {
                 name: "IsGuided",
+                name_hash: 911651905,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingAndHomingData, is_guided),
             },
             FieldInfoData {
                 name: "IsGuidedWhenZoomed",
+                name_hash: 951364163,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingAndHomingData, is_guided_when_zoomed),
             },
             FieldInfoData {
                 name: "IsGuidedHoming",
+                name_hash: 399064139,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingAndHomingData, is_guided_homing),
             },
             FieldInfoData {
                 name: "FireOnlyWhenLockedOn",
+                name_hash: 708469046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LockingAndHomingData, fire_only_when_locked_on),
             },
             FieldInfoData {
                 name: "WarnLock",
+                name_hash: 2457242500,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WarnTarget",
                 rust_offset: offset_of!(LockingAndHomingData, warn_lock),
@@ -11329,6 +12019,7 @@ impl TypeObject for LockingAndHomingData {
 
 pub static LOCKINGANDHOMINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LockingAndHomingData-Array",
+    name_hash: 910019243,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("LockingAndHomingData"),
@@ -11337,7 +12028,8 @@ pub static LOCKINGANDHOMINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoomLevelLockData {
     pub outline_tagged_distance: f32,
     pub lock_type: super::gameplay_sim::LockType,
@@ -11367,21 +12059,25 @@ impl ZoomLevelLockDataTrait for ZoomLevelLockData {
 
 pub static ZOOMLEVELLOCKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoomLevelLockData",
+    name_hash: 2801099583,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoomLevelLockData as Default>::default())),
+            create_boxed: || Box::new(<ZoomLevelLockData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OutlineTaggedDistance",
+                name_hash: 2697603954,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ZoomLevelLockData, outline_tagged_distance),
             },
             FieldInfoData {
                 name: "LockType",
+                name_hash: 1982079030,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LockType",
                 rust_offset: offset_of!(ZoomLevelLockData, lock_type),
@@ -11413,6 +12109,7 @@ impl TypeObject for ZoomLevelLockData {
 
 pub static ZOOMLEVELLOCKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoomLevelLockData-Array",
+    name_hash: 701708427,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("ZoomLevelLockData"),
@@ -11434,6 +12131,7 @@ pub enum WarnTarget {
 
 pub static WARNTARGET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WarnTarget",
+    name_hash: 1103784926,
     flags: MemberInfoFlags::new(49429),
     module: "WeaponShared",
     data: TypeInfoData::Enum,
@@ -11462,6 +12160,7 @@ impl TypeObject for WarnTarget {
 
 pub static WARNTARGET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WarnTarget-Array",
+    name_hash: 2135502186,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WarnTarget"),
@@ -11470,11 +12169,12 @@ pub static WARNTARGET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BulletEntityData {
     pub _glacier_base: MeshProjectileEntityData,
-    pub fly_by_sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
-    pub dud_explosion: Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>,
+    pub fly_by_sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
+    pub dud_explosion: Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>,
     pub gravity: f32,
     pub impact_impulse: f32,
     pub detonation_time_variation: f32,
@@ -11497,10 +12197,10 @@ pub struct BulletEntityData {
 }
 
 pub trait BulletEntityDataTrait: MeshProjectileEntityDataTrait {
-    fn fly_by_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn fly_by_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn dud_explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>;
-    fn dud_explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>;
+    fn fly_by_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn fly_by_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn dud_explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>;
+    fn dud_explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>;
     fn gravity(&self) -> &f32;
     fn gravity_mut(&mut self) -> &mut f32;
     fn impact_impulse(&self) -> &f32;
@@ -11542,16 +12242,16 @@ pub trait BulletEntityDataTrait: MeshProjectileEntityDataTrait {
 }
 
 impl BulletEntityDataTrait for BulletEntityData {
-    fn fly_by_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn fly_by_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.fly_by_sound
     }
-    fn fly_by_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn fly_by_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.fly_by_sound
     }
-    fn dud_explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn dud_explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         &self.dud_explosion
     }
-    fn dud_explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn dud_explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         &mut self.dud_explosion
     }
     fn gravity(&self) -> &f32 {
@@ -11671,16 +12371,16 @@ impl BulletEntityDataTrait for BulletEntityData {
 }
 
 impl MeshProjectileEntityDataTrait for BulletEntityData {
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         self._glacier_base.mesh()
     }
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         self._glacier_base.mesh_mut()
     }
-    fn trail_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn trail_effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         self._glacier_base.trail_effect()
     }
-    fn trail_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn trail_effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         self._glacier_base.trail_effect_mut()
     }
     fn is_attachable(&self) -> &bool {
@@ -11806,16 +12506,16 @@ impl ProjectileEntityDataTrait for BulletEntityData {
     fn server_projectile_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.server_projectile_disabled_mut()
     }
-    fn explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         self._glacier_base.explosion()
     }
-    fn explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         self._glacier_base.explosion_mut()
     }
-    fn suppression_data(&self) -> &Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>> {
+    fn suppression_data(&self) -> &Option<LockedTypeObject /* WeaponSuppressionData */> {
         self._glacier_base.suppression_data()
     }
-    fn suppression_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>> {
+    fn suppression_data_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponSuppressionData */> {
         self._glacier_base.suppression_data_mut()
     }
     fn ammunition_type(&self) -> &String {
@@ -11842,10 +12542,10 @@ impl ProjectileEntityDataTrait for BulletEntityData {
     fn hide_on_detonation_mut(&mut self) -> &mut bool {
         self._glacier_base.hide_on_detonation_mut()
     }
-    fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info(&self) -> &Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         self._glacier_base.voice_over_info()
     }
-    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         self._glacier_base.voice_over_info_mut()
     }
 }
@@ -11863,16 +12563,16 @@ impl super::entity::GameComponentEntityDataTrait for BulletEntityData {
 }
 
 impl super::entity::ComponentEntityDataTrait for BulletEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -11933,136 +12633,160 @@ impl super::core::DataContainerTrait for BulletEntityData {
 
 pub static BULLETENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BulletEntityData",
+    name_hash: 77594408,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MESHPROJECTILEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BulletEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BulletEntityData as Default>::default())),
+            create_boxed: || Box::new(<BulletEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FlyBySound",
+                name_hash: 3743063886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(BulletEntityData, fly_by_sound),
             },
             FieldInfoData {
                 name: "DudExplosion",
+                name_hash: 123118469,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ExplosionEntityData",
                 rust_offset: offset_of!(BulletEntityData, dud_explosion),
             },
             FieldInfoData {
                 name: "Gravity",
+                name_hash: 3295092963,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, gravity),
             },
             FieldInfoData {
                 name: "ImpactImpulse",
+                name_hash: 59311612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, impact_impulse),
             },
             FieldInfoData {
                 name: "DetonationTimeVariation",
+                name_hash: 246395272,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, detonation_time_variation),
             },
             FieldInfoData {
                 name: "VehicleDetonationRadius",
+                name_hash: 1470001196,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, vehicle_detonation_radius),
             },
             FieldInfoData {
                 name: "VehicleDetonationActivationDelay",
+                name_hash: 4100261205,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, vehicle_detonation_activation_delay),
             },
             FieldInfoData {
                 name: "FlyBySoundRadius",
+                name_hash: 3728826774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, fly_by_sound_radius),
             },
             FieldInfoData {
                 name: "FlyBySoundSpeed",
+                name_hash: 4276155561,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, fly_by_sound_speed),
             },
             FieldInfoData {
                 name: "Stamina",
+                name_hash: 2176368840,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, stamina),
             },
             FieldInfoData {
                 name: "DistributeDamageOverTime",
+                name_hash: 3294703682,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, distribute_damage_over_time),
             },
             FieldInfoData {
                 name: "StartDamage",
+                name_hash: 4249391310,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, start_damage),
             },
             FieldInfoData {
                 name: "EndDamage",
+                name_hash: 3080388609,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, end_damage),
             },
             FieldInfoData {
                 name: "DamageFalloffStartDistance",
+                name_hash: 170301445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, damage_falloff_start_distance),
             },
             FieldInfoData {
                 name: "DamageFalloffEndDistance",
+                name_hash: 2644592906,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, damage_falloff_end_distance),
             },
             FieldInfoData {
                 name: "TimeToArmExplosion",
+                name_hash: 3533655904,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, time_to_arm_explosion),
             },
             FieldInfoData {
                 name: "HasVehicleDetonation",
+                name_hash: 2164993390,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BulletEntityData, has_vehicle_detonation),
             },
             FieldInfoData {
                 name: "InstantHit",
+                name_hash: 3819550411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BulletEntityData, instant_hit),
             },
             FieldInfoData {
                 name: "FirstFrameTravelDistance",
+                name_hash: 3753755161,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BulletEntityData, first_frame_travel_distance),
             },
             FieldInfoData {
                 name: "StopTrailEffectOnUnspawn",
+                name_hash: 2737808201,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BulletEntityData, stop_trail_effect_on_unspawn),
             },
             FieldInfoData {
                 name: "StopTrailEffectOnUnspawnFrameDelay",
+                name_hash: 2831187329,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(BulletEntityData, stop_trail_effect_on_unspawn_frame_delay),
@@ -12094,6 +12818,7 @@ impl TypeObject for BulletEntityData {
 
 pub static BULLETENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BulletEntityData-Array",
+    name_hash: 3156254876,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("BulletEntityData"),
@@ -12102,7 +12827,8 @@ pub static BULLETENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GhostedProjectileEntityData {
     pub _glacier_base: MeshProjectileEntityData,
     pub proxy_convergence_delay: f32,
@@ -12159,16 +12885,16 @@ impl GhostedProjectileEntityDataTrait for GhostedProjectileEntityData {
 }
 
 impl MeshProjectileEntityDataTrait for GhostedProjectileEntityData {
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         self._glacier_base.mesh()
     }
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         self._glacier_base.mesh_mut()
     }
-    fn trail_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn trail_effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         self._glacier_base.trail_effect()
     }
-    fn trail_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn trail_effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         self._glacier_base.trail_effect_mut()
     }
     fn is_attachable(&self) -> &bool {
@@ -12294,16 +13020,16 @@ impl ProjectileEntityDataTrait for GhostedProjectileEntityData {
     fn server_projectile_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.server_projectile_disabled_mut()
     }
-    fn explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         self._glacier_base.explosion()
     }
-    fn explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         self._glacier_base.explosion_mut()
     }
-    fn suppression_data(&self) -> &Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>> {
+    fn suppression_data(&self) -> &Option<LockedTypeObject /* WeaponSuppressionData */> {
         self._glacier_base.suppression_data()
     }
-    fn suppression_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>> {
+    fn suppression_data_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponSuppressionData */> {
         self._glacier_base.suppression_data_mut()
     }
     fn ammunition_type(&self) -> &String {
@@ -12330,10 +13056,10 @@ impl ProjectileEntityDataTrait for GhostedProjectileEntityData {
     fn hide_on_detonation_mut(&mut self) -> &mut bool {
         self._glacier_base.hide_on_detonation_mut()
     }
-    fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info(&self) -> &Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         self._glacier_base.voice_over_info()
     }
-    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         self._glacier_base.voice_over_info_mut()
     }
 }
@@ -12351,16 +13077,16 @@ impl super::entity::GameComponentEntityDataTrait for GhostedProjectileEntityData
 }
 
 impl super::entity::ComponentEntityDataTrait for GhostedProjectileEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -12421,40 +13147,48 @@ impl super::core::DataContainerTrait for GhostedProjectileEntityData {
 
 pub static GHOSTEDPROJECTILEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GhostedProjectileEntityData",
+    name_hash: 2383646077,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MESHPROJECTILEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GhostedProjectileEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GhostedProjectileEntityData as Default>::default())),
+            create_boxed: || Box::new(<GhostedProjectileEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ProxyConvergenceDelay",
+                name_hash: 427148469,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GhostedProjectileEntityData, proxy_convergence_delay),
             },
             FieldInfoData {
                 name: "ProxyConvergenceDuration",
+                name_hash: 2536011774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GhostedProjectileEntityData, proxy_convergence_duration),
             },
             FieldInfoData {
                 name: "ProxyConvergenceInstantOnAttach",
+                name_hash: 771477649,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GhostedProjectileEntityData, proxy_convergence_instant_on_attach),
             },
             FieldInfoData {
                 name: "ForceProxyConvergence",
+                name_hash: 2512211421,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GhostedProjectileEntityData, force_proxy_convergence),
             },
             FieldInfoData {
                 name: "ConvergenceUsingInitialSpeed",
+                name_hash: 609876019,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GhostedProjectileEntityData, convergence_using_initial_speed),
@@ -12486,6 +13220,7 @@ impl TypeObject for GhostedProjectileEntityData {
 
 pub static GHOSTEDPROJECTILEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GhostedProjectileEntityData-Array",
+    name_hash: 722459209,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("GhostedProjectileEntityData"),
@@ -12494,11 +13229,12 @@ pub static GHOSTEDPROJECTILEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshProjectileEntityData {
     pub _glacier_base: ProjectileEntityData,
-    pub mesh: Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>,
-    pub trail_effect: Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>,
+    pub mesh: Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>,
+    pub trail_effect: Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>,
     pub is_attachable: bool,
     pub instant_attachable_test_distance: f32,
     pub instant_attachable_visual_convergence_delay: f32,
@@ -12511,10 +13247,10 @@ pub struct MeshProjectileEntityData {
 }
 
 pub trait MeshProjectileEntityDataTrait: ProjectileEntityDataTrait {
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
-    fn trail_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
-    fn trail_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>;
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>;
+    fn trail_effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
+    fn trail_effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
     fn is_attachable(&self) -> &bool;
     fn is_attachable_mut(&mut self) -> &mut bool;
     fn instant_attachable_test_distance(&self) -> &f32;
@@ -12536,16 +13272,16 @@ pub trait MeshProjectileEntityDataTrait: ProjectileEntityDataTrait {
 }
 
 impl MeshProjectileEntityDataTrait for MeshProjectileEntityData {
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         &self.mesh
     }
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         &mut self.mesh
     }
-    fn trail_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn trail_effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &self.trail_effect
     }
-    fn trail_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn trail_effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &mut self.trail_effect
     }
     fn is_attachable(&self) -> &bool {
@@ -12671,16 +13407,16 @@ impl ProjectileEntityDataTrait for MeshProjectileEntityData {
     fn server_projectile_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.server_projectile_disabled_mut()
     }
-    fn explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         self._glacier_base.explosion()
     }
-    fn explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         self._glacier_base.explosion_mut()
     }
-    fn suppression_data(&self) -> &Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>> {
+    fn suppression_data(&self) -> &Option<LockedTypeObject /* WeaponSuppressionData */> {
         self._glacier_base.suppression_data()
     }
-    fn suppression_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>> {
+    fn suppression_data_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponSuppressionData */> {
         self._glacier_base.suppression_data_mut()
     }
     fn ammunition_type(&self) -> &String {
@@ -12707,10 +13443,10 @@ impl ProjectileEntityDataTrait for MeshProjectileEntityData {
     fn hide_on_detonation_mut(&mut self) -> &mut bool {
         self._glacier_base.hide_on_detonation_mut()
     }
-    fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info(&self) -> &Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         self._glacier_base.voice_over_info()
     }
-    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         self._glacier_base.voice_over_info_mut()
     }
 }
@@ -12728,16 +13464,16 @@ impl super::entity::GameComponentEntityDataTrait for MeshProjectileEntityData {
 }
 
 impl super::entity::ComponentEntityDataTrait for MeshProjectileEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -12798,76 +13534,90 @@ impl super::core::DataContainerTrait for MeshProjectileEntityData {
 
 pub static MESHPROJECTILEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshProjectileEntityData",
+    name_hash: 1001401768,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROJECTILEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MeshProjectileEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshProjectileEntityData as Default>::default())),
+            create_boxed: || Box::new(<MeshProjectileEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Mesh",
+                name_hash: 2088783990,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MeshBaseAsset",
                 rust_offset: offset_of!(MeshProjectileEntityData, mesh),
             },
             FieldInfoData {
                 name: "TrailEffect",
+                name_hash: 3334711472,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectBlueprint",
                 rust_offset: offset_of!(MeshProjectileEntityData, trail_effect),
             },
             FieldInfoData {
                 name: "IsAttachable",
+                name_hash: 2068890974,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MeshProjectileEntityData, is_attachable),
             },
             FieldInfoData {
                 name: "InstantAttachableTestDistance",
+                name_hash: 796394410,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MeshProjectileEntityData, instant_attachable_test_distance),
             },
             FieldInfoData {
                 name: "InstantAttachableVisualConvergenceDelay",
+                name_hash: 3224578007,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MeshProjectileEntityData, instant_attachable_visual_convergence_delay),
             },
             FieldInfoData {
                 name: "InstantAttachableVisualConvergenceDuration",
+                name_hash: 1305351580,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MeshProjectileEntityData, instant_attachable_visual_convergence_duration),
             },
             FieldInfoData {
                 name: "InstantAttachableTestUnderReticule",
+                name_hash: 3982945140,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MeshProjectileEntityData, instant_attachable_test_under_reticule),
             },
             FieldInfoData {
                 name: "MaxAttachableInclination",
+                name_hash: 39813154,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MeshProjectileEntityData, max_attachable_inclination),
             },
             FieldInfoData {
                 name: "ExtraDamping",
+                name_hash: 2980785831,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MeshProjectileEntityData, extra_damping),
             },
             FieldInfoData {
                 name: "InitialAngularVelocity",
+                name_hash: 2385892654,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(MeshProjectileEntityData, initial_angular_velocity),
             },
             FieldInfoData {
                 name: "UnspawnAfterDetonationDelay",
+                name_hash: 2461171741,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MeshProjectileEntityData, unspawn_after_detonation_delay),
@@ -12899,6 +13649,7 @@ impl TypeObject for MeshProjectileEntityData {
 
 pub static MESHPROJECTILEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshProjectileEntityData-Array",
+    name_hash: 1933160220,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("MeshProjectileEntityData"),
@@ -12907,7 +13658,8 @@ pub static MESHPROJECTILEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MissilePhysicsComponentData {
     pub _glacier_base: super::gameplay_sim::GamePhysicsComponentData,
 }
@@ -12925,31 +13677,31 @@ impl super::gameplay_sim::GamePhysicsComponentDataTrait for MissilePhysicsCompon
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         self._glacier_base.realm_mut()
     }
-    fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn effect_parameters(&self) -> &Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         self._glacier_base.effect_parameters()
     }
-    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         self._glacier_base.effect_parameters_mut()
     }
 }
 
 impl super::physics::PhysicsComponentDataTrait for MissilePhysicsComponentData {
-    fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
+    fn physics_bodies(&self) -> &Vec<Option<LockedTypeObject /* super::physics::PhysicsBodyData */>> {
         self._glacier_base.physics_bodies()
     }
-    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::physics::PhysicsBodyData */>> {
         self._glacier_base.physics_bodies_mut()
     }
-    fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints(&self) -> &Vec<Option<LockedTypeObject /* super::physics::PhysicsConstraintData */>> {
         self._glacier_base.physics_constraints()
     }
-    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::physics::PhysicsConstraintData */>> {
         self._glacier_base.physics_constraints_mut()
     }
-    fn parts(&self) -> &Vec<super::physics::PhysicsPartData> {
+    fn parts(&self) -> &Vec<BoxedTypeObject /* super::physics::PhysicsPartData */> {
         self._glacier_base.parts()
     }
-    fn parts_mut(&mut self) -> &mut Vec<super::physics::PhysicsPartData> {
+    fn parts_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::physics::PhysicsPartData */> {
         self._glacier_base.parts_mut()
     }
     fn movable_parts(&self) -> &bool {
@@ -12979,10 +13731,10 @@ impl super::entity::ComponentDataTrait for MissilePhysicsComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -13025,12 +13777,15 @@ impl super::core::DataContainerTrait for MissilePhysicsComponentData {
 
 pub static MISSILEPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MissilePhysicsComponentData",
+    name_hash: 1589290261,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_sim::GAMEPHYSICSCOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MissilePhysicsComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MissilePhysicsComponentData as Default>::default())),
+            create_boxed: || Box::new(<MissilePhysicsComponentData as Default>::default()),
         },
         fields: &[
         ],
@@ -13060,6 +13815,7 @@ impl TypeObject for MissilePhysicsComponentData {
 
 pub static MISSILEPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MissilePhysicsComponentData-Array",
+    name_hash: 1553880225,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("MissilePhysicsComponentData"),
@@ -13068,7 +13824,8 @@ pub static MISSILEPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProjectileEntityData {
     pub _glacier_base: super::physics::GamePhysicsEntityData,
     pub initial_speed: f32,
@@ -13082,13 +13839,13 @@ pub struct ProjectileEntityData {
     pub proxy_visual_convergence_duration: f32,
     pub detonate_on_timeout: bool,
     pub server_projectile_disabled: bool,
-    pub explosion: Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>,
-    pub suppression_data: Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>>,
+    pub explosion: Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>,
+    pub suppression_data: Option<LockedTypeObject /* WeaponSuppressionData */>,
     pub ammunition_type: String,
     pub material_pair: super::entity::MaterialDecl,
     pub hit_reaction_weapon_type: AntHitReactionWeaponType,
     pub hide_on_detonation: bool,
-    pub voice_over_info: Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>,
+    pub voice_over_info: Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */>,
 }
 
 pub trait ProjectileEntityDataTrait: super::physics::GamePhysicsEntityDataTrait {
@@ -13114,10 +13871,10 @@ pub trait ProjectileEntityDataTrait: super::physics::GamePhysicsEntityDataTrait 
     fn detonate_on_timeout_mut(&mut self) -> &mut bool;
     fn server_projectile_disabled(&self) -> &bool;
     fn server_projectile_disabled_mut(&mut self) -> &mut bool;
-    fn explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>;
-    fn explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>>;
-    fn suppression_data(&self) -> &Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>>;
-    fn suppression_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>>;
+    fn explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>;
+    fn explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */>;
+    fn suppression_data(&self) -> &Option<LockedTypeObject /* WeaponSuppressionData */>;
+    fn suppression_data_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponSuppressionData */>;
     fn ammunition_type(&self) -> &String;
     fn ammunition_type_mut(&mut self) -> &mut String;
     fn material_pair(&self) -> &super::entity::MaterialDecl;
@@ -13126,8 +13883,8 @@ pub trait ProjectileEntityDataTrait: super::physics::GamePhysicsEntityDataTrait 
     fn hit_reaction_weapon_type_mut(&mut self) -> &mut AntHitReactionWeaponType;
     fn hide_on_detonation(&self) -> &bool;
     fn hide_on_detonation_mut(&mut self) -> &mut bool;
-    fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
-    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
+    fn voice_over_info(&self) -> &Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */>;
+    fn voice_over_info_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */>;
 }
 
 impl ProjectileEntityDataTrait for ProjectileEntityData {
@@ -13197,16 +13954,16 @@ impl ProjectileEntityDataTrait for ProjectileEntityData {
     fn server_projectile_disabled_mut(&mut self) -> &mut bool {
         &mut self.server_projectile_disabled
     }
-    fn explosion(&self) -> &Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn explosion(&self) -> &Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         &self.explosion
     }
-    fn explosion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::ExplosionEntityDataTrait>>> {
+    fn explosion_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::ExplosionEntityData */> {
         &mut self.explosion
     }
-    fn suppression_data(&self) -> &Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>> {
+    fn suppression_data(&self) -> &Option<LockedTypeObject /* WeaponSuppressionData */> {
         &self.suppression_data
     }
-    fn suppression_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WeaponSuppressionDataTrait>>> {
+    fn suppression_data_mut(&mut self) -> &mut Option<LockedTypeObject /* WeaponSuppressionData */> {
         &mut self.suppression_data
     }
     fn ammunition_type(&self) -> &String {
@@ -13233,10 +13990,10 @@ impl ProjectileEntityDataTrait for ProjectileEntityData {
     fn hide_on_detonation_mut(&mut self) -> &mut bool {
         &mut self.hide_on_detonation
     }
-    fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info(&self) -> &Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         &self.voice_over_info
     }
-    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         &mut self.voice_over_info
     }
 }
@@ -13254,16 +14011,16 @@ impl super::entity::GameComponentEntityDataTrait for ProjectileEntityData {
 }
 
 impl super::entity::ComponentEntityDataTrait for ProjectileEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -13324,118 +14081,139 @@ impl super::core::DataContainerTrait for ProjectileEntityData {
 
 pub static PROJECTILEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProjectileEntityData",
+    name_hash: 192635291,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::physics::GAMEPHYSICSENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ProjectileEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProjectileEntityData as Default>::default())),
+            create_boxed: || Box::new(<ProjectileEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InitialSpeed",
+                name_hash: 3681055580,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProjectileEntityData, initial_speed),
             },
             FieldInfoData {
                 name: "TimeToLive",
+                name_hash: 1571456733,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProjectileEntityData, time_to_live),
             },
             FieldInfoData {
                 name: "MaxCount",
+                name_hash: 415061138,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ProjectileEntityData, max_count),
             },
             FieldInfoData {
                 name: "InitMeshHideTime",
+                name_hash: 4189709497,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProjectileEntityData, init_mesh_hide_time),
             },
             FieldInfoData {
                 name: "VisualConvergeDistance",
+                name_hash: 4030464179,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProjectileEntityData, visual_converge_distance),
             },
             FieldInfoData {
                 name: "VisualConvergenceDelay",
+                name_hash: 4248065837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProjectileEntityData, visual_convergence_delay),
             },
             FieldInfoData {
                 name: "VisualConvergenceDuration",
+                name_hash: 3944650086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProjectileEntityData, visual_convergence_duration),
             },
             FieldInfoData {
                 name: "ProxyVisualConvergenceDelay",
+                name_hash: 613684097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProjectileEntityData, proxy_visual_convergence_delay),
             },
             FieldInfoData {
                 name: "ProxyVisualConvergenceDuration",
+                name_hash: 515861130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProjectileEntityData, proxy_visual_convergence_duration),
             },
             FieldInfoData {
                 name: "DetonateOnTimeout",
+                name_hash: 3547425179,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ProjectileEntityData, detonate_on_timeout),
             },
             FieldInfoData {
                 name: "ServerProjectileDisabled",
+                name_hash: 3578279269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ProjectileEntityData, server_projectile_disabled),
             },
             FieldInfoData {
                 name: "Explosion",
+                name_hash: 2222171184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ExplosionEntityData",
                 rust_offset: offset_of!(ProjectileEntityData, explosion),
             },
             FieldInfoData {
                 name: "SuppressionData",
+                name_hash: 1230905484,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WeaponSuppressionData",
                 rust_offset: offset_of!(ProjectileEntityData, suppression_data),
             },
             FieldInfoData {
                 name: "AmmunitionType",
+                name_hash: 1231027442,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ProjectileEntityData, ammunition_type),
             },
             FieldInfoData {
                 name: "MaterialPair",
+                name_hash: 161392100,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialDecl",
                 rust_offset: offset_of!(ProjectileEntityData, material_pair),
             },
             FieldInfoData {
                 name: "HitReactionWeaponType",
+                name_hash: 2133337731,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntHitReactionWeaponType",
                 rust_offset: offset_of!(ProjectileEntityData, hit_reaction_weapon_type),
             },
             FieldInfoData {
                 name: "HideOnDetonation",
+                name_hash: 1741071405,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ProjectileEntityData, hide_on_detonation),
             },
             FieldInfoData {
                 name: "VoiceOverInfo",
+                name_hash: 1260547539,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EntityVoiceOverInfo",
                 rust_offset: offset_of!(ProjectileEntityData, voice_over_info),
@@ -13467,6 +14245,7 @@ impl TypeObject for ProjectileEntityData {
 
 pub static PROJECTILEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProjectileEntityData-Array",
+    name_hash: 2526189615,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("ProjectileEntityData"),
@@ -13475,7 +14254,8 @@ pub static PROJECTILEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProjectileBlueprint {
     pub _glacier_base: super::entity::ObjectBlueprint,
     pub time_delta_type: super::entity::TimeDeltaType,
@@ -13496,34 +14276,34 @@ impl ProjectileBlueprintTrait for ProjectileBlueprint {
 }
 
 impl super::entity::ObjectBlueprintTrait for ProjectileBlueprint {
-    fn object(&self) -> &Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+    fn object(&self) -> &Option<LockedTypeObject /* super::entity::EntityData */> {
         self._glacier_base.object()
     }
-    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::EntityDataTrait>>> {
+    fn object_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::EntityData */> {
         self._glacier_base.object_mut()
     }
 }
 
 impl super::entity::BlueprintTrait for ProjectileBlueprint {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl super::entity::EntityBusDataTrait for ProjectileBlueprint {
-    fn event_connections(&self) -> &Vec<super::entity::EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* super::entity::EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<super::entity::EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::entity::EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -13535,22 +14315,22 @@ impl super::core::DataBusDataTrait for ProjectileBlueprint {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -13569,16 +14349,20 @@ impl super::core::DataContainerTrait for ProjectileBlueprint {
 
 pub static PROJECTILEBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProjectileBlueprint",
+    name_hash: 3934002719,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::OBJECTBLUEPRINT_TYPE_INFO),
+        super_class_offset: offset_of!(ProjectileBlueprint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProjectileBlueprint as Default>::default())),
+            create_boxed: || Box::new(<ProjectileBlueprint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TimeDeltaType",
+                name_hash: 1100516816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimeDeltaType",
                 rust_offset: offset_of!(ProjectileBlueprint, time_delta_type),
@@ -13610,6 +14394,7 @@ impl TypeObject for ProjectileBlueprint {
 
 pub static PROJECTILEBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProjectileBlueprint-Array",
+    name_hash: 411984555,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("ProjectileBlueprint"),
@@ -13636,6 +14421,7 @@ pub enum AntHitReactionWeaponType {
 
 pub static ANTHITREACTIONWEAPONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AntHitReactionWeaponType",
+    name_hash: 1418685976,
     flags: MemberInfoFlags::new(49429),
     module: "WeaponShared",
     data: TypeInfoData::Enum,
@@ -13664,6 +14450,7 @@ impl TypeObject for AntHitReactionWeaponType {
 
 pub static ANTHITREACTIONWEAPONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AntHitReactionWeaponType-Array",
+    name_hash: 1083881516,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("AntHitReactionWeaponType"),
@@ -13672,7 +14459,8 @@ pub static ANTHITREACTIONWEAPONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AmmoConfigData {
     pub magazine_capacity: i32,
     pub number_of_magazines: i32,
@@ -13774,69 +14562,81 @@ impl AmmoConfigDataTrait for AmmoConfigData {
 
 pub static AMMOCONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AmmoConfigData",
+    name_hash: 919227121,
     flags: MemberInfoFlags::new(36937),
     module: "WeaponShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AmmoConfigData as Default>::default())),
+            create_boxed: || Box::new(<AmmoConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MagazineCapacity",
+                name_hash: 1634670339,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AmmoConfigData, magazine_capacity),
             },
             FieldInfoData {
                 name: "NumberOfMagazines",
+                name_hash: 2684433166,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AmmoConfigData, number_of_magazines),
             },
             FieldInfoData {
                 name: "SpawnWithoutAmmo",
+                name_hash: 4137126140,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AmmoConfigData, spawn_without_ammo),
             },
             FieldInfoData {
                 name: "TraceFrequency",
+                name_hash: 1101083936,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(AmmoConfigData, trace_frequency),
             },
             FieldInfoData {
                 name: "AmmoPickupMinAmount",
+                name_hash: 1049056889,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(AmmoConfigData, ammo_pickup_min_amount),
             },
             FieldInfoData {
                 name: "AmmoPickupMaxAmount",
+                name_hash: 1825618791,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(AmmoConfigData, ammo_pickup_max_amount),
             },
             FieldInfoData {
                 name: "AutoReplenishMagazine",
+                name_hash: 3199294250,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AmmoConfigData, auto_replenish_magazine),
             },
             FieldInfoData {
                 name: "AutoReplenishDelay",
+                name_hash: 2884902349,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AmmoConfigData, auto_replenish_delay),
             },
             FieldInfoData {
                 name: "AmmoBagPickupDelayMultiplier",
+                name_hash: 3753352741,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AmmoConfigData, ammo_bag_pickup_delay_multiplier),
             },
             FieldInfoData {
                 name: "AmmoBagPickupAmount",
+                name_hash: 3198605367,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AmmoConfigData, ammo_bag_pickup_amount),
@@ -13868,6 +14668,7 @@ impl TypeObject for AmmoConfigData {
 
 pub static AMMOCONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AmmoConfigData-Array",
+    name_hash: 3699355077,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("AmmoConfigData"),
@@ -13876,7 +14677,8 @@ pub static AMMOCONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WeaponUnlockAsset {
     pub _glacier_base: super::game_shared::UnlockAssetBase,
 }
@@ -13888,10 +14690,10 @@ impl WeaponUnlockAssetTrait for WeaponUnlockAsset {
 }
 
 impl super::game_shared::UnlockAssetBaseTrait for WeaponUnlockAsset {
-    fn unlock_user_data(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockUserDataBaseTrait>>> {
+    fn unlock_user_data(&self) -> &Option<LockedTypeObject /* super::game_shared::UnlockUserDataBase */> {
         self._glacier_base.unlock_user_data()
     }
-    fn unlock_user_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockUserDataBaseTrait>>> {
+    fn unlock_user_data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::UnlockUserDataBase */> {
         self._glacier_base.unlock_user_data_mut()
     }
     fn debug_unlock_id(&self) -> &String {
@@ -13918,10 +14720,10 @@ impl super::game_shared::UnlockAssetBaseTrait for WeaponUnlockAsset {
     fn auto_available_mut(&mut self) -> &mut bool {
         self._glacier_base.auto_available_mut()
     }
-    fn next_level_unlock_asset(&self) -> &Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
+    fn next_level_unlock_asset(&self) -> &Option<LockedTypeObject /* super::game_shared::UnlockAssetBase */> {
         self._glacier_base.next_level_unlock_asset()
     }
-    fn next_level_unlock_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::UnlockAssetBaseTrait>>> {
+    fn next_level_unlock_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::UnlockAssetBase */> {
         self._glacier_base.next_level_unlock_asset_mut()
     }
     fn hidden_in_progression(&self) -> &bool {
@@ -13955,12 +14757,15 @@ impl super::core::DataContainerTrait for WeaponUnlockAsset {
 
 pub static WEAPONUNLOCKASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponUnlockAsset",
+    name_hash: 1477356935,
     flags: MemberInfoFlags::new(101),
     module: "WeaponShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_shared::UNLOCKASSETBASE_TYPE_INFO),
+        super_class_offset: offset_of!(WeaponUnlockAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WeaponUnlockAsset as Default>::default())),
+            create_boxed: || Box::new(<WeaponUnlockAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -13990,6 +14795,7 @@ impl TypeObject for WeaponUnlockAsset {
 
 pub static WEAPONUNLOCKASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WeaponUnlockAsset-Array",
+    name_hash: 513568307,
     flags: MemberInfoFlags::new(145),
     module: "WeaponShared",
     data: TypeInfoData::Array("WeaponUnlockAsset"),

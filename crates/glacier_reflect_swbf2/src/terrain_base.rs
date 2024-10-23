@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -229,7 +230,8 @@ pub(crate) fn register_terrain_base_types(registry: &mut TypeRegistry) {
     registry.register_type(HEIGHTFIELDDECAL_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VisualTerrainDynamicState {
     pub visible: bool,
     pub draw_enable: bool,
@@ -286,39 +288,46 @@ impl VisualTerrainDynamicStateTrait for VisualTerrainDynamicState {
 
 pub static VISUALTERRAINDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrainDynamicState",
+    name_hash: 3037994820,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VisualTerrainDynamicState as Default>::default())),
+            create_boxed: || Box::new(<VisualTerrainDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Visible",
+                name_hash: 901540267,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainDynamicState, visible),
             },
             FieldInfoData {
                 name: "DrawEnable",
+                name_hash: 1347356004,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainDynamicState, draw_enable),
             },
             FieldInfoData {
                 name: "OverrideDrawEnable",
+                name_hash: 705365584,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainDynamicState, override_draw_enable),
             },
             FieldInfoData {
                 name: "FieldFlagOverride0",
+                name_hash: 3558987183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(VisualTerrainDynamicState, field_flag_override0),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(VisualTerrainDynamicState, field_flag_changed0),
@@ -350,6 +359,7 @@ impl TypeObject for VisualTerrainDynamicState {
 
 pub static VISUALTERRAINDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrainDynamicState-Array",
+    name_hash: 1319166960,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("VisualTerrainDynamicState"),
@@ -358,30 +368,31 @@ pub static VISUALTERRAINDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VisualTerrainStaticState {
-    pub terrain: Option<Arc<Mutex<dyn TerrainBaseAssetTrait>>>,
+    pub terrain: Option<LockedTypeObject /* TerrainBaseAsset */>,
     pub decals_resource_handle: super::world_base::ResourceRefHandle,
-    pub settings: Option<Arc<Mutex<dyn VisualTerrainBaseSettingsTrait>>>,
+    pub settings: Option<LockedTypeObject /* VisualTerrainBaseSettings */>,
     pub field_flag_changed0: u8,
 }
 
 pub trait VisualTerrainStaticStateTrait: TypeObject {
-    fn terrain(&self) -> &Option<Arc<Mutex<dyn TerrainBaseAssetTrait>>>;
-    fn terrain_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainBaseAssetTrait>>>;
+    fn terrain(&self) -> &Option<LockedTypeObject /* TerrainBaseAsset */>;
+    fn terrain_mut(&mut self) -> &mut Option<LockedTypeObject /* TerrainBaseAsset */>;
     fn decals_resource_handle(&self) -> &super::world_base::ResourceRefHandle;
     fn decals_resource_handle_mut(&mut self) -> &mut super::world_base::ResourceRefHandle;
-    fn settings(&self) -> &Option<Arc<Mutex<dyn VisualTerrainBaseSettingsTrait>>>;
-    fn settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VisualTerrainBaseSettingsTrait>>>;
+    fn settings(&self) -> &Option<LockedTypeObject /* VisualTerrainBaseSettings */>;
+    fn settings_mut(&mut self) -> &mut Option<LockedTypeObject /* VisualTerrainBaseSettings */>;
     fn field_flag_changed0(&self) -> &u8;
     fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
 
 impl VisualTerrainStaticStateTrait for VisualTerrainStaticState {
-    fn terrain(&self) -> &Option<Arc<Mutex<dyn TerrainBaseAssetTrait>>> {
+    fn terrain(&self) -> &Option<LockedTypeObject /* TerrainBaseAsset */> {
         &self.terrain
     }
-    fn terrain_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainBaseAssetTrait>>> {
+    fn terrain_mut(&mut self) -> &mut Option<LockedTypeObject /* TerrainBaseAsset */> {
         &mut self.terrain
     }
     fn decals_resource_handle(&self) -> &super::world_base::ResourceRefHandle {
@@ -390,10 +401,10 @@ impl VisualTerrainStaticStateTrait for VisualTerrainStaticState {
     fn decals_resource_handle_mut(&mut self) -> &mut super::world_base::ResourceRefHandle {
         &mut self.decals_resource_handle
     }
-    fn settings(&self) -> &Option<Arc<Mutex<dyn VisualTerrainBaseSettingsTrait>>> {
+    fn settings(&self) -> &Option<LockedTypeObject /* VisualTerrainBaseSettings */> {
         &self.settings
     }
-    fn settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VisualTerrainBaseSettingsTrait>>> {
+    fn settings_mut(&mut self) -> &mut Option<LockedTypeObject /* VisualTerrainBaseSettings */> {
         &mut self.settings
     }
     fn field_flag_changed0(&self) -> &u8 {
@@ -406,33 +417,39 @@ impl VisualTerrainStaticStateTrait for VisualTerrainStaticState {
 
 pub static VISUALTERRAINSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrainStaticState",
+    name_hash: 286008137,
     flags: MemberInfoFlags::new(73),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VisualTerrainStaticState as Default>::default())),
+            create_boxed: || Box::new(<VisualTerrainStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Terrain",
+                name_hash: 3173545970,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TerrainBaseAsset",
                 rust_offset: offset_of!(VisualTerrainStaticState, terrain),
             },
             FieldInfoData {
                 name: "DecalsResourceHandle",
+                name_hash: 335042489,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRefHandle",
                 rust_offset: offset_of!(VisualTerrainStaticState, decals_resource_handle),
             },
             FieldInfoData {
                 name: "Settings",
+                name_hash: 649772672,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VisualTerrainBaseSettings",
                 rust_offset: offset_of!(VisualTerrainStaticState, settings),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(VisualTerrainStaticState, field_flag_changed0),
@@ -464,6 +481,7 @@ impl TypeObject for VisualTerrainStaticState {
 
 pub static VISUALTERRAINSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrainStaticState-Array",
+    name_hash: 2030987645,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("VisualTerrainStaticState"),
@@ -472,7 +490,8 @@ pub static VISUALTERRAINSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VisualTerrainHandle {
 }
 
@@ -484,11 +503,13 @@ impl VisualTerrainHandleTrait for VisualTerrainHandle {
 
 pub static VISUALTERRAINHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrainHandle",
+    name_hash: 881839212,
     flags: MemberInfoFlags::new(73),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VisualTerrainHandle as Default>::default())),
+            create_boxed: || Box::new(<VisualTerrainHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -518,6 +539,7 @@ impl TypeObject for VisualTerrainHandle {
 
 pub static VISUALTERRAINHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrainHandle-Array",
+    name_hash: 2634091608,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("VisualTerrainHandle"),
@@ -526,7 +548,8 @@ pub static VISUALTERRAINHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VisualTerrainBaseSettings {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -542,12 +565,15 @@ impl super::core::DataContainerTrait for VisualTerrainBaseSettings {
 
 pub static VISUALTERRAINBASESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrainBaseSettings",
+    name_hash: 1956583894,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(VisualTerrainBaseSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VisualTerrainBaseSettings as Default>::default())),
+            create_boxed: || Box::new(<VisualTerrainBaseSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -577,6 +603,7 @@ impl TypeObject for VisualTerrainBaseSettings {
 
 pub static VISUALTERRAINBASESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrainBaseSettings-Array",
+    name_hash: 1407778658,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("VisualTerrainBaseSettings"),
@@ -585,7 +612,8 @@ pub static VISUALTERRAINBASESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainStreamingSettings {
     pub _glacier_base: super::core::DataContainer,
     pub data_load_job_count: u32,
@@ -736,100 +764,118 @@ impl super::core::DataContainerTrait for TerrainStreamingSettings {
 
 pub static TERRAINSTREAMINGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainStreamingSettings",
+    name_hash: 324263211,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainStreamingSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainStreamingSettings as Default>::default())),
+            create_boxed: || Box::new(<TerrainStreamingSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DataLoadJobCount",
+                name_hash: 2206629719,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainStreamingSettings, data_load_job_count),
             },
             FieldInfoData {
                 name: "ActiveFreeStreamingDataLoadJobCount",
+                name_hash: 1513849907,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainStreamingSettings, active_free_streaming_data_load_job_count),
             },
             FieldInfoData {
                 name: "LoadOccluderDataEnable",
+                name_hash: 1587906935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainStreamingSettings, load_occluder_data_enable),
             },
             FieldInfoData {
                 name: "AdditionalBlurriness",
+                name_hash: 3610471397,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainStreamingSettings, additional_blurriness),
             },
             FieldInfoData {
                 name: "InvisibleDetailReductionFactor",
+                name_hash: 770364681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainStreamingSettings, invisible_detail_reduction_factor),
             },
             FieldInfoData {
                 name: "OccludedDetailReductionFactor",
+                name_hash: 1482388499,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainStreamingSettings, occluded_detail_reduction_factor),
             },
             FieldInfoData {
                 name: "KeepPoolFullEnable",
+                name_hash: 2806586800,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainStreamingSettings, keep_pool_full_enable),
             },
             FieldInfoData {
                 name: "HeightfieldAtlasSampleCountXFactor",
+                name_hash: 2700717027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainStreamingSettings, heightfield_atlas_sample_count_x_factor),
             },
             FieldInfoData {
                 name: "HeightfieldAtlasSampleCountYFactor",
+                name_hash: 3835784866,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainStreamingSettings, heightfield_atlas_sample_count_y_factor),
             },
             FieldInfoData {
                 name: "MaskAtlasSampleCountXFactor",
+                name_hash: 3363793834,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainStreamingSettings, mask_atlas_sample_count_x_factor),
             },
             FieldInfoData {
                 name: "MaskAtlasSampleCountYFactor",
+                name_hash: 2228725995,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainStreamingSettings, mask_atlas_sample_count_y_factor),
             },
             FieldInfoData {
                 name: "MaskAdditionalBlurriness",
+                name_hash: 1316541521,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainStreamingSettings, mask_additional_blurriness),
             },
             FieldInfoData {
                 name: "ColorAtlasSampleCountXFactor",
+                name_hash: 2883811075,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainStreamingSettings, color_atlas_sample_count_x_factor),
             },
             FieldInfoData {
                 name: "ColorAtlasSampleCountYFactor",
+                name_hash: 3608111938,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainStreamingSettings, color_atlas_sample_count_y_factor),
             },
             FieldInfoData {
                 name: "ColorAdditionalBlurriness",
+                name_hash: 3507421848,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainStreamingSettings, color_additional_blurriness),
@@ -861,6 +907,7 @@ impl TypeObject for TerrainStreamingSettings {
 
 pub static TERRAINSTREAMINGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainStreamingSettings-Array",
+    name_hash: 886226079,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainStreamingSettings"),
@@ -869,73 +916,74 @@ pub static TERRAINSTREAMINGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainQuadDecalData {
     pub _glacier_base: VisualVectorShapeData,
-    pub shader2d: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
-    pub shader2d_mesh_scattering_mask: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
-    pub shader2d_single_layer_mask: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
-    pub shader3d_z_only: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
-    pub shader2d_displacement: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
+    pub shader2d: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
+    pub shader2d_mesh_scattering_mask: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
+    pub shader2d_single_layer_mask: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
+    pub shader3d_z_only: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
+    pub shader2d_displacement: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
     pub stick_to_terrain: bool,
     pub user_masks: super::core::Vec4,
     pub tangent_space_enable: bool,
-    pub atlas_tile_template: Option<Arc<Mutex<dyn TerrainQuadDecalAtlasTileTemplateDataTrait>>>,
+    pub atlas_tile_template: Option<LockedTypeObject /* TerrainQuadDecalAtlasTileTemplateData */>,
     pub atlas_tile: TerrainQuadDecalAtlasTile,
 }
 
 pub trait TerrainQuadDecalDataTrait: VisualVectorShapeDataTrait {
-    fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_displacement(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_displacement_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_mesh_scattering_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_single_layer_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader3d_z_only(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_displacement(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_displacement_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
     fn stick_to_terrain(&self) -> &bool;
     fn stick_to_terrain_mut(&mut self) -> &mut bool;
     fn user_masks(&self) -> &super::core::Vec4;
     fn user_masks_mut(&mut self) -> &mut super::core::Vec4;
     fn tangent_space_enable(&self) -> &bool;
     fn tangent_space_enable_mut(&mut self) -> &mut bool;
-    fn atlas_tile_template(&self) -> &Option<Arc<Mutex<dyn TerrainQuadDecalAtlasTileTemplateDataTrait>>>;
-    fn atlas_tile_template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainQuadDecalAtlasTileTemplateDataTrait>>>;
+    fn atlas_tile_template(&self) -> &Option<LockedTypeObject /* TerrainQuadDecalAtlasTileTemplateData */>;
+    fn atlas_tile_template_mut(&mut self) -> &mut Option<LockedTypeObject /* TerrainQuadDecalAtlasTileTemplateData */>;
     fn atlas_tile(&self) -> &TerrainQuadDecalAtlasTile;
     fn atlas_tile_mut(&mut self) -> &mut TerrainQuadDecalAtlasTile;
 }
 
 impl TerrainQuadDecalDataTrait for TerrainQuadDecalData {
-    fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader2d
     }
-    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader2d
     }
-    fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_mesh_scattering_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader2d_mesh_scattering_mask
     }
-    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader2d_mesh_scattering_mask
     }
-    fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_single_layer_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader2d_single_layer_mask
     }
-    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader2d_single_layer_mask
     }
-    fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_z_only(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader3d_z_only
     }
-    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader3d_z_only
     }
-    fn shader2d_displacement(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_displacement(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader2d_displacement
     }
-    fn shader2d_displacement_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_displacement_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader2d_displacement
     }
     fn stick_to_terrain(&self) -> &bool {
@@ -956,10 +1004,10 @@ impl TerrainQuadDecalDataTrait for TerrainQuadDecalData {
     fn tangent_space_enable_mut(&mut self) -> &mut bool {
         &mut self.tangent_space_enable
     }
-    fn atlas_tile_template(&self) -> &Option<Arc<Mutex<dyn TerrainQuadDecalAtlasTileTemplateDataTrait>>> {
+    fn atlas_tile_template(&self) -> &Option<LockedTypeObject /* TerrainQuadDecalAtlasTileTemplateData */> {
         &self.atlas_tile_template
     }
-    fn atlas_tile_template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainQuadDecalAtlasTileTemplateDataTrait>>> {
+    fn atlas_tile_template_mut(&mut self) -> &mut Option<LockedTypeObject /* TerrainQuadDecalAtlasTileTemplateData */> {
         &mut self.atlas_tile_template
     }
     fn atlas_tile(&self) -> &TerrainQuadDecalAtlasTile {
@@ -977,10 +1025,10 @@ impl VisualVectorShapeDataTrait for TerrainQuadDecalData {
     fn error_tolerance_mut(&mut self) -> &mut f32 {
         self._glacier_base.error_tolerance_mut()
     }
-    fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d()
     }
-    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
@@ -1004,10 +1052,10 @@ impl VisualVectorShapeDataTrait for TerrainQuadDecalData {
 }
 
 impl super::entity::VectorShapeDataTrait for TerrainQuadDecalData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -1062,70 +1110,83 @@ impl super::core::DataContainerTrait for TerrainQuadDecalData {
 
 pub static TERRAINQUADDECALDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainQuadDecalData",
+    name_hash: 2226659916,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VISUALVECTORSHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainQuadDecalData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainQuadDecalData as Default>::default())),
+            create_boxed: || Box::new(<TerrainQuadDecalData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Shader2d",
+                name_hash: 596681178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(TerrainQuadDecalData, shader2d),
             },
             FieldInfoData {
                 name: "Shader2dMeshScatteringMask",
+                name_hash: 2043204219,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(TerrainQuadDecalData, shader2d_mesh_scattering_mask),
             },
             FieldInfoData {
                 name: "Shader2dSingleLayerMask",
+                name_hash: 413897143,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(TerrainQuadDecalData, shader2d_single_layer_mask),
             },
             FieldInfoData {
                 name: "Shader3dZOnly",
+                name_hash: 585356309,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(TerrainQuadDecalData, shader3d_z_only),
             },
             FieldInfoData {
                 name: "Shader2dDisplacement",
+                name_hash: 4098644109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(TerrainQuadDecalData, shader2d_displacement),
             },
             FieldInfoData {
                 name: "StickToTerrain",
+                name_hash: 633294575,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainQuadDecalData, stick_to_terrain),
             },
             FieldInfoData {
                 name: "UserMasks",
+                name_hash: 1589111411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(TerrainQuadDecalData, user_masks),
             },
             FieldInfoData {
                 name: "TangentSpaceEnable",
+                name_hash: 397952163,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainQuadDecalData, tangent_space_enable),
             },
             FieldInfoData {
                 name: "AtlasTileTemplate",
+                name_hash: 3181192042,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TerrainQuadDecalAtlasTileTemplateData",
                 rust_offset: offset_of!(TerrainQuadDecalData, atlas_tile_template),
             },
             FieldInfoData {
                 name: "AtlasTile",
+                name_hash: 3027817338,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TerrainQuadDecalAtlasTile",
                 rust_offset: offset_of!(TerrainQuadDecalData, atlas_tile),
@@ -1157,6 +1218,7 @@ impl TypeObject for TerrainQuadDecalData {
 
 pub static TERRAINQUADDECALDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainQuadDecalData-Array",
+    name_hash: 2054849272,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainQuadDecalData"),
@@ -1165,7 +1227,8 @@ pub static TERRAINQUADDECALDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainQuadDecalAtlasTileTemplateData {
     pub _glacier_base: super::core::Asset,
     pub atlas_tile: TerrainQuadDecalAtlasTile,
@@ -1199,16 +1262,20 @@ impl super::core::DataContainerTrait for TerrainQuadDecalAtlasTileTemplateData {
 
 pub static TERRAINQUADDECALATLASTILETEMPLATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainQuadDecalAtlasTileTemplateData",
+    name_hash: 2147093827,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainQuadDecalAtlasTileTemplateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainQuadDecalAtlasTileTemplateData as Default>::default())),
+            create_boxed: || Box::new(<TerrainQuadDecalAtlasTileTemplateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AtlasTile",
+                name_hash: 3027817338,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TerrainQuadDecalAtlasTile",
                 rust_offset: offset_of!(TerrainQuadDecalAtlasTileTemplateData, atlas_tile),
@@ -1240,6 +1307,7 @@ impl TypeObject for TerrainQuadDecalAtlasTileTemplateData {
 
 pub static TERRAINQUADDECALATLASTILETEMPLATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainQuadDecalAtlasTileTemplateData-Array",
+    name_hash: 3094392951,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainQuadDecalAtlasTileTemplateData"),
@@ -1248,7 +1316,8 @@ pub static TERRAINQUADDECALATLASTILETEMPLATEDATA_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainQuadDecalAtlasTile {
     pub tile_index_x: u32,
     pub tile_index_y: u32,
@@ -1314,45 +1383,53 @@ impl TerrainQuadDecalAtlasTileTrait for TerrainQuadDecalAtlasTile {
 
 pub static TERRAINQUADDECALATLASTILE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainQuadDecalAtlasTile",
+    name_hash: 566325539,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainQuadDecalAtlasTile as Default>::default())),
+            create_boxed: || Box::new(<TerrainQuadDecalAtlasTile as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TileIndexX",
+                name_hash: 2534612119,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainQuadDecalAtlasTile, tile_index_x),
             },
             FieldInfoData {
                 name: "TileIndexY",
+                name_hash: 2534612118,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainQuadDecalAtlasTile, tile_index_y),
             },
             FieldInfoData {
                 name: "TileCountX",
+                name_hash: 2473222698,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainQuadDecalAtlasTile, tile_count_x),
             },
             FieldInfoData {
                 name: "TileCountY",
+                name_hash: 2473222699,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainQuadDecalAtlasTile, tile_count_y),
             },
             FieldInfoData {
                 name: "FlipX",
+                name_hash: 207056974,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainQuadDecalAtlasTile, flip_x),
             },
             FieldInfoData {
                 name: "FlipY",
+                name_hash: 207056975,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainQuadDecalAtlasTile, flip_y),
@@ -1384,6 +1461,7 @@ impl TypeObject for TerrainQuadDecalAtlasTile {
 
 pub static TERRAINQUADDECALATLASTILE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainQuadDecalAtlasTile-Array",
+    name_hash: 161477783,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainQuadDecalAtlasTile"),
@@ -1392,49 +1470,50 @@ pub static TERRAINQUADDECALATLASTILE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainFillDecalData {
     pub _glacier_base: VisualVectorShapeData,
-    pub shader2d: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
-    pub shader2d_mesh_scattering_mask: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
-    pub shader2d_single_layer_mask: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
-    pub shader3d_z_only: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
+    pub shader2d: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
+    pub shader2d_mesh_scattering_mask: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
+    pub shader2d_single_layer_mask: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
+    pub shader3d_z_only: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
 }
 
 pub trait TerrainFillDecalDataTrait: VisualVectorShapeDataTrait {
-    fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_mesh_scattering_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_single_layer_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader3d_z_only(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
 }
 
 impl TerrainFillDecalDataTrait for TerrainFillDecalData {
-    fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader2d
     }
-    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader2d
     }
-    fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_mesh_scattering_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader2d_mesh_scattering_mask
     }
-    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader2d_mesh_scattering_mask
     }
-    fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_single_layer_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader2d_single_layer_mask
     }
-    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader2d_single_layer_mask
     }
-    fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_z_only(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader3d_z_only
     }
-    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader3d_z_only
     }
 }
@@ -1446,10 +1525,10 @@ impl VisualVectorShapeDataTrait for TerrainFillDecalData {
     fn error_tolerance_mut(&mut self) -> &mut f32 {
         self._glacier_base.error_tolerance_mut()
     }
-    fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d()
     }
-    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
@@ -1473,10 +1552,10 @@ impl VisualVectorShapeDataTrait for TerrainFillDecalData {
 }
 
 impl super::entity::VectorShapeDataTrait for TerrainFillDecalData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -1531,34 +1610,41 @@ impl super::core::DataContainerTrait for TerrainFillDecalData {
 
 pub static TERRAINFILLDECALDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainFillDecalData",
+    name_hash: 1970219650,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VISUALVECTORSHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainFillDecalData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainFillDecalData as Default>::default())),
+            create_boxed: || Box::new(<TerrainFillDecalData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Shader2d",
+                name_hash: 596681178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(TerrainFillDecalData, shader2d),
             },
             FieldInfoData {
                 name: "Shader2dMeshScatteringMask",
+                name_hash: 2043204219,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(TerrainFillDecalData, shader2d_mesh_scattering_mask),
             },
             FieldInfoData {
                 name: "Shader2dSingleLayerMask",
+                name_hash: 413897143,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(TerrainFillDecalData, shader2d_single_layer_mask),
             },
             FieldInfoData {
                 name: "Shader3dZOnly",
+                name_hash: 585356309,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(TerrainFillDecalData, shader3d_z_only),
@@ -1590,6 +1676,7 @@ impl TypeObject for TerrainFillDecalData {
 
 pub static TERRAINFILLDECALDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainFillDecalData-Array",
+    name_hash: 370141622,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainFillDecalData"),
@@ -1598,7 +1685,8 @@ pub static TERRAINFILLDECALDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LakeData {
     pub _glacier_base: VisualVectorShapeData,
 }
@@ -1616,10 +1704,10 @@ impl VisualVectorShapeDataTrait for LakeData {
     fn error_tolerance_mut(&mut self) -> &mut f32 {
         self._glacier_base.error_tolerance_mut()
     }
-    fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d()
     }
-    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
@@ -1643,10 +1731,10 @@ impl VisualVectorShapeDataTrait for LakeData {
 }
 
 impl super::entity::VectorShapeDataTrait for LakeData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -1701,12 +1789,15 @@ impl super::core::DataContainerTrait for LakeData {
 
 pub static LAKEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LakeData",
+    name_hash: 3686446134,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VISUALVECTORSHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LakeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LakeData as Default>::default())),
+            create_boxed: || Box::new(<LakeData as Default>::default()),
         },
         fields: &[
         ],
@@ -1736,6 +1827,7 @@ impl TypeObject for LakeData {
 
 pub static LAKEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LakeData-Array",
+    name_hash: 876259458,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("LakeData"),
@@ -1744,7 +1836,8 @@ pub static LAKEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RiverData {
     pub _glacier_base: RibbonData,
 }
@@ -1756,10 +1849,10 @@ impl RiverDataTrait for RiverData {
 }
 
 impl RibbonDataTrait for RiverData {
-    fn ribbon_points(&self) -> &Vec<RibbonPointData> {
+    fn ribbon_points(&self) -> &Vec<BoxedTypeObject /* RibbonPointData */> {
         self._glacier_base.ribbon_points()
     }
-    fn ribbon_points_mut(&mut self) -> &mut Vec<RibbonPointData> {
+    fn ribbon_points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RibbonPointData */> {
         self._glacier_base.ribbon_points_mut()
     }
 }
@@ -1771,10 +1864,10 @@ impl VisualVectorShapeDataTrait for RiverData {
     fn error_tolerance_mut(&mut self) -> &mut f32 {
         self._glacier_base.error_tolerance_mut()
     }
-    fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d()
     }
-    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
@@ -1798,10 +1891,10 @@ impl VisualVectorShapeDataTrait for RiverData {
 }
 
 impl super::entity::VectorShapeDataTrait for RiverData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -1856,12 +1949,15 @@ impl super::core::DataContainerTrait for RiverData {
 
 pub static RIVERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RiverData",
+    name_hash: 2813589135,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RIBBONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RiverData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RiverData as Default>::default())),
+            create_boxed: || Box::new(<RiverData as Default>::default()),
         },
         fields: &[
         ],
@@ -1891,6 +1987,7 @@ impl TypeObject for RiverData {
 
 pub static RIVERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RiverData-Array",
+    name_hash: 1943262011,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RiverData"),
@@ -1899,30 +1996,31 @@ pub static RIVERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RoadData {
     pub _glacier_base: RibbonData,
-    pub shader2d: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
-    pub shader2d_mesh_scattering_mask: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
-    pub shader2d_single_layer_mask: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
-    pub shader3d_z_only: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
-    pub shader2d_displacement: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
+    pub shader2d: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
+    pub shader2d_mesh_scattering_mask: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
+    pub shader2d_single_layer_mask: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
+    pub shader3d_z_only: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
+    pub shader2d_displacement: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
     pub stick_to_terrain: bool,
     pub uv_tile_factor: f32,
     pub tangent_space_enable: bool,
 }
 
 pub trait RoadDataTrait: RibbonDataTrait {
-    fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_displacement(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader2d_displacement_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader2d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_mesh_scattering_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_single_layer_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader3d_z_only(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_displacement(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader2d_displacement_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
     fn stick_to_terrain(&self) -> &bool;
     fn stick_to_terrain_mut(&mut self) -> &mut bool;
     fn uv_tile_factor(&self) -> &f32;
@@ -1932,34 +2030,34 @@ pub trait RoadDataTrait: RibbonDataTrait {
 }
 
 impl RoadDataTrait for RoadData {
-    fn shader2d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader2d
     }
-    fn shader2d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader2d
     }
-    fn shader2d_mesh_scattering_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_mesh_scattering_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader2d_mesh_scattering_mask
     }
-    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_mesh_scattering_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader2d_mesh_scattering_mask
     }
-    fn shader2d_single_layer_mask(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_single_layer_mask(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader2d_single_layer_mask
     }
-    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_single_layer_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader2d_single_layer_mask
     }
-    fn shader3d_z_only(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_z_only(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader3d_z_only
     }
-    fn shader3d_z_only_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_z_only_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader3d_z_only
     }
-    fn shader2d_displacement(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_displacement(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader2d_displacement
     }
-    fn shader2d_displacement_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader2d_displacement_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader2d_displacement
     }
     fn stick_to_terrain(&self) -> &bool {
@@ -1983,10 +2081,10 @@ impl RoadDataTrait for RoadData {
 }
 
 impl RibbonDataTrait for RoadData {
-    fn ribbon_points(&self) -> &Vec<RibbonPointData> {
+    fn ribbon_points(&self) -> &Vec<BoxedTypeObject /* RibbonPointData */> {
         self._glacier_base.ribbon_points()
     }
-    fn ribbon_points_mut(&mut self) -> &mut Vec<RibbonPointData> {
+    fn ribbon_points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RibbonPointData */> {
         self._glacier_base.ribbon_points_mut()
     }
 }
@@ -1998,10 +2096,10 @@ impl VisualVectorShapeDataTrait for RoadData {
     fn error_tolerance_mut(&mut self) -> &mut f32 {
         self._glacier_base.error_tolerance_mut()
     }
-    fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d()
     }
-    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
@@ -2025,10 +2123,10 @@ impl VisualVectorShapeDataTrait for RoadData {
 }
 
 impl super::entity::VectorShapeDataTrait for RoadData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -2083,58 +2181,69 @@ impl super::core::DataContainerTrait for RoadData {
 
 pub static ROADDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RoadData",
+    name_hash: 488110701,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RIBBONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RoadData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RoadData as Default>::default())),
+            create_boxed: || Box::new(<RoadData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Shader2d",
+                name_hash: 596681178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(RoadData, shader2d),
             },
             FieldInfoData {
                 name: "Shader2dMeshScatteringMask",
+                name_hash: 2043204219,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(RoadData, shader2d_mesh_scattering_mask),
             },
             FieldInfoData {
                 name: "Shader2dSingleLayerMask",
+                name_hash: 413897143,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(RoadData, shader2d_single_layer_mask),
             },
             FieldInfoData {
                 name: "Shader3dZOnly",
+                name_hash: 585356309,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(RoadData, shader3d_z_only),
             },
             FieldInfoData {
                 name: "Shader2dDisplacement",
+                name_hash: 4098644109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(RoadData, shader2d_displacement),
             },
             FieldInfoData {
                 name: "StickToTerrain",
+                name_hash: 633294575,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RoadData, stick_to_terrain),
             },
             FieldInfoData {
                 name: "UvTileFactor",
+                name_hash: 1731623903,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RoadData, uv_tile_factor),
             },
             FieldInfoData {
                 name: "TangentSpaceEnable",
+                name_hash: 397952163,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RoadData, tangent_space_enable),
@@ -2166,6 +2275,7 @@ impl TypeObject for RoadData {
 
 pub static ROADDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RoadData-Array",
+    name_hash: 2841591641,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RoadData"),
@@ -2174,22 +2284,23 @@ pub static ROADDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RibbonData {
     pub _glacier_base: VisualVectorShapeData,
-    pub ribbon_points: Vec<RibbonPointData>,
+    pub ribbon_points: Vec<BoxedTypeObject /* RibbonPointData */>,
 }
 
 pub trait RibbonDataTrait: VisualVectorShapeDataTrait {
-    fn ribbon_points(&self) -> &Vec<RibbonPointData>;
-    fn ribbon_points_mut(&mut self) -> &mut Vec<RibbonPointData>;
+    fn ribbon_points(&self) -> &Vec<BoxedTypeObject /* RibbonPointData */>;
+    fn ribbon_points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RibbonPointData */>;
 }
 
 impl RibbonDataTrait for RibbonData {
-    fn ribbon_points(&self) -> &Vec<RibbonPointData> {
+    fn ribbon_points(&self) -> &Vec<BoxedTypeObject /* RibbonPointData */> {
         &self.ribbon_points
     }
-    fn ribbon_points_mut(&mut self) -> &mut Vec<RibbonPointData> {
+    fn ribbon_points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RibbonPointData */> {
         &mut self.ribbon_points
     }
 }
@@ -2201,10 +2312,10 @@ impl VisualVectorShapeDataTrait for RibbonData {
     fn error_tolerance_mut(&mut self) -> &mut f32 {
         self._glacier_base.error_tolerance_mut()
     }
-    fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d()
     }
-    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         self._glacier_base.shader3d_mut()
     }
     fn draw_order_index(&self) -> &u32 {
@@ -2228,10 +2339,10 @@ impl VisualVectorShapeDataTrait for RibbonData {
 }
 
 impl super::entity::VectorShapeDataTrait for RibbonData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -2286,16 +2397,20 @@ impl super::core::DataContainerTrait for RibbonData {
 
 pub static RIBBONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RibbonData",
+    name_hash: 1306758767,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VISUALVECTORSHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RibbonData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RibbonData as Default>::default())),
+            create_boxed: || Box::new(<RibbonData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RibbonPoints",
+                name_hash: 935977920,
                 flags: MemberInfoFlags::new(144),
                 field_type: "RibbonPointData-Array",
                 rust_offset: offset_of!(RibbonData, ribbon_points),
@@ -2327,6 +2442,7 @@ impl TypeObject for RibbonData {
 
 pub static RIBBONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RibbonData-Array",
+    name_hash: 1261833307,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RibbonData"),
@@ -2335,7 +2451,8 @@ pub static RIBBONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RibbonPointData {
     pub left: f32,
     pub right: f32,
@@ -2383,33 +2500,39 @@ impl RibbonPointDataTrait for RibbonPointData {
 
 pub static RIBBONPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RibbonPointData",
+    name_hash: 2351552803,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RibbonPointData as Default>::default())),
+            create_boxed: || Box::new(<RibbonPointData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Left",
+                name_hash: 2089021886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RibbonPointData, left),
             },
             FieldInfoData {
                 name: "Right",
+                name_hash: 230390021,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RibbonPointData, right),
             },
             FieldInfoData {
                 name: "UserMaskLeft",
+                name_hash: 2010169083,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(RibbonPointData, user_mask_left),
             },
             FieldInfoData {
                 name: "UserMaskRight",
+                name_hash: 1923208736,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(RibbonPointData, user_mask_right),
@@ -2441,6 +2564,7 @@ impl TypeObject for RibbonPointData {
 
 pub static RIBBONPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RibbonPointData-Array",
+    name_hash: 1253465239,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RibbonPointData"),
@@ -2449,11 +2573,12 @@ pub static RIBBONPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VisualVectorShapeData {
     pub _glacier_base: super::entity::VectorShapeData,
     pub error_tolerance: f32,
-    pub shader3d: Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>,
+    pub shader3d: Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>,
     pub draw_order_index: u32,
     pub tessellation_triangle_size: f32,
     pub split_to_match_heightfield: bool,
@@ -2462,8 +2587,8 @@ pub struct VisualVectorShapeData {
 pub trait VisualVectorShapeDataTrait: super::entity::VectorShapeDataTrait {
     fn error_tolerance(&self) -> &f32;
     fn error_tolerance_mut(&mut self) -> &mut f32;
-    fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
-    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>>;
+    fn shader3d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
+    fn shader3d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */>;
     fn draw_order_index(&self) -> &u32;
     fn draw_order_index_mut(&mut self) -> &mut u32;
     fn tessellation_triangle_size(&self) -> &f32;
@@ -2479,10 +2604,10 @@ impl VisualVectorShapeDataTrait for VisualVectorShapeData {
     fn error_tolerance_mut(&mut self) -> &mut f32 {
         &mut self.error_tolerance
     }
-    fn shader3d(&self) -> &Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d(&self) -> &Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &self.shader3d
     }
-    fn shader3d_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::SurfaceShaderBaseAssetTrait>>> {
+    fn shader3d_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::SurfaceShaderBaseAsset */> {
         &mut self.shader3d
     }
     fn draw_order_index(&self) -> &u32 {
@@ -2506,10 +2631,10 @@ impl VisualVectorShapeDataTrait for VisualVectorShapeData {
 }
 
 impl super::entity::VectorShapeDataTrait for VisualVectorShapeData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -2564,40 +2689,48 @@ impl super::core::DataContainerTrait for VisualVectorShapeData {
 
 pub static VISUALVECTORSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualVectorShapeData",
+    name_hash: 2703618359,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::VECTORSHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VisualVectorShapeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VisualVectorShapeData as Default>::default())),
+            create_boxed: || Box::new(<VisualVectorShapeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ErrorTolerance",
+                name_hash: 3302753588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualVectorShapeData, error_tolerance),
             },
             FieldInfoData {
                 name: "Shader3d",
+                name_hash: 596681147,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderBaseAsset",
                 rust_offset: offset_of!(VisualVectorShapeData, shader3d),
             },
             FieldInfoData {
                 name: "DrawOrderIndex",
+                name_hash: 274360149,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualVectorShapeData, draw_order_index),
             },
             FieldInfoData {
                 name: "TessellationTriangleSize",
+                name_hash: 22509191,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualVectorShapeData, tessellation_triangle_size),
             },
             FieldInfoData {
                 name: "SplitToMatchHeightfield",
+                name_hash: 477252130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualVectorShapeData, split_to_match_heightfield),
@@ -2629,6 +2762,7 @@ impl TypeObject for VisualVectorShapeData {
 
 pub static VISUALVECTORSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualVectorShapeData-Array",
+    name_hash: 2469849731,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("VisualVectorShapeData"),
@@ -2637,7 +2771,8 @@ pub static VISUALVECTORSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainShaderParameterBlockDynamicState {
 }
 
@@ -2649,11 +2784,13 @@ impl TerrainShaderParameterBlockDynamicStateTrait for TerrainShaderParameterBloc
 
 pub static TERRAINSHADERPARAMETERBLOCKDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainShaderParameterBlockDynamicState",
+    name_hash: 1093877113,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainShaderParameterBlockDynamicState as Default>::default())),
+            create_boxed: || Box::new(<TerrainShaderParameterBlockDynamicState as Default>::default()),
         },
         fields: &[
         ],
@@ -2683,6 +2820,7 @@ impl TypeObject for TerrainShaderParameterBlockDynamicState {
 
 pub static TERRAINSHADERPARAMETERBLOCKDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainShaderParameterBlockDynamicState-Array",
+    name_hash: 1643371597,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainShaderParameterBlockDynamicState"),
@@ -2691,7 +2829,8 @@ pub static TERRAINSHADERPARAMETERBLOCKDYNAMICSTATE_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainShaderParameterBlockStaticState {
     pub shader_block_handle: super::render_base::ShaderParameterBlockHandle,
     pub field_flag_changed0: u8,
@@ -2721,21 +2860,25 @@ impl TerrainShaderParameterBlockStaticStateTrait for TerrainShaderParameterBlock
 
 pub static TERRAINSHADERPARAMETERBLOCKSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainShaderParameterBlockStaticState",
+    name_hash: 1678295828,
     flags: MemberInfoFlags::new(73),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainShaderParameterBlockStaticState as Default>::default())),
+            create_boxed: || Box::new(<TerrainShaderParameterBlockStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ShaderBlockHandle",
+                name_hash: 1372241359,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ShaderParameterBlockHandle",
                 rust_offset: offset_of!(TerrainShaderParameterBlockStaticState, shader_block_handle),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TerrainShaderParameterBlockStaticState, field_flag_changed0),
@@ -2767,6 +2910,7 @@ impl TypeObject for TerrainShaderParameterBlockStaticState {
 
 pub static TERRAINSHADERPARAMETERBLOCKSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainShaderParameterBlockStaticState-Array",
+    name_hash: 1002446624,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainShaderParameterBlockStaticState"),
@@ -2775,7 +2919,8 @@ pub static TERRAINSHADERPARAMETERBLOCKSTATICSTATE_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainSettings {
     pub _glacier_base: super::core::DataContainer,
     pub height_query_cache_size: u32,
@@ -2881,70 +3026,83 @@ impl super::core::DataContainerTrait for TerrainSettings {
 
 pub static TERRAINSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainSettings",
+    name_hash: 3254599735,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainSettings as Default>::default())),
+            create_boxed: || Box::new(<TerrainSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HeightQueryCacheSize",
+                name_hash: 360991385,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainSettings, height_query_cache_size),
             },
             FieldInfoData {
                 name: "ModifiersEnable",
+                name_hash: 3614191008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainSettings, modifiers_enable),
             },
             FieldInfoData {
                 name: "ModifiersCapacity",
+                name_hash: 3948255029,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainSettings, modifiers_capacity),
             },
             FieldInfoData {
                 name: "IntersectingModifiersMax",
+                name_hash: 3775873328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainSettings, intersecting_modifiers_max),
             },
             FieldInfoData {
                 name: "ModifierSlopeMax",
+                name_hash: 2295593955,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainSettings, modifier_slope_max),
             },
             FieldInfoData {
                 name: "ModifierDepthFactor",
+                name_hash: 2305338610,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainSettings, modifier_depth_factor),
             },
             FieldInfoData {
                 name: "ModifiersAppliedPerFrameMax",
+                name_hash: 2590709066,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainSettings, modifiers_applied_per_frame_max),
             },
             FieldInfoData {
                 name: "PrioritizationOnSeveralFrames",
+                name_hash: 2324831317,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainSettings, prioritization_on_several_frames),
             },
             FieldInfoData {
                 name: "RefiningDuringPrioritization",
+                name_hash: 2401351605,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainSettings, refining_during_prioritization),
             },
             FieldInfoData {
                 name: "RefiningDuringPrioritizationMinPriority",
+                name_hash: 833921773,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainSettings, refining_during_prioritization_min_priority),
@@ -2976,6 +3134,7 @@ impl TypeObject for TerrainSettings {
 
 pub static TERRAINSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainSettings-Array",
+    name_hash: 4060969347,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainSettings"),
@@ -2984,7 +3143,8 @@ pub static TERRAINSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainModificationDynamicState {
     pub burn_map: Vec<u8>,
     pub field_flag_changed0: u8,
@@ -3014,21 +3174,25 @@ impl TerrainModificationDynamicStateTrait for TerrainModificationDynamicState {
 
 pub static TERRAINMODIFICATIONDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainModificationDynamicState",
+    name_hash: 3908319534,
     flags: MemberInfoFlags::new(73),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainModificationDynamicState as Default>::default())),
+            create_boxed: || Box::new(<TerrainModificationDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BurnMap",
+                name_hash: 2742368018,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint8-Array",
                 rust_offset: offset_of!(TerrainModificationDynamicState, burn_map),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TerrainModificationDynamicState, field_flag_changed0),
@@ -3060,6 +3224,7 @@ impl TypeObject for TerrainModificationDynamicState {
 
 pub static TERRAINMODIFICATIONDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainModificationDynamicState-Array",
+    name_hash: 4239425946,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainModificationDynamicState"),
@@ -3079,6 +3244,7 @@ pub enum TerrainModificationType {
 
 pub static TERRAINMODIFICATIONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainModificationType",
+    name_hash: 3452491092,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -3107,6 +3273,7 @@ impl TypeObject for TerrainModificationType {
 
 pub static TERRAINMODIFICATIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainModificationType-Array",
+    name_hash: 3575177696,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainModificationType"),
@@ -3115,7 +3282,8 @@ pub static TERRAINMODIFICATIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainEditingDynamicState {
 }
 
@@ -3127,11 +3295,13 @@ impl TerrainEditingDynamicStateTrait for TerrainEditingDynamicState {
 
 pub static TERRAINEDITINGDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainEditingDynamicState",
+    name_hash: 1243982188,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainEditingDynamicState as Default>::default())),
+            create_boxed: || Box::new(<TerrainEditingDynamicState as Default>::default()),
         },
         fields: &[
         ],
@@ -3161,6 +3331,7 @@ impl TypeObject for TerrainEditingDynamicState {
 
 pub static TERRAINEDITINGDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainEditingDynamicState-Array",
+    name_hash: 3569920344,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainEditingDynamicState"),
@@ -3169,24 +3340,25 @@ pub static TERRAINEDITINGDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainEditingStaticState {
     pub event_type: TerrainEditingEvent,
-    pub mesh_scattering_type: Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>,
+    pub mesh_scattering_type: Option<LockedTypeObject /* TerrainMeshScatteringType */>,
     pub mesh_scattering_field_number: u32,
-    pub decals: Vec<Option<Arc<Mutex<dyn VisualVectorShapeDataTrait>>>>,
+    pub decals: Vec<Option<LockedTypeObject /* VisualVectorShapeData */>>,
     pub field_flag_changed0: u8,
 }
 
 pub trait TerrainEditingStaticStateTrait: TypeObject {
     fn event_type(&self) -> &TerrainEditingEvent;
     fn event_type_mut(&mut self) -> &mut TerrainEditingEvent;
-    fn mesh_scattering_type(&self) -> &Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>;
-    fn mesh_scattering_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>;
+    fn mesh_scattering_type(&self) -> &Option<LockedTypeObject /* TerrainMeshScatteringType */>;
+    fn mesh_scattering_type_mut(&mut self) -> &mut Option<LockedTypeObject /* TerrainMeshScatteringType */>;
     fn mesh_scattering_field_number(&self) -> &u32;
     fn mesh_scattering_field_number_mut(&mut self) -> &mut u32;
-    fn decals(&self) -> &Vec<Option<Arc<Mutex<dyn VisualVectorShapeDataTrait>>>>;
-    fn decals_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn VisualVectorShapeDataTrait>>>>;
+    fn decals(&self) -> &Vec<Option<LockedTypeObject /* VisualVectorShapeData */>>;
+    fn decals_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* VisualVectorShapeData */>>;
     fn field_flag_changed0(&self) -> &u8;
     fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
@@ -3198,10 +3370,10 @@ impl TerrainEditingStaticStateTrait for TerrainEditingStaticState {
     fn event_type_mut(&mut self) -> &mut TerrainEditingEvent {
         &mut self.event_type
     }
-    fn mesh_scattering_type(&self) -> &Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>> {
+    fn mesh_scattering_type(&self) -> &Option<LockedTypeObject /* TerrainMeshScatteringType */> {
         &self.mesh_scattering_type
     }
-    fn mesh_scattering_type_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>> {
+    fn mesh_scattering_type_mut(&mut self) -> &mut Option<LockedTypeObject /* TerrainMeshScatteringType */> {
         &mut self.mesh_scattering_type
     }
     fn mesh_scattering_field_number(&self) -> &u32 {
@@ -3210,10 +3382,10 @@ impl TerrainEditingStaticStateTrait for TerrainEditingStaticState {
     fn mesh_scattering_field_number_mut(&mut self) -> &mut u32 {
         &mut self.mesh_scattering_field_number
     }
-    fn decals(&self) -> &Vec<Option<Arc<Mutex<dyn VisualVectorShapeDataTrait>>>> {
+    fn decals(&self) -> &Vec<Option<LockedTypeObject /* VisualVectorShapeData */>> {
         &self.decals
     }
-    fn decals_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn VisualVectorShapeDataTrait>>>> {
+    fn decals_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* VisualVectorShapeData */>> {
         &mut self.decals
     }
     fn field_flag_changed0(&self) -> &u8 {
@@ -3226,39 +3398,46 @@ impl TerrainEditingStaticStateTrait for TerrainEditingStaticState {
 
 pub static TERRAINEDITINGSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainEditingStaticState",
+    name_hash: 2519809953,
     flags: MemberInfoFlags::new(73),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainEditingStaticState as Default>::default())),
+            create_boxed: || Box::new(<TerrainEditingStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EventType",
+                name_hash: 4133155473,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TerrainEditingEvent",
                 rust_offset: offset_of!(TerrainEditingStaticState, event_type),
             },
             FieldInfoData {
                 name: "MeshScatteringType",
+                name_hash: 1570628328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TerrainMeshScatteringType",
                 rust_offset: offset_of!(TerrainEditingStaticState, mesh_scattering_type),
             },
             FieldInfoData {
                 name: "MeshScatteringFieldNumber",
+                name_hash: 3401970961,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainEditingStaticState, mesh_scattering_field_number),
             },
             FieldInfoData {
                 name: "Decals",
+                name_hash: 2594137241,
                 flags: MemberInfoFlags::new(144),
                 field_type: "VisualVectorShapeData-Array",
                 rust_offset: offset_of!(TerrainEditingStaticState, decals),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TerrainEditingStaticState, field_flag_changed0),
@@ -3290,6 +3469,7 @@ impl TypeObject for TerrainEditingStaticState {
 
 pub static TERRAINEDITINGSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainEditingStaticState-Array",
+    name_hash: 353905173,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainEditingStaticState"),
@@ -3311,6 +3491,7 @@ pub enum TerrainEditingEvent {
 
 pub static TERRAINEDITINGEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainEditingEvent",
+    name_hash: 4077519778,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -3339,6 +3520,7 @@ impl TypeObject for TerrainEditingEvent {
 
 pub static TERRAINEDITINGEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainEditingEvent-Array",
+    name_hash: 265626134,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainEditingEvent"),
@@ -3363,6 +3545,7 @@ pub enum PlayablePixelsPerMeter {
 
 pub static PLAYABLEPIXELSPERMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayablePixelsPerMeter",
+    name_hash: 3221520412,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -3391,6 +3574,7 @@ impl TypeObject for PlayablePixelsPerMeter {
 
 pub static PLAYABLEPIXELSPERMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayablePixelsPerMeter-Array",
+    name_hash: 1767176232,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("PlayablePixelsPerMeter"),
@@ -3417,6 +3601,7 @@ pub enum TerrainAnchor {
 
 pub static TERRAINANCHOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainAnchor",
+    name_hash: 2817629483,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -3445,6 +3630,7 @@ impl TypeObject for TerrainAnchor {
 
 pub static TERRAINANCHOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainAnchor-Array",
+    name_hash: 3099622559,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainAnchor"),
@@ -3470,6 +3656,7 @@ pub enum TerrainSize {
 
 pub static TERRAINSIZE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainSize",
+    name_hash: 2344784311,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -3498,6 +3685,7 @@ impl TypeObject for TerrainSize {
 
 pub static TERRAINSIZE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainSize-Array",
+    name_hash: 3857312515,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainSize"),
@@ -3520,6 +3708,7 @@ pub enum HighResTerrainSize {
 
 pub static HIGHRESTERRAINSIZE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HighResTerrainSize",
+    name_hash: 786642237,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -3548,6 +3737,7 @@ impl TypeObject for HighResTerrainSize {
 
 pub static HIGHRESTERRAINSIZE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HighResTerrainSize-Array",
+    name_hash: 3676180873,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("HighResTerrainSize"),
@@ -3556,7 +3746,8 @@ pub static HIGHRESTERRAINSIZE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainLayerCombinationsData {
     pub _glacier_base: super::core::Asset,
 }
@@ -3581,12 +3772,15 @@ impl super::core::DataContainerTrait for TerrainLayerCombinationsData {
 
 pub static TERRAINLAYERCOMBINATIONSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerCombinationsData",
+    name_hash: 3302289931,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainLayerCombinationsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainLayerCombinationsData as Default>::default())),
+            create_boxed: || Box::new(<TerrainLayerCombinationsData as Default>::default()),
         },
         fields: &[
         ],
@@ -3616,6 +3810,7 @@ impl TypeObject for TerrainLayerCombinationsData {
 
 pub static TERRAINLAYERCOMBINATIONSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerCombinationsData-Array",
+    name_hash: 2657337535,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainLayerCombinationsData"),
@@ -3624,7 +3819,8 @@ pub static TERRAINLAYERCOMBINATIONSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainLayerShaderData {
 }
 
@@ -3636,11 +3832,13 @@ impl TerrainLayerShaderDataTrait for TerrainLayerShaderData {
 
 pub static TERRAINLAYERSHADERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerShaderData",
+    name_hash: 2297862408,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainLayerShaderData as Default>::default())),
+            create_boxed: || Box::new(<TerrainLayerShaderData as Default>::default()),
         },
         fields: &[
         ],
@@ -3670,6 +3868,7 @@ impl TypeObject for TerrainLayerShaderData {
 
 pub static TERRAINLAYERSHADERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerShaderData-Array",
+    name_hash: 518216508,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainLayerShaderData"),
@@ -3678,7 +3877,8 @@ pub static TERRAINLAYERSHADERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshScatteringSpawnData {
 }
 
@@ -3690,11 +3890,13 @@ impl MeshScatteringSpawnDataTrait for MeshScatteringSpawnData {
 
 pub static MESHSCATTERINGSPAWNDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringSpawnData",
+    name_hash: 1185490395,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshScatteringSpawnData as Default>::default())),
+            create_boxed: || Box::new(<MeshScatteringSpawnData as Default>::default()),
         },
         fields: &[
         ],
@@ -3724,6 +3926,7 @@ impl TypeObject for MeshScatteringSpawnData {
 
 pub static MESHSCATTERINGSPAWNDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringSpawnData-Array",
+    name_hash: 2336378095,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("MeshScatteringSpawnData"),
@@ -3732,7 +3935,8 @@ pub static MESHSCATTERINGSPAWNDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainStreamingTreeAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -3757,12 +3961,15 @@ impl super::core::DataContainerTrait for TerrainStreamingTreeAsset {
 
 pub static TERRAINSTREAMINGTREEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainStreamingTreeAsset",
+    name_hash: 629342072,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainStreamingTreeAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainStreamingTreeAsset as Default>::default())),
+            create_boxed: || Box::new(<TerrainStreamingTreeAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -3792,6 +3999,7 @@ impl TypeObject for TerrainStreamingTreeAsset {
 
 pub static TERRAINSTREAMINGTREEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainStreamingTreeAsset-Array",
+    name_hash: 3231816012,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainStreamingTreeAsset"),
@@ -3800,7 +4008,8 @@ pub static TERRAINSTREAMINGTREEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainLayerMaskData {
 }
 
@@ -3812,11 +4021,13 @@ impl TerrainLayerMaskDataTrait for TerrainLayerMaskData {
 
 pub static TERRAINLAYERMASKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerMaskData",
+    name_hash: 2272926261,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainLayerMaskData as Default>::default())),
+            create_boxed: || Box::new(<TerrainLayerMaskData as Default>::default()),
         },
         fields: &[
         ],
@@ -3846,6 +4057,7 @@ impl TypeObject for TerrainLayerMaskData {
 
 pub static TERRAINLAYERMASKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerMaskData-Array",
+    name_hash: 1645042305,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainLayerMaskData"),
@@ -3854,7 +4066,8 @@ pub static TERRAINLAYERMASKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PathfindingMaskRasterData {
     pub _glacier_base: ByteRasterData,
 }
@@ -3885,12 +4098,15 @@ impl super::core::DataContainerTrait for PathfindingMaskRasterData {
 
 pub static PATHFINDINGMASKRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingMaskRasterData",
+    name_hash: 3168712330,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BYTERASTERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PathfindingMaskRasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PathfindingMaskRasterData as Default>::default())),
+            create_boxed: || Box::new(<PathfindingMaskRasterData as Default>::default()),
         },
         fields: &[
         ],
@@ -3920,6 +4136,7 @@ impl TypeObject for PathfindingMaskRasterData {
 
 pub static PATHFINDINGMASKRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingMaskRasterData-Array",
+    name_hash: 276287934,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("PathfindingMaskRasterData"),
@@ -3928,10 +4145,11 @@ pub static PATHFINDINGMASKRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainData {
     pub _glacier_base: TerrainBaseAsset,
-    pub terrain_layers: Vec<Option<Arc<Mutex<dyn TerrainLayerDataTrait>>>>,
+    pub terrain_layers: Vec<Option<LockedTypeObject /* TerrainLayerData */>>,
     pub dynamic_mask_enable: bool,
     pub detail_displacement_max_level_diff: u32,
     pub detail_displacement_indirection_texture_tile_x: u32,
@@ -3945,8 +4163,8 @@ pub struct TerrainData {
 }
 
 pub trait TerrainDataTrait: TerrainBaseAssetTrait {
-    fn terrain_layers(&self) -> &Vec<Option<Arc<Mutex<dyn TerrainLayerDataTrait>>>>;
-    fn terrain_layers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TerrainLayerDataTrait>>>>;
+    fn terrain_layers(&self) -> &Vec<Option<LockedTypeObject /* TerrainLayerData */>>;
+    fn terrain_layers_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TerrainLayerData */>>;
     fn dynamic_mask_enable(&self) -> &bool;
     fn dynamic_mask_enable_mut(&mut self) -> &mut bool;
     fn detail_displacement_max_level_diff(&self) -> &u32;
@@ -3970,10 +4188,10 @@ pub trait TerrainDataTrait: TerrainBaseAssetTrait {
 }
 
 impl TerrainDataTrait for TerrainData {
-    fn terrain_layers(&self) -> &Vec<Option<Arc<Mutex<dyn TerrainLayerDataTrait>>>> {
+    fn terrain_layers(&self) -> &Vec<Option<LockedTypeObject /* TerrainLayerData */>> {
         &self.terrain_layers
     }
-    fn terrain_layers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TerrainLayerDataTrait>>>> {
+    fn terrain_layers_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TerrainLayerData */>> {
         &mut self.terrain_layers
     }
     fn dynamic_mask_enable(&self) -> &bool {
@@ -4055,76 +4273,90 @@ impl super::core::DataContainerTrait for TerrainData {
 
 pub static TERRAINDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainData",
+    name_hash: 2345466050,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TERRAINBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainData as Default>::default())),
+            create_boxed: || Box::new(<TerrainData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TerrainLayers",
+                name_hash: 3314924962,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TerrainLayerData-Array",
                 rust_offset: offset_of!(TerrainData, terrain_layers),
             },
             FieldInfoData {
                 name: "DynamicMaskEnable",
+                name_hash: 755434949,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainData, dynamic_mask_enable),
             },
             FieldInfoData {
                 name: "DetailDisplacementMaxLevelDiff",
+                name_hash: 2993616588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainData, detail_displacement_max_level_diff),
             },
             FieldInfoData {
                 name: "DetailDisplacementIndirectionTextureTileX",
+                name_hash: 1797376690,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainData, detail_displacement_indirection_texture_tile_x),
             },
             FieldInfoData {
                 name: "OverrideOccluderSettings",
+                name_hash: 4005666641,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainData, override_occluder_settings),
             },
             FieldInfoData {
                 name: "OccluderEnable",
+                name_hash: 4076210433,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainData, occluder_enable),
             },
             FieldInfoData {
                 name: "OccluderPatchFacesPerSide",
+                name_hash: 1520778816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainData, occluder_patch_faces_per_side),
             },
             FieldInfoData {
                 name: "OccluderLodScale",
+                name_hash: 967251551,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainData, occluder_lod_scale),
             },
             FieldInfoData {
                 name: "TerrainStreamingTreeResource",
+                name_hash: 2943630818,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(TerrainData, terrain_streaming_tree_resource),
             },
             FieldInfoData {
                 name: "VisualResource",
+                name_hash: 2957853819,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(TerrainData, visual_resource),
             },
             FieldInfoData {
                 name: "TerrainLayerCombinationsResource",
+                name_hash: 4115938481,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(TerrainData, terrain_layer_combinations_resource),
@@ -4156,6 +4388,7 @@ impl TypeObject for TerrainData {
 
 pub static TERRAINDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainData-Array",
+    name_hash: 1659873398,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainData"),
@@ -4175,6 +4408,7 @@ pub enum EnlightenMeshFilterType {
 
 pub static ENLIGHTENMESHFILTERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnlightenMeshFilterType",
+    name_hash: 2258401200,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -4203,6 +4437,7 @@ impl TypeObject for EnlightenMeshFilterType {
 
 pub static ENLIGHTENMESHFILTERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnlightenMeshFilterType-Array",
+    name_hash: 566813956,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("EnlightenMeshFilterType"),
@@ -4223,6 +4458,7 @@ pub enum RasterTreeBuildMode {
 
 pub static RASTERTREEBUILDMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterTreeBuildMode",
+    name_hash: 586276181,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -4251,6 +4487,7 @@ impl TypeObject for RasterTreeBuildMode {
 
 pub static RASTERTREEBUILDMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterTreeBuildMode-Array",
+    name_hash: 556449121,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RasterTreeBuildMode"),
@@ -4259,7 +4496,8 @@ pub static RASTERTREEBUILDMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainLayerCombinationDrawData {
 }
 
@@ -4271,11 +4509,13 @@ impl TerrainLayerCombinationDrawDataTrait for TerrainLayerCombinationDrawData {
 
 pub static TERRAINLAYERCOMBINATIONDRAWDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerCombinationDrawData",
+    name_hash: 2117423672,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainLayerCombinationDrawData as Default>::default())),
+            create_boxed: || Box::new(<TerrainLayerCombinationDrawData as Default>::default()),
         },
         fields: &[
         ],
@@ -4305,6 +4545,7 @@ impl TypeObject for TerrainLayerCombinationDrawData {
 
 pub static TERRAINLAYERCOMBINATIONDRAWDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerCombinationDrawData-Array",
+    name_hash: 1119550348,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainLayerCombinationDrawData"),
@@ -4313,7 +4554,8 @@ pub static TERRAINLAYERCOMBINATIONDRAWDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Surface3dDrawMethodData {
 }
 
@@ -4325,11 +4567,13 @@ impl Surface3dDrawMethodDataTrait for Surface3dDrawMethodData {
 
 pub static SURFACE3DDRAWMETHODDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Surface3dDrawMethodData",
+    name_hash: 1307966664,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Surface3dDrawMethodData as Default>::default())),
+            create_boxed: || Box::new(<Surface3dDrawMethodData as Default>::default()),
         },
         fields: &[
         ],
@@ -4359,6 +4603,7 @@ impl TypeObject for Surface3dDrawMethodData {
 
 pub static SURFACE3DDRAWMETHODDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Surface3dDrawMethodData-Array",
+    name_hash: 4044525436,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("Surface3dDrawMethodData"),
@@ -4367,7 +4612,8 @@ pub static SURFACE3DDRAWMETHODDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SingleLayerMaskDrawMethodData {
 }
 
@@ -4379,11 +4625,13 @@ impl SingleLayerMaskDrawMethodDataTrait for SingleLayerMaskDrawMethodData {
 
 pub static SINGLELAYERMASKDRAWMETHODDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SingleLayerMaskDrawMethodData",
+    name_hash: 2291637255,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SingleLayerMaskDrawMethodData as Default>::default())),
+            create_boxed: || Box::new(<SingleLayerMaskDrawMethodData as Default>::default()),
         },
         fields: &[
         ],
@@ -4413,6 +4661,7 @@ impl TypeObject for SingleLayerMaskDrawMethodData {
 
 pub static SINGLELAYERMASKDRAWMETHODDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SingleLayerMaskDrawMethodData-Array",
+    name_hash: 3065920691,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("SingleLayerMaskDrawMethodData"),
@@ -4421,7 +4670,8 @@ pub static SINGLELAYERMASKDRAWMETHODDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SingleLayerMaskDrawPassData {
 }
 
@@ -4433,11 +4683,13 @@ impl SingleLayerMaskDrawPassDataTrait for SingleLayerMaskDrawPassData {
 
 pub static SINGLELAYERMASKDRAWPASSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SingleLayerMaskDrawPassData",
+    name_hash: 4134876841,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SingleLayerMaskDrawPassData as Default>::default())),
+            create_boxed: || Box::new(<SingleLayerMaskDrawPassData as Default>::default()),
         },
         fields: &[
         ],
@@ -4467,6 +4719,7 @@ impl TypeObject for SingleLayerMaskDrawPassData {
 
 pub static SINGLELAYERMASKDRAWPASSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SingleLayerMaskDrawPassData-Array",
+    name_hash: 246988061,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("SingleLayerMaskDrawPassData"),
@@ -4475,7 +4728,8 @@ pub static SINGLELAYERMASKDRAWPASSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshScatteringMaskScaleDrawMethodData {
 }
 
@@ -4487,11 +4741,13 @@ impl MeshScatteringMaskScaleDrawMethodDataTrait for MeshScatteringMaskScaleDrawM
 
 pub static MESHSCATTERINGMASKSCALEDRAWMETHODDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringMaskScaleDrawMethodData",
+    name_hash: 3564080211,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshScatteringMaskScaleDrawMethodData as Default>::default())),
+            create_boxed: || Box::new(<MeshScatteringMaskScaleDrawMethodData as Default>::default()),
         },
         fields: &[
         ],
@@ -4521,6 +4777,7 @@ impl TypeObject for MeshScatteringMaskScaleDrawMethodData {
 
 pub static MESHSCATTERINGMASKSCALEDRAWMETHODDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringMaskScaleDrawMethodData-Array",
+    name_hash: 3294377831,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("MeshScatteringMaskScaleDrawMethodData"),
@@ -4529,7 +4786,8 @@ pub static MESHSCATTERINGMASKSCALEDRAWMETHODDATA_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Displacement2dDrawMethodData {
 }
 
@@ -4541,11 +4799,13 @@ impl Displacement2dDrawMethodDataTrait for Displacement2dDrawMethodData {
 
 pub static DISPLACEMENT2DDRAWMETHODDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Displacement2dDrawMethodData",
+    name_hash: 287120267,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Displacement2dDrawMethodData as Default>::default())),
+            create_boxed: || Box::new(<Displacement2dDrawMethodData as Default>::default()),
         },
         fields: &[
         ],
@@ -4575,6 +4835,7 @@ impl TypeObject for Displacement2dDrawMethodData {
 
 pub static DISPLACEMENT2DDRAWMETHODDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Displacement2dDrawMethodData-Array",
+    name_hash: 2441415231,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("Displacement2dDrawMethodData"),
@@ -4583,7 +4844,8 @@ pub static DISPLACEMENT2DDRAWMETHODDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Displacement2dDrawPassData {
 }
 
@@ -4595,11 +4857,13 @@ impl Displacement2dDrawPassDataTrait for Displacement2dDrawPassData {
 
 pub static DISPLACEMENT2DDRAWPASSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Displacement2dDrawPassData",
+    name_hash: 2216819237,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Displacement2dDrawPassData as Default>::default())),
+            create_boxed: || Box::new(<Displacement2dDrawPassData as Default>::default()),
         },
         fields: &[
         ],
@@ -4629,6 +4893,7 @@ impl TypeObject for Displacement2dDrawPassData {
 
 pub static DISPLACEMENT2DDRAWPASSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Displacement2dDrawPassData-Array",
+    name_hash: 629830289,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("Displacement2dDrawPassData"),
@@ -4637,7 +4902,8 @@ pub static DISPLACEMENT2DDRAWPASSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Surface2dDrawMethodData {
 }
 
@@ -4649,11 +4915,13 @@ impl Surface2dDrawMethodDataTrait for Surface2dDrawMethodData {
 
 pub static SURFACE2DDRAWMETHODDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Surface2dDrawMethodData",
+    name_hash: 1799213353,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Surface2dDrawMethodData as Default>::default())),
+            create_boxed: || Box::new(<Surface2dDrawMethodData as Default>::default()),
         },
         fields: &[
         ],
@@ -4683,6 +4951,7 @@ impl TypeObject for Surface2dDrawMethodData {
 
 pub static SURFACE2DDRAWMETHODDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Surface2dDrawMethodData-Array",
+    name_hash: 4281022365,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("Surface2dDrawMethodData"),
@@ -4691,7 +4960,8 @@ pub static SURFACE2DDRAWMETHODDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Surface2dDrawPassData {
 }
 
@@ -4703,11 +4973,13 @@ impl Surface2dDrawPassDataTrait for Surface2dDrawPassData {
 
 pub static SURFACE2DDRAWPASSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Surface2dDrawPassData",
+    name_hash: 2897881671,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Surface2dDrawPassData as Default>::default())),
+            create_boxed: || Box::new(<Surface2dDrawPassData as Default>::default()),
         },
         fields: &[
         ],
@@ -4737,6 +5009,7 @@ impl TypeObject for Surface2dDrawPassData {
 
 pub static SURFACE2DDRAWPASSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Surface2dDrawPassData-Array",
+    name_hash: 4015143795,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("Surface2dDrawPassData"),
@@ -4745,7 +5018,8 @@ pub static SURFACE2DDRAWPASSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainLayerCombinationDrawPassData {
 }
 
@@ -4757,11 +5031,13 @@ impl TerrainLayerCombinationDrawPassDataTrait for TerrainLayerCombinationDrawPas
 
 pub static TERRAINLAYERCOMBINATIONDRAWPASSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerCombinationDrawPassData",
+    name_hash: 828413673,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainLayerCombinationDrawPassData as Default>::default())),
+            create_boxed: || Box::new(<TerrainLayerCombinationDrawPassData as Default>::default()),
         },
         fields: &[
         ],
@@ -4791,6 +5067,7 @@ impl TypeObject for TerrainLayerCombinationDrawPassData {
 
 pub static TERRAINLAYERCOMBINATIONDRAWPASSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerCombinationDrawPassData-Array",
+    name_hash: 2894826973,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainLayerCombinationDrawPassData"),
@@ -4811,6 +5088,7 @@ pub enum TerrainDrawPassType {
 
 pub static TERRAINDRAWPASSTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainDrawPassType",
+    name_hash: 4132800027,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -4839,6 +5117,7 @@ impl TypeObject for TerrainDrawPassType {
 
 pub static TERRAINDRAWPASSTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainDrawPassType-Array",
+    name_hash: 1788222639,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainDrawPassType"),
@@ -4859,6 +5138,7 @@ pub enum TerrainBrushDetailOperation {
 
 pub static TERRAINBRUSHDETAILOPERATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainBrushDetailOperation",
+    name_hash: 2196067720,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -4887,6 +5167,7 @@ impl TypeObject for TerrainBrushDetailOperation {
 
 pub static TERRAINBRUSHDETAILOPERATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainBrushDetailOperation-Array",
+    name_hash: 2500687804,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainBrushDetailOperation"),
@@ -4895,22 +5176,23 @@ pub static TERRAINBRUSHDETAILOPERATION_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SingleTerrainLayerData {
     pub _glacier_base: TerrainLayerData,
-    pub mesh_scattering_types: Vec<Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>>,
+    pub mesh_scattering_types: Vec<Option<LockedTypeObject /* TerrainMeshScatteringType */>>,
 }
 
 pub trait SingleTerrainLayerDataTrait: TerrainLayerDataTrait {
-    fn mesh_scattering_types(&self) -> &Vec<Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>>;
-    fn mesh_scattering_types_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>>;
+    fn mesh_scattering_types(&self) -> &Vec<Option<LockedTypeObject /* TerrainMeshScatteringType */>>;
+    fn mesh_scattering_types_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TerrainMeshScatteringType */>>;
 }
 
 impl SingleTerrainLayerDataTrait for SingleTerrainLayerData {
-    fn mesh_scattering_types(&self) -> &Vec<Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>> {
+    fn mesh_scattering_types(&self) -> &Vec<Option<LockedTypeObject /* TerrainMeshScatteringType */>> {
         &self.mesh_scattering_types
     }
-    fn mesh_scattering_types_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TerrainMeshScatteringTypeTrait>>>> {
+    fn mesh_scattering_types_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TerrainMeshScatteringType */>> {
         &mut self.mesh_scattering_types
     }
 }
@@ -4923,16 +5205,20 @@ impl super::core::DataContainerTrait for SingleTerrainLayerData {
 
 pub static SINGLETERRAINLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SingleTerrainLayerData",
+    name_hash: 3602684891,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TERRAINLAYERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SingleTerrainLayerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SingleTerrainLayerData as Default>::default())),
+            create_boxed: || Box::new(<SingleTerrainLayerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MeshScatteringTypes",
+                name_hash: 291127195,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TerrainMeshScatteringType-Array",
                 rust_offset: offset_of!(SingleTerrainLayerData, mesh_scattering_types),
@@ -4964,6 +5250,7 @@ impl TypeObject for SingleTerrainLayerData {
 
 pub static SINGLETERRAINLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SingleTerrainLayerData-Array",
+    name_hash: 4120265455,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("SingleTerrainLayerData"),
@@ -4972,7 +5259,8 @@ pub static SINGLETERRAINLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainLayerData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -4988,12 +5276,15 @@ impl super::core::DataContainerTrait for TerrainLayerData {
 
 pub static TERRAINLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerData",
+    name_hash: 3245002433,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainLayerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainLayerData as Default>::default())),
+            create_boxed: || Box::new(<TerrainLayerData as Default>::default()),
         },
         fields: &[
         ],
@@ -5023,6 +5314,7 @@ impl TypeObject for TerrainLayerData {
 
 pub static TERRAINLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerData-Array",
+    name_hash: 3642775797,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainLayerData"),
@@ -5031,7 +5323,8 @@ pub static TERRAINLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ColorImportSettings {
 }
 
@@ -5043,11 +5336,13 @@ impl ColorImportSettingsTrait for ColorImportSettings {
 
 pub static COLORIMPORTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorImportSettings",
+    name_hash: 1193066656,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ColorImportSettings as Default>::default())),
+            create_boxed: || Box::new(<ColorImportSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -5077,6 +5372,7 @@ impl TypeObject for ColorImportSettings {
 
 pub static COLORIMPORTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorImportSettings-Array",
+    name_hash: 3456706068,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("ColorImportSettings"),
@@ -5097,6 +5393,7 @@ pub enum TerrainLayerType {
 
 pub static TERRAINLAYERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerType",
+    name_hash: 3244453705,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -5125,6 +5422,7 @@ impl TypeObject for TerrainLayerType {
 
 pub static TERRAINLAYERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerType-Array",
+    name_hash: 3689788797,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainLayerType"),
@@ -5133,7 +5431,8 @@ pub static TERRAINLAYERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainLayerProceduralMask {
     pub altitude_min: f32,
 }
@@ -5154,15 +5453,18 @@ impl TerrainLayerProceduralMaskTrait for TerrainLayerProceduralMask {
 
 pub static TERRAINLAYERPROCEDURALMASK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerProceduralMask",
+    name_hash: 503185632,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainLayerProceduralMask as Default>::default())),
+            create_boxed: || Box::new(<TerrainLayerProceduralMask as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AltitudeMin",
+                name_hash: 4056047967,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainLayerProceduralMask, altitude_min),
@@ -5194,6 +5496,7 @@ impl TypeObject for TerrainLayerProceduralMask {
 
 pub static TERRAINLAYERPROCEDURALMASK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerProceduralMask-Array",
+    name_hash: 1319474900,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainLayerProceduralMask"),
@@ -5202,7 +5505,8 @@ pub static TERRAINLAYERPROCEDURALMASK_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainGeoTexture {
 }
 
@@ -5214,11 +5518,13 @@ impl TerrainGeoTextureTrait for TerrainGeoTexture {
 
 pub static TERRAINGEOTEXTURE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainGeoTexture",
+    name_hash: 3607725312,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainGeoTexture as Default>::default())),
+            create_boxed: || Box::new(<TerrainGeoTexture as Default>::default()),
         },
         fields: &[
         ],
@@ -5248,6 +5554,7 @@ impl TypeObject for TerrainGeoTexture {
 
 pub static TERRAINGEOTEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainGeoTexture-Array",
+    name_hash: 2683824948,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainGeoTexture"),
@@ -5256,7 +5563,8 @@ pub static TERRAINGEOTEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainMeshScatteringType {
     pub _glacier_base: super::core::DataContainer,
     pub identifier: u32,
@@ -5443,124 +5751,146 @@ impl super::core::DataContainerTrait for TerrainMeshScatteringType {
 
 pub static TERRAINMESHSCATTERINGTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainMeshScatteringType",
+    name_hash: 490066143,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainMeshScatteringType, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainMeshScatteringType as Default>::default())),
+            create_boxed: || Box::new(<TerrainMeshScatteringType as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Identifier",
+                name_hash: 3512790342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, identifier),
             },
             FieldInfoData {
                 name: "MinScale",
+                name_hash: 3368655127,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(TerrainMeshScatteringType, min_scale),
             },
             FieldInfoData {
                 name: "MaxScale",
+                name_hash: 395677513,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(TerrainMeshScatteringType, max_scale),
             },
             FieldInfoData {
                 name: "ScaleRandomness",
+                name_hash: 2420946861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, scale_randomness),
             },
             FieldInfoData {
                 name: "Lod0DissolveOutDistanceFactor",
+                name_hash: 3263877551,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, lod0_dissolve_out_distance_factor),
             },
             FieldInfoData {
                 name: "Lod1DissolveInDistanceFactor",
+                name_hash: 4186735975,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, lod1_dissolve_in_distance_factor),
             },
             FieldInfoData {
                 name: "Lod1DissolveOutDistanceFactor",
+                name_hash: 2473794894,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, lod1_dissolve_out_distance_factor),
             },
             FieldInfoData {
                 name: "Lod2DissolveInDistanceFactor",
+                name_hash: 4102077156,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, lod2_dissolve_in_distance_factor),
             },
             FieldInfoData {
                 name: "Lod2DissolveOutDistanceFactor",
+                name_hash: 3780871661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, lod2_dissolve_out_distance_factor),
             },
             FieldInfoData {
                 name: "Lod3DissolveInDistanceFactor",
+                name_hash: 4226584933,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, lod3_dissolve_in_distance_factor),
             },
             FieldInfoData {
                 name: "Density",
+                name_hash: 4008572221,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(TerrainMeshScatteringType, density),
             },
             FieldInfoData {
                 name: "FirstSpawnLevel",
+                name_hash: 2271926258,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, first_spawn_level),
             },
             FieldInfoData {
                 name: "WindScale",
+                name_hash: 3183611401,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, wind_scale),
             },
             FieldInfoData {
                 name: "Stiffness",
+                name_hash: 721813632,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, stiffness),
             },
             FieldInfoData {
                 name: "Damping",
+                name_hash: 3862601053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, damping),
             },
             FieldInfoData {
                 name: "Mass",
+                name_hash: 2088779625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, mass),
             },
             FieldInfoData {
                 name: "WindWiggle",
+                name_hash: 2152607398,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, wind_wiggle),
             },
             FieldInfoData {
                 name: "UseVertexColorWeights",
+                name_hash: 2359073376,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainMeshScatteringType, use_vertex_color_weights),
             },
             FieldInfoData {
                 name: "DissolveRangeRatio",
+                name_hash: 3356179078,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainMeshScatteringType, dissolve_range_ratio),
@@ -5592,6 +5922,7 @@ impl TypeObject for TerrainMeshScatteringType {
 
 pub static TERRAINMESHSCATTERINGTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainMeshScatteringType-Array",
+    name_hash: 1654842859,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainMeshScatteringType"),
@@ -5615,6 +5946,7 @@ pub enum MeshScatteringInstanceDataMode {
 
 pub static MESHSCATTERINGINSTANCEDATAMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringInstanceDataMode",
+    name_hash: 700226826,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -5643,6 +5975,7 @@ impl TypeObject for MeshScatteringInstanceDataMode {
 
 pub static MESHSCATTERINGINSTANCEDATAMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringInstanceDataMode-Array",
+    name_hash: 1053333566,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("MeshScatteringInstanceDataMode"),
@@ -5663,6 +5996,7 @@ pub enum UndergrowthOrientationMode {
 
 pub static UNDERGROWTHORIENTATIONMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UndergrowthOrientationMode",
+    name_hash: 1778122697,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -5691,6 +6025,7 @@ impl TypeObject for UndergrowthOrientationMode {
 
 pub static UNDERGROWTHORIENTATIONMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UndergrowthOrientationMode-Array",
+    name_hash: 311535101,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("UndergrowthOrientationMode"),
@@ -5712,6 +6047,7 @@ pub enum MeshScatteringBillboardMode {
 
 pub static MESHSCATTERINGBILLBOARDMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringBillboardMode",
+    name_hash: 3376960514,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -5740,6 +6076,7 @@ impl TypeObject for MeshScatteringBillboardMode {
 
 pub static MESHSCATTERINGBILLBOARDMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringBillboardMode-Array",
+    name_hash: 3112317750,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("MeshScatteringBillboardMode"),
@@ -5760,6 +6097,7 @@ pub enum MeshScatteringOrientationMode {
 
 pub static MESHSCATTERINGORIENTATIONMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringOrientationMode",
+    name_hash: 2354164613,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -5788,6 +6126,7 @@ impl TypeObject for MeshScatteringOrientationMode {
 
 pub static MESHSCATTERINGORIENTATIONMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringOrientationMode-Array",
+    name_hash: 2085845809,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("MeshScatteringOrientationMode"),
@@ -5808,6 +6147,7 @@ pub enum UndergrowthRotationMode {
 
 pub static UNDERGROWTHROTATIONMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UndergrowthRotationMode",
+    name_hash: 3164319691,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -5836,6 +6176,7 @@ impl TypeObject for UndergrowthRotationMode {
 
 pub static UNDERGROWTHROTATIONMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UndergrowthRotationMode-Array",
+    name_hash: 1138855679,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("UndergrowthRotationMode"),
@@ -5856,6 +6197,7 @@ pub enum MeshScatteringRotationMode {
 
 pub static MESHSCATTERINGROTATIONMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringRotationMode",
+    name_hash: 811866247,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -5884,6 +6226,7 @@ impl TypeObject for MeshScatteringRotationMode {
 
 pub static MESHSCATTERINGROTATIONMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringRotationMode-Array",
+    name_hash: 3122010419,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("MeshScatteringRotationMode"),
@@ -5903,6 +6246,7 @@ pub enum MeshScatteringElevationMode {
 
 pub static MESHSCATTERINGELEVATIONMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringElevationMode",
+    name_hash: 2241351988,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -5931,6 +6275,7 @@ impl TypeObject for MeshScatteringElevationMode {
 
 pub static MESHSCATTERINGELEVATIONMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringElevationMode-Array",
+    name_hash: 3974204544,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("MeshScatteringElevationMode"),
@@ -5939,7 +6284,8 @@ pub static MESHSCATTERINGELEVATIONMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainHeightfieldData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -5955,12 +6301,15 @@ impl super::core::DataContainerTrait for TerrainHeightfieldData {
 
 pub static TERRAINHEIGHTFIELDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainHeightfieldData",
+    name_hash: 2172755071,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainHeightfieldData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainHeightfieldData as Default>::default())),
+            create_boxed: || Box::new(<TerrainHeightfieldData as Default>::default()),
         },
         fields: &[
         ],
@@ -5990,6 +6339,7 @@ impl TypeObject for TerrainHeightfieldData {
 
 pub static TERRAINHEIGHTFIELDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainHeightfieldData-Array",
+    name_hash: 3157877323,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainHeightfieldData"),
@@ -6014,6 +6364,7 @@ pub enum TerrainBrushType {
 
 pub static TERRAINBRUSHTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainBrushType",
+    name_hash: 3594673716,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -6042,6 +6393,7 @@ impl TypeObject for TerrainBrushType {
 
 pub static TERRAINBRUSHTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainBrushType-Array",
+    name_hash: 1243699584,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainBrushType"),
@@ -6050,7 +6402,8 @@ pub static TERRAINBRUSHTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainDynamicDecalTemplateData {
     pub _glacier_base: super::core::Asset,
     pub width: f32,
@@ -6059,7 +6412,7 @@ pub struct TerrainDynamicDecalTemplateData {
     pub relative_depth_deviation: f32,
     pub rotation_random_amount: f32,
     pub slope_max: f32,
-    pub depth_mask: Option<Arc<Mutex<dyn HeightfieldDecalAssetTrait>>>,
+    pub depth_mask: Option<LockedTypeObject /* HeightfieldDecalAsset */>,
     pub mask_shader: super::render_base::SurfaceShaderInstanceDataStruct,
     pub displacement_shader: super::render_base::SurfaceShaderInstanceDataStruct,
     pub dynamic_mask_decal_width_scale: f32,
@@ -6086,8 +6439,8 @@ pub trait TerrainDynamicDecalTemplateDataTrait: super::core::AssetTrait {
     fn rotation_random_amount_mut(&mut self) -> &mut f32;
     fn slope_max(&self) -> &f32;
     fn slope_max_mut(&mut self) -> &mut f32;
-    fn depth_mask(&self) -> &Option<Arc<Mutex<dyn HeightfieldDecalAssetTrait>>>;
-    fn depth_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn HeightfieldDecalAssetTrait>>>;
+    fn depth_mask(&self) -> &Option<LockedTypeObject /* HeightfieldDecalAsset */>;
+    fn depth_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* HeightfieldDecalAsset */>;
     fn mask_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
     fn mask_shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn displacement_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
@@ -6149,10 +6502,10 @@ impl TerrainDynamicDecalTemplateDataTrait for TerrainDynamicDecalTemplateData {
     fn slope_max_mut(&mut self) -> &mut f32 {
         &mut self.slope_max
     }
-    fn depth_mask(&self) -> &Option<Arc<Mutex<dyn HeightfieldDecalAssetTrait>>> {
+    fn depth_mask(&self) -> &Option<LockedTypeObject /* HeightfieldDecalAsset */> {
         &self.depth_mask
     }
-    fn depth_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn HeightfieldDecalAssetTrait>>> {
+    fn depth_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* HeightfieldDecalAsset */> {
         &mut self.depth_mask
     }
     fn mask_shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
@@ -6237,118 +6590,139 @@ impl super::core::DataContainerTrait for TerrainDynamicDecalTemplateData {
 
 pub static TERRAINDYNAMICDECALTEMPLATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainDynamicDecalTemplateData",
+    name_hash: 4221238472,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainDynamicDecalTemplateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainDynamicDecalTemplateData as Default>::default())),
+            create_boxed: || Box::new(<TerrainDynamicDecalTemplateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Width",
+                name_hash: 226981187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, width),
             },
             FieldInfoData {
                 name: "RelativeWidthDeviation",
+                name_hash: 2091224244,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, relative_width_deviation),
             },
             FieldInfoData {
                 name: "Depth",
+                name_hash: 208780552,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, depth),
             },
             FieldInfoData {
                 name: "RelativeDepthDeviation",
+                name_hash: 1779196895,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, relative_depth_deviation),
             },
             FieldInfoData {
                 name: "RotationRandomAmount",
+                name_hash: 1670238502,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, rotation_random_amount),
             },
             FieldInfoData {
                 name: "SlopeMax",
+                name_hash: 3923137364,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, slope_max),
             },
             FieldInfoData {
                 name: "DepthMask",
+                name_hash: 968418876,
                 flags: MemberInfoFlags::new(0),
                 field_type: "HeightfieldDecalAsset",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, depth_mask),
             },
             FieldInfoData {
                 name: "MaskShader",
+                name_hash: 3852583160,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderInstanceDataStruct",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, mask_shader),
             },
             FieldInfoData {
                 name: "DisplacementShader",
+                name_hash: 2077400859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderInstanceDataStruct",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, displacement_shader),
             },
             FieldInfoData {
                 name: "DynamicMaskDecalWidthScale",
+                name_hash: 3977963893,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, dynamic_mask_decal_width_scale),
             },
             FieldInfoData {
                 name: "TangentSpaceEnable",
+                name_hash: 397952163,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, tangent_space_enable),
             },
             FieldInfoData {
                 name: "ScaleWithDestructionDepth",
+                name_hash: 3553243852,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, scale_with_destruction_depth),
             },
             FieldInfoData {
                 name: "ForceUpScale",
+                name_hash: 2140767269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, force_up_scale),
             },
             FieldInfoData {
                 name: "SlopeMinThreshold",
+                name_hash: 979450301,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, slope_min_threshold),
             },
             FieldInfoData {
                 name: "SlopeScalarMax",
+                name_hash: 2708827162,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, slope_scalar_max),
             },
             FieldInfoData {
                 name: "SlopeMultiplier",
+                name_hash: 3031010539,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, slope_multiplier),
             },
             FieldInfoData {
                 name: "MaxOpposingSlopes",
+                name_hash: 2190796660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, max_opposing_slopes),
             },
             FieldInfoData {
                 name: "MinWeightThreshold",
+                name_hash: 3084168440,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainDynamicDecalTemplateData, min_weight_threshold),
@@ -6380,6 +6754,7 @@ impl TypeObject for TerrainDynamicDecalTemplateData {
 
 pub static TERRAINDYNAMICDECALTEMPLATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainDynamicDecalTemplateData-Array",
+    name_hash: 2255982460,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainDynamicDecalTemplateData"),
@@ -6388,7 +6763,8 @@ pub static TERRAINDYNAMICDECALTEMPLATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HeightfieldDecalAsset {
     pub _glacier_base: super::core::Asset,
     pub resource: glacier_reflect::builtin::ResourceRef,
@@ -6431,22 +6807,27 @@ impl super::core::DataContainerTrait for HeightfieldDecalAsset {
 
 pub static HEIGHTFIELDDECALASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HeightfieldDecalAsset",
+    name_hash: 2724985703,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(HeightfieldDecalAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HeightfieldDecalAsset as Default>::default())),
+            create_boxed: || Box::new(<HeightfieldDecalAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Resource",
+                name_hash: 74513935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(HeightfieldDecalAsset, resource),
             },
             FieldInfoData {
                 name: "MidPoint128",
+                name_hash: 853483410,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(HeightfieldDecalAsset, mid_point128),
@@ -6478,6 +6859,7 @@ impl TypeObject for HeightfieldDecalAsset {
 
 pub static HEIGHTFIELDDECALASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HeightfieldDecalAsset-Array",
+    name_hash: 790420819,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("HeightfieldDecalAsset"),
@@ -6486,7 +6868,8 @@ pub static HEIGHTFIELDDECALASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -6511,12 +6894,15 @@ impl super::core::DataContainerTrait for TerrainBaseAsset {
 
 pub static TERRAINBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainBaseAsset",
+    name_hash: 1390778135,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<TerrainBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -6546,6 +6932,7 @@ impl TypeObject for TerrainBaseAsset {
 
 pub static TERRAINBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainBaseAsset-Array",
+    name_hash: 1877950371,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainBaseAsset"),
@@ -6554,7 +6941,8 @@ pub static TERRAINBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PathfindingRasterData {
     pub _glacier_base: RGBRasterData,
 }
@@ -6585,12 +6973,15 @@ impl super::core::DataContainerTrait for PathfindingRasterData {
 
 pub static PATHFINDINGRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingRasterData",
+    name_hash: 2191858046,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RGBRASTERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PathfindingRasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PathfindingRasterData as Default>::default())),
+            create_boxed: || Box::new(<PathfindingRasterData as Default>::default()),
         },
         fields: &[
         ],
@@ -6620,6 +7011,7 @@ impl TypeObject for PathfindingRasterData {
 
 pub static PATHFINDINGRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingRasterData-Array",
+    name_hash: 341514826,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("PathfindingRasterData"),
@@ -6628,7 +7020,8 @@ pub static PATHFINDINGRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RasterCoverageData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -6644,12 +7037,15 @@ impl super::core::DataContainerTrait for RasterCoverageData {
 
 pub static RASTERCOVERAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterCoverageData",
+    name_hash: 885503416,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(RasterCoverageData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RasterCoverageData as Default>::default())),
+            create_boxed: || Box::new(<RasterCoverageData as Default>::default()),
         },
         fields: &[
         ],
@@ -6679,6 +7075,7 @@ impl TypeObject for RasterCoverageData {
 
 pub static RASTERCOVERAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterCoverageData-Array",
+    name_hash: 1634336524,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RasterCoverageData"),
@@ -6687,7 +7084,8 @@ pub static RASTERCOVERAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DensityMapRasterData {
     pub _glacier_base: ByteRasterData,
 }
@@ -6718,12 +7116,15 @@ impl super::core::DataContainerTrait for DensityMapRasterData {
 
 pub static DENSITYMAPRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DensityMapRasterData",
+    name_hash: 4087409714,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BYTERASTERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DensityMapRasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DensityMapRasterData as Default>::default())),
+            create_boxed: || Box::new(<DensityMapRasterData as Default>::default()),
         },
         fields: &[
         ],
@@ -6753,6 +7154,7 @@ impl TypeObject for DensityMapRasterData {
 
 pub static DENSITYMAPRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DensityMapRasterData-Array",
+    name_hash: 3165336198,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("DensityMapRasterData"),
@@ -6761,22 +7163,23 @@ pub static DENSITYMAPRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BiomeRasterData {
     pub _glacier_base: IndexedRasterData,
-    pub biomes: Vec<BiomeSpec>,
+    pub biomes: Vec<BoxedTypeObject /* BiomeSpec */>,
 }
 
 pub trait BiomeRasterDataTrait: IndexedRasterDataTrait {
-    fn biomes(&self) -> &Vec<BiomeSpec>;
-    fn biomes_mut(&mut self) -> &mut Vec<BiomeSpec>;
+    fn biomes(&self) -> &Vec<BoxedTypeObject /* BiomeSpec */>;
+    fn biomes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BiomeSpec */>;
 }
 
 impl BiomeRasterDataTrait for BiomeRasterData {
-    fn biomes(&self) -> &Vec<BiomeSpec> {
+    fn biomes(&self) -> &Vec<BoxedTypeObject /* BiomeSpec */> {
         &self.biomes
     }
-    fn biomes_mut(&mut self) -> &mut Vec<BiomeSpec> {
+    fn biomes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BiomeSpec */> {
         &mut self.biomes
     }
 }
@@ -6804,16 +7207,20 @@ impl super::core::DataContainerTrait for BiomeRasterData {
 
 pub static BIOMERASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BiomeRasterData",
+    name_hash: 331544954,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(INDEXEDRASTERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BiomeRasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BiomeRasterData as Default>::default())),
+            create_boxed: || Box::new(<BiomeRasterData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Biomes",
+                name_hash: 2681472698,
                 flags: MemberInfoFlags::new(144),
                 field_type: "BiomeSpec-Array",
                 rust_offset: offset_of!(BiomeRasterData, biomes),
@@ -6845,6 +7252,7 @@ impl TypeObject for BiomeRasterData {
 
 pub static BIOMERASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BiomeRasterData-Array",
+    name_hash: 455167054,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("BiomeRasterData"),
@@ -6853,7 +7261,8 @@ pub static BIOMERASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IndexedRasterData {
     pub _glacier_base: ByteRasterData,
 }
@@ -6884,12 +7293,15 @@ impl super::core::DataContainerTrait for IndexedRasterData {
 
 pub static INDEXEDRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IndexedRasterData",
+    name_hash: 714420329,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BYTERASTERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(IndexedRasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IndexedRasterData as Default>::default())),
+            create_boxed: || Box::new(<IndexedRasterData as Default>::default()),
         },
         fields: &[
         ],
@@ -6919,6 +7331,7 @@ impl TypeObject for IndexedRasterData {
 
 pub static INDEXEDRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IndexedRasterData-Array",
+    name_hash: 3358410589,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("IndexedRasterData"),
@@ -6927,7 +7340,8 @@ pub static INDEXEDRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TileBiomeList {
     pub hash: i32,
     pub biomes: Vec<u8>,
@@ -6957,21 +7371,25 @@ impl TileBiomeListTrait for TileBiomeList {
 
 pub static TILEBIOMELIST_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TileBiomeList",
+    name_hash: 1382742559,
     flags: MemberInfoFlags::new(73),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TileBiomeList as Default>::default())),
+            create_boxed: || Box::new(<TileBiomeList as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Hash",
+                name_hash: 2089161879,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TileBiomeList, hash),
             },
             FieldInfoData {
                 name: "Biomes",
+                name_hash: 2681472698,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint8-Array",
                 rust_offset: offset_of!(TileBiomeList, biomes),
@@ -7003,6 +7421,7 @@ impl TypeObject for TileBiomeList {
 
 pub static TILEBIOMELIST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TileBiomeList-Array",
+    name_hash: 1194475179,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TileBiomeList"),
@@ -7011,7 +7430,8 @@ pub static TILEBIOMELIST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BiomeSpec {
     pub name: String,
     pub value: u32,
@@ -7041,21 +7461,25 @@ impl BiomeSpecTrait for BiomeSpec {
 
 pub static BIOMESPEC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BiomeSpec",
+    name_hash: 2196889612,
     flags: MemberInfoFlags::new(73),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BiomeSpec as Default>::default())),
+            create_boxed: || Box::new(<BiomeSpec as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(BiomeSpec, name),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(BiomeSpec, value),
@@ -7087,6 +7511,7 @@ impl TypeObject for BiomeSpec {
 
 pub static BIOMESPEC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BiomeSpec-Array",
+    name_hash: 4046950456,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("BiomeSpec"),
@@ -7095,7 +7520,8 @@ pub static BIOMESPEC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FlowMapRasterData {
     pub _glacier_base: ByteRasterData,
 }
@@ -7126,12 +7552,15 @@ impl super::core::DataContainerTrait for FlowMapRasterData {
 
 pub static FLOWMAPRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FlowMapRasterData",
+    name_hash: 228118488,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BYTERASTERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FlowMapRasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FlowMapRasterData as Default>::default())),
+            create_boxed: || Box::new(<FlowMapRasterData as Default>::default()),
         },
         fields: &[
         ],
@@ -7161,6 +7590,7 @@ impl TypeObject for FlowMapRasterData {
 
 pub static FLOWMAPRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FlowMapRasterData-Array",
+    name_hash: 1910139500,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("FlowMapRasterData"),
@@ -7169,7 +7599,8 @@ pub static FLOWMAPRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DestructionDepthRasterData {
     pub _glacier_base: ByteRasterData,
 }
@@ -7200,12 +7631,15 @@ impl super::core::DataContainerTrait for DestructionDepthRasterData {
 
 pub static DESTRUCTIONDEPTHRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionDepthRasterData",
+    name_hash: 2622500677,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BYTERASTERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DestructionDepthRasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DestructionDepthRasterData as Default>::default())),
+            create_boxed: || Box::new(<DestructionDepthRasterData as Default>::default()),
         },
         fields: &[
         ],
@@ -7235,6 +7669,7 @@ impl TypeObject for DestructionDepthRasterData {
 
 pub static DESTRUCTIONDEPTHRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionDepthRasterData-Array",
+    name_hash: 15452017,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("DestructionDepthRasterData"),
@@ -7243,7 +7678,8 @@ pub static DESTRUCTIONDEPTHRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DestructionDepthGenerateOptions {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -7259,12 +7695,15 @@ impl super::core::DataContainerTrait for DestructionDepthGenerateOptions {
 
 pub static DESTRUCTIONDEPTHGENERATEOPTIONS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionDepthGenerateOptions",
+    name_hash: 3099401421,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(DestructionDepthGenerateOptions, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DestructionDepthGenerateOptions as Default>::default())),
+            create_boxed: || Box::new(<DestructionDepthGenerateOptions as Default>::default()),
         },
         fields: &[
         ],
@@ -7294,6 +7733,7 @@ impl TypeObject for DestructionDepthGenerateOptions {
 
 pub static DESTRUCTIONDEPTHGENERATEOPTIONS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionDepthGenerateOptions-Array",
+    name_hash: 674509049,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("DestructionDepthGenerateOptions"),
@@ -7316,6 +7756,7 @@ pub enum DestructionDepthGenerateSource {
 
 pub static DESTRUCTIONDEPTHGENERATESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionDepthGenerateSource",
+    name_hash: 3457310656,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -7344,6 +7785,7 @@ impl TypeObject for DestructionDepthGenerateSource {
 
 pub static DESTRUCTIONDEPTHGENERATESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionDepthGenerateSource-Array",
+    name_hash: 2569918068,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("DestructionDepthGenerateSource"),
@@ -7352,7 +7794,8 @@ pub static DESTRUCTIONDEPTHGENERATESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsMaterialsRasterData {
     pub _glacier_base: RasterQuadtreeData,
 }
@@ -7380,12 +7823,15 @@ impl super::core::DataContainerTrait for PhysicsMaterialsRasterData {
 
 pub static PHYSICSMATERIALSRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsMaterialsRasterData",
+    name_hash: 3319507973,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RASTERQUADTREEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsMaterialsRasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsMaterialsRasterData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsMaterialsRasterData as Default>::default()),
         },
         fields: &[
         ],
@@ -7415,6 +7861,7 @@ impl TypeObject for PhysicsMaterialsRasterData {
 
 pub static PHYSICSMATERIALSRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsMaterialsRasterData-Array",
+    name_hash: 3767915441,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("PhysicsMaterialsRasterData"),
@@ -7423,7 +7870,8 @@ pub static PHYSICSMATERIALSRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ByteRasterData {
     pub _glacier_base: RasterQuadtreeData,
 }
@@ -7451,12 +7899,15 @@ impl super::core::DataContainerTrait for ByteRasterData {
 
 pub static BYTERASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ByteRasterData",
+    name_hash: 3744804348,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RASTERQUADTREEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ByteRasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ByteRasterData as Default>::default())),
+            create_boxed: || Box::new(<ByteRasterData as Default>::default()),
         },
         fields: &[
         ],
@@ -7486,6 +7937,7 @@ impl TypeObject for ByteRasterData {
 
 pub static BYTERASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ByteRasterData-Array",
+    name_hash: 219960776,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("ByteRasterData"),
@@ -7494,7 +7946,8 @@ pub static BYTERASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RGBRasterData {
     pub _glacier_base: RasterQuadtreeData,
 }
@@ -7522,12 +7975,15 @@ impl super::core::DataContainerTrait for RGBRasterData {
 
 pub static RGBRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RGBRasterData",
+    name_hash: 2877370241,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RASTERQUADTREEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RGBRasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RGBRasterData as Default>::default())),
+            create_boxed: || Box::new(<RGBRasterData as Default>::default()),
         },
         fields: &[
         ],
@@ -7557,6 +8013,7 @@ impl TypeObject for RGBRasterData {
 
 pub static RGBRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RGBRasterData-Array",
+    name_hash: 384846133,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RGBRasterData"),
@@ -7565,7 +8022,8 @@ pub static RGBRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RGBARasterData {
     pub _glacier_base: RasterQuadtreeData,
 }
@@ -7593,12 +8051,15 @@ impl super::core::DataContainerTrait for RGBARasterData {
 
 pub static RGBARASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RGBARasterData",
+    name_hash: 4242486656,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RASTERQUADTREEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RGBARasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RGBARasterData as Default>::default())),
+            create_boxed: || Box::new(<RGBARasterData as Default>::default()),
         },
         fields: &[
         ],
@@ -7628,6 +8089,7 @@ impl TypeObject for RGBARasterData {
 
 pub static RGBARASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RGBARasterData-Array",
+    name_hash: 2557475764,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RGBARasterData"),
@@ -7636,7 +8098,8 @@ pub static RGBARASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HeightfieldRasterData {
     pub _glacier_base: RasterQuadtreeData,
 }
@@ -7664,12 +8127,15 @@ impl super::core::DataContainerTrait for HeightfieldRasterData {
 
 pub static HEIGHTFIELDRASTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HeightfieldRasterData",
+    name_hash: 901403019,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RASTERQUADTREEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(HeightfieldRasterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HeightfieldRasterData as Default>::default())),
+            create_boxed: || Box::new(<HeightfieldRasterData as Default>::default()),
         },
         fields: &[
         ],
@@ -7699,6 +8165,7 @@ impl TypeObject for HeightfieldRasterData {
 
 pub static HEIGHTFIELDRASTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HeightfieldRasterData-Array",
+    name_hash: 3232940095,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("HeightfieldRasterData"),
@@ -7721,6 +8188,7 @@ pub enum DensityMapFilterType {
 
 pub static DENSITYMAP_FILTERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DensityMap_FilterType",
+    name_hash: 547086694,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -7749,6 +8217,7 @@ impl TypeObject for DensityMapFilterType {
 
 pub static DENSITYMAP_FILTERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DensityMap_FilterType-Array",
+    name_hash: 1077263954,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("DensityMap_FilterType"),
@@ -7757,7 +8226,8 @@ pub static DENSITYMAP_FILTERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VirtualRasterQuadtreeData {
     pub _glacier_base: RasterQuadtreeData,
 }
@@ -7785,12 +8255,15 @@ impl super::core::DataContainerTrait for VirtualRasterQuadtreeData {
 
 pub static VIRTUALRASTERQUADTREEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VirtualRasterQuadtreeData",
+    name_hash: 4129094192,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RASTERQUADTREEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VirtualRasterQuadtreeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VirtualRasterQuadtreeData as Default>::default())),
+            create_boxed: || Box::new(<VirtualRasterQuadtreeData as Default>::default()),
         },
         fields: &[
         ],
@@ -7820,6 +8293,7 @@ impl TypeObject for VirtualRasterQuadtreeData {
 
 pub static VIRTUALRASTERQUADTREEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VirtualRasterQuadtreeData-Array",
+    name_hash: 3242280836,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("VirtualRasterQuadtreeData"),
@@ -7828,7 +8302,8 @@ pub static VIRTUALRASTERQUADTREEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RasterQuadtreeData {
     pub _glacier_base: super::core::Asset,
 }
@@ -7853,12 +8328,15 @@ impl super::core::DataContainerTrait for RasterQuadtreeData {
 
 pub static RASTERQUADTREEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterQuadtreeData",
+    name_hash: 1287771729,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(RasterQuadtreeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RasterQuadtreeData as Default>::default())),
+            create_boxed: || Box::new(<RasterQuadtreeData as Default>::default()),
         },
         fields: &[
         ],
@@ -7888,6 +8366,7 @@ impl TypeObject for RasterQuadtreeData {
 
 pub static RASTERQUADTREEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterQuadtreeData-Array",
+    name_hash: 1846659173,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RasterQuadtreeData"),
@@ -7907,6 +8386,7 @@ pub enum SampleCenter {
 
 pub static SAMPLECENTER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SampleCenter",
+    name_hash: 874053704,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -7935,6 +8415,7 @@ impl TypeObject for SampleCenter {
 
 pub static SAMPLECENTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SampleCenter-Array",
+    name_hash: 290075388,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("SampleCenter"),
@@ -7943,7 +8424,8 @@ pub static SAMPLECENTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RasterQuadtreeNodeData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -7959,12 +8441,15 @@ impl super::core::DataContainerTrait for RasterQuadtreeNodeData {
 
 pub static RASTERQUADTREENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterQuadtreeNodeData",
+    name_hash: 2180542705,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(RasterQuadtreeNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RasterQuadtreeNodeData as Default>::default())),
+            create_boxed: || Box::new(<RasterQuadtreeNodeData as Default>::default()),
         },
         fields: &[
         ],
@@ -7994,6 +8479,7 @@ impl TypeObject for RasterQuadtreeNodeData {
 
 pub static RASTERQUADTREENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterQuadtreeNodeData-Array",
+    name_hash: 1999786949,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RasterQuadtreeNodeData"),
@@ -8015,6 +8501,7 @@ pub enum StyleTransferTexture {
 
 pub static STYLETRANSFERTEXTURE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StyleTransferTexture",
+    name_hash: 46608166,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -8043,6 +8530,7 @@ impl TypeObject for StyleTransferTexture {
 
 pub static STYLETRANSFERTEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StyleTransferTexture-Array",
+    name_hash: 3756301202,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("StyleTransferTexture"),
@@ -8066,6 +8554,7 @@ pub enum OverlayType {
 
 pub static OVERLAYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OverlayType",
+    name_hash: 2657205479,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -8094,6 +8583,7 @@ impl TypeObject for OverlayType {
 
 pub static OVERLAYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OverlayType-Array",
+    name_hash: 3015556819,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("OverlayType"),
@@ -8113,6 +8603,7 @@ pub enum EffectOverlayType {
 
 pub static EFFECTOVERLAYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectOverlayType",
+    name_hash: 898913072,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -8141,6 +8632,7 @@ impl TypeObject for EffectOverlayType {
 
 pub static EFFECTOVERLAYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectOverlayType-Array",
+    name_hash: 2098684036,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("EffectOverlayType"),
@@ -8163,6 +8655,7 @@ pub enum RasterNodeUsage {
 
 pub static RASTERNODEUSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterNodeUsage",
+    name_hash: 284171971,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -8191,6 +8684,7 @@ impl TypeObject for RasterNodeUsage {
 
 pub static RASTERNODEUSAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterNodeUsage-Array",
+    name_hash: 3306021367,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RasterNodeUsage"),
@@ -8199,7 +8693,8 @@ pub static RASTERNODEUSAGE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RectangularCoverageData {
 }
 
@@ -8211,11 +8706,13 @@ impl RectangularCoverageDataTrait for RectangularCoverageData {
 
 pub static RECTANGULARCOVERAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RectangularCoverageData",
+    name_hash: 2710185113,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RectangularCoverageData as Default>::default())),
+            create_boxed: || Box::new(<RectangularCoverageData as Default>::default()),
         },
         fields: &[
         ],
@@ -8245,6 +8742,7 @@ impl TypeObject for RectangularCoverageData {
 
 pub static RECTANGULARCOVERAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RectangularCoverageData-Array",
+    name_hash: 19866157,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RectangularCoverageData"),
@@ -8253,7 +8751,8 @@ pub static RECTANGULARCOVERAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutopaintOutput {
     pub _glacier_base: super::entity::AutopaintOutputBase,
 }
@@ -8281,12 +8780,15 @@ impl super::core::DataContainerTrait for AutopaintOutput {
 
 pub static AUTOPAINTOUTPUT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutput",
+    name_hash: 1919363191,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::AUTOPAINTOUTPUTBASE_TYPE_INFO),
+        super_class_offset: offset_of!(AutopaintOutput, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutopaintOutput as Default>::default())),
+            create_boxed: || Box::new(<AutopaintOutput as Default>::default()),
         },
         fields: &[
         ],
@@ -8316,6 +8818,7 @@ impl TypeObject for AutopaintOutput {
 
 pub static AUTOPAINTOUTPUT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutput-Array",
+    name_hash: 2610467395,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("AutopaintOutput"),
@@ -8324,7 +8827,8 @@ pub static AUTOPAINTOUTPUT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutopaintOutputOverride {
     pub _glacier_base: super::entity::AutopaintOutputOverrideBase,
 }
@@ -8343,12 +8847,15 @@ impl super::core::DataContainerTrait for AutopaintOutputOverride {
 
 pub static AUTOPAINTOUTPUTOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutputOverride",
+    name_hash: 2137825795,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::AUTOPAINTOUTPUTOVERRIDEBASE_TYPE_INFO),
+        super_class_offset: offset_of!(AutopaintOutputOverride, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutopaintOutputOverride as Default>::default())),
+            create_boxed: || Box::new(<AutopaintOutputOverride as Default>::default()),
         },
         fields: &[
         ],
@@ -8378,6 +8885,7 @@ impl TypeObject for AutopaintOutputOverride {
 
 pub static AUTOPAINTOUTPUTOVERRIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutputOverride-Array",
+    name_hash: 1971328183,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("AutopaintOutputOverride"),
@@ -8386,7 +8894,8 @@ pub static AUTOPAINTOUTPUTOVERRIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutopaintOutputs {
     pub _glacier_base: super::entity::AutopaintOutputsBase,
 }
@@ -8398,10 +8907,10 @@ impl AutopaintOutputsTrait for AutopaintOutputs {
 }
 
 impl super::entity::AutopaintOutputsBaseTrait for AutopaintOutputs {
-    fn outputs(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::AutopaintOutputBaseTrait>>>> {
+    fn outputs(&self) -> &Vec<Option<LockedTypeObject /* super::entity::AutopaintOutputBase */>> {
         self._glacier_base.outputs()
     }
-    fn outputs_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::AutopaintOutputBaseTrait>>>> {
+    fn outputs_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::AutopaintOutputBase */>> {
         self._glacier_base.outputs_mut()
     }
 }
@@ -8420,12 +8929,15 @@ impl super::core::DataContainerTrait for AutopaintOutputs {
 
 pub static AUTOPAINTOUTPUTS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutputs",
+    name_hash: 3209443108,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::AUTOPAINTOUTPUTSBASE_TYPE_INFO),
+        super_class_offset: offset_of!(AutopaintOutputs, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutopaintOutputs as Default>::default())),
+            create_boxed: || Box::new(<AutopaintOutputs as Default>::default()),
         },
         fields: &[
         ],
@@ -8455,6 +8967,7 @@ impl TypeObject for AutopaintOutputs {
 
 pub static AUTOPAINTOUTPUTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutputs-Array",
+    name_hash: 1675045520,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("AutopaintOutputs"),
@@ -8463,7 +8976,8 @@ pub static AUTOPAINTOUTPUTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutopaintConfigs {
     pub _glacier_base: super::core::Asset,
 }
@@ -8488,12 +9002,15 @@ impl super::core::DataContainerTrait for AutopaintConfigs {
 
 pub static AUTOPAINTCONFIGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintConfigs",
+    name_hash: 3553159953,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(AutopaintConfigs, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutopaintConfigs as Default>::default())),
+            create_boxed: || Box::new(<AutopaintConfigs as Default>::default()),
         },
         fields: &[
         ],
@@ -8523,6 +9040,7 @@ impl TypeObject for AutopaintConfigs {
 
 pub static AUTOPAINTCONFIGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintConfigs-Array",
+    name_hash: 797535397,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("AutopaintConfigs"),
@@ -8531,7 +9049,8 @@ pub static AUTOPAINTCONFIGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RasterTypeToRasterFormat {
     pub raster_type: super::entity::RasterType,
     pub raster_format: super::entity::RasterFormat,
@@ -8561,21 +9080,25 @@ impl RasterTypeToRasterFormatTrait for RasterTypeToRasterFormat {
 
 pub static RASTERTYPETORASTERFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterTypeToRasterFormat",
+    name_hash: 2379833605,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RasterTypeToRasterFormat as Default>::default())),
+            create_boxed: || Box::new(<RasterTypeToRasterFormat as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RasterType",
+                name_hash: 2617211102,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RasterType",
                 rust_offset: offset_of!(RasterTypeToRasterFormat, raster_type),
             },
             FieldInfoData {
                 name: "RasterFormat",
+                name_hash: 1744737829,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RasterFormat",
                 rust_offset: offset_of!(RasterTypeToRasterFormat, raster_format),
@@ -8607,6 +9130,7 @@ impl TypeObject for RasterTypeToRasterFormat {
 
 pub static RASTERTYPETORASTERFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterTypeToRasterFormat-Array",
+    name_hash: 3745990833,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("RasterTypeToRasterFormat"),
@@ -8615,17 +9139,18 @@ pub static RASTERTYPETORASTERFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClassTypeAutopaintOutputsMap {
     pub class_type: String,
-    pub autopaint_outputs: Option<Arc<Mutex<dyn AutopaintOutputsTrait>>>,
+    pub autopaint_outputs: Option<LockedTypeObject /* AutopaintOutputs */>,
 }
 
 pub trait ClassTypeAutopaintOutputsMapTrait: TypeObject {
     fn class_type(&self) -> &String;
     fn class_type_mut(&mut self) -> &mut String;
-    fn autopaint_outputs(&self) -> &Option<Arc<Mutex<dyn AutopaintOutputsTrait>>>;
-    fn autopaint_outputs_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AutopaintOutputsTrait>>>;
+    fn autopaint_outputs(&self) -> &Option<LockedTypeObject /* AutopaintOutputs */>;
+    fn autopaint_outputs_mut(&mut self) -> &mut Option<LockedTypeObject /* AutopaintOutputs */>;
 }
 
 impl ClassTypeAutopaintOutputsMapTrait for ClassTypeAutopaintOutputsMap {
@@ -8635,31 +9160,35 @@ impl ClassTypeAutopaintOutputsMapTrait for ClassTypeAutopaintOutputsMap {
     fn class_type_mut(&mut self) -> &mut String {
         &mut self.class_type
     }
-    fn autopaint_outputs(&self) -> &Option<Arc<Mutex<dyn AutopaintOutputsTrait>>> {
+    fn autopaint_outputs(&self) -> &Option<LockedTypeObject /* AutopaintOutputs */> {
         &self.autopaint_outputs
     }
-    fn autopaint_outputs_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AutopaintOutputsTrait>>> {
+    fn autopaint_outputs_mut(&mut self) -> &mut Option<LockedTypeObject /* AutopaintOutputs */> {
         &mut self.autopaint_outputs
     }
 }
 
 pub static CLASSTYPEAUTOPAINTOUTPUTSMAP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClassTypeAutopaintOutputsMap",
+    name_hash: 1329196910,
     flags: MemberInfoFlags::new(73),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClassTypeAutopaintOutputsMap as Default>::default())),
+            create_boxed: || Box::new(<ClassTypeAutopaintOutputsMap as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ClassType",
+                name_hash: 3204124979,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ClassTypeAutopaintOutputsMap, class_type),
             },
             FieldInfoData {
                 name: "AutopaintOutputs",
+                name_hash: 3209443108,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AutopaintOutputs",
                 rust_offset: offset_of!(ClassTypeAutopaintOutputsMap, autopaint_outputs),
@@ -8691,6 +9220,7 @@ impl TypeObject for ClassTypeAutopaintOutputsMap {
 
 pub static CLASSTYPEAUTOPAINTOUTPUTSMAP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClassTypeAutopaintOutputsMap-Array",
+    name_hash: 1596303450,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("ClassTypeAutopaintOutputsMap"),
@@ -8699,7 +9229,8 @@ pub static CLASSTYPEAUTOPAINTOUTPUTSMAP_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPaintMeshData {
 }
 
@@ -8711,11 +9242,13 @@ impl AutoPaintMeshDataTrait for AutoPaintMeshData {
 
 pub static AUTOPAINTMESHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPaintMeshData",
+    name_hash: 3384379115,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPaintMeshData as Default>::default())),
+            create_boxed: || Box::new(<AutoPaintMeshData as Default>::default()),
         },
         fields: &[
         ],
@@ -8745,6 +9278,7 @@ impl TypeObject for AutoPaintMeshData {
 
 pub static AUTOPAINTMESHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPaintMeshData-Array",
+    name_hash: 1501869791,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("AutoPaintMeshData"),
@@ -8753,7 +9287,8 @@ pub static AUTOPAINTMESHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoPaintRoadData {
 }
 
@@ -8765,11 +9300,13 @@ impl AutoPaintRoadDataTrait for AutoPaintRoadData {
 
 pub static AUTOPAINTROADDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPaintRoadData",
+    name_hash: 3399598784,
     flags: MemberInfoFlags::new(36937),
     module: "TerrainBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoPaintRoadData as Default>::default())),
+            create_boxed: || Box::new(<AutoPaintRoadData as Default>::default()),
         },
         fields: &[
         ],
@@ -8799,6 +9336,7 @@ impl TypeObject for AutoPaintRoadData {
 
 pub static AUTOPAINTROADDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoPaintRoadData-Array",
+    name_hash: 1249606004,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("AutoPaintRoadData"),
@@ -8819,6 +9357,7 @@ pub enum OutputType {
 
 pub static OUTPUTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OutputType",
+    name_hash: 542986178,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -8847,6 +9386,7 @@ impl TypeObject for OutputType {
 
 pub static OUTPUTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OutputType-Array",
+    name_hash: 774193014,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("OutputType"),
@@ -8881,6 +9421,7 @@ pub enum TPABlendMode {
 
 pub static TPABLENDMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TPABlendMode",
+    name_hash: 446189538,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -8909,6 +9450,7 @@ impl TypeObject for TPABlendMode {
 
 pub static TPABLENDMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TPABlendMode-Array",
+    name_hash: 2838191830,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TPABlendMode"),
@@ -8929,6 +9471,7 @@ pub enum DepthBuffer {
 
 pub static DEPTHBUFFER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DepthBuffer",
+    name_hash: 2785138248,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -8957,6 +9500,7 @@ impl TypeObject for DepthBuffer {
 
 pub static DEPTHBUFFER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DepthBuffer-Array",
+    name_hash: 2147191036,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("DepthBuffer"),
@@ -8978,6 +9522,7 @@ pub enum FaceCulling {
 
 pub static FACECULLING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FaceCulling",
+    name_hash: 3167605106,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainBase",
     data: TypeInfoData::Enum,
@@ -9006,6 +9551,7 @@ impl TypeObject for FaceCulling {
 
 pub static FACECULLING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FaceCulling-Array",
+    name_hash: 3295594566,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("FaceCulling"),
@@ -9014,7 +9560,8 @@ pub static FACECULLING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainStreamingTree {
 }
 
@@ -9026,12 +9573,15 @@ impl TerrainStreamingTreeTrait for TerrainStreamingTree {
 
 pub static TERRAINSTREAMINGTREE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainStreamingTree",
+    name_hash: 608875176,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainStreamingTree as Default>::default())),
+            create_boxed: || Box::new(<TerrainStreamingTree as Default>::default()),
         },
         fields: &[
         ],
@@ -9061,6 +9611,7 @@ impl TypeObject for TerrainStreamingTree {
 
 pub static TERRAINSTREAMINGTREE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainStreamingTree-Array",
+    name_hash: 3907253276,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("TerrainStreamingTree"),
@@ -9069,7 +9620,8 @@ pub static TERRAINSTREAMINGTREE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Terrain {
     pub _glacier_base: ITerrain,
 }
@@ -9085,12 +9637,15 @@ impl ITerrainTrait for Terrain {
 
 pub static TERRAIN_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Terrain",
+    name_hash: 3173545970,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ITERRAIN_TYPE_INFO),
+        super_class_offset: offset_of!(Terrain, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Terrain as Default>::default())),
+            create_boxed: || Box::new(<Terrain as Default>::default()),
         },
         fields: &[
         ],
@@ -9120,6 +9675,7 @@ impl TypeObject for Terrain {
 
 pub static TERRAIN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Terrain-Array",
+    name_hash: 3771485894,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("Terrain"),
@@ -9128,7 +9684,8 @@ pub static TERRAIN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ITerrain {
 }
 
@@ -9140,12 +9697,15 @@ impl ITerrainTrait for ITerrain {
 
 pub static ITERRAIN_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ITerrain",
+    name_hash: 2910641339,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ITerrain as Default>::default())),
+            create_boxed: || Box::new(<ITerrain as Default>::default()),
         },
         fields: &[
         ],
@@ -9175,6 +9735,7 @@ impl TypeObject for ITerrain {
 
 pub static ITERRAIN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ITerrain-Array",
+    name_hash: 1546658831,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("ITerrain"),
@@ -9183,7 +9744,8 @@ pub static ITERRAIN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HeightfieldDecal {
 }
 
@@ -9195,12 +9757,15 @@ impl HeightfieldDecalTrait for HeightfieldDecal {
 
 pub static HEIGHTFIELDDECAL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HeightfieldDecal",
+    name_hash: 2054852567,
     flags: MemberInfoFlags::new(101),
     module: "TerrainBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HeightfieldDecal as Default>::default())),
+            create_boxed: || Box::new(<HeightfieldDecal as Default>::default()),
         },
         fields: &[
         ],
@@ -9230,6 +9795,7 @@ impl TypeObject for HeightfieldDecal {
 
 pub static HEIGHTFIELDDECAL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HeightfieldDecal-Array",
+    name_hash: 331057379,
     flags: MemberInfoFlags::new(145),
     module: "TerrainBase",
     data: TypeInfoData::Array("HeightfieldDecal"),

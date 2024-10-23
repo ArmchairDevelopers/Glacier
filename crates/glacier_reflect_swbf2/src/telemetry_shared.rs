@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -285,7 +286,8 @@ pub(crate) fn register_telemetry_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(TELEMETRYPARAMETERTYPE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySDKPinTransportData {
     pub _glacier_base: TelemetryTransportData,
     pub end_point_config: TelemetrySDKPinEndPointConfig,
@@ -355,34 +357,41 @@ impl super::core::DataContainerTrait for TelemetrySDKPinTransportData {
 
 pub static TELEMETRYSDKPINTRANSPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinTransportData",
+    name_hash: 1999582322,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYTRANSPORTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySDKPinTransportData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySDKPinTransportData as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySDKPinTransportData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EndPointConfig",
+                name_hash: 3116396524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetrySDKPinEndPointConfig",
                 rust_offset: offset_of!(TelemetrySDKPinTransportData, end_point_config),
             },
             FieldInfoData {
                 name: "logLevel",
+                name_hash: 2520938519,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySDKPinTransportData, log_level),
             },
             FieldInfoData {
                 name: "SessionHeaderConfig",
+                name_hash: 1285508238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetrySDKPinSessionHeaderConfig",
                 rust_offset: offset_of!(TelemetrySDKPinTransportData, session_header_config),
             },
             FieldInfoData {
                 name: "EventHeaderConfig",
+                name_hash: 2311921532,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetrySDKPinEventHeaderConfig",
                 rust_offset: offset_of!(TelemetrySDKPinTransportData, event_header_config),
@@ -414,6 +423,7 @@ impl TypeObject for TelemetrySDKPinTransportData {
 
 pub static TELEMETRYSDKPINTRANSPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinTransportData-Array",
+    name_hash: 3373165382,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySDKPinTransportData"),
@@ -422,7 +432,8 @@ pub static TELEMETRYSDKPINTRANSPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySDKPinEventHeaderConfig {
     pub other_player_ids: String,
     pub date_of_birth: String,
@@ -632,141 +643,165 @@ impl TelemetrySDKPinEventHeaderConfigTrait for TelemetrySDKPinEventHeaderConfig 
 
 pub static TELEMETRYSDKPINEVENTHEADERCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinEventHeaderConfig",
+    name_hash: 3963740952,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySDKPinEventHeaderConfig as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySDKPinEventHeaderConfig as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OtherPlayerIds",
+                name_hash: 555668588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, other_player_ids),
             },
             FieldInfoData {
                 name: "DateOfBirth",
+                name_hash: 3768659357,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, date_of_birth),
             },
             FieldInfoData {
                 name: "ExperimentId",
+                name_hash: 4066366761,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, experiment_id),
             },
             FieldInfoData {
                 name: "PlayerIdType",
+                name_hash: 3025453571,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, player_id_type),
             },
             FieldInfoData {
                 name: "PlayerId",
+                name_hash: 927541883,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, player_id),
             },
             FieldInfoData {
                 name: "TitleIdType",
+                name_hash: 3322963504,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, title_id_type),
             },
             FieldInfoData {
                 name: "TitleId",
+                name_hash: 3335995016,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, title_id),
             },
             FieldInfoData {
                 name: "ReleaseType",
+                name_hash: 892302516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, release_type),
             },
             FieldInfoData {
                 name: "Platform",
+                name_hash: 942751002,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, platform),
             },
             FieldInfoData {
                 name: "MacAddress",
+                name_hash: 1616242364,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, mac_address),
             },
             FieldInfoData {
                 name: "DeviceIdMap",
+                name_hash: 1506040428,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, device_id_map),
             },
             FieldInfoData {
                 name: "GameMode",
+                name_hash: 509558056,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, game_mode),
             },
             FieldInfoData {
                 name: "GameType",
+                name_hash: 510356627,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, game_type),
             },
             FieldInfoData {
                 name: "ModeType",
+                name_hash: 908663486,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, mode_type),
             },
             FieldInfoData {
                 name: "Map",
+                name_hash: 193446873,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, map),
             },
             FieldInfoData {
                 name: "Level",
+                name_hash: 218262515,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, level),
             },
             FieldInfoData {
                 name: "LevelName",
+                name_hash: 1599082292,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, level_name),
             },
             FieldInfoData {
                 name: "IsSess",
+                name_hash: 2816399401,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, is_sess),
             },
             FieldInfoData {
                 name: "IsPlayer",
+                name_hash: 636556204,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, is_player),
             },
             FieldInfoData {
                 name: "IsMlu",
+                name_hash: 215498795,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, is_mlu),
             },
             FieldInfoData {
                 name: "Subs",
+                name_hash: 2089399570,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, subs),
             },
             FieldInfoData {
                 name: "CustomEventHeaders",
+                name_hash: 3668251894,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderConfig, custom_event_headers),
@@ -798,6 +833,7 @@ impl TypeObject for TelemetrySDKPinEventHeaderConfig {
 
 pub static TELEMETRYSDKPINEVENTHEADERCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinEventHeaderConfig-Array",
+    name_hash: 3012619564,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySDKPinEventHeaderConfig"),
@@ -806,7 +842,8 @@ pub static TELEMETRYSDKPINEVENTHEADERCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySDKPinSessionHeaderConfig {
     pub event_type: String,
     pub build_version: String,
@@ -944,93 +981,109 @@ impl TelemetrySDKPinSessionHeaderConfigTrait for TelemetrySDKPinSessionHeaderCon
 
 pub static TELEMETRYSDKPINSESSIONHEADERCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinSessionHeaderConfig",
+    name_hash: 477061418,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySDKPinSessionHeaderConfig as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySDKPinSessionHeaderConfig as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EventType",
+                name_hash: 4133155473,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, event_type),
             },
             FieldInfoData {
                 name: "BuildVersion",
+                name_hash: 369343753,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, build_version),
             },
             FieldInfoData {
                 name: "Locale",
+                name_hash: 2904565261,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, locale),
             },
             FieldInfoData {
                 name: "CustomSessionHeaders",
+                name_hash: 3326451588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, custom_session_headers),
             },
             FieldInfoData {
                 name: "IsMlu",
+                name_hash: 215498795,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, is_mlu),
             },
             FieldInfoData {
                 name: "Subs",
+                name_hash: 2089399570,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, subs),
             },
             FieldInfoData {
                 name: "PlayerIdType",
+                name_hash: 3025453571,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, player_id_type),
             },
             FieldInfoData {
                 name: "PlayerId",
+                name_hash: 927541883,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, player_id),
             },
             FieldInfoData {
                 name: "TitleIdType",
+                name_hash: 3322963504,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, title_id_type),
             },
             FieldInfoData {
                 name: "TitleId",
+                name_hash: 3335995016,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, title_id),
             },
             FieldInfoData {
                 name: "ReleaseType",
+                name_hash: 892302516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, release_type),
             },
             FieldInfoData {
                 name: "Platform",
+                name_hash: 942751002,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, platform),
             },
             FieldInfoData {
                 name: "MacAddress",
+                name_hash: 1616242364,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, mac_address),
             },
             FieldInfoData {
                 name: "DeviceIdMap",
+                name_hash: 1506040428,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinSessionHeaderConfig, device_id_map),
@@ -1062,6 +1115,7 @@ impl TypeObject for TelemetrySDKPinSessionHeaderConfig {
 
 pub static TELEMETRYSDKPINSESSIONHEADERCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinSessionHeaderConfig-Array",
+    name_hash: 2561276830,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySDKPinSessionHeaderConfig"),
@@ -1070,7 +1124,8 @@ pub static TELEMETRYSDKPINSESSIONHEADERCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySDKPinEndPointConfig {
     pub server_address: String,
     pub server_port: i32,
@@ -1109,27 +1164,32 @@ impl TelemetrySDKPinEndPointConfigTrait for TelemetrySDKPinEndPointConfig {
 
 pub static TELEMETRYSDKPINENDPOINTCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinEndPointConfig",
+    name_hash: 1630368456,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySDKPinEndPointConfig as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySDKPinEndPointConfig as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ServerAddress",
+                name_hash: 2537212758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEndPointConfig, server_address),
             },
             FieldInfoData {
                 name: "ServerPort",
+                name_hash: 1802195673,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySDKPinEndPointConfig, server_port),
             },
             FieldInfoData {
                 name: "Environment",
+                name_hash: 2480382480,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEndPointConfig, environment),
@@ -1161,6 +1221,7 @@ impl TypeObject for TelemetrySDKPinEndPointConfig {
 
 pub static TELEMETRYSDKPINENDPOINTCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinEndPointConfig-Array",
+    name_hash: 2844427644,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySDKPinEndPointConfig"),
@@ -1169,7 +1230,8 @@ pub static TELEMETRYSDKPINENDPOINTCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryCSVTransportData {
     pub _glacier_base: TelemetryTransportData,
     pub file_name: String,
@@ -1239,34 +1301,41 @@ impl super::core::DataContainerTrait for TelemetryCSVTransportData {
 
 pub static TELEMETRYCSVTRANSPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryCSVTransportData",
+    name_hash: 3283225759,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYTRANSPORTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetryCSVTransportData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryCSVTransportData as Default>::default())),
+            create_boxed: || Box::new(<TelemetryCSVTransportData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FileName",
+                name_hash: 1134474212,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryCSVTransportData, file_name),
             },
             FieldInfoData {
                 name: "TimeStamped",
+                name_hash: 579641098,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetryCSVTransportData, time_stamped),
             },
             FieldInfoData {
                 name: "WritesPerFlush",
+                name_hash: 3058436776,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetryCSVTransportData, writes_per_flush),
             },
             FieldInfoData {
                 name: "OverwriteFile",
+                name_hash: 2446199248,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetryCSVTransportData, overwrite_file),
@@ -1298,6 +1367,7 @@ impl TypeObject for TelemetryCSVTransportData {
 
 pub static TELEMETRYCSVTRANSPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryCSVTransportData-Array",
+    name_hash: 1729966379,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryCSVTransportData"),
@@ -1306,7 +1376,8 @@ pub static TELEMETRYCSVTRANSPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryTTYTransportData {
     pub _glacier_base: TelemetryTransportData,
     pub max_buffer: u32,
@@ -1349,16 +1420,20 @@ impl super::core::DataContainerTrait for TelemetryTTYTransportData {
 
 pub static TELEMETRYTTYTRANSPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryTTYTransportData",
+    name_hash: 3994738496,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYTRANSPORTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetryTTYTransportData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryTTYTransportData as Default>::default())),
+            create_boxed: || Box::new(<TelemetryTTYTransportData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxBuffer",
+                name_hash: 1051032977,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetryTTYTransportData, max_buffer),
@@ -1390,6 +1465,7 @@ impl TypeObject for TelemetryTTYTransportData {
 
 pub static TELEMETRYTTYTRANSPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryTTYTransportData-Array",
+    name_hash: 1081603572,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryTTYTransportData"),
@@ -1398,7 +1474,8 @@ pub static TELEMETRYTTYTRANSPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySDK3TransportData {
     pub _glacier_base: TelemetryTransportData,
     pub is_production: bool,
@@ -1468,34 +1545,41 @@ impl super::core::DataContainerTrait for TelemetrySDK3TransportData {
 
 pub static TELEMETRYSDK3TRANSPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDK3TransportData",
+    name_hash: 1122794742,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYTRANSPORTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySDK3TransportData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySDK3TransportData as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySDK3TransportData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IsProduction",
+                name_hash: 2411105948,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySDK3TransportData, is_production),
             },
             FieldInfoData {
                 name: "ProjectId",
+                name_hash: 4152360413,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySDK3TransportData, project_id),
             },
             FieldInfoData {
                 name: "VersionName",
+                name_hash: 3679059928,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDK3TransportData, version_name),
             },
             FieldInfoData {
                 name: "logLevel",
+                name_hash: 2520938519,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySDK3TransportData, log_level),
@@ -1527,6 +1611,7 @@ impl TypeObject for TelemetrySDK3TransportData {
 
 pub static TELEMETRYSDK3TRANSPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDK3TransportData-Array",
+    name_hash: 2919219650,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySDK3TransportData"),
@@ -1535,7 +1620,8 @@ pub static TELEMETRYSDK3TRANSPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryTransportData {
     pub _glacier_base: super::core::Asset,
     pub transport_id: u32,
@@ -1569,16 +1655,20 @@ impl super::core::DataContainerTrait for TelemetryTransportData {
 
 pub static TELEMETRYTRANSPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryTransportData",
+    name_hash: 3835811257,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetryTransportData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryTransportData as Default>::default())),
+            create_boxed: || Box::new(<TelemetryTransportData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TransportId",
+                name_hash: 2519327979,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetryTransportData, transport_id),
@@ -1610,6 +1700,7 @@ impl TypeObject for TelemetryTransportData {
 
 pub static TELEMETRYTRANSPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryTransportData-Array",
+    name_hash: 691233805,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryTransportData"),
@@ -1618,25 +1709,26 @@ pub static TELEMETRYTRANSPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransactionalStreamData {
     pub _glacier_base: StreamData,
-    pub format: Option<Arc<Mutex<dyn FixedTransactionalStreamFormatTrait>>>,
+    pub format: Option<LockedTypeObject /* FixedTransactionalStreamFormat */>,
     pub auto_commit: bool,
 }
 
 pub trait TransactionalStreamDataTrait: StreamDataTrait {
-    fn format(&self) -> &Option<Arc<Mutex<dyn FixedTransactionalStreamFormatTrait>>>;
-    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedTransactionalStreamFormatTrait>>>;
+    fn format(&self) -> &Option<LockedTypeObject /* FixedTransactionalStreamFormat */>;
+    fn format_mut(&mut self) -> &mut Option<LockedTypeObject /* FixedTransactionalStreamFormat */>;
     fn auto_commit(&self) -> &bool;
     fn auto_commit_mut(&mut self) -> &mut bool;
 }
 
 impl TransactionalStreamDataTrait for TransactionalStreamData {
-    fn format(&self) -> &Option<Arc<Mutex<dyn FixedTransactionalStreamFormatTrait>>> {
+    fn format(&self) -> &Option<LockedTypeObject /* FixedTransactionalStreamFormat */> {
         &self.format
     }
-    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedTransactionalStreamFormatTrait>>> {
+    fn format_mut(&mut self) -> &mut Option<LockedTypeObject /* FixedTransactionalStreamFormat */> {
         &mut self.format
     }
     fn auto_commit(&self) -> &bool {
@@ -1648,10 +1740,10 @@ impl TransactionalStreamDataTrait for TransactionalStreamData {
 }
 
 impl StreamDataTrait for TransactionalStreamData {
-    fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports(&self) -> &Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         self._glacier_base.transports()
     }
-    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         self._glacier_base.transports_mut()
     }
     fn platform(&self) -> &super::core::GamePlatform {
@@ -1682,22 +1774,27 @@ impl super::core::DataContainerTrait for TransactionalStreamData {
 
 pub static TRANSACTIONALSTREAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransactionalStreamData",
+    name_hash: 626385664,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(STREAMDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransactionalStreamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransactionalStreamData as Default>::default())),
+            create_boxed: || Box::new(<TransactionalStreamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Format",
+                name_hash: 2533062662,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FixedTransactionalStreamFormat",
                 rust_offset: offset_of!(TransactionalStreamData, format),
             },
             FieldInfoData {
                 name: "AutoCommit",
+                name_hash: 4072942363,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransactionalStreamData, auto_commit),
@@ -1729,6 +1826,7 @@ impl TypeObject for TransactionalStreamData {
 
 pub static TRANSACTIONALSTREAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransactionalStreamData-Array",
+    name_hash: 1502791988,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TransactionalStreamData"),
@@ -1737,22 +1835,23 @@ pub static TRANSACTIONALSTREAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VarEventStreamData {
     pub _glacier_base: EventStreamData,
-    pub format: Option<Arc<Mutex<dyn VariableEventStreamFormatTrait>>>,
+    pub format: Option<LockedTypeObject /* VariableEventStreamFormat */>,
 }
 
 pub trait VarEventStreamDataTrait: EventStreamDataTrait {
-    fn format(&self) -> &Option<Arc<Mutex<dyn VariableEventStreamFormatTrait>>>;
-    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VariableEventStreamFormatTrait>>>;
+    fn format(&self) -> &Option<LockedTypeObject /* VariableEventStreamFormat */>;
+    fn format_mut(&mut self) -> &mut Option<LockedTypeObject /* VariableEventStreamFormat */>;
 }
 
 impl VarEventStreamDataTrait for VarEventStreamData {
-    fn format(&self) -> &Option<Arc<Mutex<dyn VariableEventStreamFormatTrait>>> {
+    fn format(&self) -> &Option<LockedTypeObject /* VariableEventStreamFormat */> {
         &self.format
     }
-    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VariableEventStreamFormatTrait>>> {
+    fn format_mut(&mut self) -> &mut Option<LockedTypeObject /* VariableEventStreamFormat */> {
         &mut self.format
     }
 }
@@ -1761,10 +1860,10 @@ impl EventStreamDataTrait for VarEventStreamData {
 }
 
 impl StreamDataTrait for VarEventStreamData {
-    fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports(&self) -> &Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         self._glacier_base.transports()
     }
-    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         self._glacier_base.transports_mut()
     }
     fn platform(&self) -> &super::core::GamePlatform {
@@ -1795,16 +1894,20 @@ impl super::core::DataContainerTrait for VarEventStreamData {
 
 pub static VAREVENTSTREAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VarEventStreamData",
+    name_hash: 2081194240,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVENTSTREAMDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VarEventStreamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VarEventStreamData as Default>::default())),
+            create_boxed: || Box::new(<VarEventStreamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Format",
+                name_hash: 2533062662,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VariableEventStreamFormat",
                 rust_offset: offset_of!(VarEventStreamData, format),
@@ -1836,6 +1939,7 @@ impl TypeObject for VarEventStreamData {
 
 pub static VAREVENTSTREAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VarEventStreamData-Array",
+    name_hash: 3527927604,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("VarEventStreamData"),
@@ -1844,22 +1948,23 @@ pub static VAREVENTSTREAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FixedEventStreamData {
     pub _glacier_base: EventStreamData,
-    pub format: Option<Arc<Mutex<dyn FixedEventStreamFormatTrait>>>,
+    pub format: Option<LockedTypeObject /* FixedEventStreamFormat */>,
 }
 
 pub trait FixedEventStreamDataTrait: EventStreamDataTrait {
-    fn format(&self) -> &Option<Arc<Mutex<dyn FixedEventStreamFormatTrait>>>;
-    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedEventStreamFormatTrait>>>;
+    fn format(&self) -> &Option<LockedTypeObject /* FixedEventStreamFormat */>;
+    fn format_mut(&mut self) -> &mut Option<LockedTypeObject /* FixedEventStreamFormat */>;
 }
 
 impl FixedEventStreamDataTrait for FixedEventStreamData {
-    fn format(&self) -> &Option<Arc<Mutex<dyn FixedEventStreamFormatTrait>>> {
+    fn format(&self) -> &Option<LockedTypeObject /* FixedEventStreamFormat */> {
         &self.format
     }
-    fn format_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedEventStreamFormatTrait>>> {
+    fn format_mut(&mut self) -> &mut Option<LockedTypeObject /* FixedEventStreamFormat */> {
         &mut self.format
     }
 }
@@ -1868,10 +1973,10 @@ impl EventStreamDataTrait for FixedEventStreamData {
 }
 
 impl StreamDataTrait for FixedEventStreamData {
-    fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports(&self) -> &Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         self._glacier_base.transports()
     }
-    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         self._glacier_base.transports_mut()
     }
     fn platform(&self) -> &super::core::GamePlatform {
@@ -1902,16 +2007,20 @@ impl super::core::DataContainerTrait for FixedEventStreamData {
 
 pub static FIXEDEVENTSTREAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FixedEventStreamData",
+    name_hash: 613814227,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVENTSTREAMDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FixedEventStreamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FixedEventStreamData as Default>::default())),
+            create_boxed: || Box::new(<FixedEventStreamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Format",
+                name_hash: 2533062662,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FixedEventStreamFormat",
                 rust_offset: offset_of!(FixedEventStreamData, format),
@@ -1943,6 +2052,7 @@ impl TypeObject for FixedEventStreamData {
 
 pub static FIXEDEVENTSTREAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FixedEventStreamData-Array",
+    name_hash: 2738313959,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("FixedEventStreamData"),
@@ -1951,7 +2061,8 @@ pub static FIXEDEVENTSTREAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventStreamData {
     pub _glacier_base: StreamData,
 }
@@ -1963,10 +2074,10 @@ impl EventStreamDataTrait for EventStreamData {
 }
 
 impl StreamDataTrait for EventStreamData {
-    fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports(&self) -> &Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         self._glacier_base.transports()
     }
-    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         self._glacier_base.transports_mut()
     }
     fn platform(&self) -> &super::core::GamePlatform {
@@ -1997,12 +2108,15 @@ impl super::core::DataContainerTrait for EventStreamData {
 
 pub static EVENTSTREAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventStreamData",
+    name_hash: 1057925669,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(STREAMDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EventStreamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventStreamData as Default>::default())),
+            create_boxed: || Box::new(<EventStreamData as Default>::default()),
         },
         fields: &[
         ],
@@ -2032,6 +2146,7 @@ impl TypeObject for EventStreamData {
 
 pub static EVENTSTREAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventStreamData-Array",
+    name_hash: 1799037585,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("EventStreamData"),
@@ -2040,17 +2155,18 @@ pub static EVENTSTREAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamData {
     pub _glacier_base: super::core::Asset,
-    pub transports: Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>,
+    pub transports: Vec<Option<LockedTypeObject /* TelemetryTransportData */>>,
     pub platform: super::core::GamePlatform,
     pub stream_id: u32,
 }
 
 pub trait StreamDataTrait: super::core::AssetTrait {
-    fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
-    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
+    fn transports(&self) -> &Vec<Option<LockedTypeObject /* TelemetryTransportData */>>;
+    fn transports_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryTransportData */>>;
     fn platform(&self) -> &super::core::GamePlatform;
     fn platform_mut(&mut self) -> &mut super::core::GamePlatform;
     fn stream_id(&self) -> &u32;
@@ -2058,10 +2174,10 @@ pub trait StreamDataTrait: super::core::AssetTrait {
 }
 
 impl StreamDataTrait for StreamData {
-    fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports(&self) -> &Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         &self.transports
     }
-    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         &mut self.transports
     }
     fn platform(&self) -> &super::core::GamePlatform {
@@ -2092,28 +2208,34 @@ impl super::core::DataContainerTrait for StreamData {
 
 pub static STREAMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamData",
+    name_hash: 1618469705,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(StreamData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamData as Default>::default())),
+            create_boxed: || Box::new(<StreamData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transports",
+                name_hash: 1898450581,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TelemetryTransportData-Array",
                 rust_offset: offset_of!(StreamData, transports),
             },
             FieldInfoData {
                 name: "Platform",
+                name_hash: 942751002,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GamePlatform",
                 rust_offset: offset_of!(StreamData, platform),
             },
             FieldInfoData {
                 name: "StreamId",
+                name_hash: 3531325812,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(StreamData, stream_id),
@@ -2145,6 +2267,7 @@ impl TypeObject for StreamData {
 
 pub static STREAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamData-Array",
+    name_hash: 441067901,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("StreamData"),
@@ -2153,22 +2276,23 @@ pub static STREAMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FixedTransactionalStreamFormat {
     pub _glacier_base: TransactionalTelemetryStreamFormat,
-    pub reference_row: Option<Arc<Mutex<dyn TelemetryTransactionDataTrait>>>,
+    pub reference_row: Option<LockedTypeObject /* TelemetryTransactionData */>,
 }
 
 pub trait FixedTransactionalStreamFormatTrait: TransactionalTelemetryStreamFormatTrait {
-    fn reference_row(&self) -> &Option<Arc<Mutex<dyn TelemetryTransactionDataTrait>>>;
-    fn reference_row_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryTransactionDataTrait>>>;
+    fn reference_row(&self) -> &Option<LockedTypeObject /* TelemetryTransactionData */>;
+    fn reference_row_mut(&mut self) -> &mut Option<LockedTypeObject /* TelemetryTransactionData */>;
 }
 
 impl FixedTransactionalStreamFormatTrait for FixedTransactionalStreamFormat {
-    fn reference_row(&self) -> &Option<Arc<Mutex<dyn TelemetryTransactionDataTrait>>> {
+    fn reference_row(&self) -> &Option<LockedTypeObject /* TelemetryTransactionData */> {
         &self.reference_row
     }
-    fn reference_row_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryTransactionDataTrait>>> {
+    fn reference_row_mut(&mut self) -> &mut Option<LockedTypeObject /* TelemetryTransactionData */> {
         &mut self.reference_row
     }
 }
@@ -2205,16 +2329,20 @@ impl super::core::DataContainerTrait for FixedTransactionalStreamFormat {
 
 pub static FIXEDTRANSACTIONALSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FixedTransactionalStreamFormat",
+    name_hash: 137431301,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TRANSACTIONALTELEMETRYSTREAMFORMAT_TYPE_INFO),
+        super_class_offset: offset_of!(FixedTransactionalStreamFormat, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FixedTransactionalStreamFormat as Default>::default())),
+            create_boxed: || Box::new(<FixedTransactionalStreamFormat as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ReferenceRow",
+                name_hash: 3052102340,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryTransactionData",
                 rust_offset: offset_of!(FixedTransactionalStreamFormat, reference_row),
@@ -2246,6 +2374,7 @@ impl TypeObject for FixedTransactionalStreamFormat {
 
 pub static FIXEDTRANSACTIONALSTREAMFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FixedTransactionalStreamFormat-Array",
+    name_hash: 3065835697,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("FixedTransactionalStreamFormat"),
@@ -2254,7 +2383,8 @@ pub static FIXEDTRANSACTIONALSTREAMFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransactionalTelemetryStreamFormat {
     pub _glacier_base: TelemetryStreamFormat,
     pub transaction_mode: TelemetryTransactionMode,
@@ -2300,22 +2430,27 @@ impl super::core::DataContainerTrait for TransactionalTelemetryStreamFormat {
 
 pub static TRANSACTIONALTELEMETRYSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransactionalTelemetryStreamFormat",
+    name_hash: 1481914460,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSTREAMFORMAT_TYPE_INFO),
+        super_class_offset: offset_of!(TransactionalTelemetryStreamFormat, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransactionalTelemetryStreamFormat as Default>::default())),
+            create_boxed: || Box::new(<TransactionalTelemetryStreamFormat as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TransactionMode",
+                name_hash: 537931618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryTransactionMode",
                 rust_offset: offset_of!(TransactionalTelemetryStreamFormat, transaction_mode),
             },
             FieldInfoData {
                 name: "Autocommit",
+                name_hash: 947441403,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransactionalTelemetryStreamFormat, autocommit),
@@ -2347,6 +2482,7 @@ impl TypeObject for TransactionalTelemetryStreamFormat {
 
 pub static TRANSACTIONALTELEMETRYSTREAMFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransactionalTelemetryStreamFormat-Array",
+    name_hash: 3823231208,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TransactionalTelemetryStreamFormat"),
@@ -2366,6 +2502,7 @@ pub enum TelemetryTransactionMode {
 
 pub static TELEMETRYTRANSACTIONMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryTransactionMode",
+    name_hash: 347733709,
     flags: MemberInfoFlags::new(49429),
     module: "TelemetryShared",
     data: TypeInfoData::Enum,
@@ -2394,6 +2531,7 @@ impl TypeObject for TelemetryTransactionMode {
 
 pub static TELEMETRYTRANSACTIONMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryTransactionMode-Array",
+    name_hash: 2060620537,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryTransactionMode"),
@@ -2402,13 +2540,14 @@ pub static TELEMETRYTRANSACTIONMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VariableEventStreamFormat {
     pub _glacier_base: EventTelemetryStreamFormat,
     pub r#mod: String,
     pub grp: String,
     pub subgrp: String,
-    pub params: Vec<TelemetryParameterDataProperty>,
+    pub params: Vec<BoxedTypeObject /* TelemetryParameterDataProperty */>,
 }
 
 pub trait VariableEventStreamFormatTrait: EventTelemetryStreamFormatTrait {
@@ -2418,8 +2557,8 @@ pub trait VariableEventStreamFormatTrait: EventTelemetryStreamFormatTrait {
     fn grp_mut(&mut self) -> &mut String;
     fn subgrp(&self) -> &String;
     fn subgrp_mut(&mut self) -> &mut String;
-    fn params(&self) -> &Vec<TelemetryParameterDataProperty>;
-    fn params_mut(&mut self) -> &mut Vec<TelemetryParameterDataProperty>;
+    fn params(&self) -> &Vec<BoxedTypeObject /* TelemetryParameterDataProperty */>;
+    fn params_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TelemetryParameterDataProperty */>;
 }
 
 impl VariableEventStreamFormatTrait for VariableEventStreamFormat {
@@ -2441,10 +2580,10 @@ impl VariableEventStreamFormatTrait for VariableEventStreamFormat {
     fn subgrp_mut(&mut self) -> &mut String {
         &mut self.subgrp
     }
-    fn params(&self) -> &Vec<TelemetryParameterDataProperty> {
+    fn params(&self) -> &Vec<BoxedTypeObject /* TelemetryParameterDataProperty */> {
         &self.params
     }
-    fn params_mut(&mut self) -> &mut Vec<TelemetryParameterDataProperty> {
+    fn params_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TelemetryParameterDataProperty */> {
         &mut self.params
     }
 }
@@ -2469,34 +2608,41 @@ impl super::core::DataContainerTrait for VariableEventStreamFormat {
 
 pub static VARIABLEEVENTSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VariableEventStreamFormat",
+    name_hash: 217744016,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVENTTELEMETRYSTREAMFORMAT_TYPE_INFO),
+        super_class_offset: offset_of!(VariableEventStreamFormat, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VariableEventStreamFormat as Default>::default())),
+            create_boxed: || Box::new(<VariableEventStreamFormat as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "mod",
+                name_hash: 193414115,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VariableEventStreamFormat, r#mod),
             },
             FieldInfoData {
                 name: "grp",
+                name_hash: 193412096,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VariableEventStreamFormat, grp),
             },
             FieldInfoData {
                 name: "subgrp",
+                name_hash: 2139752548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VariableEventStreamFormat, subgrp),
             },
             FieldInfoData {
                 name: "Params",
+                name_hash: 3371566681,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TelemetryParameterDataProperty-Array",
                 rust_offset: offset_of!(VariableEventStreamFormat, params),
@@ -2528,6 +2674,7 @@ impl TypeObject for VariableEventStreamFormat {
 
 pub static VARIABLEEVENTSTREAMFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VariableEventStreamFormat-Array",
+    name_hash: 614715556,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("VariableEventStreamFormat"),
@@ -2536,22 +2683,23 @@ pub static VARIABLEEVENTSTREAMFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FixedEventStreamFormat {
     pub _glacier_base: EventTelemetryStreamFormat,
-    pub reference_event: Option<Arc<Mutex<dyn TelemetryLogEventTrait>>>,
+    pub reference_event: Option<LockedTypeObject /* TelemetryLogEvent */>,
 }
 
 pub trait FixedEventStreamFormatTrait: EventTelemetryStreamFormatTrait {
-    fn reference_event(&self) -> &Option<Arc<Mutex<dyn TelemetryLogEventTrait>>>;
-    fn reference_event_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryLogEventTrait>>>;
+    fn reference_event(&self) -> &Option<LockedTypeObject /* TelemetryLogEvent */>;
+    fn reference_event_mut(&mut self) -> &mut Option<LockedTypeObject /* TelemetryLogEvent */>;
 }
 
 impl FixedEventStreamFormatTrait for FixedEventStreamFormat {
-    fn reference_event(&self) -> &Option<Arc<Mutex<dyn TelemetryLogEventTrait>>> {
+    fn reference_event(&self) -> &Option<LockedTypeObject /* TelemetryLogEvent */> {
         &self.reference_event
     }
-    fn reference_event_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryLogEventTrait>>> {
+    fn reference_event_mut(&mut self) -> &mut Option<LockedTypeObject /* TelemetryLogEvent */> {
         &mut self.reference_event
     }
 }
@@ -2576,16 +2724,20 @@ impl super::core::DataContainerTrait for FixedEventStreamFormat {
 
 pub static FIXEDEVENTSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FixedEventStreamFormat",
+    name_hash: 2496273632,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVENTTELEMETRYSTREAMFORMAT_TYPE_INFO),
+        super_class_offset: offset_of!(FixedEventStreamFormat, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FixedEventStreamFormat as Default>::default())),
+            create_boxed: || Box::new(<FixedEventStreamFormat as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ReferenceEvent",
+                name_hash: 3712915362,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryLogEvent",
                 rust_offset: offset_of!(FixedEventStreamFormat, reference_event),
@@ -2617,6 +2769,7 @@ impl TypeObject for FixedEventStreamFormat {
 
 pub static FIXEDEVENTSTREAMFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FixedEventStreamFormat-Array",
+    name_hash: 219591380,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("FixedEventStreamFormat"),
@@ -2625,7 +2778,8 @@ pub static FIXEDEVENTSTREAMFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventTelemetryStreamFormat {
     pub _glacier_base: TelemetryStreamFormat,
 }
@@ -2653,12 +2807,15 @@ impl super::core::DataContainerTrait for EventTelemetryStreamFormat {
 
 pub static EVENTTELEMETRYSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventTelemetryStreamFormat",
+    name_hash: 1922871065,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSTREAMFORMAT_TYPE_INFO),
+        super_class_offset: offset_of!(EventTelemetryStreamFormat, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventTelemetryStreamFormat as Default>::default())),
+            create_boxed: || Box::new(<EventTelemetryStreamFormat as Default>::default()),
         },
         fields: &[
         ],
@@ -2688,6 +2845,7 @@ impl TypeObject for EventTelemetryStreamFormat {
 
 pub static EVENTTELEMETRYSTREAMFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventTelemetryStreamFormat-Array",
+    name_hash: 966757549,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("EventTelemetryStreamFormat"),
@@ -2696,7 +2854,8 @@ pub static EVENTTELEMETRYSTREAMFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryStreamFormat {
     pub _glacier_base: super::core::Asset,
 }
@@ -2721,12 +2880,15 @@ impl super::core::DataContainerTrait for TelemetryStreamFormat {
 
 pub static TELEMETRYSTREAMFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryStreamFormat",
+    name_hash: 854571445,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetryStreamFormat, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryStreamFormat as Default>::default())),
+            create_boxed: || Box::new(<TelemetryStreamFormat as Default>::default()),
         },
         fields: &[
         ],
@@ -2756,6 +2918,7 @@ impl TypeObject for TelemetryStreamFormat {
 
 pub static TELEMETRYSTREAMFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryStreamFormat-Array",
+    name_hash: 4196178433,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryStreamFormat"),
@@ -2764,43 +2927,44 @@ pub static TELEMETRYSTREAMFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySettings {
     pub _glacier_base: super::core::SystemSettings,
-    pub stream_formats: Vec<Option<Arc<Mutex<dyn TelemetryStreamFormatTrait>>>>,
-    pub transports: Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>,
-    pub streams: Vec<Option<Arc<Mutex<dyn StreamDataTrait>>>>,
+    pub stream_formats: Vec<Option<LockedTypeObject /* TelemetryStreamFormat */>>,
+    pub transports: Vec<Option<LockedTypeObject /* TelemetryTransportData */>>,
+    pub streams: Vec<Option<LockedTypeObject /* StreamData */>>,
     pub file_location: String,
 }
 
 pub trait TelemetrySettingsTrait: super::core::SystemSettingsTrait {
-    fn stream_formats(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryStreamFormatTrait>>>>;
-    fn stream_formats_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryStreamFormatTrait>>>>;
-    fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
-    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
-    fn streams(&self) -> &Vec<Option<Arc<Mutex<dyn StreamDataTrait>>>>;
-    fn streams_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn StreamDataTrait>>>>;
+    fn stream_formats(&self) -> &Vec<Option<LockedTypeObject /* TelemetryStreamFormat */>>;
+    fn stream_formats_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryStreamFormat */>>;
+    fn transports(&self) -> &Vec<Option<LockedTypeObject /* TelemetryTransportData */>>;
+    fn transports_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryTransportData */>>;
+    fn streams(&self) -> &Vec<Option<LockedTypeObject /* StreamData */>>;
+    fn streams_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* StreamData */>>;
     fn file_location(&self) -> &String;
     fn file_location_mut(&mut self) -> &mut String;
 }
 
 impl TelemetrySettingsTrait for TelemetrySettings {
-    fn stream_formats(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryStreamFormatTrait>>>> {
+    fn stream_formats(&self) -> &Vec<Option<LockedTypeObject /* TelemetryStreamFormat */>> {
         &self.stream_formats
     }
-    fn stream_formats_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryStreamFormatTrait>>>> {
+    fn stream_formats_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryStreamFormat */>> {
         &mut self.stream_formats
     }
-    fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports(&self) -> &Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         &self.transports
     }
-    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         &mut self.transports
     }
-    fn streams(&self) -> &Vec<Option<Arc<Mutex<dyn StreamDataTrait>>>> {
+    fn streams(&self) -> &Vec<Option<LockedTypeObject /* StreamData */>> {
         &self.streams
     }
-    fn streams_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn StreamDataTrait>>>> {
+    fn streams_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* StreamData */>> {
         &mut self.streams
     }
     fn file_location(&self) -> &String {
@@ -2825,34 +2989,41 @@ impl super::core::DataContainerTrait for TelemetrySettings {
 
 pub static TELEMETRYSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySettings",
+    name_hash: 3866017167,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySettings as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StreamFormats",
+                name_hash: 1978725577,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TelemetryStreamFormat-Array",
                 rust_offset: offset_of!(TelemetrySettings, stream_formats),
             },
             FieldInfoData {
                 name: "Transports",
+                name_hash: 1898450581,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TelemetryTransportData-Array",
                 rust_offset: offset_of!(TelemetrySettings, transports),
             },
             FieldInfoData {
                 name: "Streams",
+                name_hash: 2189418282,
                 flags: MemberInfoFlags::new(144),
                 field_type: "StreamData-Array",
                 rust_offset: offset_of!(TelemetrySettings, streams),
             },
             FieldInfoData {
                 name: "FileLocation",
+                name_hash: 2948235358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySettings, file_location),
@@ -2884,6 +3055,7 @@ impl TypeObject for TelemetrySettings {
 
 pub static TELEMETRYSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySettings-Array",
+    name_hash: 3678919227,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySettings"),
@@ -2892,7 +3064,8 @@ pub static TELEMETRYSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryTransactionData {
     pub _glacier_base: TelemetryRowData,
 }
@@ -2911,12 +3084,15 @@ impl super::core::DataContainerTrait for TelemetryTransactionData {
 
 pub static TELEMETRYTRANSACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryTransactionData",
+    name_hash: 348047102,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYROWDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetryTransactionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryTransactionData as Default>::default())),
+            create_boxed: || Box::new(<TelemetryTransactionData as Default>::default()),
         },
         fields: &[
         ],
@@ -2946,6 +3122,7 @@ impl TypeObject for TelemetryTransactionData {
 
 pub static TELEMETRYTRANSACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryTransactionData-Array",
+    name_hash: 2908809162,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryTransactionData"),
@@ -2954,7 +3131,8 @@ pub static TELEMETRYTRANSACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdk3Event {
     pub _glacier_base: TelemetryLogEvent,
     pub module_id: u32,
@@ -3003,28 +3181,34 @@ impl super::core::DataContainerTrait for TelemetrySdk3Event {
 
 pub static TELEMETRYSDK3EVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdk3Event",
+    name_hash: 4216468297,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYLOGEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdk3Event, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdk3Event as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdk3Event as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ModuleId",
+                name_hash: 928437906,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdk3Event, module_id),
             },
             FieldInfoData {
                 name: "GroupId",
+                name_hash: 3315840983,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdk3Event, group_id),
             },
             FieldInfoData {
                 name: "StringId",
+                name_hash: 3536090717,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdk3Event, string_id),
@@ -3056,6 +3240,7 @@ impl TypeObject for TelemetrySdk3Event {
 
 pub static TELEMETRYSDK3EVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdk3Event-Array",
+    name_hash: 597719421,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdk3Event"),
@@ -3064,7 +3249,8 @@ pub static TELEMETRYSDK3EVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryLogEvent {
     pub _glacier_base: TelemetryRowData,
 }
@@ -3083,12 +3269,15 @@ impl super::core::DataContainerTrait for TelemetryLogEvent {
 
 pub static TELEMETRYLOGEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryLogEvent",
+    name_hash: 1362760482,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYROWDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetryLogEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryLogEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetryLogEvent as Default>::default()),
         },
         fields: &[
         ],
@@ -3118,6 +3307,7 @@ impl TypeObject for TelemetryLogEvent {
 
 pub static TELEMETRYLOGEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryLogEvent-Array",
+    name_hash: 2024984982,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryLogEvent"),
@@ -3126,7 +3316,8 @@ pub static TELEMETRYLOGEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryRowData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -3142,12 +3333,15 @@ impl super::core::DataContainerTrait for TelemetryRowData {
 
 pub static TELEMETRYROWDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryRowData",
+    name_hash: 2602421776,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetryRowData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryRowData as Default>::default())),
+            create_boxed: || Box::new(<TelemetryRowData as Default>::default()),
         },
         fields: &[
         ],
@@ -3177,6 +3371,7 @@ impl TypeObject for TelemetryRowData {
 
 pub static TELEMETRYROWDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryRowData-Array",
+    name_hash: 1307687972,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryRowData"),
@@ -3185,7 +3380,8 @@ pub static TELEMETRYROWDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinFriendNetworkEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub total_friends: u32,
@@ -3264,34 +3460,41 @@ impl super::core::DataContainerTrait for TelemetrySdkPinFriendNetworkEvent {
 
 pub static TELEMETRYSDKPINFRIENDNETWORKEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinFriendNetworkEvent",
+    name_hash: 3536601121,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinFriendNetworkEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinFriendNetworkEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinFriendNetworkEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "total_friends",
+                name_hash: 3604269369,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinFriendNetworkEvent, total_friends),
             },
             FieldInfoData {
                 name: "friends_online",
+                name_hash: 4241191508,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinFriendNetworkEvent, friends_online),
             },
             FieldInfoData {
                 name: "friends_same_title",
+                name_hash: 2010250526,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinFriendNetworkEvent, friends_same_title),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinFriendNetworkEvent, field_flag_changed0),
@@ -3323,6 +3526,7 @@ impl TypeObject for TelemetrySdkPinFriendNetworkEvent {
 
 pub static TELEMETRYSDKPINFRIENDNETWORKEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinFriendNetworkEvent-Array",
+    name_hash: 2534509205,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinFriendNetworkEvent"),
@@ -3331,7 +3535,8 @@ pub static TELEMETRYSDKPINFRIENDNETWORKEVENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinChallengeEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -3437,52 +3642,62 @@ impl super::core::DataContainerTrait for TelemetrySdkPinChallengeEvent {
 
 pub static TELEMETRYSDKPINCHALLENGEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinChallengeEvent",
+    name_hash: 2873655694,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinChallengeEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinChallengeEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinChallengeEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinChallengeEvent, r#type),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinChallengeEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinChallengeEvent, status_code),
             },
             FieldInfoData {
                 name: "challenge_id",
+                name_hash: 4183243956,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinChallengeEvent, challenge_id),
             },
             FieldInfoData {
                 name: "recipient_id",
+                name_hash: 2645255244,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinChallengeEvent, recipient_id),
             },
             FieldInfoData {
                 name: "recipient_type",
+                name_hash: 3055257273,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinChallengeEvent, recipient_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinChallengeEvent, field_flag_changed0),
@@ -3514,6 +3729,7 @@ impl TypeObject for TelemetrySdkPinChallengeEvent {
 
 pub static TELEMETRYSDKPINCHALLENGEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinChallengeEvent-Array",
+    name_hash: 4178414266,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinChallengeEvent"),
@@ -3522,7 +3738,8 @@ pub static TELEMETRYSDKPINCHALLENGEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinSocMessageEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -3709,106 +3926,125 @@ impl super::core::DataContainerTrait for TelemetrySdkPinSocMessageEvent {
 
 pub static TELEMETRYSDKPINSOCMESSAGEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinSocMessageEvent",
+    name_hash: 2431869113,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinSocMessageEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinSocMessageEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinSocMessageEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, r#type),
             },
             FieldInfoData {
                 name: "placement",
+                name_hash: 4152138252,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, placement),
             },
             FieldInfoData {
                 name: "content_type",
+                name_hash: 3523308779,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, content_type),
             },
             FieldInfoData {
                 name: "network",
+                name_hash: 3392415835,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, network),
             },
             FieldInfoData {
                 name: "format",
+                name_hash: 1354117926,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, format),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, status_code),
             },
             FieldInfoData {
                 name: "message_id",
+                name_hash: 3990992796,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, message_id),
             },
             FieldInfoData {
                 name: "recipient_id",
+                name_hash: 2645255244,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, recipient_id),
             },
             FieldInfoData {
                 name: "recipient_type",
+                name_hash: 3055257273,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, recipient_type),
             },
             FieldInfoData {
                 name: "items",
+                name_hash: 179721187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, items),
             },
             FieldInfoData {
                 name: "event_id",
+                name_hash: 2011241627,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, event_id),
             },
             FieldInfoData {
                 name: "event_name",
+                name_hash: 4103744017,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, event_name),
             },
             FieldInfoData {
                 name: "event_type",
+                name_hash: 4102839854,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, event_type),
             },
             FieldInfoData {
                 name: "count",
+                name_hash: 176967078,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, count),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinSocMessageEvent, field_flag_changed0),
@@ -3840,6 +4076,7 @@ impl TypeObject for TelemetrySdkPinSocMessageEvent {
 
 pub static TELEMETRYSDKPINSOCMESSAGEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinSocMessageEvent-Array",
+    name_hash: 3980472077,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinSocMessageEvent"),
@@ -3848,7 +4085,8 @@ pub static TELEMETRYSDKPINSOCMESSAGEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinGroupEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -3963,58 +4201,69 @@ impl super::core::DataContainerTrait for TelemetrySdkPinGroupEvent {
 
 pub static TELEMETRYSDKPINGROUPEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinGroupEvent",
+    name_hash: 3257506738,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinGroupEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinGroupEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinGroupEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGroupEvent, r#type),
             },
             FieldInfoData {
                 name: "_class",
+                name_hash: 3491766900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGroupEvent, _class),
             },
             FieldInfoData {
                 name: "group_id",
+                name_hash: 2372747720,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGroupEvent, group_id),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGroupEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGroupEvent, status_code),
             },
             FieldInfoData {
                 name: "member_id",
+                name_hash: 3264858599,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGroupEvent, member_id),
             },
             FieldInfoData {
                 name: "member_type",
+                name_hash: 3493789586,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGroupEvent, member_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinGroupEvent, field_flag_changed0),
@@ -4046,6 +4295,7 @@ impl TypeObject for TelemetrySdkPinGroupEvent {
 
 pub static TELEMETRYSDKPINGROUPEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinGroupEvent-Array",
+    name_hash: 3722019334,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinGroupEvent"),
@@ -4054,7 +4304,8 @@ pub static TELEMETRYSDKPINGROUPEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinFriendsEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub frid: String,
@@ -4160,52 +4411,62 @@ impl super::core::DataContainerTrait for TelemetrySdkPinFriendsEvent {
 
 pub static TELEMETRYSDKPINFRIENDSEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinFriendsEvent",
+    name_hash: 2004292140,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinFriendsEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinFriendsEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinFriendsEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "frid",
+                name_hash: 2087598972,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFriendsEvent, frid),
             },
             FieldInfoData {
                 name: "friend_type",
+                name_hash: 2601712720,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFriendsEvent, friend_type),
             },
             FieldInfoData {
                 name: "source",
+                name_hash: 2169993400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFriendsEvent, source),
             },
             FieldInfoData {
                 name: "network",
+                name_hash: 3392415835,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFriendsEvent, network),
             },
             FieldInfoData {
                 name: "action",
+                name_hash: 1314712411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFriendsEvent, action),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFriendsEvent, status_code),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinFriendsEvent, field_flag_changed0),
@@ -4237,6 +4498,7 @@ impl TypeObject for TelemetrySdkPinFriendsEvent {
 
 pub static TELEMETRYSDKPINFRIENDSEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinFriendsEvent-Array",
+    name_hash: 1744413080,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinFriendsEvent"),
@@ -4245,7 +4507,8 @@ pub static TELEMETRYSDKPINFRIENDSEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinCustomErrorEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub severity: String,
@@ -4315,28 +4578,34 @@ impl super::core::DataContainerTrait for TelemetrySdkPinCustomErrorEvent {
 
 pub static TELEMETRYSDKPINCUSTOMERROREVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinCustomErrorEvent",
+    name_hash: 3430277638,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinCustomErrorEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinCustomErrorEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinCustomErrorEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "severity",
+                name_hash: 1030186998,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinCustomErrorEvent, severity),
             },
             FieldInfoData {
                 name: "metadata",
+                name_hash: 2036718120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinCustomErrorEvent, metadata),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinCustomErrorEvent, field_flag_changed0),
@@ -4368,6 +4637,7 @@ impl TypeObject for TelemetrySdkPinCustomErrorEvent {
 
 pub static TELEMETRYSDKPINCUSTOMERROREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinCustomErrorEvent-Array",
+    name_hash: 2573332274,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinCustomErrorEvent"),
@@ -4376,7 +4646,8 @@ pub static TELEMETRYSDKPINCUSTOMERROREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinConnectionEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub goid: String,
@@ -4554,100 +4825,118 @@ impl super::core::DataContainerTrait for TelemetrySdkPinConnectionEvent {
 
 pub static TELEMETRYSDKPINCONNECTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinConnectionEvent",
+    name_hash: 3715314075,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinConnectionEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinConnectionEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinConnectionEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "goid",
+                name_hash: 2087635072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, goid),
             },
             FieldInfoData {
                 name: "player_ps",
+                name_hash: 2983873994,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, player_ps),
             },
             FieldInfoData {
                 name: "target_ip",
+                name_hash: 1702172498,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, target_ip),
             },
             FieldInfoData {
                 name: "target_ps",
+                name_hash: 1702173224,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, target_ps),
             },
             FieldInfoData {
                 name: "game_ps",
+                name_hash: 2628366391,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, game_ps),
             },
             FieldInfoData {
                 name: "net_topo",
+                name_hash: 316898913,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, net_topo),
             },
             FieldInfoData {
                 name: "join_method",
+                name_hash: 1079799751,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, join_method),
             },
             FieldInfoData {
                 name: "mode",
+                name_hash: 2087698470,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, mode),
             },
             FieldInfoData {
                 name: "client_type",
+                name_hash: 654760923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, client_type),
             },
             FieldInfoData {
                 name: "leave_reason",
+                name_hash: 2310272997,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, leave_reason),
             },
             FieldInfoData {
                 name: "cxn_tech",
+                name_hash: 716257333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, cxn_tech),
             },
             FieldInfoData {
                 name: "pkt_loss",
+                name_hash: 568671574,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, pkt_loss),
             },
             FieldInfoData {
                 name: "avg_lat",
+                name_hash: 630901299,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, avg_lat),
             },
             FieldInfoData {
                 name: "max_lat",
+                name_hash: 1070477079,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, max_lat),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinConnectionEvent, field_flag_changed0),
@@ -4679,6 +4968,7 @@ impl TypeObject for TelemetrySdkPinConnectionEvent {
 
 pub static TELEMETRYSDKPINCONNECTIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinConnectionEvent-Array",
+    name_hash: 388393007,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinConnectionEvent"),
@@ -4687,7 +4977,8 @@ pub static TELEMETRYSDKPINCONNECTIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinErrorEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub sid: String,
@@ -4793,52 +5084,62 @@ impl super::core::DataContainerTrait for TelemetrySdkPinErrorEvent {
 
 pub static TELEMETRYSDKPINERROREVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinErrorEvent",
+    name_hash: 4133059605,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinErrorEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinErrorEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinErrorEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "sid",
+                name_hash: 193433787,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinErrorEvent, sid),
             },
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinErrorEvent, r#type),
             },
             FieldInfoData {
                 name: "errid",
+                name_hash: 165548397,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinErrorEvent, errid),
             },
             FieldInfoData {
                 name: "catgid",
+                name_hash: 1537942617,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinErrorEvent, catgid),
             },
             FieldInfoData {
                 name: "server_type",
+                name_hash: 1780767495,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinErrorEvent, server_type),
             },
             FieldInfoData {
                 name: "server_name",
+                name_hash: 1781114808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinErrorEvent, server_name),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinErrorEvent, field_flag_changed0),
@@ -4870,6 +5171,7 @@ impl TypeObject for TelemetrySdkPinErrorEvent {
 
 pub static TELEMETRYSDKPINERROREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinErrorEvent-Array",
+    name_hash: 3686951841,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinErrorEvent"),
@@ -4878,7 +5180,8 @@ pub static TELEMETRYSDKPINERROREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinMatchInfoEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub mode: String,
@@ -5137,154 +5440,181 @@ impl super::core::DataContainerTrait for TelemetrySdkPinMatchInfoEvent {
 
 pub static TELEMETRYSDKPINMATCHINFOEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinMatchInfoEvent",
+    name_hash: 1548595856,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinMatchInfoEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinMatchInfoEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "mode",
+                name_hash: 2087698470,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, mode),
             },
             FieldInfoData {
                 name: "diff",
+                name_hash: 2087386312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, diff),
             },
             FieldInfoData {
                 name: "map",
+                name_hash: 193414073,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, map),
             },
             FieldInfoData {
                 name: "mid",
+                name_hash: 193413797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, mid),
             },
             FieldInfoData {
                 name: "goid",
+                name_hash: 2087635072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, goid),
             },
             FieldInfoData {
                 name: "player_ps",
+                name_hash: 2983873994,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, player_ps),
             },
             FieldInfoData {
                 name: "game_ps",
+                name_hash: 2628366391,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, game_ps),
             },
             FieldInfoData {
                 name: "net_topo",
+                name_hash: 316898913,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, net_topo),
             },
             FieldInfoData {
                 name: "client_type",
+                name_hash: 654760923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, client_type),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, status_code),
             },
             FieldInfoData {
                 name: "end_reason",
+                name_hash: 1688196817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, end_reason),
             },
             FieldInfoData {
                 name: "phase",
+                name_hash: 187946346,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, phase),
             },
             FieldInfoData {
                 name: "ts_screate",
+                name_hash: 1110910602,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, ts_screate),
             },
             FieldInfoData {
                 name: "ts_mstart",
+                name_hash: 2418841584,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, ts_mstart),
             },
             FieldInfoData {
                 name: "ts_mjoin",
+                name_hash: 1635697202,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, ts_mjoin),
             },
             FieldInfoData {
                 name: "ts_mend",
+                name_hash: 960617343,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, ts_mend),
             },
             FieldInfoData {
                 name: "player_cnt",
+                name_hash: 3978543184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, player_cnt),
             },
             FieldInfoData {
                 name: "max_players",
+                name_hash: 458759694,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, max_players),
             },
             FieldInfoData {
                 name: "num_teams",
+                name_hash: 1050382114,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, num_teams),
             },
             FieldInfoData {
                 name: "teams_stats",
+                name_hash: 2595701461,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, teams_stats),
             },
             FieldInfoData {
                 name: "player_stats",
+                name_hash: 3325097864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, player_stats),
             },
             FieldInfoData {
                 name: "match_info",
+                name_hash: 1252857063,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, match_info),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinMatchInfoEvent, field_flag_changed0),
@@ -5316,6 +5646,7 @@ impl TypeObject for TelemetrySdkPinMatchInfoEvent {
 
 pub static TELEMETRYSDKPINMATCHINFOEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinMatchInfoEvent-Array",
+    name_hash: 1369112740,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinMatchInfoEvent"),
@@ -5324,7 +5655,8 @@ pub static TELEMETRYSDKPINMATCHINFOEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinMatchJoinEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub mode: String,
@@ -5601,166 +5933,195 @@ impl super::core::DataContainerTrait for TelemetrySdkPinMatchJoinEvent {
 
 pub static TELEMETRYSDKPINMATCHJOINEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinMatchJoinEvent",
+    name_hash: 3973287900,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinMatchJoinEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinMatchJoinEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "mode",
+                name_hash: 2087698470,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, mode),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, instance_id),
             },
             FieldInfoData {
                 name: "map",
+                name_hash: 193414073,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, map),
             },
             FieldInfoData {
                 name: "mid",
+                name_hash: 193413797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, mid),
             },
             FieldInfoData {
                 name: "goid",
+                name_hash: 2087635072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, goid),
             },
             FieldInfoData {
                 name: "net_topo",
+                name_hash: 316898913,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, net_topo),
             },
             FieldInfoData {
                 name: "client_type",
+                name_hash: 654760923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, client_type),
             },
             FieldInfoData {
                 name: "join_method",
+                name_hash: 1079799751,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, join_method),
             },
             FieldInfoData {
                 name: "cxn_tech",
+                name_hash: 716257333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, cxn_tech),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, status_code),
             },
             FieldInfoData {
                 name: "phase",
+                name_hash: 187946346,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, phase),
             },
             FieldInfoData {
                 name: "mmdur",
+                name_hash: 174362054,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, mmdur),
             },
             FieldInfoData {
                 name: "max_mmdur",
+                name_hash: 1821964077,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, max_mmdur),
             },
             FieldInfoData {
                 name: "fitscore",
+                name_hash: 4110056822,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, fitscore),
             },
             FieldInfoData {
                 name: "max_fitscore",
+                name_hash: 3370850621,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, max_fitscore),
             },
             FieldInfoData {
                 name: "scenario",
+                name_hash: 328434571,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, scenario),
             },
             FieldInfoData {
                 name: "scenario_subsession",
+                name_hash: 1153812974,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, scenario_subsession),
             },
             FieldInfoData {
                 name: "scenario_variant",
+                name_hash: 947120771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, scenario_variant),
             },
             FieldInfoData {
                 name: "scenario_version",
+                name_hash: 1102740846,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, scenario_version),
             },
             FieldInfoData {
                 name: "scenario_params",
+                name_hash: 2168007112,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, scenario_params),
             },
             FieldInfoData {
                 name: "friend_id",
+                name_hash: 992320933,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, friend_id),
             },
             FieldInfoData {
                 name: "friend_type",
+                name_hash: 2601712720,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, friend_type),
             },
             FieldInfoData {
                 name: "server_id",
+                name_hash: 4162508466,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, server_id),
             },
             FieldInfoData {
                 name: "server_name",
+                name_hash: 1781114808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, server_name),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinMatchJoinEvent, field_flag_changed0),
@@ -5792,6 +6153,7 @@ impl TypeObject for TelemetrySdkPinMatchJoinEvent {
 
 pub static TELEMETRYSDKPINMATCHJOINEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinMatchJoinEvent-Array",
+    name_hash: 593811560,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinMatchJoinEvent"),
@@ -5800,7 +6162,8 @@ pub static TELEMETRYSDKPINMATCHJOINEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryPinEventHeaderConfigurationMessageBase {
 }
 
@@ -5812,11 +6175,13 @@ impl TelemetryPinEventHeaderConfigurationMessageBaseTrait for TelemetryPinEventH
 
 pub static TELEMETRYPINEVENTHEADERCONFIGURATIONMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryPinEventHeaderConfigurationMessageBase",
+    name_hash: 2753398944,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryPinEventHeaderConfigurationMessageBase as Default>::default())),
+            create_boxed: || Box::new(<TelemetryPinEventHeaderConfigurationMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -5843,7 +6208,8 @@ impl TypeObject for TelemetryPinEventHeaderConfigurationMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryPinSessionHeaderConfigurationMessageBase {
 }
 
@@ -5855,11 +6221,13 @@ impl TelemetryPinSessionHeaderConfigurationMessageBaseTrait for TelemetryPinSess
 
 pub static TELEMETRYPINSESSIONHEADERCONFIGURATIONMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryPinSessionHeaderConfigurationMessageBase",
+    name_hash: 3396629586,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryPinSessionHeaderConfigurationMessageBase as Default>::default())),
+            create_boxed: || Box::new(<TelemetryPinSessionHeaderConfigurationMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -5886,7 +6254,8 @@ impl TypeObject for TelemetryPinSessionHeaderConfigurationMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryPinEndPointConfigurationMessageBase {
 }
 
@@ -5898,11 +6267,13 @@ impl TelemetryPinEndPointConfigurationMessageBaseTrait for TelemetryPinEndPointC
 
 pub static TELEMETRYPINENDPOINTCONFIGURATIONMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryPinEndPointConfigurationMessageBase",
+    name_hash: 4028163696,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryPinEndPointConfigurationMessageBase as Default>::default())),
+            create_boxed: || Box::new(<TelemetryPinEndPointConfigurationMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -5929,7 +6300,8 @@ impl TypeObject for TelemetryPinEndPointConfigurationMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerStatEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -6071,76 +6443,90 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerStatEvent {
 
 pub static TELEMETRYSDKPINPLAYERSTATEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerStatEvent",
+    name_hash: 3098869612,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerStatEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerStatEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, gdur),
             },
             FieldInfoData {
                 name: "stat_id",
+                name_hash: 1935654341,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, stat_id),
             },
             FieldInfoData {
                 name: "stat_value",
+                name_hash: 351800323,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, stat_value),
             },
             FieldInfoData {
                 name: "stat_category",
+                name_hash: 1399517240,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, stat_category),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_class",
+                name_hash: 3169492516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, p_class),
             },
             FieldInfoData {
                 name: "p_team_id",
+                name_hash: 1828816837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, p_team_id),
             },
             FieldInfoData {
                 name: "p_veh_id",
+                name_hash: 2341289379,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, p_veh_id),
             },
             FieldInfoData {
                 name: "p_params",
+                name_hash: 2115635926,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, p_params),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, rdur),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatEvent, field_flag_changed0),
@@ -6172,6 +6558,7 @@ impl TypeObject for TelemetrySdkPinPlayerStatEvent {
 
 pub static TELEMETRYSDKPINPLAYERSTATEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerStatEvent-Array",
+    name_hash: 3271589720,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerStatEvent"),
@@ -6180,7 +6567,8 @@ pub static TELEMETRYSDKPINPLAYERSTATEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinNpcPartyEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub cdur: u32,
@@ -6349,94 +6737,111 @@ impl super::core::DataContainerTrait for TelemetrySdkPinNpcPartyEvent {
 
 pub static TELEMETRYSDKPINNPCPARTYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcPartyEvent",
+    name_hash: 2188667774,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinNpcPartyEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinNpcPartyEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "cdur",
+                name_hash: 2087761477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, cdur),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, rdur),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, instance_id),
             },
             FieldInfoData {
                 name: "party_id",
+                name_hash: 1607293561,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, party_id),
             },
             FieldInfoData {
                 name: "npc_id",
+                name_hash: 1677076394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, npc_id),
             },
             FieldInfoData {
                 name: "npc_char",
+                name_hash: 974882271,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, npc_char),
             },
             FieldInfoData {
                 name: "npc_class",
+                name_hash: 2106200169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, npc_class),
             },
             FieldInfoData {
                 name: "affin",
+                name_hash: 169595107,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, affin),
             },
             FieldInfoData {
                 name: "max_affin",
+                name_hash: 1835659528,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, max_affin),
             },
             FieldInfoData {
                 name: "min_affin",
+                name_hash: 216132886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, min_affin),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, status),
             },
             FieldInfoData {
                 name: "members",
+                name_hash: 1205904422,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, members),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinNpcPartyEvent, field_flag_changed0),
@@ -6468,6 +6873,7 @@ impl TypeObject for TelemetrySdkPinNpcPartyEvent {
 
 pub static TELEMETRYSDKPINNPCPARTYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcPartyEvent-Array",
+    name_hash: 2598366282,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinNpcPartyEvent"),
@@ -6476,7 +6882,8 @@ pub static TELEMETRYSDKPINNPCPARTYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinNpcInteractionEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub cdur: u32,
@@ -6618,76 +7025,90 @@ impl super::core::DataContainerTrait for TelemetrySdkPinNpcInteractionEvent {
 
 pub static TELEMETRYSDKPINNPCINTERACTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcInteractionEvent",
+    name_hash: 4138512170,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinNpcInteractionEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinNpcInteractionEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "cdur",
+                name_hash: 2087761477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, cdur),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, rdur),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, instance_id),
             },
             FieldInfoData {
                 name: "npc_id",
+                name_hash: 1677076394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, npc_id),
             },
             FieldInfoData {
                 name: "npc_char",
+                name_hash: 974882271,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, npc_char),
             },
             FieldInfoData {
                 name: "npc_class",
+                name_hash: 2106200169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, npc_class),
             },
             FieldInfoData {
                 name: "npc_loc",
+                name_hash: 3803908071,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, npc_loc),
             },
             FieldInfoData {
                 name: "action",
+                name_hash: 1314712411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, action),
             },
             FieldInfoData {
                 name: "content",
+                name_hash: 3716929964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, content),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractionEvent, field_flag_changed0),
@@ -6719,6 +7140,7 @@ impl TypeObject for TelemetrySdkPinNpcInteractionEvent {
 
 pub static TELEMETRYSDKPINNPCINTERACTIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcInteractionEvent-Array",
+    name_hash: 2871642526,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinNpcInteractionEvent"),
@@ -6727,7 +7149,8 @@ pub static TELEMETRYSDKPINNPCINTERACTIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinNpcRelationshipEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub cdur: u32,
@@ -6887,88 +7310,104 @@ impl super::core::DataContainerTrait for TelemetrySdkPinNpcRelationshipEvent {
 
 pub static TELEMETRYSDKPINNPCRELATIONSHIPEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcRelationshipEvent",
+    name_hash: 195118612,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinNpcRelationshipEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinNpcRelationshipEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "cdur",
+                name_hash: 2087761477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, cdur),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, rdur),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, instance_id),
             },
             FieldInfoData {
                 name: "npc_id",
+                name_hash: 1677076394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, npc_id),
             },
             FieldInfoData {
                 name: "npc_char",
+                name_hash: 974882271,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, npc_char),
             },
             FieldInfoData {
                 name: "npc_class",
+                name_hash: 2106200169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, npc_class),
             },
             FieldInfoData {
                 name: "amount",
+                name_hash: 1311882569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, amount),
             },
             FieldInfoData {
                 name: "affin",
+                name_hash: 169595107,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, affin),
             },
             FieldInfoData {
                 name: "max_affin",
+                name_hash: 1835659528,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, max_affin),
             },
             FieldInfoData {
                 name: "min_affin",
+                name_hash: 216132886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, min_affin),
             },
             FieldInfoData {
                 name: "choice_id",
+                name_hash: 3737880028,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, choice_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinNpcRelationshipEvent, field_flag_changed0),
@@ -7000,6 +7439,7 @@ impl TypeObject for TelemetrySdkPinNpcRelationshipEvent {
 
 pub static TELEMETRYSDKPINNPCRELATIONSHIPEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcRelationshipEvent-Array",
+    name_hash: 1114563104,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinNpcRelationshipEvent"),
@@ -7008,7 +7448,8 @@ pub static TELEMETRYSDKPINNPCRELATIONSHIPEVENT_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinCinematicEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub instance_id: String,
@@ -7132,64 +7573,76 @@ impl super::core::DataContainerTrait for TelemetrySdkPinCinematicEvent {
 
 pub static TELEMETRYSDKPINCINEMATICEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinCinematicEvent",
+    name_hash: 2846219102,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinCinematicEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinCinematicEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinCinematicEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinCinematicEvent, instance_id),
             },
             FieldInfoData {
                 name: "cdur",
+                name_hash: 2087761477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinCinematicEvent, cdur),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinCinematicEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinCinematicEvent, rdur),
             },
             FieldInfoData {
                 name: "cine_id",
+                name_hash: 3785374358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinCinematicEvent, cine_id),
             },
             FieldInfoData {
                 name: "cine_dur",
+                name_hash: 363321944,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinCinematicEvent, cine_dur),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinCinematicEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinCinematicEvent, status_code),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinCinematicEvent, field_flag_changed0),
@@ -7221,6 +7674,7 @@ impl TypeObject for TelemetrySdkPinCinematicEvent {
 
 pub static TELEMETRYSDKPINCINEMATICEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinCinematicEvent-Array",
+    name_hash: 484064490,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinCinematicEvent"),
@@ -7229,7 +7683,8 @@ pub static TELEMETRYSDKPINCINEMATICEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerDecisionEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub cdur: u32,
@@ -7362,70 +7817,83 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerDecisionEvent {
 
 pub static TELEMETRYSDKPINPLAYERDECISIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerDecisionEvent",
+    name_hash: 2768667278,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerDecisionEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerDecisionEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerDecisionEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "cdur",
+                name_hash: 2087761477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDecisionEvent, cdur),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDecisionEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDecisionEvent, rdur),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDecisionEvent, instance_id),
             },
             FieldInfoData {
                 name: "choice_id",
+                name_hash: 3737880028,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDecisionEvent, choice_id),
             },
             FieldInfoData {
                 name: "choice_type",
+                name_hash: 3216589865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDecisionEvent, choice_type),
             },
             FieldInfoData {
                 name: "response_id",
+                name_hash: 2707988244,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDecisionEvent, response_id),
             },
             FieldInfoData {
                 name: "choices",
+                name_hash: 3821181085,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDecisionEvent, choices),
             },
             FieldInfoData {
                 name: "cine_id",
+                name_hash: 3785374358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDecisionEvent, cine_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDecisionEvent, field_flag_changed0),
@@ -7457,6 +7925,7 @@ impl TypeObject for TelemetrySdkPinPlayerDecisionEvent {
 
 pub static TELEMETRYSDKPINPLAYERDECISIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerDecisionEvent-Array",
+    name_hash: 3280489402,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerDecisionEvent"),
@@ -7465,7 +7934,8 @@ pub static TELEMETRYSDKPINPLAYERDECISIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinScoreEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -7652,106 +8122,125 @@ impl super::core::DataContainerTrait for TelemetrySdkPinScoreEvent {
 
 pub static TELEMETRYSDKPINSCOREEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinScoreEvent",
+    name_hash: 2863444869,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinScoreEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinScoreEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinScoreEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, rdur),
             },
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, r#type),
             },
             FieldInfoData {
                 name: "amount",
+                name_hash: 1311882569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, amount),
             },
             FieldInfoData {
                 name: "team_id",
+                name_hash: 1826788170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, team_id),
             },
             FieldInfoData {
                 name: "player_dbid",
+                name_hash: 2443091810,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, player_dbid),
             },
             FieldInfoData {
                 name: "clock_time",
+                name_hash: 1462067879,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, clock_time),
             },
             FieldInfoData {
                 name: "shot_pos",
+                name_hash: 517230966,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, shot_pos),
             },
             FieldInfoData {
                 name: "assist_pos",
+                name_hash: 658286169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, assist_pos),
             },
             FieldInfoData {
                 name: "score_pos",
+                name_hash: 1739887966,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, score_pos),
             },
             FieldInfoData {
                 name: "category",
+                name_hash: 4083577941,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, category),
             },
             FieldInfoData {
                 name: "shot_flags",
+                name_hash: 640211109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, shot_flags),
             },
             FieldInfoData {
                 name: "goal_flags1",
+                name_hash: 205434961,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, goal_flags1),
             },
             FieldInfoData {
                 name: "goal_flags2",
+                name_hash: 205434962,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, goal_flags2),
             },
             FieldInfoData {
                 name: "goal_flags3",
+                name_hash: 205434963,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, goal_flags3),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinScoreEvent, field_flag_changed0),
@@ -7783,6 +8272,7 @@ impl TypeObject for TelemetrySdkPinScoreEvent {
 
 pub static TELEMETRYSDKPINSCOREEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinScoreEvent-Array",
+    name_hash: 3001973553,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinScoreEvent"),
@@ -7791,7 +8281,8 @@ pub static TELEMETRYSDKPINSCOREEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinNpcOutResourceEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -7870,34 +8361,41 @@ impl super::core::DataContainerTrait for TelemetrySdkPinNpcOutResourceEvent {
 
 pub static TELEMETRYSDKPINNPCOUTRESOURCEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcOutResourceEvent",
+    name_hash: 2629060788,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinNpcOutResourceEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinNpcOutResourceEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinNpcOutResourceEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcOutResourceEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcOutResourceEvent, rdur),
             },
             FieldInfoData {
                 name: "resource_type",
+                name_hash: 2440326344,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcOutResourceEvent, resource_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinNpcOutResourceEvent, field_flag_changed0),
@@ -7929,6 +8427,7 @@ impl TypeObject for TelemetrySdkPinNpcOutResourceEvent {
 
 pub static TELEMETRYSDKPINNPCOUTRESOURCEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcOutResourceEvent-Array",
+    name_hash: 2583241728,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinNpcOutResourceEvent"),
@@ -7937,7 +8436,8 @@ pub static TELEMETRYSDKPINNPCOUTRESOURCEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinNpcInteractEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -8106,94 +8606,111 @@ impl super::core::DataContainerTrait for TelemetrySdkPinNpcInteractEvent {
 
 pub static TELEMETRYSDKPINNPCINTERACTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcInteractEvent",
+    name_hash: 3918744290,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinNpcInteractEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinNpcInteractEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, rdur),
             },
             FieldInfoData {
                 name: "item_id",
+                name_hash: 2442823394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, item_id),
             },
             FieldInfoData {
                 name: "item_category",
+                name_hash: 712893855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, item_category),
             },
             FieldInfoData {
                 name: "item_type",
+                name_hash: 1650585687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, item_type),
             },
             FieldInfoData {
                 name: "item_loc",
+                name_hash: 3303755695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, item_loc),
             },
             FieldInfoData {
                 name: "action",
+                name_hash: 1314712411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, action),
             },
             FieldInfoData {
                 name: "p_dir",
+                name_hash: 188279797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, p_dir),
             },
             FieldInfoData {
                 name: "p_state",
+                name_hash: 3188179485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, p_state),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, p_loc),
             },
             FieldInfoData {
                 name: "npc_id",
+                name_hash: 1677076394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, npc_id),
             },
             FieldInfoData {
                 name: "npc_dir",
+                name_hash: 3803899704,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, npc_dir),
             },
             FieldInfoData {
                 name: "npc_loc",
+                name_hash: 3803908071,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, npc_loc),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinNpcInteractEvent, field_flag_changed0),
@@ -8225,6 +8742,7 @@ impl TypeObject for TelemetrySdkPinNpcInteractEvent {
 
 pub static TELEMETRYSDKPINNPCINTERACTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcInteractEvent-Array",
+    name_hash: 2771818966,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinNpcInteractEvent"),
@@ -8233,7 +8751,8 @@ pub static TELEMETRYSDKPINNPCINTERACTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinNpcDeathEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -8519,172 +9038,202 @@ impl super::core::DataContainerTrait for TelemetrySdkPinNpcDeathEvent {
 
 pub static TELEMETRYSDKPINNPCDEATHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcDeathEvent",
+    name_hash: 2441034540,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinNpcDeathEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinNpcDeathEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, rdur),
             },
             FieldInfoData {
                 name: "k_weap",
+                name_hash: 1812183890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, k_weap),
             },
             FieldInfoData {
                 name: "cause",
+                name_hash: 176746948,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, cause),
             },
             FieldInfoData {
                 name: "v_id",
+                name_hash: 2088185409,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, v_id),
             },
             FieldInfoData {
                 name: "v_type",
+                name_hash: 1996946420,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, v_type),
             },
             FieldInfoData {
                 name: "v_loc",
+                name_hash: 190639020,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, v_loc),
             },
             FieldInfoData {
                 name: "v_dir",
+                name_hash: 190647155,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, v_dir),
             },
             FieldInfoData {
                 name: "v_state",
+                name_hash: 1476000411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, v_state),
             },
             FieldInfoData {
                 name: "is_vads",
+                name_hash: 2715408896,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, is_vads),
             },
             FieldInfoData {
                 name: "k_id",
+                name_hash: 2088017148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, k_id),
             },
             FieldInfoData {
                 name: "k_type",
+                name_hash: 1812241225,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, k_type),
             },
             FieldInfoData {
                 name: "k_loc",
+                name_hash: 185092081,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, k_loc),
             },
             FieldInfoData {
                 name: "k_dir",
+                name_hash: 185083822,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, k_dir),
             },
             FieldInfoData {
                 name: "k_state",
+                name_hash: 3963363974,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, k_state),
             },
             FieldInfoData {
                 name: "is_kads",
+                name_hash: 2715225213,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, is_kads),
             },
             FieldInfoData {
                 name: "v_weap",
+                name_hash: 1996868719,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, v_weap),
             },
             FieldInfoData {
                 name: "v_buff",
+                name_hash: 1996486395,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, v_buff),
             },
             FieldInfoData {
                 name: "k_buff",
+                name_hash: 1812566086,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, k_buff),
             },
             FieldInfoData {
                 name: "k_class",
+                name_hash: 3982051455,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, k_class),
             },
             FieldInfoData {
                 name: "v_class",
+                name_hash: 1457313058,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, v_class),
             },
             FieldInfoData {
                 name: "npc_id",
+                name_hash: 1677076394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, npc_id),
             },
             FieldInfoData {
                 name: "v_team_id",
+                name_hash: 723241283,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, v_team_id),
             },
             FieldInfoData {
                 name: "k_lifetime",
+                name_hash: 1725109858,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, k_lifetime),
             },
             FieldInfoData {
                 name: "v_lifetime",
+                name_hash: 2974586975,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, v_lifetime),
             },
             FieldInfoData {
                 name: "v_play_state",
+                name_hash: 2405627264,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, v_play_state),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcDeathEvent, field_flag_changed0),
@@ -8716,6 +9265,7 @@ impl TypeObject for TelemetrySdkPinNpcDeathEvent {
 
 pub static TELEMETRYSDKPINNPCDEATHEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcDeathEvent-Array",
+    name_hash: 4223437464,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinNpcDeathEvent"),
@@ -8724,7 +9274,8 @@ pub static TELEMETRYSDKPINNPCDEATHEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinNpcStateEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -8884,88 +9435,104 @@ impl super::core::DataContainerTrait for TelemetrySdkPinNpcStateEvent {
 
 pub static TELEMETRYSDKPINNPCSTATEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcStateEvent",
+    name_hash: 4290104231,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinNpcStateEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinNpcStateEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinNpcStateEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, rdur),
             },
             FieldInfoData {
                 name: "ai_state",
+                name_hash: 2685562533,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, ai_state),
             },
             FieldInfoData {
                 name: "npc_id",
+                name_hash: 1677076394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, npc_id),
             },
             FieldInfoData {
                 name: "npc_loc",
+                name_hash: 3803908071,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, npc_loc),
             },
             FieldInfoData {
                 name: "cur_npc_state",
+                name_hash: 3495731371,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, cur_npc_state),
             },
             FieldInfoData {
                 name: "prev_npc_state",
+                name_hash: 989747518,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, prev_npc_state),
             },
             FieldInfoData {
                 name: "source",
+                name_hash: 2169993400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, source),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_aim",
+                name_hash: 188274223,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, p_aim),
             },
             FieldInfoData {
                 name: "p_state",
+                name_hash: 3188179485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, p_state),
             },
             FieldInfoData {
                 name: "is_alarm",
+                name_hash: 3687017075,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, is_alarm),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinNpcStateEvent, field_flag_changed0),
@@ -8997,6 +9564,7 @@ impl TypeObject for TelemetrySdkPinNpcStateEvent {
 
 pub static TELEMETRYSDKPINNPCSTATEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcStateEvent-Array",
+    name_hash: 642637075,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinNpcStateEvent"),
@@ -9005,7 +9573,8 @@ pub static TELEMETRYSDKPINNPCSTATEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinGameObjectiveEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -9174,94 +9743,111 @@ impl super::core::DataContainerTrait for TelemetrySdkPinGameObjectiveEvent {
 
 pub static TELEMETRYSDKPINGAMEOBJECTIVEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinGameObjectiveEvent",
+    name_hash: 3088067916,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinGameObjectiveEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinGameObjectiveEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, rdur),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, p_loc),
             },
             FieldInfoData {
                 name: "diff",
+                name_hash: 2087386312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, diff),
             },
             FieldInfoData {
                 name: "p_team_id",
+                name_hash: 1828816837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, p_team_id),
             },
             FieldInfoData {
                 name: "category",
+                name_hash: 4083577941,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, category),
             },
             FieldInfoData {
                 name: "objective_id",
+                name_hash: 188690520,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, objective_id),
             },
             FieldInfoData {
                 name: "objective_loc",
+                name_hash: 1931814421,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, objective_loc),
             },
             FieldInfoData {
                 name: "reqs",
+                name_hash: 2088302512,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, reqs),
             },
             FieldInfoData {
                 name: "reward",
+                name_hash: 2123929394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, reward),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, status),
             },
             FieldInfoData {
                 name: "percent",
+                name_hash: 2364363998,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, percent),
             },
             FieldInfoData {
                 name: "players",
+                name_hash: 2653077989,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, players),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinGameObjectiveEvent, field_flag_changed0),
@@ -9293,6 +9879,7 @@ impl TypeObject for TelemetrySdkPinGameObjectiveEvent {
 
 pub static TELEMETRYSDKPINGAMEOBJECTIVEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinGameObjectiveEvent-Array",
+    name_hash: 2423180792,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinGameObjectiveEvent"),
@@ -9301,7 +9888,8 @@ pub static TELEMETRYSDKPINGAMEOBJECTIVEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinFpsEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -9425,64 +10013,76 @@ impl super::core::DataContainerTrait for TelemetrySdkPinFpsEvent {
 
 pub static TELEMETRYSDKPINFPSEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinFpsEvent",
+    name_hash: 3557406344,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinFpsEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinFpsEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinFpsEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinFpsEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinFpsEvent, rdur),
             },
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFpsEvent, r#type),
             },
             FieldInfoData {
                 name: "fps",
+                name_hash: 193411264,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TelemetrySdkPinFpsEvent, fps),
             },
             FieldInfoData {
                 name: "threshold",
+                name_hash: 2217095154,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TelemetrySdkPinFpsEvent, threshold),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinFpsEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_dir",
+                name_hash: 188279797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinFpsEvent, p_dir),
             },
             FieldInfoData {
                 name: "metadata",
+                name_hash: 2036718120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinFpsEvent, metadata),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinFpsEvent, field_flag_changed0),
@@ -9514,6 +10114,7 @@ impl TypeObject for TelemetrySdkPinFpsEvent {
 
 pub static TELEMETRYSDKPINFPSEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinFpsEvent-Array",
+    name_hash: 37132476,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinFpsEvent"),
@@ -9522,7 +10123,8 @@ pub static TELEMETRYSDKPINFPSEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinGameActionEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -9601,34 +10203,41 @@ impl super::core::DataContainerTrait for TelemetrySdkPinGameActionEvent {
 
 pub static TELEMETRYSDKPINGAMEACTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinGameActionEvent",
+    name_hash: 643706013,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinGameActionEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinGameActionEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinGameActionEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinGameActionEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinGameActionEvent, rdur),
             },
             FieldInfoData {
                 name: "action",
+                name_hash: 1314712411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameActionEvent, action),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinGameActionEvent, field_flag_changed0),
@@ -9660,6 +10269,7 @@ impl TypeObject for TelemetrySdkPinGameActionEvent {
 
 pub static TELEMETRYSDKPINGAMEACTIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinGameActionEvent-Array",
+    name_hash: 3358119977,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinGameActionEvent"),
@@ -9668,7 +10278,8 @@ pub static TELEMETRYSDKPINGAMEACTIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinVehicleHealthEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -9855,106 +10466,125 @@ impl super::core::DataContainerTrait for TelemetrySdkPinVehicleHealthEvent {
 
 pub static TELEMETRYSDKPINVEHICLEHEALTHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinVehicleHealthEvent",
+    name_hash: 1654790761,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinVehicleHealthEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinVehicleHealthEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, rdur),
             },
             FieldInfoData {
                 name: "veh_id",
+                name_hash: 1977570444,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, veh_id),
             },
             FieldInfoData {
                 name: "veh_loc",
+                name_hash: 835326529,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, veh_loc),
             },
             FieldInfoData {
                 name: "veh_type",
+                name_hash: 1796257785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, veh_type),
             },
             FieldInfoData {
                 name: "veh_guid",
+                name_hash: 1795676926,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, veh_guid),
             },
             FieldInfoData {
                 name: "is_heal",
+                name_hash: 2715049824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, is_heal),
             },
             FieldInfoData {
                 name: "source_id",
+                name_hash: 3626639882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, source_id),
             },
             FieldInfoData {
                 name: "source_type",
+                name_hash: 2336271487,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, source_type),
             },
             FieldInfoData {
                 name: "source_loc",
+                name_hash: 3715001991,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, source_loc),
             },
             FieldInfoData {
                 name: "source_item",
+                name_hash: 2335903090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, source_item),
             },
             FieldInfoData {
                 name: "cause",
+                name_hash: 176746948,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, cause),
             },
             FieldInfoData {
                 name: "weapon",
+                name_hash: 2011618087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, weapon),
             },
             FieldInfoData {
                 name: "amount",
+                name_hash: 1311882569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, amount),
             },
             FieldInfoData {
                 name: "health",
+                name_hash: 1581283705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, health),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleHealthEvent, field_flag_changed0),
@@ -9986,6 +10616,7 @@ impl TypeObject for TelemetrySdkPinVehicleHealthEvent {
 
 pub static TELEMETRYSDKPINVEHICLEHEALTHEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinVehicleHealthEvent-Array",
+    name_hash: 2495721821,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinVehicleHealthEvent"),
@@ -9994,7 +10625,8 @@ pub static TELEMETRYSDKPINVEHICLEHEALTHEVENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinVehicleInteractEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -10154,88 +10786,104 @@ impl super::core::DataContainerTrait for TelemetrySdkPinVehicleInteractEvent {
 
 pub static TELEMETRYSDKPINVEHICLEINTERACTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinVehicleInteractEvent",
+    name_hash: 2540930631,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinVehicleInteractEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinVehicleInteractEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, rdur),
             },
             FieldInfoData {
                 name: "veh_dur",
+                name_hash: 835318402,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, veh_dur),
             },
             FieldInfoData {
                 name: "veh_id",
+                name_hash: 1977570444,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, veh_id),
             },
             FieldInfoData {
                 name: "veh_guid",
+                name_hash: 1795676926,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, veh_guid),
             },
             FieldInfoData {
                 name: "veh_type",
+                name_hash: 1796257785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, veh_type),
             },
             FieldInfoData {
                 name: "action",
+                name_hash: 1314712411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, action),
             },
             FieldInfoData {
                 name: "veh_loc",
+                name_hash: 835326529,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, veh_loc),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_dir",
+                name_hash: 188279797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, p_dir),
             },
             FieldInfoData {
                 name: "p_team_id",
+                name_hash: 1828816837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, p_team_id),
             },
             FieldInfoData {
                 name: "custom",
+                name_hash: 1551012726,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, custom),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleInteractEvent, field_flag_changed0),
@@ -10267,6 +10915,7 @@ impl TypeObject for TelemetrySdkPinVehicleInteractEvent {
 
 pub static TELEMETRYSDKPINVEHICLEINTERACTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinVehicleInteractEvent-Array",
+    name_hash: 782276467,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinVehicleInteractEvent"),
@@ -10275,7 +10924,8 @@ pub static TELEMETRYSDKPINVEHICLEINTERACTEVENT_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinVehicleDestructionEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -10498,130 +11148,153 @@ impl super::core::DataContainerTrait for TelemetrySdkPinVehicleDestructionEvent 
 
 pub static TELEMETRYSDKPINVEHICLEDESTRUCTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinVehicleDestructionEvent",
+    name_hash: 2124083883,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinVehicleDestructionEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinVehicleDestructionEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, rdur),
             },
             FieldInfoData {
                 name: "veh_id",
+                name_hash: 1977570444,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, veh_id),
             },
             FieldInfoData {
                 name: "cause",
+                name_hash: 176746948,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, cause),
             },
             FieldInfoData {
                 name: "veh_loc",
+                name_hash: 835326529,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, veh_loc),
             },
             FieldInfoData {
                 name: "veh_type",
+                name_hash: 1796257785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, veh_type),
             },
             FieldInfoData {
                 name: "pilot_id",
+                name_hash: 3271763993,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, pilot_id),
             },
             FieldInfoData {
                 name: "pilot_type",
+                name_hash: 2422157484,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, pilot_type),
             },
             FieldInfoData {
                 name: "pilot_loc",
+                name_hash: 594026228,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, pilot_loc),
             },
             FieldInfoData {
                 name: "pilot_dir",
+                name_hash: 594017707,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, pilot_dir),
             },
             FieldInfoData {
                 name: "k_id",
+                name_hash: 2088017148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, k_id),
             },
             FieldInfoData {
                 name: "k_type",
+                name_hash: 1812241225,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, k_type),
             },
             FieldInfoData {
                 name: "k_loc",
+                name_hash: 185092081,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, k_loc),
             },
             FieldInfoData {
                 name: "k_dir",
+                name_hash: 185083822,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, k_dir),
             },
             FieldInfoData {
                 name: "is_eject",
+                name_hash: 3691823133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, is_eject),
             },
             FieldInfoData {
                 name: "veh_dur",
+                name_hash: 835318402,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, veh_dur),
             },
             FieldInfoData {
                 name: "veh_instance_id",
+                name_hash: 3795238874,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, veh_instance_id),
             },
             FieldInfoData {
                 name: "k_weap",
+                name_hash: 1812183890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, k_weap),
             },
             FieldInfoData {
                 name: "k_veh_id",
+                name_hash: 2034744664,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, k_veh_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleDestructionEvent, field_flag_changed0),
@@ -10653,6 +11326,7 @@ impl TypeObject for TelemetrySdkPinVehicleDestructionEvent {
 
 pub static TELEMETRYSDKPINVEHICLEDESTRUCTIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinVehicleDestructionEvent-Array",
+    name_hash: 3178492447,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinVehicleDestructionEvent"),
@@ -10661,7 +11335,8 @@ pub static TELEMETRYSDKPINVEHICLEDESTRUCTIONEVENT_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinVehicleSpawnEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -10794,70 +11469,83 @@ impl super::core::DataContainerTrait for TelemetrySdkPinVehicleSpawnEvent {
 
 pub static TELEMETRYSDKPINVEHICLESPAWNEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinVehicleSpawnEvent",
+    name_hash: 2987442702,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinVehicleSpawnEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinVehicleSpawnEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinVehicleSpawnEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleSpawnEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleSpawnEvent, rdur),
             },
             FieldInfoData {
                 name: "veh_id",
+                name_hash: 1977570444,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleSpawnEvent, veh_id),
             },
             FieldInfoData {
                 name: "veh_type",
+                name_hash: 1796257785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleSpawnEvent, veh_type),
             },
             FieldInfoData {
                 name: "veh_loc",
+                name_hash: 835326529,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleSpawnEvent, veh_loc),
             },
             FieldInfoData {
                 name: "veh_lev",
+                name_hash: 835326622,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleSpawnEvent, veh_lev),
             },
             FieldInfoData {
                 name: "veh_loadout",
+                name_hash: 1364444201,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleSpawnEvent, veh_loadout),
             },
             FieldInfoData {
                 name: "veh_instance_id",
+                name_hash: 3795238874,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleSpawnEvent, veh_instance_id),
             },
             FieldInfoData {
                 name: "team_id",
+                name_hash: 1826788170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleSpawnEvent, team_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinVehicleSpawnEvent, field_flag_changed0),
@@ -10889,6 +11577,7 @@ impl TypeObject for TelemetrySdkPinVehicleSpawnEvent {
 
 pub static TELEMETRYSDKPINVEHICLESPAWNEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinVehicleSpawnEvent-Array",
+    name_hash: 35924794,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinVehicleSpawnEvent"),
@@ -10897,7 +11586,8 @@ pub static TELEMETRYSDKPINVEHICLESPAWNEVENT_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinTagEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -11012,58 +11702,69 @@ impl super::core::DataContainerTrait for TelemetrySdkPinTagEvent {
 
 pub static TELEMETRYSDKPINTAGEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinTagEvent",
+    name_hash: 3848233119,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinTagEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinTagEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinTagEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinTagEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinTagEvent, rdur),
             },
             FieldInfoData {
                 name: "tag_type",
+                name_hash: 3609086992,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTagEvent, tag_type),
             },
             FieldInfoData {
                 name: "tag_id",
+                name_hash: 1742597733,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTagEvent, tag_id),
             },
             FieldInfoData {
                 name: "tag_loc",
+                name_hash: 1671147272,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinTagEvent, tag_loc),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinTagEvent, p_loc),
             },
             FieldInfoData {
                 name: "tag_method",
+                name_hash: 4040318615,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTagEvent, tag_method),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinTagEvent, field_flag_changed0),
@@ -11095,6 +11796,7 @@ impl TypeObject for TelemetrySdkPinTagEvent {
 
 pub static TELEMETRYSDKPINTAGEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinTagEvent-Array",
+    name_hash: 1920566571,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinTagEvent"),
@@ -11103,7 +11805,8 @@ pub static TELEMETRYSDKPINTAGEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinItemUpgradeEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -11218,58 +11921,69 @@ impl super::core::DataContainerTrait for TelemetrySdkPinItemUpgradeEvent {
 
 pub static TELEMETRYSDKPINITEMUPGRADEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinItemUpgradeEvent",
+    name_hash: 3148116424,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinItemUpgradeEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinItemUpgradeEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinItemUpgradeEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinItemUpgradeEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinItemUpgradeEvent, rdur),
             },
             FieldInfoData {
                 name: "item_id",
+                name_hash: 2442823394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemUpgradeEvent, item_id),
             },
             FieldInfoData {
                 name: "item_category",
+                name_hash: 712893855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemUpgradeEvent, item_category),
             },
             FieldInfoData {
                 name: "item_type",
+                name_hash: 1650585687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemUpgradeEvent, item_type),
             },
             FieldInfoData {
                 name: "item_name",
+                name_hash: 1649538024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemUpgradeEvent, item_name),
             },
             FieldInfoData {
                 name: "item_loc",
+                name_hash: 3303755695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinItemUpgradeEvent, item_loc),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinItemUpgradeEvent, field_flag_changed0),
@@ -11301,6 +12015,7 @@ impl TypeObject for TelemetrySdkPinItemUpgradeEvent {
 
 pub static TELEMETRYSDKPINITEMUPGRADEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinItemUpgradeEvent-Array",
+    name_hash: 3338978428,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinItemUpgradeEvent"),
@@ -11309,7 +12024,8 @@ pub static TELEMETRYSDKPINITEMUPGRADEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinItemUnlockEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -11424,58 +12140,69 @@ impl super::core::DataContainerTrait for TelemetrySdkPinItemUnlockEvent {
 
 pub static TELEMETRYSDKPINITEMUNLOCKEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinItemUnlockEvent",
+    name_hash: 3049666024,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinItemUnlockEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinItemUnlockEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinItemUnlockEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinItemUnlockEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinItemUnlockEvent, rdur),
             },
             FieldInfoData {
                 name: "item_id",
+                name_hash: 2442823394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemUnlockEvent, item_id),
             },
             FieldInfoData {
                 name: "item_category",
+                name_hash: 712893855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemUnlockEvent, item_category),
             },
             FieldInfoData {
                 name: "item_type",
+                name_hash: 1650585687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemUnlockEvent, item_type),
             },
             FieldInfoData {
                 name: "item_loc",
+                name_hash: 3303755695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinItemUnlockEvent, item_loc),
             },
             FieldInfoData {
                 name: "item_name",
+                name_hash: 1649538024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemUnlockEvent, item_name),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinItemUnlockEvent, field_flag_changed0),
@@ -11507,6 +12234,7 @@ impl TypeObject for TelemetrySdkPinItemUnlockEvent {
 
 pub static TELEMETRYSDKPINITEMUNLOCKEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinItemUnlockEvent-Array",
+    name_hash: 2910906332,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinItemUnlockEvent"),
@@ -11515,7 +12243,8 @@ pub static TELEMETRYSDKPINITEMUNLOCKEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinItemPickupEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -11639,64 +12368,76 @@ impl super::core::DataContainerTrait for TelemetrySdkPinItemPickupEvent {
 
 pub static TELEMETRYSDKPINITEMPICKUPEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinItemPickupEvent",
+    name_hash: 3208526444,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinItemPickupEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinItemPickupEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinItemPickupEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinItemPickupEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinItemPickupEvent, rdur),
             },
             FieldInfoData {
                 name: "item_dur",
+                name_hash: 3303764844,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinItemPickupEvent, item_dur),
             },
             FieldInfoData {
                 name: "item_id",
+                name_hash: 2442823394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemPickupEvent, item_id),
             },
             FieldInfoData {
                 name: "item_category",
+                name_hash: 712893855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemPickupEvent, item_category),
             },
             FieldInfoData {
                 name: "item_type",
+                name_hash: 1650585687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemPickupEvent, item_type),
             },
             FieldInfoData {
                 name: "item_name",
+                name_hash: 1649538024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemPickupEvent, item_name),
             },
             FieldInfoData {
                 name: "item_loc",
+                name_hash: 3303755695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinItemPickupEvent, item_loc),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinItemPickupEvent, field_flag_changed0),
@@ -11728,6 +12469,7 @@ impl TypeObject for TelemetrySdkPinItemPickupEvent {
 
 pub static TELEMETRYSDKPINITEMPICKUPEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinItemPickupEvent-Array",
+    name_hash: 2018114136,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinItemPickupEvent"),
@@ -11736,7 +12478,8 @@ pub static TELEMETRYSDKPINITEMPICKUPEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinItemSpawnEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -11851,58 +12594,69 @@ impl super::core::DataContainerTrait for TelemetrySdkPinItemSpawnEvent {
 
 pub static TELEMETRYSDKPINITEMSPAWNEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinItemSpawnEvent",
+    name_hash: 1912169091,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinItemSpawnEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinItemSpawnEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinItemSpawnEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinItemSpawnEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinItemSpawnEvent, rdur),
             },
             FieldInfoData {
                 name: "item_id",
+                name_hash: 2442823394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemSpawnEvent, item_id),
             },
             FieldInfoData {
                 name: "item_category",
+                name_hash: 712893855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemSpawnEvent, item_category),
             },
             FieldInfoData {
                 name: "item_type",
+                name_hash: 1650585687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemSpawnEvent, item_type),
             },
             FieldInfoData {
                 name: "item_name",
+                name_hash: 1649538024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemSpawnEvent, item_name),
             },
             FieldInfoData {
                 name: "item_loc",
+                name_hash: 3303755695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinItemSpawnEvent, item_loc),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinItemSpawnEvent, field_flag_changed0),
@@ -11934,6 +12688,7 @@ impl TypeObject for TelemetrySdkPinItemSpawnEvent {
 
 pub static TELEMETRYSDKPINITEMSPAWNEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinItemSpawnEvent-Array",
+    name_hash: 1270560055,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinItemSpawnEvent"),
@@ -11942,7 +12697,8 @@ pub static TELEMETRYSDKPINITEMSPAWNEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinItemHealthEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -12138,112 +12894,132 @@ impl super::core::DataContainerTrait for TelemetrySdkPinItemHealthEvent {
 
 pub static TELEMETRYSDKPINITEMHEALTHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinItemHealthEvent",
+    name_hash: 400972548,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinItemHealthEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinItemHealthEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinItemHealthEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, rdur),
             },
             FieldInfoData {
                 name: "item_id",
+                name_hash: 2442823394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, item_id),
             },
             FieldInfoData {
                 name: "item_category",
+                name_hash: 712893855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, item_category),
             },
             FieldInfoData {
                 name: "item_type",
+                name_hash: 1650585687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, item_type),
             },
             FieldInfoData {
                 name: "item_loc",
+                name_hash: 3303755695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, item_loc),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_id",
+                name_hash: 2088113415,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, p_id),
             },
             FieldInfoData {
                 name: "p_type",
+                name_hash: 1918823602,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, p_type),
             },
             FieldInfoData {
                 name: "is_heal",
+                name_hash: 2715049824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, is_heal),
             },
             FieldInfoData {
                 name: "source_id",
+                name_hash: 3626639882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, source_id),
             },
             FieldInfoData {
                 name: "source_type",
+                name_hash: 2336271487,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, source_type),
             },
             FieldInfoData {
                 name: "source_loc",
+                name_hash: 3715001991,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, source_loc),
             },
             FieldInfoData {
                 name: "weapon",
+                name_hash: 2011618087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, weapon),
             },
             FieldInfoData {
                 name: "amount",
+                name_hash: 1311882569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, amount),
             },
             FieldInfoData {
                 name: "health",
+                name_hash: 1581283705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, health),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinItemHealthEvent, field_flag_changed0),
@@ -12275,6 +13051,7 @@ impl TypeObject for TelemetrySdkPinItemHealthEvent {
 
 pub static TELEMETRYSDKPINITEMHEALTHEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinItemHealthEvent-Array",
+    name_hash: 1708977968,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinItemHealthEvent"),
@@ -12283,7 +13060,8 @@ pub static TELEMETRYSDKPINITEMHEALTHEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerOutResourceEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -12362,34 +13140,41 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerOutResourceEvent {
 
 pub static TELEMETRYSDKPINPLAYEROUTRESOURCEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerOutResourceEvent",
+    name_hash: 2909143482,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerOutResourceEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerOutResourceEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerOutResourceEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerOutResourceEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerOutResourceEvent, rdur),
             },
             FieldInfoData {
                 name: "resource_type",
+                name_hash: 2440326344,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerOutResourceEvent, resource_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerOutResourceEvent, field_flag_changed0),
@@ -12421,6 +13206,7 @@ impl TypeObject for TelemetrySdkPinPlayerOutResourceEvent {
 
 pub static TELEMETRYSDKPINPLAYEROUTRESOURCEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerOutResourceEvent-Array",
+    name_hash: 1019855886,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerOutResourceEvent"),
@@ -12429,7 +13215,8 @@ pub static TELEMETRYSDKPINPLAYEROUTRESOURCEEVENT_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerTeamSwitchEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -12544,58 +13331,69 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerTeamSwitchEvent {
 
 pub static TELEMETRYSDKPINPLAYERTEAMSWITCHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerTeamSwitchEvent",
+    name_hash: 1864209905,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerTeamSwitchEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerTeamSwitchEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerTeamSwitchEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTeamSwitchEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTeamSwitchEvent, rdur),
             },
             FieldInfoData {
                 name: "prev_team_id",
+                name_hash: 1049168868,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTeamSwitchEvent, prev_team_id),
             },
             FieldInfoData {
                 name: "prev_team_score",
+                name_hash: 2784697569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTeamSwitchEvent, prev_team_score),
             },
             FieldInfoData {
                 name: "team_id",
+                name_hash: 1826788170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTeamSwitchEvent, team_id),
             },
             FieldInfoData {
                 name: "team_score",
+                name_hash: 714012367,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTeamSwitchEvent, team_score),
             },
             FieldInfoData {
                 name: "reason",
+                name_hash: 2124277697,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTeamSwitchEvent, reason),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTeamSwitchEvent, field_flag_changed0),
@@ -12627,6 +13425,7 @@ impl TypeObject for TelemetrySdkPinPlayerTeamSwitchEvent {
 
 pub static TELEMETRYSDKPINPLAYERTEAMSWITCHEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerTeamSwitchEvent-Array",
+    name_hash: 383727813,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerTeamSwitchEvent"),
@@ -12635,7 +13434,8 @@ pub static TELEMETRYSDKPINPLAYERTEAMSWITCHEVENT_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerInteractEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -12786,82 +13586,97 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerInteractEvent {
 
 pub static TELEMETRYSDKPINPLAYERINTERACTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerInteractEvent",
+    name_hash: 3718552620,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerInteractEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerInteractEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, rdur),
             },
             FieldInfoData {
                 name: "item_id",
+                name_hash: 2442823394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, item_id),
             },
             FieldInfoData {
                 name: "item_category",
+                name_hash: 712893855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, item_category),
             },
             FieldInfoData {
                 name: "item_type",
+                name_hash: 1650585687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, item_type),
             },
             FieldInfoData {
                 name: "item_loc",
+                name_hash: 3303755695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, item_loc),
             },
             FieldInfoData {
                 name: "action",
+                name_hash: 1314712411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, action),
             },
             FieldInfoData {
                 name: "p_dir",
+                name_hash: 188279797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, p_dir),
             },
             FieldInfoData {
                 name: "p_state",
+                name_hash: 3188179485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, p_state),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_class",
+                name_hash: 3169492516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, p_class),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerInteractEvent, field_flag_changed0),
@@ -12893,6 +13708,7 @@ impl TypeObject for TelemetrySdkPinPlayerInteractEvent {
 
 pub static TELEMETRYSDKPINPLAYERINTERACTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerInteractEvent-Array",
+    name_hash: 3769019288,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerInteractEvent"),
@@ -12901,7 +13717,8 @@ pub static TELEMETRYSDKPINPLAYERINTERACTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerAbilityAffectEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -13061,88 +13878,104 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerAbilityAffectEvent
 
 pub static TELEMETRYSDKPINPLAYERABILITYAFFECTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerAbilityAffectEvent",
+    name_hash: 2686010895,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerAbilityAffectEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerAbilityAffectEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, rdur),
             },
             FieldInfoData {
                 name: "a_loc",
+                name_hash: 169330427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, a_loc),
             },
             FieldInfoData {
                 name: "a_type",
+                name_hash: 1292650883,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, a_type),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_state",
+                name_hash: 3188179485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, p_state),
             },
             FieldInfoData {
                 name: "p_class",
+                name_hash: 3169492516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, p_class),
             },
             FieldInfoData {
                 name: "p_team_id",
+                name_hash: 1828816837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, p_team_id),
             },
             FieldInfoData {
                 name: "v_state",
+                name_hash: 1476000411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, v_state),
             },
             FieldInfoData {
                 name: "v_loc",
+                name_hash: 190639020,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, v_loc),
             },
             FieldInfoData {
                 name: "v_class",
+                name_hash: 1457313058,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, v_class),
             },
             FieldInfoData {
                 name: "v_team_id",
+                name_hash: 723241283,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, v_team_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityAffectEvent, field_flag_changed0),
@@ -13174,6 +14007,7 @@ impl TypeObject for TelemetrySdkPinPlayerAbilityAffectEvent {
 
 pub static TELEMETRYSDKPINPLAYERABILITYAFFECTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerAbilityAffectEvent-Array",
+    name_hash: 433504955,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerAbilityAffectEvent"),
@@ -13182,7 +14016,8 @@ pub static TELEMETRYSDKPINPLAYERABILITYAFFECTEVENT_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerAbilityEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -13324,76 +14159,90 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerAbilityEvent {
 
 pub static TELEMETRYSDKPINPLAYERABILITYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerAbilityEvent",
+    name_hash: 1376253404,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerAbilityEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerAbilityEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, rdur),
             },
             FieldInfoData {
                 name: "ability",
+                name_hash: 162475143,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, ability),
             },
             FieldInfoData {
                 name: "ability_dur",
+                name_hash: 1859577019,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, ability_dur),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_state",
+                name_hash: 3188179485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, p_state),
             },
             FieldInfoData {
                 name: "ability_data",
+                name_hash: 1236519976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, ability_data),
             },
             FieldInfoData {
                 name: "p_class",
+                name_hash: 3169492516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, p_class),
             },
             FieldInfoData {
                 name: "p_team_id",
+                name_hash: 1828816837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, p_team_id),
             },
             FieldInfoData {
                 name: "p_veh_id",
+                name_hash: 2341289379,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, p_veh_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerAbilityEvent, field_flag_changed0),
@@ -13425,6 +14274,7 @@ impl TypeObject for TelemetrySdkPinPlayerAbilityEvent {
 
 pub static TELEMETRYSDKPINPLAYERABILITYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerAbilityEvent-Array",
+    name_hash: 1405992552,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerAbilityEvent"),
@@ -13433,7 +14283,8 @@ pub static TELEMETRYSDKPINPLAYERABILITYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerUseEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -13611,100 +14462,118 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerUseEvent {
 
 pub static TELEMETRYSDKPINPLAYERUSEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerUseEvent",
+    name_hash: 155425693,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerUseEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerUseEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, rdur),
             },
             FieldInfoData {
                 name: "item_id",
+                name_hash: 2442823394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, item_id),
             },
             FieldInfoData {
                 name: "item_category",
+                name_hash: 712893855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, item_category),
             },
             FieldInfoData {
                 name: "item_type",
+                name_hash: 1650585687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, item_type),
             },
             FieldInfoData {
                 name: "item_name",
+                name_hash: 1649538024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, item_name),
             },
             FieldInfoData {
                 name: "item_dur",
+                name_hash: 3303764844,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, item_dur),
             },
             FieldInfoData {
                 name: "item_loc",
+                name_hash: 3303755695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, item_loc),
             },
             FieldInfoData {
                 name: "p_state",
+                name_hash: 3188179485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, p_state),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_class",
+                name_hash: 3169492516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, p_class),
             },
             FieldInfoData {
                 name: "p_team_id",
+                name_hash: 1828816837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, p_team_id),
             },
             FieldInfoData {
                 name: "veh_id",
+                name_hash: 1977570444,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, veh_id),
             },
             FieldInfoData {
                 name: "action",
+                name_hash: 1314712411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, action),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerUseEvent, field_flag_changed0),
@@ -13736,6 +14605,7 @@ impl TypeObject for TelemetrySdkPinPlayerUseEvent {
 
 pub static TELEMETRYSDKPINPLAYERUSEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerUseEvent-Array",
+    name_hash: 52791081,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerUseEvent"),
@@ -13744,7 +14614,8 @@ pub static TELEMETRYSDKPINPLAYERUSEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerKillAssistEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -13868,64 +14739,76 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerKillAssistEvent {
 
 pub static TELEMETRYSDKPINPLAYERKILLASSISTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerKillAssistEvent",
+    name_hash: 1904762739,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerKillAssistEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerKillAssistEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerKillAssistEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerKillAssistEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerKillAssistEvent, rdur),
             },
             FieldInfoData {
                 name: "k_id",
+                name_hash: 2088017148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerKillAssistEvent, k_id),
             },
             FieldInfoData {
                 name: "k_type",
+                name_hash: 1812241225,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerKillAssistEvent, k_type),
             },
             FieldInfoData {
                 name: "v_id",
+                name_hash: 2088185409,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerKillAssistEvent, v_id),
             },
             FieldInfoData {
                 name: "v_type",
+                name_hash: 1996946420,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerKillAssistEvent, v_type),
             },
             FieldInfoData {
                 name: "damage",
+                name_hash: 1116830222,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerKillAssistEvent, damage),
             },
             FieldInfoData {
                 name: "percent",
+                name_hash: 2364363998,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerKillAssistEvent, percent),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerKillAssistEvent, field_flag_changed0),
@@ -13957,6 +14840,7 @@ impl TypeObject for TelemetrySdkPinPlayerKillAssistEvent {
 
 pub static TELEMETRYSDKPINPLAYERKILLASSISTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerKillAssistEvent-Array",
+    name_hash: 1363630919,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerKillAssistEvent"),
@@ -13965,7 +14849,8 @@ pub static TELEMETRYSDKPINPLAYERKILLASSISTEVENT_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerHealthEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -14116,82 +15001,97 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerHealthEvent {
 
 pub static TELEMETRYSDKPINPLAYERHEALTHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerHealthEvent",
+    name_hash: 4073828866,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerHealthEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerHealthEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, rdur),
             },
             FieldInfoData {
                 name: "source_id",
+                name_hash: 3626639882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, source_id),
             },
             FieldInfoData {
                 name: "source_type",
+                name_hash: 2336271487,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, source_type),
             },
             FieldInfoData {
                 name: "source_loc",
+                name_hash: 3715001991,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, source_loc),
             },
             FieldInfoData {
                 name: "is_heal",
+                name_hash: 2715049824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, is_heal),
             },
             FieldInfoData {
                 name: "is_revived",
+                name_hash: 1262340895,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, is_revived),
             },
             FieldInfoData {
                 name: "amount",
+                name_hash: 1311882569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, amount),
             },
             FieldInfoData {
                 name: "health",
+                name_hash: 1581283705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, health),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, p_loc),
             },
             FieldInfoData {
                 name: "weapon",
+                name_hash: 2011618087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, weapon),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerHealthEvent, field_flag_changed0),
@@ -14223,6 +15123,7 @@ impl TypeObject for TelemetrySdkPinPlayerHealthEvent {
 
 pub static TELEMETRYSDKPINPLAYERHEALTHEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerHealthEvent-Array",
+    name_hash: 135926070,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerHealthEvent"),
@@ -14231,7 +15132,8 @@ pub static TELEMETRYSDKPINPLAYERHEALTHEVENT_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerDeathEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -14535,184 +15437,216 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerDeathEvent {
 
 pub static TELEMETRYSDKPINPLAYERDEATHEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerDeathEvent",
+    name_hash: 1040555426,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerDeathEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerDeathEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, rdur),
             },
             FieldInfoData {
                 name: "cause",
+                name_hash: 176746948,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, cause),
             },
             FieldInfoData {
                 name: "v_loc",
+                name_hash: 190639020,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, v_loc),
             },
             FieldInfoData {
                 name: "v_dir",
+                name_hash: 190647155,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, v_dir),
             },
             FieldInfoData {
                 name: "v_state",
+                name_hash: 1476000411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, v_state),
             },
             FieldInfoData {
                 name: "is_vads",
+                name_hash: 2715408896,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, is_vads),
             },
             FieldInfoData {
                 name: "k_id",
+                name_hash: 2088017148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, k_id),
             },
             FieldInfoData {
                 name: "k_type",
+                name_hash: 1812241225,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, k_type),
             },
             FieldInfoData {
                 name: "k_class",
+                name_hash: 3982051455,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, k_class),
             },
             FieldInfoData {
                 name: "k_weap",
+                name_hash: 1812183890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, k_weap),
             },
             FieldInfoData {
                 name: "k_loc",
+                name_hash: 185092081,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, k_loc),
             },
             FieldInfoData {
                 name: "k_dir",
+                name_hash: 185083822,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, k_dir),
             },
             FieldInfoData {
                 name: "k_state",
+                name_hash: 3963363974,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, k_state),
             },
             FieldInfoData {
                 name: "is_kads",
+                name_hash: 2715225213,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, is_kads),
             },
             FieldInfoData {
                 name: "v_weap",
+                name_hash: 1996868719,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, v_weap),
             },
             FieldInfoData {
                 name: "v_class",
+                name_hash: 1457313058,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, v_class),
             },
             FieldInfoData {
                 name: "k_lifetime",
+                name_hash: 1725109858,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, k_lifetime),
             },
             FieldInfoData {
                 name: "v_lifetime",
+                name_hash: 2974586975,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, v_lifetime),
             },
             FieldInfoData {
                 name: "v_buff",
+                name_hash: 1996486395,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, v_buff),
             },
             FieldInfoData {
                 name: "k_buff",
+                name_hash: 1812566086,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, k_buff),
             },
             FieldInfoData {
                 name: "v_team_id",
+                name_hash: 723241283,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, v_team_id),
             },
             FieldInfoData {
                 name: "v_res_points",
+                name_hash: 3123030792,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, v_res_points),
             },
             FieldInfoData {
                 name: "game_play_stats",
+                name_hash: 1045428046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, game_play_stats),
             },
             FieldInfoData {
                 name: "weapon_stats",
+                name_hash: 3531663673,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, weapon_stats),
             },
             FieldInfoData {
                 name: "v_score_earned",
+                name_hash: 3427809634,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, v_score_earned),
             },
             FieldInfoData {
                 name: "v_veh_id",
+                name_hash: 1379824997,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, v_veh_id),
             },
             FieldInfoData {
                 name: "k_veh_id",
+                name_hash: 2034744664,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, k_veh_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerDeathEvent, field_flag_changed0),
@@ -14744,6 +15678,7 @@ impl TypeObject for TelemetrySdkPinPlayerDeathEvent {
 
 pub static TELEMETRYSDKPINPLAYERDEATHEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerDeathEvent-Array",
+    name_hash: 4087102486,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerDeathEvent"),
@@ -14752,7 +15687,8 @@ pub static TELEMETRYSDKPINPLAYERDEATHEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerEquipEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -14867,58 +15803,69 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerEquipEvent {
 
 pub static TELEMETRYSDKPINPLAYEREQUIPEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerEquipEvent",
+    name_hash: 4171743622,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerEquipEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerEquipEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerEquipEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerEquipEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerEquipEvent, rdur),
             },
             FieldInfoData {
                 name: "loadout",
+                name_hash: 3993145613,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerEquipEvent, loadout),
             },
             FieldInfoData {
                 name: "prev_loadout",
+                name_hash: 201877603,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerEquipEvent, prev_loadout),
             },
             FieldInfoData {
                 name: "pgid",
+                name_hash: 2088090111,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerEquipEvent, pgid),
             },
             FieldInfoData {
                 name: "object_id",
+                name_hash: 2751165154,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerEquipEvent, object_id),
             },
             FieldInfoData {
                 name: "object_type",
+                name_hash: 2427313239,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerEquipEvent, object_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerEquipEvent, field_flag_changed0),
@@ -14950,6 +15897,7 @@ impl TypeObject for TelemetrySdkPinPlayerEquipEvent {
 
 pub static TELEMETRYSDKPINPLAYEREQUIPEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerEquipEvent-Array",
+    name_hash: 3730665138,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerEquipEvent"),
@@ -14958,7 +15906,8 @@ pub static TELEMETRYSDKPINPLAYEREQUIPEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerClassEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -15055,46 +16004,55 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerClassEvent {
 
 pub static TELEMETRYSDKPINPLAYERCLASSEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerClassEvent",
+    name_hash: 3619254960,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerClassEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerClassEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerClassEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerClassEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerClassEvent, rdur),
             },
             FieldInfoData {
                 name: "p_class",
+                name_hash: 3169492516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerClassEvent, p_class),
             },
             FieldInfoData {
                 name: "sub_class",
+                name_hash: 3228352720,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerClassEvent, sub_class),
             },
             FieldInfoData {
                 name: "prev_class",
+                name_hash: 4234767621,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerClassEvent, prev_class),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerClassEvent, field_flag_changed0),
@@ -15126,6 +16084,7 @@ impl TypeObject for TelemetrySdkPinPlayerClassEvent {
 
 pub static TELEMETRYSDKPINPLAYERCLASSEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerClassEvent-Array",
+    name_hash: 829825028,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerClassEvent"),
@@ -15134,7 +16093,8 @@ pub static TELEMETRYSDKPINPLAYERCLASSEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerStateEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -15267,70 +16227,83 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerStateEvent {
 
 pub static TELEMETRYSDKPINPLAYERSTATEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerStateEvent",
+    name_hash: 2017019817,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerStateEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerStateEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerStateEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStateEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStateEvent, rdur),
             },
             FieldInfoData {
                 name: "p_state",
+                name_hash: 3188179485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStateEvent, p_state),
             },
             FieldInfoData {
                 name: "prev_state",
+                name_hash: 4253454780,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStateEvent, prev_state),
             },
             FieldInfoData {
                 name: "prev_dur",
+                name_hash: 3356260936,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStateEvent, prev_dur),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStateEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_dir",
+                name_hash: 188279797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStateEvent, p_dir),
             },
             FieldInfoData {
                 name: "team_id",
+                name_hash: 1826788170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStateEvent, team_id),
             },
             FieldInfoData {
                 name: "p_class",
+                name_hash: 3169492516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStateEvent, p_class),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStateEvent, field_flag_changed0),
@@ -15362,6 +16335,7 @@ impl TypeObject for TelemetrySdkPinPlayerStateEvent {
 
 pub static TELEMETRYSDKPINPLAYERSTATEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerStateEvent-Array",
+    name_hash: 1904578077,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerStateEvent"),
@@ -15370,7 +16344,8 @@ pub static TELEMETRYSDKPINPLAYERSTATEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinNpcSpawnEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -15494,64 +16469,76 @@ impl super::core::DataContainerTrait for TelemetrySdkPinNpcSpawnEvent {
 
 pub static TELEMETRYSDKPINNPCSPAWNEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcSpawnEvent",
+    name_hash: 3177221707,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinNpcSpawnEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinNpcSpawnEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinNpcSpawnEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinNpcSpawnEvent, gdur),
             },
             FieldInfoData {
                 name: "npc_id",
+                name_hash: 1677076394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcSpawnEvent, npc_id),
             },
             FieldInfoData {
                 name: "npc_loc",
+                name_hash: 3803908071,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcSpawnEvent, npc_loc),
             },
             FieldInfoData {
                 name: "npc_class",
+                name_hash: 2106200169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcSpawnEvent, npc_class),
             },
             FieldInfoData {
                 name: "npc_dir",
+                name_hash: 3803899704,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinNpcSpawnEvent, npc_dir),
             },
             FieldInfoData {
                 name: "npc_veh_id",
+                name_hash: 1219341198,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcSpawnEvent, npc_veh_id),
             },
             FieldInfoData {
                 name: "npc_team_id",
+                name_hash: 3446061960,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcSpawnEvent, npc_team_id),
             },
             FieldInfoData {
                 name: "npc_loadout",
+                name_hash: 1464515279,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinNpcSpawnEvent, npc_loadout),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinNpcSpawnEvent, field_flag_changed0),
@@ -15583,6 +16570,7 @@ impl TypeObject for TelemetrySdkPinNpcSpawnEvent {
 
 pub static TELEMETRYSDKPINNPCSPAWNEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinNpcSpawnEvent-Array",
+    name_hash: 1165184383,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinNpcSpawnEvent"),
@@ -15591,7 +16579,8 @@ pub static TELEMETRYSDKPINNPCSPAWNEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerSpawnEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -15769,100 +16758,118 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerSpawnEvent {
 
 pub static TELEMETRYSDKPINPLAYERSPAWNEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerSpawnEvent",
+    name_hash: 2361736645,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerSpawnEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerSpawnEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, r#type),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, rdur),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_dir",
+                name_hash: 188279797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, p_dir),
             },
             FieldInfoData {
                 name: "veh_id",
+                name_hash: 1977570444,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, veh_id),
             },
             FieldInfoData {
                 name: "veh_type",
+                name_hash: 1796257785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, veh_type),
             },
             FieldInfoData {
                 name: "p_class",
+                name_hash: 3169492516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, p_class),
             },
             FieldInfoData {
                 name: "team_id",
+                name_hash: 1826788170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, team_id),
             },
             FieldInfoData {
                 name: "resources",
+                name_hash: 1611366780,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, resources),
             },
             FieldInfoData {
                 name: "resources_spent",
+                name_hash: 2516274623,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, resources_spent),
             },
             FieldInfoData {
                 name: "resource_items",
+                name_hash: 3242714390,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, resource_items),
             },
             FieldInfoData {
                 name: "loadout",
+                name_hash: 3993145613,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, loadout),
             },
             FieldInfoData {
                 name: "reason",
+                name_hash: 2124277697,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, reason),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerSpawnEvent, field_flag_changed0),
@@ -15894,6 +16901,7 @@ impl TypeObject for TelemetrySdkPinPlayerSpawnEvent {
 
 pub static TELEMETRYSDKPINPLAYERSPAWNEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerSpawnEvent-Array",
+    name_hash: 3784422897,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerSpawnEvent"),
@@ -15902,7 +16910,8 @@ pub static TELEMETRYSDKPINPLAYERSPAWNEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerTickEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -16107,118 +17116,139 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerTickEvent {
 
 pub static TELEMETRYSDKPINPLAYERTICKEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerTickEvent",
+    name_hash: 3902581739,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerTickEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerTickEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, rdur),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_char",
+                name_hash: 1918148210,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, p_char),
             },
             FieldInfoData {
                 name: "p_class",
+                name_hash: 3169492516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, p_class),
             },
             FieldInfoData {
                 name: "p_dir",
+                name_hash: 188279797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, p_dir),
             },
             FieldInfoData {
                 name: "cam_dir",
+                name_hash: 3491456074,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, cam_dir),
             },
             FieldInfoData {
                 name: "p_state",
+                name_hash: 3188179485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, p_state),
             },
             FieldInfoData {
                 name: "veh_id",
+                name_hash: 1977570444,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, veh_id),
             },
             FieldInfoData {
                 name: "veh_type",
+                name_hash: 1796257785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, veh_type),
             },
             FieldInfoData {
                 name: "veh_state",
+                name_hash: 3436155638,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, veh_state),
             },
             FieldInfoData {
                 name: "item_id",
+                name_hash: 2442823394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, item_id),
             },
             FieldInfoData {
                 name: "item_category",
+                name_hash: 712893855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, item_category),
             },
             FieldInfoData {
                 name: "item_type",
+                name_hash: 1650585687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, item_type),
             },
             FieldInfoData {
                 name: "item_name",
+                name_hash: 1649538024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, item_name),
             },
             FieldInfoData {
                 name: "is_ads",
+                name_hash: 1644070838,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, is_ads),
             },
             FieldInfoData {
                 name: "p_team_id",
+                name_hash: 1828816837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, p_team_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerTickEvent, field_flag_changed0),
@@ -16250,6 +17280,7 @@ impl TypeObject for TelemetrySdkPinPlayerTickEvent {
 
 pub static TELEMETRYSDKPINPLAYERTICKEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerTickEvent-Array",
+    name_hash: 24091615,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerTickEvent"),
@@ -16258,7 +17289,8 @@ pub static TELEMETRYSDKPINPLAYERTICKEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinTransctionEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub code: String,
@@ -16436,100 +17468,118 @@ impl super::core::DataContainerTrait for TelemetrySdkPinTransctionEvent {
 
 pub static TELEMETRYSDKPINTRANSCTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinTransctionEvent",
+    name_hash: 455357672,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinTransctionEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinTransctionEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinTransctionEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "code",
+                name_hash: 2087770728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, code),
             },
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, r#type),
             },
             FieldInfoData {
                 name: "source",
+                name_hash: 2169993400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, source),
             },
             FieldInfoData {
                 name: "revenue_model",
+                name_hash: 1698733359,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, revenue_model),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, status_code),
             },
             FieldInfoData {
                 name: "party1id",
+                name_hash: 1607401943,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, party1id),
             },
             FieldInfoData {
                 name: "party2id",
+                name_hash: 1607402772,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, party2id),
             },
             FieldInfoData {
                 name: "asset_out",
+                name_hash: 1370368932,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, asset_out),
             },
             FieldInfoData {
                 name: "asset_in",
+                name_hash: 3685740813,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, asset_in),
             },
             FieldInfoData {
                 name: "bal1",
+                name_hash: 2087732507,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, bal1),
             },
             FieldInfoData {
                 name: "bal2",
+                name_hash: 2087732504,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, bal2),
             },
             FieldInfoData {
                 name: "_meta",
+                name_hash: 236029895,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, _meta),
             },
             FieldInfoData {
                 name: "txid",
+                name_hash: 2087942308,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, txid),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinTransctionEvent, field_flag_changed0),
@@ -16561,6 +17611,7 @@ impl TypeObject for TelemetrySdkPinTransctionEvent {
 
 pub static TELEMETRYSDKPINTRANSCTIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinTransctionEvent-Array",
+    name_hash: 656549596,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinTransctionEvent"),
@@ -16569,7 +17620,8 @@ pub static TELEMETRYSDKPINTRANSCTIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinInventoryEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub playerid: RawJsonString,
@@ -16639,28 +17691,34 @@ impl super::core::DataContainerTrait for TelemetrySdkPinInventoryEvent {
 
 pub static TELEMETRYSDKPININVENTORYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinInventoryEvent",
+    name_hash: 2694738887,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinInventoryEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinInventoryEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinInventoryEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "playerid",
+                name_hash: 1652228539,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinInventoryEvent, playerid),
             },
             FieldInfoData {
                 name: "assets",
+                name_hash: 1332497414,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinInventoryEvent, assets),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinInventoryEvent, field_flag_changed0),
@@ -16692,6 +17750,7 @@ impl TypeObject for TelemetrySdkPinInventoryEvent {
 
 pub static TELEMETRYSDKPININVENTORYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinInventoryEvent-Array",
+    name_hash: 380085491,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinInventoryEvent"),
@@ -16700,7 +17759,8 @@ pub static TELEMETRYSDKPININVENTORYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinSurveyEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -16833,70 +17893,83 @@ impl super::core::DataContainerTrait for TelemetrySdkPinSurveyEvent {
 
 pub static TELEMETRYSDKPINSURVEYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinSurveyEvent",
+    name_hash: 1480496115,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinSurveyEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinSurveyEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinSurveyEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSurveyEvent, r#type),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSurveyEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSurveyEvent, status_code),
             },
             FieldInfoData {
                 name: "survey_id",
+                name_hash: 2293816905,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSurveyEvent, survey_id),
             },
             FieldInfoData {
                 name: "wave_no",
+                name_hash: 1789758782,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinSurveyEvent, wave_no),
             },
             FieldInfoData {
                 name: "lang",
+                name_hash: 2087664833,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSurveyEvent, lang),
             },
             FieldInfoData {
                 name: "complete_flag",
+                name_hash: 135674687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSurveyEvent, complete_flag),
             },
             FieldInfoData {
                 name: "qtime",
+                name_hash: 188063201,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinSurveyEvent, qtime),
             },
             FieldInfoData {
                 name: "JSON",
+                name_hash: 2089079293,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinSurveyEvent, j_s_o_n),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinSurveyEvent, field_flag_changed0),
@@ -16928,6 +18001,7 @@ impl TypeObject for TelemetrySdkPinSurveyEvent {
 
 pub static TELEMETRYSDKPINSURVEYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinSurveyEvent-Array",
+    name_hash: 972222407,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinSurveyEvent"),
@@ -16936,7 +18010,8 @@ pub static TELEMETRYSDKPINSURVEYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinHeartBeatEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub sdur: u32,
@@ -17006,28 +18081,34 @@ impl super::core::DataContainerTrait for TelemetrySdkPinHeartBeatEvent {
 
 pub static TELEMETRYSDKPINHEARTBEATEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinHeartBeatEvent",
+    name_hash: 2192670037,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinHeartBeatEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinHeartBeatEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinHeartBeatEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "sdur",
+                name_hash: 2088335445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinHeartBeatEvent, sdur),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinHeartBeatEvent, gdur),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinHeartBeatEvent, field_flag_changed0),
@@ -17059,6 +18140,7 @@ impl TypeObject for TelemetrySdkPinHeartBeatEvent {
 
 pub static TELEMETRYSDKPINHEARTBEATEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinHeartBeatEvent-Array",
+    name_hash: 2049072481,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinHeartBeatEvent"),
@@ -17067,7 +18149,8 @@ pub static TELEMETRYSDKPINHEARTBEATEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinModeExitEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub instance_id: String,
@@ -17173,52 +18256,62 @@ impl super::core::DataContainerTrait for TelemetrySdkPinModeExitEvent {
 
 pub static TELEMETRYSDKPINMODEEXITEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinModeExitEvent",
+    name_hash: 246985614,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinModeExitEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinModeExitEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinModeExitEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinModeExitEvent, instance_id),
             },
             FieldInfoData {
                 name: "leave_reason",
+                name_hash: 2310272997,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinModeExitEvent, leave_reason),
             },
             FieldInfoData {
                 name: "mdur",
+                name_hash: 2087702283,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinModeExitEvent, mdur),
             },
             FieldInfoData {
                 name: "cdur",
+                name_hash: 2087761477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinModeExitEvent, cdur),
             },
             FieldInfoData {
                 name: "sdur",
+                name_hash: 2088335445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinModeExitEvent, sdur),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinModeExitEvent, gdur),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinModeExitEvent, field_flag_changed0),
@@ -17250,6 +18343,7 @@ impl TypeObject for TelemetrySdkPinModeExitEvent {
 
 pub static TELEMETRYSDKPINMODEEXITEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinModeExitEvent-Array",
+    name_hash: 274414778,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinModeExitEvent"),
@@ -17258,7 +18352,8 @@ pub static TELEMETRYSDKPINMODEEXITEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinModeEnterEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub instance_id: String,
@@ -17346,40 +18441,48 @@ impl super::core::DataContainerTrait for TelemetrySdkPinModeEnterEvent {
 
 pub static TELEMETRYSDKPINMODEENTEREVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinModeEnterEvent",
+    name_hash: 2424589446,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinModeEnterEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinModeEnterEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinModeEnterEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinModeEnterEvent, instance_id),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinModeEnterEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinModeEnterEvent, status_code),
             },
             FieldInfoData {
                 name: "is_first",
+                name_hash: 3690484474,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySdkPinModeEnterEvent, is_first),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinModeEnterEvent, field_flag_changed0),
@@ -17411,6 +18514,7 @@ impl TypeObject for TelemetrySdkPinModeEnterEvent {
 
 pub static TELEMETRYSDKPINMODEENTEREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinModeEnterEvent-Array",
+    name_hash: 3392551346,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinModeEnterEvent"),
@@ -17419,7 +18523,8 @@ pub static TELEMETRYSDKPINMODEENTEREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlaySessionEndEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub instance_id: String,
@@ -17543,64 +18648,76 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlaySessionEndEvent {
 
 pub static TELEMETRYSDKPINPLAYSESSIONENDEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlaySessionEndEvent",
+    name_hash: 1124902744,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlaySessionEndEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlaySessionEndEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlaySessionEndEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionEndEvent, instance_id),
             },
             FieldInfoData {
                 name: "sdur",
+                name_hash: 2088335445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionEndEvent, sdur),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionEndEvent, gdur),
             },
             FieldInfoData {
                 name: "diff",
+                name_hash: 2087386312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionEndEvent, diff),
             },
             FieldInfoData {
                 name: "goid",
+                name_hash: 2087635072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionEndEvent, goid),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionEndEvent, status_code),
             },
             FieldInfoData {
                 name: "end_reason",
+                name_hash: 1688196817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionEndEvent, end_reason),
             },
             FieldInfoData {
                 name: "player_stats",
+                name_hash: 3325097864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionEndEvent, player_stats),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionEndEvent, field_flag_changed0),
@@ -17632,6 +18749,7 @@ impl TypeObject for TelemetrySdkPinPlaySessionEndEvent {
 
 pub static TELEMETRYSDKPINPLAYSESSIONENDEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlaySessionEndEvent-Array",
+    name_hash: 1471275500,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlaySessionEndEvent"),
@@ -17640,7 +18758,8 @@ pub static TELEMETRYSDKPINPLAYSESSIONENDEVENT_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlaySessionStartEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub instance_id: String,
@@ -17737,46 +18856,55 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlaySessionStartEvent {
 
 pub static TELEMETRYSDKPINPLAYSESSIONSTARTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlaySessionStartEvent",
+    name_hash: 1093266999,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlaySessionStartEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlaySessionStartEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlaySessionStartEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionStartEvent, instance_id),
             },
             FieldInfoData {
                 name: "diff",
+                name_hash: 2087386312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionStartEvent, diff),
             },
             FieldInfoData {
                 name: "goid",
+                name_hash: 2087635072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionStartEvent, goid),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionStartEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionStartEvent, status_code),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinPlaySessionStartEvent, field_flag_changed0),
@@ -17808,6 +18936,7 @@ impl TypeObject for TelemetrySdkPinPlaySessionStartEvent {
 
 pub static TELEMETRYSDKPINPLAYSESSIONSTARTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlaySessionStartEvent-Array",
+    name_hash: 931440515,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlaySessionStartEvent"),
@@ -17816,7 +18945,8 @@ pub static TELEMETRYSDKPINPLAYSESSIONSTARTEVENT_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinRoundEndEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub round: u32,
@@ -17994,100 +19124,118 @@ impl super::core::DataContainerTrait for TelemetrySdkPinRoundEndEvent {
 
 pub static TELEMETRYSDKPINROUNDENDEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinRoundEndEvent",
+    name_hash: 2795403136,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinRoundEndEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinRoundEndEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinRoundEndEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "round",
+                name_hash: 194586087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, round),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, instance_id),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, rdur),
             },
             FieldInfoData {
                 name: "diff",
+                name_hash: 2087386312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, diff),
             },
             FieldInfoData {
                 name: "mid",
+                name_hash: 193413797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, mid),
             },
             FieldInfoData {
                 name: "goid",
+                name_hash: 2087635072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, goid),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, status_code),
             },
             FieldInfoData {
                 name: "end_reason",
+                name_hash: 1688196817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, end_reason),
             },
             FieldInfoData {
                 name: "player_cnt",
+                name_hash: 3978543184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, player_cnt),
             },
             FieldInfoData {
                 name: "max_players",
+                name_hash: 458759694,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, max_players),
             },
             FieldInfoData {
                 name: "num_teams",
+                name_hash: 1050382114,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, num_teams),
             },
             FieldInfoData {
                 name: "teams_stats",
+                name_hash: 2595701461,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, teams_stats),
             },
             FieldInfoData {
                 name: "player_stats",
+                name_hash: 3325097864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, player_stats),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinRoundEndEvent, field_flag_changed0),
@@ -18119,6 +19267,7 @@ impl TypeObject for TelemetrySdkPinRoundEndEvent {
 
 pub static TELEMETRYSDKPINROUNDENDEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinRoundEndEvent-Array",
+    name_hash: 3642277300,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinRoundEndEvent"),
@@ -18127,7 +19276,8 @@ pub static TELEMETRYSDKPINROUNDENDEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinRoundStartEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub round: u32,
@@ -18278,82 +19428,97 @@ impl super::core::DataContainerTrait for TelemetrySdkPinRoundStartEvent {
 
 pub static TELEMETRYSDKPINROUNDSTARTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinRoundStartEvent",
+    name_hash: 3109976431,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinRoundStartEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinRoundStartEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinRoundStartEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "round",
+                name_hash: 194586087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, round),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, instance_id),
             },
             FieldInfoData {
                 name: "diff",
+                name_hash: 2087386312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, diff),
             },
             FieldInfoData {
                 name: "mid",
+                name_hash: 193413797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, mid),
             },
             FieldInfoData {
                 name: "goid",
+                name_hash: 2087635072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, goid),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, status_code),
             },
             FieldInfoData {
                 name: "player_cnt",
+                name_hash: 3978543184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, player_cnt),
             },
             FieldInfoData {
                 name: "max_players",
+                name_hash: 458759694,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, max_players),
             },
             FieldInfoData {
                 name: "num_teams",
+                name_hash: 1050382114,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, num_teams),
             },
             FieldInfoData {
                 name: "team_id",
+                name_hash: 1826788170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, team_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinRoundStartEvent, field_flag_changed0),
@@ -18385,6 +19550,7 @@ impl TypeObject for TelemetrySdkPinRoundStartEvent {
 
 pub static TELEMETRYSDKPINROUNDSTARTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinRoundStartEvent-Array",
+    name_hash: 2683647835,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinRoundStartEvent"),
@@ -18393,7 +19559,8 @@ pub static TELEMETRYSDKPINROUNDSTARTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinGameEndEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -18625,136 +19792,160 @@ impl super::core::DataContainerTrait for TelemetrySdkPinGameEndEvent {
 
 pub static TELEMETRYSDKPINGAMEENDEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinGameEndEvent",
+    name_hash: 3985885228,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinGameEndEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinGameEndEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinGameEndEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, r#type),
             },
             FieldInfoData {
                 name: "mode",
+                name_hash: 2087698470,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, mode),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, instance_id),
             },
             FieldInfoData {
                 name: "mid",
+                name_hash: 193413797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, mid),
             },
             FieldInfoData {
                 name: "goid",
+                name_hash: 2087635072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, goid),
             },
             FieldInfoData {
                 name: "end_reason",
+                name_hash: 1688196817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, end_reason),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, status_code),
             },
             FieldInfoData {
                 name: "sdur",
+                name_hash: 2088335445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, sdur),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, gdur),
             },
             FieldInfoData {
                 name: "cdur",
+                name_hash: 2087761477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, cdur),
             },
             FieldInfoData {
                 name: "player_stats",
+                name_hash: 3325097864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, player_stats),
             },
             FieldInfoData {
                 name: "teams_stats",
+                name_hash: 2595701461,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, teams_stats),
             },
             FieldInfoData {
                 name: "constraint_status",
+                name_hash: 2851042539,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, constraint_status),
             },
             FieldInfoData {
                 name: "mission_status",
+                name_hash: 1152022498,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, mission_status),
             },
             FieldInfoData {
                 name: "items_initialized",
+                name_hash: 578527056,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, items_initialized),
             },
             FieldInfoData {
                 name: "achievement",
+                name_hash: 2677656546,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, achievement),
             },
             FieldInfoData {
                 name: "asset_gained",
+                name_hash: 1152300106,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, asset_gained),
             },
             FieldInfoData {
                 name: "asset_used",
+                name_hash: 2273268717,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, asset_used),
             },
             FieldInfoData {
                 name: "asset_balance",
+                name_hash: 4246224684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, asset_balance),
             },
             FieldInfoData {
                 name: "weapon_stats",
+                name_hash: 3531663673,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, weapon_stats),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinGameEndEvent, field_flag_changed0),
@@ -18786,6 +19977,7 @@ impl TypeObject for TelemetrySdkPinGameEndEvent {
 
 pub static TELEMETRYSDKPINGAMEENDEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinGameEndEvent-Array",
+    name_hash: 3930511256,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinGameEndEvent"),
@@ -18794,7 +19986,8 @@ pub static TELEMETRYSDKPINGAMEENDEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinGameStartEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -19089,178 +20282,209 @@ impl super::core::DataContainerTrait for TelemetrySdkPinGameStartEvent {
 
 pub static TELEMETRYSDKPINGAMESTARTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinGameStartEvent",
+    name_hash: 2954846851,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinGameStartEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinGameStartEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinGameStartEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, r#type),
             },
             FieldInfoData {
                 name: "mode",
+                name_hash: 2087698470,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, mode),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, instance_id),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, status_code),
             },
             FieldInfoData {
                 name: "ldur",
+                name_hash: 2087668522,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, ldur),
             },
             FieldInfoData {
                 name: "diff",
+                name_hash: 2087386312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, diff),
             },
             FieldInfoData {
                 name: "goid",
+                name_hash: 2087635072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, goid),
             },
             FieldInfoData {
                 name: "mid",
+                name_hash: 193413797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, mid),
             },
             FieldInfoData {
                 name: "rond",
+                name_hash: 2088305170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, rond),
             },
             FieldInfoData {
                 name: "map",
+                name_hash: 193414073,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, map),
             },
             FieldInfoData {
                 name: "_char",
+                name_hash: 235957282,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, _char),
             },
             FieldInfoData {
                 name: "gend",
+                name_hash: 2087624749,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, gend),
             },
             FieldInfoData {
                 name: "_class",
+                name_hash: 3491766900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, _class),
             },
             FieldInfoData {
                 name: "attempt",
+                name_hash: 683422120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, attempt),
             },
             FieldInfoData {
                 name: "max_level",
+                name_hash: 1813535800,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, max_level),
             },
             FieldInfoData {
                 name: "level_modifier",
+                name_hash: 3159448443,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, level_modifier),
             },
             FieldInfoData {
                 name: "start_status",
+                name_hash: 3279230990,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, start_status),
             },
             FieldInfoData {
                 name: "level_constraints",
+                name_hash: 1360138682,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, level_constraints),
             },
             FieldInfoData {
                 name: "missions",
+                name_hash: 3819885690,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, missions),
             },
             FieldInfoData {
                 name: "other_specs",
+                name_hash: 1747595208,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, other_specs),
             },
             FieldInfoData {
                 name: "model_config",
+                name_hash: 2539523807,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, model_config),
             },
             FieldInfoData {
                 name: "knob_owner",
+                name_hash: 2522486291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, knob_owner),
             },
             FieldInfoData {
                 name: "lives",
+                name_hash: 173201472,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, lives),
             },
             FieldInfoData {
                 name: "new_life_reqs",
+                name_hash: 1096935018,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, new_life_reqs),
             },
             FieldInfoData {
                 name: "team_id",
+                name_hash: 1826788170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, team_id),
             },
             FieldInfoData {
                 name: "asset_bal",
+                name_hash: 1370374117,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, asset_bal),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinGameStartEvent, field_flag_changed0),
@@ -19292,6 +20516,7 @@ impl TypeObject for TelemetrySdkPinGameStartEvent {
 
 pub static TELEMETRYSDKPINGAMESTARTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinGameStartEvent-Array",
+    name_hash: 241251639,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinGameStartEvent"),
@@ -19300,7 +20525,8 @@ pub static TELEMETRYSDKPINGAMESTARTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinLogoutEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -19379,34 +20605,41 @@ impl super::core::DataContainerTrait for TelemetrySdkPinLogoutEvent {
 
 pub static TELEMETRYSDKPINLOGOUTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinLogoutEvent",
+    name_hash: 4290741159,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinLogoutEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinLogoutEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinLogoutEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinLogoutEvent, r#type),
             },
             FieldInfoData {
                 name: "end_reason",
+                name_hash: 1688196817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinLogoutEvent, end_reason),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinLogoutEvent, status_code),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinLogoutEvent, field_flag_changed0),
@@ -19438,6 +20671,7 @@ impl TypeObject for TelemetrySdkPinLogoutEvent {
 
 pub static TELEMETRYSDKPINLOGOUTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinLogoutEvent-Array",
+    name_hash: 616666387,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinLogoutEvent"),
@@ -19446,7 +20680,8 @@ pub static TELEMETRYSDKPINLOGOUTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinLoginEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -19525,34 +20760,41 @@ impl super::core::DataContainerTrait for TelemetrySdkPinLoginEvent {
 
 pub static TELEMETRYSDKPINLOGINEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinLoginEvent",
+    name_hash: 615106126,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinLoginEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinLoginEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinLoginEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinLoginEvent, r#type),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinLoginEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinLoginEvent, status_code),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinLoginEvent, field_flag_changed0),
@@ -19584,6 +20826,7 @@ impl TypeObject for TelemetrySdkPinLoginEvent {
 
 pub static TELEMETRYSDKPINLOGINEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinLoginEvent-Array",
+    name_hash: 1951375354,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinLoginEvent"),
@@ -19592,7 +20835,8 @@ pub static TELEMETRYSDKPINLOGINEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinBootEndEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub end_reason: String,
@@ -19671,34 +20915,41 @@ impl super::core::DataContainerTrait for TelemetrySdkPinBootEndEvent {
 
 pub static TELEMETRYSDKPINBOOTENDEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinBootEndEvent",
+    name_hash: 2810966548,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinBootEndEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinBootEndEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinBootEndEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "end_reason",
+                name_hash: 1688196817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinBootEndEvent, end_reason),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinBootEndEvent, status_code),
             },
             FieldInfoData {
                 name: "sdur",
+                name_hash: 2088335445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinBootEndEvent, sdur),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinBootEndEvent, field_flag_changed0),
@@ -19730,6 +20981,7 @@ impl TypeObject for TelemetrySdkPinBootEndEvent {
 
 pub static TELEMETRYSDKPINBOOTENDEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinBootEndEvent-Array",
+    name_hash: 3333066272,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinBootEndEvent"),
@@ -19738,7 +20990,8 @@ pub static TELEMETRYSDKPINBOOTENDEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinBootStartEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub status: String,
@@ -19817,34 +21070,41 @@ impl super::core::DataContainerTrait for TelemetrySdkPinBootStartEvent {
 
 pub static TELEMETRYSDKPINBOOTSTARTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinBootStartEvent",
+    name_hash: 2797936635,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinBootStartEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinBootStartEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinBootStartEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinBootStartEvent, status),
             },
             FieldInfoData {
                 name: "source",
+                name_hash: 2169993400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinBootStartEvent, source),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinBootStartEvent, status_code),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinBootStartEvent, field_flag_changed0),
@@ -19876,6 +21136,7 @@ impl TypeObject for TelemetrySdkPinBootStartEvent {
 
 pub static TELEMETRYSDKPINBOOTSTARTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinBootStartEvent-Array",
+    name_hash: 4038186959,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinBootStartEvent"),
@@ -19884,7 +21145,8 @@ pub static TELEMETRYSDKPINBOOTSTARTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerServiceEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub service: String,
@@ -19963,34 +21225,41 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerServiceEvent {
 
 pub static TELEMETRYSDKPINPLAYERSERVICEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerServiceEvent",
+    name_hash: 3321729827,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerServiceEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerServiceEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerServiceEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "service",
+                name_hash: 2500359576,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerServiceEvent, service),
             },
             FieldInfoData {
                 name: "action",
+                name_hash: 1314712411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerServiceEvent, action),
             },
             FieldInfoData {
                 name: "metadata",
+                name_hash: 2036718120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerServiceEvent, metadata),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerServiceEvent, field_flag_changed0),
@@ -20022,6 +21291,7 @@ impl TypeObject for TelemetrySdkPinPlayerServiceEvent {
 
 pub static TELEMETRYSDKPINPLAYERSERVICEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerServiceEvent-Array",
+    name_hash: 653104791,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerServiceEvent"),
@@ -20030,7 +21300,8 @@ pub static TELEMETRYSDKPINPLAYERSERVICEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerStatsEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub player_stats: RawJsonString,
@@ -20091,22 +21362,27 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerStatsEvent {
 
 pub static TELEMETRYSDKPINPLAYERSTATSEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerStatsEvent",
+    name_hash: 2724488703,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerStatsEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerStatsEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerStatsEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "player_stats",
+                name_hash: 3325097864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatsEvent, player_stats),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerStatsEvent, field_flag_changed0),
@@ -20138,6 +21414,7 @@ impl TypeObject for TelemetrySdkPinPlayerStatsEvent {
 
 pub static TELEMETRYSDKPINPLAYERSTATSEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerStatsEvent-Array",
+    name_hash: 1970097099,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerStatsEvent"),
@@ -20146,7 +21423,8 @@ pub static TELEMETRYSDKPINPLAYERSTATSEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinCameraStateEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -20261,58 +21539,69 @@ impl super::core::DataContainerTrait for TelemetrySdkPinCameraStateEvent {
 
 pub static TELEMETRYSDKPINCAMERASTATEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinCameraStateEvent",
+    name_hash: 3282900003,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinCameraStateEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinCameraStateEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinCameraStateEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinCameraStateEvent, gdur),
             },
             FieldInfoData {
                 name: "cam_dur",
+                name_hash: 3491455446,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinCameraStateEvent, cam_dur),
             },
             FieldInfoData {
                 name: "prev_cam_state",
+                name_hash: 1163860940,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinCameraStateEvent, prev_cam_state),
             },
             FieldInfoData {
                 name: "cur_cam_state",
+                name_hash: 474918937,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinCameraStateEvent, cur_cam_state),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinCameraStateEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_dir",
+                name_hash: 188279797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinCameraStateEvent, p_dir),
             },
             FieldInfoData {
                 name: "p_state",
+                name_hash: 3188179485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinCameraStateEvent, p_state),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinCameraStateEvent, field_flag_changed0),
@@ -20344,6 +21633,7 @@ impl TypeObject for TelemetrySdkPinCameraStateEvent {
 
 pub static TELEMETRYSDKPINCAMERASTATEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinCameraStateEvent-Array",
+    name_hash: 2222577559,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinCameraStateEvent"),
@@ -20352,7 +21642,8 @@ pub static TELEMETRYSDKPINCAMERASTATEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerObEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -20476,64 +21767,76 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerObEvent {
 
 pub static TELEMETRYSDKPINPLAYEROBEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerObEvent",
+    name_hash: 2761790259,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerObEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerObEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerObEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerObEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerObEvent, rdur),
             },
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerObEvent, r#type),
             },
             FieldInfoData {
                 name: "p_loc",
+                name_hash: 188271274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerObEvent, p_loc),
             },
             FieldInfoData {
                 name: "p_dir",
+                name_hash: 188279797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerObEvent, p_dir),
             },
             FieldInfoData {
                 name: "p_class",
+                name_hash: 3169492516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerObEvent, p_class),
             },
             FieldInfoData {
                 name: "p_team_id",
+                name_hash: 1828816837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerObEvent, p_team_id),
             },
             FieldInfoData {
                 name: "p_veh_id",
+                name_hash: 2341289379,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerObEvent, p_veh_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerObEvent, field_flag_changed0),
@@ -20565,6 +21868,7 @@ impl TypeObject for TelemetrySdkPinPlayerObEvent {
 
 pub static TELEMETRYSDKPINPLAYEROBEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerObEvent-Array",
+    name_hash: 1293966983,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerObEvent"),
@@ -20573,7 +21877,8 @@ pub static TELEMETRYSDKPINPLAYEROBEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinUiInteractionEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -20679,52 +21984,62 @@ impl super::core::DataContainerTrait for TelemetrySdkPinUiInteractionEvent {
 
 pub static TELEMETRYSDKPINUIINTERACTIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinUiInteractionEvent",
+    name_hash: 2646735755,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinUiInteractionEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinUiInteractionEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinUiInteractionEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinUiInteractionEvent, r#type),
             },
             FieldInfoData {
                 name: "object_id",
+                name_hash: 2751165154,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinUiInteractionEvent, object_id),
             },
             FieldInfoData {
                 name: "pgid",
+                name_hash: 2088090111,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinUiInteractionEvent, pgid),
             },
             FieldInfoData {
                 name: "sdur",
+                name_hash: 2088335445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinUiInteractionEvent, sdur),
             },
             FieldInfoData {
                 name: "object_type",
+                name_hash: 2427313239,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinUiInteractionEvent, object_type),
             },
             FieldInfoData {
                 name: "mdur",
+                name_hash: 2087702283,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinUiInteractionEvent, mdur),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinUiInteractionEvent, field_flag_changed0),
@@ -20756,6 +22071,7 @@ impl TypeObject for TelemetrySdkPinUiInteractionEvent {
 
 pub static TELEMETRYSDKPINUIINTERACTIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinUiInteractionEvent-Array",
+    name_hash: 4266781247,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinUiInteractionEvent"),
@@ -20764,7 +22080,8 @@ pub static TELEMETRYSDKPINUIINTERACTIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinHardwareProfileEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub cpu: String,
@@ -20861,46 +22178,55 @@ impl super::core::DataContainerTrait for TelemetrySdkPinHardwareProfileEvent {
 
 pub static TELEMETRYSDKPINHARDWAREPROFILEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinHardwareProfileEvent",
+    name_hash: 775296792,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinHardwareProfileEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinHardwareProfileEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinHardwareProfileEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "cpu",
+                name_hash: 193416643,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinHardwareProfileEvent, cpu),
             },
             FieldInfoData {
                 name: "sys_mem",
+                name_hash: 2382203142,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinHardwareProfileEvent, sys_mem),
             },
             FieldInfoData {
                 name: "gpu",
+                name_hash: 193412295,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinHardwareProfileEvent, gpu),
             },
             FieldInfoData {
                 name: "gpu_mem",
+                name_hash: 3271627069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinHardwareProfileEvent, gpu_mem),
             },
             FieldInfoData {
                 name: "gpu_id",
+                name_hash: 1400645333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinHardwareProfileEvent, gpu_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinHardwareProfileEvent, field_flag_changed0),
@@ -20932,6 +22258,7 @@ impl TypeObject for TelemetrySdkPinHardwareProfileEvent {
 
 pub static TELEMETRYSDKPINHARDWAREPROFILEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinHardwareProfileEvent-Array",
+    name_hash: 1893474604,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinHardwareProfileEvent"),
@@ -20940,7 +22267,8 @@ pub static TELEMETRYSDKPINHARDWAREPROFILEEVENT_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerWeapSmryEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub gdur: u32,
@@ -21154,124 +22482,146 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerWeapSmryEvent {
 
 pub static TELEMETRYSDKPINPLAYERWEAPSMRYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerWeapSmryEvent",
+    name_hash: 215432296,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerWeapSmryEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerWeapSmryEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, gdur),
             },
             FieldInfoData {
                 name: "rdur",
+                name_hash: 2088301684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, rdur),
             },
             FieldInfoData {
                 name: "weap_id",
+                name_hash: 1958871860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, weap_id),
             },
             FieldInfoData {
                 name: "weap_category",
+                name_hash: 2154542921,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, weap_category),
             },
             FieldInfoData {
                 name: "weap_type",
+                name_hash: 2907505025,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, weap_type),
             },
             FieldInfoData {
                 name: "p_class",
+                name_hash: 3169492516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, p_class),
             },
             FieldInfoData {
                 name: "p_team_id",
+                name_hash: 1828816837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, p_team_id),
             },
             FieldInfoData {
                 name: "veh_id",
+                name_hash: 1977570444,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, veh_id),
             },
             FieldInfoData {
                 name: "sht_fired",
+                name_hash: 2084268041,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, sht_fired),
             },
             FieldInfoData {
                 name: "equip_dur",
+                name_hash: 896866593,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, equip_dur),
             },
             FieldInfoData {
                 name: "sht_hit_sldr",
+                name_hash: 1996400854,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, sht_hit_sldr),
             },
             FieldInfoData {
                 name: "hd_sht_sldr",
+                name_hash: 4188219855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, hd_sht_sldr),
             },
             FieldInfoData {
                 name: "fatl_sht_sldr",
+                name_hash: 99313660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, fatl_sht_sldr),
             },
             FieldInfoData {
                 name: "dmg_sldr",
+                name_hash: 2645839805,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, dmg_sldr),
             },
             FieldInfoData {
                 name: "sht_hit_veh",
+                name_hash: 2142900548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, sht_hit_veh),
             },
             FieldInfoData {
                 name: "veh_dstr",
+                name_hash: 1795714160,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, veh_dstr),
             },
             FieldInfoData {
                 name: "dmg_veh",
+                name_hash: 2943485135,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, dmg_veh),
             },
             FieldInfoData {
                 name: "weap_mods",
+                name_hash: 2907826988,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, weap_mods),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerWeapSmryEvent, field_flag_changed0),
@@ -21303,6 +22653,7 @@ impl TypeObject for TelemetrySdkPinPlayerWeapSmryEvent {
 
 pub static TELEMETRYSDKPINPLAYERWEAPSMRYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerWeapSmryEvent-Array",
+    name_hash: 2816265820,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerWeapSmryEvent"),
@@ -21311,7 +22662,8 @@ pub static TELEMETRYSDKPINPLAYERWEAPSMRYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinTimerEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub category: String,
@@ -21417,52 +22769,62 @@ impl super::core::DataContainerTrait for TelemetrySdkPinTimerEvent {
 
 pub static TELEMETRYSDKPINTIMEREVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinTimerEvent",
+    name_hash: 3061752970,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinTimerEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinTimerEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinTimerEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "category",
+                name_hash: 4083577941,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTimerEvent, category),
             },
             FieldInfoData {
                 name: "measure",
+                name_hash: 1220652573,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinTimerEvent, measure),
             },
             FieldInfoData {
                 name: "dur",
+                name_hash: 193405030,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinTimerEvent, dur),
             },
             FieldInfoData {
                 name: "start_time",
+                name_hash: 3829005199,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinTimerEvent, start_time),
             },
             FieldInfoData {
                 name: "end_time",
+                name_hash: 269397216,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinTimerEvent, end_time),
             },
             FieldInfoData {
                 name: "meta_data",
+                name_hash: 2800216951,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinTimerEvent, meta_data),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinTimerEvent, field_flag_changed0),
@@ -21494,6 +22856,7 @@ impl TypeObject for TelemetrySdkPinTimerEvent {
 
 pub static TELEMETRYSDKPINTIMEREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinTimerEvent-Array",
+    name_hash: 701644734,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinTimerEvent"),
@@ -21502,7 +22865,8 @@ pub static TELEMETRYSDKPINTIMEREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinMessageEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -21725,130 +23089,153 @@ impl super::core::DataContainerTrait for TelemetrySdkPinMessageEvent {
 
 pub static TELEMETRYSDKPINMESSAGEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinMessageEvent",
+    name_hash: 4245352294,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinMessageEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinMessageEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinMessageEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, r#type),
             },
             FieldInfoData {
                 name: "service",
+                name_hash: 2500359576,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, service),
             },
             FieldInfoData {
                 name: "content_type",
+                name_hash: 3523308779,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, content_type),
             },
             FieldInfoData {
                 name: "format",
+                name_hash: 1354117926,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, format),
             },
             FieldInfoData {
                 name: "media",
+                name_hash: 174648641,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, media),
             },
             FieldInfoData {
                 name: "campaign_id",
+                name_hash: 412931337,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, campaign_id),
             },
             FieldInfoData {
                 name: "client_state",
+                name_hash: 121475028,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, client_state),
             },
             FieldInfoData {
                 name: "msg_id",
+                name_hash: 1489770446,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, msg_id),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, status_code),
             },
             FieldInfoData {
                 name: "option",
+                name_hash: 1713703622,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, option),
             },
             FieldInfoData {
                 name: "content",
+                name_hash: 3716929964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, content),
             },
             FieldInfoData {
                 name: "destination_name",
+                name_hash: 1890086529,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, destination_name),
             },
             FieldInfoData {
                 name: "destination_id",
+                name_hash: 900957451,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, destination_id),
             },
             FieldInfoData {
                 name: "place",
+                name_hash: 187803134,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, place),
             },
             FieldInfoData {
                 name: "loc",
+                name_hash: 193412901,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, loc),
             },
             FieldInfoData {
                 name: "size",
+                name_hash: 2088346912,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, size),
             },
             FieldInfoData {
                 name: "segment_id",
+                name_hash: 4266359028,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, segment_id),
             },
             FieldInfoData {
                 name: "count",
+                name_hash: 176967078,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, count),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinMessageEvent, field_flag_changed0),
@@ -21880,6 +23267,7 @@ impl TypeObject for TelemetrySdkPinMessageEvent {
 
 pub static TELEMETRYSDKPINMESSAGEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinMessageEvent-Array",
+    name_hash: 590826578,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinMessageEvent"),
@@ -21888,7 +23276,8 @@ pub static TELEMETRYSDKPINMESSAGEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPageViewEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -21985,46 +23374,55 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPageViewEvent {
 
 pub static TELEMETRYSDKPINPAGEVIEWEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPageViewEvent",
+    name_hash: 29845267,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPageViewEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPageViewEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPageViewEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPageViewEvent, r#type),
             },
             FieldInfoData {
                 name: "pgid",
+                name_hash: 2088090111,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPageViewEvent, pgid),
             },
             FieldInfoData {
                 name: "pgdur",
+                name_hash: 187484305,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinPageViewEvent, pgdur),
             },
             FieldInfoData {
                 name: "fromid",
+                name_hash: 1357644254,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPageViewEvent, fromid),
             },
             FieldInfoData {
                 name: "toid",
+                name_hash: 2087963251,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPageViewEvent, toid),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinPageViewEvent, field_flag_changed0),
@@ -22056,6 +23454,7 @@ impl TypeObject for TelemetrySdkPinPageViewEvent {
 
 pub static TELEMETRYSDKPINPAGEVIEWEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPageViewEvent-Array",
+    name_hash: 867000743,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPageViewEvent"),
@@ -22064,7 +23463,8 @@ pub static TELEMETRYSDKPINPAGEVIEWEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinAchievementEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -22224,88 +23624,104 @@ impl super::core::DataContainerTrait for TelemetrySdkPinAchievementEvent {
 
 pub static TELEMETRYSDKPINACHIEVEMENTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinAchievementEvent",
+    name_hash: 1071467370,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinAchievementEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinAchievementEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinAchievementEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, r#type),
             },
             FieldInfoData {
                 name: "achv_id",
+                name_hash: 431218411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, achv_id),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, instance_id),
             },
             FieldInfoData {
                 name: "reqs",
+                name_hash: 2088302512,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, reqs),
             },
             FieldInfoData {
                 name: "reward",
+                name_hash: 2123929394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, reward),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, status),
             },
             FieldInfoData {
                 name: "percent",
+                name_hash: 2364363998,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, percent),
             },
             FieldInfoData {
                 name: "diff",
+                name_hash: 2087386312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, diff),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, gdur),
             },
             FieldInfoData {
                 name: "sdur",
+                name_hash: 2088335445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, sdur),
             },
             FieldInfoData {
                 name: "cdur",
+                name_hash: 2087761477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, cdur),
             },
             FieldInfoData {
                 name: "tdur",
+                name_hash: 2087954994,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, tdur),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinAchievementEvent, field_flag_changed0),
@@ -22337,6 +23753,7 @@ impl TypeObject for TelemetrySdkPinAchievementEvent {
 
 pub static TELEMETRYSDKPINACHIEVEMENTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinAchievementEvent-Array",
+    name_hash: 3399374430,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinAchievementEvent"),
@@ -22345,7 +23762,8 @@ pub static TELEMETRYSDKPINACHIEVEMENTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinMileStoneEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -22487,76 +23905,90 @@ impl super::core::DataContainerTrait for TelemetrySdkPinMileStoneEvent {
 
 pub static TELEMETRYSDKPINMILESTONEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinMileStoneEvent",
+    name_hash: 1340878275,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinMileStoneEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinMileStoneEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinMileStoneEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMileStoneEvent, r#type),
             },
             FieldInfoData {
                 name: "moment",
+                name_hash: 1466258197,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMileStoneEvent, moment),
             },
             FieldInfoData {
                 name: "mstid",
+                name_hash: 175282306,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMileStoneEvent, mstid),
             },
             FieldInfoData {
                 name: "game_mode",
+                name_hash: 1843440407,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMileStoneEvent, game_mode),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMileStoneEvent, instance_id),
             },
             FieldInfoData {
                 name: "diff",
+                name_hash: 2087386312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinMileStoneEvent, diff),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinMileStoneEvent, gdur),
             },
             FieldInfoData {
                 name: "sdur",
+                name_hash: 2088335445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinMileStoneEvent, sdur),
             },
             FieldInfoData {
                 name: "cdur",
+                name_hash: 2087761477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinMileStoneEvent, cdur),
             },
             FieldInfoData {
                 name: "tdur",
+                name_hash: 2087954994,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinMileStoneEvent, tdur),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinMileStoneEvent, field_flag_changed0),
@@ -22588,6 +24020,7 @@ impl TypeObject for TelemetrySdkPinMileStoneEvent {
 
 pub static TELEMETRYSDKPINMILESTONEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinMileStoneEvent-Array",
+    name_hash: 4204343543,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinMileStoneEvent"),
@@ -22596,7 +24029,8 @@ pub static TELEMETRYSDKPINMILESTONEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinPlayerLevelEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -22729,70 +24163,83 @@ impl super::core::DataContainerTrait for TelemetrySdkPinPlayerLevelEvent {
 
 pub static TELEMETRYSDKPINPLAYERLEVELEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerLevelEvent",
+    name_hash: 831755400,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinPlayerLevelEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinPlayerLevelEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinPlayerLevelEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerLevelEvent, r#type),
             },
             FieldInfoData {
                 name: "mode",
+                name_hash: 2087698470,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerLevelEvent, mode),
             },
             FieldInfoData {
                 name: "instance_id",
+                name_hash: 4054764670,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerLevelEvent, instance_id),
             },
             FieldInfoData {
                 name: "level",
+                name_hash: 173624275,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerLevelEvent, level),
             },
             FieldInfoData {
                 name: "level_name",
+                name_hash: 1289586251,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerLevelEvent, level_name),
             },
             FieldInfoData {
                 name: "gdur",
+                name_hash: 2087626177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerLevelEvent, gdur),
             },
             FieldInfoData {
                 name: "sdur",
+                name_hash: 2088335445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerLevelEvent, sdur),
             },
             FieldInfoData {
                 name: "cdur",
+                name_hash: 2087761477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerLevelEvent, cdur),
             },
             FieldInfoData {
                 name: "tdur",
+                name_hash: 2087954994,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerLevelEvent, tdur),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TelemetrySdkPinPlayerLevelEvent, field_flag_changed0),
@@ -22824,6 +24271,7 @@ impl TypeObject for TelemetrySdkPinPlayerLevelEvent {
 
 pub static TELEMETRYSDKPINPLAYERLEVELEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinPlayerLevelEvent-Array",
+    name_hash: 2737764028,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinPlayerLevelEvent"),
@@ -22832,7 +24280,8 @@ pub static TELEMETRYSDKPINPLAYERLEVELEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinFavoriteEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub type1: String,
@@ -22938,52 +24387,62 @@ impl super::core::DataContainerTrait for TelemetrySdkPinFavoriteEvent {
 
 pub static TELEMETRYSDKPINFAVORITEEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinFavoriteEvent",
+    name_hash: 3723535417,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinFavoriteEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinFavoriteEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinFavoriteEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type1",
+                name_hash: 182678284,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFavoriteEvent, type1),
             },
             FieldInfoData {
                 name: "type1_id",
+                name_hash: 2199542526,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFavoriteEvent, type1_id),
             },
             FieldInfoData {
                 name: "type1_name",
+                name_hash: 3004923124,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFavoriteEvent, type1_name),
             },
             FieldInfoData {
                 name: "type2",
+                name_hash: 182678287,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFavoriteEvent, type2),
             },
             FieldInfoData {
                 name: "type2_id",
+                name_hash: 2199504285,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFavoriteEvent, type2_id),
             },
             FieldInfoData {
                 name: "type2_name",
+                name_hash: 2963766423,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinFavoriteEvent, type2_name),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinFavoriteEvent, field_flag_changed0),
@@ -23015,6 +24474,7 @@ impl TypeObject for TelemetrySdkPinFavoriteEvent {
 
 pub static TELEMETRYSDKPINFAVORITEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinFavoriteEvent-Array",
+    name_hash: 1057165965,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinFavoriteEvent"),
@@ -23023,7 +24483,8 @@ pub static TELEMETRYSDKPINFAVORITEEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinDownloadEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub item_id: String,
@@ -23147,64 +24608,76 @@ impl super::core::DataContainerTrait for TelemetrySdkPinDownloadEvent {
 
 pub static TELEMETRYSDKPINDOWNLOADEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinDownloadEvent",
+    name_hash: 3226390649,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinDownloadEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinDownloadEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinDownloadEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "item_id",
+                name_hash: 2442823394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinDownloadEvent, item_id),
             },
             FieldInfoData {
                 name: "item_type",
+                name_hash: 1650585687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinDownloadEvent, item_type),
             },
             FieldInfoData {
                 name: "item_platform",
+                name_hash: 2284542448,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinDownloadEvent, item_platform),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinDownloadEvent, status),
             },
             FieldInfoData {
                 name: "dur",
+                name_hash: 193405030,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinDownloadEvent, dur),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinDownloadEvent, status_code),
             },
             FieldInfoData {
                 name: "percent",
+                name_hash: 2364363998,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TelemetrySdkPinDownloadEvent, percent),
             },
             FieldInfoData {
                 name: "download_id",
+                name_hash: 4229097155,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetrySdkPinDownloadEvent, download_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinDownloadEvent, field_flag_changed0),
@@ -23236,6 +24709,7 @@ impl TypeObject for TelemetrySdkPinDownloadEvent {
 
 pub static TELEMETRYSDKPINDOWNLOADEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinDownloadEvent-Array",
+    name_hash: 976334669,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinDownloadEvent"),
@@ -23244,7 +24718,8 @@ pub static TELEMETRYSDKPINDOWNLOADEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinSettingsEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -23332,40 +24807,48 @@ impl super::core::DataContainerTrait for TelemetrySdkPinSettingsEvent {
 
 pub static TELEMETRYSDKPINSETTINGSEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinSettingsEvent",
+    name_hash: 1877161064,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinSettingsEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinSettingsEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinSettingsEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSettingsEvent, r#type),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSettingsEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinSettingsEvent, status_code),
             },
             FieldInfoData {
                 name: "settings",
+                name_hash: 1277500064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinSettingsEvent, settings),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinSettingsEvent, field_flag_changed0),
@@ -23397,6 +24880,7 @@ impl TypeObject for TelemetrySdkPinSettingsEvent {
 
 pub static TELEMETRYSDKPINSETTINGSEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinSettingsEvent-Array",
+    name_hash: 1375913564,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinSettingsEvent"),
@@ -23405,7 +24889,8 @@ pub static TELEMETRYSDKPINSETTINGSEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinRegistrationEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub source: String,
@@ -23493,40 +24978,48 @@ impl super::core::DataContainerTrait for TelemetrySdkPinRegistrationEvent {
 
 pub static TELEMETRYSDKPINREGISTRATIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinRegistrationEvent",
+    name_hash: 2334765948,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinRegistrationEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinRegistrationEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinRegistrationEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "source",
+                name_hash: 2169993400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRegistrationEvent, source),
             },
             FieldInfoData {
                 name: "status",
+                name_hash: 2141063537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRegistrationEvent, status),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRegistrationEvent, status_code),
             },
             FieldInfoData {
                 name: "domain",
+                name_hash: 1127975365,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinRegistrationEvent, domain),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinRegistrationEvent, field_flag_changed0),
@@ -23558,6 +25051,7 @@ impl TypeObject for TelemetrySdkPinRegistrationEvent {
 
 pub static TELEMETRYSDKPINREGISTRATIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinRegistrationEvent-Array",
+    name_hash: 1589574472,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinRegistrationEvent"),
@@ -23566,7 +25060,8 @@ pub static TELEMETRYSDKPINREGISTRATIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySdkPinAccountEvent {
     pub _glacier_base: TelemetrySDKPinEvent,
     pub r#type: String,
@@ -23681,58 +25176,69 @@ impl super::core::DataContainerTrait for TelemetrySdkPinAccountEvent {
 
 pub static TELEMETRYSDKPINACCOUNTEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinAccountEvent",
+    name_hash: 1578841484,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYSDKPINEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySdkPinAccountEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySdkPinAccountEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySdkPinAccountEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "type",
+                name_hash: 2087944093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinAccountEvent, r#type),
             },
             FieldInfoData {
                 name: "status_code",
+                name_hash: 4243060067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinAccountEvent, status_code),
             },
             FieldInfoData {
                 name: "acntid",
+                name_hash: 1314512656,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinAccountEvent, acntid),
             },
             FieldInfoData {
                 name: "source",
+                name_hash: 2169993400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinAccountEvent, source),
             },
             FieldInfoData {
                 name: "reason",
+                name_hash: 2124277697,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySdkPinAccountEvent, reason),
             },
             FieldInfoData {
                 name: "duration",
+                name_hash: 3981921147,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySdkPinAccountEvent, duration),
             },
             FieldInfoData {
                 name: "metadata",
+                name_hash: 2036718120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetrySdkPinAccountEvent, metadata),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetrySdkPinAccountEvent, field_flag_changed0),
@@ -23764,6 +25270,7 @@ impl TypeObject for TelemetrySdkPinAccountEvent {
 
 pub static TELEMETRYSDKPINACCOUNTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySdkPinAccountEvent-Array",
+    name_hash: 1516963256,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySdkPinAccountEvent"),
@@ -23772,7 +25279,8 @@ pub static TELEMETRYSDKPINACCOUNTEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySDKPinEvent {
     pub _glacier_base: TelemetryLogEvent,
     pub pin_event_name: String,
@@ -23821,28 +25329,34 @@ impl super::core::DataContainerTrait for TelemetrySDKPinEvent {
 
 pub static TELEMETRYSDKPINEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinEvent",
+    name_hash: 1616518925,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TELEMETRYLOGEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetrySDKPinEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySDKPinEvent as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySDKPinEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PinEventName",
+                name_hash: 631138713,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEvent, pin_event_name),
             },
             FieldInfoData {
                 name: "eventHeaderModifier",
+                name_hash: 2099470977,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetrySDKPinEventHeaderModifier",
                 rust_offset: offset_of!(TelemetrySDKPinEvent, event_header_modifier),
             },
             FieldInfoData {
                 name: "TrackChanges",
+                name_hash: 3351117631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetrySDKPinEvent, track_changes),
@@ -23874,6 +25388,7 @@ impl TypeObject for TelemetrySDKPinEvent {
 
 pub static TELEMETRYSDKPINEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinEvent-Array",
+    name_hash: 2371740345,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySDKPinEvent"),
@@ -23882,7 +25397,8 @@ pub static TELEMETRYSDKPINEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySDKPinEventHeaderModifier {
     pub session_id: i64,
     pub game_id: i64,
@@ -24119,159 +25635,186 @@ impl TelemetrySDKPinEventHeaderModifierTrait for TelemetrySDKPinEventHeaderModif
 
 pub static TELEMETRYSDKPINEVENTHEADERMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinEventHeaderModifier",
+    name_hash: 834079173,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySDKPinEventHeaderModifier as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySDKPinEventHeaderModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "sessionId",
+                name_hash: 904579510,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, session_id),
             },
             FieldInfoData {
                 name: "gameId",
+                name_hash: 1381152006,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, game_id),
             },
             FieldInfoData {
                 name: "playerIdType",
+                name_hash: 21528099,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, player_id_type),
             },
             FieldInfoData {
                 name: "playerId",
+                name_hash: 1652227547,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, player_id),
             },
             FieldInfoData {
                 name: "titleIdType",
+                name_hash: 4273251856,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, title_id_type),
             },
             FieldInfoData {
                 name: "titleId",
+                name_hash: 1960670888,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, title_id),
             },
             FieldInfoData {
                 name: "dateOfBirth",
+                name_hash: 3287215741,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, date_of_birth),
             },
             FieldInfoData {
                 name: "currentLevel",
+                name_hash: 2066135418,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, current_level),
             },
             FieldInfoData {
                 name: "currentLevelName",
+                name_hash: 3130598589,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, current_level_name),
             },
             FieldInfoData {
                 name: "releaseType",
+                name_hash: 1578057300,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, release_type),
             },
             FieldInfoData {
                 name: "platform",
+                name_hash: 1667438906,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, platform),
             },
             FieldInfoData {
                 name: "playerIdMap",
+                name_hash: 2473521991,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, player_id_map),
             },
             FieldInfoData {
                 name: "experimentId",
+                name_hash: 3847588233,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, experiment_id),
             },
             FieldInfoData {
                 name: "macAddress",
+                name_hash: 24551964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, mac_address),
             },
             FieldInfoData {
                 name: "deviceIdMap",
+                name_hash: 1646312012,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, device_id_map),
             },
             FieldInfoData {
                 name: "customEventHeader",
+                name_hash: 1776902341,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, custom_event_header),
             },
             FieldInfoData {
                 name: "isSession",
+                name_hash: 3871673313,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, is_session),
             },
             FieldInfoData {
                 name: "isPlayer",
+                name_hash: 41560332,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, is_player),
             },
             FieldInfoData {
                 name: "isMlu",
+                name_hash: 179995083,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, is_mlu),
             },
             FieldInfoData {
                 name: "subs",
+                name_hash: 2088317234,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, subs),
             },
             FieldInfoData {
                 name: "gameMode",
+                name_hash: 836124680,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, game_mode),
             },
             FieldInfoData {
                 name: "gameType",
+                name_hash: 837202291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, game_type),
             },
             FieldInfoData {
                 name: "modeType",
+                name_hash: 2967543454,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, mode_type),
             },
             FieldInfoData {
                 name: "map",
+                name_hash: 193414073,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, map),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetrySDKPinEventHeaderModifier, field_flag_changed0),
@@ -24303,6 +25846,7 @@ impl TypeObject for TelemetrySDKPinEventHeaderModifier {
 
 pub static TELEMETRYSDKPINEVENTHEADERMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySDKPinEventHeaderModifier-Array",
+    name_hash: 531399153,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetrySDKPinEventHeaderModifier"),
@@ -24311,18 +25855,19 @@ pub static TELEMETRYSDKPINEVENTHEADERMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransactionalTelemetryHookEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
-    pub stream: Option<Arc<Mutex<dyn TransactionalStreamDataTrait>>>,
+    pub stream: Option<LockedTypeObject /* TransactionalStreamData */>,
 }
 
 pub trait TransactionalTelemetryHookEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
-    fn stream(&self) -> &Option<Arc<Mutex<dyn TransactionalStreamDataTrait>>>;
-    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TransactionalStreamDataTrait>>>;
+    fn stream(&self) -> &Option<LockedTypeObject /* TransactionalStreamData */>;
+    fn stream_mut(&mut self) -> &mut Option<LockedTypeObject /* TransactionalStreamData */>;
 }
 
 impl TransactionalTelemetryHookEntityDataTrait for TransactionalTelemetryHookEntityData {
@@ -24332,10 +25877,10 @@ impl TransactionalTelemetryHookEntityDataTrait for TransactionalTelemetryHookEnt
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         &mut self.realm
     }
-    fn stream(&self) -> &Option<Arc<Mutex<dyn TransactionalStreamDataTrait>>> {
+    fn stream(&self) -> &Option<LockedTypeObject /* TransactionalStreamData */> {
         &self.stream
     }
-    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TransactionalStreamDataTrait>>> {
+    fn stream_mut(&mut self) -> &mut Option<LockedTypeObject /* TransactionalStreamData */> {
         &mut self.stream
     }
 }
@@ -24363,22 +25908,27 @@ impl super::core::DataContainerTrait for TransactionalTelemetryHookEntityData {
 
 pub static TRANSACTIONALTELEMETRYHOOKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransactionalTelemetryHookEntityData",
+    name_hash: 826367371,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransactionalTelemetryHookEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransactionalTelemetryHookEntityData as Default>::default())),
+            create_boxed: || Box::new(<TransactionalTelemetryHookEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TransactionalTelemetryHookEntityData, realm),
             },
             FieldInfoData {
                 name: "Stream",
+                name_hash: 3320109113,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TransactionalStreamData",
                 rust_offset: offset_of!(TransactionalTelemetryHookEntityData, stream),
@@ -24410,6 +25960,7 @@ impl TypeObject for TransactionalTelemetryHookEntityData {
 
 pub static TRANSACTIONALTELEMETRYHOOKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransactionalTelemetryHookEntityData-Array",
+    name_hash: 3226651711,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TransactionalTelemetryHookEntityData"),
@@ -24418,14 +25969,15 @@ pub static TRANSACTIONALTELEMETRYHOOKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VarStreamTelemetryHookEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
     pub r#mod: String,
     pub grp: String,
     pub subgrp: String,
-    pub stream: Option<Arc<Mutex<dyn VarEventStreamDataTrait>>>,
+    pub stream: Option<LockedTypeObject /* VarEventStreamData */>,
 }
 
 pub trait VarStreamTelemetryHookEntityDataTrait: super::entity::EntityDataTrait {
@@ -24437,8 +25989,8 @@ pub trait VarStreamTelemetryHookEntityDataTrait: super::entity::EntityDataTrait 
     fn grp_mut(&mut self) -> &mut String;
     fn subgrp(&self) -> &String;
     fn subgrp_mut(&mut self) -> &mut String;
-    fn stream(&self) -> &Option<Arc<Mutex<dyn VarEventStreamDataTrait>>>;
-    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VarEventStreamDataTrait>>>;
+    fn stream(&self) -> &Option<LockedTypeObject /* VarEventStreamData */>;
+    fn stream_mut(&mut self) -> &mut Option<LockedTypeObject /* VarEventStreamData */>;
 }
 
 impl VarStreamTelemetryHookEntityDataTrait for VarStreamTelemetryHookEntityData {
@@ -24466,10 +26018,10 @@ impl VarStreamTelemetryHookEntityDataTrait for VarStreamTelemetryHookEntityData 
     fn subgrp_mut(&mut self) -> &mut String {
         &mut self.subgrp
     }
-    fn stream(&self) -> &Option<Arc<Mutex<dyn VarEventStreamDataTrait>>> {
+    fn stream(&self) -> &Option<LockedTypeObject /* VarEventStreamData */> {
         &self.stream
     }
-    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn VarEventStreamDataTrait>>> {
+    fn stream_mut(&mut self) -> &mut Option<LockedTypeObject /* VarEventStreamData */> {
         &mut self.stream
     }
 }
@@ -24497,40 +26049,48 @@ impl super::core::DataContainerTrait for VarStreamTelemetryHookEntityData {
 
 pub static VARSTREAMTELEMETRYHOOKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VarStreamTelemetryHookEntityData",
+    name_hash: 1309109499,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VarStreamTelemetryHookEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VarStreamTelemetryHookEntityData as Default>::default())),
+            create_boxed: || Box::new(<VarStreamTelemetryHookEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(VarStreamTelemetryHookEntityData, realm),
             },
             FieldInfoData {
                 name: "mod",
+                name_hash: 193414115,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VarStreamTelemetryHookEntityData, r#mod),
             },
             FieldInfoData {
                 name: "grp",
+                name_hash: 193412096,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VarStreamTelemetryHookEntityData, grp),
             },
             FieldInfoData {
                 name: "subgrp",
+                name_hash: 2139752548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VarStreamTelemetryHookEntityData, subgrp),
             },
             FieldInfoData {
                 name: "Stream",
+                name_hash: 3320109113,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VarEventStreamData",
                 rust_offset: offset_of!(VarStreamTelemetryHookEntityData, stream),
@@ -24562,6 +26122,7 @@ impl TypeObject for VarStreamTelemetryHookEntityData {
 
 pub static VARSTREAMTELEMETRYHOOKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VarStreamTelemetryHookEntityData-Array",
+    name_hash: 3317294287,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("VarStreamTelemetryHookEntityData"),
@@ -24570,11 +26131,12 @@ pub static VARSTREAMTELEMETRYHOOKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FixedStreamTelemetryHookEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
-    pub stream: Option<Arc<Mutex<dyn FixedEventStreamDataTrait>>>,
+    pub stream: Option<LockedTypeObject /* FixedEventStreamData */>,
     pub has_telemetry_sdk3_event_fields: bool,
     pub r#mod: String,
     pub grp: String,
@@ -24584,8 +26146,8 @@ pub struct FixedStreamTelemetryHookEntityData {
 pub trait FixedStreamTelemetryHookEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
-    fn stream(&self) -> &Option<Arc<Mutex<dyn FixedEventStreamDataTrait>>>;
-    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedEventStreamDataTrait>>>;
+    fn stream(&self) -> &Option<LockedTypeObject /* FixedEventStreamData */>;
+    fn stream_mut(&mut self) -> &mut Option<LockedTypeObject /* FixedEventStreamData */>;
     fn has_telemetry_sdk3_event_fields(&self) -> &bool;
     fn has_telemetry_sdk3_event_fields_mut(&mut self) -> &mut bool;
     fn r#mod(&self) -> &String;
@@ -24603,10 +26165,10 @@ impl FixedStreamTelemetryHookEntityDataTrait for FixedStreamTelemetryHookEntityD
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         &mut self.realm
     }
-    fn stream(&self) -> &Option<Arc<Mutex<dyn FixedEventStreamDataTrait>>> {
+    fn stream(&self) -> &Option<LockedTypeObject /* FixedEventStreamData */> {
         &self.stream
     }
-    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FixedEventStreamDataTrait>>> {
+    fn stream_mut(&mut self) -> &mut Option<LockedTypeObject /* FixedEventStreamData */> {
         &mut self.stream
     }
     fn has_telemetry_sdk3_event_fields(&self) -> &bool {
@@ -24658,46 +26220,55 @@ impl super::core::DataContainerTrait for FixedStreamTelemetryHookEntityData {
 
 pub static FIXEDSTREAMTELEMETRYHOOKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FixedStreamTelemetryHookEntityData",
+    name_hash: 4182445608,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FixedStreamTelemetryHookEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FixedStreamTelemetryHookEntityData as Default>::default())),
+            create_boxed: || Box::new(<FixedStreamTelemetryHookEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(FixedStreamTelemetryHookEntityData, realm),
             },
             FieldInfoData {
                 name: "Stream",
+                name_hash: 3320109113,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FixedEventStreamData",
                 rust_offset: offset_of!(FixedStreamTelemetryHookEntityData, stream),
             },
             FieldInfoData {
                 name: "HasTelemetrySdk3EventFields",
+                name_hash: 143804354,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FixedStreamTelemetryHookEntityData, has_telemetry_sdk3_event_fields),
             },
             FieldInfoData {
                 name: "mod",
+                name_hash: 193414115,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(FixedStreamTelemetryHookEntityData, r#mod),
             },
             FieldInfoData {
                 name: "grp",
+                name_hash: 193412096,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(FixedStreamTelemetryHookEntityData, grp),
             },
             FieldInfoData {
                 name: "subgrp",
+                name_hash: 2139752548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(FixedStreamTelemetryHookEntityData, subgrp),
@@ -24729,6 +26300,7 @@ impl TypeObject for FixedStreamTelemetryHookEntityData {
 
 pub static FIXEDSTREAMTELEMETRYHOOKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FixedStreamTelemetryHookEntityData-Array",
+    name_hash: 4003131292,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("FixedStreamTelemetryHookEntityData"),
@@ -24737,15 +26309,16 @@ pub static FIXEDSTREAMTELEMETRYHOOKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
     pub r#mod: String,
     pub grp: String,
     pub subgrp: String,
-    pub params: Vec<TelemetryParameterDataProperty>,
-    pub transports: Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>,
+    pub params: Vec<BoxedTypeObject /* TelemetryParameterDataProperty */>,
+    pub transports: Vec<Option<LockedTypeObject /* TelemetryTransportData */>>,
 }
 
 pub trait TelemetryHookEntityDataTrait: super::entity::EntityDataTrait {
@@ -24757,10 +26330,10 @@ pub trait TelemetryHookEntityDataTrait: super::entity::EntityDataTrait {
     fn grp_mut(&mut self) -> &mut String;
     fn subgrp(&self) -> &String;
     fn subgrp_mut(&mut self) -> &mut String;
-    fn params(&self) -> &Vec<TelemetryParameterDataProperty>;
-    fn params_mut(&mut self) -> &mut Vec<TelemetryParameterDataProperty>;
-    fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
-    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>>;
+    fn params(&self) -> &Vec<BoxedTypeObject /* TelemetryParameterDataProperty */>;
+    fn params_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TelemetryParameterDataProperty */>;
+    fn transports(&self) -> &Vec<Option<LockedTypeObject /* TelemetryTransportData */>>;
+    fn transports_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryTransportData */>>;
 }
 
 impl TelemetryHookEntityDataTrait for TelemetryHookEntityData {
@@ -24788,16 +26361,16 @@ impl TelemetryHookEntityDataTrait for TelemetryHookEntityData {
     fn subgrp_mut(&mut self) -> &mut String {
         &mut self.subgrp
     }
-    fn params(&self) -> &Vec<TelemetryParameterDataProperty> {
+    fn params(&self) -> &Vec<BoxedTypeObject /* TelemetryParameterDataProperty */> {
         &self.params
     }
-    fn params_mut(&mut self) -> &mut Vec<TelemetryParameterDataProperty> {
+    fn params_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TelemetryParameterDataProperty */> {
         &mut self.params
     }
-    fn transports(&self) -> &Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports(&self) -> &Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         &self.transports
     }
-    fn transports_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TelemetryTransportDataTrait>>>> {
+    fn transports_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TelemetryTransportData */>> {
         &mut self.transports
     }
 }
@@ -24825,46 +26398,55 @@ impl super::core::DataContainerTrait for TelemetryHookEntityData {
 
 pub static TELEMETRYHOOKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookEntityData",
+    name_hash: 175352866,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetryHookEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookEntityData as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TelemetryHookEntityData, realm),
             },
             FieldInfoData {
                 name: "mod",
+                name_hash: 193414115,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookEntityData, r#mod),
             },
             FieldInfoData {
                 name: "grp",
+                name_hash: 193412096,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookEntityData, grp),
             },
             FieldInfoData {
                 name: "subgrp",
+                name_hash: 2139752548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookEntityData, subgrp),
             },
             FieldInfoData {
                 name: "Params",
+                name_hash: 3371566681,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TelemetryParameterDataProperty-Array",
                 rust_offset: offset_of!(TelemetryHookEntityData, params),
             },
             FieldInfoData {
                 name: "Transports",
+                name_hash: 1898450581,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TelemetryTransportData-Array",
                 rust_offset: offset_of!(TelemetryHookEntityData, transports),
@@ -24896,6 +26478,7 @@ impl TypeObject for TelemetryHookEntityData {
 
 pub static TELEMETRYHOOKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookEntityData-Array",
+    name_hash: 117123734,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookEntityData"),
@@ -24904,21 +26487,22 @@ pub static TELEMETRYHOOKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryGenericHookEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
-    pub stream: Option<Arc<Mutex<dyn EventStreamDataTrait>>>,
-    pub log_event: Option<Arc<Mutex<dyn TelemetryLogEventTrait>>>,
+    pub stream: Option<LockedTypeObject /* EventStreamData */>,
+    pub log_event: Option<LockedTypeObject /* TelemetryLogEvent */>,
 }
 
 pub trait TelemetryGenericHookEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
-    fn stream(&self) -> &Option<Arc<Mutex<dyn EventStreamDataTrait>>>;
-    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EventStreamDataTrait>>>;
-    fn log_event(&self) -> &Option<Arc<Mutex<dyn TelemetryLogEventTrait>>>;
-    fn log_event_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryLogEventTrait>>>;
+    fn stream(&self) -> &Option<LockedTypeObject /* EventStreamData */>;
+    fn stream_mut(&mut self) -> &mut Option<LockedTypeObject /* EventStreamData */>;
+    fn log_event(&self) -> &Option<LockedTypeObject /* TelemetryLogEvent */>;
+    fn log_event_mut(&mut self) -> &mut Option<LockedTypeObject /* TelemetryLogEvent */>;
 }
 
 impl TelemetryGenericHookEntityDataTrait for TelemetryGenericHookEntityData {
@@ -24928,16 +26512,16 @@ impl TelemetryGenericHookEntityDataTrait for TelemetryGenericHookEntityData {
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         &mut self.realm
     }
-    fn stream(&self) -> &Option<Arc<Mutex<dyn EventStreamDataTrait>>> {
+    fn stream(&self) -> &Option<LockedTypeObject /* EventStreamData */> {
         &self.stream
     }
-    fn stream_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EventStreamDataTrait>>> {
+    fn stream_mut(&mut self) -> &mut Option<LockedTypeObject /* EventStreamData */> {
         &mut self.stream
     }
-    fn log_event(&self) -> &Option<Arc<Mutex<dyn TelemetryLogEventTrait>>> {
+    fn log_event(&self) -> &Option<LockedTypeObject /* TelemetryLogEvent */> {
         &self.log_event
     }
-    fn log_event_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TelemetryLogEventTrait>>> {
+    fn log_event_mut(&mut self) -> &mut Option<LockedTypeObject /* TelemetryLogEvent */> {
         &mut self.log_event
     }
 }
@@ -24965,28 +26549,34 @@ impl super::core::DataContainerTrait for TelemetryGenericHookEntityData {
 
 pub static TELEMETRYGENERICHOOKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryGenericHookEntityData",
+    name_hash: 2896689363,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TelemetryGenericHookEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryGenericHookEntityData as Default>::default())),
+            create_boxed: || Box::new(<TelemetryGenericHookEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TelemetryGenericHookEntityData, realm),
             },
             FieldInfoData {
                 name: "Stream",
+                name_hash: 3320109113,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EventStreamData",
                 rust_offset: offset_of!(TelemetryGenericHookEntityData, stream),
             },
             FieldInfoData {
                 name: "LogEvent",
+                name_hash: 1860058413,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryLogEvent",
                 rust_offset: offset_of!(TelemetryGenericHookEntityData, log_event),
@@ -25018,6 +26608,7 @@ impl TypeObject for TelemetryGenericHookEntityData {
 
 pub static TELEMETRYGENERICHOOKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryGenericHookEntityData-Array",
+    name_hash: 4115923943,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryGenericHookEntityData"),
@@ -25026,7 +26617,8 @@ pub static TELEMETRYGENERICHOOKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryClearTelemetryTransactionMessageBase {
 }
 
@@ -25038,11 +26630,13 @@ impl TelemetryClearTelemetryTransactionMessageBaseTrait for TelemetryClearTeleme
 
 pub static TELEMETRYCLEARTELEMETRYTRANSACTIONMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryClearTelemetryTransactionMessageBase",
+    name_hash: 824512390,
     flags: MemberInfoFlags::new(36937),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryClearTelemetryTransactionMessageBase as Default>::default())),
+            create_boxed: || Box::new(<TelemetryClearTelemetryTransactionMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -25069,7 +26663,8 @@ impl TypeObject for TelemetryClearTelemetryTransactionMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryCommitTelemetryTransactionMessageBase {
 }
 
@@ -25081,11 +26676,13 @@ impl TelemetryCommitTelemetryTransactionMessageBaseTrait for TelemetryCommitTele
 
 pub static TELEMETRYCOMMITTELEMETRYTRANSACTIONMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryCommitTelemetryTransactionMessageBase",
+    name_hash: 2496924398,
     flags: MemberInfoFlags::new(36937),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryCommitTelemetryTransactionMessageBase as Default>::default())),
+            create_boxed: || Box::new(<TelemetryCommitTelemetryTransactionMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -25112,7 +26709,8 @@ impl TypeObject for TelemetryCommitTelemetryTransactionMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySendTelemetryTransactionRowMessageBase {
 }
 
@@ -25124,11 +26722,13 @@ impl TelemetrySendTelemetryTransactionRowMessageBaseTrait for TelemetrySendTelem
 
 pub static TELEMETRYSENDTELEMETRYTRANSACTIONROWMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySendTelemetryTransactionRowMessageBase",
+    name_hash: 3644254281,
     flags: MemberInfoFlags::new(36937),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySendTelemetryTransactionRowMessageBase as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySendTelemetryTransactionRowMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -25155,7 +26755,8 @@ impl TypeObject for TelemetrySendTelemetryTransactionRowMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySendTelemetryRowMessageBase {
 }
 
@@ -25167,11 +26768,13 @@ impl TelemetrySendTelemetryRowMessageBaseTrait for TelemetrySendTelemetryRowMess
 
 pub static TELEMETRYSENDTELEMETRYROWMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySendTelemetryRowMessageBase",
+    name_hash: 251539565,
     flags: MemberInfoFlags::new(36937),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySendTelemetryRowMessageBase as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySendTelemetryRowMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -25198,7 +26801,8 @@ impl TypeObject for TelemetrySendTelemetryRowMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetrySendEventMessage {
 }
 
@@ -25210,11 +26814,13 @@ impl TelemetrySendEventMessageTrait for TelemetrySendEventMessage {
 
 pub static TELEMETRYSENDEVENTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetrySendEventMessage",
+    name_hash: 2794012273,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetrySendEventMessage as Default>::default())),
+            create_boxed: || Box::new(<TelemetrySendEventMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -25241,7 +26847,8 @@ impl TypeObject for TelemetrySendEventMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterStringArray {
     pub data: Vec<String>,
     pub parameter_type: TelemetryParameterType,
@@ -25280,27 +26887,32 @@ impl TelemetryHookParameterStringArrayTrait for TelemetryHookParameterStringArra
 
 pub static TELEMETRYHOOKPARAMETERSTRINGARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterStringArray",
+    name_hash: 4011582316,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterStringArray as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterStringArray as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TelemetryHookParameterStringArray, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterStringArray, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterStringArray, parameter_name),
@@ -25332,6 +26944,7 @@ impl TypeObject for TelemetryHookParameterStringArray {
 
 pub static TELEMETRYHOOKPARAMETERSTRINGARRAY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterStringArray-Array",
+    name_hash: 2348966744,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterStringArray"),
@@ -25340,7 +26953,8 @@ pub static TELEMETRYHOOKPARAMETERSTRINGARRAY_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterRawJsonString {
     pub data: RawJsonString,
     pub parameter_type: TelemetryParameterType,
@@ -25379,27 +26993,32 @@ impl TelemetryHookParameterRawJsonStringTrait for TelemetryHookParameterRawJsonS
 
 pub static TELEMETRYHOOKPARAMETERRAWJSONSTRING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterRawJsonString",
+    name_hash: 3015386889,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterRawJsonString as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterRawJsonString as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RawJsonString",
                 rust_offset: offset_of!(TelemetryHookParameterRawJsonString, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterRawJsonString, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterRawJsonString, parameter_name),
@@ -25431,6 +27050,7 @@ impl TypeObject for TelemetryHookParameterRawJsonString {
 
 pub static TELEMETRYHOOKPARAMETERRAWJSONSTRING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterRawJsonString-Array",
+    name_hash: 3592764605,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterRawJsonString"),
@@ -25439,7 +27059,8 @@ pub static TELEMETRYHOOKPARAMETERRAWJSONSTRING_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterTransform {
     pub data: super::core::LinearTransform,
     pub parameter_type: TelemetryParameterType,
@@ -25478,27 +27099,32 @@ impl TelemetryHookParameterTransformTrait for TelemetryHookParameterTransform {
 
 pub static TELEMETRYHOOKPARAMETERTRANSFORM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterTransform",
+    name_hash: 4169741868,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterTransform as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterTransform as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(TelemetryHookParameterTransform, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterTransform, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterTransform, parameter_name),
@@ -25530,6 +27156,7 @@ impl TypeObject for TelemetryHookParameterTransform {
 
 pub static TELEMETRYHOOKPARAMETERTRANSFORM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterTransform-Array",
+    name_hash: 521586072,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterTransform"),
@@ -25538,7 +27165,8 @@ pub static TELEMETRYHOOKPARAMETERTRANSFORM_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterVec4 {
     pub data: super::core::Vec4,
     pub parameter_type: TelemetryParameterType,
@@ -25577,27 +27205,32 @@ impl TelemetryHookParameterVec4Trait for TelemetryHookParameterVec4 {
 
 pub static TELEMETRYHOOKPARAMETERVEC4_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterVec4",
+    name_hash: 3482047012,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterVec4 as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterVec4 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(TelemetryHookParameterVec4, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterVec4, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterVec4, parameter_name),
@@ -25629,6 +27262,7 @@ impl TypeObject for TelemetryHookParameterVec4 {
 
 pub static TELEMETRYHOOKPARAMETERVEC4_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterVec4-Array",
+    name_hash: 3927901584,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterVec4"),
@@ -25637,7 +27271,8 @@ pub static TELEMETRYHOOKPARAMETERVEC4_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterVec3 {
     pub data: super::core::Vec3,
     pub parameter_type: TelemetryParameterType,
@@ -25676,27 +27311,32 @@ impl TelemetryHookParameterVec3Trait for TelemetryHookParameterVec3 {
 
 pub static TELEMETRYHOOKPARAMETERVEC3_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterVec3",
+    name_hash: 3482047011,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterVec3 as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterVec3 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TelemetryHookParameterVec3, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterVec3, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterVec3, parameter_name),
@@ -25728,6 +27368,7 @@ impl TypeObject for TelemetryHookParameterVec3 {
 
 pub static TELEMETRYHOOKPARAMETERVEC3_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterVec3-Array",
+    name_hash: 938415511,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterVec3"),
@@ -25736,7 +27377,8 @@ pub static TELEMETRYHOOKPARAMETERVEC3_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterVec2 {
     pub data: super::core::Vec2,
     pub parameter_type: TelemetryParameterType,
@@ -25775,27 +27417,32 @@ impl TelemetryHookParameterVec2Trait for TelemetryHookParameterVec2 {
 
 pub static TELEMETRYHOOKPARAMETERVEC2_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterVec2",
+    name_hash: 3482047010,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterVec2 as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterVec2 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(TelemetryHookParameterVec2, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterVec2, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterVec2, parameter_name),
@@ -25827,6 +27474,7 @@ impl TypeObject for TelemetryHookParameterVec2 {
 
 pub static TELEMETRYHOOKPARAMETERVEC2_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterVec2-Array",
+    name_hash: 1662505110,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterVec2"),
@@ -25835,7 +27483,8 @@ pub static TELEMETRYHOOKPARAMETERVEC2_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterBool {
     pub data: bool,
     pub parameter_type: TelemetryParameterType,
@@ -25874,27 +27523,32 @@ impl TelemetryHookParameterBoolTrait for TelemetryHookParameterBool {
 
 pub static TELEMETRYHOOKPARAMETERBOOL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterBool",
+    name_hash: 3481347566,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterBool as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterBool as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TelemetryHookParameterBool, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterBool, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterBool, parameter_name),
@@ -25926,6 +27580,7 @@ impl TypeObject for TelemetryHookParameterBool {
 
 pub static TELEMETRYHOOKPARAMETERBOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterBool-Array",
+    name_hash: 4271619802,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterBool"),
@@ -25934,7 +27589,8 @@ pub static TELEMETRYHOOKPARAMETERBOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterUint64 {
     pub data: u64,
     pub parameter_type: TelemetryParameterType,
@@ -25973,27 +27629,32 @@ impl TelemetryHookParameterUint64Trait for TelemetryHookParameterUint64 {
 
 pub static TELEMETRYHOOKPARAMETERUINT64_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterUint64",
+    name_hash: 3841081124,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterUint64 as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterUint64 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(TelemetryHookParameterUint64, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterUint64, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterUint64, parameter_name),
@@ -26025,6 +27686,7 @@ impl TypeObject for TelemetryHookParameterUint64 {
 
 pub static TELEMETRYHOOKPARAMETERUINT64_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterUint64-Array",
+    name_hash: 2145596048,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterUint64"),
@@ -26033,7 +27695,8 @@ pub static TELEMETRYHOOKPARAMETERUINT64_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterUint {
     pub data: u32,
     pub parameter_type: TelemetryParameterType,
@@ -26072,27 +27735,32 @@ impl TelemetryHookParameterUintTrait for TelemetryHookParameterUint {
 
 pub static TELEMETRYHOOKPARAMETERUINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterUint",
+    name_hash: 3482095718,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterUint as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterUint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TelemetryHookParameterUint, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterUint, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterUint, parameter_name),
@@ -26124,6 +27792,7 @@ impl TypeObject for TelemetryHookParameterUint {
 
 pub static TELEMETRYHOOKPARAMETERUINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterUint-Array",
+    name_hash: 1923984722,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterUint"),
@@ -26132,7 +27801,8 @@ pub static TELEMETRYHOOKPARAMETERUINT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterString {
     pub data: String,
     pub parameter_type: TelemetryParameterType,
@@ -26171,27 +27841,32 @@ impl TelemetryHookParameterStringTrait for TelemetryHookParameterString {
 
 pub static TELEMETRYHOOKPARAMETERSTRING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterString",
+    name_hash: 3890521077,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterString as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterString as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterString, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterString, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterString, parameter_name),
@@ -26223,6 +27898,7 @@ impl TypeObject for TelemetryHookParameterString {
 
 pub static TELEMETRYHOOKPARAMETERSTRING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterString-Array",
+    name_hash: 2574808257,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterString"),
@@ -26231,7 +27907,8 @@ pub static TELEMETRYHOOKPARAMETERSTRING_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterFloat {
     pub data: f32,
     pub parameter_type: TelemetryParameterType,
@@ -26270,27 +27947,32 @@ impl TelemetryHookParameterFloatTrait for TelemetryHookParameterFloat {
 
 pub static TELEMETRYHOOKPARAMETERFLOAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterFloat",
+    name_hash: 3219744336,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterFloat as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterFloat as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TelemetryHookParameterFloat, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterFloat, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterFloat, parameter_name),
@@ -26322,6 +28004,7 @@ impl TypeObject for TelemetryHookParameterFloat {
 
 pub static TELEMETRYHOOKPARAMETERFLOAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterFloat-Array",
+    name_hash: 2053276900,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterFloat"),
@@ -26330,7 +28013,8 @@ pub static TELEMETRYHOOKPARAMETERFLOAT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterInt {
     pub data: i32,
     pub parameter_type: TelemetryParameterType,
@@ -26369,27 +28053,32 @@ impl TelemetryHookParameterIntTrait for TelemetryHookParameterInt {
 
 pub static TELEMETRYHOOKPARAMETERINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterInt",
+    name_hash: 626106867,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterInt as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterInt as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TelemetryHookParameterInt, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterInt, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterInt, parameter_name),
@@ -26421,6 +28110,7 @@ impl TypeObject for TelemetryHookParameterInt {
 
 pub static TELEMETRYHOOKPARAMETERINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterInt-Array",
+    name_hash: 4170743239,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterInt"),
@@ -26429,7 +28119,8 @@ pub static TELEMETRYHOOKPARAMETERINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameterChar {
     pub data: u8,
     pub parameter_type: TelemetryParameterType,
@@ -26468,27 +28159,32 @@ impl TelemetryHookParameterCharTrait for TelemetryHookParameterChar {
 
 pub static TELEMETRYHOOKPARAMETERCHAR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterChar",
+    name_hash: 3481587352,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameterChar as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameterChar as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TelemetryHookParameterChar, data),
             },
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameterChar, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameterChar, parameter_name),
@@ -26520,6 +28216,7 @@ impl TypeObject for TelemetryHookParameterChar {
 
 pub static TELEMETRYHOOKPARAMETERCHAR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameterChar-Array",
+    name_hash: 3006691500,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameterChar"),
@@ -26528,7 +28225,8 @@ pub static TELEMETRYHOOKPARAMETERCHAR_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryHookParameter {
     pub parameter_type: TelemetryParameterType,
     pub parameter_name: String,
@@ -26558,21 +28256,25 @@ impl TelemetryHookParameterTrait for TelemetryHookParameter {
 
 pub static TELEMETRYHOOKPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameter",
+    name_hash: 913939424,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryHookParameter as Default>::default())),
+            create_boxed: || Box::new(<TelemetryHookParameter as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ParameterType",
+                name_hash: 1569850964,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryHookParameter, parameter_type),
             },
             FieldInfoData {
                 name: "ParameterName",
+                name_hash: 1568946859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryHookParameter, parameter_name),
@@ -26604,6 +28306,7 @@ impl TypeObject for TelemetryHookParameter {
 
 pub static TELEMETRYHOOKPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryHookParameter-Array",
+    name_hash: 438923732,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryHookParameter"),
@@ -26612,7 +28315,8 @@ pub static TELEMETRYHOOKPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TelemetryParameterDataProperty {
     pub stat_name: String,
     pub data_type: TelemetryParameterType,
@@ -26642,21 +28346,25 @@ impl TelemetryParameterDataPropertyTrait for TelemetryParameterDataProperty {
 
 pub static TELEMETRYPARAMETERDATAPROPERTY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryParameterDataProperty",
+    name_hash: 2680646740,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TelemetryParameterDataProperty as Default>::default())),
+            create_boxed: || Box::new(<TelemetryParameterDataProperty as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StatName",
+                name_hash: 3117440496,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TelemetryParameterDataProperty, stat_name),
             },
             FieldInfoData {
                 name: "DataType",
+                name_hash: 3249006477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TelemetryParameterType",
                 rust_offset: offset_of!(TelemetryParameterDataProperty, data_type),
@@ -26688,6 +28396,7 @@ impl TypeObject for TelemetryParameterDataProperty {
 
 pub static TELEMETRYPARAMETERDATAPROPERTY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryParameterDataProperty-Array",
+    name_hash: 1198307552,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryParameterDataProperty"),
@@ -26696,7 +28405,8 @@ pub static TELEMETRYPARAMETERDATAPROPERTY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RawJsonString {
     pub raw_json: String,
 }
@@ -26717,15 +28427,18 @@ impl RawJsonStringTrait for RawJsonString {
 
 pub static RAWJSONSTRING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RawJsonString",
+    name_hash: 871566604,
     flags: MemberInfoFlags::new(73),
     module: "TelemetryShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RawJsonString as Default>::default())),
+            create_boxed: || Box::new(<RawJsonString as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RawJson",
+                name_hash: 1456466649,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(RawJsonString, raw_json),
@@ -26757,6 +28470,7 @@ impl TypeObject for RawJsonString {
 
 pub static RAWJSONSTRING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RawJsonString-Array",
+    name_hash: 2611379512,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("RawJsonString"),
@@ -26765,7 +28479,8 @@ pub static RAWJSONSTRING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpecialTypeData {
     pub _glacier_base: super::core::DataContainer,
     pub owns_value: bool,
@@ -26790,16 +28505,20 @@ impl super::core::DataContainerTrait for SpecialTypeData {
 
 pub static SPECIALTYPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpecialTypeData",
+    name_hash: 2589823724,
     flags: MemberInfoFlags::new(101),
     module: "TelemetryShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(SpecialTypeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpecialTypeData as Default>::default())),
+            create_boxed: || Box::new(<SpecialTypeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OwnsValue",
+                name_hash: 2200895563,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SpecialTypeData, owns_value),
@@ -26831,6 +28550,7 @@ impl TypeObject for SpecialTypeData {
 
 pub static SPECIALTYPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpecialTypeData-Array",
+    name_hash: 1890169560,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("SpecialTypeData"),
@@ -26863,6 +28583,7 @@ pub enum TelemetryParameterType {
 
 pub static TELEMETRYPARAMETERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryParameterType",
+    name_hash: 1865375867,
     flags: MemberInfoFlags::new(49429),
     module: "TelemetryShared",
     data: TypeInfoData::Enum,
@@ -26891,6 +28612,7 @@ impl TypeObject for TelemetryParameterType {
 
 pub static TELEMETRYPARAMETERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TelemetryParameterType-Array",
+    name_hash: 3974789199,
     flags: MemberInfoFlags::new(145),
     module: "TelemetryShared",
     data: TypeInfoData::Array("TelemetryParameterType"),

@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -21,7 +22,8 @@ pub(crate) fn register_decal_types(registry: &mut TypeRegistry) {
     registry.register_type(DECALENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DecalDynamicState {
     pub is_detached: bool,
     pub field_flag_changed0: u8,
@@ -51,21 +53,25 @@ impl DecalDynamicStateTrait for DecalDynamicState {
 
 pub static DECALDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalDynamicState",
+    name_hash: 2131202792,
     flags: MemberInfoFlags::new(36937),
     module: "Decal",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DecalDynamicState as Default>::default())),
+            create_boxed: || Box::new(<DecalDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IsDetached",
+                name_hash: 1899853473,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalDynamicState, is_detached),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(DecalDynamicState, field_flag_changed0),
@@ -97,6 +103,7 @@ impl TypeObject for DecalDynamicState {
 
 pub static DECALDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalDynamicState-Array",
+    name_hash: 2341733596,
     flags: MemberInfoFlags::new(145),
     module: "Decal",
     data: TypeInfoData::Array("DecalDynamicState"),
@@ -105,23 +112,24 @@ pub static DECALDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DecalStaticState {
     pub transform: super::core::LinearTransform,
-    pub asset: Option<Arc<Mutex<dyn super::render_base::DecalTemplateBaseAssetTrait>>>,
+    pub asset: Option<LockedTypeObject /* super::render_base::DecalTemplateBaseAsset */>,
     pub life_time: DecalLifeTime,
     pub apply_on_terrain: bool,
     pub exclusive_model: super::world_base::ModelHandle,
     pub exclusive_model_part: u32,
-    pub ignored_models: Vec<super::world_base::ModelHandle>,
+    pub ignored_models: Vec<BoxedTypeObject /* super::world_base::ModelHandle */>,
     pub field_flag_changed0: u8,
 }
 
 pub trait DecalStaticStateTrait: TypeObject {
     fn transform(&self) -> &super::core::LinearTransform;
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::render_base::DecalTemplateBaseAssetTrait>>>;
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::DecalTemplateBaseAssetTrait>>>;
+    fn asset(&self) -> &Option<LockedTypeObject /* super::render_base::DecalTemplateBaseAsset */>;
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::DecalTemplateBaseAsset */>;
     fn life_time(&self) -> &DecalLifeTime;
     fn life_time_mut(&mut self) -> &mut DecalLifeTime;
     fn apply_on_terrain(&self) -> &bool;
@@ -130,8 +138,8 @@ pub trait DecalStaticStateTrait: TypeObject {
     fn exclusive_model_mut(&mut self) -> &mut super::world_base::ModelHandle;
     fn exclusive_model_part(&self) -> &u32;
     fn exclusive_model_part_mut(&mut self) -> &mut u32;
-    fn ignored_models(&self) -> &Vec<super::world_base::ModelHandle>;
-    fn ignored_models_mut(&mut self) -> &mut Vec<super::world_base::ModelHandle>;
+    fn ignored_models(&self) -> &Vec<BoxedTypeObject /* super::world_base::ModelHandle */>;
+    fn ignored_models_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::world_base::ModelHandle */>;
     fn field_flag_changed0(&self) -> &u8;
     fn field_flag_changed0_mut(&mut self) -> &mut u8;
 }
@@ -143,10 +151,10 @@ impl DecalStaticStateTrait for DecalStaticState {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         &mut self.transform
     }
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::render_base::DecalTemplateBaseAssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* super::render_base::DecalTemplateBaseAsset */> {
         &self.asset
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::DecalTemplateBaseAssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::DecalTemplateBaseAsset */> {
         &mut self.asset
     }
     fn life_time(&self) -> &DecalLifeTime {
@@ -173,10 +181,10 @@ impl DecalStaticStateTrait for DecalStaticState {
     fn exclusive_model_part_mut(&mut self) -> &mut u32 {
         &mut self.exclusive_model_part
     }
-    fn ignored_models(&self) -> &Vec<super::world_base::ModelHandle> {
+    fn ignored_models(&self) -> &Vec<BoxedTypeObject /* super::world_base::ModelHandle */> {
         &self.ignored_models
     }
-    fn ignored_models_mut(&mut self) -> &mut Vec<super::world_base::ModelHandle> {
+    fn ignored_models_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::world_base::ModelHandle */> {
         &mut self.ignored_models
     }
     fn field_flag_changed0(&self) -> &u8 {
@@ -189,57 +197,67 @@ impl DecalStaticStateTrait for DecalStaticState {
 
 pub static DECALSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalStaticState",
+    name_hash: 561014437,
     flags: MemberInfoFlags::new(73),
     module: "Decal",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DecalStaticState as Default>::default())),
+            create_boxed: || Box::new(<DecalStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(DecalStaticState, transform),
             },
             FieldInfoData {
                 name: "Asset",
+                name_hash: 205976053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DecalTemplateBaseAsset",
                 rust_offset: offset_of!(DecalStaticState, asset),
             },
             FieldInfoData {
                 name: "LifeTime",
+                name_hash: 2449447350,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DecalLifeTime",
                 rust_offset: offset_of!(DecalStaticState, life_time),
             },
             FieldInfoData {
                 name: "ApplyOnTerrain",
+                name_hash: 4105242151,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalStaticState, apply_on_terrain),
             },
             FieldInfoData {
                 name: "ExclusiveModel",
+                name_hash: 562941092,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ModelHandle",
                 rust_offset: offset_of!(DecalStaticState, exclusive_model),
             },
             FieldInfoData {
                 name: "ExclusiveModelPart",
+                name_hash: 2538982227,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DecalStaticState, exclusive_model_part),
             },
             FieldInfoData {
                 name: "IgnoredModels",
+                name_hash: 906617925,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ModelHandle-Array",
                 rust_offset: offset_of!(DecalStaticState, ignored_models),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(DecalStaticState, field_flag_changed0),
@@ -271,6 +289,7 @@ impl TypeObject for DecalStaticState {
 
 pub static DECALSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalStaticState-Array",
+    name_hash: 337133329,
     flags: MemberInfoFlags::new(145),
     module: "Decal",
     data: TypeInfoData::Array("DecalStaticState"),
@@ -290,6 +309,7 @@ pub enum DecalLifeTime {
 
 pub static DECALLIFETIME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalLifeTime",
+    name_hash: 1727821337,
     flags: MemberInfoFlags::new(49429),
     module: "Decal",
     data: TypeInfoData::Enum,
@@ -318,6 +338,7 @@ impl TypeObject for DecalLifeTime {
 
 pub static DECALLIFETIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalLifeTime-Array",
+    name_hash: 1048089517,
     flags: MemberInfoFlags::new(145),
     module: "Decal",
     data: TypeInfoData::Array("DecalLifeTime"),
@@ -326,7 +347,8 @@ pub static DECALLIFETIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DecalVolumeEntity {
     pub _glacier_base: super::world_sim::RenderVolumeEntity,
 }
@@ -348,12 +370,15 @@ impl super::entity::EntityBusPeerTrait for DecalVolumeEntity {
 
 pub static DECALVOLUMEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalVolumeEntity",
+    name_hash: 1010638457,
     flags: MemberInfoFlags::new(101),
     module: "Decal",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::world_sim::RENDERVOLUMEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(DecalVolumeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DecalVolumeEntity as Default>::default())),
+            create_boxed: || Box::new(<DecalVolumeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -383,6 +408,7 @@ impl TypeObject for DecalVolumeEntity {
 
 pub static DECALVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalVolumeEntity-Array",
+    name_hash: 2938273101,
     flags: MemberInfoFlags::new(145),
     module: "Decal",
     data: TypeInfoData::Array("DecalVolumeEntity"),
@@ -391,7 +417,8 @@ pub static DECALVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DecalEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -410,12 +437,15 @@ impl super::entity::EntityBusPeerTrait for DecalEntity {
 
 pub static DECALENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalEntity",
+    name_hash: 4162963185,
     flags: MemberInfoFlags::new(101),
     module: "Decal",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(DecalEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DecalEntity as Default>::default())),
+            create_boxed: || Box::new(<DecalEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -445,6 +475,7 @@ impl TypeObject for DecalEntity {
 
 pub static DECALENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalEntity-Array",
+    name_hash: 948185541,
     flags: MemberInfoFlags::new(145),
     module: "Decal",
     data: TypeInfoData::Array("DecalEntity"),

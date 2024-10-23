@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -13,7 +14,8 @@ pub(crate) fn register_memento_types(registry: &mut TypeRegistry) {
     registry.register_type(MEMENTOSETTINGS_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MementoSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enabled: bool,
@@ -56,22 +58,27 @@ impl super::core::DataContainerTrait for MementoSettings {
 
 pub static MEMENTOSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MementoSettings",
+    name_hash: 2003918453,
     flags: MemberInfoFlags::new(101),
     module: "Memento",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(MementoSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MementoSettings as Default>::default())),
+            create_boxed: || Box::new(<MementoSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MementoSettings, enabled),
             },
             FieldInfoData {
                 name: "GzipCompression",
+                name_hash: 3094795343,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MementoSettings, gzip_compression),
@@ -103,6 +110,7 @@ impl TypeObject for MementoSettings {
 
 pub static MEMENTOSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MementoSettings-Array",
+    name_hash: 4014411585,
     flags: MemberInfoFlags::new(145),
     module: "Memento",
     data: TypeInfoData::Array("MementoSettings"),

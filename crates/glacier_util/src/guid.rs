@@ -4,6 +4,7 @@ use bytes::BytesMut;
 
 // UUID v3
 #[derive(Default, Clone, Copy, PartialEq)]
+#[repr(C)]
 pub struct Guid {
     pub data1: u32,
     pub data2: u16,

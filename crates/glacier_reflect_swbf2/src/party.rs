@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -39,7 +40,8 @@ pub(crate) fn register_party_types(registry: &mut TypeRegistry) {
     registry.register_type(ORIGINPARTYBACKEND_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresencePartyServiceData {
     pub _glacier_base: super::online_shared::PresenceServiceData,
     pub user_profile_refresh_timeout: f32,
@@ -85,22 +87,27 @@ impl super::core::DataContainerTrait for PresencePartyServiceData {
 
 pub static PRESENCEPARTYSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresencePartyServiceData",
+    name_hash: 3987226079,
     flags: MemberInfoFlags::new(101),
     module: "Party",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCESERVICEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PresencePartyServiceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresencePartyServiceData as Default>::default())),
+            create_boxed: || Box::new(<PresencePartyServiceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "UserProfileRefreshTimeout",
+                name_hash: 2110357753,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PresencePartyServiceData, user_profile_refresh_timeout),
             },
             FieldInfoData {
                 name: "UserProfilesFetchEnabled",
+                name_hash: 1406502357,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PresencePartyServiceData, user_profiles_fetch_enabled),
@@ -132,6 +139,7 @@ impl TypeObject for PresencePartyServiceData {
 
 pub static PRESENCEPARTYSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresencePartyServiceData-Array",
+    name_hash: 3430093547,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("PresencePartyServiceData"),
@@ -140,7 +148,8 @@ pub static PRESENCEPARTYSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceDurangoPartyBackendData {
     pub _glacier_base: super::online_shared::PresenceBackendData,
     pub party_session_template: String,
@@ -210,34 +219,41 @@ impl super::core::DataContainerTrait for PresenceDurangoPartyBackendData {
 
 pub static PRESENCEDURANGOPARTYBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceDurangoPartyBackendData",
+    name_hash: 2553248546,
     flags: MemberInfoFlags::new(101),
     module: "Party",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCEBACKENDDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceDurangoPartyBackendData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceDurangoPartyBackendData as Default>::default())),
+            create_boxed: || Box::new(<PresenceDurangoPartyBackendData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PartySessionTemplate",
+                name_hash: 3942993925,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(PresenceDurangoPartyBackendData, party_session_template),
             },
             FieldInfoData {
                 name: "PartyInviteContext",
+                name_hash: 1034706621,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(PresenceDurangoPartyBackendData, party_invite_context),
             },
             FieldInfoData {
                 name: "AutoCreateParty",
+                name_hash: 136368704,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PresenceDurangoPartyBackendData, auto_create_party),
             },
             FieldInfoData {
                 name: "CurrentActivity",
+                name_hash: 3644106881,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DurangoCurrentActivity",
                 rust_offset: offset_of!(PresenceDurangoPartyBackendData, current_activity),
@@ -269,6 +285,7 @@ impl TypeObject for PresenceDurangoPartyBackendData {
 
 pub static PRESENCEDURANGOPARTYBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceDurangoPartyBackendData-Array",
+    name_hash: 202783126,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("PresenceDurangoPartyBackendData"),
@@ -277,7 +294,8 @@ pub static PRESENCEDURANGOPARTYBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresencePs4PartyBackendData {
     pub _glacier_base: super::online_shared::PresenceBackendData,
 }
@@ -311,12 +329,15 @@ impl super::core::DataContainerTrait for PresencePs4PartyBackendData {
 
 pub static PRESENCEPS4PARTYBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresencePs4PartyBackendData",
+    name_hash: 3438045489,
     flags: MemberInfoFlags::new(101),
     module: "Party",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCEBACKENDDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PresencePs4PartyBackendData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresencePs4PartyBackendData as Default>::default())),
+            create_boxed: || Box::new(<PresencePs4PartyBackendData as Default>::default()),
         },
         fields: &[
         ],
@@ -346,6 +367,7 @@ impl TypeObject for PresencePs4PartyBackendData {
 
 pub static PRESENCEPS4PARTYBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresencePs4PartyBackendData-Array",
+    name_hash: 2357148549,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("PresencePs4PartyBackendData"),
@@ -354,7 +376,8 @@ pub static PRESENCEPS4PARTYBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceOriginPartyBackendData {
     pub _glacier_base: super::online_shared::PresenceBackendData,
     pub party_type: OriginPartyType,
@@ -397,16 +420,20 @@ impl super::core::DataContainerTrait for PresenceOriginPartyBackendData {
 
 pub static PRESENCEORIGINPARTYBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceOriginPartyBackendData",
+    name_hash: 3534487570,
     flags: MemberInfoFlags::new(101),
     module: "Party",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCEBACKENDDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceOriginPartyBackendData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceOriginPartyBackendData as Default>::default())),
+            create_boxed: || Box::new(<PresenceOriginPartyBackendData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PartyType",
+                name_hash: 3152136947,
                 flags: MemberInfoFlags::new(0),
                 field_type: "OriginPartyType",
                 rust_offset: offset_of!(PresenceOriginPartyBackendData, party_type),
@@ -438,6 +465,7 @@ impl TypeObject for PresenceOriginPartyBackendData {
 
 pub static PRESENCEORIGINPARTYBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceOriginPartyBackendData-Array",
+    name_hash: 4052330278,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("PresenceOriginPartyBackendData"),
@@ -458,6 +486,7 @@ pub enum DurangoCurrentActivity {
 
 pub static DURANGOCURRENTACTIVITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DurangoCurrentActivity",
+    name_hash: 1531607877,
     flags: MemberInfoFlags::new(49429),
     module: "Party",
     data: TypeInfoData::Enum,
@@ -486,6 +515,7 @@ impl TypeObject for DurangoCurrentActivity {
 
 pub static DURANGOCURRENTACTIVITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DurangoCurrentActivity-Array",
+    name_hash: 3715044209,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("DurangoCurrentActivity"),
@@ -506,6 +536,7 @@ pub enum OriginPartyType {
 
 pub static ORIGINPARTYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginPartyType",
+    name_hash: 2490330983,
     flags: MemberInfoFlags::new(49429),
     module: "Party",
     data: TypeInfoData::Enum,
@@ -534,6 +565,7 @@ impl TypeObject for OriginPartyType {
 
 pub static ORIGINPARTYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginPartyType-Array",
+    name_hash: 3135721811,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("OriginPartyType"),
@@ -542,7 +574,8 @@ pub static ORIGINPARTYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresencePartyRequestMessageBase {
 }
 
@@ -554,11 +587,13 @@ impl PresencePartyRequestMessageBaseTrait for PresencePartyRequestMessageBase {
 
 pub static PRESENCEPARTYREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresencePartyRequestMessageBase",
+    name_hash: 1354325085,
     flags: MemberInfoFlags::new(36937),
     module: "Party",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresencePartyRequestMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresencePartyRequestMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -585,7 +620,8 @@ impl TypeObject for PresencePartyRequestMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresencePartyMessageBase {
 }
 
@@ -597,11 +633,13 @@ impl PresencePartyMessageBaseTrait for PresencePartyMessageBase {
 
 pub static PRESENCEPARTYMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresencePartyMessageBase",
+    name_hash: 4196171916,
     flags: MemberInfoFlags::new(36937),
     module: "Party",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresencePartyMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresencePartyMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -628,7 +666,8 @@ impl TypeObject for PresencePartyMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceLeavePartyRequestParameters {
     pub _glacier_base: super::online::PresenceRequestParameters,
 }
@@ -644,12 +683,15 @@ impl super::online::PresenceRequestParametersTrait for PresenceLeavePartyRequest
 
 pub static PRESENCELEAVEPARTYREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceLeavePartyRequestParameters",
+    name_hash: 3062780834,
     flags: MemberInfoFlags::new(101),
     module: "Party",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceLeavePartyRequestParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceLeavePartyRequestParameters as Default>::default())),
+            create_boxed: || Box::new(<PresenceLeavePartyRequestParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -679,6 +721,7 @@ impl TypeObject for PresenceLeavePartyRequestParameters {
 
 pub static PRESENCELEAVEPARTYREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceLeavePartyRequestParameters-Array",
+    name_hash: 2572513814,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("PresenceLeavePartyRequestParameters"),
@@ -687,7 +730,8 @@ pub static PRESENCELEAVEPARTYREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceAcceptPartyInviteRequestParameters {
     pub _glacier_base: super::online::PresenceRequestParameters,
 }
@@ -703,12 +747,15 @@ impl super::online::PresenceRequestParametersTrait for PresenceAcceptPartyInvite
 
 pub static PRESENCEACCEPTPARTYINVITEREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceAcceptPartyInviteRequestParameters",
+    name_hash: 3550397072,
     flags: MemberInfoFlags::new(101),
     module: "Party",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceAcceptPartyInviteRequestParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceAcceptPartyInviteRequestParameters as Default>::default())),
+            create_boxed: || Box::new(<PresenceAcceptPartyInviteRequestParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -738,6 +785,7 @@ impl TypeObject for PresenceAcceptPartyInviteRequestParameters {
 
 pub static PRESENCEACCEPTPARTYINVITEREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceAcceptPartyInviteRequestParameters-Array",
+    name_hash: 3849851044,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("PresenceAcceptPartyInviteRequestParameters"),
@@ -746,7 +794,8 @@ pub static PRESENCEACCEPTPARTYINVITEREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceSendPartyInvitesRequestParameters {
     pub _glacier_base: super::online::PresenceRequestParameters,
 }
@@ -762,12 +811,15 @@ impl super::online::PresenceRequestParametersTrait for PresenceSendPartyInvitesR
 
 pub static PRESENCESENDPARTYINVITESREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceSendPartyInvitesRequestParameters",
+    name_hash: 2756107999,
     flags: MemberInfoFlags::new(101),
     module: "Party",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceSendPartyInvitesRequestParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceSendPartyInvitesRequestParameters as Default>::default())),
+            create_boxed: || Box::new(<PresenceSendPartyInvitesRequestParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -797,6 +849,7 @@ impl TypeObject for PresenceSendPartyInvitesRequestParameters {
 
 pub static PRESENCESENDPARTYINVITESREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceSendPartyInvitesRequestParameters-Array",
+    name_hash: 3787879403,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("PresenceSendPartyInvitesRequestParameters"),
@@ -805,7 +858,8 @@ pub static PRESENCESENDPARTYINVITESREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceCreatePartyRequestParameters {
     pub _glacier_base: super::online::PresenceRequestParameters,
 }
@@ -821,12 +875,15 @@ impl super::online::PresenceRequestParametersTrait for PresenceCreatePartyReques
 
 pub static PRESENCECREATEPARTYREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceCreatePartyRequestParameters",
+    name_hash: 3165794429,
     flags: MemberInfoFlags::new(101),
     module: "Party",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceCreatePartyRequestParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceCreatePartyRequestParameters as Default>::default())),
+            create_boxed: || Box::new(<PresenceCreatePartyRequestParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -856,6 +913,7 @@ impl TypeObject for PresenceCreatePartyRequestParameters {
 
 pub static PRESENCECREATEPARTYREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceCreatePartyRequestParameters-Array",
+    name_hash: 2900147529,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("PresenceCreatePartyRequestParameters"),
@@ -864,7 +922,8 @@ pub static PRESENCECREATEPARTYREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPartyService {
     pub _glacier_base: super::online::PresenceService,
 }
@@ -880,12 +939,15 @@ impl super::online::PresenceServiceTrait for ClientPartyService {
 
 pub static CLIENTPARTYSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPartyService",
+    name_hash: 560627023,
     flags: MemberInfoFlags::new(101),
     module: "Party",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCESERVICE_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPartyService, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPartyService as Default>::default())),
+            create_boxed: || Box::new(<ClientPartyService as Default>::default()),
         },
         fields: &[
         ],
@@ -915,6 +977,7 @@ impl TypeObject for ClientPartyService {
 
 pub static CLIENTPARTYSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPartyService-Array",
+    name_hash: 2352228987,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("ClientPartyService"),
@@ -923,7 +986,8 @@ pub static CLIENTPARTYSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PartyEvent {
     pub _glacier_base: super::online::PresenceEvent,
 }
@@ -939,12 +1003,15 @@ impl super::online::PresenceEventTrait for PartyEvent {
 
 pub static PARTYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartyEvent",
+    name_hash: 915558823,
     flags: MemberInfoFlags::new(101),
     module: "Party",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(PartyEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PartyEvent as Default>::default())),
+            create_boxed: || Box::new(<PartyEvent as Default>::default()),
         },
         fields: &[
         ],
@@ -974,6 +1041,7 @@ impl TypeObject for PartyEvent {
 
 pub static PARTYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartyEvent-Array",
+    name_hash: 234283795,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("PartyEvent"),
@@ -982,7 +1050,8 @@ pub static PARTYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OriginPartyBackend {
     pub _glacier_base: super::online::PresenceBackend,
 }
@@ -998,12 +1067,15 @@ impl super::online::PresenceBackendTrait for OriginPartyBackend {
 
 pub static ORIGINPARTYBACKEND_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginPartyBackend",
+    name_hash: 1554749051,
     flags: MemberInfoFlags::new(101),
     module: "Party",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEBACKEND_TYPE_INFO),
+        super_class_offset: offset_of!(OriginPartyBackend, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OriginPartyBackend as Default>::default())),
+            create_boxed: || Box::new(<OriginPartyBackend as Default>::default()),
         },
         fields: &[
         ],
@@ -1033,6 +1105,7 @@ impl TypeObject for OriginPartyBackend {
 
 pub static ORIGINPARTYBACKEND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OriginPartyBackend-Array",
+    name_hash: 3493277263,
     flags: MemberInfoFlags::new(145),
     module: "Party",
     data: TypeInfoData::Array("OriginPartyBackend"),

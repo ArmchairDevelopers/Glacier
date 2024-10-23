@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -17,11 +18,12 @@ pub(crate) fn register_wall_of_doom_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(WALLOFDOOMHEIGHTMAPMETADATA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WallOfDoomMeshEntityData {
     pub _glacier_base: super::game_shared::StaticModelEntityData,
     pub show_curvature: bool,
-    pub vertex_perturbation_texture: Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>,
+    pub vertex_perturbation_texture: Option<LockedTypeObject /* super::render::TextureAsset */>,
     pub perturbation_max_scale: f32,
     pub perturbation_max_scale_height: f32,
     pub perturbation_min_height: f32,
@@ -30,8 +32,8 @@ pub struct WallOfDoomMeshEntityData {
 pub trait WallOfDoomMeshEntityDataTrait: super::game_shared::StaticModelEntityDataTrait {
     fn show_curvature(&self) -> &bool;
     fn show_curvature_mut(&mut self) -> &mut bool;
-    fn vertex_perturbation_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
-    fn vertex_perturbation_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
+    fn vertex_perturbation_texture(&self) -> &Option<LockedTypeObject /* super::render::TextureAsset */>;
+    fn vertex_perturbation_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::TextureAsset */>;
     fn perturbation_max_scale(&self) -> &f32;
     fn perturbation_max_scale_mut(&mut self) -> &mut f32;
     fn perturbation_max_scale_height(&self) -> &f32;
@@ -47,10 +49,10 @@ impl WallOfDoomMeshEntityDataTrait for WallOfDoomMeshEntityData {
     fn show_curvature_mut(&mut self) -> &mut bool {
         &mut self.show_curvature
     }
-    fn vertex_perturbation_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+    fn vertex_perturbation_texture(&self) -> &Option<LockedTypeObject /* super::render::TextureAsset */> {
         &self.vertex_perturbation_texture
     }
-    fn vertex_perturbation_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+    fn vertex_perturbation_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::TextureAsset */> {
         &mut self.vertex_perturbation_texture
     }
     fn perturbation_max_scale(&self) -> &f32 {
@@ -74,16 +76,16 @@ impl WallOfDoomMeshEntityDataTrait for WallOfDoomMeshEntityData {
 }
 
 impl super::game_shared::StaticModelEntityDataTrait for WallOfDoomMeshEntityData {
-    fn part_links(&self) -> &Vec<Option<Arc<Mutex<dyn super::gameplay_sim::PartLinkDataTrait>>>> {
+    fn part_links(&self) -> &Vec<Option<LockedTypeObject /* super::gameplay_sim::PartLinkData */>> {
         self._glacier_base.part_links()
     }
-    fn part_links_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::gameplay_sim::PartLinkDataTrait>>>> {
+    fn part_links_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::gameplay_sim::PartLinkData */>> {
         self._glacier_base.part_links_mut()
     }
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         self._glacier_base.mesh()
     }
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         self._glacier_base.mesh_mut()
     }
     fn base_pose_transforms(&self) -> &super::core::SparseTransformArray {
@@ -98,10 +100,10 @@ impl super::game_shared::StaticModelEntityDataTrait for WallOfDoomMeshEntityData
     fn exclude_from_nearby_object_destruction_mut(&mut self) -> &mut bool {
         self._glacier_base.exclude_from_nearby_object_destruction_mut()
     }
-    fn physics_part_infos(&self) -> &Vec<super::game_shared::PhysicsPartInfo> {
+    fn physics_part_infos(&self) -> &Vec<BoxedTypeObject /* super::game_shared::PhysicsPartInfo */> {
         self._glacier_base.physics_part_infos()
     }
-    fn physics_part_infos_mut(&mut self) -> &mut Vec<super::game_shared::PhysicsPartInfo> {
+    fn physics_part_infos_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::game_shared::PhysicsPartInfo */> {
         self._glacier_base.physics_part_infos_mut()
     }
     fn network_info(&self) -> &super::game_shared::StaticModelNetworkInfo {
@@ -161,16 +163,16 @@ impl super::entity::GameComponentEntityDataTrait for WallOfDoomMeshEntityData {
 }
 
 impl super::entity::ComponentEntityDataTrait for WallOfDoomMeshEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -231,40 +233,48 @@ impl super::core::DataContainerTrait for WallOfDoomMeshEntityData {
 
 pub static WALLOFDOOMMESHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WallOfDoomMeshEntityData",
+    name_hash: 4237316043,
     flags: MemberInfoFlags::new(101),
     module: "WallOfDoomShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_shared::STATICMODELENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WallOfDoomMeshEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WallOfDoomMeshEntityData as Default>::default())),
+            create_boxed: || Box::new(<WallOfDoomMeshEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ShowCurvature",
+                name_hash: 4239439619,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WallOfDoomMeshEntityData, show_curvature),
             },
             FieldInfoData {
                 name: "VertexPerturbationTexture",
+                name_hash: 79070233,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureAsset",
                 rust_offset: offset_of!(WallOfDoomMeshEntityData, vertex_perturbation_texture),
             },
             FieldInfoData {
                 name: "PerturbationMaxScale",
+                name_hash: 825691554,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomMeshEntityData, perturbation_max_scale),
             },
             FieldInfoData {
                 name: "PerturbationMaxScaleHeight",
+                name_hash: 3768414653,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomMeshEntityData, perturbation_max_scale_height),
             },
             FieldInfoData {
                 name: "PerturbationMinHeight",
+                name_hash: 3524828187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomMeshEntityData, perturbation_min_height),
@@ -296,6 +306,7 @@ impl TypeObject for WallOfDoomMeshEntityData {
 
 pub static WALLOFDOOMMESHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WallOfDoomMeshEntityData-Array",
+    name_hash: 281947903,
     flags: MemberInfoFlags::new(145),
     module: "WallOfDoomShared",
     data: TypeInfoData::Array("WallOfDoomMeshEntityData"),
@@ -304,11 +315,12 @@ pub static WALLOFDOOMMESHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WallOfDoomEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub wall_of_doom_blueprint: Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>,
-    pub wall_of_doom_blend_blueprint: Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>,
+    pub wall_of_doom_blueprint: Option<LockedTypeObject /* super::entity::ObjectBlueprint */>,
+    pub wall_of_doom_blend_blueprint: Option<LockedTypeObject /* super::entity::ObjectBlueprint */>,
     pub mesh_segment_length: f32,
     pub mesh_segment_height: f32,
     pub mesh_blending_segment_length: f32,
@@ -316,17 +328,17 @@ pub struct WallOfDoomEntityData {
     pub center: super::core::Vec3,
     pub min_max_pairs: Vec<f32>,
     pub meta_data: WallOfDoomHeightmapMetaData,
-    pub height_map: Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>,
-    pub effect_parameters: Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>,
+    pub height_map: Option<LockedTypeObject /* super::render::TextureAsset */>,
+    pub effect_parameters: Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>,
     pub wall_visible: bool,
     pub v_f_x_visible: bool,
 }
 
 pub trait WallOfDoomEntityDataTrait: super::entity::EntityDataTrait {
-    fn wall_of_doom_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
-    fn wall_of_doom_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
-    fn wall_of_doom_blend_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
-    fn wall_of_doom_blend_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>>;
+    fn wall_of_doom_blueprint(&self) -> &Option<LockedTypeObject /* super::entity::ObjectBlueprint */>;
+    fn wall_of_doom_blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectBlueprint */>;
+    fn wall_of_doom_blend_blueprint(&self) -> &Option<LockedTypeObject /* super::entity::ObjectBlueprint */>;
+    fn wall_of_doom_blend_blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectBlueprint */>;
     fn mesh_segment_length(&self) -> &f32;
     fn mesh_segment_length_mut(&mut self) -> &mut f32;
     fn mesh_segment_height(&self) -> &f32;
@@ -341,10 +353,10 @@ pub trait WallOfDoomEntityDataTrait: super::entity::EntityDataTrait {
     fn min_max_pairs_mut(&mut self) -> &mut Vec<f32>;
     fn meta_data(&self) -> &WallOfDoomHeightmapMetaData;
     fn meta_data_mut(&mut self) -> &mut WallOfDoomHeightmapMetaData;
-    fn height_map(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
-    fn height_map_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
-    fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
-    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
+    fn height_map(&self) -> &Option<LockedTypeObject /* super::render::TextureAsset */>;
+    fn height_map_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::TextureAsset */>;
+    fn effect_parameters(&self) -> &Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>;
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>;
     fn wall_visible(&self) -> &bool;
     fn wall_visible_mut(&mut self) -> &mut bool;
     fn v_f_x_visible(&self) -> &bool;
@@ -352,16 +364,16 @@ pub trait WallOfDoomEntityDataTrait: super::entity::EntityDataTrait {
 }
 
 impl WallOfDoomEntityDataTrait for WallOfDoomEntityData {
-    fn wall_of_doom_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+    fn wall_of_doom_blueprint(&self) -> &Option<LockedTypeObject /* super::entity::ObjectBlueprint */> {
         &self.wall_of_doom_blueprint
     }
-    fn wall_of_doom_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+    fn wall_of_doom_blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectBlueprint */> {
         &mut self.wall_of_doom_blueprint
     }
-    fn wall_of_doom_blend_blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+    fn wall_of_doom_blend_blueprint(&self) -> &Option<LockedTypeObject /* super::entity::ObjectBlueprint */> {
         &self.wall_of_doom_blend_blueprint
     }
-    fn wall_of_doom_blend_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectBlueprintTrait>>> {
+    fn wall_of_doom_blend_blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectBlueprint */> {
         &mut self.wall_of_doom_blend_blueprint
     }
     fn mesh_segment_length(&self) -> &f32 {
@@ -406,16 +418,16 @@ impl WallOfDoomEntityDataTrait for WallOfDoomEntityData {
     fn meta_data_mut(&mut self) -> &mut WallOfDoomHeightmapMetaData {
         &mut self.meta_data
     }
-    fn height_map(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+    fn height_map(&self) -> &Option<LockedTypeObject /* super::render::TextureAsset */> {
         &self.height_map
     }
-    fn height_map_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+    fn height_map_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::TextureAsset */> {
         &mut self.height_map
     }
-    fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn effect_parameters(&self) -> &Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         &self.effect_parameters
     }
-    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         &mut self.effect_parameters
     }
     fn wall_visible(&self) -> &bool {
@@ -455,88 +467,104 @@ impl super::core::DataContainerTrait for WallOfDoomEntityData {
 
 pub static WALLOFDOOMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WallOfDoomEntityData",
+    name_hash: 836768568,
     flags: MemberInfoFlags::new(101),
     module: "WallOfDoomShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WallOfDoomEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WallOfDoomEntityData as Default>::default())),
+            create_boxed: || Box::new(<WallOfDoomEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WallOfDoomBlueprint",
+                name_hash: 1087273500,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ObjectBlueprint",
                 rust_offset: offset_of!(WallOfDoomEntityData, wall_of_doom_blueprint),
             },
             FieldInfoData {
                 name: "WallOfDoomBlendBlueprint",
+                name_hash: 1897302173,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ObjectBlueprint",
                 rust_offset: offset_of!(WallOfDoomEntityData, wall_of_doom_blend_blueprint),
             },
             FieldInfoData {
                 name: "MeshSegmentLength",
+                name_hash: 798323401,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomEntityData, mesh_segment_length),
             },
             FieldInfoData {
                 name: "MeshSegmentHeight",
+                name_hash: 945562474,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomEntityData, mesh_segment_height),
             },
             FieldInfoData {
                 name: "MeshBlendingSegmentLength",
+                name_hash: 2856462632,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomEntityData, mesh_blending_segment_length),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomEntityData, radius),
             },
             FieldInfoData {
                 name: "Center",
+                name_hash: 2711667502,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(WallOfDoomEntityData, center),
             },
             FieldInfoData {
                 name: "MinMaxPairs",
+                name_hash: 2753167810,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(WallOfDoomEntityData, min_max_pairs),
             },
             FieldInfoData {
                 name: "MetaData",
+                name_hash: 1407638056,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WallOfDoomHeightmapMetaData",
                 rust_offset: offset_of!(WallOfDoomEntityData, meta_data),
             },
             FieldInfoData {
                 name: "HeightMap",
+                name_hash: 362187110,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureAsset",
                 rust_offset: offset_of!(WallOfDoomEntityData, height_map),
             },
             FieldInfoData {
                 name: "EffectParameters",
+                name_hash: 929782248,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EffectParameter-Array",
                 rust_offset: offset_of!(WallOfDoomEntityData, effect_parameters),
             },
             FieldInfoData {
                 name: "WallVisible",
+                name_hash: 4222142269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WallOfDoomEntityData, wall_visible),
             },
             FieldInfoData {
                 name: "VFXVisible",
+                name_hash: 2564483459,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WallOfDoomEntityData, v_f_x_visible),
@@ -568,6 +596,7 @@ impl TypeObject for WallOfDoomEntityData {
 
 pub static WALLOFDOOMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WallOfDoomEntityData-Array",
+    name_hash: 900889740,
     flags: MemberInfoFlags::new(145),
     module: "WallOfDoomShared",
     data: TypeInfoData::Array("WallOfDoomEntityData"),
@@ -576,7 +605,8 @@ pub static WALLOFDOOMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WallOfDoomHeightmapMetaData {
     pub height_map_width: i32,
     pub height_map_height: i32,
@@ -687,75 +717,88 @@ impl WallOfDoomHeightmapMetaDataTrait for WallOfDoomHeightmapMetaData {
 
 pub static WALLOFDOOMHEIGHTMAPMETADATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WallOfDoomHeightmapMetaData",
+    name_hash: 4239977661,
     flags: MemberInfoFlags::new(36937),
     module: "WallOfDoomShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WallOfDoomHeightmapMetaData as Default>::default())),
+            create_boxed: || Box::new(<WallOfDoomHeightmapMetaData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HeightMapWidth",
+                name_hash: 2307294208,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WallOfDoomHeightmapMetaData, height_map_width),
             },
             FieldInfoData {
                 name: "HeightMapHeight",
+                name_hash: 2925265273,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WallOfDoomHeightmapMetaData, height_map_height),
             },
             FieldInfoData {
                 name: "WorldExtentsMinX",
+                name_hash: 2295005424,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomHeightmapMetaData, world_extents_min_x),
             },
             FieldInfoData {
                 name: "WorldExtentsMinY",
+                name_hash: 2295005425,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomHeightmapMetaData, world_extents_min_y),
             },
             FieldInfoData {
                 name: "WorldExtentsMinZ",
+                name_hash: 2295005426,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomHeightmapMetaData, world_extents_min_z),
             },
             FieldInfoData {
                 name: "WorldExtentsMaxX",
+                name_hash: 2295014190,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomHeightmapMetaData, world_extents_max_x),
             },
             FieldInfoData {
                 name: "WorldExtentsMaxY",
+                name_hash: 2295014191,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomHeightmapMetaData, world_extents_max_y),
             },
             FieldInfoData {
                 name: "WorldExtentsMaxZ",
+                name_hash: 2295014188,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WallOfDoomHeightmapMetaData, world_extents_max_z),
             },
             FieldInfoData {
                 name: "MinMaxTextureRatio",
+                name_hash: 20073477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WallOfDoomHeightmapMetaData, min_max_texture_ratio),
             },
             FieldInfoData {
                 name: "MinMaxDataWidth",
+                name_hash: 3981707181,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WallOfDoomHeightmapMetaData, min_max_data_width),
             },
             FieldInfoData {
                 name: "MinMaxDataHeight",
+                name_hash: 1661765556,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WallOfDoomHeightmapMetaData, min_max_data_height),
@@ -787,6 +830,7 @@ impl TypeObject for WallOfDoomHeightmapMetaData {
 
 pub static WALLOFDOOMHEIGHTMAPMETADATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WallOfDoomHeightmapMetaData-Array",
+    name_hash: 1396664585,
     flags: MemberInfoFlags::new(145),
     module: "WallOfDoomShared",
     data: TypeInfoData::Array("WallOfDoomHeightmapMetaData"),

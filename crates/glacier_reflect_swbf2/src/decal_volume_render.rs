@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -15,7 +16,8 @@ pub(crate) fn register_decal_volume_render_types(registry: &mut TypeRegistry) {
     registry.register_type(ENVIRONMENTDECALVOLUMEMASKTYPE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnvironmentDecalVolumeTemplateData {
     pub _glacier_base: super::decal_volume_base::EnvironmentDecalVolumeTemplateBaseData,
     pub shader: super::render_base::SurfaceShaderInstanceDataStruct,
@@ -79,34 +81,41 @@ impl super::core::DataContainerTrait for EnvironmentDecalVolumeTemplateData {
 
 pub static ENVIRONMENTDECALVOLUMETEMPLATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnvironmentDecalVolumeTemplateData",
+    name_hash: 1462032119,
     flags: MemberInfoFlags::new(101),
     module: "DecalVolumeRender",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::decal_volume_base::ENVIRONMENTDECALVOLUMETEMPLATEBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EnvironmentDecalVolumeTemplateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnvironmentDecalVolumeTemplateData as Default>::default())),
+            create_boxed: || Box::new(<EnvironmentDecalVolumeTemplateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Shader",
+                name_hash: 3352909900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderInstanceDataStruct",
                 rust_offset: offset_of!(EnvironmentDecalVolumeTemplateData, shader),
             },
             FieldInfoData {
                 name: "MaskType",
+                name_hash: 950003465,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EnvironmentDecalVolumeMaskType",
                 rust_offset: offset_of!(EnvironmentDecalVolumeTemplateData, mask_type),
             },
             FieldInfoData {
                 name: "SortingPriority",
+                name_hash: 3523655821,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(EnvironmentDecalVolumeTemplateData, sorting_priority),
             },
             FieldInfoData {
                 name: "CullingDistance",
+                name_hash: 1073297232,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EnvironmentDecalVolumeTemplateData, culling_distance),
@@ -138,6 +147,7 @@ impl TypeObject for EnvironmentDecalVolumeTemplateData {
 
 pub static ENVIRONMENTDECALVOLUMETEMPLATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnvironmentDecalVolumeTemplateData-Array",
+    name_hash: 3967754435,
     flags: MemberInfoFlags::new(145),
     module: "DecalVolumeRender",
     data: TypeInfoData::Array("EnvironmentDecalVolumeTemplateData"),
@@ -159,6 +169,7 @@ pub enum EnvironmentDecalVolumeMaskType {
 
 pub static ENVIRONMENTDECALVOLUMEMASKTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnvironmentDecalVolumeMaskType",
+    name_hash: 2893760987,
     flags: MemberInfoFlags::new(49429),
     module: "DecalVolumeRender",
     data: TypeInfoData::Enum,
@@ -187,6 +198,7 @@ impl TypeObject for EnvironmentDecalVolumeMaskType {
 
 pub static ENVIRONMENTDECALVOLUMEMASKTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnvironmentDecalVolumeMaskType-Array",
+    name_hash: 3072291055,
     flags: MemberInfoFlags::new(145),
     module: "DecalVolumeRender",
     data: TypeInfoData::Array("EnvironmentDecalVolumeMaskType"),

@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -29,7 +30,8 @@ pub(crate) fn register_terrain_render_types(registry: &mut TypeRegistry) {
     registry.register_type(TERRAINTEXTURETREE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshScatteringTree {
 }
 
@@ -41,12 +43,15 @@ impl MeshScatteringTreeTrait for MeshScatteringTree {
 
 pub static MESHSCATTERINGTREE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringTree",
+    name_hash: 1570618966,
     flags: MemberInfoFlags::new(101),
     module: "TerrainRender",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshScatteringTree as Default>::default())),
+            create_boxed: || Box::new(<MeshScatteringTree as Default>::default()),
         },
         fields: &[
         ],
@@ -76,6 +81,7 @@ impl TypeObject for MeshScatteringTree {
 
 pub static MESHSCATTERINGTREE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshScatteringTree-Array",
+    name_hash: 1332806626,
     flags: MemberInfoFlags::new(145),
     module: "TerrainRender",
     data: TypeInfoData::Array("MeshScatteringTree"),
@@ -84,7 +90,8 @@ pub static MESHSCATTERINGTREE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DisplacementTextureTree {
 }
 
@@ -96,12 +103,15 @@ impl DisplacementTextureTreeTrait for DisplacementTextureTree {
 
 pub static DISPLACEMENTTEXTURETREE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DisplacementTextureTree",
+    name_hash: 2430287147,
     flags: MemberInfoFlags::new(101),
     module: "TerrainRender",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DisplacementTextureTree as Default>::default())),
+            create_boxed: || Box::new(<DisplacementTextureTree as Default>::default()),
         },
         fields: &[
         ],
@@ -131,6 +141,7 @@ impl TypeObject for DisplacementTextureTree {
 
 pub static DISPLACEMENTTEXTURETREE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DisplacementTextureTree-Array",
+    name_hash: 1382161567,
     flags: MemberInfoFlags::new(145),
     module: "TerrainRender",
     data: TypeInfoData::Array("DisplacementTextureTree"),
@@ -139,7 +150,8 @@ pub static DISPLACEMENTTEXTURETREE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VisualTerrainSettings {
     pub _glacier_base: super::terrain_base::VisualTerrainBaseSettings,
     pub mesh_scattering_quality_level: super::core::QualityLevel,
@@ -1859,1144 +1871,1336 @@ impl super::core::DataContainerTrait for VisualTerrainSettings {
 
 pub static VISUALTERRAINSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrainSettings",
+    name_hash: 1410217091,
     flags: MemberInfoFlags::new(101),
     module: "TerrainRender",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::terrain_base::VISUALTERRAINBASESETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(VisualTerrainSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VisualTerrainSettings as Default>::default())),
+            create_boxed: || Box::new(<VisualTerrainSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MeshScatteringQualityLevel",
+                name_hash: 1038467851,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityLevel",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_quality_level),
             },
             FieldInfoData {
                 name: "RenderMode",
+                name_hash: 604062156,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TerrainRenderMode",
                 rust_offset: offset_of!(VisualTerrainSettings, render_mode),
             },
             FieldInfoData {
                 name: "WireframeEnable",
+                name_hash: 1610721584,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, wireframe_enable),
             },
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, enable),
             },
             FieldInfoData {
                 name: "EditServiceEnable",
+                name_hash: 4261474725,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, edit_service_enable),
             },
             FieldInfoData {
                 name: "TriangleSizeMin",
+                name_hash: 2507615716,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, triangle_size_min),
             },
             FieldInfoData {
                 name: "LodScale",
+                name_hash: 2060016442,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, lod_scale),
             },
             FieldInfoData {
                 name: "LodCenterExtrapolationDistanceMax",
+                name_hash: 2770522378,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, lod_center_extrapolation_distance_max),
             },
             FieldInfoData {
                 name: "LodCenterExtrapolationTime",
+                name_hash: 2945679848,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, lod_center_extrapolation_time),
             },
             FieldInfoData {
                 name: "TextureSkipMipSpeed",
+                name_hash: 73911848,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_skip_mip_speed),
             },
             FieldInfoData {
                 name: "TessellationEnable",
+                name_hash: 3485959661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, tessellation_enable),
             },
             FieldInfoData {
                 name: "TessellationForReflectionsEnable",
+                name_hash: 2024598274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, tessellation_for_reflections_enable),
             },
             FieldInfoData {
                 name: "TessellationForShadowsEnable",
+                name_hash: 3053427651,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, tessellation_for_shadows_enable),
             },
             FieldInfoData {
                 name: "DetailDisplacementForReflectionsEnable",
+                name_hash: 884474573,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, detail_displacement_for_reflections_enable),
             },
             FieldInfoData {
                 name: "DetailDisplacementForShadowsEnable",
+                name_hash: 1725048588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, detail_displacement_for_shadows_enable),
             },
             FieldInfoData {
                 name: "TessellationPatchShrink",
+                name_hash: 105379975,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, tessellation_patch_shrink),
             },
             FieldInfoData {
                 name: "TessellationPatchFacesPerSide",
+                name_hash: 1870124588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, tessellation_patch_faces_per_side),
             },
             FieldInfoData {
                 name: "TessellatedTriWidth",
+                name_hash: 3273585196,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, tessellated_tri_width),
             },
             FieldInfoData {
                 name: "TessellatedTriWidthScaleForReflections",
+                name_hash: 3099711483,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, tessellated_tri_width_scale_for_reflections),
             },
             FieldInfoData {
                 name: "TessellatedTriWidthScaleForShadows",
+                name_hash: 2420350714,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, tessellated_tri_width_scale_for_shadows),
             },
             FieldInfoData {
                 name: "AdditionalCullFrustumEnable",
+                name_hash: 2139433525,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, additional_cull_frustum_enable),
             },
             FieldInfoData {
                 name: "DensityMapEnable",
+                name_hash: 1089094016,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, density_map_enable),
             },
             FieldInfoData {
                 name: "VertexBufferHeightsEnable",
+                name_hash: 2068984320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, vertex_buffer_heights_enable),
             },
             FieldInfoData {
                 name: "DrawVertexYTextureEnable",
+                name_hash: 2458934506,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_vertex_y_texture_enable),
             },
             FieldInfoData {
                 name: "TextureAtlasSampleCountXFactor",
+                name_hash: 4126069025,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_atlas_sample_count_x_factor),
             },
             FieldInfoData {
                 name: "TextureAtlasSampleCountYFactor",
+                name_hash: 1269765600,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_atlas_sample_count_y_factor),
             },
             FieldInfoData {
                 name: "TextureSamplesPerMeterMax",
+                name_hash: 2088559383,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_samples_per_meter_max),
             },
             FieldInfoData {
                 name: "TextureDetailFalloffFactor",
+                name_hash: 3967520750,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_detail_falloff_factor),
             },
             FieldInfoData {
                 name: "TextureDetailFalloffDistance",
+                name_hash: 3751298432,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_detail_falloff_distance),
             },
             FieldInfoData {
                 name: "TextureDetailFalloffCurve",
+                name_hash: 1149518228,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_detail_falloff_curve),
             },
             FieldInfoData {
                 name: "TextureInvisibleDetailReductionFactor",
+                name_hash: 1457469398,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_invisible_detail_reduction_factor),
             },
             FieldInfoData {
                 name: "TextureOccludedDetailReductionFactor",
+                name_hash: 3033666796,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_occluded_detail_reduction_factor),
             },
             FieldInfoData {
                 name: "TextureRenderJobCount",
+                name_hash: 778957684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_render_job_count),
             },
             FieldInfoData {
                 name: "RealTimeEditModeTextureRenderJobCount",
+                name_hash: 3339460420,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, real_time_edit_mode_texture_render_job_count),
             },
             FieldInfoData {
                 name: "TextureVtIndirectionJobEnable",
+                name_hash: 3774251356,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_vt_indirection_job_enable),
             },
             FieldInfoData {
                 name: "TextureStreamingPrioritizationJobEnable",
+                name_hash: 2432154053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_streaming_prioritization_job_enable),
             },
             FieldInfoData {
                 name: "TextureRenderJobsLaunchedPerFrameCountMax",
+                name_hash: 1745442869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_render_jobs_launched_per_frame_count_max),
             },
             FieldInfoData {
                 name: "RealTimeEditModeTextureRenderJobsLaunchedPerFrameCountMax",
+                name_hash: 4046341125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, real_time_edit_mode_texture_render_jobs_launched_per_frame_count_max),
             },
             FieldInfoData {
                 name: "TextureTileSamplesPerSide",
+                name_hash: 633376999,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_tile_samples_per_side),
             },
             FieldInfoData {
                 name: "TextureTileBorderWidth",
+                name_hash: 3406986756,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_tile_border_width),
             },
             FieldInfoData {
                 name: "TextureLevelOffset",
+                name_hash: 3661664545,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_level_offset),
             },
             FieldInfoData {
                 name: "TextureClodFrameCount",
+                name_hash: 3652441920,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_clod_frame_count),
             },
             FieldInfoData {
                 name: "TextureClodEnable",
+                name_hash: 653057119,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_clod_enable),
             },
             FieldInfoData {
                 name: "TextureClodCutoffPriority",
+                name_hash: 1567177377,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_clod_cutoff_priority),
             },
             FieldInfoData {
                 name: "TextureForceUpdateEnable",
+                name_hash: 2932131575,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_force_update_enable),
             },
             FieldInfoData {
                 name: "TextureStreamableTextureInstanceBufferSize",
+                name_hash: 691347295,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_streamable_texture_instance_buffer_size),
             },
             FieldInfoData {
                 name: "TextureCompressJobCount",
+                name_hash: 1333447608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_compress_job_count),
             },
             FieldInfoData {
                 name: "TextureCompressFastAlgorithmEnable",
+                name_hash: 1230349042,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_compress_fast_algorithm_enable),
             },
             FieldInfoData {
                 name: "TextureCompressionQuality",
+                name_hash: 4190509689,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_compression_quality),
             },
             FieldInfoData {
                 name: "TextureDetailSlopeBoost",
+                name_hash: 3715363243,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_detail_slope_boost),
             },
             FieldInfoData {
                 name: "TextureGenerationMipBias",
+                name_hash: 3761799249,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_generation_mip_bias),
             },
             FieldInfoData {
                 name: "DrawTextureDebugColors",
+                name_hash: 3000540485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_texture_debug_colors),
             },
             FieldInfoData {
                 name: "TextureDrawTerrainLayersEnable",
+                name_hash: 3034227900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_draw_terrain_layers_enable),
             },
             FieldInfoData {
                 name: "TextureKeepPoolFullEnable",
+                name_hash: 1911658543,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_keep_pool_full_enable),
             },
             FieldInfoData {
                 name: "TextureLayerCullingEnable",
+                name_hash: 3031132270,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_layer_culling_enable),
             },
             FieldInfoData {
                 name: "GpuTextureCompressionEnable",
+                name_hash: 2080181719,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, gpu_texture_compression_enable),
             },
             FieldInfoData {
                 name: "TextureDirtyRetryRate",
+                name_hash: 1570661602,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_dirty_retry_rate),
             },
             FieldInfoData {
                 name: "TextureForceDrawPass",
+                name_hash: 884922326,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_force_draw_pass),
             },
             FieldInfoData {
                 name: "UseVTMaxLevelAsPatchLevel",
+                name_hash: 932865580,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, use_v_t_max_level_as_patch_level),
             },
             FieldInfoData {
                 name: "TextureStreamingPrioritizationEnable",
+                name_hash: 1067752834,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_streaming_prioritization_enable),
             },
             FieldInfoData {
                 name: "DetailTextureStreamingPrioritizationEnable",
+                name_hash: 4069159251,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, detail_texture_streaming_prioritization_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringMeshStreamingPrioritizationEnable",
+                name_hash: 695114075,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_mesh_streaming_prioritization_enable),
             },
             FieldInfoData {
                 name: "TextureQuadsPerTileLevel",
+                name_hash: 580148365,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, texture_quads_per_tile_level),
             },
             FieldInfoData {
                 name: "PrioritizationOcclusionEnable",
+                name_hash: 1362931244,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, prioritization_occlusion_enable),
             },
             FieldInfoData {
                 name: "DrawEnable",
+                name_hash: 1347356004,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_enable),
             },
             FieldInfoData {
                 name: "DrawPatchesEnable",
+                name_hash: 446402236,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_patches_enable),
             },
             FieldInfoData {
                 name: "DetailOverlayEnable",
+                name_hash: 3002464783,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, detail_overlay_enable),
             },
             FieldInfoData {
                 name: "DrawInstancingStats",
+                name_hash: 2286062088,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_instancing_stats),
             },
             FieldInfoData {
                 name: "DecalEnable",
+                name_hash: 4161996939,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, decal_enable),
             },
             FieldInfoData {
                 name: "ForceDecalReducedQuality",
+                name_hash: 3956171390,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, force_decal_reduced_quality),
             },
             FieldInfoData {
                 name: "DrawDecal2dEnable",
+                name_hash: 1750994717,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_decal2d_enable),
             },
             FieldInfoData {
                 name: "DrawDecal3dEnable",
+                name_hash: 64506876,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_decal3d_enable),
             },
             FieldInfoData {
                 name: "DrawDecalZPassEnable",
+                name_hash: 4204328704,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_decal_z_pass_enable),
             },
             FieldInfoData {
                 name: "DrawOnlyDecalZPassEnable",
+                name_hash: 4246212052,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_only_decal_z_pass_enable),
             },
             FieldInfoData {
                 name: "DecalZPassDrawDistance",
+                name_hash: 2366775586,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, decal_z_pass_draw_distance),
             },
             FieldInfoData {
                 name: "DecalOffsetY",
+                name_hash: 3938450814,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, decal_offset_y),
             },
             FieldInfoData {
                 name: "Decal3dFarDrawDistanceScaleFactor",
+                name_hash: 2283574846,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, decal3d_far_draw_distance_scale_factor),
             },
             FieldInfoData {
                 name: "DrawPatchBoxesEnable",
+                name_hash: 1919767209,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_patch_boxes_enable),
             },
             FieldInfoData {
                 name: "DrawBadPatchesEnable",
+                name_hash: 1121707547,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_bad_patches_enable),
             },
             FieldInfoData {
                 name: "DrawTextureTileBoxesEnable",
+                name_hash: 1396482636,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_texture_tile_boxes_enable),
             },
             FieldInfoData {
                 name: "DrawDebugTextEnable",
+                name_hash: 2597896872,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_debug_text_enable),
             },
             FieldInfoData {
                 name: "DrawDebugTexturesEnable",
+                name_hash: 3201068793,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_debug_textures_enable),
             },
             FieldInfoData {
                 name: "DrawQuadtreesEnable",
+                name_hash: 2200842704,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_quadtrees_enable),
             },
             FieldInfoData {
                 name: "DrawQuadtreeZoomIndex",
+                name_hash: 2453680075,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_quadtree_zoom_index),
             },
             FieldInfoData {
                 name: "DrawQuadtreeStatsEnable",
+                name_hash: 3164917602,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_quadtree_stats_enable),
             },
             FieldInfoData {
                 name: "DrawQuadtreeAtlasTexturesEnable",
+                name_hash: 971211428,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_quadtree_atlas_textures_enable),
             },
             FieldInfoData {
                 name: "DrawQuadtreeAtlasTexturesScale",
+                name_hash: 3043772381,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_quadtree_atlas_textures_scale),
             },
             FieldInfoData {
                 name: "DrawIndirectionTexturesEnable",
+                name_hash: 2922887370,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_indirection_textures_enable),
             },
             FieldInfoData {
                 name: "QuickscopePoolStatsEnable",
+                name_hash: 1503190486,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, quickscope_pool_stats_enable),
             },
             FieldInfoData {
                 name: "DrawDynamicMask",
+                name_hash: 497894756,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_dynamic_mask),
             },
             FieldInfoData {
                 name: "DrawDebugTilePriorityQuadtreeEnable",
+                name_hash: 1812000116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_debug_tile_priority_quadtree_enable),
             },
             FieldInfoData {
                 name: "DrawWaterEnable",
+                name_hash: 1556803281,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_water_enable),
             },
             FieldInfoData {
                 name: "PatchErrorFovEnable",
+                name_hash: 1743796749,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, patch_error_fov_enable),
             },
             FieldInfoData {
                 name: "PatchErrorFov",
+                name_hash: 2153498668,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, patch_error_fov),
             },
             FieldInfoData {
                 name: "ZPassDistance",
+                name_hash: 1654643757,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, z_pass_distance),
             },
             FieldInfoData {
                 name: "DebugOverlayGridEnable",
+                name_hash: 1437495895,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, debug_overlay_grid_enable),
             },
             FieldInfoData {
                 name: "DebugOverlayGridSize",
+                name_hash: 2911590195,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, debug_overlay_grid_size),
             },
             FieldInfoData {
                 name: "DebugOverlayIsolinesEnable",
+                name_hash: 34449415,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, debug_overlay_isolines_enable),
             },
             FieldInfoData {
                 name: "DebugOverlayIsolineSpacing",
+                name_hash: 3407931572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, debug_overlay_isoline_spacing),
             },
             FieldInfoData {
                 name: "DebugOverlayWireframeEnable",
+                name_hash: 655785883,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, debug_overlay_wireframe_enable),
             },
             FieldInfoData {
                 name: "DebugOverlaySketchTextureEnable",
+                name_hash: 143726866,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, debug_overlay_sketch_texture_enable),
             },
             FieldInfoData {
                 name: "DebugOverlayBrushEnable",
+                name_hash: 3458508561,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, debug_overlay_brush_enable),
             },
             FieldInfoData {
                 name: "ForceGraphicsDriverCrash",
+                name_hash: 2083607384,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, force_graphics_driver_crash),
             },
             FieldInfoData {
                 name: "ForcePatchRebuildEnable",
+                name_hash: 2610802454,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, force_patch_rebuild_enable),
             },
             FieldInfoData {
                 name: "DestroyAll",
+                name_hash: 2267365766,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, destroy_all),
             },
             FieldInfoData {
                 name: "SlotReuseWaitCount",
+                name_hash: 324602333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, slot_reuse_wait_count),
             },
             FieldInfoData {
                 name: "SlotDebugOutputEnable",
+                name_hash: 2581919758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, slot_debug_output_enable),
             },
             FieldInfoData {
                 name: "UpdateJobsEnable",
+                name_hash: 1022084865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, update_jobs_enable),
             },
             FieldInfoData {
                 name: "BuildJobCount",
+                name_hash: 2337955959,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, build_job_count),
             },
             FieldInfoData {
                 name: "RegenerateTexturesEnable",
+                name_hash: 1326175188,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, regenerate_textures_enable),
             },
             FieldInfoData {
                 name: "DynamicMaskEnable",
+                name_hash: 755434949,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, dynamic_mask_enable),
             },
             FieldInfoData {
                 name: "MaxNonVisibleTextureUpdateCount",
+                name_hash: 950337437,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, max_non_visible_texture_update_count),
             },
             FieldInfoData {
                 name: "PatchFacesPerSide",
+                name_hash: 3215467205,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, patch_faces_per_side),
             },
             FieldInfoData {
                 name: "TessellationFacesPerSideMin",
+                name_hash: 1446211144,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, tessellation_faces_per_side_min),
             },
             FieldInfoData {
                 name: "PatchSlotCount",
+                name_hash: 3311018828,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, patch_slot_count),
             },
             FieldInfoData {
                 name: "PatchLodTransitionsEnable",
+                name_hash: 3695690641,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, patch_lod_transitions_enable),
             },
             FieldInfoData {
                 name: "PatchLodTransitionsVertexShaderEnable",
+                name_hash: 1111232720,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, patch_lod_transitions_vertex_shader_enable),
             },
             FieldInfoData {
                 name: "PatchLodTransitionsVertexShaderDisableFixup",
+                name_hash: 3619792695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, patch_lod_transitions_vertex_shader_disable_fixup),
             },
             FieldInfoData {
                 name: "PatchMaterialSortingEnable",
+                name_hash: 2618635803,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, patch_material_sorting_enable),
             },
             FieldInfoData {
                 name: "CullSampleBoundingBoxHeightEnable",
+                name_hash: 183771340,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, cull_sample_bounding_box_height_enable),
             },
             FieldInfoData {
                 name: "ForceShadowsOff",
+                name_hash: 1426439202,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, force_shadows_off),
             },
             FieldInfoData {
                 name: "TerrainCastShadowsQualityLevel",
+                name_hash: 194779417,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityLevel",
                 rust_offset: offset_of!(VisualTerrainSettings, terrain_cast_shadows_quality_level),
             },
             FieldInfoData {
                 name: "CastPlanarReflectionEnable",
+                name_hash: 1542428550,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, cast_planar_reflection_enable),
             },
             FieldInfoData {
                 name: "CastEnvmapReflectionEnable",
+                name_hash: 2005179143,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, cast_envmap_reflection_enable),
             },
             FieldInfoData {
                 name: "CastDecal3dPlanarReflectionEnable",
+                name_hash: 161395838,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, cast_decal3d_planar_reflection_enable),
             },
             FieldInfoData {
                 name: "CastDecal3dEnvmapReflectionEnable",
+                name_hash: 1792934655,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, cast_decal3d_envmap_reflection_enable),
             },
             FieldInfoData {
                 name: "DetailDisplacementInShadowViewEnable",
+                name_hash: 2071948078,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, detail_displacement_in_shadow_view_enable),
             },
             FieldInfoData {
                 name: "GlobalColormapEnable",
+                name_hash: 3709871502,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, global_colormap_enable),
             },
             FieldInfoData {
                 name: "OccluderEnable",
+                name_hash: 4076210433,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, occluder_enable),
             },
             FieldInfoData {
                 name: "OccluderJobEnable",
+                name_hash: 2334652646,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, occluder_job_enable),
             },
             FieldInfoData {
                 name: "OccluderJobCount",
+                name_hash: 207710852,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, occluder_job_count),
             },
             FieldInfoData {
                 name: "OccluderPatchFacesPerSide",
+                name_hash: 1520778816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, occluder_patch_faces_per_side),
             },
             FieldInfoData {
                 name: "OccluderLodScale",
+                name_hash: 967251551,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, occluder_lod_scale),
             },
             FieldInfoData {
                 name: "OccluderBackFaceCullingEnable",
+                name_hash: 4218551613,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, occluder_back_face_culling_enable),
             },
             FieldInfoData {
                 name: "OccludedEnable",
+                name_hash: 1405632023,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, occluded_enable),
             },
             FieldInfoData {
                 name: "OccludedMinDistance",
+                name_hash: 409552415,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, occluded_min_distance),
             },
             FieldInfoData {
                 name: "MeshScatteringEnable",
+                name_hash: 1582374769,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringReflectionsEnable",
+                name_hash: 2064144325,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_reflections_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringJobsEnable",
+                name_hash: 680367813,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_jobs_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringCastShadowsEnable",
+                name_hash: 260504321,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_cast_shadows_enable),
             },
             FieldInfoData {
                 name: "DrawMeshScatteringEnable",
+                name_hash: 1873322225,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_mesh_scattering_enable),
             },
             FieldInfoData {
                 name: "DrawMeshScatteringCellBoxesEnable",
+                name_hash: 1056407860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_mesh_scattering_cell_boxes_enable),
             },
             FieldInfoData {
                 name: "DrawMeshScatteringBatchBoxesEnable",
+                name_hash: 3900208174,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_mesh_scattering_batch_boxes_enable),
             },
             FieldInfoData {
                 name: "DrawMeshScatteringNodeBoxesEnable",
+                name_hash: 3766978642,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_mesh_scattering_node_boxes_enable),
             },
             FieldInfoData {
                 name: "DrawMeshScatteringCulledCellBoxesEnable",
+                name_hash: 4172400931,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_mesh_scattering_culled_cell_boxes_enable),
             },
             FieldInfoData {
                 name: "DrawMeshScatteringDebugMaskScaleTexturesEnable",
+                name_hash: 203952608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_mesh_scattering_debug_mask_scale_textures_enable),
             },
             FieldInfoData {
                 name: "DrawMeshScatteringStatsEnable",
+                name_hash: 784005232,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_mesh_scattering_stats_enable),
             },
             FieldInfoData {
                 name: "DrawMeshScatteringQuadtreeEnable",
+                name_hash: 3030268342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_mesh_scattering_quadtree_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringCellPoolCapacity",
+                name_hash: 3904151486,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_cell_pool_capacity),
             },
             FieldInfoData {
                 name: "MeshScatteringTreeNodePoolCapacity",
+                name_hash: 2717031518,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_tree_node_pool_capacity),
             },
             FieldInfoData {
                 name: "MeshScatteringInvisibleCellFovFactor",
+                name_hash: 2520908205,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_invisible_cell_fov_factor),
             },
             FieldInfoData {
                 name: "MeshScatteringForceUpdateEnable",
+                name_hash: 3436118205,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_force_update_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringCullRecordCount",
+                name_hash: 1187414408,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_cull_record_count),
             },
             FieldInfoData {
                 name: "MeshScatteringBuildChannelCount",
+                name_hash: 2977144390,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_build_channel_count),
             },
             FieldInfoData {
                 name: "MeshScatteringBuildChannelsLaunchedPerFrameCountMax",
+                name_hash: 3623633927,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_build_channels_launched_per_frame_count_max),
             },
             FieldInfoData {
                 name: "MeshScatteringBuildVisibleFirst",
+                name_hash: 2409600562,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_build_visible_first),
             },
             FieldInfoData {
                 name: "MeshScatteringClodFrameCount",
+                name_hash: 1935237962,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_clod_frame_count),
             },
             FieldInfoData {
                 name: "MeshScatteringWindSpeed",
+                name_hash: 3680082659,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_wind_speed),
             },
             FieldInfoData {
                 name: "MeshScatteringInstancesPerCellMax",
+                name_hash: 2571985055,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_instances_per_cell_max),
             },
             FieldInfoData {
                 name: "MeshScatteringDensityMarginFactor",
+                name_hash: 1439647963,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_density_margin_factor),
             },
             FieldInfoData {
                 name: "MeshScatteringPregenerationDistanceRatio",
+                name_hash: 363504787,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_pregeneration_distance_ratio),
             },
             FieldInfoData {
                 name: "MeshScatteringKeepDistanceRatio",
+                name_hash: 3358490921,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_keep_distance_ratio),
             },
             FieldInfoData {
                 name: "MeshScatteringMergeInstanceLists",
+                name_hash: 3189387504,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_merge_instance_lists),
             },
             FieldInfoData {
                 name: "MeshScatteringVirtualTextureBlurriness",
+                name_hash: 800097463,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_virtual_texture_blurriness),
             },
             FieldInfoData {
                 name: "MeshScatteringShadowViewCullSize",
+                name_hash: 3248624392,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_shadow_view_cull_size),
             },
             FieldInfoData {
                 name: "MeshScatteringDistanceScaleFactor",
+                name_hash: 1827110374,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_distance_scale_factor),
             },
             FieldInfoData {
                 name: "MeshScatteringInstanceCullJobCount",
+                name_hash: 1377403979,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_instance_cull_job_count),
             },
             FieldInfoData {
                 name: "MeshScatteringInstanceCullListCount",
+                name_hash: 543625838,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_instance_cull_list_count),
             },
             FieldInfoData {
                 name: "MeshScatteringInstanceCullBoxTestEnable",
+                name_hash: 505056013,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_instance_cull_box_test_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringInstanceFrustumCullEnable",
+                name_hash: 1467206000,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_instance_frustum_cull_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringInstanceOcclusionCullEnable",
+                name_hash: 647474307,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_instance_occlusion_cull_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringInstanceAdditionalCullEnable",
+                name_hash: 264156247,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_instance_additional_cull_enable),
             },
             FieldInfoData {
                 name: "DrawMeshScatteringInstanceBoxesEnable",
+                name_hash: 2317267771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_mesh_scattering_instance_boxes_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringInstanceCullDynamicAllocEnable",
+                name_hash: 4110771126,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_instance_cull_dynamic_alloc_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringWindEnable",
+                name_hash: 514909285,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_wind_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringDrawMotionVectorsEnable",
+                name_hash: 899754469,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_draw_motion_vectors_enable),
             },
             FieldInfoData {
                 name: "MeshScatteringSnappingGridMultiplierVertical",
+                name_hash: 3374046573,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_snapping_grid_multiplier_vertical),
             },
             FieldInfoData {
                 name: "MeshScatteringSnappingGridMultiplierHorizontal",
+                name_hash: 1820031169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, mesh_scattering_snapping_grid_multiplier_horizontal),
             },
             FieldInfoData {
                 name: "DetailDisplacementQualityLevel",
+                name_hash: 3707758424,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityLevel",
                 rust_offset: offset_of!(VisualTerrainSettings, detail_displacement_quality_level),
             },
             FieldInfoData {
                 name: "DetailDisplacementEnable",
+                name_hash: 196859682,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, detail_displacement_enable),
             },
             FieldInfoData {
                 name: "DrawDetailDisplacementEnable",
+                name_hash: 402135202,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_detail_displacement_enable),
             },
             FieldInfoData {
                 name: "DrawDebugDetailDisplacementEnable",
+                name_hash: 1874743443,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_debug_detail_displacement_enable),
             },
             FieldInfoData {
                 name: "DrawDetailDisplacementTreeLevel",
+                name_hash: 3168170291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VisualTerrainSettings, draw_detail_displacement_tree_level),
             },
             FieldInfoData {
                 name: "DetailDisplacementMaxTessFactor",
+                name_hash: 1060070059,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, detail_displacement_max_tess_factor),
             },
             FieldInfoData {
                 name: "DetailDisplacementScale",
+                name_hash: 1054393115,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, detail_displacement_scale),
             },
             FieldInfoData {
                 name: "DetailDisplacementBias",
+                name_hash: 552227930,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, detail_displacement_bias),
             },
             FieldInfoData {
                 name: "DetailDisplacementFadeRange",
+                name_hash: 1956231322,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, detail_displacement_fade_range),
             },
             FieldInfoData {
                 name: "HeightFieldTessellationFactor",
+                name_hash: 795818396,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, height_field_tessellation_factor),
             },
             FieldInfoData {
                 name: "HeightFieldTessellationFadeRange",
+                name_hash: 2254815976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VisualTerrainSettings, height_field_tessellation_fade_range),
@@ -3028,6 +3232,7 @@ impl TypeObject for VisualTerrainSettings {
 
 pub static VISUALTERRAINSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrainSettings-Array",
+    name_hash: 2997192503,
     flags: MemberInfoFlags::new(145),
     module: "TerrainRender",
     data: TypeInfoData::Array("VisualTerrainSettings"),
@@ -3052,6 +3257,7 @@ pub enum TerrainRenderMode {
 
 pub static TERRAINRENDERMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainRenderMode",
+    name_hash: 4131991483,
     flags: MemberInfoFlags::new(49429),
     module: "TerrainRender",
     data: TypeInfoData::Enum,
@@ -3080,6 +3286,7 @@ impl TypeObject for TerrainRenderMode {
 
 pub static TERRAINRENDERMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainRenderMode-Array",
+    name_hash: 799979279,
     flags: MemberInfoFlags::new(145),
     module: "TerrainRender",
     data: TypeInfoData::Array("TerrainRenderMode"),
@@ -3088,7 +3295,8 @@ pub static TERRAINRENDERMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VisualTerrain {
     pub _glacier_base: IVisualTerrain,
 }
@@ -3107,12 +3315,15 @@ impl super::terrain_base::ITerrainTrait for VisualTerrain {
 
 pub static VISUALTERRAIN_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrain",
+    name_hash: 1903152390,
     flags: MemberInfoFlags::new(101),
     module: "TerrainRender",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IVISUALTERRAIN_TYPE_INFO),
+        super_class_offset: offset_of!(VisualTerrain, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VisualTerrain as Default>::default())),
+            create_boxed: || Box::new(<VisualTerrain as Default>::default()),
         },
         fields: &[
         ],
@@ -3142,6 +3353,7 @@ impl TypeObject for VisualTerrain {
 
 pub static VISUALTERRAIN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VisualTerrain-Array",
+    name_hash: 182458930,
     flags: MemberInfoFlags::new(145),
     module: "TerrainRender",
     data: TypeInfoData::Array("VisualTerrain"),
@@ -3150,7 +3362,8 @@ pub static VISUALTERRAIN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainLayerCombinations {
 }
 
@@ -3162,12 +3375,15 @@ impl TerrainLayerCombinationsTrait for TerrainLayerCombinations {
 
 pub static TERRAINLAYERCOMBINATIONS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerCombinations",
+    name_hash: 2498655995,
     flags: MemberInfoFlags::new(101),
     module: "TerrainRender",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainLayerCombinations as Default>::default())),
+            create_boxed: || Box::new(<TerrainLayerCombinations as Default>::default()),
         },
         fields: &[
         ],
@@ -3197,6 +3413,7 @@ impl TypeObject for TerrainLayerCombinations {
 
 pub static TERRAINLAYERCOMBINATIONS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainLayerCombinations-Array",
+    name_hash: 608202447,
     flags: MemberInfoFlags::new(145),
     module: "TerrainRender",
     data: TypeInfoData::Array("TerrainLayerCombinations"),
@@ -3205,7 +3422,8 @@ pub static TERRAINLAYERCOMBINATIONS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainDecals {
 }
 
@@ -3217,12 +3435,15 @@ impl TerrainDecalsTrait for TerrainDecals {
 
 pub static TERRAINDECALS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainDecals",
+    name_hash: 2997753646,
     flags: MemberInfoFlags::new(101),
     module: "TerrainRender",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainDecals as Default>::default())),
+            create_boxed: || Box::new(<TerrainDecals as Default>::default()),
         },
         fields: &[
         ],
@@ -3252,6 +3473,7 @@ impl TypeObject for TerrainDecals {
 
 pub static TERRAINDECALS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainDecals-Array",
+    name_hash: 1842929562,
     flags: MemberInfoFlags::new(145),
     module: "TerrainRender",
     data: TypeInfoData::Array("TerrainDecals"),
@@ -3260,7 +3482,8 @@ pub static TERRAINDECALS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IVisualTerrain {
     pub _glacier_base: super::terrain_base::ITerrain,
 }
@@ -3276,12 +3499,15 @@ impl super::terrain_base::ITerrainTrait for IVisualTerrain {
 
 pub static IVISUALTERRAIN_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IVisualTerrain",
+    name_hash: 3687750991,
     flags: MemberInfoFlags::new(101),
     module: "TerrainRender",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::terrain_base::ITERRAIN_TYPE_INFO),
+        super_class_offset: offset_of!(IVisualTerrain, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IVisualTerrain as Default>::default())),
+            create_boxed: || Box::new(<IVisualTerrain as Default>::default()),
         },
         fields: &[
         ],
@@ -3311,6 +3537,7 @@ impl TypeObject for IVisualTerrain {
 
 pub static IVISUALTERRAIN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IVisualTerrain-Array",
+    name_hash: 3375385211,
     flags: MemberInfoFlags::new(145),
     module: "TerrainRender",
     data: TypeInfoData::Array("IVisualTerrain"),
@@ -3319,7 +3546,8 @@ pub static IVISUALTERRAIN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainTextureTree {
 }
 
@@ -3331,12 +3559,15 @@ impl TerrainTextureTreeTrait for TerrainTextureTree {
 
 pub static TERRAINTEXTURETREE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainTextureTree",
+    name_hash: 3032079755,
     flags: MemberInfoFlags::new(101),
     module: "TerrainRender",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainTextureTree as Default>::default())),
+            create_boxed: || Box::new(<TerrainTextureTree as Default>::default()),
         },
         fields: &[
         ],
@@ -3366,6 +3597,7 @@ impl TypeObject for TerrainTextureTree {
 
 pub static TERRAINTEXTURETREE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainTextureTree-Array",
+    name_hash: 472599615,
     flags: MemberInfoFlags::new(145),
     module: "TerrainRender",
     data: TypeInfoData::Array("TerrainTextureTree"),

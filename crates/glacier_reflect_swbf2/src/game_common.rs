@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -196,7 +197,8 @@ pub(crate) fn register_game_common_types(registry: &mut TypeRegistry) {
     registry.register_type(GAMEMODULE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AnimationPoseLayerTrack {
     pub _glacier_base: super::timeline::GroupTrack,
 }
@@ -215,12 +217,15 @@ impl super::timeline::TimelineTrackTrait for AnimationPoseLayerTrack {
 
 pub static ANIMATIONPOSELAYERTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimationPoseLayerTrack",
+    name_hash: 2189906998,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::timeline::GROUPTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(AnimationPoseLayerTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AnimationPoseLayerTrack as Default>::default())),
+            create_boxed: || Box::new(<AnimationPoseLayerTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -250,6 +255,7 @@ impl TypeObject for AnimationPoseLayerTrack {
 
 pub static ANIMATIONPOSELAYERTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimationPoseLayerTrack-Array",
+    name_hash: 704596098,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("AnimationPoseLayerTrack"),
@@ -258,7 +264,8 @@ pub static ANIMATIONPOSELAYERTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ANTControlTrack {
     pub _glacier_base: super::timeline::LinkTrack,
 }
@@ -277,12 +284,15 @@ impl super::timeline::TimelineTrackTrait for ANTControlTrack {
 
 pub static ANTCONTROLTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTControlTrack",
+    name_hash: 3104884470,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::timeline::LINKTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(ANTControlTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ANTControlTrack as Default>::default())),
+            create_boxed: || Box::new(<ANTControlTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -312,6 +322,7 @@ impl TypeObject for ANTControlTrack {
 
 pub static ANTCONTROLTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTControlTrack-Array",
+    name_hash: 2226359234,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ANTControlTrack"),
@@ -320,7 +331,8 @@ pub static ANTCONTROLTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ANTBoneTrack {
     pub _glacier_base: super::timeline::LayeredTransformTrack,
 }
@@ -342,12 +354,15 @@ impl super::timeline::TimelineTrackTrait for ANTBoneTrack {
 
 pub static ANTBONETRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTBoneTrack",
+    name_hash: 1721915255,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::timeline::LAYEREDTRANSFORMTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(ANTBoneTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ANTBoneTrack as Default>::default())),
+            create_boxed: || Box::new(<ANTBoneTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -377,6 +392,7 @@ impl TypeObject for ANTBoneTrack {
 
 pub static ANTBONETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTBoneTrack-Array",
+    name_hash: 2168127811,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ANTBoneTrack"),
@@ -385,7 +401,8 @@ pub static ANTBONETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ANTBoneAnimationTrack {
     pub _glacier_base: super::timeline::TimelineTrack,
 }
@@ -401,12 +418,15 @@ impl super::timeline::TimelineTrackTrait for ANTBoneAnimationTrack {
 
 pub static ANTBONEANIMATIONTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTBoneAnimationTrack",
+    name_hash: 502619489,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::timeline::TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(ANTBoneAnimationTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ANTBoneAnimationTrack as Default>::default())),
+            create_boxed: || Box::new(<ANTBoneAnimationTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -436,6 +456,7 @@ impl TypeObject for ANTBoneAnimationTrack {
 
 pub static ANTBONEANIMATIONTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTBoneAnimationTrack-Array",
+    name_hash: 2109462613,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ANTBoneAnimationTrack"),
@@ -444,7 +465,8 @@ pub static ANTBONEANIMATIONTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AnimationPoseTrack {
     pub _glacier_base: super::timeline::LinkTrack,
 }
@@ -463,12 +485,15 @@ impl super::timeline::TimelineTrackTrait for AnimationPoseTrack {
 
 pub static ANIMATIONPOSETRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimationPoseTrack",
+    name_hash: 106333653,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::timeline::LINKTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(AnimationPoseTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AnimationPoseTrack as Default>::default())),
+            create_boxed: || Box::new(<AnimationPoseTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -498,6 +523,7 @@ impl TypeObject for AnimationPoseTrack {
 
 pub static ANIMATIONPOSETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimationPoseTrack-Array",
+    name_hash: 3029059041,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("AnimationPoseTrack"),
@@ -506,7 +532,8 @@ pub static ANIMATIONPOSETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RecordedBlobResource {
 }
 
@@ -518,12 +545,15 @@ impl RecordedBlobResourceTrait for RecordedBlobResource {
 
 pub static RECORDEDBLOBRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RecordedBlobResource",
+    name_hash: 4099082208,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RecordedBlobResource as Default>::default())),
+            create_boxed: || Box::new(<RecordedBlobResource as Default>::default()),
         },
         fields: &[
         ],
@@ -553,6 +583,7 @@ impl TypeObject for RecordedBlobResource {
 
 pub static RECORDEDBLOBRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RecordedBlobResource-Array",
+    name_hash: 2825117140,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("RecordedBlobResource"),
@@ -561,7 +592,8 @@ pub static RECORDEDBLOBRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ANTBoneTransformLayerTrack {
     pub _glacier_base: super::timeline::SimpleTransformLayer,
 }
@@ -583,12 +615,15 @@ impl super::timeline::TimelineTrackTrait for ANTBoneTransformLayerTrack {
 
 pub static ANTBONETRANSFORMLAYERTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTBoneTransformLayerTrack",
+    name_hash: 415381080,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::timeline::SIMPLETRANSFORMLAYER_TYPE_INFO),
+        super_class_offset: offset_of!(ANTBoneTransformLayerTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ANTBoneTransformLayerTrack as Default>::default())),
+            create_boxed: || Box::new(<ANTBoneTransformLayerTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -618,6 +653,7 @@ impl TypeObject for ANTBoneTransformLayerTrack {
 
 pub static ANTBONETRANSFORMLAYERTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTBoneTransformLayerTrack-Array",
+    name_hash: 2836836588,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ANTBoneTransformLayerTrack"),
@@ -626,7 +662,8 @@ pub static ANTBONETRANSFORMLAYERTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VehicleExitPointComponent {
     pub _glacier_base: super::gameplay_sim::GameComponent,
 }
@@ -648,12 +685,15 @@ impl super::entity::EntityBusPeerTrait for VehicleExitPointComponent {
 
 pub static VEHICLEEXITPOINTCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleExitPointComponent",
+    name_hash: 1132210078,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_sim::GAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(VehicleExitPointComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VehicleExitPointComponent as Default>::default())),
+            create_boxed: || Box::new(<VehicleExitPointComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -683,6 +723,7 @@ impl TypeObject for VehicleExitPointComponent {
 
 pub static VEHICLEEXITPOINTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleExitPointComponent-Array",
+    name_hash: 3195566250,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("VehicleExitPointComponent"),
@@ -691,7 +732,8 @@ pub static VEHICLEEXITPOINTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsDrivenAnimationEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -710,12 +752,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsDrivenAnimationEntity {
 
 pub static PHYSICSDRIVENANIMATIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsDrivenAnimationEntity",
+    name_hash: 2567376065,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsDrivenAnimationEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsDrivenAnimationEntity as Default>::default())),
+            create_boxed: || Box::new(<PhysicsDrivenAnimationEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -745,6 +790,7 @@ impl TypeObject for PhysicsDrivenAnimationEntity {
 
 pub static PHYSICSDRIVENANIMATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsDrivenAnimationEntity-Array",
+    name_hash: 2423461621,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("PhysicsDrivenAnimationEntity"),
@@ -753,7 +799,8 @@ pub static PHYSICSDRIVENANIMATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ModelAnimationEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -772,12 +819,15 @@ impl super::entity::EntityBusPeerTrait for ModelAnimationEntity {
 
 pub static MODELANIMATIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ModelAnimationEntity",
+    name_hash: 1454328039,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ModelAnimationEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ModelAnimationEntity as Default>::default())),
+            create_boxed: || Box::new(<ModelAnimationEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -807,6 +857,7 @@ impl TypeObject for ModelAnimationEntity {
 
 pub static MODELANIMATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ModelAnimationEntity-Array",
+    name_hash: 2332314323,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ModelAnimationEntity"),
@@ -815,7 +866,8 @@ pub static MODELANIMATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ANTSlotTrack {
     pub _glacier_base: super::timeline::IPropertyTrack,
 }
@@ -834,12 +886,15 @@ impl super::timeline::TimelineTrackTrait for ANTSlotTrack {
 
 pub static ANTSLOTTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTSlotTrack",
+    name_hash: 2232936629,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::timeline::IPROPERTYTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(ANTSlotTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ANTSlotTrack as Default>::default())),
+            create_boxed: || Box::new(<ANTSlotTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -869,6 +924,7 @@ impl TypeObject for ANTSlotTrack {
 
 pub static ANTSLOTTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTSlotTrack-Array",
+    name_hash: 996935937,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ANTSlotTrack"),
@@ -877,7 +933,8 @@ pub static ANTSLOTTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ANTSignalTrack {
     pub _glacier_base: super::timeline::LinkTrack,
 }
@@ -896,12 +953,15 @@ impl super::timeline::TimelineTrackTrait for ANTSignalTrack {
 
 pub static ANTSIGNALTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTSignalTrack",
+    name_hash: 3619653967,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::timeline::LINKTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(ANTSignalTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ANTSignalTrack as Default>::default())),
+            create_boxed: || Box::new(<ANTSignalTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -931,6 +991,7 @@ impl TypeObject for ANTSignalTrack {
 
 pub static ANTSIGNALTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTSignalTrack-Array",
+    name_hash: 2837591675,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ANTSignalTrack"),
@@ -939,7 +1000,8 @@ pub static ANTSIGNALTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ANTEvalTrack {
     pub _glacier_base: super::timeline::TimelineTrack,
 }
@@ -955,12 +1017,15 @@ impl super::timeline::TimelineTrackTrait for ANTEvalTrack {
 
 pub static ANTEVALTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTEvalTrack",
+    name_hash: 1191047663,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::timeline::TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(ANTEvalTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ANTEvalTrack as Default>::default())),
+            create_boxed: || Box::new(<ANTEvalTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -990,6 +1055,7 @@ impl TypeObject for ANTEvalTrack {
 
 pub static ANTEVALTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ANTEvalTrack-Array",
+    name_hash: 1919750107,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ANTEvalTrack"),
@@ -998,7 +1064,8 @@ pub static ANTEVALTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectAreaQueryEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1017,12 +1084,15 @@ impl super::entity::EntityBusPeerTrait for ObjectAreaQueryEntity {
 
 pub static OBJECTAREAQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectAreaQueryEntity",
+    name_hash: 585074710,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectAreaQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectAreaQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<ObjectAreaQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1052,6 +1122,7 @@ impl TypeObject for ObjectAreaQueryEntity {
 
 pub static OBJECTAREAQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectAreaQueryEntity-Array",
+    name_hash: 1837292834,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ObjectAreaQueryEntity"),
@@ -1060,7 +1131,8 @@ pub static OBJECTAREAQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BillboardTransformEntity {
     pub _glacier_base: super::entity::SpatialEntity,
 }
@@ -1082,12 +1154,15 @@ impl super::entity::EntityBusPeerTrait for BillboardTransformEntity {
 
 pub static BILLBOARDTRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BillboardTransformEntity",
+    name_hash: 3204408035,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BillboardTransformEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BillboardTransformEntity as Default>::default())),
+            create_boxed: || Box::new(<BillboardTransformEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1117,6 +1192,7 @@ impl TypeObject for BillboardTransformEntity {
 
 pub static BILLBOARDTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BillboardTransformEntity-Array",
+    name_hash: 943732439,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("BillboardTransformEntity"),
@@ -1125,7 +1201,8 @@ pub static BILLBOARDTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterDepthEntity {
     pub _glacier_base: super::entity::SpatialEntity,
 }
@@ -1147,12 +1224,15 @@ impl super::entity::EntityBusPeerTrait for WaterDepthEntity {
 
 pub static WATERDEPTHENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterDepthEntity",
+    name_hash: 3314517638,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(WaterDepthEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterDepthEntity as Default>::default())),
+            create_boxed: || Box::new(<WaterDepthEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1182,6 +1262,7 @@ impl TypeObject for WaterDepthEntity {
 
 pub static WATERDEPTHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterDepthEntity-Array",
+    name_hash: 222622642,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("WaterDepthEntity"),
@@ -1190,7 +1271,8 @@ pub static WATERDEPTHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformSnapToGroundEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1209,12 +1291,15 @@ impl super::entity::EntityBusPeerTrait for TransformSnapToGroundEntity {
 
 pub static TRANSFORMSNAPTOGROUNDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSnapToGroundEntity",
+    name_hash: 3891249600,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransformSnapToGroundEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformSnapToGroundEntity as Default>::default())),
+            create_boxed: || Box::new(<TransformSnapToGroundEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1244,6 +1329,7 @@ impl TypeObject for TransformSnapToGroundEntity {
 
 pub static TRANSFORMSNAPTOGROUNDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSnapToGroundEntity-Array",
+    name_hash: 2953623668,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("TransformSnapToGroundEntity"),
@@ -1252,7 +1338,8 @@ pub static TRANSFORMSNAPTOGROUNDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InclusionSettingEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1271,12 +1358,15 @@ impl super::entity::EntityBusPeerTrait for InclusionSettingEntity {
 
 pub static INCLUSIONSETTINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InclusionSettingEntity",
+    name_hash: 2929927150,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(InclusionSettingEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InclusionSettingEntity as Default>::default())),
+            create_boxed: || Box::new(<InclusionSettingEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1306,6 +1396,7 @@ impl TypeObject for InclusionSettingEntity {
 
 pub static INCLUSIONSETTINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InclusionSettingEntity-Array",
+    name_hash: 985939162,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("InclusionSettingEntity"),
@@ -1314,7 +1405,8 @@ pub static INCLUSIONSETTINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventSplitterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1333,12 +1425,15 @@ impl super::entity::EntityBusPeerTrait for EventSplitterEntity {
 
 pub static EVENTSPLITTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventSplitterEntity",
+    name_hash: 3844557827,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(EventSplitterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventSplitterEntity as Default>::default())),
+            create_boxed: || Box::new(<EventSplitterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1368,6 +1463,7 @@ impl TypeObject for EventSplitterEntity {
 
 pub static EVENTSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventSplitterEntity-Array",
+    name_hash: 3943841463,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("EventSplitterEntity"),
@@ -1376,7 +1472,8 @@ pub static EVENTSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventCompareGateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1395,12 +1492,15 @@ impl super::entity::EntityBusPeerTrait for EventCompareGateEntity {
 
 pub static EVENTCOMPAREGATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventCompareGateEntity",
+    name_hash: 151101026,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(EventCompareGateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventCompareGateEntity as Default>::default())),
+            create_boxed: || Box::new(<EventCompareGateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1430,6 +1530,7 @@ impl TypeObject for EventCompareGateEntity {
 
 pub static EVENTCOMPAREGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventCompareGateEntity-Array",
+    name_hash: 3186986326,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("EventCompareGateEntity"),
@@ -1438,7 +1539,8 @@ pub static EVENTCOMPAREGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CombatAreaEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1457,12 +1559,15 @@ impl super::entity::EntityBusPeerTrait for CombatAreaEntity {
 
 pub static COMBATAREAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CombatAreaEntity",
+    name_hash: 2208531967,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CombatAreaEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CombatAreaEntity as Default>::default())),
+            create_boxed: || Box::new(<CombatAreaEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1492,6 +1597,7 @@ impl TypeObject for CombatAreaEntity {
 
 pub static COMBATAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CombatAreaEntity-Array",
+    name_hash: 1367632843,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("CombatAreaEntity"),
@@ -1500,7 +1606,8 @@ pub static COMBATAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BuildConfigFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1519,12 +1626,15 @@ impl super::entity::EntityBusPeerTrait for BuildConfigFilterEntity {
 
 pub static BUILDCONFIGFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BuildConfigFilterEntity",
+    name_hash: 260678690,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BuildConfigFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BuildConfigFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<BuildConfigFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1554,6 +1664,7 @@ impl TypeObject for BuildConfigFilterEntity {
 
 pub static BUILDCONFIGFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BuildConfigFilterEntity-Array",
+    name_hash: 850076310,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("BuildConfigFilterEntity"),
@@ -1562,7 +1673,8 @@ pub static BUILDCONFIGFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AreaProximityEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1581,12 +1693,15 @@ impl super::entity::EntityBusPeerTrait for AreaProximityEntity {
 
 pub static AREAPROXIMITYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AreaProximityEntity",
+    name_hash: 2896220828,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(AreaProximityEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AreaProximityEntity as Default>::default())),
+            create_boxed: || Box::new(<AreaProximityEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1616,6 +1731,7 @@ impl TypeObject for AreaProximityEntity {
 
 pub static AREAPROXIMITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AreaProximityEntity-Array",
+    name_hash: 4286917288,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("AreaProximityEntity"),
@@ -1624,7 +1740,8 @@ pub static AREAPROXIMITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaypointParameterEvent {
     pub _glacier_base: super::entity::EntityEvent,
 }
@@ -1640,12 +1757,15 @@ impl super::entity::EntityEventTrait for WaypointParameterEvent {
 
 pub static WAYPOINTPARAMETEREVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaypointParameterEvent",
+    name_hash: 2024300131,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(WaypointParameterEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaypointParameterEvent as Default>::default())),
+            create_boxed: || Box::new(<WaypointParameterEvent as Default>::default()),
         },
         fields: &[
         ],
@@ -1675,6 +1795,7 @@ impl TypeObject for WaypointParameterEvent {
 
 pub static WAYPOINTPARAMETEREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaypointParameterEvent-Array",
+    name_hash: 1721225815,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("WaypointParameterEvent"),
@@ -1683,7 +1804,8 @@ pub static WAYPOINTPARAMETEREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MoveParameterEvent {
     pub _glacier_base: super::entity::EntityEvent,
 }
@@ -1699,12 +1821,15 @@ impl super::entity::EntityEventTrait for MoveParameterEvent {
 
 pub static MOVEPARAMETEREVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MoveParameterEvent",
+    name_hash: 2525640305,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(MoveParameterEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MoveParameterEvent as Default>::default())),
+            create_boxed: || Box::new(<MoveParameterEvent as Default>::default()),
         },
         fields: &[
         ],
@@ -1734,6 +1859,7 @@ impl TypeObject for MoveParameterEvent {
 
 pub static MOVEPARAMETEREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MoveParameterEvent-Array",
+    name_hash: 39991621,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("MoveParameterEvent"),
@@ -1742,7 +1868,8 @@ pub static MOVEPARAMETEREVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Tool {
 }
 
@@ -1754,12 +1881,15 @@ impl ToolTrait for Tool {
 
 pub static TOOL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Tool",
+    name_hash: 2089324061,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Tool as Default>::default())),
+            create_boxed: || Box::new(<Tool as Default>::default()),
         },
         fields: &[
         ],
@@ -1789,6 +1919,7 @@ impl TypeObject for Tool {
 
 pub static TOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Tool-Array",
+    name_hash: 3824572841,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("Tool"),
@@ -1797,7 +1928,8 @@ pub static TOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SphereCollisionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1816,12 +1948,15 @@ impl super::entity::EntityBusPeerTrait for SphereCollisionEntity {
 
 pub static SPHERECOLLISIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereCollisionEntity",
+    name_hash: 1876077881,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SphereCollisionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SphereCollisionEntity as Default>::default())),
+            create_boxed: || Box::new(<SphereCollisionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1851,6 +1986,7 @@ impl TypeObject for SphereCollisionEntity {
 
 pub static SPHERECOLLISIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereCollisionEntity-Array",
+    name_hash: 4270316429,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("SphereCollisionEntity"),
@@ -1859,7 +1995,8 @@ pub static SPHERECOLLISIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SlowMotionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1878,12 +2015,15 @@ impl super::entity::EntityBusPeerTrait for SlowMotionEntity {
 
 pub static SLOWMOTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SlowMotionEntity",
+    name_hash: 338980615,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SlowMotionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SlowMotionEntity as Default>::default())),
+            create_boxed: || Box::new(<SlowMotionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1913,6 +2053,7 @@ impl TypeObject for SlowMotionEntity {
 
 pub static SLOWMOTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SlowMotionEntity-Array",
+    name_hash: 3345829811,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("SlowMotionEntity"),
@@ -1921,7 +2062,8 @@ pub static SLOWMOTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OBBCollisionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1940,12 +2082,15 @@ impl super::entity::EntityBusPeerTrait for OBBCollisionEntity {
 
 pub static OBBCOLLISIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OBBCollisionEntity",
+    name_hash: 2062442831,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(OBBCollisionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OBBCollisionEntity as Default>::default())),
+            create_boxed: || Box::new(<OBBCollisionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1975,6 +2120,7 @@ impl TypeObject for OBBCollisionEntity {
 
 pub static OBBCOLLISIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OBBCollisionEntity-Array",
+    name_hash: 2584940155,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("OBBCollisionEntity"),
@@ -1983,7 +2129,8 @@ pub static OBBCOLLISIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ExplosionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2002,12 +2149,15 @@ impl super::entity::EntityBusPeerTrait for ExplosionEntity {
 
 pub static EXPLOSIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExplosionEntity",
+    name_hash: 882710123,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ExplosionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ExplosionEntity as Default>::default())),
+            create_boxed: || Box::new(<ExplosionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2037,6 +2187,7 @@ impl TypeObject for ExplosionEntity {
 
 pub static EXPLOSIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExplosionEntity-Array",
+    name_hash: 1739974239,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ExplosionEntity"),
@@ -2045,7 +2196,8 @@ pub static EXPLOSIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DifficultyIndexEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2064,12 +2216,15 @@ impl super::entity::EntityBusPeerTrait for DifficultyIndexEntity {
 
 pub static DIFFICULTYINDEXENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DifficultyIndexEntity",
+    name_hash: 374072147,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(DifficultyIndexEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DifficultyIndexEntity as Default>::default())),
+            create_boxed: || Box::new(<DifficultyIndexEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2099,6 +2254,7 @@ impl TypeObject for DifficultyIndexEntity {
 
 pub static DIFFICULTYINDEXENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DifficultyIndexEntity-Array",
+    name_hash: 98422375,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("DifficultyIndexEntity"),
@@ -2107,7 +2263,8 @@ pub static DIFFICULTYINDEXENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlayerViewHitState {
     pub position: super::core::Vec3,
     pub giver_origin: super::core::Vec3,
@@ -2182,51 +2339,60 @@ impl PlayerViewHitStateTrait for PlayerViewHitState {
 
 pub static PLAYERVIEWHITSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayerViewHitState",
+    name_hash: 3678726073,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlayerViewHitState as Default>::default())),
+            create_boxed: || Box::new(<PlayerViewHitState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Position",
+                name_hash: 3402582524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PlayerViewHitState, position),
             },
             FieldInfoData {
                 name: "GiverOrigin",
+                name_hash: 474916926,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PlayerViewHitState, giver_origin),
             },
             FieldInfoData {
                 name: "Damage",
+                name_hash: 2589892334,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PlayerViewHitState, damage),
             },
             FieldInfoData {
                 name: "Health",
+                name_hash: 3054337113,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PlayerViewHitState, health),
             },
             FieldInfoData {
                 name: "Counter",
+                name_hash: 3685466929,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PlayerViewHitState, counter),
             },
             FieldInfoData {
                 name: "IsInVehicle",
+                name_hash: 3429348160,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlayerViewHitState, is_in_vehicle),
             },
             FieldInfoData {
                 name: "IsBulletDamage",
+                name_hash: 2629799922,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlayerViewHitState, is_bullet_damage),
@@ -2258,6 +2424,7 @@ impl TypeObject for PlayerViewHitState {
 
 pub static PLAYERVIEWHITSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayerViewHitState-Array",
+    name_hash: 3864786445,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("PlayerViewHitState"),
@@ -2266,7 +2433,8 @@ pub static PLAYERVIEWHITSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BucketScoreContainer {
     pub bucket_score: i32,
     pub raw_bucket_score: i32,
@@ -2296,21 +2464,25 @@ impl BucketScoreContainerTrait for BucketScoreContainer {
 
 pub static BUCKETSCORECONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BucketScoreContainer",
+    name_hash: 2271437540,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BucketScoreContainer as Default>::default())),
+            create_boxed: || Box::new(<BucketScoreContainer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BucketScore",
+                name_hash: 2527558947,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(BucketScoreContainer, bucket_score),
             },
             FieldInfoData {
                 name: "RawBucketScore",
+                name_hash: 3806856103,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(BucketScoreContainer, raw_bucket_score),
@@ -2342,6 +2514,7 @@ impl TypeObject for BucketScoreContainer {
 
 pub static BUCKETSCORECONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BucketScoreContainer-Array",
+    name_hash: 1548494544,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("BucketScoreContainer"),
@@ -2360,6 +2533,7 @@ pub enum PlayerScoreDetail {
 
 pub static PLAYERSCOREDETAIL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayerScoreDetail",
+    name_hash: 2527664847,
     flags: MemberInfoFlags::new(49429),
     module: "GameCommon",
     data: TypeInfoData::Enum,
@@ -2388,6 +2562,7 @@ impl TypeObject for PlayerScoreDetail {
 
 pub static PLAYERSCOREDETAIL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayerScoreDetail-Array",
+    name_hash: 1817372667,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("PlayerScoreDetail"),
@@ -2396,7 +2571,8 @@ pub static PLAYERSCOREDETAIL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkCheckLevelInstalledMessage {
 }
 
@@ -2408,11 +2584,13 @@ impl UINetworkCheckLevelInstalledMessageTrait for UINetworkCheckLevelInstalledMe
 
 pub static UINETWORKCHECKLEVELINSTALLEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkCheckLevelInstalledMessage",
+    name_hash: 1166265724,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkCheckLevelInstalledMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkCheckLevelInstalledMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2439,7 +2617,8 @@ impl TypeObject for UINetworkCheckLevelInstalledMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkRollCreditsMessage {
 }
 
@@ -2451,11 +2630,13 @@ impl UINetworkRollCreditsMessageTrait for UINetworkRollCreditsMessage {
 
 pub static UINETWORKROLLCREDITSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkRollCreditsMessage",
+    name_hash: 3107394831,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkRollCreditsMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkRollCreditsMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2482,7 +2663,8 @@ impl TypeObject for UINetworkRollCreditsMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkStealBodyMessage {
 }
 
@@ -2494,11 +2676,13 @@ impl UINetworkStealBodyMessageTrait for UINetworkStealBodyMessage {
 
 pub static UINETWORKSTEALBODYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkStealBodyMessage",
+    name_hash: 195636563,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkStealBodyMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkStealBodyMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2525,7 +2709,8 @@ impl TypeObject for UINetworkStealBodyMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkPlayerMissionObjectiveTextMessage {
 }
 
@@ -2537,11 +2722,13 @@ impl UINetworkPlayerMissionObjectiveTextMessageTrait for UINetworkPlayerMissionO
 
 pub static UINETWORKPLAYERMISSIONOBJECTIVETEXTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkPlayerMissionObjectiveTextMessage",
+    name_hash: 645051681,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkPlayerMissionObjectiveTextMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkPlayerMissionObjectiveTextMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2568,7 +2755,8 @@ impl TypeObject for UINetworkPlayerMissionObjectiveTextMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkVideoDoneMessage {
 }
 
@@ -2580,11 +2768,13 @@ impl UINetworkVideoDoneMessageTrait for UINetworkVideoDoneMessage {
 
 pub static UINETWORKVIDEODONEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkVideoDoneMessage",
+    name_hash: 3230150973,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkVideoDoneMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkVideoDoneMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2611,7 +2801,8 @@ impl TypeObject for UINetworkVideoDoneMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkAllowSkipVideoMessage {
 }
 
@@ -2623,11 +2814,13 @@ impl UINetworkAllowSkipVideoMessageTrait for UINetworkAllowSkipVideoMessage {
 
 pub static UINETWORKALLOWSKIPVIDEOMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkAllowSkipVideoMessage",
+    name_hash: 26958309,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkAllowSkipVideoMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkAllowSkipVideoMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2654,7 +2847,8 @@ impl TypeObject for UINetworkAllowSkipVideoMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkSkipVideoMessage {
 }
 
@@ -2666,11 +2860,13 @@ impl UINetworkSkipVideoMessageTrait for UINetworkSkipVideoMessage {
 
 pub static UINETWORKSKIPVIDEOMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkSkipVideoMessage",
+    name_hash: 2209177404,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkSkipVideoMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkSkipVideoMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2697,7 +2893,8 @@ impl TypeObject for UINetworkSkipVideoMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkStopVideoMessage {
 }
 
@@ -2709,11 +2906,13 @@ impl UINetworkStopVideoMessageTrait for UINetworkStopVideoMessage {
 
 pub static UINETWORKSTOPVIDEOMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkStopVideoMessage",
+    name_hash: 640255845,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkStopVideoMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkStopVideoMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2740,7 +2939,8 @@ impl TypeObject for UINetworkStopVideoMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkPauseVideoMessage {
 }
 
@@ -2752,11 +2952,13 @@ impl UINetworkPauseVideoMessageTrait for UINetworkPauseVideoMessage {
 
 pub static UINETWORKPAUSEVIDEOMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkPauseVideoMessage",
+    name_hash: 3036504367,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkPauseVideoMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkPauseVideoMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2783,7 +2985,8 @@ impl TypeObject for UINetworkPauseVideoMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkPauseAllVideosMessage {
 }
 
@@ -2795,11 +2998,13 @@ impl UINetworkPauseAllVideosMessageTrait for UINetworkPauseAllVideosMessage {
 
 pub static UINETWORKPAUSEALLVIDEOSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkPauseAllVideosMessage",
+    name_hash: 366125437,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkPauseAllVideosMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkPauseAllVideosMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2826,7 +3031,8 @@ impl TypeObject for UINetworkPauseAllVideosMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkPlayerDeserterTextMessage {
 }
 
@@ -2838,11 +3044,13 @@ impl UINetworkPlayerDeserterTextMessageTrait for UINetworkPlayerDeserterTextMess
 
 pub static UINETWORKPLAYERDESERTERTEXTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkPlayerDeserterTextMessage",
+    name_hash: 2838795940,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkPlayerDeserterTextMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkPlayerDeserterTextMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2869,7 +3077,8 @@ impl TypeObject for UINetworkPlayerDeserterTextMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkPlayerTextMessage {
 }
 
@@ -2881,11 +3090,13 @@ impl UINetworkPlayerTextMessageTrait for UINetworkPlayerTextMessage {
 
 pub static UINETWORKPLAYERTEXTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkPlayerTextMessage",
+    name_hash: 718085378,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkPlayerTextMessage as Default>::default())),
+            create_boxed: || Box::new(<UINetworkPlayerTextMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -2912,7 +3123,8 @@ impl TypeObject for UINetworkPlayerTextMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UINetworkTextInfo {
     pub string_id: String,
     pub display_time: f32,
@@ -2942,21 +3154,25 @@ impl UINetworkTextInfoTrait for UINetworkTextInfo {
 
 pub static UINETWORKTEXTINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkTextInfo",
+    name_hash: 1045400692,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UINetworkTextInfo as Default>::default())),
+            create_boxed: || Box::new(<UINetworkTextInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StringId",
+                name_hash: 3536090717,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(UINetworkTextInfo, string_id),
             },
             FieldInfoData {
                 name: "DisplayTime",
+                name_hash: 1925139498,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UINetworkTextInfo, display_time),
@@ -2988,6 +3204,7 @@ impl TypeObject for UINetworkTextInfo {
 
 pub static UINETWORKTEXTINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UINetworkTextInfo-Array",
+    name_hash: 4104403008,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("UINetworkTextInfo"),
@@ -2996,7 +3213,8 @@ pub static UINETWORKTEXTINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkRemoveDilationMessage {
 }
 
@@ -3008,11 +3226,13 @@ impl NetworkRemoveDilationMessageTrait for NetworkRemoveDilationMessage {
 
 pub static NETWORKREMOVEDILATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkRemoveDilationMessage",
+    name_hash: 1038065450,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkRemoveDilationMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkRemoveDilationMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3039,7 +3259,8 @@ impl TypeObject for NetworkRemoveDilationMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkAddDilationMessage {
 }
 
@@ -3051,11 +3272,13 @@ impl NetworkAddDilationMessageTrait for NetworkAddDilationMessage {
 
 pub static NETWORKADDDILATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkAddDilationMessage",
+    name_hash: 3381918573,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkAddDilationMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkAddDilationMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3082,7 +3305,8 @@ impl TypeObject for NetworkAddDilationMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkLevelInstalledMessage {
 }
 
@@ -3094,11 +3318,13 @@ impl NetworkLevelInstalledMessageTrait for NetworkLevelInstalledMessage {
 
 pub static NETWORKLEVELINSTALLEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkLevelInstalledMessage",
+    name_hash: 2097824134,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkLevelInstalledMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkLevelInstalledMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3125,7 +3351,8 @@ impl TypeObject for NetworkLevelInstalledMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkMatchReadyStatusChangedMessage {
 }
 
@@ -3137,11 +3364,13 @@ impl NetworkMatchReadyStatusChangedMessageTrait for NetworkMatchReadyStatusChang
 
 pub static NETWORKMATCHREADYSTATUSCHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkMatchReadyStatusChangedMessage",
+    name_hash: 961448894,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkMatchReadyStatusChangedMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkMatchReadyStatusChangedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3168,7 +3397,8 @@ impl TypeObject for NetworkMatchReadyStatusChangedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRestartTimerMessage {
 }
 
@@ -3180,11 +3410,13 @@ impl ServerRestartTimerMessageTrait for ServerRestartTimerMessage {
 
 pub static SERVERRESTARTTIMERMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRestartTimerMessage",
+    name_hash: 1655375643,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRestartTimerMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerRestartTimerMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3211,7 +3443,8 @@ impl TypeObject for ServerRestartTimerMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkMetricsLevelCompleteMessage {
 }
 
@@ -3223,11 +3456,13 @@ impl NetworkMetricsLevelCompleteMessageTrait for NetworkMetricsLevelCompleteMess
 
 pub static NETWORKMETRICSLEVELCOMPLETEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkMetricsLevelCompleteMessage",
+    name_hash: 1681893880,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkMetricsLevelCompleteMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkMetricsLevelCompleteMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3254,7 +3489,8 @@ impl TypeObject for NetworkMetricsLevelCompleteMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkMetricsLevelProgressMessage {
 }
 
@@ -3266,11 +3502,13 @@ impl NetworkMetricsLevelProgressMessageTrait for NetworkMetricsLevelProgressMess
 
 pub static NETWORKMETRICSLEVELPROGRESSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkMetricsLevelProgressMessage",
+    name_hash: 981824684,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkMetricsLevelProgressMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkMetricsLevelProgressMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3297,7 +3535,8 @@ impl TypeObject for NetworkMetricsLevelProgressMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkMetricsSaveGameSavedMessage {
 }
 
@@ -3309,11 +3548,13 @@ impl NetworkMetricsSaveGameSavedMessageTrait for NetworkMetricsSaveGameSavedMess
 
 pub static NETWORKMETRICSSAVEGAMESAVEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkMetricsSaveGameSavedMessage",
+    name_hash: 1890115501,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkMetricsSaveGameSavedMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkMetricsSaveGameSavedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3340,7 +3581,8 @@ impl TypeObject for NetworkMetricsSaveGameSavedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkSetPlayerViewMessage {
 }
 
@@ -3352,11 +3594,13 @@ impl NetworkSetPlayerViewMessageTrait for NetworkSetPlayerViewMessage {
 
 pub static NETWORKSETPLAYERVIEWMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkSetPlayerViewMessage",
+    name_hash: 3916689420,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkSetPlayerViewMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkSetPlayerViewMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3383,7 +3627,8 @@ impl TypeObject for NetworkSetPlayerViewMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkSuicideMessage {
 }
 
@@ -3395,11 +3640,13 @@ impl NetworkSuicideMessageTrait for NetworkSuicideMessage {
 
 pub static NETWORKSUICIDEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkSuicideMessage",
+    name_hash: 2867554132,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkSuicideMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkSuicideMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3426,7 +3673,8 @@ impl TypeObject for NetworkSuicideMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkGameplayContinueMessage {
 }
 
@@ -3438,11 +3686,13 @@ impl NetworkGameplayContinueMessageTrait for NetworkGameplayContinueMessage {
 
 pub static NETWORKGAMEPLAYCONTINUEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkGameplayContinueMessage",
+    name_hash: 3895526427,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkGameplayContinueMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkGameplayContinueMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3469,7 +3719,8 @@ impl TypeObject for NetworkGameplayContinueMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PerformanceLogMessage {
 }
 
@@ -3481,11 +3732,13 @@ impl PerformanceLogMessageTrait for PerformanceLogMessage {
 
 pub static PERFORMANCELOGMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerformanceLogMessage",
+    name_hash: 4173551506,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PerformanceLogMessage as Default>::default())),
+            create_boxed: || Box::new(<PerformanceLogMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3512,7 +3765,8 @@ impl TypeObject for PerformanceLogMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PerformanceFpsHistogram {
     pub below5: f32,
     pub below10: f32,
@@ -3641,87 +3895,102 @@ impl PerformanceFpsHistogramTrait for PerformanceFpsHistogram {
 
 pub static PERFORMANCEFPSHISTOGRAM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerformanceFpsHistogram",
+    name_hash: 3131092744,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PerformanceFpsHistogram as Default>::default())),
+            create_boxed: || Box::new(<PerformanceFpsHistogram as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Below5",
+                name_hash: 2668044995,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below5),
             },
             FieldInfoData {
                 name: "Below10",
+                name_hash: 2146139031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below10),
             },
             FieldInfoData {
                 name: "Below15",
+                name_hash: 2146139026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below15),
             },
             FieldInfoData {
                 name: "Below20",
+                name_hash: 2146138996,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below20),
             },
             FieldInfoData {
                 name: "Below25",
+                name_hash: 2146138993,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below25),
             },
             FieldInfoData {
                 name: "Below30",
+                name_hash: 2146138965,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below30),
             },
             FieldInfoData {
                 name: "Below35",
+                name_hash: 2146138960,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below35),
             },
             FieldInfoData {
                 name: "Below40",
+                name_hash: 2146138930,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below40),
             },
             FieldInfoData {
                 name: "Below45",
+                name_hash: 2146138935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below45),
             },
             FieldInfoData {
                 name: "Below50",
+                name_hash: 2146138899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below50),
             },
             FieldInfoData {
                 name: "Below55",
+                name_hash: 2146138902,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below55),
             },
             FieldInfoData {
                 name: "Below60",
+                name_hash: 2146138864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, below60),
             },
             FieldInfoData {
                 name: "Above60",
+                name_hash: 402579644,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerformanceFpsHistogram, above60),
@@ -3753,6 +4022,7 @@ impl TypeObject for PerformanceFpsHistogram {
 
 pub static PERFORMANCEFPSHISTOGRAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerformanceFpsHistogram-Array",
+    name_hash: 3913675068,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("PerformanceFpsHistogram"),
@@ -3761,7 +4031,8 @@ pub static PERFORMANCEFPSHISTOGRAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkFirstPlayerEnteredMessage {
 }
 
@@ -3773,11 +4044,13 @@ impl NetworkFirstPlayerEnteredMessageTrait for NetworkFirstPlayerEnteredMessage 
 
 pub static NETWORKFIRSTPLAYERENTEREDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkFirstPlayerEnteredMessage",
+    name_hash: 3100746992,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkFirstPlayerEnteredMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkFirstPlayerEnteredMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3804,7 +4077,8 @@ impl TypeObject for NetworkFirstPlayerEnteredMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkDifficultyChangedMessage {
 }
 
@@ -3816,11 +4090,13 @@ impl NetworkDifficultyChangedMessageTrait for NetworkDifficultyChangedMessage {
 
 pub static NETWORKDIFFICULTYCHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkDifficultyChangedMessage",
+    name_hash: 947795329,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkDifficultyChangedMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkDifficultyChangedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3847,7 +4123,8 @@ impl TypeObject for NetworkDifficultyChangedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkSettingsMessage {
 }
 
@@ -3859,11 +4136,13 @@ impl NetworkSettingsMessageTrait for NetworkSettingsMessage {
 
 pub static NETWORKSETTINGSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkSettingsMessage",
+    name_hash: 2930058005,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkSettingsMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkSettingsMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3890,7 +4169,8 @@ impl TypeObject for NetworkSettingsMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DebugSpawnGameEntityMessage {
 }
 
@@ -3902,11 +4182,13 @@ impl DebugSpawnGameEntityMessageTrait for DebugSpawnGameEntityMessage {
 
 pub static DEBUGSPAWNGAMEENTITYMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DebugSpawnGameEntityMessage",
+    name_hash: 2431943889,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DebugSpawnGameEntityMessage as Default>::default())),
+            create_boxed: || Box::new(<DebugSpawnGameEntityMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3933,7 +4215,8 @@ impl TypeObject for DebugSpawnGameEntityMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkMovePlayerMessage {
 }
 
@@ -3945,11 +4228,13 @@ impl NetworkMovePlayerMessageTrait for NetworkMovePlayerMessage {
 
 pub static NETWORKMOVEPLAYERMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkMovePlayerMessage",
+    name_hash: 1829355154,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkMovePlayerMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkMovePlayerMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3976,7 +4261,8 @@ impl TypeObject for NetworkMovePlayerMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkJuiceSessionMessage {
 }
 
@@ -3988,11 +4274,13 @@ impl NetworkJuiceSessionMessageTrait for NetworkJuiceSessionMessage {
 
 pub static NETWORKJUICESESSIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkJuiceSessionMessage",
+    name_hash: 455381982,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkJuiceSessionMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkJuiceSessionMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4019,7 +4307,8 @@ impl TypeObject for NetworkJuiceSessionMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkSelectTeamMessage {
 }
 
@@ -4031,11 +4320,13 @@ impl NetworkSelectTeamMessageTrait for NetworkSelectTeamMessage {
 
 pub static NETWORKSELECTTEAMMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkSelectTeamMessage",
+    name_hash: 2499355557,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkSelectTeamMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkSelectTeamMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4062,7 +4353,8 @@ impl TypeObject for NetworkSelectTeamMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkOnPlayerSpawnedMessage {
 }
 
@@ -4074,11 +4366,13 @@ impl NetworkOnPlayerSpawnedMessageTrait for NetworkOnPlayerSpawnedMessage {
 
 pub static NETWORKONPLAYERSPAWNEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkOnPlayerSpawnedMessage",
+    name_hash: 3400994168,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkOnPlayerSpawnedMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkOnPlayerSpawnedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4105,7 +4399,8 @@ impl TypeObject for NetworkOnPlayerSpawnedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkSelectSpawnGroupMessage {
 }
 
@@ -4117,11 +4412,13 @@ impl NetworkSelectSpawnGroupMessageTrait for NetworkSelectSpawnGroupMessage {
 
 pub static NETWORKSELECTSPAWNGROUPMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkSelectSpawnGroupMessage",
+    name_hash: 1909800124,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkSelectSpawnGroupMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkSelectSpawnGroupMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4148,7 +4445,8 @@ impl TypeObject for NetworkSelectSpawnGroupMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkSpawnVehicleCustomizationMessage {
 }
 
@@ -4160,11 +4458,13 @@ impl NetworkSpawnVehicleCustomizationMessageTrait for NetworkSpawnVehicleCustomi
 
 pub static NETWORKSPAWNVEHICLECUSTOMIZATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkSpawnVehicleCustomizationMessage",
+    name_hash: 2090633806,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkSpawnVehicleCustomizationMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkSpawnVehicleCustomizationMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4191,7 +4491,8 @@ impl TypeObject for NetworkSpawnVehicleCustomizationMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkUnSpawnCustomizationMessage {
 }
 
@@ -4203,11 +4504,13 @@ impl NetworkUnSpawnCustomizationMessageTrait for NetworkUnSpawnCustomizationMess
 
 pub static NETWORKUNSPAWNCUSTOMIZATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkUnSpawnCustomizationMessage",
+    name_hash: 2678951981,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkUnSpawnCustomizationMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkUnSpawnCustomizationMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4234,7 +4537,8 @@ impl TypeObject for NetworkUnSpawnCustomizationMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkSpawnCustomizationMessage {
 }
 
@@ -4246,11 +4550,13 @@ impl NetworkSpawnCustomizationMessageTrait for NetworkSpawnCustomizationMessage 
 
 pub static NETWORKSPAWNCUSTOMIZATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkSpawnCustomizationMessage",
+    name_hash: 19073174,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkSpawnCustomizationMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkSpawnCustomizationMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4277,7 +4583,8 @@ impl TypeObject for NetworkSpawnCustomizationMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkSpawnOnSelectedMessage {
 }
 
@@ -4289,11 +4596,13 @@ impl NetworkSpawnOnSelectedMessageTrait for NetworkSpawnOnSelectedMessage {
 
 pub static NETWORKSPAWNONSELECTEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkSpawnOnSelectedMessage",
+    name_hash: 3017503427,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkSpawnOnSelectedMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkSpawnOnSelectedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4320,7 +4629,8 @@ impl TypeObject for NetworkSpawnOnSelectedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkSpawnHereMessage {
 }
 
@@ -4332,11 +4642,13 @@ impl NetworkSpawnHereMessageTrait for NetworkSpawnHereMessage {
 
 pub static NETWORKSPAWNHEREMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkSpawnHereMessage",
+    name_hash: 793655281,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkSpawnHereMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkSpawnHereMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4363,7 +4675,8 @@ impl TypeObject for NetworkSpawnHereMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkSpawnMessage {
 }
 
@@ -4375,11 +4688,13 @@ impl NetworkSpawnMessageTrait for NetworkSpawnMessage {
 
 pub static NETWORKSPAWNMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkSpawnMessage",
+    name_hash: 2476300555,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkSpawnMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkSpawnMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4406,7 +4721,8 @@ impl TypeObject for NetworkSpawnMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkRequestLoadLevelMessage {
 }
 
@@ -4418,11 +4734,13 @@ impl NetworkRequestLoadLevelMessageTrait for NetworkRequestLoadLevelMessage {
 
 pub static NETWORKREQUESTLOADLEVELMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkRequestLoadLevelMessage",
+    name_hash: 989809105,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkRequestLoadLevelMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkRequestLoadLevelMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4449,7 +4767,8 @@ impl TypeObject for NetworkRequestLoadLevelMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkScreenFadeMessage {
 }
 
@@ -4461,11 +4780,13 @@ impl NetworkScreenFadeMessageTrait for NetworkScreenFadeMessage {
 
 pub static NETWORKSCREENFADEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkScreenFadeMessage",
+    name_hash: 635866170,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkScreenFadeMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkScreenFadeMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4492,7 +4813,8 @@ impl TypeObject for NetworkScreenFadeMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LevelConsoleSetActiveHealthStateMessage {
 }
 
@@ -4504,11 +4826,13 @@ impl LevelConsoleSetActiveHealthStateMessageTrait for LevelConsoleSetActiveHealt
 
 pub static LEVELCONSOLESETACTIVEHEALTHSTATEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LevelConsoleSetActiveHealthStateMessage",
+    name_hash: 662096874,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LevelConsoleSetActiveHealthStateMessage as Default>::default())),
+            create_boxed: || Box::new(<LevelConsoleSetActiveHealthStateMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4535,7 +4859,8 @@ impl TypeObject for LevelConsoleSetActiveHealthStateMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkPerformanceProfileMessage {
 }
 
@@ -4547,11 +4872,13 @@ impl NetworkPerformanceProfileMessageTrait for NetworkPerformanceProfileMessage 
 
 pub static NETWORKPERFORMANCEPROFILEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkPerformanceProfileMessage",
+    name_hash: 880806691,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkPerformanceProfileMessage as Default>::default())),
+            create_boxed: || Box::new(<NetworkPerformanceProfileMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4578,7 +4905,8 @@ impl TypeObject for NetworkPerformanceProfileMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SyncedSequenceStateChangeMessageBase {
 }
 
@@ -4590,11 +4918,13 @@ impl SyncedSequenceStateChangeMessageBaseTrait for SyncedSequenceStateChangeMess
 
 pub static SYNCEDSEQUENCESTATECHANGEMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SyncedSequenceStateChangeMessageBase",
+    name_hash: 4164184403,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SyncedSequenceStateChangeMessageBase as Default>::default())),
+            create_boxed: || Box::new(<SyncedSequenceStateChangeMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -4621,7 +4951,8 @@ impl TypeObject for SyncedSequenceStateChangeMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct JuiceSoldierRagdollDeactivateMessage {
 }
 
@@ -4633,11 +4964,13 @@ impl JuiceSoldierRagdollDeactivateMessageTrait for JuiceSoldierRagdollDeactivate
 
 pub static JUICESOLDIERRAGDOLLDEACTIVATEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JuiceSoldierRagdollDeactivateMessage",
+    name_hash: 2982030259,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<JuiceSoldierRagdollDeactivateMessage as Default>::default())),
+            create_boxed: || Box::new(<JuiceSoldierRagdollDeactivateMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4664,7 +4997,8 @@ impl TypeObject for JuiceSoldierRagdollDeactivateMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct JuiceSoldierRagdollActivateMessage {
 }
 
@@ -4676,11 +5010,13 @@ impl JuiceSoldierRagdollActivateMessageTrait for JuiceSoldierRagdollActivateMess
 
 pub static JUICESOLDIERRAGDOLLACTIVATEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JuiceSoldierRagdollActivateMessage",
+    name_hash: 3490871762,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<JuiceSoldierRagdollActivateMessage as Default>::default())),
+            create_boxed: || Box::new(<JuiceSoldierRagdollActivateMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4707,7 +5043,8 @@ impl TypeObject for JuiceSoldierRagdollActivateMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AIClientBridgeDynamicModelEntityOnUnspawnMessage {
 }
 
@@ -4719,11 +5056,13 @@ impl AIClientBridgeDynamicModelEntityOnUnspawnMessageTrait for AIClientBridgeDyn
 
 pub static AICLIENTBRIDGEDYNAMICMODELENTITYONUNSPAWNMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIClientBridgeDynamicModelEntityOnUnspawnMessage",
+    name_hash: 2559405728,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AIClientBridgeDynamicModelEntityOnUnspawnMessage as Default>::default())),
+            create_boxed: || Box::new(<AIClientBridgeDynamicModelEntityOnUnspawnMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4750,7 +5089,8 @@ impl TypeObject for AIClientBridgeDynamicModelEntityOnUnspawnMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AIClientBridgeDynamicModelEntityOnSpawnMessage {
 }
 
@@ -4762,11 +5102,13 @@ impl AIClientBridgeDynamicModelEntityOnSpawnMessageTrait for AIClientBridgeDynam
 
 pub static AICLIENTBRIDGEDYNAMICMODELENTITYONSPAWNMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIClientBridgeDynamicModelEntityOnSpawnMessage",
+    name_hash: 3793228315,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AIClientBridgeDynamicModelEntityOnSpawnMessage as Default>::default())),
+            create_boxed: || Box::new(<AIClientBridgeDynamicModelEntityOnSpawnMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4805,6 +5147,7 @@ pub enum WantedAimState {
 
 pub static WANTEDAIMSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WantedAimState",
+    name_hash: 1237066746,
     flags: MemberInfoFlags::new(49429),
     module: "GameCommon",
     data: TypeInfoData::Enum,
@@ -4833,6 +5176,7 @@ impl TypeObject for WantedAimState {
 
 pub static WANTEDAIMSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WantedAimState-Array",
+    name_hash: 3002095310,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("WantedAimState"),
@@ -4854,6 +5198,7 @@ pub enum AimTargetId {
 
 pub static AIMTARGETID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AimTargetId",
+    name_hash: 1324881820,
     flags: MemberInfoFlags::new(49429),
     module: "GameCommon",
     data: TypeInfoData::Enum,
@@ -4882,6 +5227,7 @@ impl TypeObject for AimTargetId {
 
 pub static AIMTARGETID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AimTargetId-Array",
+    name_hash: 964439976,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("AimTargetId"),
@@ -4890,7 +5236,8 @@ pub static AIMTARGETID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SharedLockObserverEntity {
     pub _glacier_base: SharedLockBaseEntity,
 }
@@ -4912,12 +5259,15 @@ impl super::entity::EntityBusPeerTrait for SharedLockObserverEntity {
 
 pub static SHAREDLOCKOBSERVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedLockObserverEntity",
+    name_hash: 2871127252,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SHAREDLOCKBASEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SharedLockObserverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SharedLockObserverEntity as Default>::default())),
+            create_boxed: || Box::new(<SharedLockObserverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4947,6 +5297,7 @@ impl TypeObject for SharedLockObserverEntity {
 
 pub static SHAREDLOCKOBSERVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedLockObserverEntity-Array",
+    name_hash: 2311428448,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("SharedLockObserverEntity"),
@@ -4955,7 +5306,8 @@ pub static SHAREDLOCKOBSERVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SharedLockGateEntity {
     pub _glacier_base: SharedLockBaseEntity,
 }
@@ -4977,12 +5329,15 @@ impl super::entity::EntityBusPeerTrait for SharedLockGateEntity {
 
 pub static SHAREDLOCKGATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedLockGateEntity",
+    name_hash: 2991996683,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SHAREDLOCKBASEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SharedLockGateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SharedLockGateEntity as Default>::default())),
+            create_boxed: || Box::new(<SharedLockGateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5012,6 +5367,7 @@ impl TypeObject for SharedLockGateEntity {
 
 pub static SHAREDLOCKGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedLockGateEntity-Array",
+    name_hash: 753585599,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("SharedLockGateEntity"),
@@ -5020,7 +5376,8 @@ pub static SHAREDLOCKGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SharedLockControllerEntity {
     pub _glacier_base: SharedLockBaseEntity,
 }
@@ -5042,12 +5399,15 @@ impl super::entity::EntityBusPeerTrait for SharedLockControllerEntity {
 
 pub static SHAREDLOCKCONTROLLERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedLockControllerEntity",
+    name_hash: 3069633440,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SHAREDLOCKBASEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SharedLockControllerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SharedLockControllerEntity as Default>::default())),
+            create_boxed: || Box::new(<SharedLockControllerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5077,6 +5437,7 @@ impl TypeObject for SharedLockControllerEntity {
 
 pub static SHAREDLOCKCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedLockControllerEntity-Array",
+    name_hash: 1873905940,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("SharedLockControllerEntity"),
@@ -5085,7 +5446,8 @@ pub static SHAREDLOCKCONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SharedLockBaseEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5104,12 +5466,15 @@ impl super::entity::EntityBusPeerTrait for SharedLockBaseEntity {
 
 pub static SHAREDLOCKBASEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedLockBaseEntity",
+    name_hash: 52706441,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SharedLockBaseEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SharedLockBaseEntity as Default>::default())),
+            create_boxed: || Box::new(<SharedLockBaseEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5139,6 +5504,7 @@ impl TypeObject for SharedLockBaseEntity {
 
 pub static SHAREDLOCKBASEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedLockBaseEntity-Array",
+    name_hash: 1416131133,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("SharedLockBaseEntity"),
@@ -5147,7 +5513,8 @@ pub static SHAREDLOCKBASEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntersectionTriggerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5166,12 +5533,15 @@ impl super::entity::EntityBusPeerTrait for IntersectionTriggerEntity {
 
 pub static INTERSECTIONTRIGGERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntersectionTriggerEntity",
+    name_hash: 2733201419,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(IntersectionTriggerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntersectionTriggerEntity as Default>::default())),
+            create_boxed: || Box::new(<IntersectionTriggerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5201,6 +5571,7 @@ impl TypeObject for IntersectionTriggerEntity {
 
 pub static INTERSECTIONTRIGGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntersectionTriggerEntity-Array",
+    name_hash: 1873585855,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("IntersectionTriggerEntity"),
@@ -5209,7 +5580,8 @@ pub static INTERSECTIONTRIGGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UserSpawnContext {
 }
 
@@ -5221,12 +5593,15 @@ impl UserSpawnContextTrait for UserSpawnContext {
 
 pub static USERSPAWNCONTEXT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UserSpawnContext",
+    name_hash: 46289360,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UserSpawnContext as Default>::default())),
+            create_boxed: || Box::new(<UserSpawnContext as Default>::default()),
         },
         fields: &[
         ],
@@ -5256,6 +5631,7 @@ impl TypeObject for UserSpawnContext {
 
 pub static USERSPAWNCONTEXT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UserSpawnContext-Array",
+    name_hash: 2988314724,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("UserSpawnContext"),
@@ -5264,7 +5640,8 @@ pub static USERSPAWNCONTEXT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlayerIteratorEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5283,12 +5660,15 @@ impl super::entity::EntityBusPeerTrait for PlayerIteratorEntity {
 
 pub static PLAYERITERATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayerIteratorEntity",
+    name_hash: 446633167,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PlayerIteratorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlayerIteratorEntity as Default>::default())),
+            create_boxed: || Box::new(<PlayerIteratorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5318,6 +5698,7 @@ impl TypeObject for PlayerIteratorEntity {
 
 pub static PLAYERITERATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayerIteratorEntity-Array",
+    name_hash: 3009176059,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("PlayerIteratorEntity"),
@@ -5326,7 +5707,8 @@ pub static PLAYERITERATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlatformSplitterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5345,12 +5727,15 @@ impl super::entity::EntityBusPeerTrait for PlatformSplitterEntity {
 
 pub static PLATFORMSPLITTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlatformSplitterEntity",
+    name_hash: 2147474800,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PlatformSplitterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlatformSplitterEntity as Default>::default())),
+            create_boxed: || Box::new(<PlatformSplitterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5380,6 +5765,7 @@ impl TypeObject for PlatformSplitterEntity {
 
 pub static PLATFORMSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlatformSplitterEntity-Array",
+    name_hash: 3326974788,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("PlatformSplitterEntity"),
@@ -5388,7 +5774,8 @@ pub static PLATFORMSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LoggingEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5407,12 +5794,15 @@ impl super::entity::EntityBusPeerTrait for LoggingEntity {
 
 pub static LOGGINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LoggingEntity",
+    name_hash: 217792445,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(LoggingEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LoggingEntity as Default>::default())),
+            create_boxed: || Box::new(<LoggingEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5442,6 +5832,7 @@ impl TypeObject for LoggingEntity {
 
 pub static LOGGINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LoggingEntity-Array",
+    name_hash: 783547401,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("LoggingEntity"),
@@ -5450,7 +5841,8 @@ pub static LOGGINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DeltaViewerTableEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5469,12 +5861,15 @@ impl super::entity::EntityBusPeerTrait for DeltaViewerTableEntity {
 
 pub static DELTAVIEWERTABLEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeltaViewerTableEntity",
+    name_hash: 2811600866,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(DeltaViewerTableEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DeltaViewerTableEntity as Default>::default())),
+            create_boxed: || Box::new(<DeltaViewerTableEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5504,6 +5899,7 @@ impl TypeObject for DeltaViewerTableEntity {
 
 pub static DELTAVIEWERTABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DeltaViewerTableEntity-Array",
+    name_hash: 1927589590,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("DeltaViewerTableEntity"),
@@ -5512,7 +5908,8 @@ pub static DELTAVIEWERTABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConsoleCommandTriggerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5531,12 +5928,15 @@ impl super::entity::EntityBusPeerTrait for ConsoleCommandTriggerEntity {
 
 pub static CONSOLECOMMANDTRIGGERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConsoleCommandTriggerEntity",
+    name_hash: 18960982,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ConsoleCommandTriggerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConsoleCommandTriggerEntity as Default>::default())),
+            create_boxed: || Box::new(<ConsoleCommandTriggerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5566,6 +5966,7 @@ impl TypeObject for ConsoleCommandTriggerEntity {
 
 pub static CONSOLECOMMANDTRIGGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConsoleCommandTriggerEntity-Array",
+    name_hash: 4099119074,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ConsoleCommandTriggerEntity"),
@@ -5574,7 +5975,8 @@ pub static CONSOLECOMMANDTRIGGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConsoleCommandEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5593,12 +5995,15 @@ impl super::entity::EntityBusPeerTrait for ConsoleCommandEntity {
 
 pub static CONSOLECOMMANDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConsoleCommandEntity",
+    name_hash: 2497451118,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ConsoleCommandEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConsoleCommandEntity as Default>::default())),
+            create_boxed: || Box::new(<ConsoleCommandEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5628,6 +6033,7 @@ impl TypeObject for ConsoleCommandEntity {
 
 pub static CONSOLECOMMANDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConsoleCommandEntity-Array",
+    name_hash: 17796442,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ConsoleCommandEntity"),
@@ -5636,7 +6042,8 @@ pub static CONSOLECOMMANDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LicenseeGameWorldRayCaster {
     pub _glacier_base: super::gameplay_sim::GameWorldRayCaster,
 }
@@ -5652,12 +6059,15 @@ impl super::gameplay_sim::GameWorldRayCasterTrait for LicenseeGameWorldRayCaster
 
 pub static LICENSEEGAMEWORLDRAYCASTER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LicenseeGameWorldRayCaster",
+    name_hash: 623444303,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_sim::GAMEWORLDRAYCASTER_TYPE_INFO),
+        super_class_offset: offset_of!(LicenseeGameWorldRayCaster, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LicenseeGameWorldRayCaster as Default>::default())),
+            create_boxed: || Box::new(<LicenseeGameWorldRayCaster as Default>::default()),
         },
         fields: &[
         ],
@@ -5687,6 +6097,7 @@ impl TypeObject for LicenseeGameWorldRayCaster {
 
 pub static LICENSEEGAMEWORLDRAYCASTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LicenseeGameWorldRayCaster-Array",
+    name_hash: 3989155451,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("LicenseeGameWorldRayCaster"),
@@ -5695,7 +6106,8 @@ pub static LICENSEEGAMEWORLDRAYCASTER_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubLevelStatusEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5714,12 +6126,15 @@ impl super::entity::EntityBusPeerTrait for SubLevelStatusEntity {
 
 pub static SUBLEVELSTATUSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubLevelStatusEntity",
+    name_hash: 2961305336,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SubLevelStatusEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubLevelStatusEntity as Default>::default())),
+            create_boxed: || Box::new(<SubLevelStatusEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5749,6 +6164,7 @@ impl TypeObject for SubLevelStatusEntity {
 
 pub static SUBLEVELSTATUSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubLevelStatusEntity-Array",
+    name_hash: 771107020,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("SubLevelStatusEntity"),
@@ -5757,7 +6173,8 @@ pub static SUBLEVELSTATUSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubLevelPreloadEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5776,12 +6193,15 @@ impl super::entity::EntityBusPeerTrait for SubLevelPreloadEntity {
 
 pub static SUBLEVELPRELOADENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubLevelPreloadEntity",
+    name_hash: 2378474605,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SubLevelPreloadEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubLevelPreloadEntity as Default>::default())),
+            create_boxed: || Box::new(<SubLevelPreloadEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5811,6 +6231,7 @@ impl TypeObject for SubLevelPreloadEntity {
 
 pub static SUBLEVELPRELOADENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubLevelPreloadEntity-Array",
+    name_hash: 392391001,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("SubLevelPreloadEntity"),
@@ -5819,7 +6240,8 @@ pub static SUBLEVELPRELOADENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubLevelCollectionEntityBase {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5838,12 +6260,15 @@ impl super::entity::EntityBusPeerTrait for SubLevelCollectionEntityBase {
 
 pub static SUBLEVELCOLLECTIONENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubLevelCollectionEntityBase",
+    name_hash: 471478319,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SubLevelCollectionEntityBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubLevelCollectionEntityBase as Default>::default())),
+            create_boxed: || Box::new(<SubLevelCollectionEntityBase as Default>::default()),
         },
         fields: &[
         ],
@@ -5873,6 +6298,7 @@ impl TypeObject for SubLevelCollectionEntityBase {
 
 pub static SUBLEVELCOLLECTIONENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubLevelCollectionEntityBase-Array",
+    name_hash: 2097872283,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("SubLevelCollectionEntityBase"),
@@ -5881,7 +6307,8 @@ pub static SUBLEVELCOLLECTIONENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BlueprintBundleStatusEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5900,12 +6327,15 @@ impl super::entity::EntityBusPeerTrait for BlueprintBundleStatusEntity {
 
 pub static BLUEPRINTBUNDLESTATUSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintBundleStatusEntity",
+    name_hash: 1557869873,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BlueprintBundleStatusEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BlueprintBundleStatusEntity as Default>::default())),
+            create_boxed: || Box::new(<BlueprintBundleStatusEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5935,6 +6365,7 @@ impl TypeObject for BlueprintBundleStatusEntity {
 
 pub static BLUEPRINTBUNDLESTATUSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintBundleStatusEntity-Array",
+    name_hash: 1062668165,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("BlueprintBundleStatusEntity"),
@@ -5943,7 +6374,8 @@ pub static BLUEPRINTBUNDLESTATUSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerBlueprintBundleEntity {
     pub _glacier_base: BlueprintBundleEntityBase,
 }
@@ -5965,12 +6397,15 @@ impl super::entity::EntityBusPeerTrait for ServerBlueprintBundleEntity {
 
 pub static SERVERBLUEPRINTBUNDLEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBlueprintBundleEntity",
+    name_hash: 2926216480,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BLUEPRINTBUNDLEENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerBlueprintBundleEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerBlueprintBundleEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerBlueprintBundleEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6000,6 +6435,7 @@ impl TypeObject for ServerBlueprintBundleEntity {
 
 pub static SERVERBLUEPRINTBUNDLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBlueprintBundleEntity-Array",
+    name_hash: 3468184212,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ServerBlueprintBundleEntity"),
@@ -6008,7 +6444,8 @@ pub static SERVERBLUEPRINTBUNDLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientBlueprintBundleEntity {
     pub _glacier_base: BlueprintBundleEntityBase,
 }
@@ -6030,12 +6467,15 @@ impl super::entity::EntityBusPeerTrait for ClientBlueprintBundleEntity {
 
 pub static CLIENTBLUEPRINTBUNDLEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBlueprintBundleEntity",
+    name_hash: 4238044924,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BLUEPRINTBUNDLEENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ClientBlueprintBundleEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientBlueprintBundleEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientBlueprintBundleEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6065,6 +6505,7 @@ impl TypeObject for ClientBlueprintBundleEntity {
 
 pub static CLIENTBLUEPRINTBUNDLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBlueprintBundleEntity-Array",
+    name_hash: 2825869000,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ClientBlueprintBundleEntity"),
@@ -6073,7 +6514,8 @@ pub static CLIENTBLUEPRINTBUNDLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BlueprintBundleEntityBase {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6092,12 +6534,15 @@ impl super::entity::EntityBusPeerTrait for BlueprintBundleEntityBase {
 
 pub static BLUEPRINTBUNDLEENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintBundleEntityBase",
+    name_hash: 3856091056,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BlueprintBundleEntityBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BlueprintBundleEntityBase as Default>::default())),
+            create_boxed: || Box::new(<BlueprintBundleEntityBase as Default>::default()),
         },
         fields: &[
         ],
@@ -6127,6 +6572,7 @@ impl TypeObject for BlueprintBundleEntityBase {
 
 pub static BLUEPRINTBUNDLEENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintBundleEntityBase-Array",
+    name_hash: 3588207876,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("BlueprintBundleEntityBase"),
@@ -6135,7 +6581,8 @@ pub static BLUEPRINTBUNDLEENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerBlueprintBundleCollectionEntity {
     pub _glacier_base: BlueprintBundleCollectionEntityBase,
 }
@@ -6157,12 +6604,15 @@ impl super::entity::EntityBusPeerTrait for ServerBlueprintBundleCollectionEntity
 
 pub static SERVERBLUEPRINTBUNDLECOLLECTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBlueprintBundleCollectionEntity",
+    name_hash: 251527542,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BLUEPRINTBUNDLECOLLECTIONENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerBlueprintBundleCollectionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerBlueprintBundleCollectionEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerBlueprintBundleCollectionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6192,6 +6642,7 @@ impl TypeObject for ServerBlueprintBundleCollectionEntity {
 
 pub static SERVERBLUEPRINTBUNDLECOLLECTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBlueprintBundleCollectionEntity-Array",
+    name_hash: 121808450,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ServerBlueprintBundleCollectionEntity"),
@@ -6200,7 +6651,8 @@ pub static SERVERBLUEPRINTBUNDLECOLLECTIONENTITY_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientBlueprintBundleCollectionEntity {
     pub _glacier_base: BlueprintBundleCollectionEntityBase,
 }
@@ -6222,12 +6674,15 @@ impl super::entity::EntityBusPeerTrait for ClientBlueprintBundleCollectionEntity
 
 pub static CLIENTBLUEPRINTBUNDLECOLLECTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBlueprintBundleCollectionEntity",
+    name_hash: 2486115370,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BLUEPRINTBUNDLECOLLECTIONENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ClientBlueprintBundleCollectionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientBlueprintBundleCollectionEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientBlueprintBundleCollectionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6257,6 +6712,7 @@ impl TypeObject for ClientBlueprintBundleCollectionEntity {
 
 pub static CLIENTBLUEPRINTBUNDLECOLLECTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBlueprintBundleCollectionEntity-Array",
+    name_hash: 1846146718,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("ClientBlueprintBundleCollectionEntity"),
@@ -6265,7 +6721,8 @@ pub static CLIENTBLUEPRINTBUNDLECOLLECTIONENTITY_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BlueprintBundleCollectionEntityBase {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6284,12 +6741,15 @@ impl super::entity::EntityBusPeerTrait for BlueprintBundleCollectionEntityBase {
 
 pub static BLUEPRINTBUNDLECOLLECTIONENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintBundleCollectionEntityBase",
+    name_hash: 1410542694,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BlueprintBundleCollectionEntityBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BlueprintBundleCollectionEntityBase as Default>::default())),
+            create_boxed: || Box::new(<BlueprintBundleCollectionEntityBase as Default>::default()),
         },
         fields: &[
         ],
@@ -6319,6 +6779,7 @@ impl TypeObject for BlueprintBundleCollectionEntityBase {
 
 pub static BLUEPRINTBUNDLECOLLECTIONENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintBundleCollectionEntityBase-Array",
+    name_hash: 1085884754,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("BlueprintBundleCollectionEntityBase"),
@@ -6327,7 +6788,8 @@ pub static BLUEPRINTBUNDLECOLLECTIONENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TestStaticModelGroupEntityData {
     pub _glacier_base: super::entity::SpatialEntityData,
     pub realm: super::core::Realm,
@@ -6388,22 +6850,27 @@ impl super::core::DataContainerTrait for TestStaticModelGroupEntityData {
 
 pub static TESTSTATICMODELGROUPENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TestStaticModelGroupEntityData",
+    name_hash: 4252808496,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TestStaticModelGroupEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TestStaticModelGroupEntityData as Default>::default())),
+            create_boxed: || Box::new(<TestStaticModelGroupEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TestStaticModelGroupEntityData, realm),
             },
             FieldInfoData {
                 name: "ExpectedMaterial",
+                name_hash: 1392303408,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialDecl",
                 rust_offset: offset_of!(TestStaticModelGroupEntityData, expected_material),
@@ -6435,6 +6902,7 @@ impl TypeObject for TestStaticModelGroupEntityData {
 
 pub static TESTSTATICMODELGROUPENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TestStaticModelGroupEntityData-Array",
+    name_hash: 1581335172,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("TestStaticModelGroupEntityData"),
@@ -6443,7 +6911,8 @@ pub static TESTSTATICMODELGROUPENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TestRayCastEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -6711,166 +7180,195 @@ impl super::core::DataContainerTrait for TestRayCastEntityData {
 
 pub static TESTRAYCASTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TestRayCastEntityData",
+    name_hash: 2128825047,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TestRayCastEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TestRayCastEntityData as Default>::default())),
+            create_boxed: || Box::new(<TestRayCastEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TestRayCastEntityData, realm),
             },
             FieldInfoData {
                 name: "Asynchronous",
+                name_hash: 1766450289,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, asynchronous),
             },
             FieldInfoData {
                 name: "RayStart",
+                name_hash: 1219459567,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TestRayCastEntityData, ray_start),
             },
             FieldInfoData {
                 name: "RayEnd",
+                name_hash: 3298243168,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TestRayCastEntityData, ray_end),
             },
             FieldInfoData {
                 name: "OutputIndex",
+                name_hash: 742281796,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TestRayCastEntityData, output_index),
             },
             FieldInfoData {
                 name: "CheckDetailMesh",
+                name_hash: 1042973153,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, check_detail_mesh),
             },
             FieldInfoData {
                 name: "CheckNormal",
+                name_hash: 1055693648,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, check_normal),
             },
             FieldInfoData {
                 name: "CheckMaterial",
+                name_hash: 4115652008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, check_material),
             },
             FieldInfoData {
                 name: "CheckPartIndex",
+                name_hash: 771562890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, check_part_index),
             },
             FieldInfoData {
                 name: "CheckWater",
+                name_hash: 33784182,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, check_water),
             },
             FieldInfoData {
                 name: "CheckTerrain",
+                name_hash: 4138451316,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, check_terrain),
             },
             FieldInfoData {
                 name: "CheckRagdoll",
+                name_hash: 1577343516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, check_ragdoll),
             },
             FieldInfoData {
                 name: "CheckCharacter",
+                name_hash: 899700346,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, check_character),
             },
             FieldInfoData {
                 name: "CheckGroup",
+                name_hash: 15377244,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, check_group),
             },
             FieldInfoData {
                 name: "PenetratePenetrable",
+                name_hash: 753321791,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, penetrate_penetrable),
             },
             FieldInfoData {
                 name: "PenetrateClientDestructible",
+                name_hash: 3100057920,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, penetrate_client_destructible),
             },
             FieldInfoData {
                 name: "PenetrateBashable",
+                name_hash: 247196511,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, penetrate_bashable),
             },
             FieldInfoData {
                 name: "PenetrateSeeThrough",
+                name_hash: 4194697765,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, penetrate_see_through),
             },
             FieldInfoData {
                 name: "PenetrateNoCollisionResponse",
+                name_hash: 2695629553,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, penetrate_no_collision_response),
             },
             FieldInfoData {
                 name: "PenetrateNoCollisionResponseCombined",
+                name_hash: 4134991892,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, penetrate_no_collision_response_combined),
             },
             FieldInfoData {
                 name: "PenetrateAttachable",
+                name_hash: 1307948716,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TestRayCastEntityData, penetrate_attachable),
             },
             FieldInfoData {
                 name: "ExpectedPosition",
+                name_hash: 3774377122,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TestRayCastEntityData, expected_position),
             },
             FieldInfoData {
                 name: "ExpectedNormal",
+                name_hash: 247862472,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TestRayCastEntityData, expected_normal),
             },
             FieldInfoData {
                 name: "ExpectedPartIndex",
+                name_hash: 3926426642,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TestRayCastEntityData, expected_part_index),
             },
             FieldInfoData {
                 name: "ExpectedMaterial",
+                name_hash: 1392303408,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialDecl",
                 rust_offset: offset_of!(TestRayCastEntityData, expected_material),
             },
             FieldInfoData {
                 name: "Tolerance",
+                name_hash: 178343404,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TestRayCastEntityData, tolerance),
@@ -6902,6 +7400,7 @@ impl TypeObject for TestRayCastEntityData {
 
 pub static TESTRAYCASTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TestRayCastEntityData-Array",
+    name_hash: 2424603619,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("TestRayCastEntityData"),
@@ -6924,6 +7423,7 @@ pub enum AdministrationRestrictionLevel {
 
 pub static ADMINISTRATIONRESTRICTIONLEVEL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AdministrationRestrictionLevel",
+    name_hash: 3373335305,
     flags: MemberInfoFlags::new(49429),
     module: "GameCommon",
     data: TypeInfoData::Enum,
@@ -6952,6 +7452,7 @@ impl TypeObject for AdministrationRestrictionLevel {
 
 pub static ADMINISTRATIONRESTRICTIONLEVEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AdministrationRestrictionLevel-Array",
+    name_hash: 3815774397,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("AdministrationRestrictionLevel"),
@@ -6975,6 +7476,7 @@ pub enum AdministrationEventType {
 
 pub static ADMINISTRATIONEVENTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AdministrationEventType",
+    name_hash: 434228607,
     flags: MemberInfoFlags::new(49429),
     module: "GameCommon",
     data: TypeInfoData::Enum,
@@ -7003,6 +7505,7 @@ impl TypeObject for AdministrationEventType {
 
 pub static ADMINISTRATIONEVENTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AdministrationEventType-Array",
+    name_hash: 37376843,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("AdministrationEventType"),
@@ -7011,7 +7514,8 @@ pub static ADMINISTRATIONEVENTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAdministrationPasswordMessage {
 }
 
@@ -7023,11 +7527,13 @@ impl ServerAdministrationPasswordMessageTrait for ServerAdministrationPasswordMe
 
 pub static SERVERADMINISTRATIONPASSWORDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAdministrationPasswordMessage",
+    name_hash: 3226538682,
     flags: MemberInfoFlags::new(73),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAdministrationPasswordMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerAdministrationPasswordMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -7054,7 +7560,8 @@ impl TypeObject for ServerAdministrationPasswordMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAdministrationEventsEnabledMessage {
 }
 
@@ -7066,11 +7573,13 @@ impl ServerAdministrationEventsEnabledMessageTrait for ServerAdministrationEvent
 
 pub static SERVERADMINISTRATIONEVENTSENABLEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAdministrationEventsEnabledMessage",
+    name_hash: 3026237535,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAdministrationEventsEnabledMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerAdministrationEventsEnabledMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -7097,7 +7606,8 @@ impl TypeObject for ServerAdministrationEventsEnabledMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAdministrationQuitMessage {
 }
 
@@ -7109,11 +7619,13 @@ impl ServerAdministrationQuitMessageTrait for ServerAdministrationQuitMessage {
 
 pub static SERVERADMINISTRATIONQUITMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAdministrationQuitMessage",
+    name_hash: 2344725436,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAdministrationQuitMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerAdministrationQuitMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -7140,7 +7652,8 @@ impl TypeObject for ServerAdministrationQuitMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAdministrationLoginMessage {
 }
 
@@ -7152,11 +7665,13 @@ impl ServerAdministrationLoginMessageTrait for ServerAdministrationLoginMessage 
 
 pub static SERVERADMINISTRATIONLOGINMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAdministrationLoginMessage",
+    name_hash: 3357010438,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAdministrationLoginMessage as Default>::default())),
+            create_boxed: || Box::new(<ServerAdministrationLoginMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -7183,7 +7698,8 @@ impl TypeObject for ServerAdministrationLoginMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAdministrationPacketMessageBase {
 }
 
@@ -7195,11 +7711,13 @@ impl ServerAdministrationPacketMessageBaseTrait for ServerAdministrationPacketMe
 
 pub static SERVERADMINISTRATIONPACKETMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAdministrationPacketMessageBase",
+    name_hash: 1989377368,
     flags: MemberInfoFlags::new(36937),
     module: "GameCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAdministrationPacketMessageBase as Default>::default())),
+            create_boxed: || Box::new(<ServerAdministrationPacketMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -7226,7 +7744,8 @@ impl TypeObject for ServerAdministrationPacketMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GameModule {
     pub _glacier_base: super::core::RuntimeModule,
 }
@@ -7242,12 +7761,15 @@ impl super::core::RuntimeModuleTrait for GameModule {
 
 pub static GAMEMODULE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameModule",
+    name_hash: 857960113,
     flags: MemberInfoFlags::new(101),
     module: "GameCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::RUNTIMEMODULE_TYPE_INFO),
+        super_class_offset: offset_of!(GameModule, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GameModule as Default>::default())),
+            create_boxed: || Box::new(<GameModule as Default>::default()),
         },
         fields: &[
         ],
@@ -7277,6 +7799,7 @@ impl TypeObject for GameModule {
 
 pub static GAMEMODULE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameModule-Array",
+    name_hash: 3762577669,
     flags: MemberInfoFlags::new(145),
     module: "GameCommon",
     data: TypeInfoData::Array("GameModule"),

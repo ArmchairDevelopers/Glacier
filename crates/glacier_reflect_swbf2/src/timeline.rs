@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -187,7 +188,8 @@ pub(crate) fn register_timeline_types(registry: &mut TypeRegistry) {
     registry.register_type(TIMELINEENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4Track {
     pub _glacier_base: IPropertyTrack,
 }
@@ -206,12 +208,15 @@ impl TimelineTrackTrait for Vec4Track {
 
 pub static VEC4TRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4Track",
+    name_hash: 244383310,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IPROPERTYTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(Vec4Track, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4Track as Default>::default())),
+            create_boxed: || Box::new(<Vec4Track as Default>::default()),
         },
         fields: &[
         ],
@@ -241,6 +246,7 @@ impl TypeObject for Vec4Track {
 
 pub static VEC4TRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4Track-Array",
+    name_hash: 2898319354,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("Vec4Track"),
@@ -249,7 +255,8 @@ pub static VEC4TRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3Track {
     pub _glacier_base: IPropertyTrack,
 }
@@ -268,12 +275,15 @@ impl TimelineTrackTrait for Vec3Track {
 
 pub static VEC3TRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3Track",
+    name_hash: 274103209,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IPROPERTYTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(Vec3Track, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3Track as Default>::default())),
+            create_boxed: || Box::new(<Vec3Track as Default>::default()),
         },
         fields: &[
         ],
@@ -303,6 +313,7 @@ impl TypeObject for Vec3Track {
 
 pub static VEC3TRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3Track-Array",
+    name_hash: 3216622109,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("Vec3Track"),
@@ -311,7 +322,8 @@ pub static VEC3TRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SchematicEventTrack {
     pub _glacier_base: TimelineTrack,
 }
@@ -327,12 +339,15 @@ impl TimelineTrackTrait for SchematicEventTrack {
 
 pub static SCHEMATICEVENTTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SchematicEventTrack",
+    name_hash: 1657014089,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(SchematicEventTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SchematicEventTrack as Default>::default())),
+            create_boxed: || Box::new(<SchematicEventTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -362,6 +377,7 @@ impl TypeObject for SchematicEventTrack {
 
 pub static SCHEMATICEVENTTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SchematicEventTrack-Array",
+    name_hash: 3592506749,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("SchematicEventTrack"),
@@ -370,7 +386,8 @@ pub static SCHEMATICEVENTTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RecordTrackBase {
     pub _glacier_base: LinkTrack,
 }
@@ -389,12 +406,15 @@ impl TimelineTrackTrait for RecordTrackBase {
 
 pub static RECORDTRACKBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RecordTrackBase",
+    name_hash: 1059190898,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LINKTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(RecordTrackBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RecordTrackBase as Default>::default())),
+            create_boxed: || Box::new(<RecordTrackBase as Default>::default()),
         },
         fields: &[
         ],
@@ -424,6 +444,7 @@ impl TypeObject for RecordTrackBase {
 
 pub static RECORDTRACKBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RecordTrackBase-Array",
+    name_hash: 3573821254,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("RecordTrackBase"),
@@ -432,7 +453,8 @@ pub static RECORDTRACKBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolTrack {
     pub _glacier_base: IPropertyTrack,
 }
@@ -451,12 +473,15 @@ impl TimelineTrackTrait for BoolTrack {
 
 pub static BOOLTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolTrack",
+    name_hash: 173281092,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IPROPERTYTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(BoolTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolTrack as Default>::default())),
+            create_boxed: || Box::new(<BoolTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -486,6 +511,7 @@ impl TypeObject for BoolTrack {
 
 pub static BOOLTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolTrack-Array",
+    name_hash: 4027896816,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("BoolTrack"),
@@ -494,7 +520,8 @@ pub static BOOLTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BookmarkTrack {
     pub _glacier_base: TimelineTrack,
 }
@@ -510,12 +537,15 @@ impl TimelineTrackTrait for BookmarkTrack {
 
 pub static BOOKMARKTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BookmarkTrack",
+    name_hash: 2835661878,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(BookmarkTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BookmarkTrack as Default>::default())),
+            create_boxed: || Box::new(<BookmarkTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -545,6 +575,7 @@ impl TypeObject for BookmarkTrack {
 
 pub static BOOKMARKTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BookmarkTrack-Array",
+    name_hash: 4107319426,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("BookmarkTrack"),
@@ -553,7 +584,8 @@ pub static BOOKMARKTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformLayer {
     pub _glacier_base: TimelineTrack,
 }
@@ -569,12 +601,15 @@ impl TimelineTrackTrait for TransformLayer {
 
 pub static TRANSFORMLAYER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformLayer",
+    name_hash: 3571390858,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(TransformLayer, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformLayer as Default>::default())),
+            create_boxed: || Box::new(<TransformLayer as Default>::default()),
         },
         fields: &[
         ],
@@ -604,6 +639,7 @@ impl TypeObject for TransformLayer {
 
 pub static TRANSFORMLAYER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformLayer-Array",
+    name_hash: 3992351934,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TransformLayer"),
@@ -612,7 +648,8 @@ pub static TRANSFORMLAYER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SimpleTransformLayer {
     pub _glacier_base: TransformLayer,
 }
@@ -631,12 +668,15 @@ impl TimelineTrackTrait for SimpleTransformLayer {
 
 pub static SIMPLETRANSFORMLAYER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimpleTransformLayer",
+    name_hash: 3348314084,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TRANSFORMLAYER_TYPE_INFO),
+        super_class_offset: offset_of!(SimpleTransformLayer, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SimpleTransformLayer as Default>::default())),
+            create_boxed: || Box::new(<SimpleTransformLayer as Default>::default()),
         },
         fields: &[
         ],
@@ -666,6 +706,7 @@ impl TypeObject for SimpleTransformLayer {
 
 pub static SIMPLETRANSFORMLAYER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimpleTransformLayer-Array",
+    name_hash: 4165450704,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("SimpleTransformLayer"),
@@ -674,7 +715,8 @@ pub static SIMPLETRANSFORMLAYER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MasterTimelineTrack {
     pub _glacier_base: TimelineTrack,
 }
@@ -690,12 +732,15 @@ impl TimelineTrackTrait for MasterTimelineTrack {
 
 pub static MASTERTIMELINETRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MasterTimelineTrack",
+    name_hash: 75924973,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(MasterTimelineTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MasterTimelineTrack as Default>::default())),
+            create_boxed: || Box::new(<MasterTimelineTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -725,6 +770,7 @@ impl TypeObject for MasterTimelineTrack {
 
 pub static MASTERTIMELINETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MasterTimelineTrack-Array",
+    name_hash: 1198025433,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("MasterTimelineTrack"),
@@ -733,7 +779,8 @@ pub static MASTERTIMELINETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinkTrack {
     pub _glacier_base: TimelineTrack,
 }
@@ -749,12 +796,15 @@ impl TimelineTrackTrait for LinkTrack {
 
 pub static LINKTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkTrack",
+    name_hash: 572286186,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(LinkTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinkTrack as Default>::default())),
+            create_boxed: || Box::new(<LinkTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -784,6 +834,7 @@ impl TypeObject for LinkTrack {
 
 pub static LINKTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkTrack-Array",
+    name_hash: 220893150,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("LinkTrack"),
@@ -792,7 +843,8 @@ pub static LINKTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinkedMasterTimelineTrack {
     pub _glacier_base: LinkTrack,
 }
@@ -811,12 +863,15 @@ impl TimelineTrackTrait for LinkedMasterTimelineTrack {
 
 pub static LINKEDMASTERTIMELINETRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkedMasterTimelineTrack",
+    name_hash: 831230988,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LINKTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(LinkedMasterTimelineTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinkedMasterTimelineTrack as Default>::default())),
+            create_boxed: || Box::new(<LinkedMasterTimelineTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -846,6 +901,7 @@ impl TypeObject for LinkedMasterTimelineTrack {
 
 pub static LINKEDMASTERTIMELINETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkedMasterTimelineTrack-Array",
+    name_hash: 1632126008,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("LinkedMasterTimelineTrack"),
@@ -854,7 +910,8 @@ pub static LINKEDMASTERTIMELINETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LayeredTransformTrack {
     pub _glacier_base: IPropertyTrack,
 }
@@ -873,12 +930,15 @@ impl TimelineTrackTrait for LayeredTransformTrack {
 
 pub static LAYEREDTRANSFORMTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayeredTransformTrack",
+    name_hash: 76253860,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IPROPERTYTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(LayeredTransformTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LayeredTransformTrack as Default>::default())),
+            create_boxed: || Box::new(<LayeredTransformTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -908,6 +968,7 @@ impl TypeObject for LayeredTransformTrack {
 
 pub static LAYEREDTRANSFORMTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayeredTransformTrack-Array",
+    name_hash: 4213644816,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("LayeredTransformTrack"),
@@ -916,7 +977,8 @@ pub static LAYEREDTRANSFORMTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IPropertyTrack {
     pub _glacier_base: TimelineTrack,
 }
@@ -932,12 +994,15 @@ impl TimelineTrackTrait for IPropertyTrack {
 
 pub static IPROPERTYTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IPropertyTrack",
+    name_hash: 2638559876,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(IPropertyTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IPropertyTrack as Default>::default())),
+            create_boxed: || Box::new(<IPropertyTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -967,6 +1032,7 @@ impl TypeObject for IPropertyTrack {
 
 pub static IPROPERTYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IPropertyTrack-Array",
+    name_hash: 1908764336,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("IPropertyTrack"),
@@ -975,7 +1041,8 @@ pub static IPROPERTYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntTrack {
     pub _glacier_base: IPropertyTrack,
 }
@@ -994,12 +1061,15 @@ impl TimelineTrackTrait for IntTrack {
 
 pub static INTTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntTrack",
+    name_hash: 4123865,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IPROPERTYTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(IntTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntTrack as Default>::default())),
+            create_boxed: || Box::new(<IntTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -1029,6 +1099,7 @@ impl TypeObject for IntTrack {
 
 pub static INTTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntTrack-Array",
+    name_hash: 1277500141,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("IntTrack"),
@@ -1037,7 +1108,8 @@ pub static INTTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GroupTrack {
     pub _glacier_base: TimelineTrack,
 }
@@ -1053,12 +1125,15 @@ impl TimelineTrackTrait for GroupTrack {
 
 pub static GROUPTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupTrack",
+    name_hash: 1801373301,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(GroupTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GroupTrack as Default>::default())),
+            create_boxed: || Box::new(<GroupTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -1088,6 +1163,7 @@ impl TypeObject for GroupTrack {
 
 pub static GROUPTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupTrack-Array",
+    name_hash: 161642305,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("GroupTrack"),
@@ -1096,7 +1172,8 @@ pub static GROUPTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatTrack {
     pub _glacier_base: IPropertyTrack,
 }
@@ -1115,12 +1192,15 @@ impl TimelineTrackTrait for FloatTrack {
 
 pub static FLOATTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatTrack",
+    name_hash: 3117556122,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IPROPERTYTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(FloatTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatTrack as Default>::default())),
+            create_boxed: || Box::new(<FloatTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -1150,6 +1230,7 @@ impl TypeObject for FloatTrack {
 
 pub static FLOATTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatTrack-Array",
+    name_hash: 513950894,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("FloatTrack"),
@@ -1158,7 +1239,8 @@ pub static FLOATTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ExternalTimeTrack {
     pub _glacier_base: TimelineTrack,
 }
@@ -1174,12 +1256,15 @@ impl TimelineTrackTrait for ExternalTimeTrack {
 
 pub static EXTERNALTIMETRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalTimeTrack",
+    name_hash: 2259642786,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(ExternalTimeTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ExternalTimeTrack as Default>::default())),
+            create_boxed: || Box::new(<ExternalTimeTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -1209,6 +1294,7 @@ impl TypeObject for ExternalTimeTrack {
 
 pub static EXTERNALTIMETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalTimeTrack-Array",
+    name_hash: 3211724822,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("ExternalTimeTrack"),
@@ -1217,7 +1303,8 @@ pub static EXTERNALTIMETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityTrack {
     pub _glacier_base: EntityTrackBase,
 }
@@ -1236,12 +1323,15 @@ impl TimelineTrackTrait for EntityTrack {
 
 pub static ENTITYTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTrack",
+    name_hash: 173798961,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYTRACKBASE_TYPE_INFO),
+        super_class_offset: offset_of!(EntityTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityTrack as Default>::default())),
+            create_boxed: || Box::new(<EntityTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -1271,6 +1361,7 @@ impl TypeObject for EntityTrack {
 
 pub static ENTITYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTrack-Array",
+    name_hash: 3030681733,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("EntityTrack"),
@@ -1279,7 +1370,8 @@ pub static ENTITYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinkedProxyEntityTrack {
     pub _glacier_base: TemplatedProxyEntityTrack,
 }
@@ -1304,12 +1396,15 @@ impl TimelineTrackTrait for LinkedProxyEntityTrack {
 
 pub static LINKEDPROXYENTITYTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkedProxyEntityTrack",
+    name_hash: 2440414044,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TEMPLATEDPROXYENTITYTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(LinkedProxyEntityTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinkedProxyEntityTrack as Default>::default())),
+            create_boxed: || Box::new(<LinkedProxyEntityTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -1339,6 +1434,7 @@ impl TypeObject for LinkedProxyEntityTrack {
 
 pub static LINKEDPROXYENTITYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkedProxyEntityTrack-Array",
+    name_hash: 2428480488,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("LinkedProxyEntityTrack"),
@@ -1347,7 +1443,8 @@ pub static LINKEDPROXYENTITYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TemplatedProxyEntityTrack {
     pub _glacier_base: ProxyEntityTrack,
 }
@@ -1369,12 +1466,15 @@ impl TimelineTrackTrait for TemplatedProxyEntityTrack {
 
 pub static TEMPLATEDPROXYENTITYTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplatedProxyEntityTrack",
+    name_hash: 4053723145,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROXYENTITYTRACK_TYPE_INFO),
+        super_class_offset: offset_of!(TemplatedProxyEntityTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TemplatedProxyEntityTrack as Default>::default())),
+            create_boxed: || Box::new(<TemplatedProxyEntityTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -1404,6 +1504,7 @@ impl TypeObject for TemplatedProxyEntityTrack {
 
 pub static TEMPLATEDPROXYENTITYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplatedProxyEntityTrack-Array",
+    name_hash: 1511374269,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TemplatedProxyEntityTrack"),
@@ -1412,7 +1513,8 @@ pub static TEMPLATEDPROXYENTITYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProxyEntityTrack {
     pub _glacier_base: EntityTrackBase,
 }
@@ -1431,12 +1533,15 @@ impl TimelineTrackTrait for ProxyEntityTrack {
 
 pub static PROXYENTITYTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProxyEntityTrack",
+    name_hash: 372852509,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYTRACKBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ProxyEntityTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProxyEntityTrack as Default>::default())),
+            create_boxed: || Box::new(<ProxyEntityTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -1466,6 +1571,7 @@ impl TypeObject for ProxyEntityTrack {
 
 pub static PROXYENTITYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProxyEntityTrack-Array",
+    name_hash: 3616395945,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("ProxyEntityTrack"),
@@ -1474,7 +1580,8 @@ pub static PROXYENTITYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DummyEntityTrack {
     pub _glacier_base: EntityTrackBase,
 }
@@ -1493,12 +1600,15 @@ impl TimelineTrackTrait for DummyEntityTrack {
 
 pub static DUMMYENTITYTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DummyEntityTrack",
+    name_hash: 4231197465,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYTRACKBASE_TYPE_INFO),
+        super_class_offset: offset_of!(DummyEntityTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DummyEntityTrack as Default>::default())),
+            create_boxed: || Box::new(<DummyEntityTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -1528,6 +1638,7 @@ impl TypeObject for DummyEntityTrack {
 
 pub static DUMMYENTITYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DummyEntityTrack-Array",
+    name_hash: 2480459949,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("DummyEntityTrack"),
@@ -1536,7 +1647,8 @@ pub static DUMMYENTITYTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityTrackBase {
     pub _glacier_base: TimelineTrack,
 }
@@ -1552,12 +1664,15 @@ impl TimelineTrackTrait for EntityTrackBase {
 
 pub static ENTITYTRACKBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTrackBase",
+    name_hash: 649724964,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(EntityTrackBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityTrackBase as Default>::default())),
+            create_boxed: || Box::new(<EntityTrackBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1587,6 +1702,7 @@ impl TypeObject for EntityTrackBase {
 
 pub static ENTITYTRACKBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTrackBase-Array",
+    name_hash: 1269479312,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("EntityTrackBase"),
@@ -1595,7 +1711,8 @@ pub static ENTITYTRACKBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SchematicPinTrackData {
     pub _glacier_base: TimelineTrackData,
     pub source_pin_id: i32,
@@ -1646,10 +1763,10 @@ impl TimelineTrackDataTrait for SchematicPinTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -1692,28 +1809,34 @@ impl super::core::DataContainerTrait for SchematicPinTrackData {
 
 pub static SCHEMATICPINTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SchematicPinTrackData",
+    name_hash: 1554323810,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SchematicPinTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SchematicPinTrackData as Default>::default())),
+            create_boxed: || Box::new(<SchematicPinTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SourcePinId",
+                name_hash: 2978540514,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SchematicPinTrackData, source_pin_id),
             },
             FieldInfoData {
                 name: "TargetPinId",
+                name_hash: 2242023726,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SchematicPinTrackData, target_pin_id),
             },
             FieldInfoData {
                 name: "TargetPinNameHash",
+                name_hash: 1690242806,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SchematicPinTrackData, target_pin_name_hash),
@@ -1745,6 +1868,7 @@ impl TypeObject for SchematicPinTrackData {
 
 pub static SCHEMATICPINTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SchematicPinTrackData-Array",
+    name_hash: 990464086,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("SchematicPinTrackData"),
@@ -1753,7 +1877,8 @@ pub static SCHEMATICPINTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RecordTrackChildrenData {
     pub _glacier_base: RecordTrackBaseData,
 }
@@ -1810,10 +1935,10 @@ impl TimelineTrackDataTrait for RecordTrackChildrenData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -1856,12 +1981,15 @@ impl super::core::DataContainerTrait for RecordTrackChildrenData {
 
 pub static RECORDTRACKCHILDRENDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RecordTrackChildrenData",
+    name_hash: 125290436,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RECORDTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RecordTrackChildrenData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RecordTrackChildrenData as Default>::default())),
+            create_boxed: || Box::new(<RecordTrackChildrenData as Default>::default()),
         },
         fields: &[
         ],
@@ -1891,6 +2019,7 @@ impl TypeObject for RecordTrackChildrenData {
 
 pub static RECORDTRACKCHILDRENDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RecordTrackChildrenData-Array",
+    name_hash: 1413540976,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("RecordTrackChildrenData"),
@@ -1899,7 +2028,8 @@ pub static RECORDTRACKCHILDRENDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RecordTrackBaseData {
     pub _glacier_base: LinkTrackData,
     pub frames_to_skip_per_key: i32,
@@ -1956,10 +2086,10 @@ impl TimelineTrackDataTrait for RecordTrackBaseData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -2002,16 +2132,20 @@ impl super::core::DataContainerTrait for RecordTrackBaseData {
 
 pub static RECORDTRACKBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RecordTrackBaseData",
+    name_hash: 2006104386,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LINKTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RecordTrackBaseData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RecordTrackBaseData as Default>::default())),
+            create_boxed: || Box::new(<RecordTrackBaseData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FramesToSkipPerKey",
+                name_hash: 303618241,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RecordTrackBaseData, frames_to_skip_per_key),
@@ -2043,6 +2177,7 @@ impl TypeObject for RecordTrackBaseData {
 
 pub static RECORDTRACKBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RecordTrackBaseData-Array",
+    name_hash: 2032388342,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("RecordTrackBaseData"),
@@ -2051,7 +2186,8 @@ pub static RECORDTRACKBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyTrackBaseData {
     pub _glacier_base: SchematicPinTrackData,
 }
@@ -2096,10 +2232,10 @@ impl TimelineTrackDataTrait for PropertyTrackBaseData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -2142,12 +2278,15 @@ impl super::core::DataContainerTrait for PropertyTrackBaseData {
 
 pub static PROPERTYTRACKBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyTrackBaseData",
+    name_hash: 1913247656,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SCHEMATICPINTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PropertyTrackBaseData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyTrackBaseData as Default>::default())),
+            create_boxed: || Box::new(<PropertyTrackBaseData as Default>::default()),
         },
         fields: &[
         ],
@@ -2177,6 +2316,7 @@ impl TypeObject for PropertyTrackBaseData {
 
 pub static PROPERTYTRACKBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyTrackBaseData-Array",
+    name_hash: 1957353756,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("PropertyTrackBaseData"),
@@ -2185,7 +2325,8 @@ pub static PROPERTYTRACKBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyReaderTrackBaseData {
     pub _glacier_base: SchematicPinTrackData,
     pub realm: super::core::Realm,
@@ -2239,10 +2380,10 @@ impl TimelineTrackDataTrait for PropertyReaderTrackBaseData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -2285,16 +2426,20 @@ impl super::core::DataContainerTrait for PropertyReaderTrackBaseData {
 
 pub static PROPERTYREADERTRACKBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyReaderTrackBaseData",
+    name_hash: 3741417581,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SCHEMATICPINTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PropertyReaderTrackBaseData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyReaderTrackBaseData as Default>::default())),
+            create_boxed: || Box::new(<PropertyReaderTrackBaseData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PropertyReaderTrackBaseData, realm),
@@ -2326,6 +2471,7 @@ impl TypeObject for PropertyReaderTrackBaseData {
 
 pub static PROPERTYREADERTRACKBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyReaderTrackBaseData-Array",
+    name_hash: 1909802329,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("PropertyReaderTrackBaseData"),
@@ -2334,31 +2480,32 @@ pub static PROPERTYREADERTRACKBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MasterTimelineTrackData {
     pub _glacier_base: TimelineTrackData,
-    pub keyframes: Vec<Option<Arc<Mutex<dyn SlaveTimelineKeyframeDataTrait>>>>,
-    pub children: Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>,
+    pub keyframes: Vec<Option<LockedTypeObject /* SlaveTimelineKeyframeData */>>,
+    pub children: Vec<Option<LockedTypeObject /* TimelineTrackData */>>,
 }
 
 pub trait MasterTimelineTrackDataTrait: TimelineTrackDataTrait {
-    fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn SlaveTimelineKeyframeDataTrait>>>>;
-    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SlaveTimelineKeyframeDataTrait>>>>;
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
+    fn keyframes(&self) -> &Vec<Option<LockedTypeObject /* SlaveTimelineKeyframeData */>>;
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SlaveTimelineKeyframeData */>>;
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>>;
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>>;
 }
 
 impl MasterTimelineTrackDataTrait for MasterTimelineTrackData {
-    fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn SlaveTimelineKeyframeDataTrait>>>> {
+    fn keyframes(&self) -> &Vec<Option<LockedTypeObject /* SlaveTimelineKeyframeData */>> {
         &self.keyframes
     }
-    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SlaveTimelineKeyframeDataTrait>>>> {
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SlaveTimelineKeyframeData */>> {
         &mut self.keyframes
     }
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         &self.children
     }
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         &mut self.children
     }
 }
@@ -2376,10 +2523,10 @@ impl TimelineTrackDataTrait for MasterTimelineTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -2422,22 +2569,27 @@ impl super::core::DataContainerTrait for MasterTimelineTrackData {
 
 pub static MASTERTIMELINETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MasterTimelineTrackData",
+    name_hash: 1327566109,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MasterTimelineTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MasterTimelineTrackData as Default>::default())),
+            create_boxed: || Box::new(<MasterTimelineTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Keyframes",
+                name_hash: 2213598044,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SlaveTimelineKeyframeData-Array",
                 rust_offset: offset_of!(MasterTimelineTrackData, keyframes),
             },
             FieldInfoData {
                 name: "Children",
+                name_hash: 1297796054,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TimelineTrackData-Array",
                 rust_offset: offset_of!(MasterTimelineTrackData, children),
@@ -2469,6 +2621,7 @@ impl TypeObject for MasterTimelineTrackData {
 
 pub static MASTERTIMELINETRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MasterTimelineTrackData-Array",
+    name_hash: 1823611049,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("MasterTimelineTrackData"),
@@ -2477,13 +2630,14 @@ pub static MASTERTIMELINETRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SlaveTimelineKeyframeData {
     pub _glacier_base: TimelineKeyframeData,
     pub time: f32,
     pub length: f32,
     pub guide_time: f32,
-    pub timeline_data: Option<Arc<Mutex<dyn TimelineEntityDataTrait>>>,
+    pub timeline_data: Option<LockedTypeObject /* TimelineEntityData */>,
     pub slave_guid_chain: Vec<glacier_util::guid::Guid>,
 }
 
@@ -2494,8 +2648,8 @@ pub trait SlaveTimelineKeyframeDataTrait: TimelineKeyframeDataTrait {
     fn length_mut(&mut self) -> &mut f32;
     fn guide_time(&self) -> &f32;
     fn guide_time_mut(&mut self) -> &mut f32;
-    fn timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineEntityDataTrait>>>;
-    fn timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineEntityDataTrait>>>;
+    fn timeline_data(&self) -> &Option<LockedTypeObject /* TimelineEntityData */>;
+    fn timeline_data_mut(&mut self) -> &mut Option<LockedTypeObject /* TimelineEntityData */>;
     fn slave_guid_chain(&self) -> &Vec<glacier_util::guid::Guid>;
     fn slave_guid_chain_mut(&mut self) -> &mut Vec<glacier_util::guid::Guid>;
 }
@@ -2519,10 +2673,10 @@ impl SlaveTimelineKeyframeDataTrait for SlaveTimelineKeyframeData {
     fn guide_time_mut(&mut self) -> &mut f32 {
         &mut self.guide_time
     }
-    fn timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineEntityDataTrait>>> {
+    fn timeline_data(&self) -> &Option<LockedTypeObject /* TimelineEntityData */> {
         &self.timeline_data
     }
-    fn timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineEntityDataTrait>>> {
+    fn timeline_data_mut(&mut self) -> &mut Option<LockedTypeObject /* TimelineEntityData */> {
         &mut self.timeline_data
     }
     fn slave_guid_chain(&self) -> &Vec<glacier_util::guid::Guid> {
@@ -2541,40 +2695,48 @@ impl super::core::DataContainerTrait for SlaveTimelineKeyframeData {
 
 pub static SLAVETIMELINEKEYFRAMEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SlaveTimelineKeyframeData",
+    name_hash: 3912471433,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINEKEYFRAMEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SlaveTimelineKeyframeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SlaveTimelineKeyframeData as Default>::default())),
+            create_boxed: || Box::new(<SlaveTimelineKeyframeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SlaveTimelineKeyframeData, time),
             },
             FieldInfoData {
                 name: "Length",
+                name_hash: 2906827577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SlaveTimelineKeyframeData, length),
             },
             FieldInfoData {
                 name: "GuideTime",
+                name_hash: 819156874,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SlaveTimelineKeyframeData, guide_time),
             },
             FieldInfoData {
                 name: "TimelineData",
+                name_hash: 2027655342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimelineEntityData",
                 rust_offset: offset_of!(SlaveTimelineKeyframeData, timeline_data),
             },
             FieldInfoData {
                 name: "SlaveGuidChain",
+                name_hash: 239678426,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Guid-Array",
                 rust_offset: offset_of!(SlaveTimelineKeyframeData, slave_guid_chain),
@@ -2606,6 +2768,7 @@ impl TypeObject for SlaveTimelineKeyframeData {
 
 pub static SLAVETIMELINEKEYFRAMEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SlaveTimelineKeyframeData-Array",
+    name_hash: 1415383357,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("SlaveTimelineKeyframeData"),
@@ -2614,7 +2777,8 @@ pub static SLAVETIMELINEKEYFRAMEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinkTrackData {
     pub _glacier_base: SchematicPinTrackData,
 }
@@ -2659,10 +2823,10 @@ impl TimelineTrackDataTrait for LinkTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -2705,12 +2869,15 @@ impl super::core::DataContainerTrait for LinkTrackData {
 
 pub static LINKTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkTrackData",
+    name_hash: 4066289114,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SCHEMATICPINTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LinkTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinkTrackData as Default>::default())),
+            create_boxed: || Box::new(<LinkTrackData as Default>::default()),
         },
         fields: &[
         ],
@@ -2740,6 +2907,7 @@ impl TypeObject for LinkTrackData {
 
 pub static LINKTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkTrackData-Array",
+    name_hash: 3747690862,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("LinkTrackData"),
@@ -2748,28 +2916,29 @@ pub static LINKTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinkedMasterTimelineTrackData {
     pub _glacier_base: LinkTrackData,
-    pub linked_timeline_data: Option<Arc<Mutex<dyn TimelineEntityDataTrait>>>,
+    pub linked_timeline_data: Option<LockedTypeObject /* TimelineEntityData */>,
     pub linked_timeline_time_offset: f32,
-    pub keyframes: Vec<Option<Arc<Mutex<dyn LinkedMasterTimelineKeyframeTrait>>>>,
+    pub keyframes: Vec<Option<LockedTypeObject /* LinkedMasterTimelineKeyframe */>>,
 }
 
 pub trait LinkedMasterTimelineTrackDataTrait: LinkTrackDataTrait {
-    fn linked_timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineEntityDataTrait>>>;
-    fn linked_timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineEntityDataTrait>>>;
+    fn linked_timeline_data(&self) -> &Option<LockedTypeObject /* TimelineEntityData */>;
+    fn linked_timeline_data_mut(&mut self) -> &mut Option<LockedTypeObject /* TimelineEntityData */>;
     fn linked_timeline_time_offset(&self) -> &f32;
     fn linked_timeline_time_offset_mut(&mut self) -> &mut f32;
-    fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn LinkedMasterTimelineKeyframeTrait>>>>;
-    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LinkedMasterTimelineKeyframeTrait>>>>;
+    fn keyframes(&self) -> &Vec<Option<LockedTypeObject /* LinkedMasterTimelineKeyframe */>>;
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* LinkedMasterTimelineKeyframe */>>;
 }
 
 impl LinkedMasterTimelineTrackDataTrait for LinkedMasterTimelineTrackData {
-    fn linked_timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineEntityDataTrait>>> {
+    fn linked_timeline_data(&self) -> &Option<LockedTypeObject /* TimelineEntityData */> {
         &self.linked_timeline_data
     }
-    fn linked_timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineEntityDataTrait>>> {
+    fn linked_timeline_data_mut(&mut self) -> &mut Option<LockedTypeObject /* TimelineEntityData */> {
         &mut self.linked_timeline_data
     }
     fn linked_timeline_time_offset(&self) -> &f32 {
@@ -2778,10 +2947,10 @@ impl LinkedMasterTimelineTrackDataTrait for LinkedMasterTimelineTrackData {
     fn linked_timeline_time_offset_mut(&mut self) -> &mut f32 {
         &mut self.linked_timeline_time_offset
     }
-    fn keyframes(&self) -> &Vec<Option<Arc<Mutex<dyn LinkedMasterTimelineKeyframeTrait>>>> {
+    fn keyframes(&self) -> &Vec<Option<LockedTypeObject /* LinkedMasterTimelineKeyframe */>> {
         &self.keyframes
     }
-    fn keyframes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LinkedMasterTimelineKeyframeTrait>>>> {
+    fn keyframes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* LinkedMasterTimelineKeyframe */>> {
         &mut self.keyframes
     }
 }
@@ -2823,10 +2992,10 @@ impl TimelineTrackDataTrait for LinkedMasterTimelineTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -2869,28 +3038,34 @@ impl super::core::DataContainerTrait for LinkedMasterTimelineTrackData {
 
 pub static LINKEDMASTERTIMELINETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkedMasterTimelineTrackData",
+    name_hash: 1982798652,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LINKTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LinkedMasterTimelineTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinkedMasterTimelineTrackData as Default>::default())),
+            create_boxed: || Box::new(<LinkedMasterTimelineTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LinkedTimelineData",
+                name_hash: 751138095,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimelineEntityData",
                 rust_offset: offset_of!(LinkedMasterTimelineTrackData, linked_timeline_data),
             },
             FieldInfoData {
                 name: "LinkedTimelineTimeOffset",
+                name_hash: 4008389607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LinkedMasterTimelineTrackData, linked_timeline_time_offset),
             },
             FieldInfoData {
                 name: "Keyframes",
+                name_hash: 2213598044,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinkedMasterTimelineKeyframe-Array",
                 rust_offset: offset_of!(LinkedMasterTimelineTrackData, keyframes),
@@ -2922,6 +3097,7 @@ impl TypeObject for LinkedMasterTimelineTrackData {
 
 pub static LINKEDMASTERTIMELINETRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkedMasterTimelineTrackData-Array",
+    name_hash: 744960648,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("LinkedMasterTimelineTrackData"),
@@ -2930,7 +3106,8 @@ pub static LINKEDMASTERTIMELINETRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinkedMasterTimelineKeyframe {
     pub _glacier_base: super::core::DataContainer,
     pub time: f32,
@@ -2964,22 +3141,27 @@ impl super::core::DataContainerTrait for LinkedMasterTimelineKeyframe {
 
 pub static LINKEDMASTERTIMELINEKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkedMasterTimelineKeyframe",
+    name_hash: 1327903817,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LinkedMasterTimelineKeyframe, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinkedMasterTimelineKeyframe as Default>::default())),
+            create_boxed: || Box::new(<LinkedMasterTimelineKeyframe as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LinkedMasterTimelineKeyframe, time),
             },
             FieldInfoData {
                 name: "Length",
+                name_hash: 2906827577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LinkedMasterTimelineKeyframe, length),
@@ -3011,6 +3193,7 @@ impl TypeObject for LinkedMasterTimelineKeyframe {
 
 pub static LINKEDMASTERTIMELINEKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkedMasterTimelineKeyframe-Array",
+    name_hash: 11614845,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("LinkedMasterTimelineKeyframe"),
@@ -3019,17 +3202,18 @@ pub static LINKEDMASTERTIMELINEKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LayeredTransformTrackData {
     pub _glacier_base: PropertyTrackBaseData,
-    pub layer_tracks: Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>>,
+    pub layer_tracks: Vec<Option<LockedTypeObject /* TransformLayerData */>>,
     pub use_timeline_space: bool,
     pub transform_space_enabled: bool,
 }
 
 pub trait LayeredTransformTrackDataTrait: PropertyTrackBaseDataTrait {
-    fn layer_tracks(&self) -> &Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>>;
-    fn layer_tracks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>>;
+    fn layer_tracks(&self) -> &Vec<Option<LockedTypeObject /* TransformLayerData */>>;
+    fn layer_tracks_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TransformLayerData */>>;
     fn use_timeline_space(&self) -> &bool;
     fn use_timeline_space_mut(&mut self) -> &mut bool;
     fn transform_space_enabled(&self) -> &bool;
@@ -3037,10 +3221,10 @@ pub trait LayeredTransformTrackDataTrait: PropertyTrackBaseDataTrait {
 }
 
 impl LayeredTransformTrackDataTrait for LayeredTransformTrackData {
-    fn layer_tracks(&self) -> &Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>> {
+    fn layer_tracks(&self) -> &Vec<Option<LockedTypeObject /* TransformLayerData */>> {
         &self.layer_tracks
     }
-    fn layer_tracks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>> {
+    fn layer_tracks_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TransformLayerData */>> {
         &mut self.layer_tracks
     }
     fn use_timeline_space(&self) -> &bool {
@@ -3094,10 +3278,10 @@ impl TimelineTrackDataTrait for LayeredTransformTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -3140,28 +3324,34 @@ impl super::core::DataContainerTrait for LayeredTransformTrackData {
 
 pub static LAYEREDTRANSFORMTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayeredTransformTrackData",
+    name_hash: 519542164,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LayeredTransformTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LayeredTransformTrackData as Default>::default())),
+            create_boxed: || Box::new(<LayeredTransformTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LayerTracks",
+                name_hash: 948975898,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TransformLayerData-Array",
                 rust_offset: offset_of!(LayeredTransformTrackData, layer_tracks),
             },
             FieldInfoData {
                 name: "UseTimelineSpace",
+                name_hash: 2214621785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LayeredTransformTrackData, use_timeline_space),
             },
             FieldInfoData {
                 name: "TransformSpaceEnabled",
+                name_hash: 3827244200,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LayeredTransformTrackData, transform_space_enabled),
@@ -3193,6 +3383,7 @@ impl TypeObject for LayeredTransformTrackData {
 
 pub static LAYEREDTRANSFORMTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayeredTransformTrackData-Array",
+    name_hash: 3022180768,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("LayeredTransformTrackData"),
@@ -3201,22 +3392,23 @@ pub static LAYEREDTRANSFORMTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntTrackData {
     pub _glacier_base: PropertyTrackBaseData,
-    pub keyframes: Vec<IntKeyframe>,
+    pub keyframes: Vec<BoxedTypeObject /* IntKeyframe */>,
 }
 
 pub trait IntTrackDataTrait: PropertyTrackBaseDataTrait {
-    fn keyframes(&self) -> &Vec<IntKeyframe>;
-    fn keyframes_mut(&mut self) -> &mut Vec<IntKeyframe>;
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* IntKeyframe */>;
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* IntKeyframe */>;
 }
 
 impl IntTrackDataTrait for IntTrackData {
-    fn keyframes(&self) -> &Vec<IntKeyframe> {
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* IntKeyframe */> {
         &self.keyframes
     }
-    fn keyframes_mut(&mut self) -> &mut Vec<IntKeyframe> {
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* IntKeyframe */> {
         &mut self.keyframes
     }
 }
@@ -3258,10 +3450,10 @@ impl TimelineTrackDataTrait for IntTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -3304,16 +3496,20 @@ impl super::core::DataContainerTrait for IntTrackData {
 
 pub static INTTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntTrackData",
+    name_hash: 2903130025,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(IntTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntTrackData as Default>::default())),
+            create_boxed: || Box::new(<IntTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Keyframes",
+                name_hash: 2213598044,
                 flags: MemberInfoFlags::new(144),
                 field_type: "IntKeyframe-Array",
                 rust_offset: offset_of!(IntTrackData, keyframes),
@@ -3345,6 +3541,7 @@ impl TypeObject for IntTrackData {
 
 pub static INTTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntTrackData-Array",
+    name_hash: 1831896605,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("IntTrackData"),
@@ -3353,7 +3550,8 @@ pub static INTTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntKeyframe {
     pub time: f32,
     pub value: i32,
@@ -3383,21 +3581,25 @@ impl IntKeyframeTrait for IntKeyframe {
 
 pub static INTKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntKeyframe",
+    name_hash: 428659900,
     flags: MemberInfoFlags::new(36937),
     module: "Timeline",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntKeyframe as Default>::default())),
+            create_boxed: || Box::new(<IntKeyframe as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(IntKeyframe, time),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IntKeyframe, value),
@@ -3429,6 +3631,7 @@ impl TypeObject for IntKeyframe {
 
 pub static INTKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntKeyframe-Array",
+    name_hash: 1955204104,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("IntKeyframe"),
@@ -3437,22 +3640,23 @@ pub static INTKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GroupTrackRootData {
     pub _glacier_base: super::core::Asset,
-    pub children: Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>,
+    pub children: Vec<Option<LockedTypeObject /* TimelineTrackData */>>,
 }
 
 pub trait GroupTrackRootDataTrait: super::core::AssetTrait {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>>;
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>>;
 }
 
 impl GroupTrackRootDataTrait for GroupTrackRootData {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         &self.children
     }
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         &mut self.children
     }
 }
@@ -3471,16 +3675,20 @@ impl super::core::DataContainerTrait for GroupTrackRootData {
 
 pub static GROUPTRACKROOTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupTrackRootData",
+    name_hash: 826762115,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(GroupTrackRootData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GroupTrackRootData as Default>::default())),
+            create_boxed: || Box::new(<GroupTrackRootData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Children",
+                name_hash: 1297796054,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TimelineTrackData-Array",
                 rust_offset: offset_of!(GroupTrackRootData, children),
@@ -3512,6 +3720,7 @@ impl TypeObject for GroupTrackRootData {
 
 pub static GROUPTRACKROOTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupTrackRootData-Array",
+    name_hash: 3351639607,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("GroupTrackRootData"),
@@ -3520,22 +3729,23 @@ pub static GROUPTRACKROOTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GroupTrackData {
     pub _glacier_base: TimelineTrackData,
-    pub root_data: Option<Arc<Mutex<dyn GroupTrackRootDataTrait>>>,
+    pub root_data: Option<LockedTypeObject /* GroupTrackRootData */>,
 }
 
 pub trait GroupTrackDataTrait: TimelineTrackDataTrait {
-    fn root_data(&self) -> &Option<Arc<Mutex<dyn GroupTrackRootDataTrait>>>;
-    fn root_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GroupTrackRootDataTrait>>>;
+    fn root_data(&self) -> &Option<LockedTypeObject /* GroupTrackRootData */>;
+    fn root_data_mut(&mut self) -> &mut Option<LockedTypeObject /* GroupTrackRootData */>;
 }
 
 impl GroupTrackDataTrait for GroupTrackData {
-    fn root_data(&self) -> &Option<Arc<Mutex<dyn GroupTrackRootDataTrait>>> {
+    fn root_data(&self) -> &Option<LockedTypeObject /* GroupTrackRootData */> {
         &self.root_data
     }
-    fn root_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn GroupTrackRootDataTrait>>> {
+    fn root_data_mut(&mut self) -> &mut Option<LockedTypeObject /* GroupTrackRootData */> {
         &mut self.root_data
     }
 }
@@ -3553,10 +3763,10 @@ impl TimelineTrackDataTrait for GroupTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -3599,16 +3809,20 @@ impl super::core::DataContainerTrait for GroupTrackData {
 
 pub static GROUPTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupTrackData",
+    name_hash: 4055256453,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GroupTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GroupTrackData as Default>::default())),
+            create_boxed: || Box::new(<GroupTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RootData",
+                name_hash: 533324467,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GroupTrackRootData",
                 rust_offset: offset_of!(GroupTrackData, root_data),
@@ -3640,6 +3854,7 @@ impl TypeObject for GroupTrackData {
 
 pub static GROUPTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupTrackData-Array",
+    name_hash: 3846411569,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("GroupTrackData"),
@@ -3648,22 +3863,23 @@ pub static GROUPTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatTrackData {
     pub _glacier_base: PropertyTrackBaseData,
-    pub curve_data: Option<Arc<Mutex<dyn CurveDataTrait>>>,
+    pub curve_data: Option<LockedTypeObject /* CurveData */>,
 }
 
 pub trait FloatTrackDataTrait: PropertyTrackBaseDataTrait {
-    fn curve_data(&self) -> &Option<Arc<Mutex<dyn CurveDataTrait>>>;
-    fn curve_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CurveDataTrait>>>;
+    fn curve_data(&self) -> &Option<LockedTypeObject /* CurveData */>;
+    fn curve_data_mut(&mut self) -> &mut Option<LockedTypeObject /* CurveData */>;
 }
 
 impl FloatTrackDataTrait for FloatTrackData {
-    fn curve_data(&self) -> &Option<Arc<Mutex<dyn CurveDataTrait>>> {
+    fn curve_data(&self) -> &Option<LockedTypeObject /* CurveData */> {
         &self.curve_data
     }
-    fn curve_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CurveDataTrait>>> {
+    fn curve_data_mut(&mut self) -> &mut Option<LockedTypeObject /* CurveData */> {
         &mut self.curve_data
     }
 }
@@ -3705,10 +3921,10 @@ impl TimelineTrackDataTrait for FloatTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -3751,16 +3967,20 @@ impl super::core::DataContainerTrait for FloatTrackData {
 
 pub static FLOATTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatTrackData",
+    name_hash: 2998664618,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FloatTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatTrackData as Default>::default())),
+            create_boxed: || Box::new(<FloatTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CurveData",
+                name_hash: 2400464802,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CurveData",
                 rust_offset: offset_of!(FloatTrackData, curve_data),
@@ -3792,6 +4012,7 @@ impl TypeObject for FloatTrackData {
 
 pub static FLOATTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatTrackData-Array",
+    name_hash: 2988046366,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("FloatTrackData"),
@@ -3800,7 +4021,8 @@ pub static FLOATTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ExternalTimeTrackData {
     pub _glacier_base: TimelineTrackData,
     pub external_time_priority: i32,
@@ -3860,10 +4082,10 @@ impl TimelineTrackDataTrait for ExternalTimeTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -3906,34 +4128,41 @@ impl super::core::DataContainerTrait for ExternalTimeTrackData {
 
 pub static EXTERNALTIMETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalTimeTrackData",
+    name_hash: 3180127378,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ExternalTimeTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ExternalTimeTrackData as Default>::default())),
+            create_boxed: || Box::new(<ExternalTimeTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExternalTimePriority",
+                name_hash: 2498836863,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ExternalTimeTrackData, external_time_priority),
             },
             FieldInfoData {
                 name: "ExternalTimeOffsetType",
+                name_hash: 3074269688,
                 flags: MemberInfoFlags::new(0),
                 field_type: "OffsetType",
                 rust_offset: offset_of!(ExternalTimeTrackData, external_time_offset_type),
             },
             FieldInfoData {
                 name: "InitTimeOffsetType",
+                name_hash: 3591738367,
                 flags: MemberInfoFlags::new(0),
                 field_type: "OffsetType",
                 rust_offset: offset_of!(ExternalTimeTrackData, init_time_offset_type),
             },
             FieldInfoData {
                 name: "CurrentTimeOffsetType",
+                name_hash: 1948968076,
                 flags: MemberInfoFlags::new(0),
                 field_type: "OffsetType",
                 rust_offset: offset_of!(ExternalTimeTrackData, current_time_offset_type),
@@ -3965,6 +4194,7 @@ impl TypeObject for ExternalTimeTrackData {
 
 pub static EXTERNALTIMETRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExternalTimeTrackData-Array",
+    name_hash: 3752061862,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("ExternalTimeTrackData"),
@@ -3985,6 +4215,7 @@ pub enum OffsetType {
 
 pub static OFFSETTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OffsetType",
+    name_hash: 1464217488,
     flags: MemberInfoFlags::new(49429),
     module: "Timeline",
     data: TypeInfoData::Enum,
@@ -4013,6 +4244,7 @@ impl TypeObject for OffsetType {
 
 pub static OFFSETTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OffsetType-Array",
+    name_hash: 3594337700,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("OffsetType"),
@@ -4021,18 +4253,19 @@ pub static OFFSETTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventTrackData {
     pub _glacier_base: SchematicPinTrackData,
-    pub keyframes: Vec<EventKeyframe>,
+    pub keyframes: Vec<BoxedTypeObject /* EventKeyframe */>,
     pub fire_events_upon_skip: bool,
     pub update_properties_at_events: bool,
     pub anti_event_id: i32,
 }
 
 pub trait EventTrackDataTrait: SchematicPinTrackDataTrait {
-    fn keyframes(&self) -> &Vec<EventKeyframe>;
-    fn keyframes_mut(&mut self) -> &mut Vec<EventKeyframe>;
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* EventKeyframe */>;
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventKeyframe */>;
     fn fire_events_upon_skip(&self) -> &bool;
     fn fire_events_upon_skip_mut(&mut self) -> &mut bool;
     fn update_properties_at_events(&self) -> &bool;
@@ -4042,10 +4275,10 @@ pub trait EventTrackDataTrait: SchematicPinTrackDataTrait {
 }
 
 impl EventTrackDataTrait for EventTrackData {
-    fn keyframes(&self) -> &Vec<EventKeyframe> {
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* EventKeyframe */> {
         &self.keyframes
     }
-    fn keyframes_mut(&mut self) -> &mut Vec<EventKeyframe> {
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventKeyframe */> {
         &mut self.keyframes
     }
     fn fire_events_upon_skip(&self) -> &bool {
@@ -4102,10 +4335,10 @@ impl TimelineTrackDataTrait for EventTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -4148,34 +4381,41 @@ impl super::core::DataContainerTrait for EventTrackData {
 
 pub static EVENTTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventTrackData",
+    name_hash: 3067254550,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SCHEMATICPINTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EventTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventTrackData as Default>::default())),
+            create_boxed: || Box::new(<EventTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Keyframes",
+                name_hash: 2213598044,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EventKeyframe-Array",
                 rust_offset: offset_of!(EventTrackData, keyframes),
             },
             FieldInfoData {
                 name: "FireEventsUponSkip",
+                name_hash: 3231166791,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EventTrackData, fire_events_upon_skip),
             },
             FieldInfoData {
                 name: "UpdatePropertiesAtEvents",
+                name_hash: 1515270847,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EventTrackData, update_properties_at_events),
             },
             FieldInfoData {
                 name: "AntiEventId",
+                name_hash: 334921846,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EventTrackData, anti_event_id),
@@ -4207,6 +4447,7 @@ impl TypeObject for EventTrackData {
 
 pub static EVENTTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventTrackData-Array",
+    name_hash: 2504338466,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("EventTrackData"),
@@ -4215,7 +4456,8 @@ pub static EVENTTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventKeyframe {
     pub time: f32,
 }
@@ -4236,15 +4478,18 @@ impl EventKeyframeTrait for EventKeyframe {
 
 pub static EVENTKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventKeyframe",
+    name_hash: 1955207267,
     flags: MemberInfoFlags::new(36937),
     module: "Timeline",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventKeyframe as Default>::default())),
+            create_boxed: || Box::new(<EventKeyframe as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EventKeyframe, time),
@@ -4276,6 +4521,7 @@ impl TypeObject for EventKeyframe {
 
 pub static EVENTKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventKeyframe-Array",
+    name_hash: 3613199447,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("EventKeyframe"),
@@ -4284,7 +4530,8 @@ pub static EVENTKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityTrackData {
     pub _glacier_base: EntityTrackBaseData,
     pub guid_chain: Vec<glacier_util::guid::Guid>,
@@ -4305,10 +4552,10 @@ impl EntityTrackDataTrait for EntityTrackData {
 }
 
 impl EntityTrackBaseDataTrait for EntityTrackData {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         self._glacier_base.children()
     }
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         self._glacier_base.children_mut()
     }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
@@ -4350,10 +4597,10 @@ impl TimelineTrackDataTrait for EntityTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -4396,16 +4643,20 @@ impl super::core::DataContainerTrait for EntityTrackData {
 
 pub static ENTITYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTrackData",
+    name_hash: 649936193,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EntityTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityTrackData as Default>::default())),
+            create_boxed: || Box::new(<EntityTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "GuidChain",
+                name_hash: 851720151,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Guid-Array",
                 rust_offset: offset_of!(EntityTrackData, guid_chain),
@@ -4437,6 +4688,7 @@ impl TypeObject for EntityTrackData {
 
 pub static ENTITYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTrackData-Array",
+    name_hash: 1999349621,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("EntityTrackData"),
@@ -4445,7 +4697,8 @@ pub static ENTITYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinkedProxyEntityTrackData {
     pub _glacier_base: TemplatedProxyEntityTrackData,
     pub source_pin_id: i32,
@@ -4472,10 +4725,10 @@ impl ProxyEntityTrackDataTrait for LinkedProxyEntityTrackData {
 }
 
 impl EntityTrackBaseDataTrait for LinkedProxyEntityTrackData {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         self._glacier_base.children()
     }
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         self._glacier_base.children_mut()
     }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
@@ -4517,10 +4770,10 @@ impl TimelineTrackDataTrait for LinkedProxyEntityTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -4563,16 +4816,20 @@ impl super::core::DataContainerTrait for LinkedProxyEntityTrackData {
 
 pub static LINKEDPROXYENTITYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkedProxyEntityTrackData",
+    name_hash: 318533484,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TEMPLATEDPROXYENTITYTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LinkedProxyEntityTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinkedProxyEntityTrackData as Default>::default())),
+            create_boxed: || Box::new(<LinkedProxyEntityTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SourcePinId",
+                name_hash: 2978540514,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinkedProxyEntityTrackData, source_pin_id),
@@ -4604,6 +4861,7 @@ impl TypeObject for LinkedProxyEntityTrackData {
 
 pub static LINKEDPROXYENTITYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkedProxyEntityTrackData-Array",
+    name_hash: 4045139800,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("LinkedProxyEntityTrackData"),
@@ -4612,7 +4870,8 @@ pub static LINKEDPROXYENTITYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TemplatedProxyEntityTrackData {
     pub _glacier_base: ProxyEntityTrackData,
 }
@@ -4627,10 +4886,10 @@ impl ProxyEntityTrackDataTrait for TemplatedProxyEntityTrackData {
 }
 
 impl EntityTrackBaseDataTrait for TemplatedProxyEntityTrackData {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         self._glacier_base.children()
     }
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         self._glacier_base.children_mut()
     }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
@@ -4672,10 +4931,10 @@ impl TimelineTrackDataTrait for TemplatedProxyEntityTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -4718,12 +4977,15 @@ impl super::core::DataContainerTrait for TemplatedProxyEntityTrackData {
 
 pub static TEMPLATEDPROXYENTITYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplatedProxyEntityTrackData",
+    name_hash: 4154234873,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROXYENTITYTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TemplatedProxyEntityTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TemplatedProxyEntityTrackData as Default>::default())),
+            create_boxed: || Box::new(<TemplatedProxyEntityTrackData as Default>::default()),
         },
         fields: &[
         ],
@@ -4753,6 +5015,7 @@ impl TypeObject for TemplatedProxyEntityTrackData {
 
 pub static TEMPLATEDPROXYENTITYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplatedProxyEntityTrackData-Array",
+    name_hash: 4187428557,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TemplatedProxyEntityTrackData"),
@@ -4761,7 +5024,8 @@ pub static TEMPLATEDPROXYENTITYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProxyEntityTrackData {
     pub _glacier_base: EntityTrackBaseData,
 }
@@ -4773,10 +5037,10 @@ impl ProxyEntityTrackDataTrait for ProxyEntityTrackData {
 }
 
 impl EntityTrackBaseDataTrait for ProxyEntityTrackData {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         self._glacier_base.children()
     }
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         self._glacier_base.children_mut()
     }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
@@ -4818,10 +5082,10 @@ impl TimelineTrackDataTrait for ProxyEntityTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -4864,12 +5128,15 @@ impl super::core::DataContainerTrait for ProxyEntityTrackData {
 
 pub static PROXYENTITYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProxyEntityTrackData",
+    name_hash: 2444491501,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ProxyEntityTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProxyEntityTrackData as Default>::default())),
+            create_boxed: || Box::new(<ProxyEntityTrackData as Default>::default()),
         },
         fields: &[
         ],
@@ -4899,6 +5166,7 @@ impl TypeObject for ProxyEntityTrackData {
 
 pub static PROXYENTITYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProxyEntityTrackData-Array",
+    name_hash: 2686033881,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("ProxyEntityTrackData"),
@@ -4907,7 +5175,8 @@ pub static PROXYENTITYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DummyEntityTrackData {
     pub _glacier_base: EntityTrackBaseData,
 }
@@ -4919,10 +5188,10 @@ impl DummyEntityTrackDataTrait for DummyEntityTrackData {
 }
 
 impl EntityTrackBaseDataTrait for DummyEntityTrackData {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         self._glacier_base.children()
     }
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         self._glacier_base.children_mut()
     }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
@@ -4964,10 +5233,10 @@ impl TimelineTrackDataTrait for DummyEntityTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -5010,12 +5279,15 @@ impl super::core::DataContainerTrait for DummyEntityTrackData {
 
 pub static DUMMYENTITYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DummyEntityTrackData",
+    name_hash: 4099909353,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DummyEntityTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DummyEntityTrackData as Default>::default())),
+            create_boxed: || Box::new(<DummyEntityTrackData as Default>::default()),
         },
         fields: &[
         ],
@@ -5045,6 +5317,7 @@ impl TypeObject for DummyEntityTrackData {
 
 pub static DUMMYENTITYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DummyEntityTrackData-Array",
+    name_hash: 378969565,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("DummyEntityTrackData"),
@@ -5053,10 +5326,11 @@ pub static DUMMYENTITYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityTrackBaseData {
     pub _glacier_base: TimelineTrackData,
-    pub children: Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>,
+    pub children: Vec<Option<LockedTypeObject /* TimelineTrackData */>>,
     pub inherited_to_child_conversation_lines: bool,
     pub required: bool,
     pub handle_deleted_entity: bool,
@@ -5064,8 +5338,8 @@ pub struct EntityTrackBaseData {
 }
 
 pub trait EntityTrackBaseDataTrait: TimelineTrackDataTrait {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>>;
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>>;
     fn inherited_to_child_conversation_lines(&self) -> &bool;
     fn inherited_to_child_conversation_lines_mut(&mut self) -> &mut bool;
     fn required(&self) -> &bool;
@@ -5077,10 +5351,10 @@ pub trait EntityTrackBaseDataTrait: TimelineTrackDataTrait {
 }
 
 impl EntityTrackBaseDataTrait for EntityTrackBaseData {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         &self.children
     }
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         &mut self.children
     }
     fn inherited_to_child_conversation_lines(&self) -> &bool {
@@ -5122,10 +5396,10 @@ impl TimelineTrackDataTrait for EntityTrackBaseData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -5168,40 +5442,48 @@ impl super::core::DataContainerTrait for EntityTrackBaseData {
 
 pub static ENTITYTRACKBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTrackBaseData",
+    name_hash: 1053216532,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EntityTrackBaseData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityTrackBaseData as Default>::default())),
+            create_boxed: || Box::new(<EntityTrackBaseData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Children",
+                name_hash: 1297796054,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TimelineTrackData-Array",
                 rust_offset: offset_of!(EntityTrackBaseData, children),
             },
             FieldInfoData {
                 name: "InheritedToChildConversationLines",
+                name_hash: 1662000608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EntityTrackBaseData, inherited_to_child_conversation_lines),
             },
             FieldInfoData {
                 name: "Required",
+                name_hash: 3502092,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EntityTrackBaseData, required),
             },
             FieldInfoData {
                 name: "HandleDeletedEntity",
+                name_hash: 2017993641,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EntityTrackBaseData, handle_deleted_entity),
             },
             FieldInfoData {
                 name: "EntitySharingPolicy",
+                name_hash: 1915120598,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EntityTrackSharingPolicy",
                 rust_offset: offset_of!(EntityTrackBaseData, entity_sharing_policy),
@@ -5233,6 +5515,7 @@ impl TypeObject for EntityTrackBaseData {
 
 pub static ENTITYTRACKBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTrackBaseData-Array",
+    name_hash: 1742154528,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("EntityTrackBaseData"),
@@ -5252,6 +5535,7 @@ pub enum EntityTrackSharingPolicy {
 
 pub static ENTITYTRACKSHARINGPOLICY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTrackSharingPolicy",
+    name_hash: 3916119641,
     flags: MemberInfoFlags::new(49429),
     module: "Timeline",
     data: TypeInfoData::Enum,
@@ -5280,6 +5564,7 @@ impl TypeObject for EntityTrackSharingPolicy {
 
 pub static ENTITYTRACKSHARINGPOLICY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTrackSharingPolicy-Array",
+    name_hash: 279481453,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("EntityTrackSharingPolicy"),
@@ -5288,7 +5573,8 @@ pub static ENTITYTRACKSHARINGPOLICY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CurveData {
     pub _glacier_base: super::core::DataContainer,
     pub pre_infinity: InfinityType,
@@ -5394,70 +5680,83 @@ impl super::core::DataContainerTrait for CurveData {
 
 pub static CURVEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurveData",
+    name_hash: 2400464802,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(CurveData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CurveData as Default>::default())),
+            create_boxed: || Box::new(<CurveData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PreInfinity",
+                name_hash: 887592928,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InfinityType",
                 rust_offset: offset_of!(CurveData, pre_infinity),
             },
             FieldInfoData {
                 name: "PostInfinity",
+                name_hash: 1471303071,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InfinityType",
                 rust_offset: offset_of!(CurveData, post_infinity),
             },
             FieldInfoData {
                 name: "IsWeighted",
+                name_hash: 850902686,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CurveData, is_weighted),
             },
             FieldInfoData {
                 name: "CurveType",
+                name_hash: 2399916074,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CurveType",
                 rust_offset: offset_of!(CurveData, curve_type),
             },
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(CurveData, time),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(CurveData, value),
             },
             FieldInfoData {
                 name: "InTanX",
+                name_hash: 2783349825,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(CurveData, in_tan_x),
             },
             FieldInfoData {
                 name: "InTanY",
+                name_hash: 2783349824,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(CurveData, in_tan_y),
             },
             FieldInfoData {
                 name: "OutTanX",
+                name_hash: 1071252040,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(CurveData, out_tan_x),
             },
             FieldInfoData {
                 name: "OutTanY",
+                name_hash: 1071252041,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(CurveData, out_tan_y),
@@ -5489,6 +5788,7 @@ impl TypeObject for CurveData {
 
 pub static CURVEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurveData-Array",
+    name_hash: 231755286,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("CurveData"),
@@ -5513,6 +5813,7 @@ pub enum CurveType {
 
 pub static CURVETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurveType",
+    name_hash: 2399916074,
     flags: MemberInfoFlags::new(49429),
     module: "Timeline",
     data: TypeInfoData::Enum,
@@ -5541,6 +5842,7 @@ impl TypeObject for CurveType {
 
 pub static CURVETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurveType-Array",
+    name_hash: 278768286,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("CurveType"),
@@ -5564,6 +5866,7 @@ pub enum InfinityType {
 
 pub static INFINITYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InfinityType",
+    name_hash: 665590271,
     flags: MemberInfoFlags::new(49429),
     module: "Timeline",
     data: TypeInfoData::Enum,
@@ -5592,6 +5895,7 @@ impl TypeObject for InfinityType {
 
 pub static INFINITYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InfinityType-Array",
+    name_hash: 2259419083,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("InfinityType"),
@@ -5600,22 +5904,23 @@ pub static INFINITYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RgbColorTrackData {
     pub _glacier_base: PropertyTrackBaseData,
-    pub keyframes: Vec<RgbColorKeyframe>,
+    pub keyframes: Vec<BoxedTypeObject /* RgbColorKeyframe */>,
 }
 
 pub trait RgbColorTrackDataTrait: PropertyTrackBaseDataTrait {
-    fn keyframes(&self) -> &Vec<RgbColorKeyframe>;
-    fn keyframes_mut(&mut self) -> &mut Vec<RgbColorKeyframe>;
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* RgbColorKeyframe */>;
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RgbColorKeyframe */>;
 }
 
 impl RgbColorTrackDataTrait for RgbColorTrackData {
-    fn keyframes(&self) -> &Vec<RgbColorKeyframe> {
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* RgbColorKeyframe */> {
         &self.keyframes
     }
-    fn keyframes_mut(&mut self) -> &mut Vec<RgbColorKeyframe> {
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RgbColorKeyframe */> {
         &mut self.keyframes
     }
 }
@@ -5657,10 +5962,10 @@ impl TimelineTrackDataTrait for RgbColorTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -5703,16 +6008,20 @@ impl super::core::DataContainerTrait for RgbColorTrackData {
 
 pub static RGBCOLORTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RgbColorTrackData",
+    name_hash: 2606701936,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RgbColorTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RgbColorTrackData as Default>::default())),
+            create_boxed: || Box::new(<RgbColorTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Keyframes",
+                name_hash: 2213598044,
                 flags: MemberInfoFlags::new(144),
                 field_type: "RgbColorKeyframe-Array",
                 rust_offset: offset_of!(RgbColorTrackData, keyframes),
@@ -5744,6 +6053,7 @@ impl TypeObject for RgbColorTrackData {
 
 pub static RGBCOLORTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RgbColorTrackData-Array",
+    name_hash: 1008524100,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("RgbColorTrackData"),
@@ -5752,7 +6062,8 @@ pub static RGBCOLORTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RgbColorKeyframe {
     pub time: f32,
     pub r_g_b_color: super::core::Vec3,
@@ -5782,21 +6093,25 @@ impl RgbColorKeyframeTrait for RgbColorKeyframe {
 
 pub static RGBCOLORKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RgbColorKeyframe",
+    name_hash: 3746967685,
     flags: MemberInfoFlags::new(36937),
     module: "Timeline",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RgbColorKeyframe as Default>::default())),
+            create_boxed: || Box::new(<RgbColorKeyframe as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RgbColorKeyframe, time),
             },
             FieldInfoData {
                 name: "RGBColor",
+                name_hash: 1838995535,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(RgbColorKeyframe, r_g_b_color),
@@ -5828,6 +6143,7 @@ impl TypeObject for RgbColorKeyframe {
 
 pub static RGBCOLORKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RgbColorKeyframe-Array",
+    name_hash: 838973489,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("RgbColorKeyframe"),
@@ -5836,22 +6152,23 @@ pub static RGBCOLORKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ColorTrackData {
     pub _glacier_base: PropertyTrackBaseData,
-    pub keyframes: Vec<ColorKeyframe>,
+    pub keyframes: Vec<BoxedTypeObject /* ColorKeyframe */>,
 }
 
 pub trait ColorTrackDataTrait: PropertyTrackBaseDataTrait {
-    fn keyframes(&self) -> &Vec<ColorKeyframe>;
-    fn keyframes_mut(&mut self) -> &mut Vec<ColorKeyframe>;
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* ColorKeyframe */>;
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ColorKeyframe */>;
 }
 
 impl ColorTrackDataTrait for ColorTrackData {
-    fn keyframes(&self) -> &Vec<ColorKeyframe> {
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* ColorKeyframe */> {
         &self.keyframes
     }
-    fn keyframes_mut(&mut self) -> &mut Vec<ColorKeyframe> {
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ColorKeyframe */> {
         &mut self.keyframes
     }
 }
@@ -5893,10 +6210,10 @@ impl TimelineTrackDataTrait for ColorTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -5939,16 +6256,20 @@ impl super::core::DataContainerTrait for ColorTrackData {
 
 pub static COLORTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorTrackData",
+    name_hash: 1085431207,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ColorTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ColorTrackData as Default>::default())),
+            create_boxed: || Box::new(<ColorTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Keyframes",
+                name_hash: 2213598044,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ColorKeyframe-Array",
                 rust_offset: offset_of!(ColorTrackData, keyframes),
@@ -5980,6 +6301,7 @@ impl TypeObject for ColorTrackData {
 
 pub static COLORTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorTrackData-Array",
+    name_hash: 3941592851,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("ColorTrackData"),
@@ -5988,7 +6310,8 @@ pub static COLORTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ColorKeyframe {
     pub time: f32,
     pub r_g_b_color: super::core::Vec4,
@@ -6018,21 +6341,25 @@ impl ColorKeyframeTrait for ColorKeyframe {
 
 pub static COLORKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorKeyframe",
+    name_hash: 590178930,
     flags: MemberInfoFlags::new(36937),
     module: "Timeline",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ColorKeyframe as Default>::default())),
+            create_boxed: || Box::new(<ColorKeyframe as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ColorKeyframe, time),
             },
             FieldInfoData {
                 name: "RGBColor",
+                name_hash: 1838995535,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(ColorKeyframe, r_g_b_color),
@@ -6064,6 +6391,7 @@ impl TypeObject for ColorKeyframe {
 
 pub static COLORKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ColorKeyframe-Array",
+    name_hash: 3294437702,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("ColorKeyframe"),
@@ -6072,22 +6400,23 @@ pub static COLORKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolTrackData {
     pub _glacier_base: PropertyTrackBaseData,
-    pub keyframes: Vec<BoolKeyframe>,
+    pub keyframes: Vec<BoxedTypeObject /* BoolKeyframe */>,
 }
 
 pub trait BoolTrackDataTrait: PropertyTrackBaseDataTrait {
-    fn keyframes(&self) -> &Vec<BoolKeyframe>;
-    fn keyframes_mut(&mut self) -> &mut Vec<BoolKeyframe>;
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* BoolKeyframe */>;
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BoolKeyframe */>;
 }
 
 impl BoolTrackDataTrait for BoolTrackData {
-    fn keyframes(&self) -> &Vec<BoolKeyframe> {
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* BoolKeyframe */> {
         &self.keyframes
     }
-    fn keyframes_mut(&mut self) -> &mut Vec<BoolKeyframe> {
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BoolKeyframe */> {
         &mut self.keyframes
     }
 }
@@ -6129,10 +6458,10 @@ impl TimelineTrackDataTrait for BoolTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -6175,16 +6504,20 @@ impl super::core::DataContainerTrait for BoolTrackData {
 
 pub static BOOLTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolTrackData",
+    name_hash: 678327156,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BoolTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolTrackData as Default>::default())),
+            create_boxed: || Box::new(<BoolTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Keyframes",
+                name_hash: 2213598044,
                 flags: MemberInfoFlags::new(144),
                 field_type: "BoolKeyframe-Array",
                 rust_offset: offset_of!(BoolTrackData, keyframes),
@@ -6216,6 +6549,7 @@ impl TypeObject for BoolTrackData {
 
 pub static BOOLTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolTrackData-Array",
+    name_hash: 1242849088,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("BoolTrackData"),
@@ -6224,7 +6558,8 @@ pub static BOOLTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolKeyframe {
     pub time: f32,
     pub value: bool,
@@ -6254,21 +6589,25 @@ impl BoolKeyframeTrait for BoolKeyframe {
 
 pub static BOOLKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolKeyframe",
+    name_hash: 3124982785,
     flags: MemberInfoFlags::new(36937),
     module: "Timeline",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolKeyframe as Default>::default())),
+            create_boxed: || Box::new(<BoolKeyframe as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BoolKeyframe, time),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoolKeyframe, value),
@@ -6300,6 +6639,7 @@ impl TypeObject for BoolKeyframe {
 
 pub static BOOLKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolKeyframe-Array",
+    name_hash: 2759060917,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("BoolKeyframe"),
@@ -6308,17 +6648,18 @@ pub static BOOLKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BookmarkTrackData {
     pub _glacier_base: TimelineTrackData,
-    pub keyframes: Vec<BookmarkKeyframe>,
+    pub keyframes: Vec<BoxedTypeObject /* BookmarkKeyframe */>,
     pub jump_offset_type: JumpOffsetType,
     pub jump_time: f32,
 }
 
 pub trait BookmarkTrackDataTrait: TimelineTrackDataTrait {
-    fn keyframes(&self) -> &Vec<BookmarkKeyframe>;
-    fn keyframes_mut(&mut self) -> &mut Vec<BookmarkKeyframe>;
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* BookmarkKeyframe */>;
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BookmarkKeyframe */>;
     fn jump_offset_type(&self) -> &JumpOffsetType;
     fn jump_offset_type_mut(&mut self) -> &mut JumpOffsetType;
     fn jump_time(&self) -> &f32;
@@ -6326,10 +6667,10 @@ pub trait BookmarkTrackDataTrait: TimelineTrackDataTrait {
 }
 
 impl BookmarkTrackDataTrait for BookmarkTrackData {
-    fn keyframes(&self) -> &Vec<BookmarkKeyframe> {
+    fn keyframes(&self) -> &Vec<BoxedTypeObject /* BookmarkKeyframe */> {
         &self.keyframes
     }
-    fn keyframes_mut(&mut self) -> &mut Vec<BookmarkKeyframe> {
+    fn keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BookmarkKeyframe */> {
         &mut self.keyframes
     }
     fn jump_offset_type(&self) -> &JumpOffsetType {
@@ -6359,10 +6700,10 @@ impl TimelineTrackDataTrait for BookmarkTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -6405,28 +6746,34 @@ impl super::core::DataContainerTrait for BookmarkTrackData {
 
 pub static BOOKMARKTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BookmarkTrackData",
+    name_hash: 1769014022,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BookmarkTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BookmarkTrackData as Default>::default())),
+            create_boxed: || Box::new(<BookmarkTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Keyframes",
+                name_hash: 2213598044,
                 flags: MemberInfoFlags::new(144),
                 field_type: "BookmarkKeyframe-Array",
                 rust_offset: offset_of!(BookmarkTrackData, keyframes),
             },
             FieldInfoData {
                 name: "JumpOffsetType",
+                name_hash: 3129421714,
                 flags: MemberInfoFlags::new(0),
                 field_type: "JumpOffsetType",
                 rust_offset: offset_of!(BookmarkTrackData, jump_offset_type),
             },
             FieldInfoData {
                 name: "JumpTime",
+                name_hash: 2269093586,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BookmarkTrackData, jump_time),
@@ -6458,6 +6805,7 @@ impl TypeObject for BookmarkTrackData {
 
 pub static BOOKMARKTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BookmarkTrackData-Array",
+    name_hash: 141676594,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("BookmarkTrackData"),
@@ -6466,7 +6814,8 @@ pub static BOOKMARKTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BookmarkKeyframe {
     pub time: f32,
     pub name_i_d: i32,
@@ -6496,21 +6845,25 @@ impl BookmarkKeyframeTrait for BookmarkKeyframe {
 
 pub static BOOKMARKKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BookmarkKeyframe",
+    name_hash: 2490516083,
     flags: MemberInfoFlags::new(32841),
     module: "Timeline",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BookmarkKeyframe as Default>::default())),
+            create_boxed: || Box::new(<BookmarkKeyframe as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BookmarkKeyframe, time),
             },
             FieldInfoData {
                 name: "NameID",
+                name_hash: 2828728751,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(BookmarkKeyframe, name_i_d),
@@ -6542,6 +6895,7 @@ impl TypeObject for BookmarkKeyframe {
 
 pub static BOOKMARKKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BookmarkKeyframe-Array",
+    name_hash: 584023623,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("BookmarkKeyframe"),
@@ -6562,6 +6916,7 @@ pub enum JumpOffsetType {
 
 pub static JUMPOFFSETTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JumpOffsetType",
+    name_hash: 3129421714,
     flags: MemberInfoFlags::new(49429),
     module: "Timeline",
     data: TypeInfoData::Enum,
@@ -6590,6 +6945,7 @@ impl TypeObject for JumpOffsetType {
 
 pub static JUMPOFFSETTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JumpOffsetType-Array",
+    name_hash: 2146072230,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("JumpOffsetType"),
@@ -6598,7 +6954,8 @@ pub static JUMPOFFSETTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GuideTrackData {
     pub _glacier_base: TimelineTrackData,
     pub guide_track_priority: i32,
@@ -6631,10 +6988,10 @@ impl TimelineTrackDataTrait for GuideTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -6677,16 +7034,20 @@ impl super::core::DataContainerTrait for GuideTrackData {
 
 pub static GUIDETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GuideTrackData",
+    name_hash: 1624110048,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GuideTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GuideTrackData as Default>::default())),
+            create_boxed: || Box::new(<GuideTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "GuideTrackPriority",
+                name_hash: 2368492290,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(GuideTrackData, guide_track_priority),
@@ -6718,6 +7079,7 @@ impl TypeObject for GuideTrackData {
 
 pub static GUIDETRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GuideTrackData-Array",
+    name_hash: 3093285332,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("GuideTrackData"),
@@ -6726,12 +7088,13 @@ pub static GUIDETRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimelineTrackData {
     pub _glacier_base: super::entity::GameObjectData,
     pub expose_pins: bool,
     pub is_disabled: bool,
-    pub conditions: Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>>,
+    pub conditions: Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>>,
     pub update_pass_flags: u16,
     pub bucket_pre_children_order: u16,
     pub bucket_order: u16,
@@ -6742,8 +7105,8 @@ pub trait TimelineTrackDataTrait: super::entity::GameObjectDataTrait {
     fn expose_pins_mut(&mut self) -> &mut bool;
     fn is_disabled(&self) -> &bool;
     fn is_disabled_mut(&mut self) -> &mut bool;
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>>;
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>>;
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>>;
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>>;
     fn update_pass_flags(&self) -> &u16;
     fn update_pass_flags_mut(&mut self) -> &mut u16;
     fn bucket_pre_children_order(&self) -> &u16;
@@ -6765,10 +7128,10 @@ impl TimelineTrackDataTrait for TimelineTrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         &mut self.is_disabled
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         &self.conditions
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         &mut self.conditions
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -6811,46 +7174,55 @@ impl super::core::DataContainerTrait for TimelineTrackData {
 
 pub static TIMELINETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineTrackData",
+    name_hash: 2223482177,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TimelineTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimelineTrackData as Default>::default())),
+            create_boxed: || Box::new(<TimelineTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExposePins",
+                name_hash: 1341040981,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimelineTrackData, expose_pins),
             },
             FieldInfoData {
                 name: "IsDisabled",
+                name_hash: 3474249903,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimelineTrackData, is_disabled),
             },
             FieldInfoData {
                 name: "Conditions",
+                name_hash: 3586042181,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TimelineTrackDataConditionsBase-Array",
                 rust_offset: offset_of!(TimelineTrackData, conditions),
             },
             FieldInfoData {
                 name: "UpdatePassFlags",
+                name_hash: 2203458202,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TimelineTrackData, update_pass_flags),
             },
             FieldInfoData {
                 name: "BucketPreChildrenOrder",
+                name_hash: 352936721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TimelineTrackData, bucket_pre_children_order),
             },
             FieldInfoData {
                 name: "BucketOrder",
+                name_hash: 2504176613,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TimelineTrackData, bucket_order),
@@ -6882,6 +7254,7 @@ impl TypeObject for TimelineTrackData {
 
 pub static TIMELINETRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineTrackData-Array",
+    name_hash: 757337973,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineTrackData"),
@@ -6890,7 +7263,8 @@ pub static TIMELINETRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimelineExtraData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -6906,12 +7280,15 @@ impl super::core::DataContainerTrait for TimelineExtraData {
 
 pub static TIMELINEEXTRADATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineExtraData",
+    name_hash: 818291316,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TimelineExtraData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimelineExtraData as Default>::default())),
+            create_boxed: || Box::new(<TimelineExtraData as Default>::default()),
         },
         fields: &[
         ],
@@ -6941,6 +7318,7 @@ impl TypeObject for TimelineExtraData {
 
 pub static TIMELINEEXTRADATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineExtraData-Array",
+    name_hash: 120802880,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineExtraData"),
@@ -6949,7 +7327,8 @@ pub static TIMELINEEXTRADATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimelineTrackDataConditionsBase {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -6965,12 +7344,15 @@ impl super::core::DataContainerTrait for TimelineTrackDataConditionsBase {
 
 pub static TIMELINETRACKDATACONDITIONSBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineTrackDataConditionsBase",
+    name_hash: 2835995732,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TimelineTrackDataConditionsBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimelineTrackDataConditionsBase as Default>::default())),
+            create_boxed: || Box::new(<TimelineTrackDataConditionsBase as Default>::default()),
         },
         fields: &[
         ],
@@ -7000,6 +7382,7 @@ impl TypeObject for TimelineTrackDataConditionsBase {
 
 pub static TIMELINETRACKDATACONDITIONSBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineTrackDataConditionsBase-Array",
+    name_hash: 885205216,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineTrackDataConditionsBase"),
@@ -7008,7 +7391,8 @@ pub static TIMELINETRACKDATACONDITIONSBASE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimelineKeyframeData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -7024,12 +7408,15 @@ impl super::core::DataContainerTrait for TimelineKeyframeData {
 
 pub static TIMELINEKEYFRAMEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineKeyframeData",
+    name_hash: 4000823652,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TimelineKeyframeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimelineKeyframeData as Default>::default())),
+            create_boxed: || Box::new(<TimelineKeyframeData as Default>::default()),
         },
         fields: &[
         ],
@@ -7059,6 +7446,7 @@ impl TypeObject for TimelineKeyframeData {
 
 pub static TIMELINEKEYFRAMEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineKeyframeData-Array",
+    name_hash: 1340562768,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineKeyframeData"),
@@ -7067,7 +7455,8 @@ pub static TIMELINEKEYFRAMEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimelineTeleportHelper {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -7083,12 +7472,15 @@ impl super::core::DataContainerTrait for TimelineTeleportHelper {
 
 pub static TIMELINETELEPORTHELPER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineTeleportHelper",
+    name_hash: 964907641,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TimelineTeleportHelper, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimelineTeleportHelper as Default>::default())),
+            create_boxed: || Box::new(<TimelineTeleportHelper as Default>::default()),
         },
         fields: &[
         ],
@@ -7118,6 +7510,7 @@ impl TypeObject for TimelineTeleportHelper {
 
 pub static TIMELINETELEPORTHELPER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineTeleportHelper-Array",
+    name_hash: 3711938893,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineTeleportHelper"),
@@ -7126,11 +7519,12 @@ pub static TIMELINETELEPORTHELPER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimelineEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
-    pub timeline_data: Option<Arc<Mutex<dyn TimelineDataTrait>>>,
+    pub timeline_data: Option<LockedTypeObject /* TimelineData */>,
     pub auto_play: bool,
     pub delta_time_clock: TimelineClock,
     pub time_dilation_type: super::entity::TimeDeltaType,
@@ -7155,8 +7549,8 @@ pub struct TimelineEntityData {
 pub trait TimelineEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
-    fn timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineDataTrait>>>;
-    fn timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineDataTrait>>>;
+    fn timeline_data(&self) -> &Option<LockedTypeObject /* TimelineData */>;
+    fn timeline_data_mut(&mut self) -> &mut Option<LockedTypeObject /* TimelineData */>;
     fn auto_play(&self) -> &bool;
     fn auto_play_mut(&mut self) -> &mut bool;
     fn delta_time_clock(&self) -> &TimelineClock;
@@ -7204,10 +7598,10 @@ impl TimelineEntityDataTrait for TimelineEntityData {
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         &mut self.realm
     }
-    fn timeline_data(&self) -> &Option<Arc<Mutex<dyn TimelineDataTrait>>> {
+    fn timeline_data(&self) -> &Option<LockedTypeObject /* TimelineData */> {
         &self.timeline_data
     }
-    fn timeline_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TimelineDataTrait>>> {
+    fn timeline_data_mut(&mut self) -> &mut Option<LockedTypeObject /* TimelineData */> {
         &mut self.timeline_data
     }
     fn auto_play(&self) -> &bool {
@@ -7349,136 +7743,160 @@ impl super::core::DataContainerTrait for TimelineEntityData {
 
 pub static TIMELINEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineEntityData",
+    name_hash: 4159857141,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TimelineEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimelineEntityData as Default>::default())),
+            create_boxed: || Box::new(<TimelineEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TimelineEntityData, realm),
             },
             FieldInfoData {
                 name: "TimelineData",
+                name_hash: 2027655342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimelineData",
                 rust_offset: offset_of!(TimelineEntityData, timeline_data),
             },
             FieldInfoData {
                 name: "AutoPlay",
+                name_hash: 3538057614,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimelineEntityData, auto_play),
             },
             FieldInfoData {
                 name: "DeltaTimeClock",
+                name_hash: 2364081824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimelineClock",
                 rust_offset: offset_of!(TimelineEntityData, delta_time_clock),
             },
             FieldInfoData {
                 name: "TimeDilationType",
+                name_hash: 4230087028,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimeDeltaType",
                 rust_offset: offset_of!(TimelineEntityData, time_dilation_type),
             },
             FieldInfoData {
                 name: "AutoInitConnectedProperties",
+                name_hash: 4255854158,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimelineEntityData, auto_init_connected_properties),
             },
             FieldInfoData {
                 name: "ResetTimeOnStarted",
+                name_hash: 1142497157,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimelineEntityData, reset_time_on_started),
             },
             FieldInfoData {
                 name: "AllowAnimationCarryForward",
+                name_hash: 1781884746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimelineEntityData, allow_animation_carry_forward),
             },
             FieldInfoData {
                 name: "AlwaysEndOnPreFrame",
+                name_hash: 2628247040,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimelineEntityData, always_end_on_pre_frame),
             },
             FieldInfoData {
                 name: "SyncTimelines",
+                name_hash: 1093083978,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimelineEntityData, sync_timelines),
             },
             FieldInfoData {
                 name: "RuntimeFramerate",
+                name_hash: 3880776550,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TimelineEntityData, runtime_framerate),
             },
             FieldInfoData {
                 name: "BlendInTime",
+                name_hash: 3385711094,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TimelineEntityData, blend_in_time),
             },
             FieldInfoData {
                 name: "BlendOutTime",
+                name_hash: 2108146399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TimelineEntityData, blend_out_time),
             },
             FieldInfoData {
                 name: "Looping",
+                name_hash: 1366646169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimelineEntityData, looping),
             },
             FieldInfoData {
                 name: "Infinite",
+                name_hash: 3741825435,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimelineEntityData, infinite),
             },
             FieldInfoData {
                 name: "InitTime",
+                name_hash: 4105490410,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TimelineEntityData, init_time),
             },
             FieldInfoData {
                 name: "StartTime",
+                name_hash: 3727579056,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TimelineEntityData, start_time),
             },
             FieldInfoData {
                 name: "EndTime",
+                name_hash: 4286530879,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TimelineEntityData, end_time),
             },
             FieldInfoData {
                 name: "PlaybackRate",
+                name_hash: 2939488648,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TimelineEntityData, playback_rate),
             },
             FieldInfoData {
                 name: "PrintCurrentTime",
+                name_hash: 3544331912,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimelineEntityData, print_current_time),
             },
             FieldInfoData {
                 name: "UpdatePassFlags",
+                name_hash: 2203458202,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TimelineEntityData, update_pass_flags),
@@ -7510,6 +7928,7 @@ impl TypeObject for TimelineEntityData {
 
 pub static TIMELINEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineEntityData-Array",
+    name_hash: 2019340993,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineEntityData"),
@@ -7518,22 +7937,23 @@ pub static TIMELINEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimelineData {
     pub _glacier_base: TimelineTrackData,
-    pub children: Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>,
+    pub children: Vec<Option<LockedTypeObject /* TimelineTrackData */>>,
 }
 
 pub trait TimelineDataTrait: TimelineTrackDataTrait {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>>;
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>>;
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>>;
 }
 
 impl TimelineDataTrait for TimelineData {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         &self.children
     }
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataTrait>>>> {
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackData */>> {
         &mut self.children
     }
 }
@@ -7551,10 +7971,10 @@ impl TimelineTrackDataTrait for TimelineData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -7597,16 +8017,20 @@ impl super::core::DataContainerTrait for TimelineData {
 
 pub static TIMELINEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineData",
+    name_hash: 2027655342,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TimelineData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimelineData as Default>::default())),
+            create_boxed: || Box::new(<TimelineData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Children",
+                name_hash: 1297796054,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TimelineTrackData-Array",
                 rust_offset: offset_of!(TimelineData, children),
@@ -7638,6 +8062,7 @@ impl TypeObject for TimelineData {
 
 pub static TIMELINEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineData-Array",
+    name_hash: 630946074,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineData"),
@@ -7658,6 +8083,7 @@ pub enum TimelineEditorReinitializeState {
 
 pub static TIMELINEEDITORREINITIALIZESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineEditorReinitializeState",
+    name_hash: 466351319,
     flags: MemberInfoFlags::new(49429),
     module: "Timeline",
     data: TypeInfoData::Enum,
@@ -7686,6 +8112,7 @@ impl TypeObject for TimelineEditorReinitializeState {
 
 pub static TIMELINEEDITORREINITIALIZESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineEditorReinitializeState-Array",
+    name_hash: 1740942819,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineEditorReinitializeState"),
@@ -7706,6 +8133,7 @@ pub enum TimelineClock {
 
 pub static TIMELINECLOCK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineClock",
+    name_hash: 2493325494,
     flags: MemberInfoFlags::new(49429),
     module: "Timeline",
     data: TypeInfoData::Enum,
@@ -7734,6 +8162,7 @@ impl TypeObject for TimelineClock {
 
 pub static TIMELINECLOCK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineClock-Array",
+    name_hash: 2640082178,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineClock"),
@@ -7757,6 +8186,7 @@ pub enum TimelineFramerate {
 
 pub static TIMELINEFRAMERATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineFramerate",
+    name_hash: 1395731489,
     flags: MemberInfoFlags::new(49429),
     module: "Timeline",
     data: TypeInfoData::Enum,
@@ -7785,6 +8215,7 @@ impl TypeObject for TimelineFramerate {
 
 pub static TIMELINEFRAMERATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineFramerate-Array",
+    name_hash: 2188867221,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineFramerate"),
@@ -7793,7 +8224,8 @@ pub static TIMELINEFRAMERATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FbxImportData {
     pub _glacier_base: TimelineExtraData,
 }
@@ -7812,12 +8244,15 @@ impl super::core::DataContainerTrait for FbxImportData {
 
 pub static FBXIMPORTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FbxImportData",
+    name_hash: 951676564,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINEEXTRADATA_TYPE_INFO),
+        super_class_offset: offset_of!(FbxImportData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FbxImportData as Default>::default())),
+            create_boxed: || Box::new(<FbxImportData as Default>::default()),
         },
         fields: &[
         ],
@@ -7847,6 +8282,7 @@ impl TypeObject for FbxImportData {
 
 pub static FBXIMPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FbxImportData-Array",
+    name_hash: 2015586976,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("FbxImportData"),
@@ -7855,7 +8291,8 @@ pub static FBXIMPORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimelineBufferingHelper {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -7871,12 +8308,15 @@ impl super::core::DataContainerTrait for TimelineBufferingHelper {
 
 pub static TIMELINEBUFFERINGHELPER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineBufferingHelper",
+    name_hash: 437578168,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TimelineBufferingHelper, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimelineBufferingHelper as Default>::default())),
+            create_boxed: || Box::new(<TimelineBufferingHelper as Default>::default()),
         },
         fields: &[
         ],
@@ -7906,6 +8346,7 @@ impl TypeObject for TimelineBufferingHelper {
 
 pub static TIMELINEBUFFERINGHELPER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineBufferingHelper-Array",
+    name_hash: 550384396,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineBufferingHelper"),
@@ -7914,49 +8355,50 @@ pub static TIMELINEBUFFERINGHELPER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4TrackData {
     pub _glacier_base: PropertyTrackBaseData,
-    pub x: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub y: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub z: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub w: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
+    pub x: Option<LockedTypeObject /* FloatTrackData */>,
+    pub y: Option<LockedTypeObject /* FloatTrackData */>,
+    pub z: Option<LockedTypeObject /* FloatTrackData */>,
+    pub w: Option<LockedTypeObject /* FloatTrackData */>,
 }
 
 pub trait Vec4TrackDataTrait: PropertyTrackBaseDataTrait {
-    fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn w(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn w_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn x(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn y(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn z(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn z_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn w(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn w_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
 }
 
 impl Vec4TrackDataTrait for Vec4TrackData {
-    fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn x(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.x
     }
-    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.x
     }
-    fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn y(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.y
     }
-    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.y
     }
-    fn z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn z(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.z
     }
-    fn z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn z_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.z
     }
-    fn w(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn w(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.w
     }
-    fn w_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn w_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.w
     }
 }
@@ -7998,10 +8440,10 @@ impl TimelineTrackDataTrait for Vec4TrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -8044,34 +8486,41 @@ impl super::core::DataContainerTrait for Vec4TrackData {
 
 pub static VEC4TRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4TrackData",
+    name_hash: 3498440574,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec4TrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4TrackData as Default>::default())),
+            create_boxed: || Box::new(<Vec4TrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "X",
+                name_hash: 177661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(Vec4TrackData, x),
             },
             FieldInfoData {
                 name: "Y",
+                name_hash: 177660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(Vec4TrackData, y),
             },
             FieldInfoData {
                 name: "Z",
+                name_hash: 177663,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(Vec4TrackData, z),
             },
             FieldInfoData {
                 name: "W",
+                name_hash: 177650,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(Vec4TrackData, w),
@@ -8103,6 +8552,7 @@ impl TypeObject for Vec4TrackData {
 
 pub static VEC4TRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4TrackData-Array",
+    name_hash: 1256880202,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("Vec4TrackData"),
@@ -8111,40 +8561,41 @@ pub static VEC4TRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3TrackData {
     pub _glacier_base: PropertyTrackBaseData,
-    pub x: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub y: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub z: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
+    pub x: Option<LockedTypeObject /* FloatTrackData */>,
+    pub y: Option<LockedTypeObject /* FloatTrackData */>,
+    pub z: Option<LockedTypeObject /* FloatTrackData */>,
 }
 
 pub trait Vec3TrackDataTrait: PropertyTrackBaseDataTrait {
-    fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn x(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn y(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn z(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn z_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
 }
 
 impl Vec3TrackDataTrait for Vec3TrackData {
-    fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn x(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.x
     }
-    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.x
     }
-    fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn y(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.y
     }
-    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.y
     }
-    fn z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn z(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.z
     }
-    fn z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn z_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.z
     }
 }
@@ -8186,10 +8637,10 @@ impl TimelineTrackDataTrait for Vec3TrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -8232,28 +8683,34 @@ impl super::core::DataContainerTrait for Vec3TrackData {
 
 pub static VEC3TRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3TrackData",
+    name_hash: 149799641,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec3TrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3TrackData as Default>::default())),
+            create_boxed: || Box::new(<Vec3TrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "X",
+                name_hash: 177661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(Vec3TrackData, x),
             },
             FieldInfoData {
                 name: "Y",
+                name_hash: 177660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(Vec3TrackData, y),
             },
             FieldInfoData {
                 name: "Z",
+                name_hash: 177663,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(Vec3TrackData, z),
@@ -8285,6 +8742,7 @@ impl TypeObject for Vec3TrackData {
 
 pub static VEC3TRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3TrackData-Array",
+    name_hash: 3457970413,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("Vec3TrackData"),
@@ -8293,31 +8751,32 @@ pub static VEC3TRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec2TrackData {
     pub _glacier_base: PropertyTrackBaseData,
-    pub x: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub y: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
+    pub x: Option<LockedTypeObject /* FloatTrackData */>,
+    pub y: Option<LockedTypeObject /* FloatTrackData */>,
 }
 
 pub trait Vec2TrackDataTrait: PropertyTrackBaseDataTrait {
-    fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn x(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn y(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
 }
 
 impl Vec2TrackDataTrait for Vec2TrackData {
-    fn x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn x(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.x
     }
-    fn x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.x
     }
-    fn y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn y(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.y
     }
-    fn y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.y
     }
 }
@@ -8359,10 +8818,10 @@ impl TimelineTrackDataTrait for Vec2TrackData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -8405,22 +8864,27 @@ impl super::core::DataContainerTrait for Vec2TrackData {
 
 pub static VEC2TRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2TrackData",
+    name_hash: 3535971256,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYTRACKBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec2TrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec2TrackData as Default>::default())),
+            create_boxed: || Box::new(<Vec2TrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "X",
+                name_hash: 177661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(Vec2TrackData, x),
             },
             FieldInfoData {
                 name: "Y",
+                name_hash: 177660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(Vec2TrackData, y),
@@ -8452,6 +8916,7 @@ impl TypeObject for Vec2TrackData {
 
 pub static VEC2TRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2TrackData-Array",
+    name_hash: 3076484364,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("Vec2TrackData"),
@@ -8460,25 +8925,26 @@ pub static VEC2TRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformLayerData {
     pub _glacier_base: TimelineTrackData,
-    pub weight: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
+    pub weight: Option<LockedTypeObject /* FloatTrackData */>,
     pub blendtype: LayeredTransformBlendType,
 }
 
 pub trait TransformLayerDataTrait: TimelineTrackDataTrait {
-    fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn weight(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn weight_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
     fn blendtype(&self) -> &LayeredTransformBlendType;
     fn blendtype_mut(&mut self) -> &mut LayeredTransformBlendType;
 }
 
 impl TransformLayerDataTrait for TransformLayerData {
-    fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn weight(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.weight
     }
-    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn weight_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.weight
     }
     fn blendtype(&self) -> &LayeredTransformBlendType {
@@ -8502,10 +8968,10 @@ impl TimelineTrackDataTrait for TransformLayerData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -8548,22 +9014,27 @@ impl super::core::DataContainerTrait for TransformLayerData {
 
 pub static TRANSFORMLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformLayerData",
+    name_hash: 4200821178,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformLayerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformLayerData as Default>::default())),
+            create_boxed: || Box::new(<TransformLayerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Weight",
+                name_hash: 3190864229,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(TransformLayerData, weight),
             },
             FieldInfoData {
                 name: "Blendtype",
+                name_hash: 266176700,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LayeredTransform_BlendType",
                 rust_offset: offset_of!(TransformLayerData, blendtype),
@@ -8595,6 +9066,7 @@ impl TypeObject for TransformLayerData {
 
 pub static TRANSFORMLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformLayerData-Array",
+    name_hash: 236663822,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TransformLayerData"),
@@ -8617,6 +9089,7 @@ pub enum LayeredTransformBlendType {
 
 pub static LAYEREDTRANSFORM_BLENDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayeredTransform_BlendType",
+    name_hash: 714272173,
     flags: MemberInfoFlags::new(49429),
     module: "Timeline",
     data: TypeInfoData::Enum,
@@ -8645,6 +9118,7 @@ impl TypeObject for LayeredTransformBlendType {
 
 pub static LAYEREDTRANSFORM_BLENDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayeredTransform_BlendType-Array",
+    name_hash: 658727449,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("LayeredTransform_BlendType"),
@@ -8653,7 +9127,8 @@ pub static LAYEREDTRANSFORM_BLENDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StartingLocationTransformLayerData {
     pub _glacier_base: TransformLayerData,
 }
@@ -8665,10 +9140,10 @@ impl StartingLocationTransformLayerDataTrait for StartingLocationTransformLayerD
 }
 
 impl TransformLayerDataTrait for StartingLocationTransformLayerData {
-    fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn weight(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         self._glacier_base.weight()
     }
-    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn weight_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         self._glacier_base.weight_mut()
     }
     fn blendtype(&self) -> &LayeredTransformBlendType {
@@ -8692,10 +9167,10 @@ impl TimelineTrackDataTrait for StartingLocationTransformLayerData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -8738,12 +9213,15 @@ impl super::core::DataContainerTrait for StartingLocationTransformLayerData {
 
 pub static STARTINGLOCATIONTRANSFORMLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StartingLocationTransformLayerData",
+    name_hash: 1653191975,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TRANSFORMLAYERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StartingLocationTransformLayerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StartingLocationTransformLayerData as Default>::default())),
+            create_boxed: || Box::new(<StartingLocationTransformLayerData as Default>::default()),
         },
         fields: &[
         ],
@@ -8773,6 +9251,7 @@ impl TypeObject for StartingLocationTransformLayerData {
 
 pub static STARTINGLOCATIONTRANSFORMLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StartingLocationTransformLayerData-Array",
+    name_hash: 1506469523,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("StartingLocationTransformLayerData"),
@@ -8781,24 +9260,25 @@ pub static STARTINGLOCATIONTRANSFORMLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScaleTransformLayerData {
     pub _glacier_base: TransformLayerData,
     pub is_uniform: bool,
-    pub scale_x: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub scale_y: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub scale_z: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
+    pub scale_x: Option<LockedTypeObject /* FloatTrackData */>,
+    pub scale_y: Option<LockedTypeObject /* FloatTrackData */>,
+    pub scale_z: Option<LockedTypeObject /* FloatTrackData */>,
 }
 
 pub trait ScaleTransformLayerDataTrait: TransformLayerDataTrait {
     fn is_uniform(&self) -> &bool;
     fn is_uniform_mut(&mut self) -> &mut bool;
-    fn scale_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn scale_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn scale_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn scale_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn scale_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn scale_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
+    fn scale_x(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn scale_x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn scale_y(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn scale_y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn scale_z(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn scale_z_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
 }
 
 impl ScaleTransformLayerDataTrait for ScaleTransformLayerData {
@@ -8808,31 +9288,31 @@ impl ScaleTransformLayerDataTrait for ScaleTransformLayerData {
     fn is_uniform_mut(&mut self) -> &mut bool {
         &mut self.is_uniform
     }
-    fn scale_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn scale_x(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.scale_x
     }
-    fn scale_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn scale_x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.scale_x
     }
-    fn scale_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn scale_y(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.scale_y
     }
-    fn scale_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn scale_y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.scale_y
     }
-    fn scale_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn scale_z(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.scale_z
     }
-    fn scale_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn scale_z_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.scale_z
     }
 }
 
 impl TransformLayerDataTrait for ScaleTransformLayerData {
-    fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn weight(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         self._glacier_base.weight()
     }
-    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn weight_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         self._glacier_base.weight_mut()
     }
     fn blendtype(&self) -> &LayeredTransformBlendType {
@@ -8856,10 +9336,10 @@ impl TimelineTrackDataTrait for ScaleTransformLayerData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -8902,34 +9382,41 @@ impl super::core::DataContainerTrait for ScaleTransformLayerData {
 
 pub static SCALETRANSFORMLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScaleTransformLayerData",
+    name_hash: 2245858082,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TRANSFORMLAYERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ScaleTransformLayerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScaleTransformLayerData as Default>::default())),
+            create_boxed: || Box::new(<ScaleTransformLayerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IsUniform",
+                name_hash: 3144513403,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ScaleTransformLayerData, is_uniform),
             },
             FieldInfoData {
                 name: "ScaleX",
+                name_hash: 3335406693,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(ScaleTransformLayerData, scale_x),
             },
             FieldInfoData {
                 name: "ScaleY",
+                name_hash: 3335406692,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(ScaleTransformLayerData, scale_y),
             },
             FieldInfoData {
                 name: "ScaleZ",
+                name_hash: 3335406695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(ScaleTransformLayerData, scale_z),
@@ -8961,6 +9448,7 @@ impl TypeObject for ScaleTransformLayerData {
 
 pub static SCALETRANSFORMLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScaleTransformLayerData-Array",
+    name_hash: 1536545174,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("ScaleTransformLayerData"),
@@ -8969,19 +9457,20 @@ pub static SCALETRANSFORMLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct KeyedTransformLayerData {
     pub _glacier_base: TransformLayerData,
     pub force_minimum_rotation_path_between_keys: bool,
     pub pre_infinity_for_min_rotation: InfinityType,
     pub post_infinity_for_min_rotation: InfinityType,
-    pub translation_x: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub translation_y: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub translation_z: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub rotation_x: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub rotation_y: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub rotation_z: Option<Arc<Mutex<dyn FloatTrackDataTrait>>>,
-    pub quat_keyframes: Vec<QuatKeyframe>,
+    pub translation_x: Option<LockedTypeObject /* FloatTrackData */>,
+    pub translation_y: Option<LockedTypeObject /* FloatTrackData */>,
+    pub translation_z: Option<LockedTypeObject /* FloatTrackData */>,
+    pub rotation_x: Option<LockedTypeObject /* FloatTrackData */>,
+    pub rotation_y: Option<LockedTypeObject /* FloatTrackData */>,
+    pub rotation_z: Option<LockedTypeObject /* FloatTrackData */>,
+    pub quat_keyframes: Vec<BoxedTypeObject /* QuatKeyframe */>,
 }
 
 pub trait KeyedTransformLayerDataTrait: TransformLayerDataTrait {
@@ -8991,20 +9480,20 @@ pub trait KeyedTransformLayerDataTrait: TransformLayerDataTrait {
     fn pre_infinity_for_min_rotation_mut(&mut self) -> &mut InfinityType;
     fn post_infinity_for_min_rotation(&self) -> &InfinityType;
     fn post_infinity_for_min_rotation_mut(&mut self) -> &mut InfinityType;
-    fn translation_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn translation_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn translation_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn translation_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn translation_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn translation_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn rotation_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn rotation_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn rotation_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn rotation_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn rotation_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn rotation_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>>;
-    fn quat_keyframes(&self) -> &Vec<QuatKeyframe>;
-    fn quat_keyframes_mut(&mut self) -> &mut Vec<QuatKeyframe>;
+    fn translation_x(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn translation_x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn translation_y(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn translation_y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn translation_z(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn translation_z_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn rotation_x(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn rotation_x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn rotation_y(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn rotation_y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn rotation_z(&self) -> &Option<LockedTypeObject /* FloatTrackData */>;
+    fn rotation_z_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */>;
+    fn quat_keyframes(&self) -> &Vec<BoxedTypeObject /* QuatKeyframe */>;
+    fn quat_keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* QuatKeyframe */>;
 }
 
 impl KeyedTransformLayerDataTrait for KeyedTransformLayerData {
@@ -9026,55 +9515,55 @@ impl KeyedTransformLayerDataTrait for KeyedTransformLayerData {
     fn post_infinity_for_min_rotation_mut(&mut self) -> &mut InfinityType {
         &mut self.post_infinity_for_min_rotation
     }
-    fn translation_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn translation_x(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.translation_x
     }
-    fn translation_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn translation_x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.translation_x
     }
-    fn translation_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn translation_y(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.translation_y
     }
-    fn translation_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn translation_y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.translation_y
     }
-    fn translation_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn translation_z(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.translation_z
     }
-    fn translation_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn translation_z_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.translation_z
     }
-    fn rotation_x(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn rotation_x(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.rotation_x
     }
-    fn rotation_x_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn rotation_x_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.rotation_x
     }
-    fn rotation_y(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn rotation_y(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.rotation_y
     }
-    fn rotation_y_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn rotation_y_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.rotation_y
     }
-    fn rotation_z(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn rotation_z(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         &self.rotation_z
     }
-    fn rotation_z_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn rotation_z_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         &mut self.rotation_z
     }
-    fn quat_keyframes(&self) -> &Vec<QuatKeyframe> {
+    fn quat_keyframes(&self) -> &Vec<BoxedTypeObject /* QuatKeyframe */> {
         &self.quat_keyframes
     }
-    fn quat_keyframes_mut(&mut self) -> &mut Vec<QuatKeyframe> {
+    fn quat_keyframes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* QuatKeyframe */> {
         &mut self.quat_keyframes
     }
 }
 
 impl TransformLayerDataTrait for KeyedTransformLayerData {
-    fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn weight(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         self._glacier_base.weight()
     }
-    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn weight_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         self._glacier_base.weight_mut()
     }
     fn blendtype(&self) -> &LayeredTransformBlendType {
@@ -9098,10 +9587,10 @@ impl TimelineTrackDataTrait for KeyedTransformLayerData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -9144,70 +9633,83 @@ impl super::core::DataContainerTrait for KeyedTransformLayerData {
 
 pub static KEYEDTRANSFORMLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "KeyedTransformLayerData",
+    name_hash: 1288581516,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TRANSFORMLAYERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(KeyedTransformLayerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<KeyedTransformLayerData as Default>::default())),
+            create_boxed: || Box::new(<KeyedTransformLayerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ForceMinimumRotationPathBetweenKeys",
+                name_hash: 31237081,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(KeyedTransformLayerData, force_minimum_rotation_path_between_keys),
             },
             FieldInfoData {
                 name: "PreInfinityForMinRotation",
+                name_hash: 4149545349,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InfinityType",
                 rust_offset: offset_of!(KeyedTransformLayerData, pre_infinity_for_min_rotation),
             },
             FieldInfoData {
                 name: "PostInfinityForMinRotation",
+                name_hash: 2958787706,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InfinityType",
                 rust_offset: offset_of!(KeyedTransformLayerData, post_infinity_for_min_rotation),
             },
             FieldInfoData {
                 name: "TranslationX",
+                name_hash: 3073826902,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(KeyedTransformLayerData, translation_x),
             },
             FieldInfoData {
                 name: "TranslationY",
+                name_hash: 3073826903,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(KeyedTransformLayerData, translation_y),
             },
             FieldInfoData {
                 name: "TranslationZ",
+                name_hash: 3073826900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(KeyedTransformLayerData, translation_z),
             },
             FieldInfoData {
                 name: "RotationX",
+                name_hash: 1606233513,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(KeyedTransformLayerData, rotation_x),
             },
             FieldInfoData {
                 name: "RotationY",
+                name_hash: 1606233512,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(KeyedTransformLayerData, rotation_y),
             },
             FieldInfoData {
                 name: "RotationZ",
+                name_hash: 1606233515,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatTrackData",
                 rust_offset: offset_of!(KeyedTransformLayerData, rotation_z),
             },
             FieldInfoData {
                 name: "QuatKeyframes",
+                name_hash: 1051531021,
                 flags: MemberInfoFlags::new(144),
                 field_type: "QuatKeyframe-Array",
                 rust_offset: offset_of!(KeyedTransformLayerData, quat_keyframes),
@@ -9239,6 +9741,7 @@ impl TypeObject for KeyedTransformLayerData {
 
 pub static KEYEDTRANSFORMLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "KeyedTransformLayerData-Array",
+    name_hash: 1516962232,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("KeyedTransformLayerData"),
@@ -9247,7 +9750,8 @@ pub static KEYEDTRANSFORMLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QuatKeyframe {
     pub time: f32,
     pub quat_value: super::core::Vec4,
@@ -9277,21 +9781,25 @@ impl QuatKeyframeTrait for QuatKeyframe {
 
 pub static QUATKEYFRAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuatKeyframe",
+    name_hash: 2374574014,
     flags: MemberInfoFlags::new(36937),
     module: "Timeline",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QuatKeyframe as Default>::default())),
+            create_boxed: || Box::new(<QuatKeyframe as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(QuatKeyframe, time),
             },
             FieldInfoData {
                 name: "QuatValue",
+                name_hash: 4237524351,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(QuatKeyframe, quat_value),
@@ -9323,6 +9831,7 @@ impl TypeObject for QuatKeyframe {
 
 pub static QUATKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QuatKeyframe-Array",
+    name_hash: 3750432778,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("QuatKeyframe"),
@@ -9331,31 +9840,32 @@ pub static QUATKEYFRAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GroupTransformLayerData {
     pub _glacier_base: TransformLayerData,
-    pub children: Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>>,
+    pub children: Vec<Option<LockedTypeObject /* TransformLayerData */>>,
 }
 
 pub trait GroupTransformLayerDataTrait: TransformLayerDataTrait {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>>;
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>>;
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TransformLayerData */>>;
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TransformLayerData */>>;
 }
 
 impl GroupTransformLayerDataTrait for GroupTransformLayerData {
-    fn children(&self) -> &Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>> {
+    fn children(&self) -> &Vec<Option<LockedTypeObject /* TransformLayerData */>> {
         &self.children
     }
-    fn children_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformLayerDataTrait>>>> {
+    fn children_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TransformLayerData */>> {
         &mut self.children
     }
 }
 
 impl TransformLayerDataTrait for GroupTransformLayerData {
-    fn weight(&self) -> &Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn weight(&self) -> &Option<LockedTypeObject /* FloatTrackData */> {
         self._glacier_base.weight()
     }
-    fn weight_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatTrackDataTrait>>> {
+    fn weight_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatTrackData */> {
         self._glacier_base.weight_mut()
     }
     fn blendtype(&self) -> &LayeredTransformBlendType {
@@ -9379,10 +9889,10 @@ impl TimelineTrackDataTrait for GroupTransformLayerData {
     fn is_disabled_mut(&mut self) -> &mut bool {
         self._glacier_base.is_disabled_mut()
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions()
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TimelineTrackDataConditionsBaseTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TimelineTrackDataConditionsBase */>> {
         self._glacier_base.conditions_mut()
     }
     fn update_pass_flags(&self) -> &u16 {
@@ -9425,16 +9935,20 @@ impl super::core::DataContainerTrait for GroupTransformLayerData {
 
 pub static GROUPTRANSFORMLAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupTransformLayerData",
+    name_hash: 703240165,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TRANSFORMLAYERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GroupTransformLayerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GroupTransformLayerData as Default>::default())),
+            create_boxed: || Box::new(<GroupTransformLayerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Children",
+                name_hash: 1297796054,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TransformLayerData-Array",
                 rust_offset: offset_of!(GroupTransformLayerData, children),
@@ -9466,6 +9980,7 @@ impl TypeObject for GroupTransformLayerData {
 
 pub static GROUPTRANSFORMLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupTransformLayerData-Array",
+    name_hash: 1033019601,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("GroupTransformLayerData"),
@@ -9474,7 +9989,8 @@ pub static GROUPTRANSFORMLAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimelineTrack {
 }
 
@@ -9486,12 +10002,15 @@ impl TimelineTrackTrait for TimelineTrack {
 
 pub static TIMELINETRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineTrack",
+    name_hash: 2469551665,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimelineTrack as Default>::default())),
+            create_boxed: || Box::new(<TimelineTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -9521,6 +10040,7 @@ impl TypeObject for TimelineTrack {
 
 pub static TIMELINETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineTrack-Array",
+    name_hash: 2930307205,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineTrack"),
@@ -9529,7 +10049,8 @@ pub static TIMELINETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimelineRootTrack {
     pub _glacier_base: TimelineTrack,
 }
@@ -9545,12 +10066,15 @@ impl TimelineTrackTrait for TimelineRootTrack {
 
 pub static TIMELINEROOTTRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineRootTrack",
+    name_hash: 3219570615,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(TimelineRootTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimelineRootTrack as Default>::default())),
+            create_boxed: || Box::new(<TimelineRootTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -9580,6 +10104,7 @@ impl TypeObject for TimelineRootTrack {
 
 pub static TIMELINEROOTTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineRootTrack-Array",
+    name_hash: 2616760579,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineRootTrack"),
@@ -9588,7 +10113,8 @@ pub static TIMELINEROOTTRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimelineEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -9607,12 +10133,15 @@ impl super::entity::EntityBusPeerTrait for TimelineEntity {
 
 pub static TIMELINEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineEntity",
+    name_hash: 455767557,
     flags: MemberInfoFlags::new(101),
     module: "Timeline",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TimelineEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimelineEntity as Default>::default())),
+            create_boxed: || Box::new(<TimelineEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -9642,6 +10171,7 @@ impl TypeObject for TimelineEntity {
 
 pub static TIMELINEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimelineEntity-Array",
+    name_hash: 3964935601,
     flags: MemberInfoFlags::new(145),
     module: "Timeline",
     data: TypeInfoData::Array("TimelineEntity"),

@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -15,7 +16,8 @@ pub(crate) fn register_wall_of_doom_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTWALLOFDOOMENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWallOfDoomMeshEntity {
     pub _glacier_base: super::game_client::ClientStaticModelEntity,
 }
@@ -52,12 +54,15 @@ impl super::entity::EntityBusPeerTrait for ClientWallOfDoomMeshEntity {
 
 pub static CLIENTWALLOFDOOMMESHENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWallOfDoomMeshEntity",
+    name_hash: 529992962,
     flags: MemberInfoFlags::new(101),
     module: "WallOfDoom",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_client::CLIENTSTATICMODELENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientWallOfDoomMeshEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWallOfDoomMeshEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientWallOfDoomMeshEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -87,6 +92,7 @@ impl TypeObject for ClientWallOfDoomMeshEntity {
 
 pub static CLIENTWALLOFDOOMMESHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWallOfDoomMeshEntity-Array",
+    name_hash: 3895962678,
     flags: MemberInfoFlags::new(145),
     module: "WallOfDoom",
     data: TypeInfoData::Array("ClientWallOfDoomMeshEntity"),
@@ -95,7 +101,8 @@ pub static CLIENTWALLOFDOOMMESHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientWallOfDoomEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -114,12 +121,15 @@ impl super::entity::EntityBusPeerTrait for ClientWallOfDoomEntity {
 
 pub static CLIENTWALLOFDOOMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWallOfDoomEntity",
+    name_hash: 2633057905,
     flags: MemberInfoFlags::new(101),
     module: "WallOfDoom",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientWallOfDoomEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientWallOfDoomEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientWallOfDoomEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -149,6 +159,7 @@ impl TypeObject for ClientWallOfDoomEntity {
 
 pub static CLIENTWALLOFDOOMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientWallOfDoomEntity-Array",
+    name_hash: 2648000837,
     flags: MemberInfoFlags::new(145),
     module: "WallOfDoom",
     data: TypeInfoData::Array("ClientWallOfDoomEntity"),

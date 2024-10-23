@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -383,7 +384,8 @@ pub(crate) fn register_battle_a_i_types(registry: &mut TypeRegistry) {
     registry.register_type(COVERSCOREPOSITION_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSimpleDriverComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -408,12 +410,15 @@ impl super::entity::EntityBusPeerTrait for ServerSimpleDriverComponent {
 
 pub static SERVERSIMPLEDRIVERCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSimpleDriverComponent",
+    name_hash: 1088656223,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSimpleDriverComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSimpleDriverComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerSimpleDriverComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -443,6 +448,7 @@ impl TypeObject for ServerSimpleDriverComponent {
 
 pub static SERVERSIMPLEDRIVERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSimpleDriverComponent-Array",
+    name_hash: 4080568427,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerSimpleDriverComponent"),
@@ -451,7 +457,8 @@ pub static SERVERSIMPLEDRIVERCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WSServerDogFightingEntity {
     pub _glacier_base: ServerDogFightingEntity,
 }
@@ -473,12 +480,15 @@ impl super::entity::EntityBusPeerTrait for WSServerDogFightingEntity {
 
 pub static WSSERVERDOGFIGHTINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WSServerDogFightingEntity",
+    name_hash: 2598199207,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTINGENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(WSServerDogFightingEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WSServerDogFightingEntity as Default>::default())),
+            create_boxed: || Box::new(<WSServerDogFightingEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -508,6 +518,7 @@ impl TypeObject for WSServerDogFightingEntity {
 
 pub static WSSERVERDOGFIGHTINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WSServerDogFightingEntity-Array",
+    name_hash: 3990122771,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("WSServerDogFightingEntity"),
@@ -516,7 +527,8 @@ pub static WSSERVERDOGFIGHTINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerStrafeRunManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -538,12 +550,15 @@ impl super::entity::EntityBusPeerTrait for ServerStrafeRunManeuverEntity {
 
 pub static SERVERSTRAFERUNMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerStrafeRunManeuverEntity",
+    name_hash: 3530536758,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerStrafeRunManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerStrafeRunManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerStrafeRunManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -573,6 +588,7 @@ impl TypeObject for ServerStrafeRunManeuverEntity {
 
 pub static SERVERSTRAFERUNMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerStrafeRunManeuverEntity-Array",
+    name_hash: 2372266882,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerStrafeRunManeuverEntity"),
@@ -581,7 +597,8 @@ pub static SERVERSTRAFERUNMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerStallTurnManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -603,12 +620,15 @@ impl super::entity::EntityBusPeerTrait for ServerStallTurnManeuverEntity {
 
 pub static SERVERSTALLTURNMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerStallTurnManeuverEntity",
+    name_hash: 1959249747,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerStallTurnManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerStallTurnManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerStallTurnManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -638,6 +658,7 @@ impl TypeObject for ServerStallTurnManeuverEntity {
 
 pub static SERVERSTALLTURNMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerStallTurnManeuverEntity-Array",
+    name_hash: 4071928423,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerStallTurnManeuverEntity"),
@@ -646,7 +667,8 @@ pub static SERVERSTALLTURNMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSplitSManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -668,12 +690,15 @@ impl super::entity::EntityBusPeerTrait for ServerSplitSManeuverEntity {
 
 pub static SERVERSPLITSMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSplitSManeuverEntity",
+    name_hash: 162471753,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSplitSManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSplitSManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSplitSManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -703,6 +728,7 @@ impl TypeObject for ServerSplitSManeuverEntity {
 
 pub static SERVERSPLITSMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSplitSManeuverEntity-Array",
+    name_hash: 922641789,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerSplitSManeuverEntity"),
@@ -711,7 +737,8 @@ pub static SERVERSPLITSMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSpinDescentManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -733,12 +760,15 @@ impl super::entity::EntityBusPeerTrait for ServerSpinDescentManeuverEntity {
 
 pub static SERVERSPINDESCENTMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSpinDescentManeuverEntity",
+    name_hash: 1170004482,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSpinDescentManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSpinDescentManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSpinDescentManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -768,6 +798,7 @@ impl TypeObject for ServerSpinDescentManeuverEntity {
 
 pub static SERVERSPINDESCENTMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSpinDescentManeuverEntity-Array",
+    name_hash: 3099801910,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerSpinDescentManeuverEntity"),
@@ -776,7 +807,8 @@ pub static SERVERSPINDESCENTMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSideToSideManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -798,12 +830,15 @@ impl super::entity::EntityBusPeerTrait for ServerSideToSideManeuverEntity {
 
 pub static SERVERSIDETOSIDEMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSideToSideManeuverEntity",
+    name_hash: 2209742163,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSideToSideManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSideToSideManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSideToSideManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -833,6 +868,7 @@ impl TypeObject for ServerSideToSideManeuverEntity {
 
 pub static SERVERSIDETOSIDEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSideToSideManeuverEntity-Array",
+    name_hash: 3304286311,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerSideToSideManeuverEntity"),
@@ -841,7 +877,8 @@ pub static SERVERSIDETOSIDEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSetWaypointsEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -860,12 +897,15 @@ impl super::entity::EntityBusPeerTrait for ServerSetWaypointsEntity {
 
 pub static SERVERSETWAYPOINTSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSetWaypointsEntity",
+    name_hash: 765247881,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSetWaypointsEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSetWaypointsEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSetWaypointsEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -895,6 +935,7 @@ impl TypeObject for ServerSetWaypointsEntity {
 
 pub static SERVERSETWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSetWaypointsEntity-Array",
+    name_hash: 2054207293,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerSetWaypointsEntity"),
@@ -903,7 +944,8 @@ pub static SERVERSETWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerProtectBaseManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -925,12 +967,15 @@ impl super::entity::EntityBusPeerTrait for ServerProtectBaseManeuverEntity {
 
 pub static SERVERPROTECTBASEMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerProtectBaseManeuverEntity",
+    name_hash: 972076886,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerProtectBaseManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerProtectBaseManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerProtectBaseManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -960,6 +1005,7 @@ impl TypeObject for ServerProtectBaseManeuverEntity {
 
 pub static SERVERPROTECTBASEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerProtectBaseManeuverEntity-Array",
+    name_hash: 106609890,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerProtectBaseManeuverEntity"),
@@ -968,7 +1014,8 @@ pub static SERVERPROTECTBASEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPilotEntityBase {
     pub _glacier_base: super::entity::Entity,
 }
@@ -987,12 +1034,15 @@ impl super::entity::EntityBusPeerTrait for ServerPilotEntityBase {
 
 pub static SERVERPILOTENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPilotEntityBase",
+    name_hash: 2160224096,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPilotEntityBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPilotEntityBase as Default>::default())),
+            create_boxed: || Box::new(<ServerPilotEntityBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1022,6 +1072,7 @@ impl TypeObject for ServerPilotEntityBase {
 
 pub static SERVERPILOTENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPilotEntityBase-Array",
+    name_hash: 3854359892,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerPilotEntityBase"),
@@ -1030,7 +1081,8 @@ pub static SERVERPILOTENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPilotEntity {
     pub _glacier_base: ServerPilotEntityBase,
 }
@@ -1052,12 +1104,15 @@ impl super::entity::EntityBusPeerTrait for ServerPilotEntity {
 
 pub static SERVERPILOTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPilotEntity",
+    name_hash: 2087056757,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERPILOTENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPilotEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPilotEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerPilotEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1087,6 +1142,7 @@ impl TypeObject for ServerPilotEntity {
 
 pub static SERVERPILOTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPilotEntity-Array",
+    name_hash: 1964041793,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerPilotEntity"),
@@ -1095,7 +1151,8 @@ pub static SERVERPILOTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerManeuverSelectorEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -1117,12 +1174,15 @@ impl super::entity::EntityBusPeerTrait for ServerManeuverSelectorEntity {
 
 pub static SERVERMANEUVERSELECTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerManeuverSelectorEntity",
+    name_hash: 2313391613,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerManeuverSelectorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerManeuverSelectorEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerManeuverSelectorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1152,6 +1212,7 @@ impl TypeObject for ServerManeuverSelectorEntity {
 
 pub static SERVERMANEUVERSELECTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerManeuverSelectorEntity-Array",
+    name_hash: 1073625801,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerManeuverSelectorEntity"),
@@ -1160,7 +1221,8 @@ pub static SERVERMANEUVERSELECTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerImmelmannManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -1182,12 +1244,15 @@ impl super::entity::EntityBusPeerTrait for ServerImmelmannManeuverEntity {
 
 pub static SERVERIMMELMANNMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerImmelmannManeuverEntity",
+    name_hash: 1688239876,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerImmelmannManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerImmelmannManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerImmelmannManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1217,6 +1282,7 @@ impl TypeObject for ServerImmelmannManeuverEntity {
 
 pub static SERVERIMMELMANNMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerImmelmannManeuverEntity-Array",
+    name_hash: 111285040,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerImmelmannManeuverEntity"),
@@ -1225,7 +1291,8 @@ pub static SERVERIMMELMANNMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerHeavyPlanePilotEntity {
     pub _glacier_base: ServerPilotEntity,
 }
@@ -1250,12 +1317,15 @@ impl super::entity::EntityBusPeerTrait for ServerHeavyPlanePilotEntity {
 
 pub static SERVERHEAVYPLANEPILOTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerHeavyPlanePilotEntity",
+    name_hash: 392411776,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERPILOTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerHeavyPlanePilotEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerHeavyPlanePilotEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerHeavyPlanePilotEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1285,6 +1355,7 @@ impl TypeObject for ServerHeavyPlanePilotEntity {
 
 pub static SERVERHEAVYPLANEPILOTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerHeavyPlanePilotEntity-Array",
+    name_hash: 2273591476,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerHeavyPlanePilotEntity"),
@@ -1293,7 +1364,8 @@ pub static SERVERHEAVYPLANEPILOTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerFollowWaypointsManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -1315,12 +1387,15 @@ impl super::entity::EntityBusPeerTrait for ServerFollowWaypointsManeuverEntity {
 
 pub static SERVERFOLLOWWAYPOINTSMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFollowWaypointsManeuverEntity",
+    name_hash: 259300681,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerFollowWaypointsManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerFollowWaypointsManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerFollowWaypointsManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1350,6 +1425,7 @@ impl TypeObject for ServerFollowWaypointsManeuverEntity {
 
 pub static SERVERFOLLOWWAYPOINTSMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFollowWaypointsManeuverEntity-Array",
+    name_hash: 3865731965,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerFollowWaypointsManeuverEntity"),
@@ -1358,7 +1434,8 @@ pub static SERVERFOLLOWWAYPOINTSMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerFlyToManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -1380,12 +1457,15 @@ impl super::entity::EntityBusPeerTrait for ServerFlyToManeuverEntity {
 
 pub static SERVERFLYTOMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFlyToManeuverEntity",
+    name_hash: 2415273792,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerFlyToManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerFlyToManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerFlyToManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1415,6 +1495,7 @@ impl TypeObject for ServerFlyToManeuverEntity {
 
 pub static SERVERFLYTOMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFlyToManeuverEntity-Array",
+    name_hash: 4222172660,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerFlyToManeuverEntity"),
@@ -1423,7 +1504,8 @@ pub static SERVERFLYTOMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerEnforceAltitudeManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -1445,12 +1527,15 @@ impl super::entity::EntityBusPeerTrait for ServerEnforceAltitudeManeuverEntity {
 
 pub static SERVERENFORCEALTITUDEMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerEnforceAltitudeManeuverEntity",
+    name_hash: 1535128878,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerEnforceAltitudeManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerEnforceAltitudeManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerEnforceAltitudeManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1480,6 +1565,7 @@ impl TypeObject for ServerEnforceAltitudeManeuverEntity {
 
 pub static SERVERENFORCEALTITUDEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerEnforceAltitudeManeuverEntity-Array",
+    name_hash: 1061780890,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerEnforceAltitudeManeuverEntity"),
@@ -1488,7 +1574,8 @@ pub static SERVERENFORCEALTITUDEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDogFightManeuverEntityBase {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1507,12 +1594,15 @@ impl super::entity::EntityBusPeerTrait for ServerDogFightManeuverEntityBase {
 
 pub static SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDogFightManeuverEntityBase",
+    name_hash: 1418785765,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDogFightManeuverEntityBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDogFightManeuverEntityBase as Default>::default())),
+            create_boxed: || Box::new(<ServerDogFightManeuverEntityBase as Default>::default()),
         },
         fields: &[
         ],
@@ -1542,6 +1632,7 @@ impl TypeObject for ServerDogFightManeuverEntityBase {
 
 pub static SERVERDOGFIGHTMANEUVERENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDogFightManeuverEntityBase-Array",
+    name_hash: 982383825,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerDogFightManeuverEntityBase"),
@@ -1550,7 +1641,8 @@ pub static SERVERDOGFIGHTMANEUVERENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDogFightingEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1569,12 +1661,15 @@ impl super::entity::EntityBusPeerTrait for ServerDogFightingEntity {
 
 pub static SERVERDOGFIGHTINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDogFightingEntity",
+    name_hash: 3053015171,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDogFightingEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDogFightingEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerDogFightingEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1604,6 +1699,7 @@ impl TypeObject for ServerDogFightingEntity {
 
 pub static SERVERDOGFIGHTINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDogFightingEntity-Array",
+    name_hash: 4151681847,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerDogFightingEntity"),
@@ -1612,7 +1708,8 @@ pub static SERVERDOGFIGHTINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDefensiveManeuverSelectorEntity {
     pub _glacier_base: ServerManeuverSelectorEntity,
 }
@@ -1637,12 +1734,15 @@ impl super::entity::EntityBusPeerTrait for ServerDefensiveManeuverSelectorEntity
 
 pub static SERVERDEFENSIVEMANEUVERSELECTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDefensiveManeuverSelectorEntity",
+    name_hash: 1643475160,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERMANEUVERSELECTORENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDefensiveManeuverSelectorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDefensiveManeuverSelectorEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerDefensiveManeuverSelectorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1672,6 +1772,7 @@ impl TypeObject for ServerDefensiveManeuverSelectorEntity {
 
 pub static SERVERDEFENSIVEMANEUVERSELECTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDefensiveManeuverSelectorEntity-Array",
+    name_hash: 4218145644,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerDefensiveManeuverSelectorEntity"),
@@ -1680,7 +1781,8 @@ pub static SERVERDEFENSIVEMANEUVERSELECTORENTITY_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCreateDistanceManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -1702,12 +1804,15 @@ impl super::entity::EntityBusPeerTrait for ServerCreateDistanceManeuverEntity {
 
 pub static SERVERCREATEDISTANCEMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreateDistanceManeuverEntity",
+    name_hash: 2126358863,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCreateDistanceManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCreateDistanceManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCreateDistanceManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1737,6 +1842,7 @@ impl TypeObject for ServerCreateDistanceManeuverEntity {
 
 pub static SERVERCREATEDISTANCEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCreateDistanceManeuverEntity-Array",
+    name_hash: 1580750459,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerCreateDistanceManeuverEntity"),
@@ -1745,7 +1851,8 @@ pub static SERVERCREATEDISTANCEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCollisionAvoidanceManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -1767,12 +1874,15 @@ impl super::entity::EntityBusPeerTrait for ServerCollisionAvoidanceManeuverEntit
 
 pub static SERVERCOLLISIONAVOIDANCEMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCollisionAvoidanceManeuverEntity",
+    name_hash: 1885496490,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCollisionAvoidanceManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCollisionAvoidanceManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCollisionAvoidanceManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1802,6 +1912,7 @@ impl TypeObject for ServerCollisionAvoidanceManeuverEntity {
 
 pub static SERVERCOLLISIONAVOIDANCEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCollisionAvoidanceManeuverEntity-Array",
+    name_hash: 1118936862,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerCollisionAvoidanceManeuverEntity"),
@@ -1810,7 +1921,8 @@ pub static SERVERCOLLISIONAVOIDANCEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerBasicDefensiveManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -1832,12 +1944,15 @@ impl super::entity::EntityBusPeerTrait for ServerBasicDefensiveManeuverEntity {
 
 pub static SERVERBASICDEFENSIVEMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBasicDefensiveManeuverEntity",
+    name_hash: 1415605207,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerBasicDefensiveManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerBasicDefensiveManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerBasicDefensiveManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1867,6 +1982,7 @@ impl TypeObject for ServerBasicDefensiveManeuverEntity {
 
 pub static SERVERBASICDEFENSIVEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBasicDefensiveManeuverEntity-Array",
+    name_hash: 295068899,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerBasicDefensiveManeuverEntity"),
@@ -1875,7 +1991,8 @@ pub static SERVERBASICDEFENSIVEMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerBasicAttackManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -1897,12 +2014,15 @@ impl super::entity::EntityBusPeerTrait for ServerBasicAttackManeuverEntity {
 
 pub static SERVERBASICATTACKMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBasicAttackManeuverEntity",
+    name_hash: 2022326490,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerBasicAttackManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerBasicAttackManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerBasicAttackManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1932,6 +2052,7 @@ impl TypeObject for ServerBasicAttackManeuverEntity {
 
 pub static SERVERBASICATTACKMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBasicAttackManeuverEntity-Array",
+    name_hash: 2627015790,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerBasicAttackManeuverEntity"),
@@ -1940,7 +2061,8 @@ pub static SERVERBASICATTACKMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerBarrelRollManeuverEntity {
     pub _glacier_base: ServerDogFightManeuverEntityBase,
 }
@@ -1962,12 +2084,15 @@ impl super::entity::EntityBusPeerTrait for ServerBarrelRollManeuverEntity {
 
 pub static SERVERBARRELROLLMANEUVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBarrelRollManeuverEntity",
+    name_hash: 2415372703,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTMANEUVERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerBarrelRollManeuverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerBarrelRollManeuverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerBarrelRollManeuverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1997,6 +2122,7 @@ impl TypeObject for ServerBarrelRollManeuverEntity {
 
 pub static SERVERBARRELROLLMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerBarrelRollManeuverEntity-Array",
+    name_hash: 174362155,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerBarrelRollManeuverEntity"),
@@ -2005,7 +2131,8 @@ pub static SERVERBARRELROLLMANEUVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAirTargetSelectorEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2024,12 +2151,15 @@ impl super::entity::EntityBusPeerTrait for ServerAirTargetSelectorEntity {
 
 pub static SERVERAIRTARGETSELECTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAirTargetSelectorEntity",
+    name_hash: 1157061125,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAirTargetSelectorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAirTargetSelectorEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAirTargetSelectorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2059,6 +2189,7 @@ impl TypeObject for ServerAirTargetSelectorEntity {
 
 pub static SERVERAIRTARGETSELECTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAirTargetSelectorEntity-Array",
+    name_hash: 490471857,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAirTargetSelectorEntity"),
@@ -2067,7 +2198,8 @@ pub static SERVERAIRTARGETSELECTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAirCollisionAvoidanceEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2086,12 +2218,15 @@ impl super::entity::EntityBusPeerTrait for ServerAirCollisionAvoidanceEntity {
 
 pub static SERVERAIRCOLLISIONAVOIDANCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAirCollisionAvoidanceEntity",
+    name_hash: 2831267907,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAirCollisionAvoidanceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAirCollisionAvoidanceEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAirCollisionAvoidanceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2121,6 +2256,7 @@ impl TypeObject for ServerAirCollisionAvoidanceEntity {
 
 pub static SERVERAIRCOLLISIONAVOIDANCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAirCollisionAvoidanceEntity-Array",
+    name_hash: 1091345271,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAirCollisionAvoidanceEntity"),
@@ -2129,7 +2265,8 @@ pub static SERVERAIRCOLLISIONAVOIDANCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BFServerDogFightingEntity {
     pub _glacier_base: ServerDogFightingEntity,
 }
@@ -2151,12 +2288,15 @@ impl super::entity::EntityBusPeerTrait for BFServerDogFightingEntity {
 
 pub static BFSERVERDOGFIGHTINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BFServerDogFightingEntity",
+    name_hash: 3849596551,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERDOGFIGHTINGENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BFServerDogFightingEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BFServerDogFightingEntity as Default>::default())),
+            create_boxed: || Box::new(<BFServerDogFightingEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2186,6 +2326,7 @@ impl TypeObject for BFServerDogFightingEntity {
 
 pub static BFSERVERDOGFIGHTINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BFServerDogFightingEntity-Array",
+    name_hash: 2086580019,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("BFServerDogFightingEntity"),
@@ -2194,7 +2335,8 @@ pub static BFSERVERDOGFIGHTINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWaypointsWalkerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2213,12 +2355,15 @@ impl super::entity::EntityBusPeerTrait for ServerWaypointsWalkerEntity {
 
 pub static SERVERWAYPOINTSWALKERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWaypointsWalkerEntity",
+    name_hash: 3195625741,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerWaypointsWalkerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWaypointsWalkerEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerWaypointsWalkerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2248,6 +2393,7 @@ impl TypeObject for ServerWaypointsWalkerEntity {
 
 pub static SERVERWAYPOINTSWALKERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWaypointsWalkerEntity-Array",
+    name_hash: 1248240825,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerWaypointsWalkerEntity"),
@@ -2256,7 +2402,8 @@ pub static SERVERWAYPOINTSWALKERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIProximityReactionsComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -2281,12 +2428,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIProximityReactionsComponent {
 
 pub static SERVERAIPROXIMITYREACTIONSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIProximityReactionsComponent",
+    name_hash: 3258031592,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIProximityReactionsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIProximityReactionsComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAIProximityReactionsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -2316,6 +2466,7 @@ impl TypeObject for ServerAIProximityReactionsComponent {
 
 pub static SERVERAIPROXIMITYREACTIONSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIProximityReactionsComponent-Array",
+    name_hash: 3336196060,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIProximityReactionsComponent"),
@@ -2324,7 +2475,8 @@ pub static SERVERAIPROXIMITYREACTIONSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAILocoComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -2349,12 +2501,15 @@ impl super::entity::EntityBusPeerTrait for ServerAILocoComponent {
 
 pub static SERVERAILOCOCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAILocoComponent",
+    name_hash: 2192276872,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAILocoComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAILocoComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAILocoComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -2384,6 +2539,7 @@ impl TypeObject for ServerAILocoComponent {
 
 pub static SERVERAILOCOCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAILocoComponent-Array",
+    name_hash: 3939606460,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAILocoComponent"),
@@ -2392,7 +2548,8 @@ pub static SERVERAILOCOCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AIBlockerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2411,12 +2568,15 @@ impl super::entity::EntityBusPeerTrait for AIBlockerEntity {
 
 pub static AIBLOCKERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIBlockerEntity",
+    name_hash: 2489186440,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(AIBlockerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AIBlockerEntity as Default>::default())),
+            create_boxed: || Box::new(<AIBlockerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2446,6 +2606,7 @@ impl TypeObject for AIBlockerEntity {
 
 pub static AIBLOCKERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIBlockerEntity-Array",
+    name_hash: 892623548,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AIBlockerEntity"),
@@ -2454,7 +2615,8 @@ pub static AIBLOCKERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAIProximityReactionsComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -2479,12 +2641,15 @@ impl super::entity::EntityBusPeerTrait for ClientAIProximityReactionsComponent {
 
 pub static CLIENTAIPROXIMITYREACTIONSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIProximityReactionsComponent",
+    name_hash: 2147857332,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAIProximityReactionsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAIProximityReactionsComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientAIProximityReactionsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -2514,6 +2679,7 @@ impl TypeObject for ClientAIProximityReactionsComponent {
 
 pub static CLIENTAIPROXIMITYREACTIONSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIProximityReactionsComponent-Array",
+    name_hash: 2372849408,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientAIProximityReactionsComponent"),
@@ -2522,7 +2688,8 @@ pub static CLIENTAIPROXIMITYREACTIONSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAILocoComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -2547,12 +2714,15 @@ impl super::entity::EntityBusPeerTrait for ClientAILocoComponent {
 
 pub static CLIENTAILOCOCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAILocoComponent",
+    name_hash: 3887527252,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAILocoComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAILocoComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientAILocoComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -2582,6 +2752,7 @@ impl TypeObject for ClientAILocoComponent {
 
 pub static CLIENTAILOCOCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAILocoComponent-Array",
+    name_hash: 1897857504,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientAILocoComponent"),
@@ -2590,7 +2761,8 @@ pub static CLIENTAILOCOCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpatialAnalyzer {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2609,12 +2781,15 @@ impl super::entity::EntityBusPeerTrait for SpatialAnalyzer {
 
 pub static SPATIALANALYZER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialAnalyzer",
+    name_hash: 881208737,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SpatialAnalyzer, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpatialAnalyzer as Default>::default())),
+            create_boxed: || Box::new(<SpatialAnalyzer as Default>::default()),
         },
         fields: &[
         ],
@@ -2644,6 +2819,7 @@ impl TypeObject for SpatialAnalyzer {
 
 pub static SPATIALANALYZER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialAnalyzer-Array",
+    name_hash: 3337066517,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("SpatialAnalyzer"),
@@ -2652,7 +2828,8 @@ pub static SPATIALANALYZER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPlayerVehicleProximityEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2671,12 +2848,15 @@ impl super::entity::EntityBusPeerTrait for ServerPlayerVehicleProximityEntity {
 
 pub static SERVERPLAYERVEHICLEPROXIMITYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerVehicleProximityEntity",
+    name_hash: 3314078757,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPlayerVehicleProximityEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPlayerVehicleProximityEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerPlayerVehicleProximityEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2706,6 +2886,7 @@ impl TypeObject for ServerPlayerVehicleProximityEntity {
 
 pub static SERVERPLAYERVEHICLEPROXIMITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPlayerVehicleProximityEntity-Array",
+    name_hash: 1932315793,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerPlayerVehicleProximityEntity"),
@@ -2714,7 +2895,8 @@ pub static SERVERPLAYERVEHICLEPROXIMITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerInvestigateSettingsOverride {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2733,12 +2915,15 @@ impl super::entity::EntityBusPeerTrait for ServerInvestigateSettingsOverride {
 
 pub static SERVERINVESTIGATESETTINGSOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerInvestigateSettingsOverride",
+    name_hash: 1655542428,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerInvestigateSettingsOverride, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerInvestigateSettingsOverride as Default>::default())),
+            create_boxed: || Box::new(<ServerInvestigateSettingsOverride as Default>::default()),
         },
         fields: &[
         ],
@@ -2768,6 +2953,7 @@ impl TypeObject for ServerInvestigateSettingsOverride {
 
 pub static SERVERINVESTIGATESETTINGSOVERRIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerInvestigateSettingsOverride-Array",
+    name_hash: 3156339368,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerInvestigateSettingsOverride"),
@@ -2776,7 +2962,8 @@ pub static SERVERINVESTIGATESETTINGSOVERRIDE_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDamageModifierEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2795,12 +2982,15 @@ impl super::entity::EntityBusPeerTrait for ServerDamageModifierEntity {
 
 pub static SERVERDAMAGEMODIFIERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDamageModifierEntity",
+    name_hash: 1320489767,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDamageModifierEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDamageModifierEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerDamageModifierEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2830,6 +3020,7 @@ impl TypeObject for ServerDamageModifierEntity {
 
 pub static SERVERDAMAGEMODIFIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDamageModifierEntity-Array",
+    name_hash: 1552204947,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerDamageModifierEntity"),
@@ -2838,7 +3029,8 @@ pub static SERVERDAMAGEMODIFIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAttackPointEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2857,12 +3049,15 @@ impl super::entity::EntityBusPeerTrait for ServerAttackPointEntity {
 
 pub static SERVERATTACKPOINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAttackPointEntity",
+    name_hash: 3043835647,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAttackPointEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAttackPointEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAttackPointEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2892,6 +3087,7 @@ impl TypeObject for ServerAttackPointEntity {
 
 pub static SERVERATTACKPOINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAttackPointEntity-Array",
+    name_hash: 3421824203,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAttackPointEntity"),
@@ -2900,7 +3096,8 @@ pub static SERVERATTACKPOINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIVehicleCombatEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2919,12 +3116,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIVehicleCombatEntity {
 
 pub static SERVERAIVEHICLECOMBATENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIVehicleCombatEntity",
+    name_hash: 1627398877,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIVehicleCombatEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIVehicleCombatEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIVehicleCombatEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -2954,6 +3154,7 @@ impl TypeObject for ServerAIVehicleCombatEntity {
 
 pub static SERVERAIVEHICLECOMBATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIVehicleCombatEntity-Array",
+    name_hash: 1672904425,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIVehicleCombatEntity"),
@@ -2962,7 +3163,8 @@ pub static SERVERAIVEHICLECOMBATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAITemplateFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -2981,12 +3183,15 @@ impl super::entity::EntityBusPeerTrait for ServerAITemplateFilterEntity {
 
 pub static SERVERAITEMPLATEFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITemplateFilterEntity",
+    name_hash: 1971847811,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAITemplateFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAITemplateFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAITemplateFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3016,6 +3221,7 @@ impl TypeObject for ServerAITemplateFilterEntity {
 
 pub static SERVERAITEMPLATEFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITemplateFilterEntity-Array",
+    name_hash: 2814498103,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAITemplateFilterEntity"),
@@ -3024,7 +3230,8 @@ pub static SERVERAITEMPLATEFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAITeleportEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3043,12 +3250,15 @@ impl super::entity::EntityBusPeerTrait for ServerAITeleportEntity {
 
 pub static SERVERAITELEPORTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITeleportEntity",
+    name_hash: 834920050,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAITeleportEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAITeleportEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAITeleportEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3078,6 +3288,7 @@ impl TypeObject for ServerAITeleportEntity {
 
 pub static SERVERAITELEPORTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITeleportEntity-Array",
+    name_hash: 1325045062,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAITeleportEntity"),
@@ -3086,7 +3297,8 @@ pub static SERVERAITELEPORTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAISystemEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3105,12 +3317,15 @@ impl super::entity::EntityBusPeerTrait for ServerAISystemEntity {
 
 pub static SERVERAISYSTEMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISystemEntity",
+    name_hash: 152683094,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAISystemEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAISystemEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAISystemEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3140,6 +3355,7 @@ impl TypeObject for ServerAISystemEntity {
 
 pub static SERVERAISYSTEMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISystemEntity-Array",
+    name_hash: 2430601186,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAISystemEntity"),
@@ -3148,7 +3364,8 @@ pub static SERVERAISYSTEMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIStateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3167,12 +3384,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIStateEntity {
 
 pub static SERVERAISTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIStateEntity",
+    name_hash: 2610997124,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3202,6 +3422,7 @@ impl TypeObject for ServerAIStateEntity {
 
 pub static SERVERAISTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIStateEntity-Array",
+    name_hash: 339647408,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIStateEntity"),
@@ -3210,7 +3431,8 @@ pub static SERVERAISTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAISoundEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3229,12 +3451,15 @@ impl super::entity::EntityBusPeerTrait for ServerAISoundEntity {
 
 pub static SERVERAISOUNDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISoundEntity",
+    name_hash: 2844426480,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAISoundEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAISoundEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAISoundEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3264,6 +3489,7 @@ impl TypeObject for ServerAISoundEntity {
 
 pub static SERVERAISOUNDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISoundEntity-Array",
+    name_hash: 1092935364,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAISoundEntity"),
@@ -3272,7 +3498,8 @@ pub static SERVERAISOUNDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAICancelOrder {
     pub _glacier_base: ServerAIOrderEntityBase,
 }
@@ -3294,12 +3521,15 @@ impl super::entity::EntityBusPeerTrait for ServerAICancelOrder {
 
 pub static SERVERAICANCELORDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICancelOrder",
+    name_hash: 809233344,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIORDERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAICancelOrder, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAICancelOrder as Default>::default())),
+            create_boxed: || Box::new(<ServerAICancelOrder as Default>::default()),
         },
         fields: &[
         ],
@@ -3329,6 +3559,7 @@ impl TypeObject for ServerAICancelOrder {
 
 pub static SERVERAICANCELORDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICancelOrder-Array",
+    name_hash: 256926324,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAICancelOrder"),
@@ -3337,7 +3568,8 @@ pub static SERVERAICANCELORDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIGotoPlaceOrderEntityData {
     pub _glacier_base: ServerAIOrderEntityBase,
 }
@@ -3359,12 +3591,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIGotoPlaceOrderEntityData {
 
 pub static SERVERAIGOTOPLACEORDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIGotoPlaceOrderEntityData",
+    name_hash: 3987577029,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIORDERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIGotoPlaceOrderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIGotoPlaceOrderEntityData as Default>::default())),
+            create_boxed: || Box::new(<ServerAIGotoPlaceOrderEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -3394,6 +3629,7 @@ impl TypeObject for ServerAIGotoPlaceOrderEntityData {
 
 pub static SERVERAIGOTOPLACEORDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIGotoPlaceOrderEntityData-Array",
+    name_hash: 1142051057,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIGotoPlaceOrderEntityData"),
@@ -3402,7 +3638,8 @@ pub static SERVERAIGOTOPLACEORDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIFollowWaypointsOrder {
     pub _glacier_base: ServerAIOrderEntityBase,
 }
@@ -3424,12 +3661,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIFollowWaypointsOrder {
 
 pub static SERVERAIFOLLOWWAYPOINTSORDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFollowWaypointsOrder",
+    name_hash: 1217672551,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIORDERENTITYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIFollowWaypointsOrder, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIFollowWaypointsOrder as Default>::default())),
+            create_boxed: || Box::new(<ServerAIFollowWaypointsOrder as Default>::default()),
         },
         fields: &[
         ],
@@ -3459,6 +3699,7 @@ impl TypeObject for ServerAIFollowWaypointsOrder {
 
 pub static SERVERAIFOLLOWWAYPOINTSORDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFollowWaypointsOrder-Array",
+    name_hash: 2231932755,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIFollowWaypointsOrder"),
@@ -3467,7 +3708,8 @@ pub static SERVERAIFOLLOWWAYPOINTSORDER_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIOrderEntityBase {
     pub _glacier_base: super::entity::Entity,
 }
@@ -3486,12 +3728,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIOrderEntityBase {
 
 pub static SERVERAIORDERENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIOrderEntityBase",
+    name_hash: 3747142952,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIOrderEntityBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIOrderEntityBase as Default>::default())),
+            create_boxed: || Box::new(<ServerAIOrderEntityBase as Default>::default()),
         },
         fields: &[
         ],
@@ -3521,6 +3766,7 @@ impl TypeObject for ServerAIOrderEntityBase {
 
 pub static SERVERAIORDERENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIOrderEntityBase-Array",
+    name_hash: 3246915228,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIOrderEntityBase"),
@@ -3529,7 +3775,8 @@ pub static SERVERAIORDERENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAISelfDestructEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -3551,12 +3798,15 @@ impl super::entity::EntityBusPeerTrait for ServerAISelfDestructEntity {
 
 pub static SERVERAISELFDESTRUCTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISelfDestructEntity",
+    name_hash: 13496697,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAISelfDestructEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAISelfDestructEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAISelfDestructEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3586,6 +3836,7 @@ impl TypeObject for ServerAISelfDestructEntity {
 
 pub static SERVERAISELFDESTRUCTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISelfDestructEntity-Array",
+    name_hash: 3754266701,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAISelfDestructEntity"),
@@ -3594,7 +3845,8 @@ pub static SERVERAISELFDESTRUCTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAICoverZonesOverrideEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -3616,12 +3868,15 @@ impl super::entity::EntityBusPeerTrait for ServerAICoverZonesOverrideEntity {
 
 pub static SERVERAICOVERZONESOVERRIDEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICoverZonesOverrideEntity",
+    name_hash: 1239062983,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAICoverZonesOverrideEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAICoverZonesOverrideEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAICoverZonesOverrideEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3651,6 +3906,7 @@ impl TypeObject for ServerAICoverZonesOverrideEntity {
 
 pub static SERVERAICOVERZONESOVERRIDEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICoverZonesOverrideEntity-Array",
+    name_hash: 3790097139,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAICoverZonesOverrideEntity"),
@@ -3659,7 +3915,8 @@ pub static SERVERAICOVERZONESOVERRIDEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIAwarenessEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -3681,12 +3938,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIAwarenessEntity {
 
 pub static SERVERAIAWARENESSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIAwarenessEntity",
+    name_hash: 1113139416,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIAwarenessEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIAwarenessEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIAwarenessEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3716,6 +3976,7 @@ impl TypeObject for ServerAIAwarenessEntity {
 
 pub static SERVERAIAWARENESSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIAwarenessEntity-Array",
+    name_hash: 901350252,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIAwarenessEntity"),
@@ -3724,7 +3985,8 @@ pub static SERVERAIAWARENESSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIWeaponSlotOverrideEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -3746,12 +4008,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIWeaponSlotOverrideEntity {
 
 pub static SERVERAIWEAPONSLOTOVERRIDEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIWeaponSlotOverrideEntity",
+    name_hash: 1400704961,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIWeaponSlotOverrideEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIWeaponSlotOverrideEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIWeaponSlotOverrideEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3781,6 +4046,7 @@ impl TypeObject for ServerAIWeaponSlotOverrideEntity {
 
 pub static SERVERAIWEAPONSLOTOVERRIDEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIWeaponSlotOverrideEntity-Array",
+    name_hash: 3122616821,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIWeaponSlotOverrideEntity"),
@@ -3789,7 +4055,8 @@ pub static SERVERAIWEAPONSLOTOVERRIDEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAITargetCoordinatorFilterEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -3811,12 +4078,15 @@ impl super::entity::EntityBusPeerTrait for ServerAITargetCoordinatorFilterEntity
 
 pub static SERVERAITARGETCOORDINATORFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITargetCoordinatorFilterEntity",
+    name_hash: 4201147000,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAITargetCoordinatorFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAITargetCoordinatorFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAITargetCoordinatorFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3846,6 +4116,7 @@ impl TypeObject for ServerAITargetCoordinatorFilterEntity {
 
 pub static SERVERAITARGETCOORDINATORFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITargetCoordinatorFilterEntity-Array",
+    name_hash: 2225816652,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAITargetCoordinatorFilterEntity"),
@@ -3854,7 +4125,8 @@ pub static SERVERAITARGETCOORDINATORFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAITargetCoordinatorEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -3876,12 +4148,15 @@ impl super::entity::EntityBusPeerTrait for ServerAITargetCoordinatorEntity {
 
 pub static SERVERAITARGETCOORDINATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITargetCoordinatorEntity",
+    name_hash: 1736740280,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAITargetCoordinatorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAITargetCoordinatorEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAITargetCoordinatorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3911,6 +4186,7 @@ impl TypeObject for ServerAITargetCoordinatorEntity {
 
 pub static SERVERAITARGETCOORDINATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITargetCoordinatorEntity-Array",
+    name_hash: 3563640588,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAITargetCoordinatorEntity"),
@@ -3919,7 +4195,8 @@ pub static SERVERAITARGETCOORDINATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCloakingModifierEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -3941,12 +4218,15 @@ impl super::entity::EntityBusPeerTrait for ServerCloakingModifierEntity {
 
 pub static SERVERCLOAKINGMODIFIERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCloakingModifierEntity",
+    name_hash: 3763801990,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCloakingModifierEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCloakingModifierEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCloakingModifierEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -3976,6 +4256,7 @@ impl TypeObject for ServerCloakingModifierEntity {
 
 pub static SERVERCLOAKINGMODIFIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCloakingModifierEntity-Array",
+    name_hash: 3419356338,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerCloakingModifierEntity"),
@@ -3984,7 +4265,8 @@ pub static SERVERCLOAKINGMODIFIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerSensingAreaModifierEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4006,12 +4288,15 @@ impl super::entity::EntityBusPeerTrait for ServerSensingAreaModifierEntity {
 
 pub static SERVERSENSINGAREAMODIFIERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSensingAreaModifierEntity",
+    name_hash: 4175337072,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerSensingAreaModifierEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerSensingAreaModifierEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerSensingAreaModifierEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4041,6 +4326,7 @@ impl TypeObject for ServerSensingAreaModifierEntity {
 
 pub static SERVERSENSINGAREAMODIFIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerSensingAreaModifierEntity-Array",
+    name_hash: 3281196100,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerSensingAreaModifierEntity"),
@@ -4049,7 +4335,8 @@ pub static SERVERSENSINGAREAMODIFIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIStealthEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4071,12 +4358,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIStealthEntity {
 
 pub static SERVERAISTEALTHENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIStealthEntity",
+    name_hash: 4138742176,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIStealthEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIStealthEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIStealthEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4106,6 +4396,7 @@ impl TypeObject for ServerAIStealthEntity {
 
 pub static SERVERAISTEALTHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIStealthEntity-Array",
+    name_hash: 346904340,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIStealthEntity"),
@@ -4114,7 +4405,8 @@ pub static SERVERAISTEALTHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIBuddyFollowEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4136,12 +4428,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIBuddyFollowEntity {
 
 pub static SERVERAIBUDDYFOLLOWENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIBuddyFollowEntity",
+    name_hash: 1463307692,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIBuddyFollowEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIBuddyFollowEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIBuddyFollowEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4171,6 +4466,7 @@ impl TypeObject for ServerAIBuddyFollowEntity {
 
 pub static SERVERAIBUDDYFOLLOWENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIBuddyFollowEntity-Array",
+    name_hash: 2107211032,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIBuddyFollowEntity"),
@@ -4179,7 +4475,8 @@ pub static SERVERAIBUDDYFOLLOWENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIFollowObjectEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4201,12 +4498,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIFollowObjectEntity {
 
 pub static SERVERAIFOLLOWOBJECTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFollowObjectEntity",
+    name_hash: 2688242231,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIFollowObjectEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIFollowObjectEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIFollowObjectEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4236,6 +4536,7 @@ impl TypeObject for ServerAIFollowObjectEntity {
 
 pub static SERVERAIFOLLOWOBJECTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFollowObjectEntity-Array",
+    name_hash: 2668694403,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIFollowObjectEntity"),
@@ -4244,7 +4545,8 @@ pub static SERVERAIFOLLOWOBJECTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIPreferredAreaEntity {
     pub _glacier_base: ServerAIParameterWithShapeEntity,
 }
@@ -4269,12 +4571,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIPreferredAreaEntity {
 
 pub static SERVERAIPREFERREDAREAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIPreferredAreaEntity",
+    name_hash: 2254769601,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERWITHSHAPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIPreferredAreaEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIPreferredAreaEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIPreferredAreaEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4304,6 +4609,7 @@ impl TypeObject for ServerAIPreferredAreaEntity {
 
 pub static SERVERAIPREFERREDAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIPreferredAreaEntity-Array",
+    name_hash: 2257442805,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIPreferredAreaEntity"),
@@ -4312,7 +4618,8 @@ pub static SERVERAIPREFERREDAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAISoundAreaEntity {
     pub _glacier_base: ServerAIParameterWithShapeEntity,
 }
@@ -4337,12 +4644,15 @@ impl super::entity::EntityBusPeerTrait for ServerAISoundAreaEntity {
 
 pub static SERVERAISOUNDAREAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISoundAreaEntity",
+    name_hash: 3192857159,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERWITHSHAPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAISoundAreaEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAISoundAreaEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAISoundAreaEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4372,6 +4682,7 @@ impl TypeObject for ServerAISoundAreaEntity {
 
 pub static SERVERAISOUNDAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISoundAreaEntity-Array",
+    name_hash: 1254175603,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAISoundAreaEntity"),
@@ -4380,7 +4691,8 @@ pub static SERVERAISOUNDAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAICombatGroupEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4402,12 +4714,15 @@ impl super::entity::EntityBusPeerTrait for ServerAICombatGroupEntity {
 
 pub static SERVERAICOMBATGROUPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICombatGroupEntity",
+    name_hash: 848373498,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAICombatGroupEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAICombatGroupEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAICombatGroupEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4437,6 +4752,7 @@ impl TypeObject for ServerAICombatGroupEntity {
 
 pub static SERVERAICOMBATGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICombatGroupEntity-Array",
+    name_hash: 373004750,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAICombatGroupEntity"),
@@ -4445,7 +4761,8 @@ pub static SERVERAICOMBATGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAICoverQueryEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4467,12 +4784,15 @@ impl super::entity::EntityBusPeerTrait for ServerAICoverQueryEntity {
 
 pub static SERVERAICOVERQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICoverQueryEntity",
+    name_hash: 332724564,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAICoverQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAICoverQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAICoverQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4502,6 +4822,7 @@ impl TypeObject for ServerAICoverQueryEntity {
 
 pub static SERVERAICOVERQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICoverQueryEntity-Array",
+    name_hash: 2762999264,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAICoverQueryEntity"),
@@ -4510,7 +4831,8 @@ pub static SERVERAICOVERQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAITacticEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4532,12 +4854,15 @@ impl super::entity::EntityBusPeerTrait for ServerAITacticEntity {
 
 pub static SERVERAITACTICENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITacticEntity",
+    name_hash: 2480823547,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAITacticEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAITacticEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAITacticEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4567,6 +4892,7 @@ impl TypeObject for ServerAITacticEntity {
 
 pub static SERVERAITACTICENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITacticEntity-Array",
+    name_hash: 755291343,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAITacticEntity"),
@@ -4575,7 +4901,8 @@ pub static SERVERAITACTICENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIShootAtTargetsEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4597,12 +4924,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIShootAtTargetsEntity {
 
 pub static SERVERAISHOOTATTARGETSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIShootAtTargetsEntity",
+    name_hash: 2855305451,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIShootAtTargetsEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIShootAtTargetsEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIShootAtTargetsEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4632,6 +4962,7 @@ impl TypeObject for ServerAIShootAtTargetsEntity {
 
 pub static SERVERAISHOOTATTARGETSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIShootAtTargetsEntity-Array",
+    name_hash: 2580492511,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIShootAtTargetsEntity"),
@@ -4640,7 +4971,8 @@ pub static SERVERAISHOOTATTARGETSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIUseWaypointsEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4662,12 +4994,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIUseWaypointsEntity {
 
 pub static SERVERAIUSEWAYPOINTSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIUseWaypointsEntity",
+    name_hash: 2752478720,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIUseWaypointsEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIUseWaypointsEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIUseWaypointsEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4697,6 +5032,7 @@ impl TypeObject for ServerAIUseWaypointsEntity {
 
 pub static SERVERAIUSEWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIUseWaypointsEntity-Array",
+    name_hash: 3251938356,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIUseWaypointsEntity"),
@@ -4705,7 +5041,8 @@ pub static SERVERAIUSEWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIUseCoverEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4727,12 +5064,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIUseCoverEntity {
 
 pub static SERVERAIUSECOVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIUseCoverEntity",
+    name_hash: 2100500317,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIUseCoverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIUseCoverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIUseCoverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4762,6 +5102,7 @@ impl TypeObject for ServerAIUseCoverEntity {
 
 pub static SERVERAIUSECOVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIUseCoverEntity-Array",
+    name_hash: 1550766953,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIUseCoverEntity"),
@@ -4770,7 +5111,8 @@ pub static SERVERAIUSECOVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIWeaponOverrideEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4792,12 +5134,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIWeaponOverrideEntity {
 
 pub static SERVERAIWEAPONOVERRIDEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIWeaponOverrideEntity",
+    name_hash: 3086974245,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIWeaponOverrideEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIWeaponOverrideEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIWeaponOverrideEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4827,6 +5172,7 @@ impl TypeObject for ServerAIWeaponOverrideEntity {
 
 pub static SERVERAIWEAPONOVERRIDEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIWeaponOverrideEntity-Array",
+    name_hash: 406730129,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIWeaponOverrideEntity"),
@@ -4835,7 +5181,8 @@ pub static SERVERAIWEAPONOVERRIDEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIVehicleBehaviorEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4857,12 +5204,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIVehicleBehaviorEntity {
 
 pub static SERVERAIVEHICLEBEHAVIORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIVehicleBehaviorEntity",
+    name_hash: 3162182279,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIVehicleBehaviorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIVehicleBehaviorEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIVehicleBehaviorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4892,6 +5242,7 @@ impl TypeObject for ServerAIVehicleBehaviorEntity {
 
 pub static SERVERAIVEHICLEBEHAVIORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIVehicleBehaviorEntity-Array",
+    name_hash: 3724579635,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIVehicleBehaviorEntity"),
@@ -4900,7 +5251,8 @@ pub static SERVERAIVEHICLEBEHAVIORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIHearingParameterEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4922,12 +5274,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIHearingParameterEntity {
 
 pub static SERVERAIHEARINGPARAMETERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIHearingParameterEntity",
+    name_hash: 2765600164,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIHearingParameterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIHearingParameterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIHearingParameterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4957,6 +5312,7 @@ impl TypeObject for ServerAIHearingParameterEntity {
 
 pub static SERVERAIHEARINGPARAMETERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIHearingParameterEntity-Array",
+    name_hash: 2896660752,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIHearingParameterEntity"),
@@ -4965,7 +5321,8 @@ pub static SERVERAIHEARINGPARAMETERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAISensingParameterEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -4987,12 +5344,15 @@ impl super::entity::EntityBusPeerTrait for ServerAISensingParameterEntity {
 
 pub static SERVERAISENSINGPARAMETERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISensingParameterEntity",
+    name_hash: 3322406257,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAISensingParameterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAISensingParameterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAISensingParameterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5022,6 +5382,7 @@ impl TypeObject for ServerAISensingParameterEntity {
 
 pub static SERVERAISENSINGPARAMETERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISensingParameterEntity-Array",
+    name_hash: 723986501,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAISensingParameterEntity"),
@@ -5030,7 +5391,8 @@ pub static SERVERAISENSINGPARAMETERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIIdleBehaviorEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -5052,12 +5414,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIIdleBehaviorEntity {
 
 pub static SERVERAIIDLEBEHAVIORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIIdleBehaviorEntity",
+    name_hash: 2753939035,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIIdleBehaviorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIIdleBehaviorEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIIdleBehaviorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5087,6 +5452,7 @@ impl TypeObject for ServerAIIdleBehaviorEntity {
 
 pub static SERVERAIIDLEBEHAVIORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIIdleBehaviorEntity-Array",
+    name_hash: 4174728559,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIIdleBehaviorEntity"),
@@ -5095,7 +5461,8 @@ pub static SERVERAIIDLEBEHAVIORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAITargetingEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -5117,12 +5484,15 @@ impl super::entity::EntityBusPeerTrait for ServerAITargetingEntity {
 
 pub static SERVERAITARGETINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITargetingEntity",
+    name_hash: 3064010498,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAITargetingEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAITargetingEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAITargetingEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5152,6 +5522,7 @@ impl TypeObject for ServerAITargetingEntity {
 
 pub static SERVERAITARGETINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITargetingEntity-Array",
+    name_hash: 3844159030,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAITargetingEntity"),
@@ -5160,7 +5531,8 @@ pub static SERVERAITARGETINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAICombatBehaviorEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -5182,12 +5554,15 @@ impl super::entity::EntityBusPeerTrait for ServerAICombatBehaviorEntity {
 
 pub static SERVERAICOMBATBEHAVIORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICombatBehaviorEntity",
+    name_hash: 2000993161,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAICombatBehaviorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAICombatBehaviorEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAICombatBehaviorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5217,6 +5592,7 @@ impl TypeObject for ServerAICombatBehaviorEntity {
 
 pub static SERVERAICOMBATBEHAVIORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICombatBehaviorEntity-Array",
+    name_hash: 2225877309,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAICombatBehaviorEntity"),
@@ -5225,7 +5601,8 @@ pub static SERVERAICOMBATBEHAVIORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIFollowAreaEntity {
     pub _glacier_base: ServerAIParameterWithShapeEntity,
 }
@@ -5250,12 +5627,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIFollowAreaEntity {
 
 pub static SERVERAIFOLLOWAREAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFollowAreaEntity",
+    name_hash: 3970292021,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERWITHSHAPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIFollowAreaEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIFollowAreaEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIFollowAreaEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5285,6 +5665,7 @@ impl TypeObject for ServerAIFollowAreaEntity {
 
 pub static SERVERAIFOLLOWAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFollowAreaEntity-Array",
+    name_hash: 1858886017,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIFollowAreaEntity"),
@@ -5293,7 +5674,8 @@ pub static SERVERAIFOLLOWAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIForbiddenAreaEntity {
     pub _glacier_base: ServerAIParameterWithShapeEntity,
 }
@@ -5318,12 +5700,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIForbiddenAreaEntity {
 
 pub static SERVERAIFORBIDDENAREAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIForbiddenAreaEntity",
+    name_hash: 3828152447,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERWITHSHAPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIForbiddenAreaEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIForbiddenAreaEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIForbiddenAreaEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5353,6 +5738,7 @@ impl TypeObject for ServerAIForbiddenAreaEntity {
 
 pub static SERVERAIFORBIDDENAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIForbiddenAreaEntity-Array",
+    name_hash: 553238091,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIForbiddenAreaEntity"),
@@ -5361,7 +5747,8 @@ pub static SERVERAIFORBIDDENAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIFriendlyAreaEntity {
     pub _glacier_base: ServerAIParameterWithShapeEntity,
 }
@@ -5386,12 +5773,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIFriendlyAreaEntity {
 
 pub static SERVERAIFRIENDLYAREAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFriendlyAreaEntity",
+    name_hash: 2552034275,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERWITHSHAPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIFriendlyAreaEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIFriendlyAreaEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIFriendlyAreaEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5421,6 +5811,7 @@ impl TypeObject for ServerAIFriendlyAreaEntity {
 
 pub static SERVERAIFRIENDLYAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFriendlyAreaEntity-Array",
+    name_hash: 1871087575,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIFriendlyAreaEntity"),
@@ -5429,7 +5820,8 @@ pub static SERVERAIFRIENDLYAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIFlankingCorridorEntity {
     pub _glacier_base: ServerAIParameterWithShapeEntity,
 }
@@ -5454,12 +5846,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIFlankingCorridorEntity {
 
 pub static SERVERAIFLANKINGCORRIDORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFlankingCorridorEntity",
+    name_hash: 2066623329,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERWITHSHAPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIFlankingCorridorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIFlankingCorridorEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIFlankingCorridorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5489,6 +5884,7 @@ impl TypeObject for ServerAIFlankingCorridorEntity {
 
 pub static SERVERAIFLANKINGCORRIDORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFlankingCorridorEntity-Array",
+    name_hash: 1104619093,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIFlankingCorridorEntity"),
@@ -5497,7 +5893,8 @@ pub static SERVERAIFLANKINGCORRIDORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAISearchAreaEntity {
     pub _glacier_base: ServerAIParameterWithShapeEntity,
 }
@@ -5522,12 +5919,15 @@ impl super::entity::EntityBusPeerTrait for ServerAISearchAreaEntity {
 
 pub static SERVERAISEARCHAREAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISearchAreaEntity",
+    name_hash: 2377798442,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERWITHSHAPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAISearchAreaEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAISearchAreaEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAISearchAreaEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5557,6 +5957,7 @@ impl TypeObject for ServerAISearchAreaEntity {
 
 pub static SERVERAISEARCHAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISearchAreaEntity-Array",
+    name_hash: 3873598878,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAISearchAreaEntity"),
@@ -5565,7 +5966,8 @@ pub static SERVERAISEARCHAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIDefendAreaEntity {
     pub _glacier_base: ServerAIParameterWithShapeEntity,
 }
@@ -5590,12 +5992,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIDefendAreaEntity {
 
 pub static SERVERAIDEFENDAREAENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIDefendAreaEntity",
+    name_hash: 3981644236,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERWITHSHAPEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIDefendAreaEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIDefendAreaEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIDefendAreaEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5625,6 +6030,7 @@ impl TypeObject for ServerAIDefendAreaEntity {
 
 pub static SERVERAIDEFENDAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIDefendAreaEntity-Array",
+    name_hash: 2322272888,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIDefendAreaEntity"),
@@ -5633,7 +6039,8 @@ pub static SERVERAIDEFENDAREAENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIParameterWithShapeEntity {
     pub _glacier_base: ServerAIParameterEntity,
 }
@@ -5655,12 +6062,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIParameterWithShapeEntity {
 
 pub static SERVERAIPARAMETERWITHSHAPEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIParameterWithShapeEntity",
+    name_hash: 628513975,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SERVERAIPARAMETERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIParameterWithShapeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIParameterWithShapeEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIParameterWithShapeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5690,6 +6100,7 @@ impl TypeObject for ServerAIParameterWithShapeEntity {
 
 pub static SERVERAIPARAMETERWITHSHAPEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIParameterWithShapeEntity-Array",
+    name_hash: 671741443,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIParameterWithShapeEntity"),
@@ -5698,7 +6109,8 @@ pub static SERVERAIPARAMETERWITHSHAPEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIParameterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5717,12 +6129,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIParameterEntity {
 
 pub static SERVERAIPARAMETERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIParameterEntity",
+    name_hash: 2615773850,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIParameterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIParameterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIParameterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5752,6 +6167,7 @@ impl TypeObject for ServerAIParameterEntity {
 
 pub static SERVERAIPARAMETERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIParameterEntity-Array",
+    name_hash: 2565107118,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIParameterEntity"),
@@ -5760,7 +6176,8 @@ pub static SERVERAIPARAMETERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIObstacleControllerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5779,12 +6196,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIObstacleControllerEntity {
 
 pub static SERVERAIOBSTACLECONTROLLERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIObstacleControllerEntity",
+    name_hash: 4016394414,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIObstacleControllerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIObstacleControllerEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIObstacleControllerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5814,6 +6234,7 @@ impl TypeObject for ServerAIObstacleControllerEntity {
 
 pub static SERVERAIOBSTACLECONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIObstacleControllerEntity-Array",
+    name_hash: 1282750746,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIObstacleControllerEntity"),
@@ -5822,7 +6243,8 @@ pub static SERVERAIOBSTACLECONTROLLERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIKillCounterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5841,12 +6263,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIKillCounterEntity {
 
 pub static SERVERAIKILLCOUNTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIKillCounterEntity",
+    name_hash: 1999190213,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIKillCounterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIKillCounterEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIKillCounterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5876,6 +6301,7 @@ impl TypeObject for ServerAIKillCounterEntity {
 
 pub static SERVERAIKILLCOUNTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIKillCounterEntity-Array",
+    name_hash: 600174833,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIKillCounterEntity"),
@@ -5884,7 +6310,8 @@ pub static SERVERAIKILLCOUNTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIFirePatternEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5903,12 +6330,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIFirePatternEntity {
 
 pub static SERVERAIFIREPATTERNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFirePatternEntity",
+    name_hash: 1383893571,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIFirePatternEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIFirePatternEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIFirePatternEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5938,6 +6368,7 @@ impl TypeObject for ServerAIFirePatternEntity {
 
 pub static SERVERAIFIREPATTERNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIFirePatternEntity-Array",
+    name_hash: 337440119,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIFirePatternEntity"),
@@ -5946,7 +6377,8 @@ pub static SERVERAIFIREPATTERNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIEncounterManagerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -5965,12 +6397,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIEncounterManagerEntity {
 
 pub static SERVERAIENCOUNTERMANAGERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIEncounterManagerEntity",
+    name_hash: 67737695,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIEncounterManagerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIEncounterManagerEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerAIEncounterManagerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6000,6 +6435,7 @@ impl TypeObject for ServerAIEncounterManagerEntity {
 
 pub static SERVERAIENCOUNTERMANAGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIEncounterManagerEntity-Array",
+    name_hash: 3725479275,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIEncounterManagerEntity"),
@@ -6008,7 +6444,8 @@ pub static SERVERAIENCOUNTERMANAGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIDebugProxy {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6027,12 +6464,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIDebugProxy {
 
 pub static SERVERAIDEBUGPROXY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIDebugProxy",
+    name_hash: 1467373877,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIDebugProxy, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIDebugProxy as Default>::default())),
+            create_boxed: || Box::new(<ServerAIDebugProxy as Default>::default()),
         },
         fields: &[
         ],
@@ -6062,6 +6502,7 @@ impl TypeObject for ServerAIDebugProxy {
 
 pub static SERVERAIDEBUGPROXY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIDebugProxy-Array",
+    name_hash: 3556563329,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIDebugProxy"),
@@ -6070,7 +6511,8 @@ pub static SERVERAIDEBUGPROXY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6089,12 +6531,15 @@ impl super::entity::EntityBusPeerTrait for ServerActionEntity {
 
 pub static SERVERACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerActionEntity",
+    name_hash: 2173746245,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerActionEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6124,6 +6569,7 @@ impl TypeObject for ServerActionEntity {
 
 pub static SERVERACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerActionEntity-Array",
+    name_hash: 2845971569,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerActionEntity"),
@@ -6132,7 +6578,8 @@ pub static SERVERACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AIConcealmentVolumeEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6151,12 +6598,15 @@ impl super::entity::EntityBusPeerTrait for AIConcealmentVolumeEntity {
 
 pub static AICONCEALMENTVOLUMEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIConcealmentVolumeEntity",
+    name_hash: 4150134405,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(AIConcealmentVolumeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AIConcealmentVolumeEntity as Default>::default())),
+            create_boxed: || Box::new(<AIConcealmentVolumeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6186,6 +6636,7 @@ impl TypeObject for AIConcealmentVolumeEntity {
 
 pub static AICONCEALMENTVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIConcealmentVolumeEntity-Array",
+    name_hash: 571608625,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AIConcealmentVolumeEntity"),
@@ -6194,7 +6645,8 @@ pub static AICONCEALMENTVOLUMEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAITemplateFilterEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6213,12 +6665,15 @@ impl super::entity::EntityBusPeerTrait for ClientAITemplateFilterEntity {
 
 pub static CLIENTAITEMPLATEFILTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAITemplateFilterEntity",
+    name_hash: 3173534559,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAITemplateFilterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAITemplateFilterEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientAITemplateFilterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6248,6 +6703,7 @@ impl TypeObject for ClientAITemplateFilterEntity {
 
 pub static CLIENTAITEMPLATEFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAITemplateFilterEntity-Array",
+    name_hash: 1848066155,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientAITemplateFilterEntity"),
@@ -6256,7 +6712,8 @@ pub static CLIENTAITEMPLATEFILTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAIStateEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6275,12 +6732,15 @@ impl super::entity::EntityBusPeerTrait for ClientAIStateEntity {
 
 pub static CLIENTAISTATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIStateEntity",
+    name_hash: 3823887192,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAIStateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAIStateEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientAIStateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6310,6 +6770,7 @@ impl TypeObject for ClientAIStateEntity {
 
 pub static CLIENTAISTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIStateEntity-Array",
+    name_hash: 2316180972,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientAIStateEntity"),
@@ -6318,7 +6779,8 @@ pub static CLIENTAISTATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAIPhysicsDrivenAnimationEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6337,12 +6799,15 @@ impl super::entity::EntityBusPeerTrait for ClientAIPhysicsDrivenAnimationEntity 
 
 pub static CLIENTAIPHYSICSDRIVENANIMATIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIPhysicsDrivenAnimationEntity",
+    name_hash: 654881872,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAIPhysicsDrivenAnimationEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAIPhysicsDrivenAnimationEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientAIPhysicsDrivenAnimationEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6372,6 +6837,7 @@ impl TypeObject for ClientAIPhysicsDrivenAnimationEntity {
 
 pub static CLIENTAIPHYSICSDRIVENANIMATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIPhysicsDrivenAnimationEntity-Array",
+    name_hash: 3141817060,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientAIPhysicsDrivenAnimationEntity"),
@@ -6380,7 +6846,8 @@ pub static CLIENTAIPHYSICSDRIVENANIMATIONENTITY_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAICollisionAvoidanceSetupEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6399,12 +6866,15 @@ impl super::entity::EntityBusPeerTrait for ClientAICollisionAvoidanceSetupEntity
 
 pub static CLIENTAICOLLISIONAVOIDANCESETUPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAICollisionAvoidanceSetupEntity",
+    name_hash: 3320925514,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAICollisionAvoidanceSetupEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAICollisionAvoidanceSetupEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientAICollisionAvoidanceSetupEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6434,6 +6904,7 @@ impl TypeObject for ClientAICollisionAvoidanceSetupEntity {
 
 pub static CLIENTAICOLLISIONAVOIDANCESETUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAICollisionAvoidanceSetupEntity-Array",
+    name_hash: 2208348414,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientAICollisionAvoidanceSetupEntity"),
@@ -6442,7 +6913,8 @@ pub static CLIENTAICOLLISIONAVOIDANCESETUPENTITY_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientActionEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6461,12 +6933,15 @@ impl super::entity::EntityBusPeerTrait for ClientActionEntity {
 
 pub static CLIENTACTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientActionEntity",
+    name_hash: 522410777,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientActionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientActionEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientActionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6496,6 +6971,7 @@ impl TypeObject for ClientActionEntity {
 
 pub static CLIENTACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientActionEntity-Array",
+    name_hash: 3547805869,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientActionEntity"),
@@ -6504,7 +6980,8 @@ pub static CLIENTACTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AITemplateConditionEvaluator {
     pub _glacier_base: IActionConditionEvaluator,
 }
@@ -6520,12 +6997,15 @@ impl IActionConditionEvaluatorTrait for AITemplateConditionEvaluator {
 
 pub static AITEMPLATECONDITIONEVALUATOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AITemplateConditionEvaluator",
+    name_hash: 2231810317,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IACTIONCONDITIONEVALUATOR_TYPE_INFO),
+        super_class_offset: offset_of!(AITemplateConditionEvaluator, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AITemplateConditionEvaluator as Default>::default())),
+            create_boxed: || Box::new(<AITemplateConditionEvaluator as Default>::default()),
         },
         fields: &[
         ],
@@ -6555,6 +7035,7 @@ impl TypeObject for AITemplateConditionEvaluator {
 
 pub static AITEMPLATECONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AITemplateConditionEvaluator-Array",
+    name_hash: 194378937,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AITemplateConditionEvaluator"),
@@ -6563,7 +7044,8 @@ pub static AITEMPLATECONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InsideVolumesConditionEvaluator {
     pub _glacier_base: IActionConditionEvaluator,
 }
@@ -6579,12 +7061,15 @@ impl IActionConditionEvaluatorTrait for InsideVolumesConditionEvaluator {
 
 pub static INSIDEVOLUMESCONDITIONEVALUATOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InsideVolumesConditionEvaluator",
+    name_hash: 2294321682,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IACTIONCONDITIONEVALUATOR_TYPE_INFO),
+        super_class_offset: offset_of!(InsideVolumesConditionEvaluator, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InsideVolumesConditionEvaluator as Default>::default())),
+            create_boxed: || Box::new(<InsideVolumesConditionEvaluator as Default>::default()),
         },
         fields: &[
         ],
@@ -6614,6 +7099,7 @@ impl TypeObject for InsideVolumesConditionEvaluator {
 
 pub static INSIDEVOLUMESCONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InsideVolumesConditionEvaluator-Array",
+    name_hash: 2638461222,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("InsideVolumesConditionEvaluator"),
@@ -6622,7 +7108,8 @@ pub static INSIDEVOLUMESCONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProbabilityConditionEvaluator {
     pub _glacier_base: IActionConditionEvaluator,
 }
@@ -6638,12 +7125,15 @@ impl IActionConditionEvaluatorTrait for ProbabilityConditionEvaluator {
 
 pub static PROBABILITYCONDITIONEVALUATOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProbabilityConditionEvaluator",
+    name_hash: 3624370712,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IACTIONCONDITIONEVALUATOR_TYPE_INFO),
+        super_class_offset: offset_of!(ProbabilityConditionEvaluator, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProbabilityConditionEvaluator as Default>::default())),
+            create_boxed: || Box::new(<ProbabilityConditionEvaluator as Default>::default()),
         },
         fields: &[
         ],
@@ -6673,6 +7163,7 @@ impl TypeObject for ProbabilityConditionEvaluator {
 
 pub static PROBABILITYCONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProbabilityConditionEvaluator-Array",
+    name_hash: 181521452,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ProbabilityConditionEvaluator"),
@@ -6681,7 +7172,8 @@ pub static PROBABILITYCONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FacingConditionEvaluator {
     pub _glacier_base: IActionConditionEvaluator,
 }
@@ -6697,12 +7189,15 @@ impl IActionConditionEvaluatorTrait for FacingConditionEvaluator {
 
 pub static FACINGCONDITIONEVALUATOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FacingConditionEvaluator",
+    name_hash: 2697384817,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IACTIONCONDITIONEVALUATOR_TYPE_INFO),
+        super_class_offset: offset_of!(FacingConditionEvaluator, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FacingConditionEvaluator as Default>::default())),
+            create_boxed: || Box::new(<FacingConditionEvaluator as Default>::default()),
         },
         fields: &[
         ],
@@ -6732,6 +7227,7 @@ impl TypeObject for FacingConditionEvaluator {
 
 pub static FACINGCONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FacingConditionEvaluator-Array",
+    name_hash: 1088460357,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("FacingConditionEvaluator"),
@@ -6740,7 +7236,8 @@ pub static FACINGCONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AIOrderCoordinatorConditionEvaluator {
     pub _glacier_base: IActionConditionEvaluator,
 }
@@ -6756,12 +7253,15 @@ impl IActionConditionEvaluatorTrait for AIOrderCoordinatorConditionEvaluator {
 
 pub static AIORDERCOORDINATORCONDITIONEVALUATOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIOrderCoordinatorConditionEvaluator",
+    name_hash: 3786260137,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IACTIONCONDITIONEVALUATOR_TYPE_INFO),
+        super_class_offset: offset_of!(AIOrderCoordinatorConditionEvaluator, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AIOrderCoordinatorConditionEvaluator as Default>::default())),
+            create_boxed: || Box::new(<AIOrderCoordinatorConditionEvaluator as Default>::default()),
         },
         fields: &[
         ],
@@ -6791,6 +7291,7 @@ impl TypeObject for AIOrderCoordinatorConditionEvaluator {
 
 pub static AIORDERCOORDINATORCONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIOrderCoordinatorConditionEvaluator-Array",
+    name_hash: 1949779229,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AIOrderCoordinatorConditionEvaluator"),
@@ -6799,7 +7300,8 @@ pub static AIORDERCOORDINATORCONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AIStateConditionEvaluator {
     pub _glacier_base: IActionConditionEvaluator,
 }
@@ -6815,12 +7317,15 @@ impl IActionConditionEvaluatorTrait for AIStateConditionEvaluator {
 
 pub static AISTATECONDITIONEVALUATOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIStateConditionEvaluator",
+    name_hash: 2093175530,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IACTIONCONDITIONEVALUATOR_TYPE_INFO),
+        super_class_offset: offset_of!(AIStateConditionEvaluator, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AIStateConditionEvaluator as Default>::default())),
+            create_boxed: || Box::new(<AIStateConditionEvaluator as Default>::default()),
         },
         fields: &[
         ],
@@ -6850,6 +7355,7 @@ impl TypeObject for AIStateConditionEvaluator {
 
 pub static AISTATECONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIStateConditionEvaluator-Array",
+    name_hash: 4039900638,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AIStateConditionEvaluator"),
@@ -6858,7 +7364,8 @@ pub static AISTATECONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RangeConditionEvaluator {
     pub _glacier_base: IActionConditionEvaluator,
 }
@@ -6874,12 +7381,15 @@ impl IActionConditionEvaluatorTrait for RangeConditionEvaluator {
 
 pub static RANGECONDITIONEVALUATOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RangeConditionEvaluator",
+    name_hash: 4077733130,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IACTIONCONDITIONEVALUATOR_TYPE_INFO),
+        super_class_offset: offset_of!(RangeConditionEvaluator, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RangeConditionEvaluator as Default>::default())),
+            create_boxed: || Box::new(<RangeConditionEvaluator as Default>::default()),
         },
         fields: &[
         ],
@@ -6909,6 +7419,7 @@ impl TypeObject for RangeConditionEvaluator {
 
 pub static RANGECONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RangeConditionEvaluator-Array",
+    name_hash: 4227285054,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("RangeConditionEvaluator"),
@@ -6917,7 +7428,8 @@ pub static RANGECONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IActionConditionEvaluator {
 }
 
@@ -6929,12 +7441,15 @@ impl IActionConditionEvaluatorTrait for IActionConditionEvaluator {
 
 pub static IACTIONCONDITIONEVALUATOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IActionConditionEvaluator",
+    name_hash: 2078258018,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IActionConditionEvaluator as Default>::default())),
+            create_boxed: || Box::new(<IActionConditionEvaluator as Default>::default()),
         },
         fields: &[
         ],
@@ -6964,6 +7479,7 @@ impl TypeObject for IActionConditionEvaluator {
 
 pub static IACTIONCONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IActionConditionEvaluator-Array",
+    name_hash: 3863962198,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("IActionConditionEvaluator"),
@@ -6972,7 +7488,8 @@ pub static IACTIONCONDITIONEVALUATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPointOfInterestComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -6997,12 +7514,15 @@ impl super::entity::EntityBusPeerTrait for ServerPointOfInterestComponent {
 
 pub static SERVERPOINTOFINTERESTCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPointOfInterestComponent",
+    name_hash: 3213607596,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPointOfInterestComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPointOfInterestComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerPointOfInterestComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7032,6 +7552,7 @@ impl TypeObject for ServerPointOfInterestComponent {
 
 pub static SERVERPOINTOFINTERESTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPointOfInterestComponent-Array",
+    name_hash: 4126192152,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerPointOfInterestComponent"),
@@ -7040,7 +7561,8 @@ pub static SERVERPOINTOFINTERESTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCoverEntity {
     pub _glacier_base: super::entity::SpatialEntity,
 }
@@ -7062,12 +7584,15 @@ impl super::entity::EntityBusPeerTrait for ServerCoverEntity {
 
 pub static SERVERCOVERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCoverEntity",
+    name_hash: 1225933046,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCoverEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCoverEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCoverEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7097,6 +7622,7 @@ impl TypeObject for ServerCoverEntity {
 
 pub static SERVERCOVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCoverEntity-Array",
+    name_hash: 2456323522,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerCoverEntity"),
@@ -7105,7 +7631,8 @@ pub static SERVERCOVERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerCoverGroupEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -7124,12 +7651,15 @@ impl super::entity::EntityBusPeerTrait for ServerCoverGroupEntity {
 
 pub static SERVERCOVERGROUPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCoverGroupEntity",
+    name_hash: 2128692905,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerCoverGroupEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerCoverGroupEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerCoverGroupEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -7159,6 +7689,7 @@ impl TypeObject for ServerCoverGroupEntity {
 
 pub static SERVERCOVERGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerCoverGroupEntity-Array",
+    name_hash: 3689991453,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerCoverGroupEntity"),
@@ -7167,7 +7698,8 @@ pub static SERVERCOVERGROUPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIVehicleAimingComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7192,12 +7724,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIVehicleAimingComponent {
 
 pub static SERVERAIVEHICLEAIMINGCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIVehicleAimingComponent",
+    name_hash: 3029209530,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIVehicleAimingComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIVehicleAimingComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAIVehicleAimingComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7227,6 +7762,7 @@ impl TypeObject for ServerAIVehicleAimingComponent {
 
 pub static SERVERAIVEHICLEAIMINGCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIVehicleAimingComponent-Array",
+    name_hash: 2780681230,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIVehicleAimingComponent"),
@@ -7235,7 +7771,8 @@ pub static SERVERAIVEHICLEAIMINGCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAITargetComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7260,12 +7797,15 @@ impl super::entity::EntityBusPeerTrait for ServerAITargetComponent {
 
 pub static SERVERAITARGETCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITargetComponent",
+    name_hash: 3779887382,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAITargetComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAITargetComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAITargetComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7295,6 +7835,7 @@ impl TypeObject for ServerAITargetComponent {
 
 pub static SERVERAITARGETCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAITargetComponent-Array",
+    name_hash: 2986776098,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAITargetComponent"),
@@ -7303,7 +7844,8 @@ pub static SERVERAITARGETCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAISuppressWeaponFiringComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7328,12 +7870,15 @@ impl super::entity::EntityBusPeerTrait for ServerAISuppressWeaponFiringComponent
 
 pub static SERVERAISUPPRESSWEAPONFIRINGCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISuppressWeaponFiringComponent",
+    name_hash: 3873541673,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAISuppressWeaponFiringComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAISuppressWeaponFiringComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAISuppressWeaponFiringComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7363,6 +7908,7 @@ impl TypeObject for ServerAISuppressWeaponFiringComponent {
 
 pub static SERVERAISUPPRESSWEAPONFIRINGCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISuppressWeaponFiringComponent-Array",
+    name_hash: 669562013,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAISuppressWeaponFiringComponent"),
@@ -7371,7 +7917,8 @@ pub static SERVERAISUPPRESSWEAPONFIRINGCOMPONENT_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAISpottingComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7396,12 +7943,15 @@ impl super::entity::EntityBusPeerTrait for ServerAISpottingComponent {
 
 pub static SERVERAISPOTTINGCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISpottingComponent",
+    name_hash: 2046643275,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAISpottingComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAISpottingComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAISpottingComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7431,6 +7981,7 @@ impl TypeObject for ServerAISpottingComponent {
 
 pub static SERVERAISPOTTINGCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISpottingComponent-Array",
+    name_hash: 3223751551,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAISpottingComponent"),
@@ -7439,7 +7990,8 @@ pub static SERVERAISPOTTINGCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAISmokeVolumeComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7464,12 +8016,15 @@ impl super::entity::EntityBusPeerTrait for ServerAISmokeVolumeComponent {
 
 pub static SERVERAISMOKEVOLUMECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISmokeVolumeComponent",
+    name_hash: 2147201168,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAISmokeVolumeComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAISmokeVolumeComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAISmokeVolumeComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7499,6 +8054,7 @@ impl TypeObject for ServerAISmokeVolumeComponent {
 
 pub static SERVERAISMOKEVOLUMECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAISmokeVolumeComponent-Array",
+    name_hash: 189759140,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAISmokeVolumeComponent"),
@@ -7507,7 +8063,8 @@ pub static SERVERAISMOKEVOLUMECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIProjectileComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7532,12 +8089,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIProjectileComponent {
 
 pub static SERVERAIPROJECTILECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIProjectileComponent",
+    name_hash: 380367026,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIProjectileComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIProjectileComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAIProjectileComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7567,6 +8127,7 @@ impl TypeObject for ServerAIProjectileComponent {
 
 pub static SERVERAIPROJECTILECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIProjectileComponent-Array",
+    name_hash: 570922758,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIProjectileComponent"),
@@ -7575,7 +8136,8 @@ pub static SERVERAIPROJECTILECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIOrderCoordinatorComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7600,12 +8162,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIOrderCoordinatorComponent {
 
 pub static SERVERAIORDERCOORDINATORCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIOrderCoordinatorComponent",
+    name_hash: 2095593619,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIOrderCoordinatorComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIOrderCoordinatorComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAIOrderCoordinatorComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7635,6 +8200,7 @@ impl TypeObject for ServerAIOrderCoordinatorComponent {
 
 pub static SERVERAIORDERCOORDINATORCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIOrderCoordinatorComponent-Array",
+    name_hash: 1334137639,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIOrderCoordinatorComponent"),
@@ -7643,7 +8209,8 @@ pub static SERVERAIORDERCOORDINATORCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIMeleeComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7668,12 +8235,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIMeleeComponent {
 
 pub static SERVERAIMELEECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIMeleeComponent",
+    name_hash: 2445722787,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIMeleeComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIMeleeComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAIMeleeComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7703,6 +8273,7 @@ impl TypeObject for ServerAIMeleeComponent {
 
 pub static SERVERAIMELEECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIMeleeComponent-Array",
+    name_hash: 1211492375,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIMeleeComponent"),
@@ -7711,7 +8282,8 @@ pub static SERVERAIMELEECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIEntryComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7736,12 +8308,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIEntryComponent {
 
 pub static SERVERAIENTRYCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIEntryComponent",
+    name_hash: 3642706227,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIEntryComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIEntryComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAIEntryComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7771,6 +8346,7 @@ impl TypeObject for ServerAIEntryComponent {
 
 pub static SERVERAIENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIEntryComponent-Array",
+    name_hash: 93492359,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIEntryComponent"),
@@ -7779,7 +8355,8 @@ pub static SERVERAIENTRYCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAICustomInputComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7804,12 +8381,15 @@ impl super::entity::EntityBusPeerTrait for ServerAICustomInputComponent {
 
 pub static SERVERAICUSTOMINPUTCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICustomInputComponent",
+    name_hash: 1912123842,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAICustomInputComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAICustomInputComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAICustomInputComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7839,6 +8419,7 @@ impl TypeObject for ServerAICustomInputComponent {
 
 pub static SERVERAICUSTOMINPUTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAICustomInputComponent-Array",
+    name_hash: 3544326518,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAICustomInputComponent"),
@@ -7847,7 +8428,8 @@ pub static SERVERAICUSTOMINPUTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIBucketSystemComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7872,12 +8454,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIBucketSystemComponent {
 
 pub static SERVERAIBUCKETSYSTEMCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIBucketSystemComponent",
+    name_hash: 1692355244,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIBucketSystemComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIBucketSystemComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAIBucketSystemComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7907,6 +8492,7 @@ impl TypeObject for ServerAIBucketSystemComponent {
 
 pub static SERVERAIBUCKETSYSTEMCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIBucketSystemComponent-Array",
+    name_hash: 4257888792,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIBucketSystemComponent"),
@@ -7915,7 +8501,8 @@ pub static SERVERAIBUCKETSYSTEMCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerAIAnchorToPointComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -7940,12 +8527,15 @@ impl super::entity::EntityBusPeerTrait for ServerAIAnchorToPointComponent {
 
 pub static SERVERAIANCHORTOPOINTCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIAnchorToPointComponent",
+    name_hash: 4240243433,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerAIAnchorToPointComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerAIAnchorToPointComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerAIAnchorToPointComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -7975,6 +8565,7 @@ impl TypeObject for ServerAIAnchorToPointComponent {
 
 pub static SERVERAIANCHORTOPOINTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerAIAnchorToPointComponent-Array",
+    name_hash: 1285747165,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerAIAnchorToPointComponent"),
@@ -7983,7 +8574,8 @@ pub static SERVERAIANCHORTOPOINTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAISpottingComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -8008,12 +8600,15 @@ impl super::entity::EntityBusPeerTrait for ClientAISpottingComponent {
 
 pub static CLIENTAISPOTTINGCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAISpottingComponent",
+    name_hash: 1122960663,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAISpottingComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAISpottingComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientAISpottingComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -8043,6 +8638,7 @@ impl TypeObject for ClientAISpottingComponent {
 
 pub static CLIENTAISPOTTINGCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAISpottingComponent-Array",
+    name_hash: 148057507,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientAISpottingComponent"),
@@ -8051,7 +8647,8 @@ pub static CLIENTAISPOTTINGCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAIProjectileComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -8076,12 +8673,15 @@ impl super::entity::EntityBusPeerTrait for ClientAIProjectileComponent {
 
 pub static CLIENTAIPROJECTILECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIProjectileComponent",
+    name_hash: 660369774,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAIProjectileComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAIProjectileComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientAIProjectileComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -8111,6 +8711,7 @@ impl TypeObject for ClientAIProjectileComponent {
 
 pub static CLIENTAIPROJECTILECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIProjectileComponent-Array",
+    name_hash: 1537321562,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientAIProjectileComponent"),
@@ -8119,7 +8720,8 @@ pub static CLIENTAIPROJECTILECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAIOrderCoordinatorComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -8144,12 +8746,15 @@ impl super::entity::EntityBusPeerTrait for ClientAIOrderCoordinatorComponent {
 
 pub static CLIENTAIORDERCOORDINATORCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIOrderCoordinatorComponent",
+    name_hash: 1136438863,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAIOrderCoordinatorComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAIOrderCoordinatorComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientAIOrderCoordinatorComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -8179,6 +8784,7 @@ impl TypeObject for ClientAIOrderCoordinatorComponent {
 
 pub static CLIENTAIORDERCOORDINATORCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIOrderCoordinatorComponent-Array",
+    name_hash: 2309430139,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientAIOrderCoordinatorComponent"),
@@ -8187,7 +8793,8 @@ pub static CLIENTAIORDERCOORDINATORCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAIMeleeComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -8212,12 +8819,15 @@ impl super::entity::EntityBusPeerTrait for ClientAIMeleeComponent {
 
 pub static CLIENTAIMELEECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIMeleeComponent",
+    name_hash: 3471044991,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAIMeleeComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAIMeleeComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientAIMeleeComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -8247,6 +8857,7 @@ impl TypeObject for ClientAIMeleeComponent {
 
 pub static CLIENTAIMELEECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIMeleeComponent-Array",
+    name_hash: 558331723,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientAIMeleeComponent"),
@@ -8255,7 +8866,8 @@ pub static CLIENTAIMELEECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAIAnchorToPointComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -8280,12 +8892,15 @@ impl super::entity::EntityBusPeerTrait for ClientAIAnchorToPointComponent {
 
 pub static CLIENTAIANCHORTOPOINTCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIAnchorToPointComponent",
+    name_hash: 2486283189,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAIAnchorToPointComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAIAnchorToPointComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientAIAnchorToPointComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -8315,6 +8930,7 @@ impl TypeObject for ClientAIAnchorToPointComponent {
 
 pub static CLIENTAIANCHORTOPOINTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAIAnchorToPointComponent-Array",
+    name_hash: 361499649,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ClientAIAnchorToPointComponent"),
@@ -8323,7 +8939,8 @@ pub static CLIENTAIANCHORTOPOINTCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoverScoreModifierEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8342,12 +8959,15 @@ impl super::entity::EntityBusPeerTrait for CoverScoreModifierEntity {
 
 pub static COVERSCOREMODIFIERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScoreModifierEntity",
+    name_hash: 1508264940,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CoverScoreModifierEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoverScoreModifierEntity as Default>::default())),
+            create_boxed: || Box::new(<CoverScoreModifierEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8377,6 +8997,7 @@ impl TypeObject for CoverScoreModifierEntity {
 
 pub static COVERSCOREMODIFIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScoreModifierEntity-Array",
+    name_hash: 2350459864,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("CoverScoreModifierEntity"),
@@ -8385,7 +9006,8 @@ pub static COVERSCOREMODIFIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPathLinkEntity {
     pub _glacier_base: PathLinkEntity,
 }
@@ -8410,12 +9032,15 @@ impl super::entity::EntityBusPeerTrait for ServerPathLinkEntity {
 
 pub static SERVERPATHLINKENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPathLinkEntity",
+    name_hash: 1334888310,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PATHLINKENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPathLinkEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPathLinkEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerPathLinkEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8445,6 +9070,7 @@ impl TypeObject for ServerPathLinkEntity {
 
 pub static SERVERPATHLINKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPathLinkEntity-Array",
+    name_hash: 2018634818,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerPathLinkEntity"),
@@ -8453,7 +9079,8 @@ pub static SERVERPATHLINKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPathfindingStreamEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8472,12 +9099,15 @@ impl super::entity::EntityBusPeerTrait for ServerPathfindingStreamEntity {
 
 pub static SERVERPATHFINDINGSTREAMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPathfindingStreamEntity",
+    name_hash: 2759305935,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPathfindingStreamEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPathfindingStreamEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerPathfindingStreamEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8507,6 +9137,7 @@ impl TypeObject for ServerPathfindingStreamEntity {
 
 pub static SERVERPATHFINDINGSTREAMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPathfindingStreamEntity-Array",
+    name_hash: 3738007547,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerPathfindingStreamEntity"),
@@ -8515,7 +9146,8 @@ pub static SERVERPATHFINDINGSTREAMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerNavPowerObstacleComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -8540,12 +9172,15 @@ impl super::entity::EntityBusPeerTrait for ServerNavPowerObstacleComponent {
 
 pub static SERVERNAVPOWEROBSTACLECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerNavPowerObstacleComponent",
+    name_hash: 455747240,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerNavPowerObstacleComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerNavPowerObstacleComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerNavPowerObstacleComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -8575,6 +9210,7 @@ impl TypeObject for ServerNavPowerObstacleComponent {
 
 pub static SERVERNAVPOWEROBSTACLECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerNavPowerObstacleComponent-Array",
+    name_hash: 2928306204,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerNavPowerObstacleComponent"),
@@ -8583,7 +9219,8 @@ pub static SERVERNAVPOWEROBSTACLECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PathLinkEntity {
     pub _glacier_base: super::entity::SpatialEntity,
 }
@@ -8605,12 +9242,15 @@ impl super::entity::EntityBusPeerTrait for PathLinkEntity {
 
 pub static PATHLINKENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathLinkEntity",
+    name_hash: 39076755,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PathLinkEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PathLinkEntity as Default>::default())),
+            create_boxed: || Box::new(<PathLinkEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8640,6 +9280,7 @@ impl TypeObject for PathLinkEntity {
 
 pub static PATHLINKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathLinkEntity-Array",
+    name_hash: 4136476199,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("PathLinkEntity"),
@@ -8648,7 +9289,8 @@ pub static PATHLINKENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerWaypointTriggerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8667,12 +9309,15 @@ impl super::entity::EntityBusPeerTrait for ServerWaypointTriggerEntity {
 
 pub static SERVERWAYPOINTTRIGGERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWaypointTriggerEntity",
+    name_hash: 1976268160,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerWaypointTriggerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerWaypointTriggerEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerWaypointTriggerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8702,6 +9347,7 @@ impl TypeObject for ServerWaypointTriggerEntity {
 
 pub static SERVERWAYPOINTTRIGGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerWaypointTriggerEntity-Array",
+    name_hash: 2710322100,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerWaypointTriggerEntity"),
@@ -8710,7 +9356,8 @@ pub static SERVERWAYPOINTTRIGGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPathFollowingComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -8735,12 +9382,15 @@ impl super::entity::EntityBusPeerTrait for ServerPathFollowingComponent {
 
 pub static SERVERPATHFOLLOWINGCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPathFollowingComponent",
+    name_hash: 4128533907,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPathFollowingComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPathFollowingComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerPathFollowingComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -8770,6 +9420,7 @@ impl TypeObject for ServerPathFollowingComponent {
 
 pub static SERVERPATHFOLLOWINGCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPathFollowingComponent-Array",
+    name_hash: 3359983655,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerPathFollowingComponent"),
@@ -8778,7 +9429,8 @@ pub static SERVERPATHFOLLOWINGCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerPathfindingOverride {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8797,12 +9449,15 @@ impl super::entity::EntityBusPeerTrait for ServerPathfindingOverride {
 
 pub static SERVERPATHFINDINGOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPathfindingOverride",
+    name_hash: 2675173660,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerPathfindingOverride, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerPathfindingOverride as Default>::default())),
+            create_boxed: || Box::new(<ServerPathfindingOverride as Default>::default()),
         },
         fields: &[
         ],
@@ -8832,6 +9487,7 @@ impl TypeObject for ServerPathfindingOverride {
 
 pub static SERVERPATHFINDINGOVERRIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerPathfindingOverride-Array",
+    name_hash: 2196709672,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerPathfindingOverride"),
@@ -8840,7 +9496,8 @@ pub static SERVERPATHFINDINGOVERRIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerFollowWaypointsEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8859,12 +9516,15 @@ impl super::entity::EntityBusPeerTrait for ServerFollowWaypointsEntity {
 
 pub static SERVERFOLLOWWAYPOINTSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFollowWaypointsEntity",
+    name_hash: 470023322,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerFollowWaypointsEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerFollowWaypointsEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerFollowWaypointsEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8894,6 +9554,7 @@ impl TypeObject for ServerFollowWaypointsEntity {
 
 pub static SERVERFOLLOWWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFollowWaypointsEntity-Array",
+    name_hash: 3012321198,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerFollowWaypointsEntity"),
@@ -8902,7 +9563,8 @@ pub static SERVERFOLLOWWAYPOINTSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerFollowObjectEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -8921,12 +9583,15 @@ impl super::entity::EntityBusPeerTrait for ServerFollowObjectEntity {
 
 pub static SERVERFOLLOWOBJECTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFollowObjectEntity",
+    name_hash: 2522781151,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerFollowObjectEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerFollowObjectEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerFollowObjectEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -8956,6 +9621,7 @@ impl TypeObject for ServerFollowObjectEntity {
 
 pub static SERVERFOLLOWOBJECTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFollowObjectEntity-Array",
+    name_hash: 2861263595,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ServerFollowObjectEntity"),
@@ -8964,7 +9630,8 @@ pub static SERVERFOLLOWOBJECTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpatialAnalyzerData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -9061,52 +9728,62 @@ impl super::core::DataContainerTrait for SpatialAnalyzerData {
 
 pub static SPATIALANALYZERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialAnalyzerData",
+    name_hash: 1091940561,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpatialAnalyzerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpatialAnalyzerData as Default>::default())),
+            create_boxed: || Box::new(<SpatialAnalyzerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(SpatialAnalyzerData, realm),
             },
             FieldInfoData {
                 name: "ReferenceTransform",
+                name_hash: 2231497250,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(SpatialAnalyzerData, reference_transform),
             },
             FieldInfoData {
                 name: "AnalysisFOV",
+                name_hash: 1666260904,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpatialAnalyzerData, analysis_f_o_v),
             },
             FieldInfoData {
                 name: "SweepSteps",
+                name_hash: 2857693904,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(SpatialAnalyzerData, sweep_steps),
             },
             FieldInfoData {
                 name: "EdgeDistanceThreshold",
+                name_hash: 1932875314,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpatialAnalyzerData, edge_distance_threshold),
             },
             FieldInfoData {
                 name: "NearLimitDistance",
+                name_hash: 502671147,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpatialAnalyzerData, near_limit_distance),
             },
             FieldInfoData {
                 name: "FarLimitDistance",
+                name_hash: 2293594054,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpatialAnalyzerData, far_limit_distance),
@@ -9138,6 +9815,7 @@ impl TypeObject for SpatialAnalyzerData {
 
 pub static SPATIALANALYZERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialAnalyzerData-Array",
+    name_hash: 2843706085,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("SpatialAnalyzerData"),
@@ -9146,7 +9824,8 @@ pub static SPATIALANALYZERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AttackPointEntityData {
     pub _glacier_base: super::entity::SpatialEntityData,
     pub enabled: bool,
@@ -9243,46 +9922,55 @@ impl super::core::DataContainerTrait for AttackPointEntityData {
 
 pub static ATTACKPOINTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AttackPointEntityData",
+    name_hash: 3569094666,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AttackPointEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AttackPointEntityData as Default>::default())),
+            create_boxed: || Box::new(<AttackPointEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AttackPointEntityData, enabled),
             },
             FieldInfoData {
                 name: "OnlyAcceptLinkedSpawners",
+                name_hash: 1723023823,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AttackPointEntityData, only_accept_linked_spawners),
             },
             FieldInfoData {
                 name: "TeamId",
+                name_hash: 3220374101,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TeamId",
                 rust_offset: offset_of!(AttackPointEntityData, team_id),
             },
             FieldInfoData {
                 name: "MaxTargetCountForLOSCheck",
+                name_hash: 933233518,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AttackPointEntityData, max_target_count_for_l_o_s_check),
             },
             FieldInfoData {
                 name: "NavmeshLayer",
+                name_hash: 3234693996,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(AttackPointEntityData, navmesh_layer),
             },
             FieldInfoData {
                 name: "GroundTransformHorizontalOffset",
+                name_hash: 3477250271,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AttackPointEntityData, ground_transform_horizontal_offset),
@@ -9314,6 +10002,7 @@ impl TypeObject for AttackPointEntityData {
 
 pub static ATTACKPOINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AttackPointEntityData-Array",
+    name_hash: 1448233790,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AttackPointEntityData"),
@@ -9322,11 +10011,12 @@ pub static ATTACKPOINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ActionEntityData {
     pub _glacier_base: super::entity::SpatialEntityData,
     pub enabled: bool,
-    pub conditions: Vec<Option<Arc<Mutex<dyn ActionConditionTrait>>>>,
+    pub conditions: Vec<Option<LockedTypeObject /* ActionCondition */>>,
     pub move_to_action_before_executing: bool,
     pub align_to_action_before_executing: bool,
     pub wait_time_before_executing: f32,
@@ -9346,8 +10036,8 @@ pub struct ActionEntityData {
 pub trait ActionEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn enabled(&self) -> &bool;
     fn enabled_mut(&mut self) -> &mut bool;
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn ActionConditionTrait>>>>;
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ActionConditionTrait>>>>;
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* ActionCondition */>>;
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ActionCondition */>>;
     fn move_to_action_before_executing(&self) -> &bool;
     fn move_to_action_before_executing_mut(&mut self) -> &mut bool;
     fn align_to_action_before_executing(&self) -> &bool;
@@ -9385,10 +10075,10 @@ impl ActionEntityDataTrait for ActionEntityData {
     fn enabled_mut(&mut self) -> &mut bool {
         &mut self.enabled
     }
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn ActionConditionTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* ActionCondition */>> {
         &self.conditions
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ActionConditionTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ActionCondition */>> {
         &mut self.conditions
     }
     fn move_to_action_before_executing(&self) -> &bool {
@@ -9509,106 +10199,125 @@ impl super::core::DataContainerTrait for ActionEntityData {
 
 pub static ACTIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActionEntityData",
+    name_hash: 210217168,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ActionEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ActionEntityData as Default>::default())),
+            create_boxed: || Box::new(<ActionEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActionEntityData, enabled),
             },
             FieldInfoData {
                 name: "Conditions",
+                name_hash: 3586042181,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ActionCondition-Array",
                 rust_offset: offset_of!(ActionEntityData, conditions),
             },
             FieldInfoData {
                 name: "MoveToActionBeforeExecuting",
+                name_hash: 2221585426,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActionEntityData, move_to_action_before_executing),
             },
             FieldInfoData {
                 name: "AlignToActionBeforeExecuting",
+                name_hash: 3821027342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActionEntityData, align_to_action_before_executing),
             },
             FieldInfoData {
                 name: "WaitTimeBeforeExecuting",
+                name_hash: 1818256952,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ActionEntityData, wait_time_before_executing),
             },
             FieldInfoData {
                 name: "CooldownTime",
+                name_hash: 613462861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ActionEntityData, cooldown_time),
             },
             FieldInfoData {
                 name: "TimeoutDuration",
+                name_hash: 545950720,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ActionEntityData, timeout_duration),
             },
             FieldInfoData {
                 name: "AbortWhenAlerted",
+                name_hash: 1822696916,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActionEntityData, abort_when_alerted),
             },
             FieldInfoData {
                 name: "AbortWhenTimedOut",
+                name_hash: 1788170436,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActionEntityData, abort_when_timed_out),
             },
             FieldInfoData {
                 name: "ValidInState",
+                name_hash: 1850177507,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ValidInState",
                 rust_offset: offset_of!(ActionEntityData, valid_in_state),
             },
             FieldInfoData {
                 name: "ActionPriority",
+                name_hash: 680218665,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ActionPriority",
                 rust_offset: offset_of!(ActionEntityData, action_priority),
             },
             FieldInfoData {
                 name: "ShouldBeExecutedByClosestAI",
+                name_hash: 4167392658,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActionEntityData, should_be_executed_by_closest_a_i),
             },
             FieldInfoData {
                 name: "OnlyExecuteForFitnessValidAI",
+                name_hash: 2582675291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActionEntityData, only_execute_for_fitness_valid_a_i),
             },
             FieldInfoData {
                 name: "UseActualPathDistance",
+                name_hash: 1611962694,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActionEntityData, use_actual_path_distance),
             },
             FieldInfoData {
                 name: "IsLinkedAction",
+                name_hash: 4273074336,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActionEntityData, is_linked_action),
             },
             FieldInfoData {
                 name: "RestrictToLinkedSoldiers",
+                name_hash: 1687053882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActionEntityData, restrict_to_linked_soldiers),
@@ -9640,6 +10349,7 @@ impl TypeObject for ActionEntityData {
 
 pub static ACTIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActionEntityData-Array",
+    name_hash: 1179166564,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ActionEntityData"),
@@ -9662,6 +10372,7 @@ pub enum ValidInState {
 
 pub static VALIDINSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ValidInState",
+    name_hash: 1850177507,
     flags: MemberInfoFlags::new(49429),
     module: "BattleAI",
     data: TypeInfoData::Enum,
@@ -9690,6 +10401,7 @@ impl TypeObject for ValidInState {
 
 pub static VALIDINSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ValidInState-Array",
+    name_hash: 3296988119,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ValidInState"),
@@ -9711,6 +10423,7 @@ pub enum ActionPriority {
 
 pub static ACTIONPRIORITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActionPriority",
+    name_hash: 680218665,
     flags: MemberInfoFlags::new(49429),
     module: "BattleAI",
     data: TypeInfoData::Enum,
@@ -9739,6 +10452,7 @@ impl TypeObject for ActionPriority {
 
 pub static ACTIONPRIORITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActionPriority-Array",
+    name_hash: 3864786589,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ActionPriority"),
@@ -9761,6 +10475,7 @@ pub enum ActionState {
 
 pub static ACTIONSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActionState",
+    name_hash: 2416108236,
     flags: MemberInfoFlags::new(49429),
     module: "BattleAI",
     data: TypeInfoData::Enum,
@@ -9789,6 +10504,7 @@ impl TypeObject for ActionState {
 
 pub static ACTIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActionState-Array",
+    name_hash: 2146673528,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ActionState"),
@@ -9797,7 +10513,8 @@ pub static ACTIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AITemplateCondition {
     pub _glacier_base: ActionCondition,
     pub templates: Vec<String>,
@@ -9825,16 +10542,20 @@ impl super::core::DataContainerTrait for AITemplateCondition {
 
 pub static AITEMPLATECONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AITemplateCondition",
+    name_hash: 339502862,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ACTIONCONDITION_TYPE_INFO),
+        super_class_offset: offset_of!(AITemplateCondition, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AITemplateCondition as Default>::default())),
+            create_boxed: || Box::new(<AITemplateCondition as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Templates",
+                name_hash: 2783016966,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(AITemplateCondition, templates),
@@ -9866,6 +10587,7 @@ impl TypeObject for AITemplateCondition {
 
 pub static AITEMPLATECONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AITemplateCondition-Array",
+    name_hash: 1639419962,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AITemplateCondition"),
@@ -9874,7 +10596,8 @@ pub static AITEMPLATECONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InsideVolumesCondition {
     pub _glacier_base: ActionCondition,
     pub station_inside_user_search_area: bool,
@@ -9911,22 +10634,27 @@ impl super::core::DataContainerTrait for InsideVolumesCondition {
 
 pub static INSIDEVOLUMESCONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InsideVolumesCondition",
+    name_hash: 4094836145,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ACTIONCONDITION_TYPE_INFO),
+        super_class_offset: offset_of!(InsideVolumesCondition, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InsideVolumesCondition as Default>::default())),
+            create_boxed: || Box::new(<InsideVolumesCondition as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StationInsideUserSearchArea",
+                name_hash: 1119639595,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InsideVolumesCondition, station_inside_user_search_area),
             },
             FieldInfoData {
                 name: "StationInsideUserDefendArea",
+                name_hash: 3365259021,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InsideVolumesCondition, station_inside_user_defend_area),
@@ -9958,6 +10686,7 @@ impl TypeObject for InsideVolumesCondition {
 
 pub static INSIDEVOLUMESCONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InsideVolumesCondition-Array",
+    name_hash: 1926393861,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("InsideVolumesCondition"),
@@ -9966,7 +10695,8 @@ pub static INSIDEVOLUMESCONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProbabilityCondition {
     pub _glacier_base: ActionCondition,
     pub probability: f32,
@@ -9994,16 +10724,20 @@ impl super::core::DataContainerTrait for ProbabilityCondition {
 
 pub static PROBABILITYCONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProbabilityCondition",
+    name_hash: 751003515,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ACTIONCONDITION_TYPE_INFO),
+        super_class_offset: offset_of!(ProbabilityCondition, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProbabilityCondition as Default>::default())),
+            create_boxed: || Box::new(<ProbabilityCondition as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Probability",
+                name_hash: 35957416,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ProbabilityCondition, probability),
@@ -10035,6 +10769,7 @@ impl TypeObject for ProbabilityCondition {
 
 pub static PROBABILITYCONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProbabilityCondition-Array",
+    name_hash: 1629994831,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ProbabilityCondition"),
@@ -10043,7 +10778,8 @@ pub static PROBABILITYCONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FacingCondition {
     pub _glacier_base: ActionCondition,
     pub max_angle: f32,
@@ -10071,16 +10807,20 @@ impl super::core::DataContainerTrait for FacingCondition {
 
 pub static FACINGCONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FacingCondition",
+    name_hash: 450369650,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ACTIONCONDITION_TYPE_INFO),
+        super_class_offset: offset_of!(FacingCondition, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FacingCondition as Default>::default())),
+            create_boxed: || Box::new(<FacingCondition as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxAngle",
+                name_hash: 417488496,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FacingCondition, max_angle),
@@ -10112,6 +10852,7 @@ impl TypeObject for FacingCondition {
 
 pub static FACINGCONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FacingCondition-Array",
+    name_hash: 1758613318,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("FacingCondition"),
@@ -10120,7 +10861,8 @@ pub static FACINGCONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AIOrderCoordinatorCondition {
     pub _glacier_base: ActionCondition,
     pub only_valid_when_expecting_self_orders: bool,
@@ -10148,16 +10890,20 @@ impl super::core::DataContainerTrait for AIOrderCoordinatorCondition {
 
 pub static AIORDERCOORDINATORCONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIOrderCoordinatorCondition",
+    name_hash: 1245440042,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ACTIONCONDITION_TYPE_INFO),
+        super_class_offset: offset_of!(AIOrderCoordinatorCondition, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AIOrderCoordinatorCondition as Default>::default())),
+            create_boxed: || Box::new(<AIOrderCoordinatorCondition as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OnlyValidWhenExpectingSelfOrders",
+                name_hash: 2416964365,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AIOrderCoordinatorCondition, only_valid_when_expecting_self_orders),
@@ -10189,6 +10935,7 @@ impl TypeObject for AIOrderCoordinatorCondition {
 
 pub static AIORDERCOORDINATORCONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIOrderCoordinatorCondition-Array",
+    name_hash: 3850355358,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AIOrderCoordinatorCondition"),
@@ -10197,7 +10944,8 @@ pub static AIORDERCOORDINATORCONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AIStateCondition {
     pub _glacier_base: ActionCondition,
     pub a_i_state: ConditionAIStates,
@@ -10234,22 +10982,27 @@ impl super::core::DataContainerTrait for AIStateCondition {
 
 pub static AISTATECONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIStateCondition",
+    name_hash: 670101769,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ACTIONCONDITION_TYPE_INFO),
+        super_class_offset: offset_of!(AIStateCondition, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AIStateCondition as Default>::default())),
+            create_boxed: || Box::new(<AIStateCondition as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AIState",
+                name_hash: 1905800346,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ConditionAIStates",
                 rust_offset: offset_of!(AIStateCondition, a_i_state),
             },
             FieldInfoData {
                 name: "RestrictSearchAreaToSecondarySearch",
+                name_hash: 2496691599,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AIStateCondition, restrict_search_area_to_secondary_search),
@@ -10281,6 +11034,7 @@ impl TypeObject for AIStateCondition {
 
 pub static AISTATECONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AIStateCondition-Array",
+    name_hash: 1376421565,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AIStateCondition"),
@@ -10304,6 +11058,7 @@ pub enum ConditionAIStates {
 
 pub static CONDITIONAISTATES_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionAIStates",
+    name_hash: 2657057242,
     flags: MemberInfoFlags::new(49429),
     module: "BattleAI",
     data: TypeInfoData::Enum,
@@ -10332,6 +11087,7 @@ impl TypeObject for ConditionAIStates {
 
 pub static CONDITIONAISTATES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionAIStates-Array",
+    name_hash: 3316714862,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ConditionAIStates"),
@@ -10340,7 +11096,8 @@ pub static CONDITIONAISTATES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RangeCondition {
     pub _glacier_base: ActionCondition,
     pub radius: f32,
@@ -10368,16 +11125,20 @@ impl super::core::DataContainerTrait for RangeCondition {
 
 pub static RANGECONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RangeCondition",
+    name_hash: 2728914345,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ACTIONCONDITION_TYPE_INFO),
+        super_class_offset: offset_of!(RangeCondition, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RangeCondition as Default>::default())),
+            create_boxed: || Box::new(<RangeCondition as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RangeCondition, radius),
@@ -10409,6 +11170,7 @@ impl TypeObject for RangeCondition {
 
 pub static RANGECONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RangeCondition-Array",
+    name_hash: 2044245021,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("RangeCondition"),
@@ -10417,7 +11179,8 @@ pub static RANGECONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ActionCondition {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -10433,12 +11196,15 @@ impl super::core::DataContainerTrait for ActionCondition {
 
 pub static ACTIONCONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActionCondition",
+    name_hash: 910352456,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(ActionCondition, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ActionCondition as Default>::default())),
+            create_boxed: || Box::new(<ActionCondition as Default>::default()),
         },
         fields: &[
         ],
@@ -10468,6 +11234,7 @@ impl TypeObject for ActionCondition {
 
 pub static ACTIONCONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActionCondition-Array",
+    name_hash: 1130107644,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ActionCondition"),
@@ -10476,7 +11243,8 @@ pub static ACTIONCONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PreferredCoverScoreData {
     pub _glacier_base: CustomCoverScoreData,
     pub preferred_cover_id: u32,
@@ -10543,22 +11311,27 @@ impl super::core::DataContainerTrait for PreferredCoverScoreData {
 
 pub static PREFERREDCOVERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreferredCoverScoreData",
+    name_hash: 1757541749,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CUSTOMCOVERSCOREDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PreferredCoverScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PreferredCoverScoreData as Default>::default())),
+            create_boxed: || Box::new(<PreferredCoverScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PreferredCoverId",
+                name_hash: 304098496,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PreferredCoverScoreData, preferred_cover_id),
             },
             FieldInfoData {
                 name: "Score",
+                name_hash: 231225165,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PreferredCoverScoreData, score),
@@ -10590,6 +11363,7 @@ impl TypeObject for PreferredCoverScoreData {
 
 pub static PREFERREDCOVERSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreferredCoverScoreData-Array",
+    name_hash: 913106497,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("PreferredCoverScoreData"),
@@ -10598,25 +11372,26 @@ pub static PREFERREDCOVERSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PreferredAreaScoreData {
     pub _glacier_base: CustomCoverScoreData,
-    pub shapes: Vec<BaseShapeWithOffset>,
+    pub shapes: Vec<BoxedTypeObject /* BaseShapeWithOffset */>,
     pub score: f32,
 }
 
 pub trait PreferredAreaScoreDataTrait: CustomCoverScoreDataTrait {
-    fn shapes(&self) -> &Vec<BaseShapeWithOffset>;
-    fn shapes_mut(&mut self) -> &mut Vec<BaseShapeWithOffset>;
+    fn shapes(&self) -> &Vec<BoxedTypeObject /* BaseShapeWithOffset */>;
+    fn shapes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BaseShapeWithOffset */>;
     fn score(&self) -> &f32;
     fn score_mut(&mut self) -> &mut f32;
 }
 
 impl PreferredAreaScoreDataTrait for PreferredAreaScoreData {
-    fn shapes(&self) -> &Vec<BaseShapeWithOffset> {
+    fn shapes(&self) -> &Vec<BoxedTypeObject /* BaseShapeWithOffset */> {
         &self.shapes
     }
-    fn shapes_mut(&mut self) -> &mut Vec<BaseShapeWithOffset> {
+    fn shapes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* BaseShapeWithOffset */> {
         &mut self.shapes
     }
     fn score(&self) -> &f32 {
@@ -10665,22 +11440,27 @@ impl super::core::DataContainerTrait for PreferredAreaScoreData {
 
 pub static PREFERREDAREASCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreferredAreaScoreData",
+    name_hash: 3004526479,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CUSTOMCOVERSCOREDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PreferredAreaScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PreferredAreaScoreData as Default>::default())),
+            create_boxed: || Box::new(<PreferredAreaScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Shapes",
+                name_hash: 3352896601,
                 flags: MemberInfoFlags::new(144),
                 field_type: "BaseShapeWithOffset-Array",
                 rust_offset: offset_of!(PreferredAreaScoreData, shapes),
             },
             FieldInfoData {
                 name: "Score",
+                name_hash: 231225165,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PreferredAreaScoreData, score),
@@ -10712,6 +11492,7 @@ impl TypeObject for PreferredAreaScoreData {
 
 pub static PREFERREDAREASCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreferredAreaScoreData-Array",
+    name_hash: 179047483,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("PreferredAreaScoreData"),
@@ -10720,16 +11501,17 @@ pub static PREFERREDAREASCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BaseShapeWithOffset {
-    pub shape: Option<Arc<Mutex<dyn super::entity::BaseShapeDataTrait>>>,
+    pub shape: Option<LockedTypeObject /* super::entity::BaseShapeData */>,
     pub offset: super::core::LinearTransform,
     pub owner_transform: super::core::LinearTransform,
 }
 
 pub trait BaseShapeWithOffsetTrait: TypeObject {
-    fn shape(&self) -> &Option<Arc<Mutex<dyn super::entity::BaseShapeDataTrait>>>;
-    fn shape_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BaseShapeDataTrait>>>;
+    fn shape(&self) -> &Option<LockedTypeObject /* super::entity::BaseShapeData */>;
+    fn shape_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::BaseShapeData */>;
     fn offset(&self) -> &super::core::LinearTransform;
     fn offset_mut(&mut self) -> &mut super::core::LinearTransform;
     fn owner_transform(&self) -> &super::core::LinearTransform;
@@ -10737,10 +11519,10 @@ pub trait BaseShapeWithOffsetTrait: TypeObject {
 }
 
 impl BaseShapeWithOffsetTrait for BaseShapeWithOffset {
-    fn shape(&self) -> &Option<Arc<Mutex<dyn super::entity::BaseShapeDataTrait>>> {
+    fn shape(&self) -> &Option<LockedTypeObject /* super::entity::BaseShapeData */> {
         &self.shape
     }
-    fn shape_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BaseShapeDataTrait>>> {
+    fn shape_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::BaseShapeData */> {
         &mut self.shape
     }
     fn offset(&self) -> &super::core::LinearTransform {
@@ -10759,27 +11541,32 @@ impl BaseShapeWithOffsetTrait for BaseShapeWithOffset {
 
 pub static BASESHAPEWITHOFFSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseShapeWithOffset",
+    name_hash: 397245168,
     flags: MemberInfoFlags::new(73),
     module: "BattleAI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BaseShapeWithOffset as Default>::default())),
+            create_boxed: || Box::new(<BaseShapeWithOffset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Shape",
+                name_hash: 231753450,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BaseShapeData",
                 rust_offset: offset_of!(BaseShapeWithOffset, shape),
             },
             FieldInfoData {
                 name: "Offset",
+                name_hash: 2871410728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(BaseShapeWithOffset, offset),
             },
             FieldInfoData {
                 name: "OwnerTransform",
+                name_hash: 281651048,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(BaseShapeWithOffset, owner_transform),
@@ -10811,6 +11598,7 @@ impl TypeObject for BaseShapeWithOffset {
 
 pub static BASESHAPEWITHOFFSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseShapeWithOffset-Array",
+    name_hash: 2686146756,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("BaseShapeWithOffset"),
@@ -10819,7 +11607,8 @@ pub static BASESHAPEWITHOFFSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CustomCoverScoreData {
     pub _glacier_base: CoverScoreData,
 }
@@ -10865,12 +11654,15 @@ impl super::core::DataContainerTrait for CustomCoverScoreData {
 
 pub static CUSTOMCOVERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomCoverScoreData",
+    name_hash: 865234787,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CustomCoverScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CustomCoverScoreData as Default>::default())),
+            create_boxed: || Box::new(<CustomCoverScoreData as Default>::default()),
         },
         fields: &[
         ],
@@ -10900,6 +11692,7 @@ impl TypeObject for CustomCoverScoreData {
 
 pub static CUSTOMCOVERSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomCoverScoreData-Array",
+    name_hash: 3339363159,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("CustomCoverScoreData"),
@@ -10908,7 +11701,8 @@ pub static CUSTOMCOVERSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReducePathDistanceToFollowObjectScoreData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
 }
@@ -10920,10 +11714,10 @@ impl ReducePathDistanceToFollowObjectScoreDataTrait for ReducePathDistanceToFoll
 }
 
 impl CoverScoreDataWithScoreCurveTrait for ReducePathDistanceToFollowObjectScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -10975,12 +11769,15 @@ impl super::core::DataContainerTrait for ReducePathDistanceToFollowObjectScoreDa
 
 pub static REDUCEPATHDISTANCETOFOLLOWOBJECTSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReducePathDistanceToFollowObjectScoreData",
+    name_hash: 2909939628,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(ReducePathDistanceToFollowObjectScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReducePathDistanceToFollowObjectScoreData as Default>::default())),
+            create_boxed: || Box::new(<ReducePathDistanceToFollowObjectScoreData as Default>::default()),
         },
         fields: &[
         ],
@@ -11010,6 +11807,7 @@ impl TypeObject for ReducePathDistanceToFollowObjectScoreData {
 
 pub static REDUCEPATHDISTANCETOFOLLOWOBJECTSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReducePathDistanceToFollowObjectScoreData-Array",
+    name_hash: 4065253144,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ReducePathDistanceToFollowObjectScoreData"),
@@ -11018,7 +11816,8 @@ pub static REDUCEPATHDISTANCETOFOLLOWOBJECTSCOREDATA_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReducePathDistanceToTargetScoreData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
 }
@@ -11030,10 +11829,10 @@ impl ReducePathDistanceToTargetScoreDataTrait for ReducePathDistanceToTargetScor
 }
 
 impl CoverScoreDataWithScoreCurveTrait for ReducePathDistanceToTargetScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -11085,12 +11884,15 @@ impl super::core::DataContainerTrait for ReducePathDistanceToTargetScoreData {
 
 pub static REDUCEPATHDISTANCETOTARGETSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReducePathDistanceToTargetScoreData",
+    name_hash: 1661991289,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(ReducePathDistanceToTargetScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReducePathDistanceToTargetScoreData as Default>::default())),
+            create_boxed: || Box::new(<ReducePathDistanceToTargetScoreData as Default>::default()),
         },
         fields: &[
         ],
@@ -11120,6 +11922,7 @@ impl TypeObject for ReducePathDistanceToTargetScoreData {
 
 pub static REDUCEPATHDISTANCETOTARGETSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReducePathDistanceToTargetScoreData-Array",
+    name_hash: 1030592589,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ReducePathDistanceToTargetScoreData"),
@@ -11128,7 +11931,8 @@ pub static REDUCEPATHDISTANCETOTARGETSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LineOfFireScoreData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
     pub override_open_cover_height: f32,
@@ -11149,10 +11953,10 @@ impl LineOfFireScoreDataTrait for LineOfFireScoreData {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for LineOfFireScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -11204,16 +12008,20 @@ impl super::core::DataContainerTrait for LineOfFireScoreData {
 
 pub static LINEOFFIRESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LineOfFireScoreData",
+    name_hash: 1060326530,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(LineOfFireScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LineOfFireScoreData as Default>::default())),
+            create_boxed: || Box::new(<LineOfFireScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OverrideOpenCoverHeight",
+                name_hash: 4081422327,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LineOfFireScoreData, override_open_cover_height),
@@ -11245,6 +12053,7 @@ impl TypeObject for LineOfFireScoreData {
 
 pub static LINEOFFIRESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LineOfFireScoreData-Array",
+    name_hash: 1592101814,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("LineOfFireScoreData"),
@@ -11253,7 +12062,8 @@ pub static LINEOFFIRESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NavProbeScoreData {
     pub _glacier_base: CoverScoreData,
     pub ref_position: CoverScorePosition,
@@ -11326,28 +12136,34 @@ impl super::core::DataContainerTrait for NavProbeScoreData {
 
 pub static NAVPROBESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NavProbeScoreData",
+    name_hash: 1639440078,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATA_TYPE_INFO),
+        super_class_offset: offset_of!(NavProbeScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NavProbeScoreData as Default>::default())),
+            create_boxed: || Box::new(<NavProbeScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RefPosition",
+                name_hash: 114250413,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoverScorePosition",
                 rust_offset: offset_of!(NavProbeScoreData, ref_position),
             },
             FieldInfoData {
                 name: "Score",
+                name_hash: 231225165,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NavProbeScoreData, score),
             },
             FieldInfoData {
                 name: "MaxProbeDistance",
+                name_hash: 3580874296,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(NavProbeScoreData, max_probe_distance),
@@ -11379,6 +12195,7 @@ impl TypeObject for NavProbeScoreData {
 
 pub static NAVPROBESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NavProbeScoreData-Array",
+    name_hash: 3064862842,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("NavProbeScoreData"),
@@ -11387,18 +12204,19 @@ pub static NAVPROBESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BehindFollowObjectScoreData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
     pub max_enemy_distance: f32,
-    pub enemy_position_weight_curve: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
+    pub enemy_position_weight_curve: Option<LockedTypeObject /* super::core::FloatCurve */>,
 }
 
 pub trait BehindFollowObjectScoreDataTrait: CoverScoreDataWithScoreCurveTrait {
     fn max_enemy_distance(&self) -> &f32;
     fn max_enemy_distance_mut(&mut self) -> &mut f32;
-    fn enemy_position_weight_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn enemy_position_weight_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn enemy_position_weight_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn enemy_position_weight_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
 }
 
 impl BehindFollowObjectScoreDataTrait for BehindFollowObjectScoreData {
@@ -11408,19 +12226,19 @@ impl BehindFollowObjectScoreDataTrait for BehindFollowObjectScoreData {
     fn max_enemy_distance_mut(&mut self) -> &mut f32 {
         &mut self.max_enemy_distance
     }
-    fn enemy_position_weight_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn enemy_position_weight_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.enemy_position_weight_curve
     }
-    fn enemy_position_weight_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn enemy_position_weight_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.enemy_position_weight_curve
     }
 }
 
 impl CoverScoreDataWithScoreCurveTrait for BehindFollowObjectScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -11472,22 +12290,27 @@ impl super::core::DataContainerTrait for BehindFollowObjectScoreData {
 
 pub static BEHINDFOLLOWOBJECTSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BehindFollowObjectScoreData",
+    name_hash: 3057570549,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(BehindFollowObjectScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BehindFollowObjectScoreData as Default>::default())),
+            create_boxed: || Box::new(<BehindFollowObjectScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxEnemyDistance",
+                name_hash: 762942280,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BehindFollowObjectScoreData, max_enemy_distance),
             },
             FieldInfoData {
                 name: "EnemyPositionWeightCurve",
+                name_hash: 1514557681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(BehindFollowObjectScoreData, enemy_position_weight_curve),
@@ -11519,6 +12342,7 @@ impl TypeObject for BehindFollowObjectScoreData {
 
 pub static BEHINDFOLLOWOBJECTSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BehindFollowObjectScoreData-Array",
+    name_hash: 880403393,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("BehindFollowObjectScoreData"),
@@ -11527,7 +12351,8 @@ pub static BEHINDFOLLOWOBJECTSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AngleFromFollowObjectAimDirectionData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
     pub apply_only_if_aim_direction_stable: bool,
@@ -11557,10 +12382,10 @@ impl AngleFromFollowObjectAimDirectionDataTrait for AngleFromFollowObjectAimDire
 }
 
 impl CoverScoreDataWithScoreCurveTrait for AngleFromFollowObjectAimDirectionData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -11612,22 +12437,27 @@ impl super::core::DataContainerTrait for AngleFromFollowObjectAimDirectionData {
 
 pub static ANGLEFROMFOLLOWOBJECTAIMDIRECTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleFromFollowObjectAimDirectionData",
+    name_hash: 1139160838,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(AngleFromFollowObjectAimDirectionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AngleFromFollowObjectAimDirectionData as Default>::default())),
+            create_boxed: || Box::new(<AngleFromFollowObjectAimDirectionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ApplyOnlyIfAimDirectionStable",
+                name_hash: 3957151399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AngleFromFollowObjectAimDirectionData, apply_only_if_aim_direction_stable),
             },
             FieldInfoData {
                 name: "MaxFollowObjectSpeed",
+                name_hash: 2109075890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AngleFromFollowObjectAimDirectionData, max_follow_object_speed),
@@ -11659,6 +12489,7 @@ impl TypeObject for AngleFromFollowObjectAimDirectionData {
 
 pub static ANGLEFROMFOLLOWOBJECTAIMDIRECTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleFromFollowObjectAimDirectionData-Array",
+    name_hash: 4210951218,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AngleFromFollowObjectAimDirectionData"),
@@ -11667,7 +12498,8 @@ pub static ANGLEFROMFOLLOWOBJECTAIMDIRECTIONDATA_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FollowObjectReticleAvoidanceData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
     pub apply_only_if_aim_direction_stable: bool,
@@ -11715,10 +12547,10 @@ impl FollowObjectReticleAvoidanceDataTrait for FollowObjectReticleAvoidanceData 
 }
 
 impl CoverScoreDataWithScoreCurveTrait for FollowObjectReticleAvoidanceData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -11770,34 +12602,41 @@ impl super::core::DataContainerTrait for FollowObjectReticleAvoidanceData {
 
 pub static FOLLOWOBJECTRETICLEAVOIDANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FollowObjectReticleAvoidanceData",
+    name_hash: 2025891757,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(FollowObjectReticleAvoidanceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FollowObjectReticleAvoidanceData as Default>::default())),
+            create_boxed: || Box::new(<FollowObjectReticleAvoidanceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ApplyOnlyIfAimDirectionStable",
+                name_hash: 3957151399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FollowObjectReticleAvoidanceData, apply_only_if_aim_direction_stable),
             },
             FieldInfoData {
                 name: "MaxFollowObjectSpeed",
+                name_hash: 2109075890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FollowObjectReticleAvoidanceData, max_follow_object_speed),
             },
             FieldInfoData {
                 name: "SoldierRadiusExpansion",
+                name_hash: 2817440814,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FollowObjectReticleAvoidanceData, soldier_radius_expansion),
             },
             FieldInfoData {
                 name: "PathLookAheadDistance",
+                name_hash: 2330456549,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FollowObjectReticleAvoidanceData, path_look_ahead_distance),
@@ -11829,6 +12668,7 @@ impl TypeObject for FollowObjectReticleAvoidanceData {
 
 pub static FOLLOWOBJECTRETICLEAVOIDANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FollowObjectReticleAvoidanceData-Array",
+    name_hash: 1934924825,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("FollowObjectReticleAvoidanceData"),
@@ -11837,10 +12677,11 @@ pub static FOLLOWOBJECTRETICLEAVOIDANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PathAvoidanceScoreData {
     pub _glacier_base: CoverScoreData,
-    pub avoid_by_type_data: Vec<super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData>,
+    pub avoid_by_type_data: Vec<BoxedTypeObject /* super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData */>,
     pub max_search_distance: f32,
     pub reject_cover_beyond_search_distance: bool,
     pub inner_zone_score: f32,
@@ -11850,8 +12691,8 @@ pub struct PathAvoidanceScoreData {
 }
 
 pub trait PathAvoidanceScoreDataTrait: CoverScoreDataTrait {
-    fn avoid_by_type_data(&self) -> &Vec<super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData>;
-    fn avoid_by_type_data_mut(&mut self) -> &mut Vec<super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData>;
+    fn avoid_by_type_data(&self) -> &Vec<BoxedTypeObject /* super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData */>;
+    fn avoid_by_type_data_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData */>;
     fn max_search_distance(&self) -> &f32;
     fn max_search_distance_mut(&mut self) -> &mut f32;
     fn reject_cover_beyond_search_distance(&self) -> &bool;
@@ -11867,10 +12708,10 @@ pub trait PathAvoidanceScoreDataTrait: CoverScoreDataTrait {
 }
 
 impl PathAvoidanceScoreDataTrait for PathAvoidanceScoreData {
-    fn avoid_by_type_data(&self) -> &Vec<super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData> {
+    fn avoid_by_type_data(&self) -> &Vec<BoxedTypeObject /* super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData */> {
         &self.avoid_by_type_data
     }
-    fn avoid_by_type_data_mut(&mut self) -> &mut Vec<super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData> {
+    fn avoid_by_type_data_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::battle_a_i_shared::CoverQueryPathEnemyAvoidanceByTypeData */> {
         &mut self.avoid_by_type_data
     }
     fn max_search_distance(&self) -> &f32 {
@@ -11946,52 +12787,62 @@ impl super::core::DataContainerTrait for PathAvoidanceScoreData {
 
 pub static PATHAVOIDANCESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathAvoidanceScoreData",
+    name_hash: 2025071052,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PathAvoidanceScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PathAvoidanceScoreData as Default>::default())),
+            create_boxed: || Box::new(<PathAvoidanceScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AvoidByTypeData",
+                name_hash: 4158994339,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CoverQueryPathEnemyAvoidanceByTypeData-Array",
                 rust_offset: offset_of!(PathAvoidanceScoreData, avoid_by_type_data),
             },
             FieldInfoData {
                 name: "MaxSearchDistance",
+                name_hash: 1031572764,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PathAvoidanceScoreData, max_search_distance),
             },
             FieldInfoData {
                 name: "RejectCoverBeyondSearchDistance",
+                name_hash: 4261766033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PathAvoidanceScoreData, reject_cover_beyond_search_distance),
             },
             FieldInfoData {
                 name: "InnerZoneScore",
+                name_hash: 2862235053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PathAvoidanceScoreData, inner_zone_score),
             },
             FieldInfoData {
                 name: "OuterZoneScore",
+                name_hash: 184103658,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PathAvoidanceScoreData, outer_zone_score),
             },
             FieldInfoData {
                 name: "NotPassingAvoidanceAreaScore",
+                name_hash: 2263386178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PathAvoidanceScoreData, not_passing_avoidance_area_score),
             },
             FieldInfoData {
                 name: "ScoresPerZone",
+                name_hash: 3677565063,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(PathAvoidanceScoreData, scores_per_zone),
@@ -12023,6 +12874,7 @@ impl TypeObject for PathAvoidanceScoreData {
 
 pub static PATHAVOIDANCESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathAvoidanceScoreData-Array",
+    name_hash: 4267188856,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("PathAvoidanceScoreData"),
@@ -12031,7 +12883,8 @@ pub static PATHAVOIDANCESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PathDistanceScoreData {
     pub _glacier_base: CoverScoreDataWithRefPos,
     pub max_search_distance: f32,
@@ -12079,10 +12932,10 @@ impl CoverScoreDataWithRefPosTrait for PathDistanceScoreData {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for PathDistanceScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -12134,28 +12987,34 @@ impl super::core::DataContainerTrait for PathDistanceScoreData {
 
 pub static PATHDISTANCESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathDistanceScoreData",
+    name_hash: 3353531155,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHREFPOS_TYPE_INFO),
+        super_class_offset: offset_of!(PathDistanceScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PathDistanceScoreData as Default>::default())),
+            create_boxed: || Box::new(<PathDistanceScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxSearchDistance",
+                name_hash: 1031572764,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PathDistanceScoreData, max_search_distance),
             },
             FieldInfoData {
                 name: "PrecisePath",
+                name_hash: 733837779,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PathDistanceScoreData, precise_path),
             },
             FieldInfoData {
                 name: "RejectCoverBeyondSearchDistance",
+                name_hash: 4261766033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PathDistanceScoreData, reject_cover_beyond_search_distance),
@@ -12187,6 +13046,7 @@ impl TypeObject for PathDistanceScoreData {
 
 pub static PATHDISTANCESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathDistanceScoreData-Array",
+    name_hash: 1940508071,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("PathDistanceScoreData"),
@@ -12195,7 +13055,8 @@ pub static PATHDISTANCESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RejectUnreachableCoverScoreData {
     pub _glacier_base: CoverScoreData,
     pub ref_position: CoverScorePosition,
@@ -12250,16 +13111,20 @@ impl super::core::DataContainerTrait for RejectUnreachableCoverScoreData {
 
 pub static REJECTUNREACHABLECOVERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RejectUnreachableCoverScoreData",
+    name_hash: 2338817875,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RejectUnreachableCoverScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RejectUnreachableCoverScoreData as Default>::default())),
+            create_boxed: || Box::new(<RejectUnreachableCoverScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RefPosition",
+                name_hash: 114250413,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoverScorePosition",
                 rust_offset: offset_of!(RejectUnreachableCoverScoreData, ref_position),
@@ -12291,6 +13156,7 @@ impl TypeObject for RejectUnreachableCoverScoreData {
 
 pub static REJECTUNREACHABLECOVERSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RejectUnreachableCoverScoreData-Array",
+    name_hash: 4062474855,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("RejectUnreachableCoverScoreData"),
@@ -12299,7 +13165,8 @@ pub static REJECTUNREACHABLECOVERSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DistanceToCorpseData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
     pub max_time_since_death: f32,
@@ -12320,10 +13187,10 @@ impl DistanceToCorpseDataTrait for DistanceToCorpseData {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for DistanceToCorpseData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -12375,16 +13242,20 @@ impl super::core::DataContainerTrait for DistanceToCorpseData {
 
 pub static DISTANCETOCORPSEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceToCorpseData",
+    name_hash: 2933869173,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(DistanceToCorpseData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DistanceToCorpseData as Default>::default())),
+            create_boxed: || Box::new(<DistanceToCorpseData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxTimeSinceDeath",
+                name_hash: 40258154,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DistanceToCorpseData, max_time_since_death),
@@ -12416,6 +13287,7 @@ impl TypeObject for DistanceToCorpseData {
 
 pub static DISTANCETOCORPSEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceToCorpseData-Array",
+    name_hash: 4101372737,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("DistanceToCorpseData"),
@@ -12424,7 +13296,8 @@ pub static DISTANCETOCORPSEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DistanceToClosestEnemyCoverScoreData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
 }
@@ -12436,10 +13309,10 @@ impl DistanceToClosestEnemyCoverScoreDataTrait for DistanceToClosestEnemyCoverSc
 }
 
 impl CoverScoreDataWithScoreCurveTrait for DistanceToClosestEnemyCoverScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -12491,12 +13364,15 @@ impl super::core::DataContainerTrait for DistanceToClosestEnemyCoverScoreData {
 
 pub static DISTANCETOCLOSESTENEMYCOVERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceToClosestEnemyCoverScoreData",
+    name_hash: 2468367427,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(DistanceToClosestEnemyCoverScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DistanceToClosestEnemyCoverScoreData as Default>::default())),
+            create_boxed: || Box::new(<DistanceToClosestEnemyCoverScoreData as Default>::default()),
         },
         fields: &[
         ],
@@ -12526,6 +13402,7 @@ impl TypeObject for DistanceToClosestEnemyCoverScoreData {
 
 pub static DISTANCETOCLOSESTENEMYCOVERSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceToClosestEnemyCoverScoreData-Array",
+    name_hash: 2768908151,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("DistanceToClosestEnemyCoverScoreData"),
@@ -12534,7 +13411,8 @@ pub static DISTANCETOCLOSESTENEMYCOVERSCOREDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DistanceToClosestFriendlyScoreData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
 }
@@ -12546,10 +13424,10 @@ impl DistanceToClosestFriendlyScoreDataTrait for DistanceToClosestFriendlyScoreD
 }
 
 impl CoverScoreDataWithScoreCurveTrait for DistanceToClosestFriendlyScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -12601,12 +13479,15 @@ impl super::core::DataContainerTrait for DistanceToClosestFriendlyScoreData {
 
 pub static DISTANCETOCLOSESTFRIENDLYSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceToClosestFriendlyScoreData",
+    name_hash: 1460098931,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(DistanceToClosestFriendlyScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DistanceToClosestFriendlyScoreData as Default>::default())),
+            create_boxed: || Box::new(<DistanceToClosestFriendlyScoreData as Default>::default()),
         },
         fields: &[
         ],
@@ -12636,6 +13517,7 @@ impl TypeObject for DistanceToClosestFriendlyScoreData {
 
 pub static DISTANCETOCLOSESTFRIENDLYSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceToClosestFriendlyScoreData-Array",
+    name_hash: 1210078023,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("DistanceToClosestFriendlyScoreData"),
@@ -12644,12 +13526,13 @@ pub static DISTANCETOCLOSESTFRIENDLYSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ExposureToMultiTargetsScoreData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
     pub exclude_primary_target: bool,
     pub ref_position_for_target_filtering: CoverScorePosition,
-    pub target_significance_distance_curve: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
+    pub target_significance_distance_curve: Option<LockedTypeObject /* super::core::FloatCurve */>,
     pub max_target_distance: f32,
     pub max_distance_ratio_from_closest_target: f32,
     pub min_target_distance_to_always_be_counted: f32,
@@ -12662,8 +13545,8 @@ pub trait ExposureToMultiTargetsScoreDataTrait: CoverScoreDataWithScoreCurveTrai
     fn exclude_primary_target_mut(&mut self) -> &mut bool;
     fn ref_position_for_target_filtering(&self) -> &CoverScorePosition;
     fn ref_position_for_target_filtering_mut(&mut self) -> &mut CoverScorePosition;
-    fn target_significance_distance_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn target_significance_distance_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn target_significance_distance_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn target_significance_distance_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
     fn max_target_distance(&self) -> &f32;
     fn max_target_distance_mut(&mut self) -> &mut f32;
     fn max_distance_ratio_from_closest_target(&self) -> &f32;
@@ -12689,10 +13572,10 @@ impl ExposureToMultiTargetsScoreDataTrait for ExposureToMultiTargetsScoreData {
     fn ref_position_for_target_filtering_mut(&mut self) -> &mut CoverScorePosition {
         &mut self.ref_position_for_target_filtering
     }
-    fn target_significance_distance_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn target_significance_distance_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.target_significance_distance_curve
     }
-    fn target_significance_distance_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn target_significance_distance_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.target_significance_distance_curve
     }
     fn max_target_distance(&self) -> &f32 {
@@ -12728,10 +13611,10 @@ impl ExposureToMultiTargetsScoreDataTrait for ExposureToMultiTargetsScoreData {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for ExposureToMultiTargetsScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -12783,58 +13666,69 @@ impl super::core::DataContainerTrait for ExposureToMultiTargetsScoreData {
 
 pub static EXPOSURETOMULTITARGETSSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExposureToMultiTargetsScoreData",
+    name_hash: 2389778142,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(ExposureToMultiTargetsScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ExposureToMultiTargetsScoreData as Default>::default())),
+            create_boxed: || Box::new(<ExposureToMultiTargetsScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExcludePrimaryTarget",
+                name_hash: 3931146494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ExposureToMultiTargetsScoreData, exclude_primary_target),
             },
             FieldInfoData {
                 name: "RefPositionForTargetFiltering",
+                name_hash: 43030183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoverScorePosition",
                 rust_offset: offset_of!(ExposureToMultiTargetsScoreData, ref_position_for_target_filtering),
             },
             FieldInfoData {
                 name: "TargetSignificanceDistanceCurve",
+                name_hash: 2799969439,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(ExposureToMultiTargetsScoreData, target_significance_distance_curve),
             },
             FieldInfoData {
                 name: "MaxTargetDistance",
+                name_hash: 2052129987,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ExposureToMultiTargetsScoreData, max_target_distance),
             },
             FieldInfoData {
                 name: "MaxDistanceRatioFromClosestTarget",
+                name_hash: 2132588581,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ExposureToMultiTargetsScoreData, max_distance_ratio_from_closest_target),
             },
             FieldInfoData {
                 name: "MinTargetDistanceToAlwaysBeCounted",
+                name_hash: 3442472018,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ExposureToMultiTargetsScoreData, min_target_distance_to_always_be_counted),
             },
             FieldInfoData {
                 name: "MaxDistanceRatioFromClosestExposedTarget",
+                name_hash: 2693217781,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ExposureToMultiTargetsScoreData, max_distance_ratio_from_closest_exposed_target),
             },
             FieldInfoData {
                 name: "MaxDistanceToFullyRejectExposedTarget",
+                name_hash: 2898557165,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ExposureToMultiTargetsScoreData, max_distance_to_fully_reject_exposed_target),
@@ -12866,6 +13760,7 @@ impl TypeObject for ExposureToMultiTargetsScoreData {
 
 pub static EXPOSURETOMULTITARGETSSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExposureToMultiTargetsScoreData-Array",
+    name_hash: 686432362,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ExposureToMultiTargetsScoreData"),
@@ -12874,7 +13769,8 @@ pub static EXPOSURETOMULTITARGETSSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DistanceToMultiTargetsScoreData {
     pub _glacier_base: MultiTargetScorer,
 }
@@ -12907,10 +13803,10 @@ impl MultiTargetScorerTrait for DistanceToMultiTargetsScoreData {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for DistanceToMultiTargetsScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -12962,12 +13858,15 @@ impl super::core::DataContainerTrait for DistanceToMultiTargetsScoreData {
 
 pub static DISTANCETOMULTITARGETSSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceToMultiTargetsScoreData",
+    name_hash: 3048369006,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MULTITARGETSCORER_TYPE_INFO),
+        super_class_offset: offset_of!(DistanceToMultiTargetsScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DistanceToMultiTargetsScoreData as Default>::default())),
+            create_boxed: || Box::new(<DistanceToMultiTargetsScoreData as Default>::default()),
         },
         fields: &[
         ],
@@ -12997,6 +13896,7 @@ impl TypeObject for DistanceToMultiTargetsScoreData {
 
 pub static DISTANCETOMULTITARGETSSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceToMultiTargetsScoreData-Array",
+    name_hash: 4111148122,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("DistanceToMultiTargetsScoreData"),
@@ -13005,7 +13905,8 @@ pub static DISTANCETOMULTITARGETSSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AngleToMultiTargetsScoreData {
     pub _glacier_base: MultiTargetScorer,
 }
@@ -13038,10 +13939,10 @@ impl MultiTargetScorerTrait for AngleToMultiTargetsScoreData {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for AngleToMultiTargetsScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -13093,12 +13994,15 @@ impl super::core::DataContainerTrait for AngleToMultiTargetsScoreData {
 
 pub static ANGLETOMULTITARGETSSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleToMultiTargetsScoreData",
+    name_hash: 1952442508,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MULTITARGETSCORER_TYPE_INFO),
+        super_class_offset: offset_of!(AngleToMultiTargetsScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AngleToMultiTargetsScoreData as Default>::default())),
+            create_boxed: || Box::new(<AngleToMultiTargetsScoreData as Default>::default()),
         },
         fields: &[
         ],
@@ -13128,6 +14032,7 @@ impl TypeObject for AngleToMultiTargetsScoreData {
 
 pub static ANGLETOMULTITARGETSSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleToMultiTargetsScoreData-Array",
+    name_hash: 204077240,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AngleToMultiTargetsScoreData"),
@@ -13136,7 +14041,8 @@ pub static ANGLETOMULTITARGETSSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MultiTargetScorer {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
     pub exclude_primary_target: bool,
@@ -13175,10 +14081,10 @@ impl MultiTargetScorerTrait for MultiTargetScorer {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for MultiTargetScorer {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -13230,28 +14136,34 @@ impl super::core::DataContainerTrait for MultiTargetScorer {
 
 pub static MULTITARGETSCORER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiTargetScorer",
+    name_hash: 1360430087,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(MultiTargetScorer, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MultiTargetScorer as Default>::default())),
+            create_boxed: || Box::new(<MultiTargetScorer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExcludePrimaryTarget",
+                name_hash: 3931146494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MultiTargetScorer, exclude_primary_target),
             },
             FieldInfoData {
                 name: "MaxDistanceToTarget",
+                name_hash: 1927959608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MultiTargetScorer, max_distance_to_target),
             },
             FieldInfoData {
                 name: "ScoringMode",
+                name_hash: 3421499531,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MultiTargetScoringMode",
                 rust_offset: offset_of!(MultiTargetScorer, scoring_mode),
@@ -13283,6 +14195,7 @@ impl TypeObject for MultiTargetScorer {
 
 pub static MULTITARGETSCORER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiTargetScorer-Array",
+    name_hash: 751510707,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("MultiTargetScorer"),
@@ -13302,6 +14215,7 @@ pub enum MultiTargetScoringMode {
 
 pub static MULTITARGETSCORINGMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiTargetScoringMode",
+    name_hash: 2967768339,
     flags: MemberInfoFlags::new(49429),
     module: "BattleAI",
     data: TypeInfoData::Enum,
@@ -13330,6 +14244,7 @@ impl TypeObject for MultiTargetScoringMode {
 
 pub static MULTITARGETSCORINGMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiTargetScoringMode-Array",
+    name_hash: 697239463,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("MultiTargetScoringMode"),
@@ -13338,31 +14253,32 @@ pub static MULTITARGETSCORINGMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TowardsPreferredWeaponRangeScoreData {
     pub _glacier_base: CoverScoreData,
-    pub outside_preferred_range_score_curve: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
-    pub inside_preferred_range_score_curve: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
+    pub outside_preferred_range_score_curve: Option<LockedTypeObject /* super::core::FloatCurve */>,
+    pub inside_preferred_range_score_curve: Option<LockedTypeObject /* super::core::FloatCurve */>,
 }
 
 pub trait TowardsPreferredWeaponRangeScoreDataTrait: CoverScoreDataTrait {
-    fn outside_preferred_range_score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn outside_preferred_range_score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn inside_preferred_range_score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn inside_preferred_range_score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn outside_preferred_range_score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn outside_preferred_range_score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn inside_preferred_range_score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn inside_preferred_range_score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
 }
 
 impl TowardsPreferredWeaponRangeScoreDataTrait for TowardsPreferredWeaponRangeScoreData {
-    fn outside_preferred_range_score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn outside_preferred_range_score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.outside_preferred_range_score_curve
     }
-    fn outside_preferred_range_score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn outside_preferred_range_score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.outside_preferred_range_score_curve
     }
-    fn inside_preferred_range_score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn inside_preferred_range_score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.inside_preferred_range_score_curve
     }
-    fn inside_preferred_range_score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn inside_preferred_range_score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.inside_preferred_range_score_curve
     }
 }
@@ -13402,22 +14318,27 @@ impl super::core::DataContainerTrait for TowardsPreferredWeaponRangeScoreData {
 
 pub static TOWARDSPREFERREDWEAPONRANGESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TowardsPreferredWeaponRangeScoreData",
+    name_hash: 1787094413,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TowardsPreferredWeaponRangeScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TowardsPreferredWeaponRangeScoreData as Default>::default())),
+            create_boxed: || Box::new(<TowardsPreferredWeaponRangeScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OutsidePreferredRangeScoreCurve",
+                name_hash: 2236023989,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(TowardsPreferredWeaponRangeScoreData, outside_preferred_range_score_curve),
             },
             FieldInfoData {
                 name: "InsidePreferredRangeScoreCurve",
+                name_hash: 2779002812,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(TowardsPreferredWeaponRangeScoreData, inside_preferred_range_score_curve),
@@ -13449,6 +14370,7 @@ impl TypeObject for TowardsPreferredWeaponRangeScoreData {
 
 pub static TOWARDSPREFERREDWEAPONRANGESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TowardsPreferredWeaponRangeScoreData-Array",
+    name_hash: 388204857,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("TowardsPreferredWeaponRangeScoreData"),
@@ -13457,7 +14379,8 @@ pub static TOWARDSPREFERREDWEAPONRANGESCOREDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PreferredWeaponRangeScoreData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
 }
@@ -13469,10 +14392,10 @@ impl PreferredWeaponRangeScoreDataTrait for PreferredWeaponRangeScoreData {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for PreferredWeaponRangeScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -13524,12 +14447,15 @@ impl super::core::DataContainerTrait for PreferredWeaponRangeScoreData {
 
 pub static PREFERREDWEAPONRANGESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreferredWeaponRangeScoreData",
+    name_hash: 2845847077,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(PreferredWeaponRangeScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PreferredWeaponRangeScoreData as Default>::default())),
+            create_boxed: || Box::new(<PreferredWeaponRangeScoreData as Default>::default()),
         },
         fields: &[
         ],
@@ -13559,6 +14485,7 @@ impl TypeObject for PreferredWeaponRangeScoreData {
 
 pub static PREFERREDWEAPONRANGESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreferredWeaponRangeScoreData-Array",
+    name_hash: 3319768721,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("PreferredWeaponRangeScoreData"),
@@ -13567,7 +14494,8 @@ pub static PREFERREDWEAPONRANGESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProjectedDistanceScoreData {
     pub _glacier_base: CoverScoreDataWithRefPos,
     pub ref_direction: CoverScoreDirection,
@@ -13606,10 +14534,10 @@ impl CoverScoreDataWithRefPosTrait for ProjectedDistanceScoreData {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for ProjectedDistanceScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -13661,22 +14589,27 @@ impl super::core::DataContainerTrait for ProjectedDistanceScoreData {
 
 pub static PROJECTEDDISTANCESCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProjectedDistanceScoreData",
+    name_hash: 4258192362,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHREFPOS_TYPE_INFO),
+        super_class_offset: offset_of!(ProjectedDistanceScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProjectedDistanceScoreData as Default>::default())),
+            create_boxed: || Box::new(<ProjectedDistanceScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RefDirection",
+                name_hash: 1804247153,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoverScoreDirection",
                 rust_offset: offset_of!(ProjectedDistanceScoreData, ref_direction),
             },
             FieldInfoData {
                 name: "FlipRefDirection",
+                name_hash: 2846396834,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ProjectedDistanceScoreData, flip_ref_direction),
@@ -13708,6 +14641,7 @@ impl TypeObject for ProjectedDistanceScoreData {
 
 pub static PROJECTEDDISTANCESCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProjectedDistanceScoreData-Array",
+    name_hash: 3097118430,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ProjectedDistanceScoreData"),
@@ -13728,6 +14662,7 @@ pub enum CoverScoreDirection {
 
 pub static COVERSCOREDIRECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScoreDirection",
+    name_hash: 3557376357,
     flags: MemberInfoFlags::new(49429),
     module: "BattleAI",
     data: TypeInfoData::Enum,
@@ -13756,6 +14691,7 @@ impl TypeObject for CoverScoreDirection {
 
 pub static COVERSCOREDIRECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScoreDirection-Array",
+    name_hash: 896166481,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("CoverScoreDirection"),
@@ -13764,7 +14700,8 @@ pub static COVERSCOREDIRECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DistanceToActorScoreData {
     pub _glacier_base: CoverScoreDataWithRefPos,
 }
@@ -13785,10 +14722,10 @@ impl CoverScoreDataWithRefPosTrait for DistanceToActorScoreData {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for DistanceToActorScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -13840,12 +14777,15 @@ impl super::core::DataContainerTrait for DistanceToActorScoreData {
 
 pub static DISTANCETOACTORSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceToActorScoreData",
+    name_hash: 2456301646,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHREFPOS_TYPE_INFO),
+        super_class_offset: offset_of!(DistanceToActorScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DistanceToActorScoreData as Default>::default())),
+            create_boxed: || Box::new(<DistanceToActorScoreData as Default>::default()),
         },
         fields: &[
         ],
@@ -13875,6 +14815,7 @@ impl TypeObject for DistanceToActorScoreData {
 
 pub static DISTANCETOACTORSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceToActorScoreData-Array",
+    name_hash: 1437960698,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("DistanceToActorScoreData"),
@@ -13883,7 +14824,8 @@ pub static DISTANCETOACTORSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AngleFromPathTrajectoryScoreData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
     pub path_look_ahead_distance: f32,
@@ -13904,10 +14846,10 @@ impl AngleFromPathTrajectoryScoreDataTrait for AngleFromPathTrajectoryScoreData 
 }
 
 impl CoverScoreDataWithScoreCurveTrait for AngleFromPathTrajectoryScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -13959,16 +14901,20 @@ impl super::core::DataContainerTrait for AngleFromPathTrajectoryScoreData {
 
 pub static ANGLEFROMPATHTRAJECTORYSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleFromPathTrajectoryScoreData",
+    name_hash: 592728572,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(AngleFromPathTrajectoryScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AngleFromPathTrajectoryScoreData as Default>::default())),
+            create_boxed: || Box::new(<AngleFromPathTrajectoryScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PathLookAheadDistance",
+                name_hash: 2330456549,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AngleFromPathTrajectoryScoreData, path_look_ahead_distance),
@@ -14000,6 +14946,7 @@ impl TypeObject for AngleFromPathTrajectoryScoreData {
 
 pub static ANGLEFROMPATHTRAJECTORYSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleFromPathTrajectoryScoreData-Array",
+    name_hash: 3708189128,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AngleFromPathTrajectoryScoreData"),
@@ -14008,7 +14955,8 @@ pub static ANGLEFROMPATHTRAJECTORYSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AngleFromReferenceDirectionScoreData {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
     pub ref_dir_from_pos: CoverScorePosition,
@@ -14038,10 +14986,10 @@ impl AngleFromReferenceDirectionScoreDataTrait for AngleFromReferenceDirectionSc
 }
 
 impl CoverScoreDataWithScoreCurveTrait for AngleFromReferenceDirectionScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -14093,22 +15041,27 @@ impl super::core::DataContainerTrait for AngleFromReferenceDirectionScoreData {
 
 pub static ANGLEFROMREFERENCEDIRECTIONSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleFromReferenceDirectionScoreData",
+    name_hash: 3460904804,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(AngleFromReferenceDirectionScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AngleFromReferenceDirectionScoreData as Default>::default())),
+            create_boxed: || Box::new(<AngleFromReferenceDirectionScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RefDirFromPos",
+                name_hash: 4037155889,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoverScorePosition",
                 rust_offset: offset_of!(AngleFromReferenceDirectionScoreData, ref_dir_from_pos),
             },
             FieldInfoData {
                 name: "RefDirToPos",
+                name_hash: 1468045244,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoverScorePosition",
                 rust_offset: offset_of!(AngleFromReferenceDirectionScoreData, ref_dir_to_pos),
@@ -14140,6 +15093,7 @@ impl TypeObject for AngleFromReferenceDirectionScoreData {
 
 pub static ANGLEFROMREFERENCEDIRECTIONSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleFromReferenceDirectionScoreData-Array",
+    name_hash: 845110096,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AngleFromReferenceDirectionScoreData"),
@@ -14148,18 +15102,19 @@ pub static ANGLEFROMREFERENCEDIRECTIONSCOREDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AngleToActorScoreData2 {
     pub _glacier_base: CoverScoreData,
     pub ref_position: CoverScorePosition,
-    pub scores_for_filter: Vec<Option<Arc<Mutex<dyn ScoreCurveForFilterTrait>>>>,
+    pub scores_for_filter: Vec<Option<LockedTypeObject /* ScoreCurveForFilter */>>,
 }
 
 pub trait AngleToActorScoreData2Trait: CoverScoreDataTrait {
     fn ref_position(&self) -> &CoverScorePosition;
     fn ref_position_mut(&mut self) -> &mut CoverScorePosition;
-    fn scores_for_filter(&self) -> &Vec<Option<Arc<Mutex<dyn ScoreCurveForFilterTrait>>>>;
-    fn scores_for_filter_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ScoreCurveForFilterTrait>>>>;
+    fn scores_for_filter(&self) -> &Vec<Option<LockedTypeObject /* ScoreCurveForFilter */>>;
+    fn scores_for_filter_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ScoreCurveForFilter */>>;
 }
 
 impl AngleToActorScoreData2Trait for AngleToActorScoreData2 {
@@ -14169,10 +15124,10 @@ impl AngleToActorScoreData2Trait for AngleToActorScoreData2 {
     fn ref_position_mut(&mut self) -> &mut CoverScorePosition {
         &mut self.ref_position
     }
-    fn scores_for_filter(&self) -> &Vec<Option<Arc<Mutex<dyn ScoreCurveForFilterTrait>>>> {
+    fn scores_for_filter(&self) -> &Vec<Option<LockedTypeObject /* ScoreCurveForFilter */>> {
         &self.scores_for_filter
     }
-    fn scores_for_filter_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ScoreCurveForFilterTrait>>>> {
+    fn scores_for_filter_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ScoreCurveForFilter */>> {
         &mut self.scores_for_filter
     }
 }
@@ -14212,22 +15167,27 @@ impl super::core::DataContainerTrait for AngleToActorScoreData2 {
 
 pub static ANGLETOACTORSCOREDATA2_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleToActorScoreData2",
+    name_hash: 2801177630,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AngleToActorScoreData2, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AngleToActorScoreData2 as Default>::default())),
+            create_boxed: || Box::new(<AngleToActorScoreData2 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RefPosition",
+                name_hash: 114250413,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoverScorePosition",
                 rust_offset: offset_of!(AngleToActorScoreData2, ref_position),
             },
             FieldInfoData {
                 name: "ScoresForFilter",
+                name_hash: 3649816933,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ScoreCurveForFilter-Array",
                 rust_offset: offset_of!(AngleToActorScoreData2, scores_for_filter),
@@ -14259,6 +15219,7 @@ impl TypeObject for AngleToActorScoreData2 {
 
 pub static ANGLETOACTORSCOREDATA2_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleToActorScoreData2-Array",
+    name_hash: 1681016106,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AngleToActorScoreData2"),
@@ -14267,25 +15228,26 @@ pub static ANGLETOACTORSCOREDATA2_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScoreCurveForFilter {
     pub _glacier_base: super::core::DataContainer,
-    pub score_curve: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
+    pub score_curve: Option<LockedTypeObject /* super::core::FloatCurve */>,
     pub runtime_filter: u32,
 }
 
 pub trait ScoreCurveForFilterTrait: super::core::DataContainerTrait {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
     fn runtime_filter(&self) -> &u32;
     fn runtime_filter_mut(&mut self) -> &mut u32;
 }
 
 impl ScoreCurveForFilterTrait for ScoreCurveForFilter {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.score_curve
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.score_curve
     }
     fn runtime_filter(&self) -> &u32 {
@@ -14301,22 +15263,27 @@ impl super::core::DataContainerTrait for ScoreCurveForFilter {
 
 pub static SCORECURVEFORFILTER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScoreCurveForFilter",
+    name_hash: 3196619041,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(ScoreCurveForFilter, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScoreCurveForFilter as Default>::default())),
+            create_boxed: || Box::new(<ScoreCurveForFilter as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ScoreCurve",
+                name_hash: 3850135130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(ScoreCurveForFilter, score_curve),
             },
             FieldInfoData {
                 name: "RuntimeFilter",
+                name_hash: 1515778553,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ScoreCurveForFilter, runtime_filter),
@@ -14348,6 +15315,7 @@ impl TypeObject for ScoreCurveForFilter {
 
 pub static SCORECURVEFORFILTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScoreCurveForFilter-Array",
+    name_hash: 3139474325,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("ScoreCurveForFilter"),
@@ -14356,7 +15324,8 @@ pub static SCORECURVEFORFILTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AngleToActorScoreData {
     pub _glacier_base: CoverScoreDataWithRefPos,
 }
@@ -14377,10 +15346,10 @@ impl CoverScoreDataWithRefPosTrait for AngleToActorScoreData {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for AngleToActorScoreData {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -14432,12 +15401,15 @@ impl super::core::DataContainerTrait for AngleToActorScoreData {
 
 pub static ANGLETOACTORSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleToActorScoreData",
+    name_hash: 1126088364,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHREFPOS_TYPE_INFO),
+        super_class_offset: offset_of!(AngleToActorScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AngleToActorScoreData as Default>::default())),
+            create_boxed: || Box::new(<AngleToActorScoreData as Default>::default()),
         },
         fields: &[
         ],
@@ -14467,6 +15439,7 @@ impl TypeObject for AngleToActorScoreData {
 
 pub static ANGLETOACTORSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngleToActorScoreData-Array",
+    name_hash: 3000020504,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("AngleToActorScoreData"),
@@ -14475,7 +15448,8 @@ pub static ANGLETOACTORSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoverScoreDataWithRefPos {
     pub _glacier_base: CoverScoreDataWithScoreCurve,
     pub ref_position: CoverScorePosition,
@@ -14496,10 +15470,10 @@ impl CoverScoreDataWithRefPosTrait for CoverScoreDataWithRefPos {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for CoverScoreDataWithRefPos {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve()
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         self._glacier_base.score_curve_mut()
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -14551,16 +15525,20 @@ impl super::core::DataContainerTrait for CoverScoreDataWithRefPos {
 
 pub static COVERSCOREDATAWITHREFPOS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScoreDataWithRefPos",
+    name_hash: 1733761039,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATAWITHSCORECURVE_TYPE_INFO),
+        super_class_offset: offset_of!(CoverScoreDataWithRefPos, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoverScoreDataWithRefPos as Default>::default())),
+            create_boxed: || Box::new(<CoverScoreDataWithRefPos as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RefPosition",
+                name_hash: 114250413,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoverScorePosition",
                 rust_offset: offset_of!(CoverScoreDataWithRefPos, ref_position),
@@ -14592,6 +15570,7 @@ impl TypeObject for CoverScoreDataWithRefPos {
 
 pub static COVERSCOREDATAWITHREFPOS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScoreDataWithRefPos-Array",
+    name_hash: 3769242811,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("CoverScoreDataWithRefPos"),
@@ -14600,17 +15579,18 @@ pub static COVERSCOREDATAWITHREFPOS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoverScoreDataWithScoreCurve {
     pub _glacier_base: CoverScoreData,
-    pub score_curve: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
+    pub score_curve: Option<LockedTypeObject /* super::core::FloatCurve */>,
     pub score_curve_scale: f32,
     pub score_curve_max_y: f32,
 }
 
 pub trait CoverScoreDataWithScoreCurveTrait: CoverScoreDataTrait {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
     fn score_curve_scale(&self) -> &f32;
     fn score_curve_scale_mut(&mut self) -> &mut f32;
     fn score_curve_max_y(&self) -> &f32;
@@ -14618,10 +15598,10 @@ pub trait CoverScoreDataWithScoreCurveTrait: CoverScoreDataTrait {
 }
 
 impl CoverScoreDataWithScoreCurveTrait for CoverScoreDataWithScoreCurve {
-    fn score_curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.score_curve
     }
-    fn score_curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn score_curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.score_curve
     }
     fn score_curve_scale(&self) -> &f32 {
@@ -14673,28 +15653,34 @@ impl super::core::DataContainerTrait for CoverScoreDataWithScoreCurve {
 
 pub static COVERSCOREDATAWITHSCORECURVE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScoreDataWithScoreCurve",
+    name_hash: 3461241901,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CoverScoreDataWithScoreCurve, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoverScoreDataWithScoreCurve as Default>::default())),
+            create_boxed: || Box::new(<CoverScoreDataWithScoreCurve as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ScoreCurve",
+                name_hash: 3850135130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(CoverScoreDataWithScoreCurve, score_curve),
             },
             FieldInfoData {
                 name: "ScoreCurveScale",
+                name_hash: 1983536674,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CoverScoreDataWithScoreCurve, score_curve_scale),
             },
             FieldInfoData {
                 name: "ScoreCurveMaxY",
+                name_hash: 2143159799,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CoverScoreDataWithScoreCurve, score_curve_max_y),
@@ -14726,6 +15712,7 @@ impl TypeObject for CoverScoreDataWithScoreCurve {
 
 pub static COVERSCOREDATAWITHSCORECURVE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScoreDataWithScoreCurve-Array",
+    name_hash: 1853337753,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("CoverScoreDataWithScoreCurve"),
@@ -14734,7 +15721,8 @@ pub static COVERSCOREDATAWITHSCORECURVE_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CurrentCoverBonusScoreData {
     pub _glacier_base: CoverScoreData,
     pub bonus_score: f32,
@@ -14789,16 +15777,20 @@ impl super::core::DataContainerTrait for CurrentCoverBonusScoreData {
 
 pub static CURRENTCOVERBONUSSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurrentCoverBonusScoreData",
+    name_hash: 1069847676,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CurrentCoverBonusScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CurrentCoverBonusScoreData as Default>::default())),
+            create_boxed: || Box::new(<CurrentCoverBonusScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BonusScore",
+                name_hash: 711777544,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CurrentCoverBonusScoreData, bonus_score),
@@ -14830,6 +15822,7 @@ impl TypeObject for CurrentCoverBonusScoreData {
 
 pub static CURRENTCOVERBONUSSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurrentCoverBonusScoreData-Array",
+    name_hash: 2386467912,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("CurrentCoverBonusScoreData"),
@@ -14838,7 +15831,8 @@ pub static CURRENTCOVERBONUSSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoverFilterScoreData {
     pub _glacier_base: CoverScoreData,
     pub matching_score: f32,
@@ -14893,16 +15887,20 @@ impl super::core::DataContainerTrait for CoverFilterScoreData {
 
 pub static COVERFILTERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverFilterScoreData",
+    name_hash: 2173618672,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COVERSCOREDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CoverFilterScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoverFilterScoreData as Default>::default())),
+            create_boxed: || Box::new(<CoverFilterScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MatchingScore",
+                name_hash: 1737084798,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CoverFilterScoreData, matching_score),
@@ -14934,6 +15932,7 @@ impl TypeObject for CoverFilterScoreData {
 
 pub static COVERFILTERSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverFilterScoreData-Array",
+    name_hash: 1736173508,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("CoverFilterScoreData"),
@@ -14942,7 +15941,8 @@ pub static COVERFILTERSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoverScoreData {
     pub _glacier_base: super::battle_a_i_shared::CoverScoreDataBase,
     pub comment: String,
@@ -14991,22 +15991,27 @@ impl super::core::DataContainerTrait for CoverScoreData {
 
 pub static COVERSCOREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScoreData",
+    name_hash: 1191527472,
     flags: MemberInfoFlags::new(101),
     module: "BattleAI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::battle_a_i_shared::COVERSCOREDATABASE_TYPE_INFO),
+        super_class_offset: offset_of!(CoverScoreData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoverScoreData as Default>::default())),
+            create_boxed: || Box::new(<CoverScoreData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Comment",
+                name_hash: 3657623350,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CoverScoreData, comment),
             },
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoverScoreData, enabled),
@@ -15038,6 +16043,7 @@ impl TypeObject for CoverScoreData {
 
 pub static COVERSCOREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScoreData-Array",
+    name_hash: 1975062916,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("CoverScoreData"),
@@ -15060,6 +16066,7 @@ pub enum CoverScorePosition {
 
 pub static COVERSCOREPOSITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScorePosition",
+    name_hash: 966364473,
     flags: MemberInfoFlags::new(49429),
     module: "BattleAI",
     data: TypeInfoData::Enum,
@@ -15088,6 +16095,7 @@ impl TypeObject for CoverScorePosition {
 
 pub static COVERSCOREPOSITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoverScorePosition-Array",
+    name_hash: 2046213005,
     flags: MemberInfoFlags::new(145),
     module: "BattleAI",
     data: TypeInfoData::Array("CoverScorePosition"),

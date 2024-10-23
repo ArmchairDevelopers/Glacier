@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -23,7 +24,8 @@ pub(crate) fn register_linear_media_types(registry: &mut TypeRegistry) {
     registry.register_type(LINEARMEDIAASSET_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub inline_message_process_count_max: i32,
@@ -210,118 +212,139 @@ impl super::core::DataContainerTrait for LinearMediaSettings {
 
 pub static LINEARMEDIASETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaSettings",
+    name_hash: 778822809,
     flags: MemberInfoFlags::new(101),
     module: "LinearMedia",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMediaSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaSettings as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InlineMessageProcessCountMax",
+                name_hash: 98727163,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinearMediaSettings, inline_message_process_count_max),
             },
             FieldInfoData {
                 name: "PerJobMessageProcessCountMax",
+                name_hash: 982753810,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinearMediaSettings, per_job_message_process_count_max),
             },
             FieldInfoData {
                 name: "InlineMessageProcessTimeMaxNS",
+                name_hash: 2686076048,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(LinearMediaSettings, inline_message_process_time_max_n_s),
             },
             FieldInfoData {
                 name: "PerJobMessageProcessTimeMaxNS",
+                name_hash: 675933785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(LinearMediaSettings, per_job_message_process_time_max_n_s),
             },
             FieldInfoData {
                 name: "TurboLoaderChunkPollFrequencyNS",
+                name_hash: 3315034615,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(LinearMediaSettings, turbo_loader_chunk_poll_frequency_n_s),
             },
             FieldInfoData {
                 name: "QueueMemoryReapFrequencyNS",
+                name_hash: 197494154,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(LinearMediaSettings, queue_memory_reap_frequency_n_s),
             },
             FieldInfoData {
                 name: "MemoryRebalanceFrequencyNS",
+                name_hash: 1089020844,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(LinearMediaSettings, memory_rebalance_frequency_n_s),
             },
             FieldInfoData {
                 name: "MemoryRebalanceTimeMaxNS",
+                name_hash: 3380847497,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(LinearMediaSettings, memory_rebalance_time_max_n_s),
             },
             FieldInfoData {
                 name: "MemoryRebalanceMaxItemCount",
+                name_hash: 1794452791,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinearMediaSettings, memory_rebalance_max_item_count),
             },
             FieldInfoData {
                 name: "MessageProcessSpinCount",
+                name_hash: 2338125026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinearMediaSettings, message_process_spin_count),
             },
             FieldInfoData {
                 name: "QueuePriority",
+                name_hash: 1387750310,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(LinearMediaSettings, queue_priority),
             },
             FieldInfoData {
                 name: "QueueAffinity",
+                name_hash: 2746189046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(LinearMediaSettings, queue_affinity),
             },
             FieldInfoData {
                 name: "ProcessPriority",
+                name_hash: 866363900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(LinearMediaSettings, process_priority),
             },
             FieldInfoData {
                 name: "ProcessAffinity",
+                name_hash: 3750969772,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(LinearMediaSettings, process_affinity),
             },
             FieldInfoData {
                 name: "MaxConcurrentDispatchJobs",
+                name_hash: 1678313630,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(LinearMediaSettings, max_concurrent_dispatch_jobs),
             },
             FieldInfoData {
                 name: "CpuPoolSize",
+                name_hash: 3885587578,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(LinearMediaSettings, cpu_pool_size),
             },
             FieldInfoData {
                 name: "GpuPoolSize",
+                name_hash: 542157438,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(LinearMediaSettings, gpu_pool_size),
             },
             FieldInfoData {
                 name: "TrackHeapsS",
+                name_hash: 588951318,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaSettings, track_heaps_s),
@@ -353,6 +376,7 @@ impl TypeObject for LinearMediaSettings {
 
 pub static LINEARMEDIASETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaSettings-Array",
+    name_hash: 2690703917,
     flags: MemberInfoFlags::new(145),
     module: "LinearMedia",
     data: TypeInfoData::Array("LinearMediaSettings"),
@@ -361,22 +385,23 @@ pub static LINEARMEDIASETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaAssetDesc {
     pub _glacier_base: super::core::Asset,
-    pub resources: Vec<LinearMediaRuntimeResource>,
+    pub resources: Vec<BoxedTypeObject /* LinearMediaRuntimeResource */>,
 }
 
 pub trait LinearMediaAssetDescTrait: super::core::AssetTrait {
-    fn resources(&self) -> &Vec<LinearMediaRuntimeResource>;
-    fn resources_mut(&mut self) -> &mut Vec<LinearMediaRuntimeResource>;
+    fn resources(&self) -> &Vec<BoxedTypeObject /* LinearMediaRuntimeResource */>;
+    fn resources_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LinearMediaRuntimeResource */>;
 }
 
 impl LinearMediaAssetDescTrait for LinearMediaAssetDesc {
-    fn resources(&self) -> &Vec<LinearMediaRuntimeResource> {
+    fn resources(&self) -> &Vec<BoxedTypeObject /* LinearMediaRuntimeResource */> {
         &self.resources
     }
-    fn resources_mut(&mut self) -> &mut Vec<LinearMediaRuntimeResource> {
+    fn resources_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LinearMediaRuntimeResource */> {
         &mut self.resources
     }
 }
@@ -395,16 +420,20 @@ impl super::core::DataContainerTrait for LinearMediaAssetDesc {
 
 pub static LINEARMEDIAASSETDESC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaAssetDesc",
+    name_hash: 2314474717,
     flags: MemberInfoFlags::new(101),
     module: "LinearMedia",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMediaAssetDesc, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaAssetDesc as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaAssetDesc as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Resources",
+                name_hash: 2458959772,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinearMediaRuntimeResource-Array",
                 rust_offset: offset_of!(LinearMediaAssetDesc, resources),
@@ -436,6 +465,7 @@ impl TypeObject for LinearMediaAssetDesc {
 
 pub static LINEARMEDIAASSETDESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaAssetDesc-Array",
+    name_hash: 3294097641,
     flags: MemberInfoFlags::new(145),
     module: "LinearMedia",
     data: TypeInfoData::Array("LinearMediaAssetDesc"),
@@ -444,7 +474,8 @@ pub static LINEARMEDIAASSETDESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaRuntimeResource {
     pub resource: glacier_reflect::builtin::ResourceRef,
 }
@@ -465,15 +496,18 @@ impl LinearMediaRuntimeResourceTrait for LinearMediaRuntimeResource {
 
 pub static LINEARMEDIARUNTIMERESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaRuntimeResource",
+    name_hash: 1401750666,
     flags: MemberInfoFlags::new(73),
     module: "LinearMedia",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaRuntimeResource as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaRuntimeResource as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Resource",
+                name_hash: 74513935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(LinearMediaRuntimeResource, resource),
@@ -505,6 +539,7 @@ impl TypeObject for LinearMediaRuntimeResource {
 
 pub static LINEARMEDIARUNTIMERESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaRuntimeResource-Array",
+    name_hash: 2955452350,
     flags: MemberInfoFlags::new(145),
     module: "LinearMedia",
     data: TypeInfoData::Array("LinearMediaRuntimeResource"),
@@ -524,6 +559,7 @@ pub enum LinearMediaPipelineAssetDescAttributeSamplingRate {
 
 pub static LINEARMEDIAPIPELINEASSETDESCATTRIBUTESAMPLINGRATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaPipelineAssetDescAttributeSamplingRate",
+    name_hash: 4186857090,
     flags: MemberInfoFlags::new(49429),
     module: "LinearMedia",
     data: TypeInfoData::Enum,
@@ -552,6 +588,7 @@ impl TypeObject for LinearMediaPipelineAssetDescAttributeSamplingRate {
 
 pub static LINEARMEDIAPIPELINEASSETDESCATTRIBUTESAMPLINGRATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaPipelineAssetDescAttributeSamplingRate-Array",
+    name_hash: 3385204150,
     flags: MemberInfoFlags::new(145),
     module: "LinearMedia",
     data: TypeInfoData::Array("LinearMediaPipelineAssetDescAttributeSamplingRate"),
@@ -560,7 +597,8 @@ pub static LINEARMEDIAPIPELINEASSETDESCATTRIBUTESAMPLINGRATE_ARRAY_TYPE_INFO: &'
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaChannelRuntime {
 }
 
@@ -572,12 +610,15 @@ impl LinearMediaChannelRuntimeTrait for LinearMediaChannelRuntime {
 
 pub static LINEARMEDIACHANNELRUNTIME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaChannelRuntime",
+    name_hash: 1945837635,
     flags: MemberInfoFlags::new(101),
     module: "LinearMedia",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaChannelRuntime as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaChannelRuntime as Default>::default()),
         },
         fields: &[
         ],
@@ -607,6 +648,7 @@ impl TypeObject for LinearMediaChannelRuntime {
 
 pub static LINEARMEDIACHANNELRUNTIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaChannelRuntime-Array",
+    name_hash: 2075394935,
     flags: MemberInfoFlags::new(145),
     module: "LinearMedia",
     data: TypeInfoData::Array("LinearMediaChannelRuntime"),
@@ -615,7 +657,8 @@ pub static LINEARMEDIACHANNELRUNTIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaAsset {
 }
 
@@ -627,12 +670,15 @@ impl LinearMediaAssetTrait for LinearMediaAsset {
 
 pub static LINEARMEDIAASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaAsset",
+    name_hash: 2666159180,
     flags: MemberInfoFlags::new(101),
     module: "LinearMedia",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaAsset as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -662,6 +708,7 @@ impl TypeObject for LinearMediaAsset {
 
 pub static LINEARMEDIAASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaAsset-Array",
+    name_hash: 2750430456,
     flags: MemberInfoFlags::new(145),
     module: "LinearMedia",
     data: TypeInfoData::Array("LinearMediaAsset"),

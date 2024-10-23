@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -19,7 +20,8 @@ pub(crate) fn register_streaming_video_player_types(registry: &mut TypeRegistry)
     registry.register_type(STREAMINGVIDEOPLAYERENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamingVideoDynamicState {
 }
 
@@ -31,11 +33,13 @@ impl StreamingVideoDynamicStateTrait for StreamingVideoDynamicState {
 
 pub static STREAMINGVIDEODYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamingVideoDynamicState",
+    name_hash: 16884618,
     flags: MemberInfoFlags::new(36937),
     module: "StreamingVideoPlayer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamingVideoDynamicState as Default>::default())),
+            create_boxed: || Box::new(<StreamingVideoDynamicState as Default>::default()),
         },
         fields: &[
         ],
@@ -65,6 +69,7 @@ impl TypeObject for StreamingVideoDynamicState {
 
 pub static STREAMINGVIDEODYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamingVideoDynamicState-Array",
+    name_hash: 274235070,
     flags: MemberInfoFlags::new(145),
     module: "StreamingVideoPlayer",
     data: TypeInfoData::Array("StreamingVideoDynamicState"),
@@ -73,7 +78,8 @@ pub static STREAMINGVIDEODYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamingVideoStaticState {
     pub url: String,
     pub texture: super::render_base::TextureResourceHandle,
@@ -112,27 +118,32 @@ impl StreamingVideoStaticStateTrait for StreamingVideoStaticState {
 
 pub static STREAMINGVIDEOSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamingVideoStaticState",
+    name_hash: 3616636487,
     flags: MemberInfoFlags::new(73),
     module: "StreamingVideoPlayer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamingVideoStaticState as Default>::default())),
+            create_boxed: || Box::new(<StreamingVideoStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Url",
+                name_hash: 193455022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(StreamingVideoStaticState, url),
             },
             FieldInfoData {
                 name: "Texture",
+                name_hash: 3185041626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureResourceHandle",
                 rust_offset: offset_of!(StreamingVideoStaticState, texture),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(StreamingVideoStaticState, field_flag_changed0),
@@ -164,6 +175,7 @@ impl TypeObject for StreamingVideoStaticState {
 
 pub static STREAMINGVIDEOSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamingVideoStaticState-Array",
+    name_hash: 3143143283,
     flags: MemberInfoFlags::new(145),
     module: "StreamingVideoPlayer",
     data: TypeInfoData::Array("StreamingVideoStaticState"),
@@ -172,7 +184,8 @@ pub static STREAMINGVIDEOSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamingVideoHandle {
 }
 
@@ -184,11 +197,13 @@ impl StreamingVideoHandleTrait for StreamingVideoHandle {
 
 pub static STREAMINGVIDEOHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamingVideoHandle",
+    name_hash: 3705016098,
     flags: MemberInfoFlags::new(73),
     module: "StreamingVideoPlayer",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamingVideoHandle as Default>::default())),
+            create_boxed: || Box::new(<StreamingVideoHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -218,6 +233,7 @@ impl TypeObject for StreamingVideoHandle {
 
 pub static STREAMINGVIDEOHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamingVideoHandle-Array",
+    name_hash: 1616629142,
     flags: MemberInfoFlags::new(145),
     module: "StreamingVideoPlayer",
     data: TypeInfoData::Array("StreamingVideoHandle"),
@@ -226,7 +242,8 @@ pub static STREAMINGVIDEOHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamingVideoPlayerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -245,12 +262,15 @@ impl super::entity::EntityBusPeerTrait for StreamingVideoPlayerEntity {
 
 pub static STREAMINGVIDEOPLAYERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamingVideoPlayerEntity",
+    name_hash: 2013877344,
     flags: MemberInfoFlags::new(101),
     module: "StreamingVideoPlayer",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(StreamingVideoPlayerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamingVideoPlayerEntity as Default>::default())),
+            create_boxed: || Box::new(<StreamingVideoPlayerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -280,6 +300,7 @@ impl TypeObject for StreamingVideoPlayerEntity {
 
 pub static STREAMINGVIDEOPLAYERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamingVideoPlayerEntity-Array",
+    name_hash: 1673628244,
     flags: MemberInfoFlags::new(145),
     module: "StreamingVideoPlayer",
     data: TypeInfoData::Array("StreamingVideoPlayerEntity"),

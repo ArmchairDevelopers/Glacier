@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -55,6 +56,7 @@ pub enum LMSRegularGridRescaleNodeFilteringMethod {
 
 pub static LMSREGULARGRIDRESCALENODEFILTERINGMETHOD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridRescaleNodeFilteringMethod",
+    name_hash: 1143047461,
     flags: MemberInfoFlags::new(49429),
     module: "LMSRegularGrid",
     data: TypeInfoData::Enum,
@@ -83,6 +85,7 @@ impl TypeObject for LMSRegularGridRescaleNodeFilteringMethod {
 
 pub static LMSREGULARGRIDRESCALENODEFILTERINGMETHOD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridRescaleNodeFilteringMethod-Array",
+    name_hash: 2277916049,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridRescaleNodeFilteringMethod"),
@@ -107,6 +110,7 @@ pub enum LMSRegularGridBindFlags {
 
 pub static LMSREGULARGRIDBINDFLAGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridBindFlags",
+    name_hash: 1405705771,
     flags: MemberInfoFlags::new(49429),
     module: "LMSRegularGrid",
     data: TypeInfoData::Enum,
@@ -135,6 +139,7 @@ impl TypeObject for LMSRegularGridBindFlags {
 
 pub static LMSREGULARGRIDBINDFLAGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridBindFlags-Array",
+    name_hash: 1369767327,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridBindFlags"),
@@ -156,6 +161,7 @@ pub enum LMSRegularGridOutputAttributeMode {
 
 pub static LMSREGULARGRIDOUTPUTATTRIBUTEMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridOutputAttributeMode",
+    name_hash: 636607765,
     flags: MemberInfoFlags::new(49429),
     module: "LMSRegularGrid",
     data: TypeInfoData::Enum,
@@ -184,6 +190,7 @@ impl TypeObject for LMSRegularGridOutputAttributeMode {
 
 pub static LMSREGULARGRIDOUTPUTATTRIBUTEMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridOutputAttributeMode-Array",
+    name_hash: 778013857,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridOutputAttributeMode"),
@@ -192,7 +199,8 @@ pub static LMSREGULARGRIDOUTPUTATTRIBUTEMODE_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSRegularGridSegmentTargetSurfaceImpCpuArrayBase {
     pub _glacier_base: LMSRegularGridSurfaceCpuArray,
 }
@@ -211,12 +219,15 @@ impl LMSRegularGridSurfaceTrait for LMSRegularGridSegmentTargetSurfaceImpCpuArra
 
 pub static LMSREGULARGRIDSEGMENTTARGETSURFACEIMPCPUARRAYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSegmentTargetSurfaceImpCpuArrayBase",
+    name_hash: 3375218092,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LMSREGULARGRIDSURFACECPUARRAY_TYPE_INFO),
+        super_class_offset: offset_of!(LMSRegularGridSegmentTargetSurfaceImpCpuArrayBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSRegularGridSegmentTargetSurfaceImpCpuArrayBase as Default>::default())),
+            create_boxed: || Box::new(<LMSRegularGridSegmentTargetSurfaceImpCpuArrayBase as Default>::default()),
         },
         fields: &[
         ],
@@ -246,6 +257,7 @@ impl TypeObject for LMSRegularGridSegmentTargetSurfaceImpCpuArrayBase {
 
 pub static LMSREGULARGRIDSEGMENTTARGETSURFACEIMPCPUARRAYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSegmentTargetSurfaceImpCpuArrayBase-Array",
+    name_hash: 1306717464,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridSegmentTargetSurfaceImpCpuArrayBase"),
@@ -254,7 +266,8 @@ pub static LMSREGULARGRIDSEGMENTTARGETSURFACEIMPCPUARRAYBASE_ARRAY_TYPE_INFO: &'
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSDynaPackRuntime {
     pub _glacier_base: super::linear_media::LinearMediaChannelRuntime,
 }
@@ -270,12 +283,15 @@ impl super::linear_media::LinearMediaChannelRuntimeTrait for LMSDynaPackRuntime 
 
 pub static LMSDYNAPACKRUNTIME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSDynaPackRuntime",
+    name_hash: 2016109536,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::linear_media::LINEARMEDIACHANNELRUNTIME_TYPE_INFO),
+        super_class_offset: offset_of!(LMSDynaPackRuntime, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSDynaPackRuntime as Default>::default())),
+            create_boxed: || Box::new(<LMSDynaPackRuntime as Default>::default()),
         },
         fields: &[
         ],
@@ -305,6 +321,7 @@ impl TypeObject for LMSDynaPackRuntime {
 
 pub static LMSDYNAPACKRUNTIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSDynaPackRuntime-Array",
+    name_hash: 2618374612,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSDynaPackRuntime"),
@@ -313,7 +330,8 @@ pub static LMSDYNAPACKRUNTIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSRegularGridRuntime {
     pub _glacier_base: super::linear_media::LinearMediaChannelRuntime,
 }
@@ -329,12 +347,15 @@ impl super::linear_media::LinearMediaChannelRuntimeTrait for LMSRegularGridRunti
 
 pub static LMSREGULARGRIDRUNTIME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridRuntime",
+    name_hash: 2625663753,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::linear_media::LINEARMEDIACHANNELRUNTIME_TYPE_INFO),
+        super_class_offset: offset_of!(LMSRegularGridRuntime, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSRegularGridRuntime as Default>::default())),
+            create_boxed: || Box::new(<LMSRegularGridRuntime as Default>::default()),
         },
         fields: &[
         ],
@@ -364,6 +385,7 @@ impl TypeObject for LMSRegularGridRuntime {
 
 pub static LMSREGULARGRIDRUNTIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridRuntime-Array",
+    name_hash: 3367209149,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridRuntime"),
@@ -372,7 +394,8 @@ pub static LMSREGULARGRIDRUNTIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSRegularGridCodecRuntime {
 }
 
@@ -384,12 +407,15 @@ impl LMSRegularGridCodecRuntimeTrait for LMSRegularGridCodecRuntime {
 
 pub static LMSREGULARGRIDCODECRUNTIME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridCodecRuntime",
+    name_hash: 3832883303,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSRegularGridCodecRuntime as Default>::default())),
+            create_boxed: || Box::new(<LMSRegularGridCodecRuntime as Default>::default()),
         },
         fields: &[
         ],
@@ -419,6 +445,7 @@ impl TypeObject for LMSRegularGridCodecRuntime {
 
 pub static LMSREGULARGRIDCODECRUNTIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridCodecRuntime-Array",
+    name_hash: 278121043,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridCodecRuntime"),
@@ -427,7 +454,8 @@ pub static LMSREGULARGRIDCODECRUNTIME_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSRegularGridSurfaceCpuArrayImpDecoderTemp {
     pub _glacier_base: LMSRegularGridSurfaceCpuArray,
 }
@@ -446,12 +474,15 @@ impl LMSRegularGridSurfaceTrait for LMSRegularGridSurfaceCpuArrayImpDecoderTemp 
 
 pub static LMSREGULARGRIDSURFACECPUARRAYIMPDECODERTEMP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSurfaceCpuArrayImpDecoderTemp",
+    name_hash: 2822359865,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LMSREGULARGRIDSURFACECPUARRAY_TYPE_INFO),
+        super_class_offset: offset_of!(LMSRegularGridSurfaceCpuArrayImpDecoderTemp, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSRegularGridSurfaceCpuArrayImpDecoderTemp as Default>::default())),
+            create_boxed: || Box::new(<LMSRegularGridSurfaceCpuArrayImpDecoderTemp as Default>::default()),
         },
         fields: &[
         ],
@@ -481,6 +512,7 @@ impl TypeObject for LMSRegularGridSurfaceCpuArrayImpDecoderTemp {
 
 pub static LMSREGULARGRIDSURFACECPUARRAYIMPDECODERTEMP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSurfaceCpuArrayImpDecoderTemp-Array",
+    name_hash: 4216158605,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridSurfaceCpuArrayImpDecoderTemp"),
@@ -489,7 +521,8 @@ pub static LMSREGULARGRIDSURFACECPUARRAYIMPDECODERTEMP_ARRAY_TYPE_INFO: &'static
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSRegularGridSurfaceGpuTexture {
     pub _glacier_base: LMSRegularGridSurface,
 }
@@ -505,12 +538,15 @@ impl LMSRegularGridSurfaceTrait for LMSRegularGridSurfaceGpuTexture {
 
 pub static LMSREGULARGRIDSURFACEGPUTEXTURE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSurfaceGpuTexture",
+    name_hash: 4175761149,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LMSREGULARGRIDSURFACE_TYPE_INFO),
+        super_class_offset: offset_of!(LMSRegularGridSurfaceGpuTexture, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSRegularGridSurfaceGpuTexture as Default>::default())),
+            create_boxed: || Box::new(<LMSRegularGridSurfaceGpuTexture as Default>::default()),
         },
         fields: &[
         ],
@@ -540,6 +576,7 @@ impl TypeObject for LMSRegularGridSurfaceGpuTexture {
 
 pub static LMSREGULARGRIDSURFACEGPUTEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSurfaceGpuTexture-Array",
+    name_hash: 1146911689,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridSurfaceGpuTexture"),
@@ -548,7 +585,8 @@ pub static LMSREGULARGRIDSURFACEGPUTEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSRegularGridSurfaceGpuBuffer {
     pub _glacier_base: LMSRegularGridSurface,
 }
@@ -564,12 +602,15 @@ impl LMSRegularGridSurfaceTrait for LMSRegularGridSurfaceGpuBuffer {
 
 pub static LMSREGULARGRIDSURFACEGPUBUFFER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSurfaceGpuBuffer",
+    name_hash: 1745435010,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LMSREGULARGRIDSURFACE_TYPE_INFO),
+        super_class_offset: offset_of!(LMSRegularGridSurfaceGpuBuffer, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSRegularGridSurfaceGpuBuffer as Default>::default())),
+            create_boxed: || Box::new(<LMSRegularGridSurfaceGpuBuffer as Default>::default()),
         },
         fields: &[
         ],
@@ -599,6 +640,7 @@ impl TypeObject for LMSRegularGridSurfaceGpuBuffer {
 
 pub static LMSREGULARGRIDSURFACEGPUBUFFER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSurfaceGpuBuffer-Array",
+    name_hash: 3183032502,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridSurfaceGpuBuffer"),
@@ -607,7 +649,8 @@ pub static LMSREGULARGRIDSURFACEGPUBUFFER_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSRegularGridSurfaceCpuArray {
     pub _glacier_base: LMSRegularGridSurface,
 }
@@ -623,12 +666,15 @@ impl LMSRegularGridSurfaceTrait for LMSRegularGridSurfaceCpuArray {
 
 pub static LMSREGULARGRIDSURFACECPUARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSurfaceCpuArray",
+    name_hash: 264756159,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LMSREGULARGRIDSURFACE_TYPE_INFO),
+        super_class_offset: offset_of!(LMSRegularGridSurfaceCpuArray, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSRegularGridSurfaceCpuArray as Default>::default())),
+            create_boxed: || Box::new(<LMSRegularGridSurfaceCpuArray as Default>::default()),
         },
         fields: &[
         ],
@@ -658,6 +704,7 @@ impl TypeObject for LMSRegularGridSurfaceCpuArray {
 
 pub static LMSREGULARGRIDSURFACECPUARRAY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSurfaceCpuArray-Array",
+    name_hash: 834539787,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridSurfaceCpuArray"),
@@ -666,7 +713,8 @@ pub static LMSREGULARGRIDSURFACECPUARRAY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSRegularGridSurface {
 }
 
@@ -678,12 +726,15 @@ impl LMSRegularGridSurfaceTrait for LMSRegularGridSurface {
 
 pub static LMSREGULARGRIDSURFACE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSurface",
+    name_hash: 3735366400,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSRegularGridSurface as Default>::default())),
+            create_boxed: || Box::new(<LMSRegularGridSurface as Default>::default()),
         },
         fields: &[
         ],
@@ -713,6 +764,7 @@ impl TypeObject for LMSRegularGridSurface {
 
 pub static LMSREGULARGRIDSURFACE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridSurface-Array",
+    name_hash: 4080537908,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridSurface"),
@@ -721,7 +773,8 @@ pub static LMSREGULARGRIDSURFACE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSRegularGridCPUArray {
 }
 
@@ -733,12 +786,15 @@ impl LMSRegularGridCPUArrayTrait for LMSRegularGridCPUArray {
 
 pub static LMSREGULARGRIDCPUARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridCPUArray",
+    name_hash: 1310974474,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSRegularGridCPUArray as Default>::default())),
+            create_boxed: || Box::new(<LMSRegularGridCPUArray as Default>::default()),
         },
         fields: &[
         ],
@@ -768,6 +824,7 @@ impl TypeObject for LMSRegularGridCPUArray {
 
 pub static LMSREGULARGRIDCPUARRAY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridCPUArray-Array",
+    name_hash: 1188011326,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridCPUArray"),
@@ -776,7 +833,8 @@ pub static LMSREGULARGRIDCPUARRAY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSEffectsDataArray {
 }
 
@@ -788,12 +846,15 @@ impl LMSEffectsDataArrayTrait for LMSEffectsDataArray {
 
 pub static LMSEFFECTSDATAARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSEffectsDataArray",
+    name_hash: 3532291706,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSEffectsDataArray as Default>::default())),
+            create_boxed: || Box::new(<LMSEffectsDataArray as Default>::default()),
         },
         fields: &[
         ],
@@ -823,6 +884,7 @@ impl TypeObject for LMSEffectsDataArray {
 
 pub static LMSEFFECTSDATAARRAY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSEffectsDataArray-Array",
+    name_hash: 2495123790,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSEffectsDataArray"),
@@ -831,7 +893,8 @@ pub static LMSEFFECTSDATAARRAY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSRegularGridDefaultCodecRuntime {
     pub _glacier_base: LMSRegularGridCodecRuntime,
 }
@@ -847,12 +910,15 @@ impl LMSRegularGridCodecRuntimeTrait for LMSRegularGridDefaultCodecRuntime {
 
 pub static LMSREGULARGRIDDEFAULTCODECRUNTIME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridDefaultCodecRuntime",
+    name_hash: 2505750156,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LMSREGULARGRIDCODECRUNTIME_TYPE_INFO),
+        super_class_offset: offset_of!(LMSRegularGridDefaultCodecRuntime, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSRegularGridDefaultCodecRuntime as Default>::default())),
+            create_boxed: || Box::new(<LMSRegularGridDefaultCodecRuntime as Default>::default()),
         },
         fields: &[
         ],
@@ -882,6 +948,7 @@ impl TypeObject for LMSRegularGridDefaultCodecRuntime {
 
 pub static LMSREGULARGRIDDEFAULTCODECRUNTIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridDefaultCodecRuntime-Array",
+    name_hash: 3716630200,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridDefaultCodecRuntime"),
@@ -890,7 +957,8 @@ pub static LMSREGULARGRIDDEFAULTCODECRUNTIME_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSRegularGridVp6CodecRuntime {
     pub _glacier_base: LMSRegularGridCodecRuntime,
 }
@@ -906,12 +974,15 @@ impl LMSRegularGridCodecRuntimeTrait for LMSRegularGridVp6CodecRuntime {
 
 pub static LMSREGULARGRIDVP6CODECRUNTIME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridVp6CodecRuntime",
+    name_hash: 4204681367,
     flags: MemberInfoFlags::new(101),
     module: "LMSRegularGrid",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LMSREGULARGRIDCODECRUNTIME_TYPE_INFO),
+        super_class_offset: offset_of!(LMSRegularGridVp6CodecRuntime, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSRegularGridVp6CodecRuntime as Default>::default())),
+            create_boxed: || Box::new(<LMSRegularGridVp6CodecRuntime as Default>::default()),
         },
         fields: &[
         ],
@@ -941,6 +1012,7 @@ impl TypeObject for LMSRegularGridVp6CodecRuntime {
 
 pub static LMSREGULARGRIDVP6CODECRUNTIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSRegularGridVp6CodecRuntime-Array",
+    name_hash: 647176483,
     flags: MemberInfoFlags::new(145),
     module: "LMSRegularGrid",
     data: TypeInfoData::Array("LMSRegularGridVp6CodecRuntime"),

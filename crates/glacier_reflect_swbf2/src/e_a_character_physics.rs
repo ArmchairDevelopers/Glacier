@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -15,7 +16,8 @@ pub(crate) fn register_e_a_character_physics_types(registry: &mut TypeRegistry) 
     registry.register_type(CLIENTEACHARACTERPHYSICSCOMPONENT_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerEACharacterPhysicsComponent {
     pub _glacier_base: super::gameplay_client_server::ServerGameComponent,
 }
@@ -40,12 +42,15 @@ impl super::entity::EntityBusPeerTrait for ServerEACharacterPhysicsComponent {
 
 pub static SERVEREACHARACTERPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerEACharacterPhysicsComponent",
+    name_hash: 169660697,
     flags: MemberInfoFlags::new(101),
     module: "EACharacterPhysics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::SERVERGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ServerEACharacterPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerEACharacterPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<ServerEACharacterPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -75,6 +80,7 @@ impl TypeObject for ServerEACharacterPhysicsComponent {
 
 pub static SERVEREACHARACTERPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerEACharacterPhysicsComponent-Array",
+    name_hash: 2905681581,
     flags: MemberInfoFlags::new(145),
     module: "EACharacterPhysics",
     data: TypeInfoData::Array("ServerEACharacterPhysicsComponent"),
@@ -83,7 +89,8 @@ pub static SERVEREACHARACTERPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientEACharacterPhysicsComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -108,12 +115,15 @@ impl super::entity::EntityBusPeerTrait for ClientEACharacterPhysicsComponent {
 
 pub static CLIENTEACHARACTERPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEACharacterPhysicsComponent",
+    name_hash: 1225328837,
     flags: MemberInfoFlags::new(101),
     module: "EACharacterPhysics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientEACharacterPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientEACharacterPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientEACharacterPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -143,6 +153,7 @@ impl TypeObject for ClientEACharacterPhysicsComponent {
 
 pub static CLIENTEACHARACTERPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEACharacterPhysicsComponent-Array",
+    name_hash: 4064395505,
     flags: MemberInfoFlags::new(145),
     module: "EACharacterPhysics",
     data: TypeInfoData::Array("ClientEACharacterPhysicsComponent"),

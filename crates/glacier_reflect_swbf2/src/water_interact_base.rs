@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -49,7 +50,8 @@ pub(crate) fn register_water_interact_base_types(registry: &mut TypeRegistry) {
     registry.register_type(WATERINTERACTSETTINGS_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterWaveHandle {
 }
 
@@ -61,11 +63,13 @@ impl WaterWaveHandleTrait for WaterWaveHandle {
 
 pub static WATERWAVEHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterWaveHandle",
+    name_hash: 987803423,
     flags: MemberInfoFlags::new(73),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterWaveHandle as Default>::default())),
+            create_boxed: || Box::new(<WaterWaveHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -95,6 +99,7 @@ impl TypeObject for WaterWaveHandle {
 
 pub static WATERWAVEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterWaveHandle-Array",
+    name_hash: 3764106155,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterWaveHandle"),
@@ -103,7 +108,8 @@ pub static WATERWAVEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterSurfaceHandle {
 }
 
@@ -115,11 +121,13 @@ impl WaterSurfaceHandleTrait for WaterSurfaceHandle {
 
 pub static WATERSURFACEHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSurfaceHandle",
+    name_hash: 3547621711,
     flags: MemberInfoFlags::new(73),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterSurfaceHandle as Default>::default())),
+            create_boxed: || Box::new(<WaterSurfaceHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -149,6 +157,7 @@ impl TypeObject for WaterSurfaceHandle {
 
 pub static WATERSURFACEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSurfaceHandle-Array",
+    name_hash: 2432636539,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterSurfaceHandle"),
@@ -157,7 +166,8 @@ pub static WATERSURFACEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterGlobalHandle {
 }
 
@@ -169,11 +179,13 @@ impl WaterGlobalHandleTrait for WaterGlobalHandle {
 
 pub static WATERGLOBALHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterGlobalHandle",
+    name_hash: 4250813073,
     flags: MemberInfoFlags::new(73),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterGlobalHandle as Default>::default())),
+            create_boxed: || Box::new(<WaterGlobalHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -203,6 +215,7 @@ impl TypeObject for WaterGlobalHandle {
 
 pub static WATERGLOBALHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterGlobalHandle-Array",
+    name_hash: 4238500901,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterGlobalHandle"),
@@ -211,7 +224,8 @@ pub static WATERGLOBALHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterSimulationHandle {
 }
 
@@ -223,11 +237,13 @@ impl WaterSimulationHandleTrait for WaterSimulationHandle {
 
 pub static WATERSIMULATIONHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSimulationHandle",
+    name_hash: 3133349961,
     flags: MemberInfoFlags::new(73),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterSimulationHandle as Default>::default())),
+            create_boxed: || Box::new(<WaterSimulationHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -257,6 +273,7 @@ impl TypeObject for WaterSimulationHandle {
 
 pub static WATERSIMULATIONHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSimulationHandle-Array",
+    name_hash: 1632577149,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterSimulationHandle"),
@@ -265,7 +282,8 @@ pub static WATERSIMULATIONHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterWaveDynamicState {
     pub radius: f32,
     pub amplitude: f32,
@@ -304,27 +322,32 @@ impl WaterWaveDynamicStateTrait for WaterWaveDynamicState {
 
 pub static WATERWAVEDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterWaveDynamicState",
+    name_hash: 223521847,
     flags: MemberInfoFlags::new(36937),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterWaveDynamicState as Default>::default())),
+            create_boxed: || Box::new(<WaterWaveDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterWaveDynamicState, radius),
             },
             FieldInfoData {
                 name: "Amplitude",
+                name_hash: 698564572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterWaveDynamicState, amplitude),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(WaterWaveDynamicState, field_flag_changed0),
@@ -356,6 +379,7 @@ impl TypeObject for WaterWaveDynamicState {
 
 pub static WATERWAVEDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterWaveDynamicState-Array",
+    name_hash: 985916803,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterWaveDynamicState"),
@@ -364,7 +388,8 @@ pub static WATERWAVEDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterWaveStaticState {
     pub transform_space: super::state_stream::TransformSpaceHandle,
     pub field_flag_changed0: u8,
@@ -394,21 +419,25 @@ impl WaterWaveStaticStateTrait for WaterWaveStaticState {
 
 pub static WATERWAVESTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterWaveStaticState",
+    name_hash: 115355034,
     flags: MemberInfoFlags::new(73),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterWaveStaticState as Default>::default())),
+            create_boxed: || Box::new(<WaterWaveStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TransformSpace",
+                name_hash: 3602558253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TransformSpaceHandle",
                 rust_offset: offset_of!(WaterWaveStaticState, transform_space),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(WaterWaveStaticState, field_flag_changed0),
@@ -440,6 +469,7 @@ impl TypeObject for WaterWaveStaticState {
 
 pub static WATERWAVESTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterWaveStaticState-Array",
+    name_hash: 956911790,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterWaveStaticState"),
@@ -448,7 +478,8 @@ pub static WATERWAVESTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterWaveCreateState {
     pub transform: super::core::LinearTransform,
 }
@@ -469,15 +500,18 @@ impl WaterWaveCreateStateTrait for WaterWaveCreateState {
 
 pub static WATERWAVECREATESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterWaveCreateState",
+    name_hash: 2281503590,
     flags: MemberInfoFlags::new(36937),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterWaveCreateState as Default>::default())),
+            create_boxed: || Box::new(<WaterWaveCreateState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(WaterWaveCreateState, transform),
@@ -509,6 +543,7 @@ impl TypeObject for WaterWaveCreateState {
 
 pub static WATERWAVECREATESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterWaveCreateState-Array",
+    name_hash: 1451382866,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterWaveCreateState"),
@@ -517,9 +552,10 @@ pub static WATERWAVECREATESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterSurfaceDynamicState {
-    pub disturbs: Vec<WaterDisturbParams>,
+    pub disturbs: Vec<BoxedTypeObject /* WaterDisturbParams */>,
     pub visible: bool,
     pub tile_offset: super::core::Vec3,
     pub wave_amplitude_scale: f32,
@@ -529,8 +565,8 @@ pub struct WaterSurfaceDynamicState {
 }
 
 pub trait WaterSurfaceDynamicStateTrait: TypeObject {
-    fn disturbs(&self) -> &Vec<WaterDisturbParams>;
-    fn disturbs_mut(&mut self) -> &mut Vec<WaterDisturbParams>;
+    fn disturbs(&self) -> &Vec<BoxedTypeObject /* WaterDisturbParams */>;
+    fn disturbs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* WaterDisturbParams */>;
     fn visible(&self) -> &bool;
     fn visible_mut(&mut self) -> &mut bool;
     fn tile_offset(&self) -> &super::core::Vec3;
@@ -546,10 +582,10 @@ pub trait WaterSurfaceDynamicStateTrait: TypeObject {
 }
 
 impl WaterSurfaceDynamicStateTrait for WaterSurfaceDynamicState {
-    fn disturbs(&self) -> &Vec<WaterDisturbParams> {
+    fn disturbs(&self) -> &Vec<BoxedTypeObject /* WaterDisturbParams */> {
         &self.disturbs
     }
-    fn disturbs_mut(&mut self) -> &mut Vec<WaterDisturbParams> {
+    fn disturbs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* WaterDisturbParams */> {
         &mut self.disturbs
     }
     fn visible(&self) -> &bool {
@@ -592,51 +628,60 @@ impl WaterSurfaceDynamicStateTrait for WaterSurfaceDynamicState {
 
 pub static WATERSURFACEDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSurfaceDynamicState",
+    name_hash: 1322146663,
     flags: MemberInfoFlags::new(73),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterSurfaceDynamicState as Default>::default())),
+            create_boxed: || Box::new(<WaterSurfaceDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Disturbs",
+                name_hash: 408987001,
                 flags: MemberInfoFlags::new(144),
                 field_type: "WaterDisturbParams-Array",
                 rust_offset: offset_of!(WaterSurfaceDynamicState, disturbs),
             },
             FieldInfoData {
                 name: "Visible",
+                name_hash: 901540267,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterSurfaceDynamicState, visible),
             },
             FieldInfoData {
                 name: "TileOffset",
+                name_hash: 2916810076,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(WaterSurfaceDynamicState, tile_offset),
             },
             FieldInfoData {
                 name: "WaveAmplitudeScale",
+                name_hash: 91080289,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSurfaceDynamicState, wave_amplitude_scale),
             },
             FieldInfoData {
                 name: "ShoreEnable",
+                name_hash: 3823289735,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterSurfaceDynamicState, shore_enable),
             },
             FieldInfoData {
                 name: "ShoreDepth",
+                name_hash: 2840561419,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSurfaceDynamicState, shore_depth),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(WaterSurfaceDynamicState, field_flag_changed0),
@@ -668,6 +713,7 @@ impl TypeObject for WaterSurfaceDynamicState {
 
 pub static WATERSURFACEDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSurfaceDynamicState-Array",
+    name_hash: 4089920851,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterSurfaceDynamicState"),
@@ -676,12 +722,13 @@ pub static WATERSURFACEDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterSurfaceStaticState {
     pub coarse_simulation: WaterSimulationHandle,
     pub detail_simulation: WaterSimulationHandle,
     pub transform_space: super::state_stream::TransformSpaceHandle,
-    pub effects: Vec<WaterAmbientFoamEffect>,
+    pub effects: Vec<BoxedTypeObject /* WaterAmbientFoamEffect */>,
     pub shader: super::render_base::SurfaceShaderInstanceDataStruct,
     pub shader_low_detail: super::render_base::SurfaceShaderInstanceDataStruct,
     pub low_detail_distance: super::core::QualityScalableFloat,
@@ -689,13 +736,13 @@ pub struct WaterSurfaceStaticState {
     pub terrain_virtual_texture_access_enable: bool,
     pub clip_info: WaterEntityClipInfo,
     pub interactive_foam_enable: super::core::QualityScalableBool,
-    pub interactive_foam_splat_texture: Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>,
+    pub interactive_foam_splat_texture: Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>,
     pub interactive_foam_half_life: f32,
     pub interactive_foam_target_scale: f32,
     pub interactive_foam_splat_interval: f32,
     pub interactive_waves_enable: super::core::QualityScalableBool,
     pub interactive_wave_disturbance_scale: f32,
-    pub culling_aabbs: Vec<super::core::AxisAlignedBox>,
+    pub culling_aabbs: Vec<BoxedTypeObject /* super::core::AxisAlignedBox */>,
     pub field_flag_changed0: u32,
 }
 
@@ -706,8 +753,8 @@ pub trait WaterSurfaceStaticStateTrait: TypeObject {
     fn detail_simulation_mut(&mut self) -> &mut WaterSimulationHandle;
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
     fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
-    fn effects(&self) -> &Vec<WaterAmbientFoamEffect>;
-    fn effects_mut(&mut self) -> &mut Vec<WaterAmbientFoamEffect>;
+    fn effects(&self) -> &Vec<BoxedTypeObject /* WaterAmbientFoamEffect */>;
+    fn effects_mut(&mut self) -> &mut Vec<BoxedTypeObject /* WaterAmbientFoamEffect */>;
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
     fn shader_mut(&mut self) -> &mut super::render_base::SurfaceShaderInstanceDataStruct;
     fn shader_low_detail(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct;
@@ -722,8 +769,8 @@ pub trait WaterSurfaceStaticStateTrait: TypeObject {
     fn clip_info_mut(&mut self) -> &mut WaterEntityClipInfo;
     fn interactive_foam_enable(&self) -> &super::core::QualityScalableBool;
     fn interactive_foam_enable_mut(&mut self) -> &mut super::core::QualityScalableBool;
-    fn interactive_foam_splat_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
-    fn interactive_foam_splat_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn interactive_foam_splat_texture(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
+    fn interactive_foam_splat_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
     fn interactive_foam_half_life(&self) -> &f32;
     fn interactive_foam_half_life_mut(&mut self) -> &mut f32;
     fn interactive_foam_target_scale(&self) -> &f32;
@@ -734,8 +781,8 @@ pub trait WaterSurfaceStaticStateTrait: TypeObject {
     fn interactive_waves_enable_mut(&mut self) -> &mut super::core::QualityScalableBool;
     fn interactive_wave_disturbance_scale(&self) -> &f32;
     fn interactive_wave_disturbance_scale_mut(&mut self) -> &mut f32;
-    fn culling_aabbs(&self) -> &Vec<super::core::AxisAlignedBox>;
-    fn culling_aabbs_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox>;
+    fn culling_aabbs(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */>;
+    fn culling_aabbs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */>;
     fn field_flag_changed0(&self) -> &u32;
     fn field_flag_changed0_mut(&mut self) -> &mut u32;
 }
@@ -759,10 +806,10 @@ impl WaterSurfaceStaticStateTrait for WaterSurfaceStaticState {
     fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
         &mut self.transform_space
     }
-    fn effects(&self) -> &Vec<WaterAmbientFoamEffect> {
+    fn effects(&self) -> &Vec<BoxedTypeObject /* WaterAmbientFoamEffect */> {
         &self.effects
     }
-    fn effects_mut(&mut self) -> &mut Vec<WaterAmbientFoamEffect> {
+    fn effects_mut(&mut self) -> &mut Vec<BoxedTypeObject /* WaterAmbientFoamEffect */> {
         &mut self.effects
     }
     fn shader(&self) -> &super::render_base::SurfaceShaderInstanceDataStruct {
@@ -807,10 +854,10 @@ impl WaterSurfaceStaticStateTrait for WaterSurfaceStaticState {
     fn interactive_foam_enable_mut(&mut self) -> &mut super::core::QualityScalableBool {
         &mut self.interactive_foam_enable
     }
-    fn interactive_foam_splat_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn interactive_foam_splat_texture(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &self.interactive_foam_splat_texture
     }
-    fn interactive_foam_splat_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn interactive_foam_splat_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &mut self.interactive_foam_splat_texture
     }
     fn interactive_foam_half_life(&self) -> &f32 {
@@ -843,10 +890,10 @@ impl WaterSurfaceStaticStateTrait for WaterSurfaceStaticState {
     fn interactive_wave_disturbance_scale_mut(&mut self) -> &mut f32 {
         &mut self.interactive_wave_disturbance_scale
     }
-    fn culling_aabbs(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn culling_aabbs(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         &self.culling_aabbs
     }
-    fn culling_aabbs_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn culling_aabbs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         &mut self.culling_aabbs
     }
     fn field_flag_changed0(&self) -> &u32 {
@@ -859,123 +906,144 @@ impl WaterSurfaceStaticStateTrait for WaterSurfaceStaticState {
 
 pub static WATERSURFACESTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSurfaceStaticState",
+    name_hash: 117645642,
     flags: MemberInfoFlags::new(73),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterSurfaceStaticState as Default>::default())),
+            create_boxed: || Box::new(<WaterSurfaceStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CoarseSimulation",
+                name_hash: 4049055711,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WaterSimulationHandle",
                 rust_offset: offset_of!(WaterSurfaceStaticState, coarse_simulation),
             },
             FieldInfoData {
                 name: "DetailSimulation",
+                name_hash: 941343943,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WaterSimulationHandle",
                 rust_offset: offset_of!(WaterSurfaceStaticState, detail_simulation),
             },
             FieldInfoData {
                 name: "TransformSpace",
+                name_hash: 3602558253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TransformSpaceHandle",
                 rust_offset: offset_of!(WaterSurfaceStaticState, transform_space),
             },
             FieldInfoData {
                 name: "Effects",
+                name_hash: 3973997825,
                 flags: MemberInfoFlags::new(144),
                 field_type: "WaterAmbientFoamEffect-Array",
                 rust_offset: offset_of!(WaterSurfaceStaticState, effects),
             },
             FieldInfoData {
                 name: "Shader",
+                name_hash: 3352909900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderInstanceDataStruct",
                 rust_offset: offset_of!(WaterSurfaceStaticState, shader),
             },
             FieldInfoData {
                 name: "ShaderLowDetail",
+                name_hash: 164000105,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderInstanceDataStruct",
                 rust_offset: offset_of!(WaterSurfaceStaticState, shader_low_detail),
             },
             FieldInfoData {
                 name: "LowDetailDistance",
+                name_hash: 2532532099,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(WaterSurfaceStaticState, low_detail_distance),
             },
             FieldInfoData {
                 name: "ProjectorElevation",
+                name_hash: 3734540522,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSurfaceStaticState, projector_elevation),
             },
             FieldInfoData {
                 name: "TerrainVirtualTextureAccessEnable",
+                name_hash: 107841545,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterSurfaceStaticState, terrain_virtual_texture_access_enable),
             },
             FieldInfoData {
                 name: "ClipInfo",
+                name_hash: 440195901,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WaterEntityClipInfo",
                 rust_offset: offset_of!(WaterSurfaceStaticState, clip_info),
             },
             FieldInfoData {
                 name: "InteractiveFoamEnable",
+                name_hash: 1593058569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableBool",
                 rust_offset: offset_of!(WaterSurfaceStaticState, interactive_foam_enable),
             },
             FieldInfoData {
                 name: "InteractiveFoamSplatTexture",
+                name_hash: 2163094701,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(WaterSurfaceStaticState, interactive_foam_splat_texture),
             },
             FieldInfoData {
                 name: "InteractiveFoamHalfLife",
+                name_hash: 864869293,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSurfaceStaticState, interactive_foam_half_life),
             },
             FieldInfoData {
                 name: "InteractiveFoamTargetScale",
+                name_hash: 56413985,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSurfaceStaticState, interactive_foam_target_scale),
             },
             FieldInfoData {
                 name: "InteractiveFoamSplatInterval",
+                name_hash: 3678227117,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSurfaceStaticState, interactive_foam_splat_interval),
             },
             FieldInfoData {
                 name: "InteractiveWavesEnable",
+                name_hash: 1767511354,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableBool",
                 rust_offset: offset_of!(WaterSurfaceStaticState, interactive_waves_enable),
             },
             FieldInfoData {
                 name: "InteractiveWaveDisturbanceScale",
+                name_hash: 492809014,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSurfaceStaticState, interactive_wave_disturbance_scale),
             },
             FieldInfoData {
                 name: "CullingAabbs",
+                name_hash: 707892288,
                 flags: MemberInfoFlags::new(144),
                 field_type: "AxisAlignedBox-Array",
                 rust_offset: offset_of!(WaterSurfaceStaticState, culling_aabbs),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterSurfaceStaticState, field_flag_changed0),
@@ -1007,6 +1075,7 @@ impl TypeObject for WaterSurfaceStaticState {
 
 pub static WATERSURFACESTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSurfaceStaticState-Array",
+    name_hash: 3351350526,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterSurfaceStaticState"),
@@ -1015,7 +1084,8 @@ pub static WATERSURFACESTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterSimulationDynamicState {
     pub enable: bool,
     pub enable_foam: bool,
@@ -1063,33 +1133,39 @@ impl WaterSimulationDynamicStateTrait for WaterSimulationDynamicState {
 
 pub static WATERSIMULATIONDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSimulationDynamicState",
+    name_hash: 2461432801,
     flags: MemberInfoFlags::new(36937),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterSimulationDynamicState as Default>::default())),
+            create_boxed: || Box::new(<WaterSimulationDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterSimulationDynamicState, enable),
             },
             FieldInfoData {
                 name: "EnableFoam",
+                name_hash: 1190518561,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterSimulationDynamicState, enable_foam),
             },
             FieldInfoData {
                 name: "Choppiness",
+                name_hash: 2018460675,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSimulationDynamicState, choppiness),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(WaterSimulationDynamicState, field_flag_changed0),
@@ -1121,6 +1197,7 @@ impl TypeObject for WaterSimulationDynamicState {
 
 pub static WATERSIMULATIONDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSimulationDynamicState-Array",
+    name_hash: 2407126741,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterSimulationDynamicState"),
@@ -1129,7 +1206,8 @@ pub static WATERSIMULATIONDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterSimulationStaticState {
     pub resolution: super::core::PlatformScalableInt,
     pub tile_dimension: f32,
@@ -1276,99 +1354,116 @@ impl WaterSimulationStaticStateTrait for WaterSimulationStaticState {
 
 pub static WATERSIMULATIONSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSimulationStaticState",
+    name_hash: 1692849292,
     flags: MemberInfoFlags::new(36937),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterSimulationStaticState as Default>::default())),
+            create_boxed: || Box::new(<WaterSimulationStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Resolution",
+                name_hash: 2981718891,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PlatformScalableInt",
                 rust_offset: offset_of!(WaterSimulationStaticState, resolution),
             },
             FieldInfoData {
                 name: "TileDimension",
+                name_hash: 1282696513,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSimulationStaticState, tile_dimension),
             },
             FieldInfoData {
                 name: "PhysicsSimulationEnabled",
+                name_hash: 2427761848,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterSimulationStaticState, physics_simulation_enabled),
             },
             FieldInfoData {
                 name: "ForceSimplePlaneCollision",
+                name_hash: 2334324990,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterSimulationStaticState, force_simple_plane_collision),
             },
             FieldInfoData {
                 name: "WaveAmplitude",
+                name_hash: 1060110969,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSimulationStaticState, wave_amplitude),
             },
             FieldInfoData {
                 name: "WindSpeed",
+                name_hash: 3184433174,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSimulationStaticState, wind_speed),
             },
             FieldInfoData {
                 name: "WindAngle",
+                name_hash: 3196214064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSimulationStaticState, wind_angle),
             },
             FieldInfoData {
                 name: "WindDistribution",
+                name_hash: 3034387499,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SplineCurve",
                 rust_offset: offset_of!(WaterSimulationStaticState, wind_distribution),
             },
             FieldInfoData {
                 name: "MinWavelength",
+                name_hash: 2839001494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSimulationStaticState, min_wavelength),
             },
             FieldInfoData {
                 name: "LargeWaveReduction",
+                name_hash: 80789284,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSimulationStaticState, large_wave_reduction),
             },
             FieldInfoData {
                 name: "FoamHalfLife",
+                name_hash: 4003419909,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSimulationStaticState, foam_half_life),
             },
             FieldInfoData {
                 name: "FoamThreshold",
+                name_hash: 209457719,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSimulationStaticState, foam_threshold),
             },
             FieldInfoData {
                 name: "FoamMaxValue",
+                name_hash: 4130526015,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterSimulationStaticState, foam_max_value),
             },
             FieldInfoData {
                 name: "OceanVisualCpuSimulationEnable",
+                name_hash: 3304657859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterSimulationStaticState, ocean_visual_cpu_simulation_enable),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(WaterSimulationStaticState, field_flag_changed0),
@@ -1400,6 +1495,7 @@ impl TypeObject for WaterSimulationStaticState {
 
 pub static WATERSIMULATIONSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSimulationStaticState-Array",
+    name_hash: 2033312952,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterSimulationStaticState"),
@@ -1408,7 +1504,8 @@ pub static WATERSIMULATIONSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterGlobalDynamicState {
     pub ticks: u32,
     pub delta_ticks: u32,
@@ -1501,63 +1598,74 @@ impl WaterGlobalDynamicStateTrait for WaterGlobalDynamicState {
 
 pub static WATERGLOBALDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterGlobalDynamicState",
+    name_hash: 2881785913,
     flags: MemberInfoFlags::new(36937),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterGlobalDynamicState as Default>::default())),
+            create_boxed: || Box::new(<WaterGlobalDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Ticks",
+                name_hash: 227879011,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterGlobalDynamicState, ticks),
             },
             FieldInfoData {
                 name: "DeltaTicks",
+                name_hash: 1404231035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterGlobalDynamicState, delta_ticks),
             },
             FieldInfoData {
                 name: "TickFrequency",
+                name_hash: 131684980,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterGlobalDynamicState, tick_frequency),
             },
             FieldInfoData {
                 name: "CurrentTime",
+                name_hash: 2767895321,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterGlobalDynamicState, current_time),
             },
             FieldInfoData {
                 name: "WaterHeightSampleDebuggerSamplePosition",
+                name_hash: 1718254903,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(WaterGlobalDynamicState, water_height_sample_debugger_sample_position),
             },
             FieldInfoData {
                 name: "WaterHeightSampleDebuggerSamplePositionHeight",
+                name_hash: 1902353448,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterGlobalDynamicState, water_height_sample_debugger_sample_position_height),
             },
             FieldInfoData {
                 name: "WaterHeightSampleDebuggerEnabled",
+                name_hash: 1241842381,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterGlobalDynamicState, water_height_sample_debugger_enabled),
             },
             FieldInfoData {
                 name: "WaterHeightSampleDebuggerLockPositionEnabled",
+                name_hash: 2357499007,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterGlobalDynamicState, water_height_sample_debugger_lock_position_enabled),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(WaterGlobalDynamicState, field_flag_changed0),
@@ -1589,6 +1697,7 @@ impl TypeObject for WaterGlobalDynamicState {
 
 pub static WATERGLOBALDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterGlobalDynamicState-Array",
+    name_hash: 2400714381,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterGlobalDynamicState"),
@@ -1597,7 +1706,8 @@ pub static WATERGLOBALDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterGlobalStaticState {
 }
 
@@ -1609,11 +1719,13 @@ impl WaterGlobalStaticStateTrait for WaterGlobalStaticState {
 
 pub static WATERGLOBALSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterGlobalStaticState",
+    name_hash: 3551022932,
     flags: MemberInfoFlags::new(36937),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterGlobalStaticState as Default>::default())),
+            create_boxed: || Box::new(<WaterGlobalStaticState as Default>::default()),
         },
         fields: &[
         ],
@@ -1643,6 +1755,7 @@ impl TypeObject for WaterGlobalStaticState {
 
 pub static WATERGLOBALSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterGlobalStaticState-Array",
+    name_hash: 3341540320,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterGlobalStaticState"),
@@ -1651,9 +1764,10 @@ pub static WATERGLOBALSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterAmbientFoamEffect {
-    pub emitters: Vec<Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>>,
+    pub emitters: Vec<Option<LockedTypeObject /* super::emitter_base::EmitterBaseAsset */>>,
     pub threshold: f32,
     pub randomness: f32,
     pub cool_down_time: f32,
@@ -1664,8 +1778,8 @@ pub struct WaterAmbientFoamEffect {
 }
 
 pub trait WaterAmbientFoamEffectTrait: TypeObject {
-    fn emitters(&self) -> &Vec<Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>>;
-    fn emitters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>>;
+    fn emitters(&self) -> &Vec<Option<LockedTypeObject /* super::emitter_base::EmitterBaseAsset */>>;
+    fn emitters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::emitter_base::EmitterBaseAsset */>>;
     fn threshold(&self) -> &f32;
     fn threshold_mut(&mut self) -> &mut f32;
     fn randomness(&self) -> &f32;
@@ -1683,10 +1797,10 @@ pub trait WaterAmbientFoamEffectTrait: TypeObject {
 }
 
 impl WaterAmbientFoamEffectTrait for WaterAmbientFoamEffect {
-    fn emitters(&self) -> &Vec<Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>> {
+    fn emitters(&self) -> &Vec<Option<LockedTypeObject /* super::emitter_base::EmitterBaseAsset */>> {
         &self.emitters
     }
-    fn emitters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::emitter_base::EmitterBaseAssetTrait>>>> {
+    fn emitters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::emitter_base::EmitterBaseAsset */>> {
         &mut self.emitters
     }
     fn threshold(&self) -> &f32 {
@@ -1735,57 +1849,67 @@ impl WaterAmbientFoamEffectTrait for WaterAmbientFoamEffect {
 
 pub static WATERAMBIENTFOAMEFFECT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterAmbientFoamEffect",
+    name_hash: 3244200730,
     flags: MemberInfoFlags::new(73),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterAmbientFoamEffect as Default>::default())),
+            create_boxed: || Box::new(<WaterAmbientFoamEffect as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Emitters",
+                name_hash: 772064480,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterBaseAsset-Array",
                 rust_offset: offset_of!(WaterAmbientFoamEffect, emitters),
             },
             FieldInfoData {
                 name: "Threshold",
+                name_hash: 3768602130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterAmbientFoamEffect, threshold),
             },
             FieldInfoData {
                 name: "Randomness",
+                name_hash: 3549488181,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterAmbientFoamEffect, randomness),
             },
             FieldInfoData {
                 name: "CoolDownTime",
+                name_hash: 282296301,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterAmbientFoamEffect, cool_down_time),
             },
             FieldInfoData {
                 name: "NearDistance",
+                name_hash: 1418134238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterAmbientFoamEffect, near_distance),
             },
             FieldInfoData {
                 name: "FarDistance",
+                name_hash: 3322144851,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterAmbientFoamEffect, far_distance),
             },
             FieldInfoData {
                 name: "VerticalVelocityScale",
+                name_hash: 2573484056,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterAmbientFoamEffect, vertical_velocity_scale),
             },
             FieldInfoData {
                 name: "HorizontalVelocityScale",
+                name_hash: 3349566900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterAmbientFoamEffect, horizontal_velocity_scale),
@@ -1817,6 +1941,7 @@ impl TypeObject for WaterAmbientFoamEffect {
 
 pub static WATERAMBIENTFOAMEFFECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterAmbientFoamEffect-Array",
+    name_hash: 2434651694,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterAmbientFoamEffect"),
@@ -1825,7 +1950,8 @@ pub static WATERAMBIENTFOAMEFFECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterSurfaceCreateState {
     pub transform: super::core::LinearTransform,
 }
@@ -1846,15 +1972,18 @@ impl WaterSurfaceCreateStateTrait for WaterSurfaceCreateState {
 
 pub static WATERSURFACECREATESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSurfaceCreateState",
+    name_hash: 850887990,
     flags: MemberInfoFlags::new(36937),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterSurfaceCreateState as Default>::default())),
+            create_boxed: || Box::new(<WaterSurfaceCreateState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(WaterSurfaceCreateState, transform),
@@ -1886,6 +2015,7 @@ impl TypeObject for WaterSurfaceCreateState {
 
 pub static WATERSURFACECREATESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterSurfaceCreateState-Array",
+    name_hash: 600848770,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterSurfaceCreateState"),
@@ -1894,7 +2024,8 @@ pub static WATERSURFACECREATESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterDisturbParams {
     pub transform: super::core::LinearTransform,
     pub impulse: super::core::Vec3,
@@ -1924,21 +2055,25 @@ impl WaterDisturbParamsTrait for WaterDisturbParams {
 
 pub static WATERDISTURBPARAMS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterDisturbParams",
+    name_hash: 3992297091,
     flags: MemberInfoFlags::new(36937),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterDisturbParams as Default>::default())),
+            create_boxed: || Box::new(<WaterDisturbParams as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(WaterDisturbParams, transform),
             },
             FieldInfoData {
                 name: "Impulse",
+                name_hash: 1723395486,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(WaterDisturbParams, impulse),
@@ -1970,6 +2105,7 @@ impl TypeObject for WaterDisturbParams {
 
 pub static WATERDISTURBPARAMS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterDisturbParams-Array",
+    name_hash: 2062840119,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterDisturbParams"),
@@ -1978,7 +2114,8 @@ pub static WATERDISTURBPARAMS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterEntityClipInfo {
     pub enable: bool,
     pub clip_face_north: bool,
@@ -2035,39 +2172,46 @@ impl WaterEntityClipInfoTrait for WaterEntityClipInfo {
 
 pub static WATERENTITYCLIPINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterEntityClipInfo",
+    name_hash: 3190229459,
     flags: MemberInfoFlags::new(36937),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterEntityClipInfo as Default>::default())),
+            create_boxed: || Box::new(<WaterEntityClipInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterEntityClipInfo, enable),
             },
             FieldInfoData {
                 name: "ClipFaceNorth",
+                name_hash: 2159906269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterEntityClipInfo, clip_face_north),
             },
             FieldInfoData {
                 name: "ClipFaceSouth",
+                name_hash: 2126270215,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterEntityClipInfo, clip_face_south),
             },
             FieldInfoData {
                 name: "ClipFaceEast",
+                name_hash: 1236705169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterEntityClipInfo, clip_face_east),
             },
             FieldInfoData {
                 name: "ClipFaceWest",
+                name_hash: 1235915847,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterEntityClipInfo, clip_face_west),
@@ -2099,6 +2243,7 @@ impl TypeObject for WaterEntityClipInfo {
 
 pub static WATERENTITYCLIPINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterEntityClipInfo-Array",
+    name_hash: 2283525351,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterEntityClipInfo"),
@@ -2107,7 +2252,8 @@ pub static WATERENTITYCLIPINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterInteractLevelSettings {
     pub enabled: bool,
     pub r#override: bool,
@@ -2191,57 +2337,67 @@ impl WaterInteractLevelSettingsTrait for WaterInteractLevelSettings {
 
 pub static WATERINTERACTLEVELSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterInteractLevelSettings",
+    name_hash: 443047121,
     flags: MemberInfoFlags::new(36937),
     module: "WaterInteractBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterInteractLevelSettings as Default>::default())),
+            create_boxed: || Box::new(<WaterInteractLevelSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractLevelSettings, enabled),
             },
             FieldInfoData {
                 name: "Override",
+                name_hash: 3718925169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractLevelSettings, r#override),
             },
             FieldInfoData {
                 name: "MaxSimulationCount",
+                name_hash: 766485537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PlatformScalableInt",
                 rust_offset: offset_of!(WaterInteractLevelSettings, max_simulation_count),
             },
             FieldInfoData {
                 name: "MaxVisibleWaterSurfaceCount",
+                name_hash: 4063289564,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PlatformScalableInt",
                 rust_offset: offset_of!(WaterInteractLevelSettings, max_visible_water_surface_count),
             },
             FieldInfoData {
                 name: "RenderGridWidth",
+                name_hash: 1089473393,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PlatformScalableInt",
                 rust_offset: offset_of!(WaterInteractLevelSettings, render_grid_width),
             },
             FieldInfoData {
                 name: "RenderGridHeight",
+                name_hash: 2556768104,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PlatformScalableInt",
                 rust_offset: offset_of!(WaterInteractLevelSettings, render_grid_height),
             },
             FieldInfoData {
                 name: "MinAmbientSimulationResolution",
+                name_hash: 3062913034,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PlatformScalableInt",
                 rust_offset: offset_of!(WaterInteractLevelSettings, min_ambient_simulation_resolution),
             },
             FieldInfoData {
                 name: "MaxAmbientSimulationResolution",
+                name_hash: 160120788,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PlatformScalableInt",
                 rust_offset: offset_of!(WaterInteractLevelSettings, max_ambient_simulation_resolution),
@@ -2273,6 +2429,7 @@ impl TypeObject for WaterInteractLevelSettings {
 
 pub static WATERINTERACTLEVELSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterInteractLevelSettings-Array",
+    name_hash: 3642961637,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterInteractLevelSettings"),
@@ -2281,7 +2438,8 @@ pub static WATERINTERACTLEVELSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterInteractSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enable: bool,
@@ -2639,232 +2797,272 @@ impl super::core::DataContainerTrait for WaterInteractSettings {
 
 pub static WATERINTERACTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterInteractSettings",
+    name_hash: 3630855751,
     flags: MemberInfoFlags::new(101),
     module: "WaterInteractBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(WaterInteractSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterInteractSettings as Default>::default())),
+            create_boxed: || Box::new(<WaterInteractSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, enable),
             },
             FieldInfoData {
                 name: "DrawEnable",
+                name_hash: 1347356004,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, draw_enable),
             },
             FieldInfoData {
                 name: "EnableJobs",
+                name_hash: 1190923856,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, enable_jobs),
             },
             FieldInfoData {
                 name: "SimulationJobCount",
+                name_hash: 4000444594,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, simulation_job_count),
             },
             FieldInfoData {
                 name: "WaterQualityLevel",
+                name_hash: 2551374379,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityLevel",
                 rust_offset: offset_of!(WaterInteractSettings, water_quality_level),
             },
             FieldInfoData {
                 name: "MaxSimulationCount",
+                name_hash: 766485537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, max_simulation_count),
             },
             FieldInfoData {
                 name: "MaxLiveEditingSimulationCount",
+                name_hash: 2316409963,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, max_live_editing_simulation_count),
             },
             FieldInfoData {
                 name: "EnableSimulation",
+                name_hash: 132266103,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, enable_simulation),
             },
             FieldInfoData {
                 name: "EnableDisturbs",
+                name_hash: 2297418584,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, enable_disturbs),
             },
             FieldInfoData {
                 name: "InteractiveGridCount",
+                name_hash: 2717301142,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, interactive_grid_count),
             },
             FieldInfoData {
                 name: "InteractiveMinGridSize",
+                name_hash: 878118298,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, interactive_min_grid_size),
             },
             FieldInfoData {
                 name: "InteractInjectNoiseStrength",
+                name_hash: 272697619,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterInteractSettings, interact_inject_noise_strength),
             },
             FieldInfoData {
                 name: "InteractMaxSlope",
+                name_hash: 3218223494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterInteractSettings, interact_max_slope),
             },
             FieldInfoData {
                 name: "InteractUpdateFrequency",
+                name_hash: 1796305090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterInteractSettings, interact_update_frequency),
             },
             FieldInfoData {
                 name: "MinAmbientSimulationResolution",
+                name_hash: 3062913034,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, min_ambient_simulation_resolution),
             },
             FieldInfoData {
                 name: "MaxAmbientSimulationResolution",
+                name_hash: 160120788,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, max_ambient_simulation_resolution),
             },
             FieldInfoData {
                 name: "RenderGridWidth",
+                name_hash: 1089473393,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, render_grid_width),
             },
             FieldInfoData {
                 name: "RenderGridHeight",
+                name_hash: 2556768104,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, render_grid_height),
             },
             FieldInfoData {
                 name: "RenderFixedAimDistance",
+                name_hash: 3121193151,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterInteractSettings, render_fixed_aim_distance),
             },
             FieldInfoData {
                 name: "RenderProjectorFarPlane",
+                name_hash: 493666020,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterInteractSettings, render_projector_far_plane),
             },
             FieldInfoData {
                 name: "MaxVisibleWaterSurfaceCount",
+                name_hash: 4063289564,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, max_visible_water_surface_count),
             },
             FieldInfoData {
                 name: "MaxLiveEditingVisibleWaterSurfaceCount",
+                name_hash: 106742870,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, max_live_editing_visible_water_surface_count),
             },
             FieldInfoData {
                 name: "PcGridResolutionMultiplier",
+                name_hash: 2773342635,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(WaterInteractSettings, pc_grid_resolution_multiplier),
             },
             FieldInfoData {
                 name: "RenderOcclusionCullEnable",
+                name_hash: 2416970165,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, render_occlusion_cull_enable),
             },
             FieldInfoData {
                 name: "RenderOcclusionCullJobCount",
+                name_hash: 898922480,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, render_occlusion_cull_job_count),
             },
             FieldInfoData {
                 name: "RenderOcclusionGridWidth",
+                name_hash: 1658890588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, render_occlusion_grid_width),
             },
             FieldInfoData {
                 name: "RenderOcclusionGridHeight",
+                name_hash: 3335928229,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaterInteractSettings, render_occlusion_grid_height),
             },
             FieldInfoData {
                 name: "RenderGenerateDisplacementMipmaps",
+                name_hash: 2771759080,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, render_generate_displacement_mipmaps),
             },
             FieldInfoData {
                 name: "RenderGenerateGradientMipmaps",
+                name_hash: 4269498265,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, render_generate_gradient_mipmaps),
             },
             FieldInfoData {
                 name: "RenderDebugEnable",
+                name_hash: 535905759,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, render_debug_enable),
             },
             FieldInfoData {
                 name: "RenderDebugFreezeViewEnable",
+                name_hash: 3343615705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, render_debug_freeze_view_enable),
             },
             FieldInfoData {
                 name: "RenderDebugSimulationEnable",
+                name_hash: 2378602892,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, render_debug_simulation_enable),
             },
             FieldInfoData {
                 name: "RenderDebugTexturesEnable",
+                name_hash: 944701299,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, render_debug_textures_enable),
             },
             FieldInfoData {
                 name: "DrawUpdateEnable",
+                name_hash: 1722954037,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WaterInteractSettings, draw_update_enable),
             },
             FieldInfoData {
                 name: "VirtualHeightfieldAtlasSize",
+                name_hash: 422562007,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WaterInteractSettings, virtual_heightfield_atlas_size),
             },
             FieldInfoData {
                 name: "VirtualHeightfieldIndirectionSize",
+                name_hash: 3521949278,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WaterInteractSettings, virtual_heightfield_indirection_size),
             },
             FieldInfoData {
                 name: "VirtualHeightfieldQuantizationRange",
+                name_hash: 2418256855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WaterInteractSettings, virtual_heightfield_quantization_range),
@@ -2896,6 +3094,7 @@ impl TypeObject for WaterInteractSettings {
 
 pub static WATERINTERACTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterInteractSettings-Array",
+    name_hash: 1762363251,
     flags: MemberInfoFlags::new(145),
     module: "WaterInteractBase",
     data: TypeInfoData::Array("WaterInteractSettings"),

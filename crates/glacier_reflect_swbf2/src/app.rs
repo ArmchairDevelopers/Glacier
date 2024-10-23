@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -32,22 +33,23 @@ pub(crate) fn register_app_types(registry: &mut TypeRegistry) {
     registry.register_type(WIN32WINDOW_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputConfiguration {
     pub _glacier_base: super::core::DataContainer,
-    pub custom_input_sets: Vec<Option<Arc<Mutex<dyn InputSetTrait>>>>,
+    pub custom_input_sets: Vec<Option<LockedTypeObject /* InputSet */>>,
 }
 
 pub trait InputConfigurationTrait: super::core::DataContainerTrait {
-    fn custom_input_sets(&self) -> &Vec<Option<Arc<Mutex<dyn InputSetTrait>>>>;
-    fn custom_input_sets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputSetTrait>>>>;
+    fn custom_input_sets(&self) -> &Vec<Option<LockedTypeObject /* InputSet */>>;
+    fn custom_input_sets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputSet */>>;
 }
 
 impl InputConfigurationTrait for InputConfiguration {
-    fn custom_input_sets(&self) -> &Vec<Option<Arc<Mutex<dyn InputSetTrait>>>> {
+    fn custom_input_sets(&self) -> &Vec<Option<LockedTypeObject /* InputSet */>> {
         &self.custom_input_sets
     }
-    fn custom_input_sets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputSetTrait>>>> {
+    fn custom_input_sets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputSet */>> {
         &mut self.custom_input_sets
     }
 }
@@ -57,16 +59,20 @@ impl super::core::DataContainerTrait for InputConfiguration {
 
 pub static INPUTCONFIGURATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputConfiguration",
+    name_hash: 2676875651,
     flags: MemberInfoFlags::new(101),
     module: "App",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(InputConfiguration, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputConfiguration as Default>::default())),
+            create_boxed: || Box::new(<InputConfiguration as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CustomInputSets",
+                name_hash: 2371087281,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InputSet-Array",
                 rust_offset: offset_of!(InputConfiguration, custom_input_sets),
@@ -98,6 +104,7 @@ impl TypeObject for InputConfiguration {
 
 pub static INPUTCONFIGURATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputConfiguration-Array",
+    name_hash: 2087908407,
     flags: MemberInfoFlags::new(145),
     module: "App",
     data: TypeInfoData::Array("InputConfiguration"),
@@ -106,18 +113,19 @@ pub static INPUTCONFIGURATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputSet {
     pub _glacier_base: super::core::DataContainer,
     pub configuration_key: String,
-    pub bindings: Vec<Option<Arc<Mutex<dyn InputBindingTrait>>>>,
+    pub bindings: Vec<Option<LockedTypeObject /* InputBinding */>>,
 }
 
 pub trait InputSetTrait: super::core::DataContainerTrait {
     fn configuration_key(&self) -> &String;
     fn configuration_key_mut(&mut self) -> &mut String;
-    fn bindings(&self) -> &Vec<Option<Arc<Mutex<dyn InputBindingTrait>>>>;
-    fn bindings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputBindingTrait>>>>;
+    fn bindings(&self) -> &Vec<Option<LockedTypeObject /* InputBinding */>>;
+    fn bindings_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputBinding */>>;
 }
 
 impl InputSetTrait for InputSet {
@@ -127,10 +135,10 @@ impl InputSetTrait for InputSet {
     fn configuration_key_mut(&mut self) -> &mut String {
         &mut self.configuration_key
     }
-    fn bindings(&self) -> &Vec<Option<Arc<Mutex<dyn InputBindingTrait>>>> {
+    fn bindings(&self) -> &Vec<Option<LockedTypeObject /* InputBinding */>> {
         &self.bindings
     }
-    fn bindings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputBindingTrait>>>> {
+    fn bindings_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputBinding */>> {
         &mut self.bindings
     }
 }
@@ -140,22 +148,27 @@ impl super::core::DataContainerTrait for InputSet {
 
 pub static INPUTSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputSet",
+    name_hash: 4115003409,
     flags: MemberInfoFlags::new(101),
     module: "App",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(InputSet, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputSet as Default>::default())),
+            create_boxed: || Box::new(<InputSet as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ConfigurationKey",
+                name_hash: 3310388994,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(InputSet, configuration_key),
             },
             FieldInfoData {
                 name: "Bindings",
+                name_hash: 3867608887,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InputBinding-Array",
                 rust_offset: offset_of!(InputSet, bindings),
@@ -187,6 +200,7 @@ impl TypeObject for InputSet {
 
 pub static INPUTSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputSet-Array",
+    name_hash: 1876703653,
     flags: MemberInfoFlags::new(145),
     module: "App",
     data: TypeInfoData::Array("InputSet"),
@@ -195,7 +209,8 @@ pub static INPUTSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputBinding {
     pub _glacier_base: super::core::DataContainer,
     pub input_gesture: String,
@@ -229,22 +244,27 @@ impl super::core::DataContainerTrait for InputBinding {
 
 pub static INPUTBINDING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputBinding",
+    name_hash: 754309138,
     flags: MemberInfoFlags::new(101),
     module: "App",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(InputBinding, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputBinding as Default>::default())),
+            create_boxed: || Box::new(<InputBinding as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InputGesture",
+                name_hash: 2275931348,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(InputBinding, input_gesture),
             },
             FieldInfoData {
                 name: "CommandUri",
+                name_hash: 683241324,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(InputBinding, command_uri),
@@ -276,6 +296,7 @@ impl TypeObject for InputBinding {
 
 pub static INPUTBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputBinding-Array",
+    name_hash: 1104510758,
     flags: MemberInfoFlags::new(145),
     module: "App",
     data: TypeInfoData::Array("InputBinding"),
@@ -284,7 +305,8 @@ pub static INPUTBINDING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WindowSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub pos_x: i32,
@@ -417,82 +439,97 @@ impl super::core::DataContainerTrait for WindowSettings {
 
 pub static WINDOWSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WindowSettings",
+    name_hash: 4196290604,
     flags: MemberInfoFlags::new(101),
     module: "App",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(WindowSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WindowSettings as Default>::default())),
+            create_boxed: || Box::new(<WindowSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PosX",
+                name_hash: 2089458993,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Int32",
                 rust_offset: offset_of!(WindowSettings, pos_x),
             },
             FieldInfoData {
                 name: "PosY",
+                name_hash: 2089458992,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Int32",
                 rust_offset: offset_of!(WindowSettings, pos_y),
             },
             FieldInfoData {
                 name: "Width",
+                name_hash: 226981187,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WindowSettings, width),
             },
             FieldInfoData {
                 name: "Height",
+                name_hash: 3054065626,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WindowSettings, height),
             },
             FieldInfoData {
                 name: "AutoSize",
+                name_hash: 3538087823,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WindowSettings, auto_size),
             },
             FieldInfoData {
                 name: "FullscreenAutoSize",
+                name_hash: 3126319920,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WindowSettings, fullscreen_auto_size),
             },
             FieldInfoData {
                 name: "EnableEscape",
+                name_hash: 3728915013,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WindowSettings, enable_escape),
             },
             FieldInfoData {
                 name: "EnableInputOnActivate",
+                name_hash: 3421649674,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WindowSettings, enable_input_on_activate),
             },
             FieldInfoData {
                 name: "HibernateOnClose",
+                name_hash: 3110056536,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WindowSettings, hibernate_on_close),
             },
             FieldInfoData {
                 name: "Hidden",
+                name_hash: 3049491663,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WindowSettings, hidden),
             },
             FieldInfoData {
                 name: "Minimized",
+                name_hash: 1910180473,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WindowSettings, minimized),
             },
             FieldInfoData {
                 name: "AllowWindowsLargerThanDesktop",
+                name_hash: 3666725197,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WindowSettings, allow_windows_larger_than_desktop),
@@ -524,6 +561,7 @@ impl TypeObject for WindowSettings {
 
 pub static WINDOWSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WindowSettings-Array",
+    name_hash: 2794938264,
     flags: MemberInfoFlags::new(145),
     module: "App",
     data: TypeInfoData::Array("WindowSettings"),
@@ -532,7 +570,8 @@ pub static WINDOWSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ApplicationWindowFullscreenRequestMessage {
 }
 
@@ -544,11 +583,13 @@ impl ApplicationWindowFullscreenRequestMessageTrait for ApplicationWindowFullscr
 
 pub static APPLICATIONWINDOWFULLSCREENREQUESTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ApplicationWindowFullscreenRequestMessage",
+    name_hash: 1562521686,
     flags: MemberInfoFlags::new(36937),
     module: "App",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ApplicationWindowFullscreenRequestMessage as Default>::default())),
+            create_boxed: || Box::new(<ApplicationWindowFullscreenRequestMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -575,7 +616,8 @@ impl TypeObject for ApplicationWindowFullscreenRequestMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ApplicationWindowResizeEndMessage {
 }
 
@@ -587,11 +629,13 @@ impl ApplicationWindowResizeEndMessageTrait for ApplicationWindowResizeEndMessag
 
 pub static APPLICATIONWINDOWRESIZEENDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ApplicationWindowResizeEndMessage",
+    name_hash: 170243333,
     flags: MemberInfoFlags::new(36937),
     module: "App",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ApplicationWindowResizeEndMessage as Default>::default())),
+            create_boxed: || Box::new(<ApplicationWindowResizeEndMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -618,7 +662,8 @@ impl TypeObject for ApplicationWindowResizeEndMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ApplicationWindowStyleChangedMessage {
 }
 
@@ -630,11 +675,13 @@ impl ApplicationWindowStyleChangedMessageTrait for ApplicationWindowStyleChanged
 
 pub static APPLICATIONWINDOWSTYLECHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ApplicationWindowStyleChangedMessage",
+    name_hash: 2810932525,
     flags: MemberInfoFlags::new(36937),
     module: "App",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ApplicationWindowStyleChangedMessage as Default>::default())),
+            create_boxed: || Box::new(<ApplicationWindowStyleChangedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -661,7 +708,8 @@ impl TypeObject for ApplicationWindowStyleChangedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ApplicationWindowClosedMessage {
 }
 
@@ -673,11 +721,13 @@ impl ApplicationWindowClosedMessageTrait for ApplicationWindowClosedMessage {
 
 pub static APPLICATIONWINDOWCLOSEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ApplicationWindowClosedMessage",
+    name_hash: 2419673802,
     flags: MemberInfoFlags::new(36937),
     module: "App",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ApplicationWindowClosedMessage as Default>::default())),
+            create_boxed: || Box::new(<ApplicationWindowClosedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -704,7 +754,8 @@ impl TypeObject for ApplicationWindowClosedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ApplicationWindowCreatedMessage {
 }
 
@@ -716,11 +767,13 @@ impl ApplicationWindowCreatedMessageTrait for ApplicationWindowCreatedMessage {
 
 pub static APPLICATIONWINDOWCREATEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ApplicationWindowCreatedMessage",
+    name_hash: 251921848,
     flags: MemberInfoFlags::new(36937),
     module: "App",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ApplicationWindowCreatedMessage as Default>::default())),
+            create_boxed: || Box::new(<ApplicationWindowCreatedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -759,6 +812,7 @@ pub enum WindowFullscreenMode {
 
 pub static WINDOWFULLSCREENMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WindowFullscreenMode",
+    name_hash: 1909317973,
     flags: MemberInfoFlags::new(49429),
     module: "App",
     data: TypeInfoData::Enum,
@@ -787,6 +841,7 @@ impl TypeObject for WindowFullscreenMode {
 
 pub static WINDOWFULLSCREENMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WindowFullscreenMode-Array",
+    name_hash: 234471777,
     flags: MemberInfoFlags::new(145),
     module: "App",
     data: TypeInfoData::Array("WindowFullscreenMode"),
@@ -808,6 +863,7 @@ pub enum WindowResizeType {
 
 pub static WINDOWRESIZETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WindowResizeType",
+    name_hash: 3836421315,
     flags: MemberInfoFlags::new(49429),
     module: "App",
     data: TypeInfoData::Enum,
@@ -836,6 +892,7 @@ impl TypeObject for WindowResizeType {
 
 pub static WINDOWRESIZETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WindowResizeType-Array",
+    name_hash: 376793079,
     flags: MemberInfoFlags::new(145),
     module: "App",
     data: TypeInfoData::Array("WindowResizeType"),
@@ -844,7 +901,8 @@ pub static WINDOWRESIZETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Window {
 }
 
@@ -856,12 +914,15 @@ impl WindowTrait for Window {
 
 pub static WINDOW_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Window",
+    name_hash: 3194931305,
     flags: MemberInfoFlags::new(101),
     module: "App",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Window as Default>::default())),
+            create_boxed: || Box::new(<Window as Default>::default()),
         },
         fields: &[
         ],
@@ -891,6 +952,7 @@ impl TypeObject for Window {
 
 pub static WINDOW_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Window-Array",
+    name_hash: 2933448541,
     flags: MemberInfoFlags::new(145),
     module: "App",
     data: TypeInfoData::Array("Window"),
@@ -899,7 +961,8 @@ pub static WINDOW_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Win32Window {
     pub _glacier_base: Window,
 }
@@ -915,12 +978,15 @@ impl WindowTrait for Win32Window {
 
 pub static WIN32WINDOW_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Win32Window",
+    name_hash: 1663662360,
     flags: MemberInfoFlags::new(101),
     module: "App",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WINDOW_TYPE_INFO),
+        super_class_offset: offset_of!(Win32Window, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Win32Window as Default>::default())),
+            create_boxed: || Box::new(<Win32Window as Default>::default()),
         },
         fields: &[
         ],
@@ -950,6 +1016,7 @@ impl TypeObject for Win32Window {
 
 pub static WIN32WINDOW_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Win32Window-Array",
+    name_hash: 458294060,
     flags: MemberInfoFlags::new(145),
     module: "App",
     data: TypeInfoData::Array("Win32Window"),

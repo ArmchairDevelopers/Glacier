@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -15,7 +16,8 @@ pub(crate) fn register_terrain_sim_types(registry: &mut TypeRegistry) {
     registry.register_type(PHYSICSTERRAINUPDATERCOMPONENTDATA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterAsset {
     pub _glacier_base: super::physics::PhysicsResourceContainerAsset,
 }
@@ -49,12 +51,15 @@ impl super::core::DataContainerTrait for WaterAsset {
 
 pub static WATERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterAsset",
+    name_hash: 7828640,
     flags: MemberInfoFlags::new(101),
     module: "TerrainSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::physics::PHYSICSRESOURCECONTAINERASSET_TYPE_INFO),
+        super_class_offset: offset_of!(WaterAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterAsset as Default>::default())),
+            create_boxed: || Box::new(<WaterAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -84,6 +89,7 @@ impl TypeObject for WaterAsset {
 
 pub static WATERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterAsset-Array",
+    name_hash: 2509953556,
     flags: MemberInfoFlags::new(145),
     module: "TerrainSim",
     data: TypeInfoData::Array("WaterAsset"),
@@ -92,7 +98,8 @@ pub static WATERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsTerrainUpdaterComponentData {
     pub _glacier_base: super::entity::ComponentData,
     pub in_categories: super::physics::PhysicsCategorySet,
@@ -128,10 +135,10 @@ impl super::entity::ComponentDataTrait for PhysicsTerrainUpdaterComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -174,22 +181,27 @@ impl super::core::DataContainerTrait for PhysicsTerrainUpdaterComponentData {
 
 pub static PHYSICSTERRAINUPDATERCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsTerrainUpdaterComponentData",
+    name_hash: 2580519429,
     flags: MemberInfoFlags::new(101),
     module: "TerrainSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::COMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsTerrainUpdaterComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsTerrainUpdaterComponentData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsTerrainUpdaterComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InCategories",
+                name_hash: 2532991060,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsCategorySet",
                 rust_offset: offset_of!(PhysicsTerrainUpdaterComponentData, in_categories),
             },
             FieldInfoData {
                 name: "CollidesWithCategories",
+                name_hash: 1092939718,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsCategorySet",
                 rust_offset: offset_of!(PhysicsTerrainUpdaterComponentData, collides_with_categories),
@@ -221,6 +233,7 @@ impl TypeObject for PhysicsTerrainUpdaterComponentData {
 
 pub static PHYSICSTERRAINUPDATERCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsTerrainUpdaterComponentData-Array",
+    name_hash: 1128546737,
     flags: MemberInfoFlags::new(145),
     module: "TerrainSim",
     data: TypeInfoData::Array("PhysicsTerrainUpdaterComponentData"),

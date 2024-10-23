@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -491,7 +492,8 @@ pub(crate) fn register_physics_types(registry: &mut TypeRegistry) {
     registry.register_type(VEHICLEPHYSICSACTION_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HavokPhysicsData {
 }
 
@@ -503,12 +505,15 @@ impl HavokPhysicsDataTrait for HavokPhysicsData {
 
 pub static HAVOKPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HavokPhysicsData",
+    name_hash: 3598302853,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HavokPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<HavokPhysicsData as Default>::default()),
         },
         fields: &[
         ],
@@ -538,6 +543,7 @@ impl TypeObject for HavokPhysicsData {
 
 pub static HAVOKPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HavokPhysicsData-Array",
+    name_hash: 2232927793,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("HavokPhysicsData"),
@@ -546,7 +552,8 @@ pub static HAVOKPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RagdollResource {
 }
 
@@ -558,12 +565,15 @@ impl RagdollResourceTrait for RagdollResource {
 
 pub static RAGDOLLRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RagdollResource",
+    name_hash: 3098052368,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RagdollResource as Default>::default())),
+            create_boxed: || Box::new(<RagdollResource as Default>::default()),
         },
         fields: &[
         ],
@@ -593,6 +603,7 @@ impl TypeObject for RagdollResource {
 
 pub static RAGDOLLRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RagdollResource-Array",
+    name_hash: 3236115748,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RagdollResource"),
@@ -601,7 +612,8 @@ pub static RAGDOLLRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRootControlConstraint {
     pub _glacier_base: PhysicsConstraint,
 }
@@ -623,12 +635,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsRootControlConstraint {
 
 pub static PHYSICSROOTCONTROLCONSTRAINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRootControlConstraint",
+    name_hash: 1128201802,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINT_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsRootControlConstraint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRootControlConstraint as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRootControlConstraint as Default>::default()),
         },
         fields: &[
         ],
@@ -658,6 +673,7 @@ impl TypeObject for PhysicsRootControlConstraint {
 
 pub static PHYSICSROOTCONTROLCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRootControlConstraint-Array",
+    name_hash: 179251710,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRootControlConstraint"),
@@ -666,7 +682,8 @@ pub static PHYSICSROOTCONTROLCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRagdollConstraint {
     pub _glacier_base: PhysicsConstraint,
 }
@@ -688,12 +705,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsRagdollConstraint {
 
 pub static PHYSICSRAGDOLLCONSTRAINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRagdollConstraint",
+    name_hash: 564307764,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINT_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsRagdollConstraint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRagdollConstraint as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRagdollConstraint as Default>::default()),
         },
         fields: &[
         ],
@@ -723,6 +743,7 @@ impl TypeObject for PhysicsRagdollConstraint {
 
 pub static PHYSICSRAGDOLLCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRagdollConstraint-Array",
+    name_hash: 4174668416,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRagdollConstraint"),
@@ -731,7 +752,8 @@ pub static PHYSICSRAGDOLLCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsPrismaticConstraint {
     pub _glacier_base: PhysicsConstraint,
 }
@@ -753,12 +775,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsPrismaticConstraint {
 
 pub static PHYSICSPRISMATICCONSTRAINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPrismaticConstraint",
+    name_hash: 4047463329,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINT_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsPrismaticConstraint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsPrismaticConstraint as Default>::default())),
+            create_boxed: || Box::new(<PhysicsPrismaticConstraint as Default>::default()),
         },
         fields: &[
         ],
@@ -788,6 +813,7 @@ impl TypeObject for PhysicsPrismaticConstraint {
 
 pub static PHYSICSPRISMATICCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPrismaticConstraint-Array",
+    name_hash: 858869269,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsPrismaticConstraint"),
@@ -796,7 +822,8 @@ pub static PHYSICSPRISMATICCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsHingeConstraint {
     pub _glacier_base: PhysicsConstraint,
 }
@@ -818,12 +845,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsHingeConstraint {
 
 pub static PHYSICSHINGECONSTRAINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsHingeConstraint",
+    name_hash: 1769798470,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINT_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsHingeConstraint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsHingeConstraint as Default>::default())),
+            create_boxed: || Box::new(<PhysicsHingeConstraint as Default>::default()),
         },
         fields: &[
         ],
@@ -853,6 +883,7 @@ impl TypeObject for PhysicsHingeConstraint {
 
 pub static PHYSICSHINGECONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsHingeConstraint-Array",
+    name_hash: 1467431154,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsHingeConstraint"),
@@ -861,7 +892,8 @@ pub static PHYSICSHINGECONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsBallAndSocketConstraint {
     pub _glacier_base: PhysicsConstraint,
 }
@@ -883,12 +915,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsBallAndSocketConstraint {
 
 pub static PHYSICSBALLANDSOCKETCONSTRAINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBallAndSocketConstraint",
+    name_hash: 1152291398,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINT_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsBallAndSocketConstraint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsBallAndSocketConstraint as Default>::default())),
+            create_boxed: || Box::new(<PhysicsBallAndSocketConstraint as Default>::default()),
         },
         fields: &[
         ],
@@ -918,6 +953,7 @@ impl TypeObject for PhysicsBallAndSocketConstraint {
 
 pub static PHYSICSBALLANDSOCKETCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBallAndSocketConstraint-Array",
+    name_hash: 2906525682,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsBallAndSocketConstraint"),
@@ -926,7 +962,8 @@ pub static PHYSICSBALLANDSOCKETCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsAngularLimitConstraint {
     pub _glacier_base: PhysicsConstraint,
 }
@@ -948,12 +985,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsAngularLimitConstraint {
 
 pub static PHYSICSANGULARLIMITCONSTRAINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAngularLimitConstraint",
+    name_hash: 184477148,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINT_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsAngularLimitConstraint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsAngularLimitConstraint as Default>::default())),
+            create_boxed: || Box::new(<PhysicsAngularLimitConstraint as Default>::default()),
         },
         fields: &[
         ],
@@ -983,6 +1023,7 @@ impl TypeObject for PhysicsAngularLimitConstraint {
 
 pub static PHYSICSANGULARLIMITCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAngularLimitConstraint-Array",
+    name_hash: 104377960,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsAngularLimitConstraint"),
@@ -991,7 +1032,8 @@ pub static PHYSICSANGULARLIMITCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IglooModuleInitializer {
 }
 
@@ -1003,12 +1045,15 @@ impl IglooModuleInitializerTrait for IglooModuleInitializer {
 
 pub static IGLOOMODULEINITIALIZER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooModuleInitializer",
+    name_hash: 2854843687,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IglooModuleInitializer as Default>::default())),
+            create_boxed: || Box::new(<IglooModuleInitializer as Default>::default()),
         },
         fields: &[
         ],
@@ -1038,6 +1083,7 @@ impl TypeObject for IglooModuleInitializer {
 
 pub static IGLOOMODULEINITIALIZER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooModuleInitializer-Array",
+    name_hash: 1245357715,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("IglooModuleInitializer"),
@@ -1046,7 +1092,8 @@ pub static IGLOOMODULEINITIALIZER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IglooMemoryContext {
 }
 
@@ -1058,12 +1105,15 @@ impl IglooMemoryContextTrait for IglooMemoryContext {
 
 pub static IGLOOMEMORYCONTEXT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooMemoryContext",
+    name_hash: 3795827065,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IglooMemoryContext as Default>::default())),
+            create_boxed: || Box::new(<IglooMemoryContext as Default>::default()),
         },
         fields: &[
         ],
@@ -1093,6 +1143,7 @@ impl TypeObject for IglooMemoryContext {
 
 pub static IGLOOMEMORYCONTEXT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooMemoryContext-Array",
+    name_hash: 3513604173,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("IglooMemoryContext"),
@@ -1101,7 +1152,8 @@ pub static IGLOOMEMORYCONTEXT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IglooGrabTool {
 }
 
@@ -1113,12 +1165,15 @@ impl IglooGrabToolTrait for IglooGrabTool {
 
 pub static IGLOOGRABTOOL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooGrabTool",
+    name_hash: 2521288649,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IglooGrabTool as Default>::default())),
+            create_boxed: || Box::new(<IglooGrabTool as Default>::default()),
         },
         fields: &[
         ],
@@ -1148,6 +1203,7 @@ impl TypeObject for IglooGrabTool {
 
 pub static IGLOOGRABTOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooGrabTool-Array",
+    name_hash: 1551463933,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("IglooGrabTool"),
@@ -1156,7 +1212,8 @@ pub static IGLOOGRABTOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IglooEntityCreator {
 }
 
@@ -1168,12 +1225,15 @@ impl IglooEntityCreatorTrait for IglooEntityCreator {
 
 pub static IGLOOENTITYCREATOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooEntityCreator",
+    name_hash: 1915999968,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IglooEntityCreator as Default>::default())),
+            create_boxed: || Box::new(<IglooEntityCreator as Default>::default()),
         },
         fields: &[
         ],
@@ -1203,6 +1263,7 @@ impl TypeObject for IglooEntityCreator {
 
 pub static IGLOOENTITYCREATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooEntityCreator-Array",
+    name_hash: 1701047508,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("IglooEntityCreator"),
@@ -1211,7 +1272,8 @@ pub static IGLOOENTITYCREATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IglooEntityFactory {
 }
 
@@ -1223,12 +1285,15 @@ impl IglooEntityFactoryTrait for IglooEntityFactory {
 
 pub static IGLOOENTITYFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooEntityFactory",
+    name_hash: 3077477128,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IglooEntityFactory as Default>::default())),
+            create_boxed: || Box::new(<IglooEntityFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -1258,6 +1323,7 @@ impl TypeObject for IglooEntityFactory {
 
 pub static IGLOOENTITYFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooEntityFactory-Array",
+    name_hash: 1777259836,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("IglooEntityFactory"),
@@ -1266,7 +1332,8 @@ pub static IGLOOENTITYFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IglooDebugger {
 }
 
@@ -1278,12 +1345,15 @@ impl IglooDebuggerTrait for IglooDebugger {
 
 pub static IGLOODEBUGGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooDebugger",
+    name_hash: 2171838662,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IglooDebugger as Default>::default())),
+            create_boxed: || Box::new(<IglooDebugger as Default>::default()),
         },
         fields: &[
         ],
@@ -1313,6 +1383,7 @@ impl TypeObject for IglooDebugger {
 
 pub static IGLOODEBUGGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooDebugger-Array",
+    name_hash: 3593731698,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("IglooDebugger"),
@@ -1321,7 +1392,8 @@ pub static IGLOODEBUGGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatPhysicsData {
     pub _glacier_base: super::core::DataContainer,
     pub density: f32,
@@ -1355,22 +1427,27 @@ impl super::core::DataContainerTrait for FloatPhysicsData {
 
 pub static FLOATPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatPhysicsData",
+    name_hash: 3895453006,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(FloatPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<FloatPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Density",
+                name_hash: 4008572221,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatPhysicsData, density),
             },
             FieldInfoData {
                 name: "FilledDensity",
+                name_hash: 1851378675,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatPhysicsData, filled_density),
@@ -1402,6 +1479,7 @@ impl TypeObject for FloatPhysicsData {
 
 pub static FLOATPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatPhysicsData-Array",
+    name_hash: 2444295930,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FloatPhysicsData"),
@@ -1410,7 +1488,8 @@ pub static FLOATPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PartInfoData {
     pub aabb: super::core::AxisAlignedBox,
     pub translation: super::core::Vec3,
@@ -1440,21 +1519,25 @@ impl PartInfoDataTrait for PartInfoData {
 
 pub static PARTINFODATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartInfoData",
+    name_hash: 1936503180,
     flags: MemberInfoFlags::new(32841),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PartInfoData as Default>::default())),
+            create_boxed: || Box::new(<PartInfoData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Aabb",
+                name_hash: 2088635333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AxisAlignedBox",
                 rust_offset: offset_of!(PartInfoData, aabb),
             },
             FieldInfoData {
                 name: "Translation",
+                name_hash: 2696156750,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PartInfoData, translation),
@@ -1486,6 +1569,7 @@ impl TypeObject for PartInfoData {
 
 pub static PARTINFODATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartInfoData-Array",
+    name_hash: 2649326008,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PartInfoData"),
@@ -1494,7 +1578,8 @@ pub static PARTINFODATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PreSolveCollisionPhysicsCallbackHandlerData {
     pub _glacier_base: PhysicsCallbackHandlerData,
 }
@@ -1513,12 +1598,15 @@ impl super::core::DataContainerTrait for PreSolveCollisionPhysicsCallbackHandler
 
 pub static PRESOLVECOLLISIONPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreSolveCollisionPhysicsCallbackHandlerData",
+    name_hash: 2636367253,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCALLBACKHANDLERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PreSolveCollisionPhysicsCallbackHandlerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PreSolveCollisionPhysicsCallbackHandlerData as Default>::default())),
+            create_boxed: || Box::new(<PreSolveCollisionPhysicsCallbackHandlerData as Default>::default()),
         },
         fields: &[
         ],
@@ -1548,6 +1636,7 @@ impl TypeObject for PreSolveCollisionPhysicsCallbackHandlerData {
 
 pub static PRESOLVECOLLISIONPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreSolveCollisionPhysicsCallbackHandlerData-Array",
+    name_hash: 3397244193,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PreSolveCollisionPhysicsCallbackHandlerData"),
@@ -1556,7 +1645,8 @@ pub static PRESOLVECOLLISIONPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VehiclePhysicsCallbackHandlerData {
     pub _glacier_base: PhysicsCallbackHandlerData,
 }
@@ -1575,12 +1665,15 @@ impl super::core::DataContainerTrait for VehiclePhysicsCallbackHandlerData {
 
 pub static VEHICLEPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehiclePhysicsCallbackHandlerData",
+    name_hash: 4210505975,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCALLBACKHANDLERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VehiclePhysicsCallbackHandlerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VehiclePhysicsCallbackHandlerData as Default>::default())),
+            create_boxed: || Box::new(<VehiclePhysicsCallbackHandlerData as Default>::default()),
         },
         fields: &[
         ],
@@ -1610,6 +1703,7 @@ impl TypeObject for VehiclePhysicsCallbackHandlerData {
 
 pub static VEHICLEPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehiclePhysicsCallbackHandlerData-Array",
+    name_hash: 1897071299,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("VehiclePhysicsCallbackHandlerData"),
@@ -1618,7 +1712,8 @@ pub static VEHICLEPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDynamicPhysicsCallbackHandlerData {
     pub _glacier_base: PhysicsCallbackHandlerData,
 }
@@ -1637,12 +1732,15 @@ impl super::core::DataContainerTrait for ClientDynamicPhysicsCallbackHandlerData
 
 pub static CLIENTDYNAMICPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDynamicPhysicsCallbackHandlerData",
+    name_hash: 1877031491,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCALLBACKHANDLERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ClientDynamicPhysicsCallbackHandlerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDynamicPhysicsCallbackHandlerData as Default>::default())),
+            create_boxed: || Box::new(<ClientDynamicPhysicsCallbackHandlerData as Default>::default()),
         },
         fields: &[
         ],
@@ -1672,6 +1770,7 @@ impl TypeObject for ClientDynamicPhysicsCallbackHandlerData {
 
 pub static CLIENTDYNAMICPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDynamicPhysicsCallbackHandlerData-Array",
+    name_hash: 3058015607,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ClientDynamicPhysicsCallbackHandlerData"),
@@ -1680,7 +1779,8 @@ pub static CLIENTDYNAMICPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LightDynamicPhysicsCallbackHandlerData {
     pub _glacier_base: PhysicsCallbackHandlerData,
 }
@@ -1699,12 +1799,15 @@ impl super::core::DataContainerTrait for LightDynamicPhysicsCallbackHandlerData 
 
 pub static LIGHTDYNAMICPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightDynamicPhysicsCallbackHandlerData",
+    name_hash: 498633988,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCALLBACKHANDLERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LightDynamicPhysicsCallbackHandlerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LightDynamicPhysicsCallbackHandlerData as Default>::default())),
+            create_boxed: || Box::new(<LightDynamicPhysicsCallbackHandlerData as Default>::default()),
         },
         fields: &[
         ],
@@ -1734,6 +1837,7 @@ impl TypeObject for LightDynamicPhysicsCallbackHandlerData {
 
 pub static LIGHTDYNAMICPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightDynamicPhysicsCallbackHandlerData-Array",
+    name_hash: 3775701296,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("LightDynamicPhysicsCallbackHandlerData"),
@@ -1742,7 +1846,8 @@ pub static LIGHTDYNAMICPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DefaultPhysicsCallbackHandlerData {
     pub _glacier_base: PhysicsCallbackHandlerData,
 }
@@ -1761,12 +1866,15 @@ impl super::core::DataContainerTrait for DefaultPhysicsCallbackHandlerData {
 
 pub static DEFAULTPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DefaultPhysicsCallbackHandlerData",
+    name_hash: 230243172,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCALLBACKHANDLERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DefaultPhysicsCallbackHandlerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DefaultPhysicsCallbackHandlerData as Default>::default())),
+            create_boxed: || Box::new(<DefaultPhysicsCallbackHandlerData as Default>::default()),
         },
         fields: &[
         ],
@@ -1796,6 +1904,7 @@ impl TypeObject for DefaultPhysicsCallbackHandlerData {
 
 pub static DEFAULTPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DefaultPhysicsCallbackHandlerData-Array",
+    name_hash: 784490320,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("DefaultPhysicsCallbackHandlerData"),
@@ -1804,7 +1913,8 @@ pub static DEFAULTPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NonePhysicsCallbackHandlerData {
     pub _glacier_base: PhysicsCallbackHandlerData,
 }
@@ -1823,12 +1933,15 @@ impl super::core::DataContainerTrait for NonePhysicsCallbackHandlerData {
 
 pub static NONEPHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NonePhysicsCallbackHandlerData",
+    name_hash: 1990911333,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCALLBACKHANDLERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(NonePhysicsCallbackHandlerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NonePhysicsCallbackHandlerData as Default>::default())),
+            create_boxed: || Box::new(<NonePhysicsCallbackHandlerData as Default>::default()),
         },
         fields: &[
         ],
@@ -1858,6 +1971,7 @@ impl TypeObject for NonePhysicsCallbackHandlerData {
 
 pub static NONEPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NonePhysicsCallbackHandlerData-Array",
+    name_hash: 3686207057,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("NonePhysicsCallbackHandlerData"),
@@ -1866,7 +1980,8 @@ pub static NONEPHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsCallbackHandlerData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -1882,12 +1997,15 @@ impl super::core::DataContainerTrait for PhysicsCallbackHandlerData {
 
 pub static PHYSICSCALLBACKHANDLERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsCallbackHandlerData",
+    name_hash: 896683407,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsCallbackHandlerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsCallbackHandlerData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsCallbackHandlerData as Default>::default()),
         },
         fields: &[
         ],
@@ -1917,6 +2035,7 @@ impl TypeObject for PhysicsCallbackHandlerData {
 
 pub static PHYSICSCALLBACKHANDLERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsCallbackHandlerData-Array",
+    name_hash: 3803671099,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsCallbackHandlerData"),
@@ -1965,6 +2084,7 @@ pub enum RigidBodyCollisionLayer {
 
 pub static RIGIDBODYCOLLISIONLAYER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBodyCollisionLayer",
+    name_hash: 2986515705,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -1993,6 +2113,7 @@ impl TypeObject for RigidBodyCollisionLayer {
 
 pub static RIGIDBODYCOLLISIONLAYER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBodyCollisionLayer-Array",
+    name_hash: 1269619661,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RigidBodyCollisionLayer"),
@@ -2022,6 +2143,7 @@ pub enum RigidBodyQualityType {
 
 pub static RIGIDBODYQUALITYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBodyQualityType",
+    name_hash: 3836641233,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -2050,6 +2172,7 @@ impl TypeObject for RigidBodyQualityType {
 
 pub static RIGIDBODYQUALITYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBodyQualityType-Array",
+    name_hash: 4130836965,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RigidBodyQualityType"),
@@ -2072,6 +2195,7 @@ pub enum RigidBodyMotionType {
 
 pub static RIGIDBODYMOTIONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBodyMotionType",
+    name_hash: 2429567874,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -2100,6 +2224,7 @@ impl TypeObject for RigidBodyMotionType {
 
 pub static RIGIDBODYMOTIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBodyMotionType-Array",
+    name_hash: 3860841142,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RigidBodyMotionType"),
@@ -2125,6 +2250,7 @@ pub enum RigidBodyType {
 
 pub static RIGIDBODYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBodyType",
+    name_hash: 2892215548,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -2153,6 +2279,7 @@ impl TypeObject for RigidBodyType {
 
 pub static RIGIDBODYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBodyType-Array",
+    name_hash: 2060721352,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RigidBodyType"),
@@ -2161,7 +2288,8 @@ pub static RIGIDBODYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsBodyLauncherEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -2240,40 +2368,48 @@ impl super::core::DataContainerTrait for PhysicsBodyLauncherEntityData {
 
 pub static PHYSICSBODYLAUNCHERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBodyLauncherEntityData",
+    name_hash: 745360959,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsBodyLauncherEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsBodyLauncherEntityData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsBodyLauncherEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PhysicsBodyLauncherEntityData, realm),
             },
             FieldInfoData {
                 name: "UseLocalBodySpace",
+                name_hash: 1258548927,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsBodyLauncherEntityData, use_local_body_space),
             },
             FieldInfoData {
                 name: "LaunchTransform",
+                name_hash: 3280384244,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(PhysicsBodyLauncherEntityData, launch_transform),
             },
             FieldInfoData {
                 name: "LinearVelocity",
+                name_hash: 1252550863,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PhysicsBodyLauncherEntityData, linear_velocity),
             },
             FieldInfoData {
                 name: "AngularVelocity",
+                name_hash: 1379775472,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PhysicsBodyLauncherEntityData, angular_velocity),
@@ -2305,6 +2441,7 @@ impl TypeObject for PhysicsBodyLauncherEntityData {
 
 pub static PHYSICSBODYLAUNCHERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBodyLauncherEntityData-Array",
+    name_hash: 1649369995,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsBodyLauncherEntityData"),
@@ -2313,7 +2450,8 @@ pub static PHYSICSBODYLAUNCHERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsDebugSettings {
     pub _glacier_base: super::core::DataContainer,
     pub debug_hinge_constraints: bool,
@@ -2536,148 +2674,174 @@ impl super::core::DataContainerTrait for PhysicsDebugSettings {
 
 pub static PHYSICSDEBUGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsDebugSettings",
+    name_hash: 2716001786,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsDebugSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsDebugSettings as Default>::default())),
+            create_boxed: || Box::new(<PhysicsDebugSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DebugHingeConstraints",
+                name_hash: 4121530031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, debug_hinge_constraints),
             },
             FieldInfoData {
                 name: "UsePhysicsCpuTimers",
+                name_hash: 888297727,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, use_physics_cpu_timers),
             },
             FieldInfoData {
                 name: "TimingRecursionDepth",
+                name_hash: 2471681392,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PhysicsDebugSettings, timing_recursion_depth),
             },
             FieldInfoData {
                 name: "UseBruteForceBroadphase",
+                name_hash: 3377022202,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, use_brute_force_broadphase),
             },
             FieldInfoData {
                 name: "VDBShowsEffectsWorld",
+                name_hash: 1608185315,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_shows_effects_world),
             },
             FieldInfoData {
                 name: "VDBEnableHavokMonitors",
+                name_hash: 2609744848,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_enable_havok_monitors),
             },
             FieldInfoData {
                 name: "VDBEnableCaptureToFile",
+                name_hash: 2890357357,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_enable_capture_to_file),
             },
             FieldInfoData {
                 name: "VDBCaptureFileName",
+                name_hash: 1254719120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_capture_file_name),
             },
             FieldInfoData {
                 name: "VDBConnectionTimeOut",
+                name_hash: 2740102104,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_connection_time_out),
             },
             FieldInfoData {
                 name: "VDBShowBodyIds",
+                name_hash: 439998520,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_body_ids),
             },
             FieldInfoData {
                 name: "VDBShowMotionIds",
+                name_hash: 284893302,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_motion_ids),
             },
             FieldInfoData {
                 name: "VDBShowBroadphase",
+                name_hash: 2553002403,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_broadphase),
             },
             FieldInfoData {
                 name: "VDBShowShapes",
+                name_hash: 1431565322,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_shapes),
             },
             FieldInfoData {
                 name: "VDBShowMassProperties",
+                name_hash: 2043812795,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_mass_properties),
             },
             FieldInfoData {
                 name: "VDBShowConstraints",
+                name_hash: 3019869920,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_constraints),
             },
             FieldInfoData {
                 name: "VDBShowManifold",
+                name_hash: 2495218780,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_manifold),
             },
             FieldInfoData {
                 name: "VDBShowMotionTtrail",
+                name_hash: 4104097022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_motion_ttrail),
             },
             FieldInfoData {
                 name: "VDBShowBoundingRadius",
+                name_hash: 1866759900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_bounding_radius),
             },
             FieldInfoData {
                 name: "VDBShowDeactivation",
+                name_hash: 1640617443,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_deactivation),
             },
             FieldInfoData {
                 name: "VBDShowCell",
+                name_hash: 421636816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_b_d_show_cell),
             },
             FieldInfoData {
                 name: "VDBShowTriangleWelding",
+                name_hash: 2205803682,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_triangle_welding),
             },
             FieldInfoData {
                 name: "VDBEnableWorldSnapshot",
+                name_hash: 50695962,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_enable_world_snapshot),
             },
             FieldInfoData {
                 name: "VDBShowDestruction",
+                name_hash: 1948697960,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsDebugSettings, v_d_b_show_destruction),
@@ -2709,6 +2873,7 @@ impl TypeObject for PhysicsDebugSettings {
 
 pub static PHYSICSDEBUGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsDebugSettings-Array",
+    name_hash: 2980092110,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsDebugSettings"),
@@ -2717,7 +2882,8 @@ pub static PHYSICSDEBUGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsSettings {
     pub _glacier_base: super::core::DataContainer,
     pub enable: bool,
@@ -2994,184 +3160,216 @@ impl super::core::DataContainerTrait for PhysicsSettings {
 
 pub static PHYSICSSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsSettings",
+    name_hash: 2328626155,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsSettings as Default>::default())),
+            create_boxed: || Box::new(<PhysicsSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, enable),
             },
             FieldInfoData {
                 name: "RunClientSimulationSingleThreaded",
+                name_hash: 934231827,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, run_client_simulation_single_threaded),
             },
             FieldInfoData {
                 name: "RunEffectSimulationSingleThreaded",
+                name_hash: 1801555677,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, run_effect_simulation_single_threaded),
             },
             FieldInfoData {
                 name: "RunServerSimulationSingleThreaded",
+                name_hash: 3347957967,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, run_server_simulation_single_threaded),
             },
             FieldInfoData {
                 name: "WindManagerAwakeningRadius",
+                name_hash: 1206666381,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsSettings, wind_manager_awakening_radius),
             },
             FieldInfoData {
                 name: "EnableAIRigidBody",
+                name_hash: 3043137069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, enable_a_i_rigid_body),
             },
             FieldInfoData {
                 name: "ForestEnable",
+                name_hash: 1260596861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, forest_enable),
             },
             FieldInfoData {
                 name: "EnableJobs",
+                name_hash: 1190923856,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, enable_jobs),
             },
             FieldInfoData {
                 name: "RemoveRagdollWhenWoken",
+                name_hash: 2226229296,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, remove_ragdoll_when_woken),
             },
             FieldInfoData {
                 name: "RemoveFromWorldOnCollisionOverflow",
+                name_hash: 422957492,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, remove_from_world_on_collision_overflow),
             },
             FieldInfoData {
                 name: "SingleStepCharacter",
+                name_hash: 1398272148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, single_step_character),
             },
             FieldInfoData {
                 name: "ForceSingleStepCharacterInSP",
+                name_hash: 3854381293,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, force_single_step_character_in_s_p),
             },
             FieldInfoData {
                 name: "EnableFollowWheelRaycasts",
+                name_hash: 1775482970,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, enable_follow_wheel_raycasts),
             },
             FieldInfoData {
                 name: "EnableClientWheelRaycasts",
+                name_hash: 2450184562,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, enable_client_wheel_raycasts),
             },
             FieldInfoData {
                 name: "EnableASyncWheelRaycasts",
+                name_hash: 1311090861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, enable_a_sync_wheel_raycasts),
             },
             FieldInfoData {
                 name: "UseDelayedWakeUpClient",
+                name_hash: 2531078454,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, use_delayed_wake_up_client),
             },
             FieldInfoData {
                 name: "UseDelayedWakeUpServer",
+                name_hash: 3164738410,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, use_delayed_wake_up_server),
             },
             FieldInfoData {
                 name: "SuppressDebrisSpawnUntilReady",
+                name_hash: 62351077,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, suppress_debris_spawn_until_ready),
             },
             FieldInfoData {
                 name: "EnablePlayerVSAICollisions",
+                name_hash: 3599820215,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, enable_player_v_s_a_i_collisions),
             },
             FieldInfoData {
                 name: "EnableClientKeyframedCollisions",
+                name_hash: 1948047582,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, enable_client_keyframed_collisions),
             },
             FieldInfoData {
                 name: "EnableFXKeyframedCollisions",
+                name_hash: 4172324889,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, enable_f_x_keyframed_collisions),
             },
             FieldInfoData {
                 name: "BlockStreamAllocatorMemory",
+                name_hash: 3958621492,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PhysicsSettings, block_stream_allocator_memory),
             },
             FieldInfoData {
                 name: "StepLocalStreamAllocator",
+                name_hash: 3687140035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PhysicsSettings, step_local_stream_allocator),
             },
             FieldInfoData {
                 name: "BodyBufferCapacity",
+                name_hash: 4049651393,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PhysicsSettings, body_buffer_capacity),
             },
             FieldInfoData {
                 name: "MotionBufferCapacity",
+                name_hash: 1678242639,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PhysicsSettings, motion_buffer_capacity),
             },
             FieldInfoData {
                 name: "ConstraintBufferCapacity",
+                name_hash: 3270495892,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PhysicsSettings, constraint_buffer_capacity),
             },
             FieldInfoData {
                 name: "HavokDisableFreeListAllocator",
+                name_hash: 160702745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, havok_disable_free_list_allocator),
             },
             FieldInfoData {
                 name: "EnableRemoveFromWorldKeepActive",
+                name_hash: 3082414561,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, enable_remove_from_world_keep_active),
             },
             FieldInfoData {
                 name: "EnablePhysicsStateStream",
+                name_hash: 3549151204,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsSettings, enable_physics_state_stream),
@@ -3203,6 +3401,7 @@ impl TypeObject for PhysicsSettings {
 
 pub static PHYSICSSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsSettings-Array",
+    name_hash: 1338045407,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsSettings"),
@@ -3224,6 +3423,7 @@ pub enum PhysicsWorldType {
 
 pub static PHYSICSWORLDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsWorldType",
+    name_hash: 2950682036,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -3252,6 +3452,7 @@ impl TypeObject for PhysicsWorldType {
 
 pub static PHYSICSWORLDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsWorldType-Array",
+    name_hash: 4107956480,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsWorldType"),
@@ -3260,7 +3461,8 @@ pub static PHYSICSWORLDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRenderSettings {
     pub _glacier_base: super::core::DataContainer,
     pub render_server: bool,
@@ -3645,256 +3847,300 @@ impl super::core::DataContainerTrait for PhysicsRenderSettings {
 
 pub static PHYSICSRENDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRenderSettings",
+    name_hash: 1375833569,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsRenderSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRenderSettings as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRenderSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RenderServer",
+                name_hash: 1547064682,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_server),
             },
             FieldInfoData {
                 name: "RenderClient",
+                name_hash: 913404726,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_client),
             },
             FieldInfoData {
                 name: "RenderEffectWorld",
+                name_hash: 1824683034,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_effect_world),
             },
             FieldInfoData {
                 name: "RenderStateStreamWorld",
+                name_hash: 1461255334,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_state_stream_world),
             },
             FieldInfoData {
                 name: "RenderStatic",
+                name_hash: 1529820951,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_static),
             },
             FieldInfoData {
                 name: "RenderDetail",
+                name_hash: 961029854,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_detail),
             },
             FieldInfoData {
                 name: "RenderGroup",
+                name_hash: 2757014864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_group),
             },
             FieldInfoData {
                 name: "RenderUngrouped",
+                name_hash: 347264234,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_ungrouped),
             },
             FieldInfoData {
                 name: "RenderRagdoll",
+                name_hash: 3960799760,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_ragdoll),
             },
             FieldInfoData {
                 name: "RenderWater",
+                name_hash: 2775439226,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_water),
             },
             FieldInfoData {
                 name: "RenderTerrain",
+                name_hash: 807438968,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_terrain),
             },
             FieldInfoData {
                 name: "RenderTerrainMinMaxLevel",
+                name_hash: 3286330608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_terrain_min_max_level),
             },
             FieldInfoData {
                 name: "RenderCharacters",
+                name_hash: 3265025349,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_characters),
             },
             FieldInfoData {
                 name: "RenderAabbTrigger",
+                name_hash: 3211369591,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_aabb_trigger),
             },
             FieldInfoData {
                 name: "RenderCharacterCollision",
+                name_hash: 3110574600,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_character_collision),
             },
             FieldInfoData {
                 name: "ViewDistance",
+                name_hash: 2201945291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRenderSettings, view_distance),
             },
             FieldInfoData {
                 name: "RenderSolidGeometry",
+                name_hash: 2704633192,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_solid_geometry),
             },
             FieldInfoData {
                 name: "UseShapeCache",
+                name_hash: 2012203077,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, use_shape_cache),
             },
             FieldInfoData {
                 name: "DepthTest",
+                name_hash: 969307550,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, depth_test),
             },
             FieldInfoData {
                 name: "RenderConstraints",
+                name_hash: 3785323737,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_constraints),
             },
             FieldInfoData {
                 name: "RenderContacts",
+                name_hash: 3190029692,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_contacts),
             },
             FieldInfoData {
                 name: "RenderOnlyContactConstraints",
+                name_hash: 840353645,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_only_contact_constraints),
             },
             FieldInfoData {
                 name: "RenderSimulationIslands",
+                name_hash: 1511950866,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_simulation_islands),
             },
             FieldInfoData {
                 name: "RenderBroadphaseHandles",
+                name_hash: 3537504867,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_broadphase_handles),
             },
             FieldInfoData {
                 name: "RenderDestructionConnections",
+                name_hash: 2914715028,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_destruction_connections),
             },
             FieldInfoData {
                 name: "RenderSleepStatus",
+                name_hash: 3612093780,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_sleep_status),
             },
             FieldInfoData {
                 name: "RenderQualityType",
+                name_hash: 2198190586,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_quality_type),
             },
             FieldInfoData {
                 name: "RenderPartBoundingBoxes",
+                name_hash: 2232082089,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_part_bounding_boxes),
             },
             FieldInfoData {
                 name: "RenderOnlyBoundingBoxes",
+                name_hash: 801403754,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_only_bounding_boxes),
             },
             FieldInfoData {
                 name: "RenderRigidBodyTransform",
+                name_hash: 350567746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_rigid_body_transform),
             },
             FieldInfoData {
                 name: "RenderInertia",
+                name_hash: 2020564867,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_inertia),
             },
             FieldInfoData {
                 name: "RenderCenterOfMass",
+                name_hash: 1509980545,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_center_of_mass),
             },
             FieldInfoData {
                 name: "RenderLinearVelocity",
+                name_hash: 2736551685,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_linear_velocity),
             },
             FieldInfoData {
                 name: "RenderCollisionSpheres",
+                name_hash: 4255455419,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_collision_spheres),
             },
             FieldInfoData {
                 name: "RenderRayQueries",
+                name_hash: 4800169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_ray_queries),
             },
             FieldInfoData {
                 name: "RenderShapes",
+                name_hash: 1544012947,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_shapes),
             },
             FieldInfoData {
                 name: "RenderDriveTargets",
+                name_hash: 2845668417,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_drive_targets),
             },
             FieldInfoData {
                 name: "RenderEntityStats",
+                name_hash: 650811029,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_entity_stats),
             },
             FieldInfoData {
                 name: "RenderMemoryUsed",
+                name_hash: 4211851593,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_memory_used),
             },
             FieldInfoData {
                 name: "CollisionSpawnDebug",
+                name_hash: 3965865489,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderSettings, collision_spawn_debug),
             },
             FieldInfoData {
                 name: "RenderSpecificPart",
+                name_hash: 4286518232,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PhysicsRenderSettings, render_specific_part),
@@ -3926,6 +4172,7 @@ impl TypeObject for PhysicsRenderSettings {
 
 pub static PHYSICSRENDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRenderSettings-Array",
+    name_hash: 4081739989,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRenderSettings"),
@@ -3934,7 +4181,8 @@ pub static PHYSICSRENDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsComponentOnPreSolveCollisionMessage {
 }
 
@@ -3946,11 +4194,13 @@ impl PhysicsComponentOnPreSolveCollisionMessageTrait for PhysicsComponentOnPreSo
 
 pub static PHYSICSCOMPONENTONPRESOLVECOLLISIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsComponentOnPreSolveCollisionMessage",
+    name_hash: 1049133073,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsComponentOnPreSolveCollisionMessage as Default>::default())),
+            create_boxed: || Box::new(<PhysicsComponentOnPreSolveCollisionMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -3977,7 +4227,8 @@ impl TypeObject for PhysicsComponentOnPreSolveCollisionMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsComponentOnImpulseMessage {
 }
 
@@ -3989,11 +4240,13 @@ impl PhysicsComponentOnImpulseMessageTrait for PhysicsComponentOnImpulseMessage 
 
 pub static PHYSICSCOMPONENTONIMPULSEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsComponentOnImpulseMessage",
+    name_hash: 3081884976,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsComponentOnImpulseMessage as Default>::default())),
+            create_boxed: || Box::new(<PhysicsComponentOnImpulseMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -4020,7 +4273,8 @@ impl TypeObject for PhysicsComponentOnImpulseMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsPrismaticConstraintInitialStanceData {
     pub _glacier_base: PhysicsConstraintInitialStanceData,
 }
@@ -4063,12 +4317,15 @@ impl super::core::DataContainerTrait for PhysicsPrismaticConstraintInitialStance
 
 pub static PHYSICSPRISMATICCONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPrismaticConstraintInitialStanceData",
+    name_hash: 3688244225,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTINITIALSTANCEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsPrismaticConstraintInitialStanceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsPrismaticConstraintInitialStanceData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsPrismaticConstraintInitialStanceData as Default>::default()),
         },
         fields: &[
         ],
@@ -4098,6 +4355,7 @@ impl TypeObject for PhysicsPrismaticConstraintInitialStanceData {
 
 pub static PHYSICSPRISMATICCONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPrismaticConstraintInitialStanceData-Array",
+    name_hash: 894082485,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsPrismaticConstraintInitialStanceData"),
@@ -4106,7 +4364,8 @@ pub static PHYSICSPRISMATICCONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'static
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRootControlConstraintInitialStanceData {
     pub _glacier_base: PhysicsConstraintInitialStanceData,
 }
@@ -4149,12 +4408,15 @@ impl super::core::DataContainerTrait for PhysicsRootControlConstraintInitialStan
 
 pub static PHYSICSROOTCONTROLCONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRootControlConstraintInitialStanceData",
+    name_hash: 1631061834,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTINITIALSTANCEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsRootControlConstraintInitialStanceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRootControlConstraintInitialStanceData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRootControlConstraintInitialStanceData as Default>::default()),
         },
         fields: &[
         ],
@@ -4184,6 +4446,7 @@ impl TypeObject for PhysicsRootControlConstraintInitialStanceData {
 
 pub static PHYSICSROOTCONTROLCONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRootControlConstraintInitialStanceData-Array",
+    name_hash: 3414881022,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRootControlConstraintInitialStanceData"),
@@ -4192,7 +4455,8 @@ pub static PHYSICSROOTCONTROLCONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'stat
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRagdollConstraintInitialStanceData {
     pub _glacier_base: PhysicsConstraintInitialStanceData,
 }
@@ -4235,12 +4499,15 @@ impl super::core::DataContainerTrait for PhysicsRagdollConstraintInitialStanceDa
 
 pub static PHYSICSRAGDOLLCONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRagdollConstraintInitialStanceData",
+    name_hash: 3106705012,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTINITIALSTANCEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsRagdollConstraintInitialStanceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRagdollConstraintInitialStanceData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRagdollConstraintInitialStanceData as Default>::default()),
         },
         fields: &[
         ],
@@ -4270,6 +4537,7 @@ impl TypeObject for PhysicsRagdollConstraintInitialStanceData {
 
 pub static PHYSICSRAGDOLLCONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRagdollConstraintInitialStanceData-Array",
+    name_hash: 1438300736,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRagdollConstraintInitialStanceData"),
@@ -4278,7 +4546,8 @@ pub static PHYSICSRAGDOLLCONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsHingeConstraintInitialStanceData {
     pub _glacier_base: PhysicsConstraintInitialStanceData,
 }
@@ -4321,12 +4590,15 @@ impl super::core::DataContainerTrait for PhysicsHingeConstraintInitialStanceData
 
 pub static PHYSICSHINGECONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsHingeConstraintInitialStanceData",
+    name_hash: 1233232326,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTINITIALSTANCEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsHingeConstraintInitialStanceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsHingeConstraintInitialStanceData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsHingeConstraintInitialStanceData as Default>::default()),
         },
         fields: &[
         ],
@@ -4356,6 +4628,7 @@ impl TypeObject for PhysicsHingeConstraintInitialStanceData {
 
 pub static PHYSICSHINGECONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsHingeConstraintInitialStanceData-Array",
+    name_hash: 3942563698,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsHingeConstraintInitialStanceData"),
@@ -4364,7 +4637,8 @@ pub static PHYSICSHINGECONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsBallAndSocketConstraintInitialStanceData {
     pub _glacier_base: PhysicsConstraintInitialStanceData,
 }
@@ -4407,12 +4681,15 @@ impl super::core::DataContainerTrait for PhysicsBallAndSocketConstraintInitialSt
 
 pub static PHYSICSBALLANDSOCKETCONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBallAndSocketConstraintInitialStanceData",
+    name_hash: 452204742,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTINITIALSTANCEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsBallAndSocketConstraintInitialStanceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsBallAndSocketConstraintInitialStanceData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsBallAndSocketConstraintInitialStanceData as Default>::default()),
         },
         fields: &[
         ],
@@ -4442,6 +4719,7 @@ impl TypeObject for PhysicsBallAndSocketConstraintInitialStanceData {
 
 pub static PHYSICSBALLANDSOCKETCONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBallAndSocketConstraintInitialStanceData-Array",
+    name_hash: 3694032498,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsBallAndSocketConstraintInitialStanceData"),
@@ -4450,7 +4728,8 @@ pub static PHYSICSBALLANDSOCKETCONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'st
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsConstraintInitialStanceData {
     pub _glacier_base: super::entity::EntityData,
     pub transform: super::core::LinearTransform,
@@ -4493,16 +4772,20 @@ impl super::core::DataContainerTrait for PhysicsConstraintInitialStanceData {
 
 pub static PHYSICSCONSTRAINTINITIALSTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintInitialStanceData",
+    name_hash: 2706794859,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsConstraintInitialStanceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsConstraintInitialStanceData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsConstraintInitialStanceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(PhysicsConstraintInitialStanceData, transform),
@@ -4534,6 +4817,7 @@ impl TypeObject for PhysicsConstraintInitialStanceData {
 
 pub static PHYSICSCONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintInitialStanceData-Array",
+    name_hash: 3705764191,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsConstraintInitialStanceData"),
@@ -4542,12 +4826,13 @@ pub static PHYSICSCONSTRAINTINITIALSTANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsPrismaticConstraintData {
     pub _glacier_base: PhysicsConstraintData,
     pub has_limits: bool,
     pub linear_limit: f32,
-    pub motor_data: Option<Arc<Mutex<dyn PhysicsPrismaticConstraintMotorDataTrait>>>,
+    pub motor_data: Option<LockedTypeObject /* PhysicsPrismaticConstraintMotorData */>,
 }
 
 pub trait PhysicsPrismaticConstraintDataTrait: PhysicsConstraintDataTrait {
@@ -4555,8 +4840,8 @@ pub trait PhysicsPrismaticConstraintDataTrait: PhysicsConstraintDataTrait {
     fn has_limits_mut(&mut self) -> &mut bool;
     fn linear_limit(&self) -> &f32;
     fn linear_limit_mut(&mut self) -> &mut f32;
-    fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsPrismaticConstraintMotorDataTrait>>>;
-    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsPrismaticConstraintMotorDataTrait>>>;
+    fn motor_data(&self) -> &Option<LockedTypeObject /* PhysicsPrismaticConstraintMotorData */>;
+    fn motor_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsPrismaticConstraintMotorData */>;
 }
 
 impl PhysicsPrismaticConstraintDataTrait for PhysicsPrismaticConstraintData {
@@ -4572,10 +4857,10 @@ impl PhysicsPrismaticConstraintDataTrait for PhysicsPrismaticConstraintData {
     fn linear_limit_mut(&mut self) -> &mut f32 {
         &mut self.linear_limit
     }
-    fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsPrismaticConstraintMotorDataTrait>>> {
+    fn motor_data(&self) -> &Option<LockedTypeObject /* PhysicsPrismaticConstraintMotorData */> {
         &self.motor_data
     }
-    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsPrismaticConstraintMotorDataTrait>>> {
+    fn motor_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsPrismaticConstraintMotorData */> {
         &mut self.motor_data
     }
 }
@@ -4623,10 +4908,10 @@ impl PhysicsConstraintDataTrait for PhysicsPrismaticConstraintData {
     fn world_index_mut(&mut self) -> &mut u8 {
         self._glacier_base.world_index_mut()
     }
-    fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data(&self) -> &Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data()
     }
-    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data_mut()
     }
 }
@@ -4654,28 +4939,34 @@ impl super::core::DataContainerTrait for PhysicsPrismaticConstraintData {
 
 pub static PHYSICSPRISMATICCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPrismaticConstraintData",
+    name_hash: 2205804241,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsPrismaticConstraintData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsPrismaticConstraintData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsPrismaticConstraintData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HasLimits",
+                name_hash: 2421583705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsPrismaticConstraintData, has_limits),
             },
             FieldInfoData {
                 name: "LinearLimit",
+                name_hash: 307966541,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsPrismaticConstraintData, linear_limit),
             },
             FieldInfoData {
                 name: "MotorData",
+                name_hash: 3801942494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsPrismaticConstraintMotorData",
                 rust_offset: offset_of!(PhysicsPrismaticConstraintData, motor_data),
@@ -4707,6 +4998,7 @@ impl TypeObject for PhysicsPrismaticConstraintData {
 
 pub static PHYSICSPRISMATICCONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPrismaticConstraintData-Array",
+    name_hash: 4021565669,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsPrismaticConstraintData"),
@@ -4715,22 +5007,23 @@ pub static PHYSICSPRISMATICCONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRootControlConstraintData {
     pub _glacier_base: PhysicsConstraintData,
-    pub motor_data: Option<Arc<Mutex<dyn PhysicsRootControlConstraintMotorDataTrait>>>,
+    pub motor_data: Option<LockedTypeObject /* PhysicsRootControlConstraintMotorData */>,
 }
 
 pub trait PhysicsRootControlConstraintDataTrait: PhysicsConstraintDataTrait {
-    fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsRootControlConstraintMotorDataTrait>>>;
-    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsRootControlConstraintMotorDataTrait>>>;
+    fn motor_data(&self) -> &Option<LockedTypeObject /* PhysicsRootControlConstraintMotorData */>;
+    fn motor_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsRootControlConstraintMotorData */>;
 }
 
 impl PhysicsRootControlConstraintDataTrait for PhysicsRootControlConstraintData {
-    fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsRootControlConstraintMotorDataTrait>>> {
+    fn motor_data(&self) -> &Option<LockedTypeObject /* PhysicsRootControlConstraintMotorData */> {
         &self.motor_data
     }
-    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsRootControlConstraintMotorDataTrait>>> {
+    fn motor_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsRootControlConstraintMotorData */> {
         &mut self.motor_data
     }
 }
@@ -4778,10 +5071,10 @@ impl PhysicsConstraintDataTrait for PhysicsRootControlConstraintData {
     fn world_index_mut(&mut self) -> &mut u8 {
         self._glacier_base.world_index_mut()
     }
-    fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data(&self) -> &Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data()
     }
-    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data_mut()
     }
 }
@@ -4809,16 +5102,20 @@ impl super::core::DataContainerTrait for PhysicsRootControlConstraintData {
 
 pub static PHYSICSROOTCONTROLCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRootControlConstraintData",
+    name_hash: 2884630394,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsRootControlConstraintData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRootControlConstraintData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRootControlConstraintData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MotorData",
+                name_hash: 3801942494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsRootControlConstraintMotorData",
                 rust_offset: offset_of!(PhysicsRootControlConstraintData, motor_data),
@@ -4850,6 +5147,7 @@ impl TypeObject for PhysicsRootControlConstraintData {
 
 pub static PHYSICSROOTCONTROLCONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRootControlConstraintData-Array",
+    name_hash: 1821690446,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRootControlConstraintData"),
@@ -4858,7 +5156,8 @@ pub static PHYSICSROOTCONTROLCONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRagdollConstraintData {
     pub _glacier_base: PhysicsConstraintData,
     pub has_limits: bool,
@@ -4869,7 +5168,7 @@ pub struct PhysicsRagdollConstraintData {
     pub cone_angular_limit: f32,
     pub angular_friction: f32,
     pub angular_stiffness: f32,
-    pub motor_data: Option<Arc<Mutex<dyn PhysicsRagdollConstraintMotorDataTrait>>>,
+    pub motor_data: Option<LockedTypeObject /* PhysicsRagdollConstraintMotorData */>,
 }
 
 pub trait PhysicsRagdollConstraintDataTrait: PhysicsConstraintDataTrait {
@@ -4889,8 +5188,8 @@ pub trait PhysicsRagdollConstraintDataTrait: PhysicsConstraintDataTrait {
     fn angular_friction_mut(&mut self) -> &mut f32;
     fn angular_stiffness(&self) -> &f32;
     fn angular_stiffness_mut(&mut self) -> &mut f32;
-    fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsRagdollConstraintMotorDataTrait>>>;
-    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsRagdollConstraintMotorDataTrait>>>;
+    fn motor_data(&self) -> &Option<LockedTypeObject /* PhysicsRagdollConstraintMotorData */>;
+    fn motor_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsRagdollConstraintMotorData */>;
 }
 
 impl PhysicsRagdollConstraintDataTrait for PhysicsRagdollConstraintData {
@@ -4942,10 +5241,10 @@ impl PhysicsRagdollConstraintDataTrait for PhysicsRagdollConstraintData {
     fn angular_stiffness_mut(&mut self) -> &mut f32 {
         &mut self.angular_stiffness
     }
-    fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsRagdollConstraintMotorDataTrait>>> {
+    fn motor_data(&self) -> &Option<LockedTypeObject /* PhysicsRagdollConstraintMotorData */> {
         &self.motor_data
     }
-    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsRagdollConstraintMotorDataTrait>>> {
+    fn motor_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsRagdollConstraintMotorData */> {
         &mut self.motor_data
     }
 }
@@ -4993,10 +5292,10 @@ impl PhysicsConstraintDataTrait for PhysicsRagdollConstraintData {
     fn world_index_mut(&mut self) -> &mut u8 {
         self._glacier_base.world_index_mut()
     }
-    fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data(&self) -> &Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data()
     }
-    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data_mut()
     }
 }
@@ -5024,64 +5323,76 @@ impl super::core::DataContainerTrait for PhysicsRagdollConstraintData {
 
 pub static PHYSICSRAGDOLLCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRagdollConstraintData",
+    name_hash: 4100617732,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsRagdollConstraintData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRagdollConstraintData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRagdollConstraintData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HasLimits",
+                name_hash: 2421583705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRagdollConstraintData, has_limits),
             },
             FieldInfoData {
                 name: "TwistMinAngularLimit",
+                name_hash: 1044703701,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRagdollConstraintData, twist_min_angular_limit),
             },
             FieldInfoData {
                 name: "TwistMaxAngularLimit",
+                name_hash: 1129248971,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRagdollConstraintData, twist_max_angular_limit),
             },
             FieldInfoData {
                 name: "PlaneMinAngularLimit",
+                name_hash: 2970599342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRagdollConstraintData, plane_min_angular_limit),
             },
             FieldInfoData {
                 name: "PlaneMaxAngularLimit",
+                name_hash: 548697264,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRagdollConstraintData, plane_max_angular_limit),
             },
             FieldInfoData {
                 name: "ConeAngularLimit",
+                name_hash: 381427669,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRagdollConstraintData, cone_angular_limit),
             },
             FieldInfoData {
                 name: "AngularFriction",
+                name_hash: 1552731461,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRagdollConstraintData, angular_friction),
             },
             FieldInfoData {
                 name: "AngularStiffness",
+                name_hash: 540835810,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRagdollConstraintData, angular_stiffness),
             },
             FieldInfoData {
                 name: "MotorData",
+                name_hash: 3801942494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsRagdollConstraintMotorData",
                 rust_offset: offset_of!(PhysicsRagdollConstraintData, motor_data),
@@ -5113,6 +5424,7 @@ impl TypeObject for PhysicsRagdollConstraintData {
 
 pub static PHYSICSRAGDOLLCONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRagdollConstraintData-Array",
+    name_hash: 4190718512,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRagdollConstraintData"),
@@ -5121,7 +5433,8 @@ pub static PHYSICSRAGDOLLCONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsHingeConstraintData {
     pub _glacier_base: PhysicsConstraintData,
     pub has_limits: bool,
@@ -5129,7 +5442,7 @@ pub struct PhysicsHingeConstraintData {
     pub max_angle: f32,
     pub angular_friction: f32,
     pub angular_stiffness: f32,
-    pub motor_data: Option<Arc<Mutex<dyn PhysicsHingeConstraintMotorDataTrait>>>,
+    pub motor_data: Option<LockedTypeObject /* PhysicsHingeConstraintMotorData */>,
 }
 
 pub trait PhysicsHingeConstraintDataTrait: PhysicsConstraintDataTrait {
@@ -5143,8 +5456,8 @@ pub trait PhysicsHingeConstraintDataTrait: PhysicsConstraintDataTrait {
     fn angular_friction_mut(&mut self) -> &mut f32;
     fn angular_stiffness(&self) -> &f32;
     fn angular_stiffness_mut(&mut self) -> &mut f32;
-    fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsHingeConstraintMotorDataTrait>>>;
-    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsHingeConstraintMotorDataTrait>>>;
+    fn motor_data(&self) -> &Option<LockedTypeObject /* PhysicsHingeConstraintMotorData */>;
+    fn motor_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsHingeConstraintMotorData */>;
 }
 
 impl PhysicsHingeConstraintDataTrait for PhysicsHingeConstraintData {
@@ -5178,10 +5491,10 @@ impl PhysicsHingeConstraintDataTrait for PhysicsHingeConstraintData {
     fn angular_stiffness_mut(&mut self) -> &mut f32 {
         &mut self.angular_stiffness
     }
-    fn motor_data(&self) -> &Option<Arc<Mutex<dyn PhysicsHingeConstraintMotorDataTrait>>> {
+    fn motor_data(&self) -> &Option<LockedTypeObject /* PhysicsHingeConstraintMotorData */> {
         &self.motor_data
     }
-    fn motor_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsHingeConstraintMotorDataTrait>>> {
+    fn motor_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsHingeConstraintMotorData */> {
         &mut self.motor_data
     }
 }
@@ -5229,10 +5542,10 @@ impl PhysicsConstraintDataTrait for PhysicsHingeConstraintData {
     fn world_index_mut(&mut self) -> &mut u8 {
         self._glacier_base.world_index_mut()
     }
-    fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data(&self) -> &Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data()
     }
-    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data_mut()
     }
 }
@@ -5260,46 +5573,55 @@ impl super::core::DataContainerTrait for PhysicsHingeConstraintData {
 
 pub static PHYSICSHINGECONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsHingeConstraintData",
+    name_hash: 2325196918,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsHingeConstraintData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsHingeConstraintData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsHingeConstraintData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HasLimits",
+                name_hash: 2421583705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsHingeConstraintData, has_limits),
             },
             FieldInfoData {
                 name: "MinAngle",
+                name_hash: 3356124462,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsHingeConstraintData, min_angle),
             },
             FieldInfoData {
                 name: "MaxAngle",
+                name_hash: 417488496,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsHingeConstraintData, max_angle),
             },
             FieldInfoData {
                 name: "AngularFriction",
+                name_hash: 1552731461,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsHingeConstraintData, angular_friction),
             },
             FieldInfoData {
                 name: "AngularStiffness",
+                name_hash: 540835810,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsHingeConstraintData, angular_stiffness),
             },
             FieldInfoData {
                 name: "MotorData",
+                name_hash: 3801942494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsHingeConstraintMotorData",
                 rust_offset: offset_of!(PhysicsHingeConstraintData, motor_data),
@@ -5331,6 +5653,7 @@ impl TypeObject for PhysicsHingeConstraintData {
 
 pub static PHYSICSHINGECONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsHingeConstraintData-Array",
+    name_hash: 555980098,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsHingeConstraintData"),
@@ -5339,7 +5662,8 @@ pub static PHYSICSHINGECONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsBallAndSocketConstraintData {
     pub _glacier_base: PhysicsConstraintData,
 }
@@ -5393,10 +5717,10 @@ impl PhysicsConstraintDataTrait for PhysicsBallAndSocketConstraintData {
     fn world_index_mut(&mut self) -> &mut u8 {
         self._glacier_base.world_index_mut()
     }
-    fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data(&self) -> &Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data()
     }
-    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data_mut()
     }
 }
@@ -5424,12 +5748,15 @@ impl super::core::DataContainerTrait for PhysicsBallAndSocketConstraintData {
 
 pub static PHYSICSBALLANDSOCKETCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBallAndSocketConstraintData",
+    name_hash: 1119668086,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsBallAndSocketConstraintData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsBallAndSocketConstraintData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsBallAndSocketConstraintData as Default>::default()),
         },
         fields: &[
         ],
@@ -5459,6 +5786,7 @@ impl TypeObject for PhysicsBallAndSocketConstraintData {
 
 pub static PHYSICSBALLANDSOCKETCONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBallAndSocketConstraintData-Array",
+    name_hash: 478014530,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsBallAndSocketConstraintData"),
@@ -5467,7 +5795,8 @@ pub static PHYSICSBALLANDSOCKETCONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsPrismaticConstraintMotorData {
     pub _glacier_base: PhysicsConstraintMotorData,
     pub max_force: f32,
@@ -5531,16 +5860,20 @@ impl super::core::DataContainerTrait for PhysicsPrismaticConstraintMotorData {
 
 pub static PHYSICSPRISMATICCONSTRAINTMOTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPrismaticConstraintMotorData",
+    name_hash: 3558974394,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTMOTORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsPrismaticConstraintMotorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsPrismaticConstraintMotorData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsPrismaticConstraintMotorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxForce",
+                name_hash: 427399596,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsPrismaticConstraintMotorData, max_force),
@@ -5572,6 +5905,7 @@ impl TypeObject for PhysicsPrismaticConstraintMotorData {
 
 pub static PHYSICSPRISMATICCONSTRAINTMOTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPrismaticConstraintMotorData-Array",
+    name_hash: 2654397966,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsPrismaticConstraintMotorData"),
@@ -5580,7 +5914,8 @@ pub static PHYSICSPRISMATICCONSTRAINTMOTORDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRootControlConstraintMotorData {
     pub _glacier_base: PhysicsConstraintMotorData,
     pub forward_max_force: f32,
@@ -5680,40 +6015,48 @@ impl super::core::DataContainerTrait for PhysicsRootControlConstraintMotorData {
 
 pub static PHYSICSROOTCONTROLCONSTRAINTMOTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRootControlConstraintMotorData",
+    name_hash: 1089849009,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTMOTORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsRootControlConstraintMotorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRootControlConstraintMotorData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRootControlConstraintMotorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ForwardMaxForce",
+                name_hash: 3292541527,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRootControlConstraintMotorData, forward_max_force),
             },
             FieldInfoData {
                 name: "BackwardMaxForce",
+                name_hash: 1945017927,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRootControlConstraintMotorData, backward_max_force),
             },
             FieldInfoData {
                 name: "RadialMaxForce",
+                name_hash: 2605907711,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRootControlConstraintMotorData, radial_max_force),
             },
             FieldInfoData {
                 name: "SwingMaxTorque",
+                name_hash: 3833464541,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRootControlConstraintMotorData, swing_max_torque),
             },
             FieldInfoData {
                 name: "TwistMaxTorque",
+                name_hash: 2690962516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRootControlConstraintMotorData, twist_max_torque),
@@ -5745,6 +6088,7 @@ impl TypeObject for PhysicsRootControlConstraintMotorData {
 
 pub static PHYSICSROOTCONTROLCONSTRAINTMOTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRootControlConstraintMotorData-Array",
+    name_hash: 2289613061,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRootControlConstraintMotorData"),
@@ -5753,7 +6097,8 @@ pub static PHYSICSROOTCONTROLCONSTRAINTMOTORDATA_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRagdollConstraintMotorData {
     pub _glacier_base: PhysicsConstraintMotorData,
     pub swing_max_torque: f32,
@@ -5826,22 +6171,27 @@ impl super::core::DataContainerTrait for PhysicsRagdollConstraintMotorData {
 
 pub static PHYSICSRAGDOLLCONSTRAINTMOTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRagdollConstraintMotorData",
+    name_hash: 2774769167,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTMOTORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsRagdollConstraintMotorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRagdollConstraintMotorData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRagdollConstraintMotorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SwingMaxTorque",
+                name_hash: 3833464541,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRagdollConstraintMotorData, swing_max_torque),
             },
             FieldInfoData {
                 name: "TwistMaxTorque",
+                name_hash: 2690962516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsRagdollConstraintMotorData, twist_max_torque),
@@ -5873,6 +6223,7 @@ impl TypeObject for PhysicsRagdollConstraintMotorData {
 
 pub static PHYSICSRAGDOLLCONSTRAINTMOTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRagdollConstraintMotorData-Array",
+    name_hash: 1937971899,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRagdollConstraintMotorData"),
@@ -5881,7 +6232,8 @@ pub static PHYSICSRAGDOLLCONSTRAINTMOTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsHingeConstraintMotorData {
     pub _glacier_base: PhysicsConstraintMotorData,
     pub max_torque: f32,
@@ -5945,16 +6297,20 @@ impl super::core::DataContainerTrait for PhysicsHingeConstraintMotorData {
 
 pub static PHYSICSHINGECONSTRAINTMOTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsHingeConstraintMotorData",
+    name_hash: 789612349,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTMOTORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsHingeConstraintMotorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsHingeConstraintMotorData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsHingeConstraintMotorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxTorque",
+                name_hash: 368928537,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsHingeConstraintMotorData, max_torque),
@@ -5986,6 +6342,7 @@ impl TypeObject for PhysicsHingeConstraintMotorData {
 
 pub static PHYSICSHINGECONSTRAINTMOTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsHingeConstraintMotorData-Array",
+    name_hash: 2961236873,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsHingeConstraintMotorData"),
@@ -5994,7 +6351,8 @@ pub static PHYSICSHINGECONSTRAINTMOTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsConstraintMotorData {
     pub _glacier_base: super::entity::EntityData,
     pub transform: super::core::LinearTransform,
@@ -6055,28 +6413,34 @@ impl super::core::DataContainerTrait for PhysicsConstraintMotorData {
 
 pub static PHYSICSCONSTRAINTMOTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintMotorData",
+    name_hash: 1270393296,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsConstraintMotorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsConstraintMotorData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsConstraintMotorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(PhysicsConstraintMotorData, transform),
             },
             FieldInfoData {
                 name: "SpringStrength",
+                name_hash: 2067849489,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsConstraintMotorData, spring_strength),
             },
             FieldInfoData {
                 name: "Damping",
+                name_hash: 3862601053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsConstraintMotorData, damping),
@@ -6108,6 +6472,7 @@ impl TypeObject for PhysicsConstraintMotorData {
 
 pub static PHYSICSCONSTRAINTMOTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintMotorData-Array",
+    name_hash: 1618372708,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsConstraintMotorData"),
@@ -6116,22 +6481,23 @@ pub static PHYSICSCONSTRAINTMOTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsConstraintOwnerData {
     pub _glacier_base: super::entity::EntityData,
-    pub constraint_data: Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>,
+    pub constraint_data: Option<LockedTypeObject /* PhysicsConstraintData */>,
 }
 
 pub trait PhysicsConstraintOwnerDataTrait: super::entity::EntityDataTrait {
-    fn constraint_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>;
-    fn constraint_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>;
+    fn constraint_data(&self) -> &Option<LockedTypeObject /* PhysicsConstraintData */>;
+    fn constraint_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsConstraintData */>;
 }
 
 impl PhysicsConstraintOwnerDataTrait for PhysicsConstraintOwnerData {
-    fn constraint_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>> {
+    fn constraint_data(&self) -> &Option<LockedTypeObject /* PhysicsConstraintData */> {
         &self.constraint_data
     }
-    fn constraint_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>> {
+    fn constraint_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsConstraintData */> {
         &mut self.constraint_data
     }
 }
@@ -6159,16 +6525,20 @@ impl super::core::DataContainerTrait for PhysicsConstraintOwnerData {
 
 pub static PHYSICSCONSTRAINTOWNERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintOwnerData",
+    name_hash: 1482548890,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsConstraintOwnerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsConstraintOwnerData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsConstraintOwnerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ConstraintData",
+                name_hash: 1116051472,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsConstraintData",
                 rust_offset: offset_of!(PhysicsConstraintOwnerData, constraint_data),
@@ -6200,6 +6570,7 @@ impl TypeObject for PhysicsConstraintOwnerData {
 
 pub static PHYSICSCONSTRAINTOWNERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintOwnerData-Array",
+    name_hash: 3391998382,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsConstraintOwnerData"),
@@ -6208,7 +6579,8 @@ pub static PHYSICSCONSTRAINTOWNERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsConstraintData {
     pub _glacier_base: super::entity::EntityData,
     pub transform: super::core::LinearTransform,
@@ -6218,7 +6590,7 @@ pub struct PhysicsConstraintData {
     pub enable_continuous_simulation: bool,
     pub realm: super::core::Realm,
     pub world_index: u8,
-    pub initial_stance_data: Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>>,
+    pub initial_stance_data: Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */>,
 }
 
 pub trait PhysicsConstraintDataTrait: super::entity::EntityDataTrait {
@@ -6236,8 +6608,8 @@ pub trait PhysicsConstraintDataTrait: super::entity::EntityDataTrait {
     fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn world_index(&self) -> &u8;
     fn world_index_mut(&mut self) -> &mut u8;
-    fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>>;
-    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>>;
+    fn initial_stance_data(&self) -> &Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */>;
+    fn initial_stance_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */>;
 }
 
 impl PhysicsConstraintDataTrait for PhysicsConstraintData {
@@ -6283,10 +6655,10 @@ impl PhysicsConstraintDataTrait for PhysicsConstraintData {
     fn world_index_mut(&mut self) -> &mut u8 {
         &mut self.world_index
     }
-    fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data(&self) -> &Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         &self.initial_stance_data
     }
-    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         &mut self.initial_stance_data
     }
 }
@@ -6314,58 +6686,69 @@ impl super::core::DataContainerTrait for PhysicsConstraintData {
 
 pub static PHYSICSCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintData",
+    name_hash: 3936739643,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsConstraintData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsConstraintData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsConstraintData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(PhysicsConstraintData, transform),
             },
             FieldInfoData {
                 name: "IsBreakable",
+                name_hash: 3764480426,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsConstraintData, is_breakable),
             },
             FieldInfoData {
                 name: "BreakThreshold",
+                name_hash: 869561325,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsConstraintData, break_threshold),
             },
             FieldInfoData {
                 name: "Stabilized",
+                name_hash: 103642710,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsConstraintData, stabilized),
             },
             FieldInfoData {
                 name: "EnableContinuousSimulation",
+                name_hash: 64077850,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsConstraintData, enable_continuous_simulation),
             },
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PhysicsConstraintData, realm),
             },
             FieldInfoData {
                 name: "WorldIndex",
+                name_hash: 621454297,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(PhysicsConstraintData, world_index),
             },
             FieldInfoData {
                 name: "InitialStanceData",
+                name_hash: 1928589541,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsConstraintInitialStanceData",
                 rust_offset: offset_of!(PhysicsConstraintData, initial_stance_data),
@@ -6397,6 +6780,7 @@ impl TypeObject for PhysicsConstraintData {
 
 pub static PHYSICSCONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintData-Array",
+    name_hash: 2049607823,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsConstraintData"),
@@ -6405,7 +6789,8 @@ pub static PHYSICSCONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProximityTrackerData {
     pub _glacier_base: super::core::DataContainer,
     pub half_extents: super::core::Vec3,
@@ -6439,22 +6824,27 @@ impl super::core::DataContainerTrait for ProximityTrackerData {
 
 pub static PROXIMITYTRACKERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProximityTrackerData",
+    name_hash: 4292598136,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(ProximityTrackerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProximityTrackerData as Default>::default())),
+            create_boxed: || Box::new(<ProximityTrackerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HalfExtents",
+                name_hash: 905253763,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ProximityTrackerData, half_extents),
             },
             FieldInfoData {
                 name: "CollisionLayer",
+                name_hash: 719540408,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ProximityTrackerData, collision_layer),
@@ -6486,6 +6876,7 @@ impl TypeObject for ProximityTrackerData {
 
 pub static PROXIMITYTRACKERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProximityTrackerData-Array",
+    name_hash: 347468620,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ProximityTrackerData"),
@@ -6494,7 +6885,8 @@ pub static PROXIMITYTRACKERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AabbTriggerPhysicsBodyData {
     pub _glacier_base: PhysicsBodyData,
     pub half_extents: super::core::Vec3,
@@ -6545,10 +6937,10 @@ impl PhysicsBodyDataTrait for AabbTriggerPhysicsBodyData {
     fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
         self._glacier_base.quality_type_mut()
     }
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset()
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
@@ -6581,10 +6973,10 @@ impl PhysicsBodyDataTrait for AabbTriggerPhysicsBodyData {
     fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
         self._glacier_base.add_to_spatial_query_manager_mut()
     }
-    fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler(&self) -> &Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler()
     }
-    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler_mut()
     }
 }
@@ -6612,16 +7004,20 @@ impl super::core::DataContainerTrait for AabbTriggerPhysicsBodyData {
 
 pub static AABBTRIGGERPHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AabbTriggerPhysicsBodyData",
+    name_hash: 3532236630,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSBODYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AabbTriggerPhysicsBodyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AabbTriggerPhysicsBodyData as Default>::default())),
+            create_boxed: || Box::new(<AabbTriggerPhysicsBodyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HalfExtents",
+                name_hash: 905253763,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AabbTriggerPhysicsBodyData, half_extents),
@@ -6653,6 +7049,7 @@ impl TypeObject for AabbTriggerPhysicsBodyData {
 
 pub static AABBTRIGGERPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AabbTriggerPhysicsBodyData-Array",
+    name_hash: 1239919842,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("AabbTriggerPhysicsBodyData"),
@@ -6661,7 +7058,8 @@ pub static AABBTRIGGERPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainPhysicsBodyData {
     pub _glacier_base: PhysicsBodyData,
     pub use_s_d_f_collision: bool,
@@ -6739,10 +7137,10 @@ impl PhysicsBodyDataTrait for TerrainPhysicsBodyData {
     fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
         self._glacier_base.quality_type_mut()
     }
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset()
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
@@ -6775,10 +7173,10 @@ impl PhysicsBodyDataTrait for TerrainPhysicsBodyData {
     fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
         self._glacier_base.add_to_spatial_query_manager_mut()
     }
-    fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler(&self) -> &Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler()
     }
-    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler_mut()
     }
 }
@@ -6806,34 +7204,41 @@ impl super::core::DataContainerTrait for TerrainPhysicsBodyData {
 
 pub static TERRAINPHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainPhysicsBodyData",
+    name_hash: 2993783545,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSBODYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainPhysicsBodyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainPhysicsBodyData as Default>::default())),
+            create_boxed: || Box::new(<TerrainPhysicsBodyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "UseSDFCollision",
+                name_hash: 203352905,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TerrainPhysicsBodyData, use_s_d_f_collision),
             },
             FieldInfoData {
                 name: "RigidBodyIndex",
+                name_hash: 947782010,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TerrainPhysicsBodyData, rigid_body_index),
             },
             FieldInfoData {
                 name: "MaxResolutionSizeUseForSplit",
+                name_hash: 3648210736,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainPhysicsBodyData, max_resolution_size_use_for_split),
             },
             FieldInfoData {
                 name: "SDFThickness",
+                name_hash: 3403851746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TerrainPhysicsBodyData, s_d_f_thickness),
@@ -6865,6 +7270,7 @@ impl TypeObject for TerrainPhysicsBodyData {
 
 pub static TERRAINPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainPhysicsBodyData-Array",
+    name_hash: 959463885,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("TerrainPhysicsBodyData"),
@@ -6873,7 +7279,8 @@ pub static TERRAINPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StaticWaterPhysicsBodyData {
     pub _glacier_base: WaterPhysicsBodyData,
 }
@@ -6918,10 +7325,10 @@ impl PhysicsBodyDataTrait for StaticWaterPhysicsBodyData {
     fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
         self._glacier_base.quality_type_mut()
     }
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset()
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
@@ -6954,10 +7361,10 @@ impl PhysicsBodyDataTrait for StaticWaterPhysicsBodyData {
     fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
         self._glacier_base.add_to_spatial_query_manager_mut()
     }
-    fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler(&self) -> &Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler()
     }
-    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler_mut()
     }
 }
@@ -6985,12 +7392,15 @@ impl super::core::DataContainerTrait for StaticWaterPhysicsBodyData {
 
 pub static STATICWATERPHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticWaterPhysicsBodyData",
+    name_hash: 2184434659,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WATERPHYSICSBODYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StaticWaterPhysicsBodyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StaticWaterPhysicsBodyData as Default>::default())),
+            create_boxed: || Box::new(<StaticWaterPhysicsBodyData as Default>::default()),
         },
         fields: &[
         ],
@@ -7020,6 +7430,7 @@ impl TypeObject for StaticWaterPhysicsBodyData {
 
 pub static STATICWATERPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticWaterPhysicsBodyData-Array",
+    name_hash: 121989079,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("StaticWaterPhysicsBodyData"),
@@ -7028,7 +7439,8 @@ pub static STATICWATERPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterPhysicsBodyData {
     pub _glacier_base: PhysicsBodyData,
 }
@@ -7070,10 +7482,10 @@ impl PhysicsBodyDataTrait for WaterPhysicsBodyData {
     fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
         self._glacier_base.quality_type_mut()
     }
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset()
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
@@ -7106,10 +7518,10 @@ impl PhysicsBodyDataTrait for WaterPhysicsBodyData {
     fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
         self._glacier_base.add_to_spatial_query_manager_mut()
     }
-    fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler(&self) -> &Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler()
     }
-    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler_mut()
     }
 }
@@ -7137,12 +7549,15 @@ impl super::core::DataContainerTrait for WaterPhysicsBodyData {
 
 pub static WATERPHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterPhysicsBodyData",
+    name_hash: 1710936891,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSBODYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WaterPhysicsBodyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterPhysicsBodyData as Default>::default())),
+            create_boxed: || Box::new(<WaterPhysicsBodyData as Default>::default()),
         },
         fields: &[
         ],
@@ -7172,6 +7587,7 @@ impl TypeObject for WaterPhysicsBodyData {
 
 pub static WATERPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterPhysicsBodyData-Array",
+    name_hash: 2985097871,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("WaterPhysicsBodyData"),
@@ -7180,22 +7596,23 @@ pub static WATERPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GroupRigidBodyData {
     pub _glacier_base: RigidBodyData,
-    pub raycast_material_indices_lookups: Vec<MaterialIndicesLookup>,
+    pub raycast_material_indices_lookups: Vec<BoxedTypeObject /* MaterialIndicesLookup */>,
 }
 
 pub trait GroupRigidBodyDataTrait: RigidBodyDataTrait {
-    fn raycast_material_indices_lookups(&self) -> &Vec<MaterialIndicesLookup>;
-    fn raycast_material_indices_lookups_mut(&mut self) -> &mut Vec<MaterialIndicesLookup>;
+    fn raycast_material_indices_lookups(&self) -> &Vec<BoxedTypeObject /* MaterialIndicesLookup */>;
+    fn raycast_material_indices_lookups_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MaterialIndicesLookup */>;
 }
 
 impl GroupRigidBodyDataTrait for GroupRigidBodyData {
-    fn raycast_material_indices_lookups(&self) -> &Vec<MaterialIndicesLookup> {
+    fn raycast_material_indices_lookups(&self) -> &Vec<BoxedTypeObject /* MaterialIndicesLookup */> {
         &self.raycast_material_indices_lookups
     }
-    fn raycast_material_indices_lookups_mut(&mut self) -> &mut Vec<MaterialIndicesLookup> {
+    fn raycast_material_indices_lookups_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MaterialIndicesLookup */> {
         &mut self.raycast_material_indices_lookups
     }
 }
@@ -7291,10 +7708,10 @@ impl RigidBodyDataTrait for GroupRigidBodyData {
     fn part_indices_mut(&mut self) -> &mut Vec<u32> {
         self._glacier_base.part_indices_mut()
     }
-    fn float_physics(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
+    fn float_physics(&self) -> &Option<LockedTypeObject /* FloatPhysicsData */> {
         self._glacier_base.float_physics()
     }
-    fn float_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
+    fn float_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatPhysicsData */> {
         self._glacier_base.float_physics_mut()
     }
     fn transform(&self) -> &super::core::LinearTransform {
@@ -7309,10 +7726,10 @@ impl RigidBodyDataTrait for GroupRigidBodyData {
     fn is_root_controller_mut(&mut self) -> &mut bool {
         self._glacier_base.is_root_controller_mut()
     }
-    fn part_materials(&self) -> &Vec<super::entity::MaterialDecl> {
+    fn part_materials(&self) -> &Vec<BoxedTypeObject /* super::entity::MaterialDecl */> {
         self._glacier_base.part_materials()
     }
-    fn part_materials_mut(&mut self) -> &mut Vec<super::entity::MaterialDecl> {
+    fn part_materials_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::entity::MaterialDecl */> {
         self._glacier_base.part_materials_mut()
     }
     fn inverse_inertia_tensor(&self) -> &super::core::Vec3 {
@@ -7360,10 +7777,10 @@ impl PhysicsBodyDataTrait for GroupRigidBodyData {
     fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
         self._glacier_base.quality_type_mut()
     }
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset()
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
@@ -7396,10 +7813,10 @@ impl PhysicsBodyDataTrait for GroupRigidBodyData {
     fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
         self._glacier_base.add_to_spatial_query_manager_mut()
     }
-    fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler(&self) -> &Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler()
     }
-    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler_mut()
     }
 }
@@ -7427,16 +7844,20 @@ impl super::core::DataContainerTrait for GroupRigidBodyData {
 
 pub static GROUPRIGIDBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupRigidBodyData",
+    name_hash: 599689163,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RIGIDBODYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GroupRigidBodyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GroupRigidBodyData as Default>::default())),
+            create_boxed: || Box::new(<GroupRigidBodyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RaycastMaterialIndicesLookups",
+                name_hash: 3812734991,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MaterialIndicesLookup-Array",
                 rust_offset: offset_of!(GroupRigidBodyData, raycast_material_indices_lookups),
@@ -7468,6 +7889,7 @@ impl TypeObject for GroupRigidBodyData {
 
 pub static GROUPRIGIDBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupRigidBodyData-Array",
+    name_hash: 533096191,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GroupRigidBodyData"),
@@ -7476,7 +7898,8 @@ pub static GROUPRIGIDBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MaterialIndicesLookup {
     pub material_indices: Vec<u32>,
 }
@@ -7497,15 +7920,18 @@ impl MaterialIndicesLookupTrait for MaterialIndicesLookup {
 
 pub static MATERIALINDICESLOOKUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialIndicesLookup",
+    name_hash: 1721955859,
     flags: MemberInfoFlags::new(73),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MaterialIndicesLookup as Default>::default())),
+            create_boxed: || Box::new(<MaterialIndicesLookup as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaterialIndices",
+                name_hash: 3867774065,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(MaterialIndicesLookup, material_indices),
@@ -7537,6 +7963,7 @@ impl TypeObject for MaterialIndicesLookup {
 
 pub static MATERIALINDICESLOOKUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialIndicesLookup-Array",
+    name_hash: 1488466087,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("MaterialIndicesLookup"),
@@ -7545,7 +7972,8 @@ pub static MATERIALINDICESLOOKUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RigidBodyData {
     pub _glacier_base: PhysicsBodyData,
     pub mass: f32,
@@ -7563,10 +7991,10 @@ pub struct RigidBodyData {
     pub sub_system_id: u32,
     pub sub_system_id_no_collide: u32,
     pub part_indices: Vec<u32>,
-    pub float_physics: Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>>,
+    pub float_physics: Option<LockedTypeObject /* FloatPhysicsData */>,
     pub transform: super::core::LinearTransform,
     pub is_root_controller: bool,
-    pub part_materials: Vec<super::entity::MaterialDecl>,
+    pub part_materials: Vec<BoxedTypeObject /* super::entity::MaterialDecl */>,
     pub inverse_inertia_tensor: super::core::Vec3,
     pub principal_axes_of_inertia: super::core::Quat,
 }
@@ -7602,14 +8030,14 @@ pub trait RigidBodyDataTrait: PhysicsBodyDataTrait {
     fn sub_system_id_no_collide_mut(&mut self) -> &mut u32;
     fn part_indices(&self) -> &Vec<u32>;
     fn part_indices_mut(&mut self) -> &mut Vec<u32>;
-    fn float_physics(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>>;
-    fn float_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>>;
+    fn float_physics(&self) -> &Option<LockedTypeObject /* FloatPhysicsData */>;
+    fn float_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatPhysicsData */>;
     fn transform(&self) -> &super::core::LinearTransform;
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn is_root_controller(&self) -> &bool;
     fn is_root_controller_mut(&mut self) -> &mut bool;
-    fn part_materials(&self) -> &Vec<super::entity::MaterialDecl>;
-    fn part_materials_mut(&mut self) -> &mut Vec<super::entity::MaterialDecl>;
+    fn part_materials(&self) -> &Vec<BoxedTypeObject /* super::entity::MaterialDecl */>;
+    fn part_materials_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::entity::MaterialDecl */>;
     fn inverse_inertia_tensor(&self) -> &super::core::Vec3;
     fn inverse_inertia_tensor_mut(&mut self) -> &mut super::core::Vec3;
     fn principal_axes_of_inertia(&self) -> &super::core::Quat;
@@ -7707,10 +8135,10 @@ impl RigidBodyDataTrait for RigidBodyData {
     fn part_indices_mut(&mut self) -> &mut Vec<u32> {
         &mut self.part_indices
     }
-    fn float_physics(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
+    fn float_physics(&self) -> &Option<LockedTypeObject /* FloatPhysicsData */> {
         &self.float_physics
     }
-    fn float_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
+    fn float_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatPhysicsData */> {
         &mut self.float_physics
     }
     fn transform(&self) -> &super::core::LinearTransform {
@@ -7725,10 +8153,10 @@ impl RigidBodyDataTrait for RigidBodyData {
     fn is_root_controller_mut(&mut self) -> &mut bool {
         &mut self.is_root_controller
     }
-    fn part_materials(&self) -> &Vec<super::entity::MaterialDecl> {
+    fn part_materials(&self) -> &Vec<BoxedTypeObject /* super::entity::MaterialDecl */> {
         &self.part_materials
     }
-    fn part_materials_mut(&mut self) -> &mut Vec<super::entity::MaterialDecl> {
+    fn part_materials_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::entity::MaterialDecl */> {
         &mut self.part_materials
     }
     fn inverse_inertia_tensor(&self) -> &super::core::Vec3 {
@@ -7776,10 +8204,10 @@ impl PhysicsBodyDataTrait for RigidBodyData {
     fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
         self._glacier_base.quality_type_mut()
     }
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset()
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
@@ -7812,10 +8240,10 @@ impl PhysicsBodyDataTrait for RigidBodyData {
     fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
         self._glacier_base.add_to_spatial_query_manager_mut()
     }
-    fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler(&self) -> &Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler()
     }
-    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler_mut()
     }
 }
@@ -7843,136 +8271,160 @@ impl super::core::DataContainerTrait for RigidBodyData {
 
 pub static RIGIDBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBodyData",
+    name_hash: 2891649396,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSBODYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RigidBodyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RigidBodyData as Default>::default())),
+            create_boxed: || Box::new(<RigidBodyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Mass",
+                name_hash: 2088779625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RigidBodyData, mass),
             },
             FieldInfoData {
                 name: "Material",
+                name_hash: 845639918,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialDecl",
                 rust_offset: offset_of!(RigidBodyData, material),
             },
             FieldInfoData {
                 name: "DynamicFriction",
+                name_hash: 200568178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RigidBodyData, dynamic_friction),
             },
             FieldInfoData {
                 name: "StaticFriction",
+                name_hash: 3671390527,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RigidBodyData, static_friction),
             },
             FieldInfoData {
                 name: "Restitution",
+                name_hash: 2298929185,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RigidBodyData, restitution),
             },
             FieldInfoData {
                 name: "ComputeCenterOfMass",
+                name_hash: 1581343838,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RigidBodyData, compute_center_of_mass),
             },
             FieldInfoData {
                 name: "CenterOfMass",
+                name_hash: 361795531,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(RigidBodyData, center_of_mass),
             },
             FieldInfoData {
                 name: "ComputeInertiaTensor",
+                name_hash: 2837929325,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RigidBodyData, compute_inertia_tensor),
             },
             FieldInfoData {
                 name: "InertiaModifier",
+                name_hash: 3532865534,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(RigidBodyData, inertia_modifier),
             },
             FieldInfoData {
                 name: "AngularVelocityDamping",
+                name_hash: 2367237320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RigidBodyData, angular_velocity_damping),
             },
             FieldInfoData {
                 name: "LinearVelocityDamping",
+                name_hash: 1004384727,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RigidBodyData, linear_velocity_damping),
             },
             FieldInfoData {
                 name: "SystemGroup",
+                name_hash: 642573695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RigidBodyData, system_group),
             },
             FieldInfoData {
                 name: "SubSystemId",
+                name_hash: 3828824009,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RigidBodyData, sub_system_id),
             },
             FieldInfoData {
                 name: "SubSystemIdNoCollide",
+                name_hash: 4061686924,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RigidBodyData, sub_system_id_no_collide),
             },
             FieldInfoData {
                 name: "PartIndices",
+                name_hash: 3835036717,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(RigidBodyData, part_indices),
             },
             FieldInfoData {
                 name: "FloatPhysics",
+                name_hash: 2331402366,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatPhysicsData",
                 rust_offset: offset_of!(RigidBodyData, float_physics),
             },
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(RigidBodyData, transform),
             },
             FieldInfoData {
                 name: "IsRootController",
+                name_hash: 3841288677,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RigidBodyData, is_root_controller),
             },
             FieldInfoData {
                 name: "PartMaterials",
+                name_hash: 3287311562,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MaterialDecl-Array",
                 rust_offset: offset_of!(RigidBodyData, part_materials),
             },
             FieldInfoData {
                 name: "InverseInertiaTensor",
+                name_hash: 528558760,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(RigidBodyData, inverse_inertia_tensor),
             },
             FieldInfoData {
                 name: "PrincipalAxesOfInertia",
+                name_hash: 3223029213,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(RigidBodyData, principal_axes_of_inertia),
@@ -8004,6 +8456,7 @@ impl TypeObject for RigidBodyData {
 
 pub static RIGIDBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBodyData-Array",
+    name_hash: 2155838784,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RigidBodyData"),
@@ -8012,7 +8465,8 @@ pub static RIGIDBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsBodyData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -8020,13 +8474,13 @@ pub struct PhysicsBodyData {
     pub collision_layer: RigidBodyCollisionLayer,
     pub motion_type: RigidBodyMotionType,
     pub quality_type: RigidBodyQualityType,
-    pub asset: Option<Arc<Mutex<dyn super::core::AssetTrait>>>,
+    pub asset: Option<LockedTypeObject /* super::core::Asset */>,
     pub transform_index: u8,
     pub world_index: u8,
     pub collision_root_shape_index: u8,
     pub raycast_root_shape_index: u8,
     pub add_to_spatial_query_manager: bool,
-    pub physics_callback_handler: Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>>,
+    pub physics_callback_handler: Option<LockedTypeObject /* PhysicsCallbackHandlerData */>,
 }
 
 pub trait PhysicsBodyDataTrait: super::entity::EntityDataTrait {
@@ -8040,8 +8494,8 @@ pub trait PhysicsBodyDataTrait: super::entity::EntityDataTrait {
     fn motion_type_mut(&mut self) -> &mut RigidBodyMotionType;
     fn quality_type(&self) -> &RigidBodyQualityType;
     fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType;
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn asset(&self) -> &Option<LockedTypeObject /* super::core::Asset */>;
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */>;
     fn transform_index(&self) -> &u8;
     fn transform_index_mut(&mut self) -> &mut u8;
     fn world_index(&self) -> &u8;
@@ -8052,8 +8506,8 @@ pub trait PhysicsBodyDataTrait: super::entity::EntityDataTrait {
     fn raycast_root_shape_index_mut(&mut self) -> &mut u8;
     fn add_to_spatial_query_manager(&self) -> &bool;
     fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool;
-    fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>>;
-    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>>;
+    fn physics_callback_handler(&self) -> &Option<LockedTypeObject /* PhysicsCallbackHandlerData */>;
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsCallbackHandlerData */>;
 }
 
 impl PhysicsBodyDataTrait for PhysicsBodyData {
@@ -8087,10 +8541,10 @@ impl PhysicsBodyDataTrait for PhysicsBodyData {
     fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
         &mut self.quality_type
     }
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* super::core::Asset */> {
         &self.asset
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */> {
         &mut self.asset
     }
     fn transform_index(&self) -> &u8 {
@@ -8123,10 +8577,10 @@ impl PhysicsBodyDataTrait for PhysicsBodyData {
     fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
         &mut self.add_to_spatial_query_manager
     }
-    fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler(&self) -> &Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         &self.physics_callback_handler
     }
-    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         &mut self.physics_callback_handler
     }
 }
@@ -8154,82 +8608,97 @@ impl super::core::DataContainerTrait for PhysicsBodyData {
 
 pub static PHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBodyData",
+    name_hash: 264833134,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsBodyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsBodyData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsBodyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PhysicsBodyData, realm),
             },
             FieldInfoData {
                 name: "RigidBodyType",
+                name_hash: 2892215548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RigidBodyType",
                 rust_offset: offset_of!(PhysicsBodyData, rigid_body_type),
             },
             FieldInfoData {
                 name: "CollisionLayer",
+                name_hash: 719540408,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RigidBodyCollisionLayer",
                 rust_offset: offset_of!(PhysicsBodyData, collision_layer),
             },
             FieldInfoData {
                 name: "MotionType",
+                name_hash: 2158618691,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RigidBodyMotionType",
                 rust_offset: offset_of!(PhysicsBodyData, motion_type),
             },
             FieldInfoData {
                 name: "QualityType",
+                name_hash: 2856027376,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RigidBodyQualityType",
                 rust_offset: offset_of!(PhysicsBodyData, quality_type),
             },
             FieldInfoData {
                 name: "Asset",
+                name_hash: 205976053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Asset",
                 rust_offset: offset_of!(PhysicsBodyData, asset),
             },
             FieldInfoData {
                 name: "TransformIndex",
+                name_hash: 3568055927,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(PhysicsBodyData, transform_index),
             },
             FieldInfoData {
                 name: "WorldIndex",
+                name_hash: 621454297,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(PhysicsBodyData, world_index),
             },
             FieldInfoData {
                 name: "CollisionRootShapeIndex",
+                name_hash: 348953548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(PhysicsBodyData, collision_root_shape_index),
             },
             FieldInfoData {
                 name: "RaycastRootShapeIndex",
+                name_hash: 3270365725,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(PhysicsBodyData, raycast_root_shape_index),
             },
             FieldInfoData {
                 name: "AddToSpatialQueryManager",
+                name_hash: 2338054292,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsBodyData, add_to_spatial_query_manager),
             },
             FieldInfoData {
                 name: "PhysicsCallbackHandler",
+                name_hash: 1676022399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsCallbackHandlerData",
                 rust_offset: offset_of!(PhysicsBodyData, physics_callback_handler),
@@ -8261,6 +8730,7 @@ impl TypeObject for PhysicsBodyData {
 
 pub static PHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBodyData-Array",
+    name_hash: 2128839002,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsBodyData"),
@@ -8269,22 +8739,23 @@ pub static PHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoxFloatPhysicsData {
     pub _glacier_base: FloatPhysicsData,
-    pub box_action_data: Option<Arc<Mutex<dyn FloatPhysicsActionDataTrait>>>,
+    pub box_action_data: Option<LockedTypeObject /* FloatPhysicsActionData */>,
 }
 
 pub trait BoxFloatPhysicsDataTrait: FloatPhysicsDataTrait {
-    fn box_action_data(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsActionDataTrait>>>;
-    fn box_action_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsActionDataTrait>>>;
+    fn box_action_data(&self) -> &Option<LockedTypeObject /* FloatPhysicsActionData */>;
+    fn box_action_data_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatPhysicsActionData */>;
 }
 
 impl BoxFloatPhysicsDataTrait for BoxFloatPhysicsData {
-    fn box_action_data(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsActionDataTrait>>> {
+    fn box_action_data(&self) -> &Option<LockedTypeObject /* FloatPhysicsActionData */> {
         &self.box_action_data
     }
-    fn box_action_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsActionDataTrait>>> {
+    fn box_action_data_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatPhysicsActionData */> {
         &mut self.box_action_data
     }
 }
@@ -8309,16 +8780,20 @@ impl super::core::DataContainerTrait for BoxFloatPhysicsData {
 
 pub static BOXFLOATPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoxFloatPhysicsData",
+    name_hash: 4071757787,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(FLOATPHYSICSDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BoxFloatPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoxFloatPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<BoxFloatPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BoxActionData",
+                name_hash: 3520678942,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatPhysicsActionData",
                 rust_offset: offset_of!(BoxFloatPhysicsData, box_action_data),
@@ -8350,6 +8825,7 @@ impl TypeObject for BoxFloatPhysicsData {
 
 pub static BOXFLOATPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoxFloatPhysicsData-Array",
+    name_hash: 2864234223,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("BoxFloatPhysicsData"),
@@ -8358,7 +8834,8 @@ pub static BOXFLOATPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatPhysicsActionData {
     pub _glacier_base: PhysicsActionData,
 }
@@ -8395,12 +8872,15 @@ impl super::core::DataContainerTrait for FloatPhysicsActionData {
 
 pub static FLOATPHYSICSACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatPhysicsActionData",
+    name_hash: 3703434544,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FloatPhysicsActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatPhysicsActionData as Default>::default())),
+            create_boxed: || Box::new(<FloatPhysicsActionData as Default>::default()),
         },
         fields: &[
         ],
@@ -8430,6 +8910,7 @@ impl TypeObject for FloatPhysicsActionData {
 
 pub static FLOATPHYSICSACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatPhysicsActionData-Array",
+    name_hash: 2811001476,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FloatPhysicsActionData"),
@@ -8438,7 +8919,8 @@ pub static FLOATPHYSICSACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WindPhysicsActionData {
     pub _glacier_base: PhysicsActionData,
     pub resistance_factor: f32,
@@ -8484,16 +8966,20 @@ impl super::core::DataContainerTrait for WindPhysicsActionData {
 
 pub static WINDPHYSICSACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WindPhysicsActionData",
+    name_hash: 4250040308,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WindPhysicsActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WindPhysicsActionData as Default>::default())),
+            create_boxed: || Box::new(<WindPhysicsActionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ResistanceFactor",
+                name_hash: 3033425227,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WindPhysicsActionData, resistance_factor),
@@ -8525,6 +9011,7 @@ impl TypeObject for WindPhysicsActionData {
 
 pub static WINDPHYSICSACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WindPhysicsActionData-Array",
+    name_hash: 2684994496,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("WindPhysicsActionData"),
@@ -8533,7 +9020,8 @@ pub static WINDPHYSICSACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsActionData {
     pub _glacier_base: super::entity::EntityData,
 }
@@ -8567,12 +9055,15 @@ impl super::core::DataContainerTrait for PhysicsActionData {
 
 pub static PHYSICSACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsActionData",
+    name_hash: 4083302752,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsActionData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsActionData as Default>::default()),
         },
         fields: &[
         ],
@@ -8602,6 +9093,7 @@ impl TypeObject for PhysicsActionData {
 
 pub static PHYSICSACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsActionData-Array",
+    name_hash: 2874685268,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsActionData"),
@@ -8610,7 +9102,8 @@ pub static PHYSICSACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsProxyEntityData {
     pub _glacier_base: super::entity::ComponentEntityData,
     pub realm: super::core::Realm,
@@ -8631,16 +9124,16 @@ impl PhysicsProxyEntityDataTrait for PhysicsProxyEntityData {
 }
 
 impl super::entity::ComponentEntityDataTrait for PhysicsProxyEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -8701,16 +9194,20 @@ impl super::core::DataContainerTrait for PhysicsProxyEntityData {
 
 pub static PHYSICSPROXYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsProxyEntityData",
+    name_hash: 548700361,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::COMPONENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsProxyEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsProxyEntityData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsProxyEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PhysicsProxyEntityData, realm),
@@ -8742,6 +9239,7 @@ impl TypeObject for PhysicsProxyEntityData {
 
 pub static PHYSICSPROXYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsProxyEntityData-Array",
+    name_hash: 199681789,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsProxyEntityData"),
@@ -8750,7 +9248,8 @@ pub static PHYSICSPROXYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GamePhysicsEntityData {
     pub _glacier_base: super::entity::GameComponentEntityData,
 }
@@ -8771,16 +9270,16 @@ impl super::entity::GameComponentEntityDataTrait for GamePhysicsEntityData {
 }
 
 impl super::entity::ComponentEntityDataTrait for GamePhysicsEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -8841,12 +9340,15 @@ impl super::core::DataContainerTrait for GamePhysicsEntityData {
 
 pub static GAMEPHYSICSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GamePhysicsEntityData",
+    name_hash: 2272524587,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GamePhysicsEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GamePhysicsEntityData as Default>::default())),
+            create_boxed: || Box::new(<GamePhysicsEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -8876,6 +9378,7 @@ impl TypeObject for GamePhysicsEntityData {
 
 pub static GAMEPHYSICSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GamePhysicsEntityData-Array",
+    name_hash: 2677528735,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GamePhysicsEntityData"),
@@ -8884,7 +9387,8 @@ pub static GAMEPHYSICSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DefaultPartPhysicsComponentData {
     pub _glacier_base: PartPhysicsComponentData,
 }
@@ -8899,22 +9403,22 @@ impl PartPhysicsComponentDataTrait for DefaultPartPhysicsComponentData {
 }
 
 impl PhysicsComponentDataTrait for DefaultPartPhysicsComponentData {
-    fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+    fn physics_bodies(&self) -> &Vec<Option<LockedTypeObject /* PhysicsBodyData */>> {
         self._glacier_base.physics_bodies()
     }
-    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsBodyData */>> {
         self._glacier_base.physics_bodies_mut()
     }
-    fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints(&self) -> &Vec<Option<LockedTypeObject /* PhysicsConstraintData */>> {
         self._glacier_base.physics_constraints()
     }
-    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsConstraintData */>> {
         self._glacier_base.physics_constraints_mut()
     }
-    fn parts(&self) -> &Vec<PhysicsPartData> {
+    fn parts(&self) -> &Vec<BoxedTypeObject /* PhysicsPartData */> {
         self._glacier_base.parts()
     }
-    fn parts_mut(&mut self) -> &mut Vec<PhysicsPartData> {
+    fn parts_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PhysicsPartData */> {
         self._glacier_base.parts_mut()
     }
     fn movable_parts(&self) -> &bool {
@@ -8944,10 +9448,10 @@ impl super::entity::ComponentDataTrait for DefaultPartPhysicsComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -8990,12 +9494,15 @@ impl super::core::DataContainerTrait for DefaultPartPhysicsComponentData {
 
 pub static DEFAULTPARTPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DefaultPartPhysicsComponentData",
+    name_hash: 4077914989,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PARTPHYSICSCOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DefaultPartPhysicsComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DefaultPartPhysicsComponentData as Default>::default())),
+            create_boxed: || Box::new(<DefaultPartPhysicsComponentData as Default>::default()),
         },
         fields: &[
         ],
@@ -9025,6 +9532,7 @@ impl TypeObject for DefaultPartPhysicsComponentData {
 
 pub static DEFAULTPARTPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DefaultPartPhysicsComponentData-Array",
+    name_hash: 3076526169,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("DefaultPartPhysicsComponentData"),
@@ -9033,7 +9541,8 @@ pub static DEFAULTPARTPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PartPhysicsComponentData {
     pub _glacier_base: PhysicsComponentData,
 }
@@ -9045,22 +9554,22 @@ impl PartPhysicsComponentDataTrait for PartPhysicsComponentData {
 }
 
 impl PhysicsComponentDataTrait for PartPhysicsComponentData {
-    fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+    fn physics_bodies(&self) -> &Vec<Option<LockedTypeObject /* PhysicsBodyData */>> {
         self._glacier_base.physics_bodies()
     }
-    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsBodyData */>> {
         self._glacier_base.physics_bodies_mut()
     }
-    fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints(&self) -> &Vec<Option<LockedTypeObject /* PhysicsConstraintData */>> {
         self._glacier_base.physics_constraints()
     }
-    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsConstraintData */>> {
         self._glacier_base.physics_constraints_mut()
     }
-    fn parts(&self) -> &Vec<PhysicsPartData> {
+    fn parts(&self) -> &Vec<BoxedTypeObject /* PhysicsPartData */> {
         self._glacier_base.parts()
     }
-    fn parts_mut(&mut self) -> &mut Vec<PhysicsPartData> {
+    fn parts_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PhysicsPartData */> {
         self._glacier_base.parts_mut()
     }
     fn movable_parts(&self) -> &bool {
@@ -9090,10 +9599,10 @@ impl super::entity::ComponentDataTrait for PartPhysicsComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -9136,12 +9645,15 @@ impl super::core::DataContainerTrait for PartPhysicsComponentData {
 
 pub static PARTPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartPhysicsComponentData",
+    name_hash: 3857909446,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PartPhysicsComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PartPhysicsComponentData as Default>::default())),
+            create_boxed: || Box::new(<PartPhysicsComponentData as Default>::default()),
         },
         fields: &[
         ],
@@ -9171,6 +9683,7 @@ impl TypeObject for PartPhysicsComponentData {
 
 pub static PARTPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartPhysicsComponentData-Array",
+    name_hash: 304604274,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PartPhysicsComponentData"),
@@ -9179,7 +9692,8 @@ pub static PARTPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RagdollPhysicsComponentData {
     pub _glacier_base: PhysicsComponentData,
     pub bodies_names_hashes: Vec<u32>,
@@ -9200,22 +9714,22 @@ impl RagdollPhysicsComponentDataTrait for RagdollPhysicsComponentData {
 }
 
 impl PhysicsComponentDataTrait for RagdollPhysicsComponentData {
-    fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+    fn physics_bodies(&self) -> &Vec<Option<LockedTypeObject /* PhysicsBodyData */>> {
         self._glacier_base.physics_bodies()
     }
-    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsBodyData */>> {
         self._glacier_base.physics_bodies_mut()
     }
-    fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints(&self) -> &Vec<Option<LockedTypeObject /* PhysicsConstraintData */>> {
         self._glacier_base.physics_constraints()
     }
-    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsConstraintData */>> {
         self._glacier_base.physics_constraints_mut()
     }
-    fn parts(&self) -> &Vec<PhysicsPartData> {
+    fn parts(&self) -> &Vec<BoxedTypeObject /* PhysicsPartData */> {
         self._glacier_base.parts()
     }
-    fn parts_mut(&mut self) -> &mut Vec<PhysicsPartData> {
+    fn parts_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PhysicsPartData */> {
         self._glacier_base.parts_mut()
     }
     fn movable_parts(&self) -> &bool {
@@ -9245,10 +9759,10 @@ impl super::entity::ComponentDataTrait for RagdollPhysicsComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -9291,16 +9805,20 @@ impl super::core::DataContainerTrait for RagdollPhysicsComponentData {
 
 pub static RAGDOLLPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RagdollPhysicsComponentData",
+    name_hash: 764306670,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RagdollPhysicsComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RagdollPhysicsComponentData as Default>::default())),
+            create_boxed: || Box::new(<RagdollPhysicsComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BodiesNamesHashes",
+                name_hash: 3692373507,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(RagdollPhysicsComponentData, bodies_names_hashes),
@@ -9332,6 +9850,7 @@ impl TypeObject for RagdollPhysicsComponentData {
 
 pub static RAGDOLLPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RagdollPhysicsComponentData-Array",
+    name_hash: 2270969306,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RagdollPhysicsComponentData"),
@@ -9340,22 +9859,23 @@ pub static RAGDOLLPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ForceComponentData {
     pub _glacier_base: super::entity::ComponentData,
-    pub wind_action_data: Option<Arc<Mutex<dyn WindPhysicsActionDataTrait>>>,
+    pub wind_action_data: Option<LockedTypeObject /* WindPhysicsActionData */>,
 }
 
 pub trait ForceComponentDataTrait: super::entity::ComponentDataTrait {
-    fn wind_action_data(&self) -> &Option<Arc<Mutex<dyn WindPhysicsActionDataTrait>>>;
-    fn wind_action_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WindPhysicsActionDataTrait>>>;
+    fn wind_action_data(&self) -> &Option<LockedTypeObject /* WindPhysicsActionData */>;
+    fn wind_action_data_mut(&mut self) -> &mut Option<LockedTypeObject /* WindPhysicsActionData */>;
 }
 
 impl ForceComponentDataTrait for ForceComponentData {
-    fn wind_action_data(&self) -> &Option<Arc<Mutex<dyn WindPhysicsActionDataTrait>>> {
+    fn wind_action_data(&self) -> &Option<LockedTypeObject /* WindPhysicsActionData */> {
         &self.wind_action_data
     }
-    fn wind_action_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn WindPhysicsActionDataTrait>>> {
+    fn wind_action_data_mut(&mut self) -> &mut Option<LockedTypeObject /* WindPhysicsActionData */> {
         &mut self.wind_action_data
     }
 }
@@ -9367,10 +9887,10 @@ impl super::entity::ComponentDataTrait for ForceComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -9413,16 +9933,20 @@ impl super::core::DataContainerTrait for ForceComponentData {
 
 pub static FORCECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceComponentData",
+    name_hash: 996217959,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::COMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ForceComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ForceComponentData as Default>::default())),
+            create_boxed: || Box::new(<ForceComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WindActionData",
+                name_hash: 1240718175,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WindPhysicsActionData",
                 rust_offset: offset_of!(ForceComponentData, wind_action_data),
@@ -9454,6 +9978,7 @@ impl TypeObject for ForceComponentData {
 
 pub static FORCECOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceComponentData-Array",
+    name_hash: 1539356243,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ForceComponentData"),
@@ -9462,24 +9987,25 @@ pub static FORCECOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsComponentData {
     pub _glacier_base: super::entity::ComponentData,
-    pub physics_bodies: Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>>,
-    pub physics_constraints: Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>>,
-    pub parts: Vec<PhysicsPartData>,
+    pub physics_bodies: Vec<Option<LockedTypeObject /* PhysicsBodyData */>>,
+    pub physics_constraints: Vec<Option<LockedTypeObject /* PhysicsConstraintData */>>,
+    pub parts: Vec<BoxedTypeObject /* PhysicsPartData */>,
     pub movable_parts: bool,
     pub internal_collision_disabling: InternalCollisionDisablingBehavior,
     pub enable_collision_events: bool,
 }
 
 pub trait PhysicsComponentDataTrait: super::entity::ComponentDataTrait {
-    fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>>;
-    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>>;
-    fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>>;
-    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>>;
-    fn parts(&self) -> &Vec<PhysicsPartData>;
-    fn parts_mut(&mut self) -> &mut Vec<PhysicsPartData>;
+    fn physics_bodies(&self) -> &Vec<Option<LockedTypeObject /* PhysicsBodyData */>>;
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsBodyData */>>;
+    fn physics_constraints(&self) -> &Vec<Option<LockedTypeObject /* PhysicsConstraintData */>>;
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsConstraintData */>>;
+    fn parts(&self) -> &Vec<BoxedTypeObject /* PhysicsPartData */>;
+    fn parts_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PhysicsPartData */>;
     fn movable_parts(&self) -> &bool;
     fn movable_parts_mut(&mut self) -> &mut bool;
     fn internal_collision_disabling(&self) -> &InternalCollisionDisablingBehavior;
@@ -9489,22 +10015,22 @@ pub trait PhysicsComponentDataTrait: super::entity::ComponentDataTrait {
 }
 
 impl PhysicsComponentDataTrait for PhysicsComponentData {
-    fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+    fn physics_bodies(&self) -> &Vec<Option<LockedTypeObject /* PhysicsBodyData */>> {
         &self.physics_bodies
     }
-    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>> {
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsBodyData */>> {
         &mut self.physics_bodies
     }
-    fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints(&self) -> &Vec<Option<LockedTypeObject /* PhysicsConstraintData */>> {
         &self.physics_constraints
     }
-    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsConstraintData */>> {
         &mut self.physics_constraints
     }
-    fn parts(&self) -> &Vec<PhysicsPartData> {
+    fn parts(&self) -> &Vec<BoxedTypeObject /* PhysicsPartData */> {
         &self.parts
     }
-    fn parts_mut(&mut self) -> &mut Vec<PhysicsPartData> {
+    fn parts_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PhysicsPartData */> {
         &mut self.parts
     }
     fn movable_parts(&self) -> &bool {
@@ -9534,10 +10060,10 @@ impl super::entity::ComponentDataTrait for PhysicsComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -9580,46 +10106,55 @@ impl super::core::DataContainerTrait for PhysicsComponentData {
 
 pub static PHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsComponentData",
+    name_hash: 181343857,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::COMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsComponentData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PhysicsBodies",
+                name_hash: 891560632,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PhysicsBodyData-Array",
                 rust_offset: offset_of!(PhysicsComponentData, physics_bodies),
             },
             FieldInfoData {
                 name: "PhysicsConstraints",
+                name_hash: 3167464152,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PhysicsConstraintData-Array",
                 rust_offset: offset_of!(PhysicsComponentData, physics_constraints),
             },
             FieldInfoData {
                 name: "Parts",
+                name_hash: 232319361,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PhysicsPartData-Array",
                 rust_offset: offset_of!(PhysicsComponentData, parts),
             },
             FieldInfoData {
                 name: "MovableParts",
+                name_hash: 532177919,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsComponentData, movable_parts),
             },
             FieldInfoData {
                 name: "InternalCollisionDisabling",
+                name_hash: 325619277,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InternalCollisionDisablingBehavior",
                 rust_offset: offset_of!(PhysicsComponentData, internal_collision_disabling),
             },
             FieldInfoData {
                 name: "EnableCollisionEvents",
+                name_hash: 826350053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsComponentData, enable_collision_events),
@@ -9651,6 +10186,7 @@ impl TypeObject for PhysicsComponentData {
 
 pub static PHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsComponentData-Array",
+    name_hash: 2395937093,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsComponentData"),
@@ -9671,6 +10207,7 @@ pub enum InternalCollisionDisablingBehavior {
 
 pub static INTERNALCOLLISIONDISABLINGBEHAVIOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InternalCollisionDisablingBehavior",
+    name_hash: 1867880641,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -9699,6 +10236,7 @@ impl TypeObject for InternalCollisionDisablingBehavior {
 
 pub static INTERNALCOLLISIONDISABLINGBEHAVIOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InternalCollisionDisablingBehavior-Array",
+    name_hash: 1115333365,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("InternalCollisionDisablingBehavior"),
@@ -9707,17 +10245,18 @@ pub static INTERNALCOLLISIONDISABLINGBEHAVIOR_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsPartData {
     pub aabb: super::core::AxisAlignedBox,
-    pub transform_node: Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>,
+    pub transform_node: Option<LockedTypeObject /* super::entity::GameObjectData */>,
 }
 
 pub trait PhysicsPartDataTrait: TypeObject {
     fn aabb(&self) -> &super::core::AxisAlignedBox;
     fn aabb_mut(&mut self) -> &mut super::core::AxisAlignedBox;
-    fn transform_node(&self) -> &Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>;
-    fn transform_node_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>;
+    fn transform_node(&self) -> &Option<LockedTypeObject /* super::entity::GameObjectData */>;
+    fn transform_node_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::GameObjectData */>;
 }
 
 impl PhysicsPartDataTrait for PhysicsPartData {
@@ -9727,31 +10266,35 @@ impl PhysicsPartDataTrait for PhysicsPartData {
     fn aabb_mut(&mut self) -> &mut super::core::AxisAlignedBox {
         &mut self.aabb
     }
-    fn transform_node(&self) -> &Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>> {
+    fn transform_node(&self) -> &Option<LockedTypeObject /* super::entity::GameObjectData */> {
         &self.transform_node
     }
-    fn transform_node_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>> {
+    fn transform_node_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::GameObjectData */> {
         &mut self.transform_node
     }
 }
 
 pub static PHYSICSPARTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPartData",
+    name_hash: 3525391273,
     flags: MemberInfoFlags::new(73),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsPartData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsPartData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Aabb",
+                name_hash: 2088635333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AxisAlignedBox",
                 rust_offset: offset_of!(PhysicsPartData, aabb),
             },
             FieldInfoData {
                 name: "TransformNode",
+                name_hash: 3622496585,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameObjectData",
                 rust_offset: offset_of!(PhysicsPartData, transform_node),
@@ -9783,6 +10326,7 @@ impl TypeObject for PhysicsPartData {
 
 pub static PHYSICSPARTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPartData-Array",
+    name_hash: 212761117,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsPartData"),
@@ -9791,7 +10335,8 @@ pub static PHYSICSPARTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MaterialPropertyPhysicsDestructionData {
     pub _glacier_base: super::entity::PhysicsMaterialRelationPropertyData,
     pub density: f32,
@@ -9858,40 +10403,48 @@ impl super::core::DataContainerTrait for MaterialPropertyPhysicsDestructionData 
 
 pub static MATERIALPROPERTYPHYSICSDESTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialPropertyPhysicsDestructionData",
+    name_hash: 581160556,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::PHYSICSMATERIALRELATIONPROPERTYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MaterialPropertyPhysicsDestructionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MaterialPropertyPhysicsDestructionData as Default>::default())),
+            create_boxed: || Box::new(<MaterialPropertyPhysicsDestructionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Density",
+                name_hash: 4008572221,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialPropertyPhysicsDestructionData, density),
             },
             FieldInfoData {
                 name: "DestructionRadius",
+                name_hash: 3165645571,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialPropertyPhysicsDestructionData, destruction_radius),
             },
             FieldInfoData {
                 name: "Elasticity",
+                name_hash: 2363791300,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialPropertyPhysicsDestructionData, elasticity),
             },
             FieldInfoData {
                 name: "YieldStrength",
+                name_hash: 1069433373,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialPropertyPhysicsDestructionData, yield_strength),
             },
             FieldInfoData {
                 name: "BreakingStrength",
+                name_hash: 455014143,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialPropertyPhysicsDestructionData, breaking_strength),
@@ -9923,6 +10476,7 @@ impl TypeObject for MaterialPropertyPhysicsDestructionData {
 
 pub static MATERIALPROPERTYPHYSICSDESTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialPropertyPhysicsDestructionData-Array",
+    name_hash: 3197013592,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("MaterialPropertyPhysicsDestructionData"),
@@ -9931,7 +10485,8 @@ pub static MATERIALPROPERTYPHYSICSDESTRUCTIONDATA_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MaterialPropertyPhysicsData {
     pub _glacier_base: super::entity::PhysicsMaterialRelationPropertyData,
     pub dynamic_friction: f32,
@@ -10007,46 +10562,55 @@ impl super::core::DataContainerTrait for MaterialPropertyPhysicsData {
 
 pub static MATERIALPROPERTYPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialPropertyPhysicsData",
+    name_hash: 1142018578,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::PHYSICSMATERIALRELATIONPROPERTYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MaterialPropertyPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MaterialPropertyPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<MaterialPropertyPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DynamicFriction",
+                name_hash: 200568178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialPropertyPhysicsData, dynamic_friction),
             },
             FieldInfoData {
                 name: "StaticFriction",
+                name_hash: 3671390527,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialPropertyPhysicsData, static_friction),
             },
             FieldInfoData {
                 name: "Restitution",
+                name_hash: 2298929185,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialPropertyPhysicsData, restitution),
             },
             FieldInfoData {
                 name: "DynamicFrictionModifier",
+                name_hash: 3684693189,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialPropertyPhysicsData, dynamic_friction_modifier),
             },
             FieldInfoData {
                 name: "StaticFrictionModifier",
+                name_hash: 1034015560,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialPropertyPhysicsData, static_friction_modifier),
             },
             FieldInfoData {
                 name: "Resistance",
+                name_hash: 61696806,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialPropertyPhysicsData, resistance),
@@ -10078,6 +10642,7 @@ impl TypeObject for MaterialPropertyPhysicsData {
 
 pub static MATERIALPROPERTYPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialPropertyPhysicsData-Array",
+    name_hash: 1619327270,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("MaterialPropertyPhysicsData"),
@@ -10086,7 +10651,8 @@ pub static MATERIALPROPERTYPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProximityData {
     pub _glacier_base: super::core::DataContainer,
     pub proximity_type: ProximityObjectType,
@@ -10111,16 +10677,20 @@ impl super::core::DataContainerTrait for ProximityData {
 
 pub static PROXIMITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProximityData",
+    name_hash: 259838688,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(ProximityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProximityData as Default>::default())),
+            create_boxed: || Box::new(<ProximityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ProximityType",
+                name_hash: 259289960,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProximityObjectType",
                 rust_offset: offset_of!(ProximityData, proximity_type),
@@ -10152,6 +10722,7 @@ impl TypeObject for ProximityData {
 
 pub static PROXIMITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProximityData-Array",
+    name_hash: 746186964,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ProximityData"),
@@ -10175,6 +10746,7 @@ pub enum ProximityObjectType {
 
 pub static PROXIMITYOBJECTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProximityObjectType",
+    name_hash: 458229405,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -10203,6 +10775,7 @@ impl TypeObject for ProximityObjectType {
 
 pub static PROXIMITYOBJECTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProximityObjectType-Array",
+    name_hash: 93729321,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ProximityObjectType"),
@@ -10211,7 +10784,8 @@ pub static PROXIMITYOBJECTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsResourceContainerAsset {
     pub _glacier_base: super::core::Asset,
     pub physics_resource: glacier_reflect::builtin::ResourceRef,
@@ -10245,16 +10819,20 @@ impl super::core::DataContainerTrait for PhysicsResourceContainerAsset {
 
 pub static PHYSICSRESOURCECONTAINERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsResourceContainerAsset",
+    name_hash: 500133171,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsResourceContainerAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsResourceContainerAsset as Default>::default())),
+            create_boxed: || Box::new(<PhysicsResourceContainerAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PhysicsResource",
+                name_hash: 1143928676,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(PhysicsResourceContainerAsset, physics_resource),
@@ -10286,6 +10864,7 @@ impl TypeObject for PhysicsResourceContainerAsset {
 
 pub static PHYSICSRESOURCECONTAINERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsResourceContainerAsset-Array",
+    name_hash: 1053669511,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsResourceContainerAsset"),
@@ -10294,7 +10873,8 @@ pub static PHYSICSRESOURCECONTAINERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RagdollAsset {
     pub _glacier_base: super::core::Asset,
     pub material_pair: super::entity::MaterialDecl,
@@ -10337,22 +10917,27 @@ impl super::core::DataContainerTrait for RagdollAsset {
 
 pub static RAGDOLLASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RagdollAsset",
+    name_hash: 4111789834,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(RagdollAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RagdollAsset as Default>::default())),
+            create_boxed: || Box::new(<RagdollAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaterialPair",
+                name_hash: 161392100,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialDecl",
                 rust_offset: offset_of!(RagdollAsset, material_pair),
             },
             FieldInfoData {
                 name: "Resource",
+                name_hash: 74513935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(RagdollAsset, resource),
@@ -10384,6 +10969,7 @@ impl TypeObject for RagdollAsset {
 
 pub static RAGDOLLASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RagdollAsset-Array",
+    name_hash: 1402366526,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RagdollAsset"),
@@ -10392,31 +10978,32 @@ pub static RAGDOLLASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GroupHavokAsset {
     pub _glacier_base: HavokAsset,
-    pub aabb: Vec<AssetAabbs>,
+    pub aabb: Vec<BoxedTypeObject /* AssetAabbs */>,
 }
 
 pub trait GroupHavokAssetTrait: HavokAssetTrait {
-    fn aabb(&self) -> &Vec<AssetAabbs>;
-    fn aabb_mut(&mut self) -> &mut Vec<AssetAabbs>;
+    fn aabb(&self) -> &Vec<BoxedTypeObject /* AssetAabbs */>;
+    fn aabb_mut(&mut self) -> &mut Vec<BoxedTypeObject /* AssetAabbs */>;
 }
 
 impl GroupHavokAssetTrait for GroupHavokAsset {
-    fn aabb(&self) -> &Vec<AssetAabbs> {
+    fn aabb(&self) -> &Vec<BoxedTypeObject /* AssetAabbs */> {
         &self.aabb
     }
-    fn aabb_mut(&mut self) -> &mut Vec<AssetAabbs> {
+    fn aabb_mut(&mut self) -> &mut Vec<BoxedTypeObject /* AssetAabbs */> {
         &mut self.aabb
     }
 }
 
 impl HavokAssetTrait for GroupHavokAsset {
-    fn external_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+    fn external_assets(&self) -> &Vec<Option<LockedTypeObject /* super::core::DataContainer */>> {
         self._glacier_base.external_assets()
     }
-    fn external_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+    fn external_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::DataContainer */>> {
         self._glacier_base.external_assets_mut()
     }
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
@@ -10441,16 +11028,20 @@ impl super::core::DataContainerTrait for GroupHavokAsset {
 
 pub static GROUPHAVOKASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupHavokAsset",
+    name_hash: 3165362929,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(HAVOKASSET_TYPE_INFO),
+        super_class_offset: offset_of!(GroupHavokAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GroupHavokAsset as Default>::default())),
+            create_boxed: || Box::new(<GroupHavokAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Aabb",
+                name_hash: 2088635333,
                 flags: MemberInfoFlags::new(144),
                 field_type: "AssetAabbs-Array",
                 rust_offset: offset_of!(GroupHavokAsset, aabb),
@@ -10482,6 +11073,7 @@ impl TypeObject for GroupHavokAsset {
 
 pub static GROUPHAVOKASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupHavokAsset-Array",
+    name_hash: 3122462149,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GroupHavokAsset"),
@@ -10490,36 +11082,40 @@ pub static GROUPHAVOKASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AssetAabbs {
-    pub part_aabb: Vec<super::core::AxisAlignedBox>,
+    pub part_aabb: Vec<BoxedTypeObject /* super::core::AxisAlignedBox */>,
 }
 
 pub trait AssetAabbsTrait: TypeObject {
-    fn part_aabb(&self) -> &Vec<super::core::AxisAlignedBox>;
-    fn part_aabb_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox>;
+    fn part_aabb(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */>;
+    fn part_aabb_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */>;
 }
 
 impl AssetAabbsTrait for AssetAabbs {
-    fn part_aabb(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_aabb(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         &self.part_aabb
     }
-    fn part_aabb_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_aabb_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         &mut self.part_aabb
     }
 }
 
 pub static ASSETAABBS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AssetAabbs",
+    name_hash: 321390566,
     flags: MemberInfoFlags::new(73),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AssetAabbs as Default>::default())),
+            create_boxed: || Box::new(<AssetAabbs as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PartAabb",
+                name_hash: 3741321394,
                 flags: MemberInfoFlags::new(144),
                 field_type: "AxisAlignedBox-Array",
                 rust_offset: offset_of!(AssetAabbs, part_aabb),
@@ -10551,6 +11147,7 @@ impl TypeObject for AssetAabbs {
 
 pub static ASSETAABBS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AssetAabbs-Array",
+    name_hash: 2380580050,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("AssetAabbs"),
@@ -10559,25 +11156,26 @@ pub static ASSETAABBS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HavokAsset {
     pub _glacier_base: super::core::Asset,
-    pub external_assets: Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>,
+    pub external_assets: Vec<Option<LockedTypeObject /* super::core::DataContainer */>>,
     pub resource: glacier_reflect::builtin::ResourceRef,
 }
 
 pub trait HavokAssetTrait: super::core::AssetTrait {
-    fn external_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>;
-    fn external_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>;
+    fn external_assets(&self) -> &Vec<Option<LockedTypeObject /* super::core::DataContainer */>>;
+    fn external_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::DataContainer */>>;
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
     fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
 }
 
 impl HavokAssetTrait for HavokAsset {
-    fn external_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+    fn external_assets(&self) -> &Vec<Option<LockedTypeObject /* super::core::DataContainer */>> {
         &self.external_assets
     }
-    fn external_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+    fn external_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::DataContainer */>> {
         &mut self.external_assets
     }
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef {
@@ -10602,22 +11200,27 @@ impl super::core::DataContainerTrait for HavokAsset {
 
 pub static HAVOKASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HavokAsset",
+    name_hash: 2342641198,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(HavokAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HavokAsset as Default>::default())),
+            create_boxed: || Box::new(<HavokAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExternalAssets",
+                name_hash: 1938270811,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DataContainer-Array",
                 rust_offset: offset_of!(HavokAsset, external_assets),
             },
             FieldInfoData {
                 name: "Resource",
+                name_hash: 74513935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(HavokAsset, resource),
@@ -10649,6 +11252,7 @@ impl TypeObject for HavokAsset {
 
 pub static HAVOKASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HavokAsset-Array",
+    name_hash: 1984292506,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("HavokAsset"),
@@ -10657,7 +11261,8 @@ pub static HAVOKASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HeightfieldTestEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -10709,22 +11314,27 @@ impl super::core::DataContainerTrait for HeightfieldTestEntityData {
 
 pub static HEIGHTFIELDTESTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HeightfieldTestEntityData",
+    name_hash: 4023061925,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(HeightfieldTestEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HeightfieldTestEntityData as Default>::default())),
+            create_boxed: || Box::new(<HeightfieldTestEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(HeightfieldTestEntityData, realm),
             },
             FieldInfoData {
                 name: "SkipSamples",
+                name_hash: 556243953,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(HeightfieldTestEntityData, skip_samples),
@@ -10756,6 +11366,7 @@ impl TypeObject for HeightfieldTestEntityData {
 
 pub static HEIGHTFIELDTESTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HeightfieldTestEntityData-Array",
+    name_hash: 4220790289,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("HeightfieldTestEntityData"),
@@ -10764,13 +11375,14 @@ pub static HEIGHTFIELDTESTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterPhysicsData {
     pub _glacier_base: super::core::Asset,
-    pub poses: Vec<Option<Arc<Mutex<dyn CharacterPoseDataTrait>>>>,
-    pub states: Vec<Option<Arc<Mutex<dyn CharacterStateDataTrait>>>>,
+    pub poses: Vec<Option<LockedTypeObject /* CharacterPoseData */>>,
+    pub states: Vec<Option<LockedTypeObject /* CharacterStateData */>>,
     pub default_state: CharacterStateType,
-    pub sprint: Option<Arc<Mutex<dyn CharacterSprintDataTrait>>>,
+    pub sprint: Option<LockedTypeObject /* CharacterSprintData */>,
     pub material_pair: super::entity::MaterialDecl,
     pub pushable_object_weight: i32,
     pub mass: f32,
@@ -10789,7 +11401,7 @@ pub struct CharacterPhysicsData {
     pub radius_to_predict_collision_on_characters: f32,
     pub allow_pose_change_during_transition: bool,
     pub auto_push_away_from_walls_in_prone: bool,
-    pub physics_body: Option<Arc<Mutex<dyn CharacterPhysicsBodyDataTrait>>>,
+    pub physics_body: Option<LockedTypeObject /* CharacterPhysicsBodyData */>,
     pub check_support_raycast_count_moving: i32,
     pub check_support_lookahead_distance: f32,
     pub ray_start_height_on_ground: f32,
@@ -10800,14 +11412,14 @@ pub struct CharacterPhysicsData {
 }
 
 pub trait CharacterPhysicsDataTrait: super::core::AssetTrait {
-    fn poses(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterPoseDataTrait>>>>;
-    fn poses_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterPoseDataTrait>>>>;
-    fn states(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStateDataTrait>>>>;
-    fn states_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStateDataTrait>>>>;
+    fn poses(&self) -> &Vec<Option<LockedTypeObject /* CharacterPoseData */>>;
+    fn poses_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterPoseData */>>;
+    fn states(&self) -> &Vec<Option<LockedTypeObject /* CharacterStateData */>>;
+    fn states_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStateData */>>;
     fn default_state(&self) -> &CharacterStateType;
     fn default_state_mut(&mut self) -> &mut CharacterStateType;
-    fn sprint(&self) -> &Option<Arc<Mutex<dyn CharacterSprintDataTrait>>>;
-    fn sprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterSprintDataTrait>>>;
+    fn sprint(&self) -> &Option<LockedTypeObject /* CharacterSprintData */>;
+    fn sprint_mut(&mut self) -> &mut Option<LockedTypeObject /* CharacterSprintData */>;
     fn material_pair(&self) -> &super::entity::MaterialDecl;
     fn material_pair_mut(&mut self) -> &mut super::entity::MaterialDecl;
     fn pushable_object_weight(&self) -> &i32;
@@ -10844,8 +11456,8 @@ pub trait CharacterPhysicsDataTrait: super::core::AssetTrait {
     fn allow_pose_change_during_transition_mut(&mut self) -> &mut bool;
     fn auto_push_away_from_walls_in_prone(&self) -> &bool;
     fn auto_push_away_from_walls_in_prone_mut(&mut self) -> &mut bool;
-    fn physics_body(&self) -> &Option<Arc<Mutex<dyn CharacterPhysicsBodyDataTrait>>>;
-    fn physics_body_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterPhysicsBodyDataTrait>>>;
+    fn physics_body(&self) -> &Option<LockedTypeObject /* CharacterPhysicsBodyData */>;
+    fn physics_body_mut(&mut self) -> &mut Option<LockedTypeObject /* CharacterPhysicsBodyData */>;
     fn check_support_raycast_count_moving(&self) -> &i32;
     fn check_support_raycast_count_moving_mut(&mut self) -> &mut i32;
     fn check_support_lookahead_distance(&self) -> &f32;
@@ -10863,16 +11475,16 @@ pub trait CharacterPhysicsDataTrait: super::core::AssetTrait {
 }
 
 impl CharacterPhysicsDataTrait for CharacterPhysicsData {
-    fn poses(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterPoseDataTrait>>>> {
+    fn poses(&self) -> &Vec<Option<LockedTypeObject /* CharacterPoseData */>> {
         &self.poses
     }
-    fn poses_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterPoseDataTrait>>>> {
+    fn poses_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterPoseData */>> {
         &mut self.poses
     }
-    fn states(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStateDataTrait>>>> {
+    fn states(&self) -> &Vec<Option<LockedTypeObject /* CharacterStateData */>> {
         &self.states
     }
-    fn states_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStateDataTrait>>>> {
+    fn states_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStateData */>> {
         &mut self.states
     }
     fn default_state(&self) -> &CharacterStateType {
@@ -10881,10 +11493,10 @@ impl CharacterPhysicsDataTrait for CharacterPhysicsData {
     fn default_state_mut(&mut self) -> &mut CharacterStateType {
         &mut self.default_state
     }
-    fn sprint(&self) -> &Option<Arc<Mutex<dyn CharacterSprintDataTrait>>> {
+    fn sprint(&self) -> &Option<LockedTypeObject /* CharacterSprintData */> {
         &self.sprint
     }
-    fn sprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterSprintDataTrait>>> {
+    fn sprint_mut(&mut self) -> &mut Option<LockedTypeObject /* CharacterSprintData */> {
         &mut self.sprint
     }
     fn material_pair(&self) -> &super::entity::MaterialDecl {
@@ -10995,10 +11607,10 @@ impl CharacterPhysicsDataTrait for CharacterPhysicsData {
     fn auto_push_away_from_walls_in_prone_mut(&mut self) -> &mut bool {
         &mut self.auto_push_away_from_walls_in_prone
     }
-    fn physics_body(&self) -> &Option<Arc<Mutex<dyn CharacterPhysicsBodyDataTrait>>> {
+    fn physics_body(&self) -> &Option<LockedTypeObject /* CharacterPhysicsBodyData */> {
         &self.physics_body
     }
-    fn physics_body_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterPhysicsBodyDataTrait>>> {
+    fn physics_body_mut(&mut self) -> &mut Option<LockedTypeObject /* CharacterPhysicsBodyData */> {
         &mut self.physics_body
     }
     fn check_support_raycast_count_moving(&self) -> &i32 {
@@ -11059,190 +11671,223 @@ impl super::core::DataContainerTrait for CharacterPhysicsData {
 
 pub static CHARACTERPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPhysicsData",
+    name_hash: 3075685383,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<CharacterPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Poses",
+                name_hash: 232668927,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CharacterPoseData-Array",
                 rust_offset: offset_of!(CharacterPhysicsData, poses),
             },
             FieldInfoData {
                 name: "States",
+                name_hash: 3319729985,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CharacterStateData-Array",
                 rust_offset: offset_of!(CharacterPhysicsData, states),
             },
             FieldInfoData {
                 name: "DefaultState",
+                name_hash: 2078198265,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterStateType",
                 rust_offset: offset_of!(CharacterPhysicsData, default_state),
             },
             FieldInfoData {
                 name: "Sprint",
+                name_hash: 3324856903,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterSprintData",
                 rust_offset: offset_of!(CharacterPhysicsData, sprint),
             },
             FieldInfoData {
                 name: "MaterialPair",
+                name_hash: 161392100,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialDecl",
                 rust_offset: offset_of!(CharacterPhysicsData, material_pair),
             },
             FieldInfoData {
                 name: "PushableObjectWeight",
+                name_hash: 4244631780,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterPhysicsData, pushable_object_weight),
             },
             FieldInfoData {
                 name: "Mass",
+                name_hash: 2088779625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, mass),
             },
             FieldInfoData {
                 name: "MaxAscendAngle",
+                name_hash: 2324046926,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, max_ascend_angle),
             },
             FieldInfoData {
                 name: "AllowSupportedSlideState",
+                name_hash: 1466713906,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterPhysicsData, allow_supported_slide_state),
             },
             FieldInfoData {
                 name: "SlideAngle",
+                name_hash: 1859847091,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, slide_angle),
             },
             FieldInfoData {
                 name: "SlideSpeedCondition",
+                name_hash: 3091481766,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, slide_speed_condition),
             },
             FieldInfoData {
                 name: "PhysicalRadius",
+                name_hash: 2971437576,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, physical_radius),
             },
             FieldInfoData {
                 name: "EnterSwimStateDepth",
+                name_hash: 1102926263,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, enter_swim_state_depth),
             },
             FieldInfoData {
                 name: "ExitSwimStateDepth",
+                name_hash: 1629912031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, exit_swim_state_depth),
             },
             FieldInfoData {
                 name: "InputAcceleration",
+                name_hash: 2964393169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, input_acceleration),
             },
             FieldInfoData {
                 name: "LadderAcceptAngle",
+                name_hash: 3049015198,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, ladder_accept_angle),
             },
             FieldInfoData {
                 name: "LadderAcceptAnglePitch",
+                name_hash: 3025434200,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, ladder_accept_angle_pitch),
             },
             FieldInfoData {
                 name: "JumpPenaltyTime",
+                name_hash: 535572137,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, jump_penalty_time),
             },
             FieldInfoData {
                 name: "JumpPenaltyFactor",
+                name_hash: 4282682449,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, jump_penalty_factor),
             },
             FieldInfoData {
                 name: "RadiusToPredictCollisionOnCharacters",
+                name_hash: 3672523982,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, radius_to_predict_collision_on_characters),
             },
             FieldInfoData {
                 name: "AllowPoseChangeDuringTransition",
+                name_hash: 366111807,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterPhysicsData, allow_pose_change_during_transition),
             },
             FieldInfoData {
                 name: "AutoPushAwayFromWallsInProne",
+                name_hash: 1091656456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterPhysicsData, auto_push_away_from_walls_in_prone),
             },
             FieldInfoData {
                 name: "PhysicsBody",
+                name_hash: 1744046942,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterPhysicsBodyData",
                 rust_offset: offset_of!(CharacterPhysicsData, physics_body),
             },
             FieldInfoData {
                 name: "CheckSupportRaycastCountMoving",
+                name_hash: 1558631988,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CharacterPhysicsData, check_support_raycast_count_moving),
             },
             FieldInfoData {
                 name: "CheckSupportLookaheadDistance",
+                name_hash: 2063460641,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, check_support_lookahead_distance),
             },
             FieldInfoData {
                 name: "RayStartHeightOnGround",
+                name_hash: 1060815444,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, ray_start_height_on_ground),
             },
             FieldInfoData {
                 name: "RayEndHeightOnGround",
+                name_hash: 3175620635,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, ray_end_height_on_ground),
             },
             FieldInfoData {
                 name: "RayStartHeightInAir",
+                name_hash: 2105209517,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, ray_start_height_in_air),
             },
             FieldInfoData {
                 name: "RayEndHeightInAir",
+                name_hash: 1547851266,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, ray_end_height_in_air),
             },
             FieldInfoData {
                 name: "SpeedForMovingRayCasts",
+                name_hash: 3238490481,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPhysicsData, speed_for_moving_ray_casts),
@@ -11274,6 +11919,7 @@ impl TypeObject for CharacterPhysicsData {
 
 pub static CHARACTERPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPhysicsData-Array",
+    name_hash: 733076659,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterPhysicsData"),
@@ -11282,22 +11928,23 @@ pub static CHARACTERPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterPhysicsBodyData {
     pub _glacier_base: PhysicsBodyData,
-    pub character_physics: Option<Arc<Mutex<dyn CharacterPhysicsDataTrait>>>,
+    pub character_physics: Option<LockedTypeObject /* CharacterPhysicsData */>,
 }
 
 pub trait CharacterPhysicsBodyDataTrait: PhysicsBodyDataTrait {
-    fn character_physics(&self) -> &Option<Arc<Mutex<dyn CharacterPhysicsDataTrait>>>;
-    fn character_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterPhysicsDataTrait>>>;
+    fn character_physics(&self) -> &Option<LockedTypeObject /* CharacterPhysicsData */>;
+    fn character_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* CharacterPhysicsData */>;
 }
 
 impl CharacterPhysicsBodyDataTrait for CharacterPhysicsBodyData {
-    fn character_physics(&self) -> &Option<Arc<Mutex<dyn CharacterPhysicsDataTrait>>> {
+    fn character_physics(&self) -> &Option<LockedTypeObject /* CharacterPhysicsData */> {
         &self.character_physics
     }
-    fn character_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterPhysicsDataTrait>>> {
+    fn character_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* CharacterPhysicsData */> {
         &mut self.character_physics
     }
 }
@@ -11333,10 +11980,10 @@ impl PhysicsBodyDataTrait for CharacterPhysicsBodyData {
     fn quality_type_mut(&mut self) -> &mut RigidBodyQualityType {
         self._glacier_base.quality_type_mut()
     }
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset()
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */> {
         self._glacier_base.asset_mut()
     }
     fn transform_index(&self) -> &u8 {
@@ -11369,10 +12016,10 @@ impl PhysicsBodyDataTrait for CharacterPhysicsBodyData {
     fn add_to_spatial_query_manager_mut(&mut self) -> &mut bool {
         self._glacier_base.add_to_spatial_query_manager_mut()
     }
-    fn physics_callback_handler(&self) -> &Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler(&self) -> &Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler()
     }
-    fn physics_callback_handler_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsCallbackHandlerDataTrait>>> {
+    fn physics_callback_handler_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsCallbackHandlerData */> {
         self._glacier_base.physics_callback_handler_mut()
     }
 }
@@ -11400,16 +12047,20 @@ impl super::core::DataContainerTrait for CharacterPhysicsBodyData {
 
 pub static CHARACTERPHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPhysicsBodyData",
+    name_hash: 3790634423,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSBODYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterPhysicsBodyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterPhysicsBodyData as Default>::default())),
+            create_boxed: || Box::new(<CharacterPhysicsBodyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CharacterPhysics",
+                name_hash: 4032988407,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterPhysicsData",
                 rust_offset: offset_of!(CharacterPhysicsBodyData, character_physics),
@@ -11441,6 +12092,7 @@ impl TypeObject for CharacterPhysicsBodyData {
 
 pub static CHARACTERPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPhysicsBodyData-Array",
+    name_hash: 433641219,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterPhysicsBodyData"),
@@ -11449,7 +12101,8 @@ pub static CHARACTERPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ParachuteStateData {
     pub _glacier_base: CharacterStateData,
     pub deploy_time: f32,
@@ -11551,10 +12204,10 @@ impl ParachuteStateDataTrait for ParachuteStateData {
 }
 
 impl CharacterStateDataTrait for ParachuteStateData {
-    fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info(&self) -> &Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info()
     }
-    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info_mut()
     }
 }
@@ -11564,70 +12217,83 @@ impl super::core::DataContainerTrait for ParachuteStateData {
 
 pub static PARACHUTESTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ParachuteStateData",
+    name_hash: 3777330255,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CHARACTERSTATEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ParachuteStateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ParachuteStateData as Default>::default())),
+            create_boxed: || Box::new(<ParachuteStateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DeployTime",
+                name_hash: 2275884507,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ParachuteStateData, deploy_time),
             },
             FieldInfoData {
                 name: "TerminalVelocity",
+                name_hash: 1459893878,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ParachuteStateData, terminal_velocity),
             },
             FieldInfoData {
                 name: "ForwardDragCoefficient",
+                name_hash: 2142952731,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ParachuteStateData, forward_drag_coefficient),
             },
             FieldInfoData {
                 name: "AngleOfAttack",
+                name_hash: 2971529797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ParachuteStateData, angle_of_attack),
             },
             FieldInfoData {
                 name: "BankOffset",
+                name_hash: 1603265742,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ParachuteStateData, bank_offset),
             },
             FieldInfoData {
                 name: "ThrottleOffset",
+                name_hash: 1429396608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ParachuteStateData, throttle_offset),
             },
             FieldInfoData {
                 name: "BrakeOffset",
+                name_hash: 1350216631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ParachuteStateData, brake_offset),
             },
             FieldInfoData {
                 name: "MaxRollVelocity",
+                name_hash: 1947747259,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ParachuteStateData, max_roll_velocity),
             },
             FieldInfoData {
                 name: "MaxPitchVelocity",
+                name_hash: 2587272352,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ParachuteStateData, max_pitch_velocity),
             },
             FieldInfoData {
                 name: "MaxYawVelocity",
+                name_hash: 3921711241,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ParachuteStateData, max_yaw_velocity),
@@ -11659,6 +12325,7 @@ impl TypeObject for ParachuteStateData {
 
 pub static PARACHUTESTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ParachuteStateData-Array",
+    name_hash: 4059195771,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ParachuteStateData"),
@@ -11667,7 +12334,8 @@ pub static PARACHUTESTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SwimmingStateData {
     pub _glacier_base: CharacterStateData,
     pub body_under_water: f32,
@@ -11688,10 +12356,10 @@ impl SwimmingStateDataTrait for SwimmingStateData {
 }
 
 impl CharacterStateDataTrait for SwimmingStateData {
-    fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info(&self) -> &Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info()
     }
-    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info_mut()
     }
 }
@@ -11701,16 +12369,20 @@ impl super::core::DataContainerTrait for SwimmingStateData {
 
 pub static SWIMMINGSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SwimmingStateData",
+    name_hash: 214621295,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CHARACTERSTATEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SwimmingStateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SwimmingStateData as Default>::default())),
+            create_boxed: || Box::new(<SwimmingStateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BodyUnderWater",
+                name_hash: 1498497544,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SwimmingStateData, body_under_water),
@@ -11742,6 +12414,7 @@ impl TypeObject for SwimmingStateData {
 
 pub static SWIMMINGSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SwimmingStateData-Array",
+    name_hash: 2581584475,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("SwimmingStateData"),
@@ -11750,7 +12423,8 @@ pub static SWIMMINGSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct JumpStateData {
     pub _glacier_base: CharacterStateData,
     pub jump_height: f32,
@@ -11780,10 +12454,10 @@ impl JumpStateDataTrait for JumpStateData {
 }
 
 impl CharacterStateDataTrait for JumpStateData {
-    fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info(&self) -> &Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info()
     }
-    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info_mut()
     }
 }
@@ -11793,22 +12467,27 @@ impl super::core::DataContainerTrait for JumpStateData {
 
 pub static JUMPSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JumpStateData",
+    name_hash: 1888105856,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CHARACTERSTATEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(JumpStateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<JumpStateData as Default>::default())),
+            create_boxed: || Box::new(<JumpStateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "JumpHeight",
+                name_hash: 1265809368,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(JumpStateData, jump_height),
             },
             FieldInfoData {
                 name: "JumpEffectSize",
+                name_hash: 2845964789,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(JumpStateData, jump_effect_size),
@@ -11840,6 +12519,7 @@ impl TypeObject for JumpStateData {
 
 pub static JUMPSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JumpStateData-Array",
+    name_hash: 3764059060,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("JumpStateData"),
@@ -11848,7 +12528,8 @@ pub static JUMPSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClimbingStateData {
     pub _glacier_base: CharacterStateData,
     pub lateral_input_scale: f32,
@@ -11950,10 +12631,10 @@ impl ClimbingStateDataTrait for ClimbingStateData {
 }
 
 impl CharacterStateDataTrait for ClimbingStateData {
-    fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info(&self) -> &Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info()
     }
-    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info_mut()
     }
 }
@@ -11963,70 +12644,83 @@ impl super::core::DataContainerTrait for ClimbingStateData {
 
 pub static CLIMBINGSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClimbingStateData",
+    name_hash: 2131528203,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CHARACTERSTATEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ClimbingStateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClimbingStateData as Default>::default())),
+            create_boxed: || Box::new(<ClimbingStateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LateralInputScale",
+                name_hash: 2743831048,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClimbingStateData, lateral_input_scale),
             },
             FieldInfoData {
                 name: "DownAngleLimit",
+                name_hash: 3644023203,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClimbingStateData, down_angle_limit),
             },
             FieldInfoData {
                 name: "DropOffAngle",
+                name_hash: 3349590818,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClimbingStateData, drop_off_angle),
             },
             FieldInfoData {
                 name: "AttractionVelocity",
+                name_hash: 2980040799,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClimbingStateData, attraction_velocity),
             },
             FieldInfoData {
                 name: "PushAwayVelocity",
+                name_hash: 751756002,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClimbingStateData, push_away_velocity),
             },
             FieldInfoData {
                 name: "ClimbHeightOffset",
+                name_hash: 3576433790,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClimbingStateData, climb_height_offset),
             },
             FieldInfoData {
                 name: "ClimbOffVerticalDistance",
+                name_hash: 1127208370,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClimbingStateData, climb_off_vertical_distance),
             },
             FieldInfoData {
                 name: "ClimbOffVerticalTime",
+                name_hash: 985548708,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClimbingStateData, climb_off_vertical_time),
             },
             FieldInfoData {
                 name: "ClimbOffHorizontalDistance",
+                name_hash: 1672476894,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClimbingStateData, climb_off_horizontal_distance),
             },
             FieldInfoData {
                 name: "ClimbOffHorizontalTime",
+                name_hash: 3744214728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClimbingStateData, climb_off_horizontal_time),
@@ -12058,6 +12752,7 @@ impl TypeObject for ClimbingStateData {
 
 pub static CLIMBINGSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClimbingStateData-Array",
+    name_hash: 2045597887,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ClimbingStateData"),
@@ -12066,7 +12761,8 @@ pub static CLIMBINGSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FallingStateData {
     pub _glacier_base: CharacterStateData,
 }
@@ -12078,10 +12774,10 @@ impl FallingStateDataTrait for FallingStateData {
 }
 
 impl CharacterStateDataTrait for FallingStateData {
-    fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info(&self) -> &Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info()
     }
-    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info_mut()
     }
 }
@@ -12091,12 +12787,15 @@ impl super::core::DataContainerTrait for FallingStateData {
 
 pub static FALLINGSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FallingStateData",
+    name_hash: 2908319141,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CHARACTERSTATEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FallingStateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FallingStateData as Default>::default())),
+            create_boxed: || Box::new(<FallingStateData as Default>::default()),
         },
         fields: &[
         ],
@@ -12126,6 +12825,7 @@ impl TypeObject for FallingStateData {
 
 pub static FALLINGSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FallingStateData-Array",
+    name_hash: 40535569,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FallingStateData"),
@@ -12134,7 +12834,8 @@ pub static FALLINGSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InAirStateData {
     pub _glacier_base: CharacterStateData,
     pub free_fall_velocity: f32,
@@ -12155,10 +12856,10 @@ impl InAirStateDataTrait for InAirStateData {
 }
 
 impl CharacterStateDataTrait for InAirStateData {
-    fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info(&self) -> &Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info()
     }
-    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info_mut()
     }
 }
@@ -12168,16 +12869,20 @@ impl super::core::DataContainerTrait for InAirStateData {
 
 pub static INAIRSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InAirStateData",
+    name_hash: 3247083935,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CHARACTERSTATEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(InAirStateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InAirStateData as Default>::default())),
+            create_boxed: || Box::new(<InAirStateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FreeFallVelocity",
+                name_hash: 106738721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InAirStateData, free_fall_velocity),
@@ -12209,6 +12914,7 @@ impl TypeObject for InAirStateData {
 
 pub static INAIRSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InAirStateData-Array",
+    name_hash: 1753577003,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("InAirStateData"),
@@ -12217,7 +12923,8 @@ pub static INAIRSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OnGroundStateData {
     pub _glacier_base: CharacterStateData,
     pub jump_delay: f32,
@@ -12364,10 +13071,10 @@ impl OnGroundStateDataTrait for OnGroundStateData {
 }
 
 impl CharacterStateDataTrait for OnGroundStateData {
-    fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info(&self) -> &Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info()
     }
-    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info_mut()
     }
 }
@@ -12377,100 +13084,118 @@ impl super::core::DataContainerTrait for OnGroundStateData {
 
 pub static ONGROUNDSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OnGroundStateData",
+    name_hash: 3483263142,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CHARACTERSTATEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(OnGroundStateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OnGroundStateData as Default>::default())),
+            create_boxed: || Box::new(<OnGroundStateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "JumpDelay",
+                name_hash: 1846535730,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, jump_delay),
             },
             FieldInfoData {
                 name: "JumpStaminaPenalty",
+                name_hash: 1315207185,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, jump_stamina_penalty),
             },
             FieldInfoData {
                 name: "AllowedDistanceFromGround",
+                name_hash: 639560781,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, allowed_distance_from_ground),
             },
             FieldInfoData {
                 name: "FallWithGravityDistanceFromGround",
+                name_hash: 3928401558,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, fall_with_gravity_distance_from_ground),
             },
             FieldInfoData {
                 name: "ClampSurfaceNormalAngle",
+                name_hash: 3770085201,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, clamp_surface_normal_angle),
             },
             FieldInfoData {
                 name: "GroundHugging",
+                name_hash: 190843837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OnGroundStateData, ground_hugging),
             },
             FieldInfoData {
                 name: "LimitDownwardVelocity",
+                name_hash: 2249794005,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OnGroundStateData, limit_downward_velocity),
             },
             FieldInfoData {
                 name: "UphillSpeedModifier",
+                name_hash: 1719259313,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, uphill_speed_modifier),
             },
             FieldInfoData {
                 name: "UphillSpeedModifierMaxAngle",
+                name_hash: 1658555908,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, uphill_speed_modifier_max_angle),
             },
             FieldInfoData {
                 name: "DownhillSpeedModifier",
+                name_hash: 271716358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, downhill_speed_modifier),
             },
             FieldInfoData {
                 name: "DownhillSpeedModifierMaxAngle",
+                name_hash: 3388701171,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, downhill_speed_modifier_max_angle),
             },
             FieldInfoData {
                 name: "HillSpeedModifierDeadZone",
+                name_hash: 2336830286,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, hill_speed_modifier_dead_zone),
             },
             FieldInfoData {
                 name: "CharacterSpringScaleMovingUnderTerrain",
+                name_hash: 19583774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, character_spring_scale_moving_under_terrain),
             },
             FieldInfoData {
                 name: "CharacterSpringScaleMovingOverTerrain",
+                name_hash: 774336696,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, character_spring_scale_moving_over_terrain),
             },
             FieldInfoData {
                 name: "CharacterSpringScaleStill",
+                name_hash: 4092857051,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(OnGroundStateData, character_spring_scale_still),
@@ -12502,6 +13227,7 @@ impl TypeObject for OnGroundStateData {
 
 pub static ONGROUNDSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OnGroundStateData-Array",
+    name_hash: 347794706,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("OnGroundStateData"),
@@ -12510,7 +13236,8 @@ pub static ONGROUNDSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SlidingStateData {
     pub _glacier_base: CharacterStateData,
     pub horizontal_input_scale: f32,
@@ -12558,10 +13285,10 @@ impl SlidingStateDataTrait for SlidingStateData {
 }
 
 impl CharacterStateDataTrait for SlidingStateData {
-    fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info(&self) -> &Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info()
     }
-    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info_mut()
     }
 }
@@ -12571,34 +13298,41 @@ impl super::core::DataContainerTrait for SlidingStateData {
 
 pub static SLIDINGSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SlidingStateData",
+    name_hash: 534205424,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CHARACTERSTATEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SlidingStateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SlidingStateData as Default>::default())),
+            create_boxed: || Box::new(<SlidingStateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HorizontalInputScale",
+                name_hash: 770027349,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SlidingStateData, horizontal_input_scale),
             },
             FieldInfoData {
                 name: "GravityScale",
+                name_hash: 1341716283,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SlidingStateData, gravity_scale),
             },
             FieldInfoData {
                 name: "CharacterSpringScale",
+                name_hash: 3579145717,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SlidingStateData, character_spring_scale),
             },
             FieldInfoData {
                 name: "AllowedDistanceFromGround",
+                name_hash: 639560781,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SlidingStateData, allowed_distance_from_ground),
@@ -12630,6 +13364,7 @@ impl TypeObject for SlidingStateData {
 
 pub static SLIDINGSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SlidingStateData-Array",
+    name_hash: 2156130756,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("SlidingStateData"),
@@ -12638,7 +13373,8 @@ pub static SLIDINGSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AnimationControlledStateData {
     pub _glacier_base: CharacterStateData,
     pub up_normal_tolerance: f32,
@@ -12668,10 +13404,10 @@ impl AnimationControlledStateDataTrait for AnimationControlledStateData {
 }
 
 impl CharacterStateDataTrait for AnimationControlledStateData {
-    fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info(&self) -> &Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info()
     }
-    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         self._glacier_base.pose_info_mut()
     }
 }
@@ -12681,22 +13417,27 @@ impl super::core::DataContainerTrait for AnimationControlledStateData {
 
 pub static ANIMATIONCONTROLLEDSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimationControlledStateData",
+    name_hash: 3330196382,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CHARACTERSTATEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AnimationControlledStateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AnimationControlledStateData as Default>::default())),
+            create_boxed: || Box::new(<AnimationControlledStateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "UpNormalTolerance",
+                name_hash: 4245736634,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AnimationControlledStateData, up_normal_tolerance),
             },
             FieldInfoData {
                 name: "CharacterSpringStrength",
+                name_hash: 1779319144,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AnimationControlledStateData, character_spring_strength),
@@ -12728,6 +13469,7 @@ impl TypeObject for AnimationControlledStateData {
 
 pub static ANIMATIONCONTROLLEDSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimationControlledStateData-Array",
+    name_hash: 2013271210,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("AnimationControlledStateData"),
@@ -12736,22 +13478,23 @@ pub static ANIMATIONCONTROLLEDSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStateData {
     pub _glacier_base: super::core::DataContainer,
-    pub pose_info: Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>>,
+    pub pose_info: Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>>,
 }
 
 pub trait CharacterStateDataTrait: super::core::DataContainerTrait {
-    fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>>;
-    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>>;
+    fn pose_info(&self) -> &Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>>;
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>>;
 }
 
 impl CharacterStateDataTrait for CharacterStateData {
-    fn pose_info(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info(&self) -> &Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         &self.pose_info
     }
-    fn pose_info_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterStatePoseInfoTrait>>>> {
+    fn pose_info_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterStatePoseInfo */>> {
         &mut self.pose_info
     }
 }
@@ -12761,16 +13504,20 @@ impl super::core::DataContainerTrait for CharacterStateData {
 
 pub static CHARACTERSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateData",
+    name_hash: 463122395,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterStateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStateData as Default>::default())),
+            create_boxed: || Box::new(<CharacterStateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PoseInfo",
+                name_hash: 3414686146,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CharacterStatePoseInfo-Array",
                 rust_offset: offset_of!(CharacterStateData, pose_info),
@@ -12802,6 +13549,7 @@ impl TypeObject for CharacterStateData {
 
 pub static CHARACTERSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateData-Array",
+    name_hash: 1974687471,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterStateData"),
@@ -12831,6 +13579,7 @@ pub enum CharacterStateType {
 
 pub static CHARACTERSTATETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateType",
+    name_hash: 463671379,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -12859,6 +13608,7 @@ impl TypeObject for CharacterStateType {
 
 pub static CHARACTERSTATETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStateType-Array",
+    name_hash: 1830992743,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterStateType"),
@@ -12867,7 +13617,8 @@ pub static CHARACTERSTATETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterSprintData {
     pub _glacier_base: super::core::DataContainer,
     pub sprint_power_decrease_per_second: f32,
@@ -12919,34 +13670,41 @@ impl super::core::DataContainerTrait for CharacterSprintData {
 
 pub static CHARACTERSPRINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterSprintData",
+    name_hash: 2210203470,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterSprintData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterSprintData as Default>::default())),
+            create_boxed: || Box::new(<CharacterSprintData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SprintPowerDecreasePerSecond",
+                name_hash: 4236817773,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterSprintData, sprint_power_decrease_per_second),
             },
             FieldInfoData {
                 name: "SprintPowerIncreasePerSecond",
+                name_hash: 3679952971,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterSprintData, sprint_power_increase_per_second),
             },
             FieldInfoData {
                 name: "SprintMinimumPower",
+                name_hash: 2057558894,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterSprintData, sprint_minimum_power),
             },
             FieldInfoData {
                 name: "AllowContinousSprinting",
+                name_hash: 3446677350,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterSprintData, allow_continous_sprinting),
@@ -12978,6 +13736,7 @@ impl TypeObject for CharacterSprintData {
 
 pub static CHARACTERSPRINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterSprintData-Array",
+    name_hash: 521117946,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterSprintData"),
@@ -12986,7 +13745,8 @@ pub static CHARACTERSPRINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterStatePoseInfo {
     pub _glacier_base: super::core::DataContainer,
     pub pose_type: CharacterPoseType,
@@ -13092,70 +13852,83 @@ impl super::core::DataContainerTrait for CharacterStatePoseInfo {
 
 pub static CHARACTERSTATEPOSEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStatePoseInfo",
+    name_hash: 2875808364,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterStatePoseInfo, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterStatePoseInfo as Default>::default())),
+            create_boxed: || Box::new(<CharacterStatePoseInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PoseType",
+                name_hash: 3415409588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterPoseType",
                 rust_offset: offset_of!(CharacterStatePoseInfo, pose_type),
             },
             FieldInfoData {
                 name: "Velocity",
+                name_hash: 3860766482,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStatePoseInfo, velocity),
             },
             FieldInfoData {
                 name: "AccelerationGain",
+                name_hash: 1824913062,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStatePoseInfo, acceleration_gain),
             },
             FieldInfoData {
                 name: "DecelerationGain",
+                name_hash: 1680484485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStatePoseInfo, deceleration_gain),
             },
             FieldInfoData {
                 name: "DirectionChangeAccelerationGain",
+                name_hash: 2105343909,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStatePoseInfo, direction_change_acceleration_gain),
             },
             FieldInfoData {
                 name: "DirectionChangeThreshold",
+                name_hash: 3048932657,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStatePoseInfo, direction_change_threshold),
             },
             FieldInfoData {
                 name: "SprintGain",
+                name_hash: 1424279590,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStatePoseInfo, sprint_gain),
             },
             FieldInfoData {
                 name: "SprintMultiplier",
+                name_hash: 4088490892,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStatePoseInfo, sprint_multiplier),
             },
             FieldInfoData {
                 name: "SpeedModifier",
+                name_hash: 2276662581,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SpeedModifierData",
                 rust_offset: offset_of!(CharacterStatePoseInfo, speed_modifier),
             },
             FieldInfoData {
                 name: "ShallowWaterMultiplier",
+                name_hash: 2639594617,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterStatePoseInfo, shallow_water_multiplier),
@@ -13187,6 +13960,7 @@ impl TypeObject for CharacterStatePoseInfo {
 
 pub static CHARACTERSTATEPOSEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterStatePoseInfo-Array",
+    name_hash: 3763149400,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterStatePoseInfo"),
@@ -13195,7 +13969,8 @@ pub static CHARACTERSTATEPOSEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpeedModifierData {
     pub forward_constant: f32,
     pub backward_constant: f32,
@@ -13243,33 +14018,39 @@ impl SpeedModifierDataTrait for SpeedModifierData {
 
 pub static SPEEDMODIFIERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpeedModifierData",
+    name_hash: 965993541,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpeedModifierData as Default>::default())),
+            create_boxed: || Box::new(<SpeedModifierData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ForwardConstant",
+                name_hash: 2157259040,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpeedModifierData, forward_constant),
             },
             FieldInfoData {
                 name: "BackwardConstant",
+                name_hash: 3889204528,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpeedModifierData, backward_constant),
             },
             FieldInfoData {
                 name: "LeftConstant",
+                name_hash: 1018853792,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpeedModifierData, left_constant),
             },
             FieldInfoData {
                 name: "RightConstant",
+                name_hash: 1227925723,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpeedModifierData, right_constant),
@@ -13301,6 +14082,7 @@ impl TypeObject for SpeedModifierData {
 
 pub static SPEEDMODIFIERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpeedModifierData-Array",
+    name_hash: 828587121,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("SpeedModifierData"),
@@ -13309,14 +14091,15 @@ pub static SPEEDMODIFIERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterPoseData {
     pub _glacier_base: super::core::DataContainer,
     pub eye_position: super::core::Vec3,
-    pub throttle_modifier_curve: Vec<super::core::Vec2>,
+    pub throttle_modifier_curve: Vec<BoxedTypeObject /* super::core::Vec2 */>,
     pub step_height: f32,
     pub height: f32,
-    pub transition_times: Vec<PoseTransitionTime>,
+    pub transition_times: Vec<BoxedTypeObject /* PoseTransitionTime */>,
     pub look_constraints: LookConstraintsData,
     pub pose_type: CharacterPoseType,
     pub collision_type: CharacterPoseCollisionType,
@@ -13330,14 +14113,14 @@ pub struct CharacterPoseData {
 pub trait CharacterPoseDataTrait: super::core::DataContainerTrait {
     fn eye_position(&self) -> &super::core::Vec3;
     fn eye_position_mut(&mut self) -> &mut super::core::Vec3;
-    fn throttle_modifier_curve(&self) -> &Vec<super::core::Vec2>;
-    fn throttle_modifier_curve_mut(&mut self) -> &mut Vec<super::core::Vec2>;
+    fn throttle_modifier_curve(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn throttle_modifier_curve_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */>;
     fn step_height(&self) -> &f32;
     fn step_height_mut(&mut self) -> &mut f32;
     fn height(&self) -> &f32;
     fn height_mut(&mut self) -> &mut f32;
-    fn transition_times(&self) -> &Vec<PoseTransitionTime>;
-    fn transition_times_mut(&mut self) -> &mut Vec<PoseTransitionTime>;
+    fn transition_times(&self) -> &Vec<BoxedTypeObject /* PoseTransitionTime */>;
+    fn transition_times_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PoseTransitionTime */>;
     fn look_constraints(&self) -> &LookConstraintsData;
     fn look_constraints_mut(&mut self) -> &mut LookConstraintsData;
     fn pose_type(&self) -> &CharacterPoseType;
@@ -13363,10 +14146,10 @@ impl CharacterPoseDataTrait for CharacterPoseData {
     fn eye_position_mut(&mut self) -> &mut super::core::Vec3 {
         &mut self.eye_position
     }
-    fn throttle_modifier_curve(&self) -> &Vec<super::core::Vec2> {
+    fn throttle_modifier_curve(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &self.throttle_modifier_curve
     }
-    fn throttle_modifier_curve_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+    fn throttle_modifier_curve_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &mut self.throttle_modifier_curve
     }
     fn step_height(&self) -> &f32 {
@@ -13381,10 +14164,10 @@ impl CharacterPoseDataTrait for CharacterPoseData {
     fn height_mut(&mut self) -> &mut f32 {
         &mut self.height
     }
-    fn transition_times(&self) -> &Vec<PoseTransitionTime> {
+    fn transition_times(&self) -> &Vec<BoxedTypeObject /* PoseTransitionTime */> {
         &self.transition_times
     }
-    fn transition_times_mut(&mut self) -> &mut Vec<PoseTransitionTime> {
+    fn transition_times_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PoseTransitionTime */> {
         &mut self.transition_times
     }
     fn look_constraints(&self) -> &LookConstraintsData {
@@ -13442,88 +14225,104 @@ impl super::core::DataContainerTrait for CharacterPoseData {
 
 pub static CHARACTERPOSEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPoseData",
+    name_hash: 713316293,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterPoseData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterPoseData as Default>::default())),
+            create_boxed: || Box::new(<CharacterPoseData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EyePosition",
+                name_hash: 2695753445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CharacterPoseData, eye_position),
             },
             FieldInfoData {
                 name: "ThrottleModifierCurve",
+                name_hash: 708363949,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec2-Array",
                 rust_offset: offset_of!(CharacterPoseData, throttle_modifier_curve),
             },
             FieldInfoData {
                 name: "StepHeight",
+                name_hash: 54303016,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPoseData, step_height),
             },
             FieldInfoData {
                 name: "Height",
+                name_hash: 3054065626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPoseData, height),
             },
             FieldInfoData {
                 name: "TransitionTimes",
+                name_hash: 2389730764,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PoseTransitionTime-Array",
                 rust_offset: offset_of!(CharacterPoseData, transition_times),
             },
             FieldInfoData {
                 name: "LookConstraints",
+                name_hash: 2301802932,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LookConstraintsData",
                 rust_offset: offset_of!(CharacterPoseData, look_constraints),
             },
             FieldInfoData {
                 name: "PoseType",
+                name_hash: 3415409588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterPoseType",
                 rust_offset: offset_of!(CharacterPoseData, pose_type),
             },
             FieldInfoData {
                 name: "CollisionType",
+                name_hash: 2884836771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterPoseCollisionType",
                 rust_offset: offset_of!(CharacterPoseData, collision_type),
             },
             FieldInfoData {
                 name: "CollisionBoxMinExpand",
+                name_hash: 917028322,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CharacterPoseData, collision_box_min_expand),
             },
             FieldInfoData {
                 name: "CollisionBoxMaxExpand",
+                name_hash: 337502076,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CharacterPoseData, collision_box_max_expand),
             },
             FieldInfoData {
                 name: "RaycastRadiusPadding",
+                name_hash: 3671833507,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPoseData, raycast_radius_padding),
             },
             FieldInfoData {
                 name: "RaycastHeightPadding",
+                name_hash: 1058286660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CharacterPoseData, raycast_height_padding),
             },
             FieldInfoData {
                 name: "RaycastOffset",
+                name_hash: 3692771367,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CharacterPoseData, raycast_offset),
@@ -13555,6 +14354,7 @@ impl TypeObject for CharacterPoseData {
 
 pub static CHARACTERPOSEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPoseData-Array",
+    name_hash: 4240199665,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterPoseData"),
@@ -13563,7 +14363,8 @@ pub static CHARACTERPOSEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PoseTransitionTime {
     pub to_pose: CharacterPoseType,
     pub transition_time: f32,
@@ -13593,21 +14394,25 @@ impl PoseTransitionTimeTrait for PoseTransitionTime {
 
 pub static POSETRANSITIONTIME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PoseTransitionTime",
+    name_hash: 937744470,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PoseTransitionTime as Default>::default())),
+            create_boxed: || Box::new(<PoseTransitionTime as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ToPose",
+                name_hash: 3237354551,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterPoseType",
                 rust_offset: offset_of!(PoseTransitionTime, to_pose),
             },
             FieldInfoData {
                 name: "TransitionTime",
+                name_hash: 3976931807,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PoseTransitionTime, transition_time),
@@ -13639,6 +14444,7 @@ impl TypeObject for PoseTransitionTime {
 
 pub static POSETRANSITIONTIME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PoseTransitionTime-Array",
+    name_hash: 3978534370,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PoseTransitionTime"),
@@ -13660,6 +14466,7 @@ pub enum CharacterPoseCollisionType {
 
 pub static CHARACTERPOSECOLLISIONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPoseCollisionType",
+    name_hash: 2971618067,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -13688,6 +14495,7 @@ impl TypeObject for CharacterPoseCollisionType {
 
 pub static CHARACTERPOSECOLLISIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPoseCollisionType-Array",
+    name_hash: 2791327143,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterPoseCollisionType"),
@@ -13709,6 +14517,7 @@ pub enum CharacterPoseType {
 
 pub static CHARACTERPOSETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPoseType",
+    name_hash: 712767309,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -13737,6 +14546,7 @@ impl TypeObject for CharacterPoseType {
 
 pub static CHARACTERPOSETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPoseType-Array",
+    name_hash: 88927097,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterPoseType"),
@@ -13745,7 +14555,8 @@ pub static CHARACTERPOSETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterPoseConstraintsData {
     pub stand_pose: bool,
     pub crouch_pose: bool,
@@ -13784,27 +14595,32 @@ impl CharacterPoseConstraintsDataTrait for CharacterPoseConstraintsData {
 
 pub static CHARACTERPOSECONSTRAINTSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPoseConstraintsData",
+    name_hash: 498423443,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterPoseConstraintsData as Default>::default())),
+            create_boxed: || Box::new(<CharacterPoseConstraintsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StandPose",
+                name_hash: 3580661600,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterPoseConstraintsData, stand_pose),
             },
             FieldInfoData {
                 name: "CrouchPose",
+                name_hash: 1318089740,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterPoseConstraintsData, crouch_pose),
             },
             FieldInfoData {
                 name: "PronePose",
+                name_hash: 3841962,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterPoseConstraintsData, prone_pose),
@@ -13836,6 +14652,7 @@ impl TypeObject for CharacterPoseConstraintsData {
 
 pub static CHARACTERPOSECONSTRAINTSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPoseConstraintsData-Array",
+    name_hash: 3912298791,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterPoseConstraintsData"),
@@ -13844,7 +14661,8 @@ pub static CHARACTERPOSECONSTRAINTSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LookConstraintsData {
     pub min_look_yaw: f32,
     pub max_look_yaw: f32,
@@ -13892,33 +14710,39 @@ impl LookConstraintsDataTrait for LookConstraintsData {
 
 pub static LOOKCONSTRAINTSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LookConstraintsData",
+    name_hash: 4072654980,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LookConstraintsData as Default>::default())),
+            create_boxed: || Box::new(<LookConstraintsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MinLookYaw",
+                name_hash: 1226173479,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LookConstraintsData, min_look_yaw),
             },
             FieldInfoData {
                 name: "MaxLookYaw",
+                name_hash: 3883372025,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LookConstraintsData, max_look_yaw),
             },
             FieldInfoData {
                 name: "MinLookPitch",
+                name_hash: 3873582030,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LookConstraintsData, min_look_pitch),
             },
             FieldInfoData {
                 name: "MaxLookPitch",
+                name_hash: 2736166672,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LookConstraintsData, max_look_pitch),
@@ -13950,6 +14774,7 @@ impl TypeObject for LookConstraintsData {
 
 pub static LOOKCONSTRAINTSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LookConstraintsData-Array",
+    name_hash: 1215462576,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("LookConstraintsData"),
@@ -13958,7 +14783,8 @@ pub static LOOKCONSTRAINTSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VehicleSpawnStateEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub initial_velocity: super::core::Vec3,
@@ -14055,52 +14881,62 @@ impl super::core::DataContainerTrait for VehicleSpawnStateEntityData {
 
 pub static VEHICLESPAWNSTATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleSpawnStateEntityData",
+    name_hash: 618342874,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VehicleSpawnStateEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VehicleSpawnStateEntityData as Default>::default())),
+            create_boxed: || Box::new(<VehicleSpawnStateEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InitialVelocity",
+                name_hash: 3508499596,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VehicleSpawnStateEntityData, initial_velocity),
             },
             FieldInfoData {
                 name: "StartupDelayModifier",
+                name_hash: 3073501154,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleSpawnStateEntityData, startup_delay_modifier),
             },
             FieldInfoData {
                 name: "InitialThrottle",
+                name_hash: 3556007987,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleSpawnStateEntityData, initial_throttle),
             },
             FieldInfoData {
                 name: "EngineIndex",
+                name_hash: 1485813685,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VehicleSpawnStateEntityData, engine_index),
             },
             FieldInfoData {
                 name: "InitialRpmModifier",
+                name_hash: 304191363,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleSpawnStateEntityData, initial_rpm_modifier),
             },
             FieldInfoData {
                 name: "HeightOffset",
+                name_hash: 1929779127,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleSpawnStateEntityData, height_offset),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleSpawnStateEntityData, radius),
@@ -14132,6 +14968,7 @@ impl TypeObject for VehicleSpawnStateEntityData {
 
 pub static VEHICLESPAWNSTATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleSpawnStateEntityData-Array",
+    name_hash: 103857518,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("VehicleSpawnStateEntityData"),
@@ -14140,7 +14977,8 @@ pub static VEHICLESPAWNSTATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMovingBodyData {
     pub _glacier_base: MovingBodyData,
     pub axis: super::core::Vec3,
@@ -14198,28 +15036,34 @@ impl super::core::DataContainerTrait for LinearMovingBodyData {
 
 pub static LINEARMOVINGBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMovingBodyData",
+    name_hash: 445295244,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MOVINGBODYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMovingBodyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMovingBodyData as Default>::default())),
+            create_boxed: || Box::new(<LinearMovingBodyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Axis",
+                name_hash: 2088662246,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LinearMovingBodyData, axis),
             },
             FieldInfoData {
                 name: "Start",
+                name_hash: 230748069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EndPointData",
                 rust_offset: offset_of!(LinearMovingBodyData, start),
             },
             FieldInfoData {
                 name: "End",
+                name_hash: 193438506,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EndPointData",
                 rust_offset: offset_of!(LinearMovingBodyData, end),
@@ -14251,6 +15095,7 @@ impl TypeObject for LinearMovingBodyData {
 
 pub static LINEARMOVINGBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMovingBodyData-Array",
+    name_hash: 3420338872,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("LinearMovingBodyData"),
@@ -14259,7 +15104,8 @@ pub static LINEARMOVINGBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EndPointData {
     pub pos: f32,
     pub end_damping: f32,
@@ -14316,39 +15162,46 @@ impl EndPointDataTrait for EndPointData {
 
 pub static ENDPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EndPointData",
+    name_hash: 2593859382,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EndPointData as Default>::default())),
+            create_boxed: || Box::new(<EndPointData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Pos",
+                name_hash: 193467465,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EndPointData, pos),
             },
             FieldInfoData {
                 name: "EndDamping",
+                name_hash: 2868914898,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EndPointData, end_damping),
             },
             FieldInfoData {
                 name: "SpringLength",
+                name_hash: 116753576,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EndPointData, spring_length),
             },
             FieldInfoData {
                 name: "SpringAcceleration",
+                name_hash: 820551190,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EndPointData, spring_acceleration),
             },
             FieldInfoData {
                 name: "SpringDamping",
+                name_hash: 1976598700,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EndPointData, spring_damping),
@@ -14380,6 +15233,7 @@ impl TypeObject for EndPointData {
 
 pub static ENDPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EndPointData-Array",
+    name_hash: 73751426,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("EndPointData"),
@@ -14388,7 +15242,8 @@ pub static ENDPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RotationBodyData {
     pub _glacier_base: MovingBodyData,
     pub angular_momentum_multiplier: f32,
@@ -14400,7 +15255,7 @@ pub struct RotationBodyData {
     pub angular_constraint_min: f32,
     pub angular_constraint_max: f32,
     pub rotation_axis: i32,
-    pub extended_constraints: Option<Arc<Mutex<dyn ExtendedConstraintsDataTrait>>>,
+    pub extended_constraints: Option<LockedTypeObject /* ExtendedConstraintsData */>,
     pub use_angular_momentum_threshold: bool,
     pub use_angular_momentum_damping: bool,
     pub use_angular_constraint: bool,
@@ -14425,8 +15280,8 @@ pub trait RotationBodyDataTrait: MovingBodyDataTrait {
     fn angular_constraint_max_mut(&mut self) -> &mut f32;
     fn rotation_axis(&self) -> &i32;
     fn rotation_axis_mut(&mut self) -> &mut i32;
-    fn extended_constraints(&self) -> &Option<Arc<Mutex<dyn ExtendedConstraintsDataTrait>>>;
-    fn extended_constraints_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ExtendedConstraintsDataTrait>>>;
+    fn extended_constraints(&self) -> &Option<LockedTypeObject /* ExtendedConstraintsData */>;
+    fn extended_constraints_mut(&mut self) -> &mut Option<LockedTypeObject /* ExtendedConstraintsData */>;
     fn use_angular_momentum_threshold(&self) -> &bool;
     fn use_angular_momentum_threshold_mut(&mut self) -> &mut bool;
     fn use_angular_momentum_damping(&self) -> &bool;
@@ -14490,10 +15345,10 @@ impl RotationBodyDataTrait for RotationBodyData {
     fn rotation_axis_mut(&mut self) -> &mut i32 {
         &mut self.rotation_axis
     }
-    fn extended_constraints(&self) -> &Option<Arc<Mutex<dyn ExtendedConstraintsDataTrait>>> {
+    fn extended_constraints(&self) -> &Option<LockedTypeObject /* ExtendedConstraintsData */> {
         &self.extended_constraints
     }
-    fn extended_constraints_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ExtendedConstraintsDataTrait>>> {
+    fn extended_constraints_mut(&mut self) -> &mut Option<LockedTypeObject /* ExtendedConstraintsData */> {
         &mut self.extended_constraints
     }
     fn use_angular_momentum_threshold(&self) -> &bool {
@@ -14536,88 +15391,104 @@ impl super::core::DataContainerTrait for RotationBodyData {
 
 pub static ROTATIONBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotationBodyData",
+    name_hash: 473704977,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MOVINGBODYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RotationBodyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RotationBodyData as Default>::default())),
+            create_boxed: || Box::new(<RotationBodyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AngularMomentumMultiplier",
+                name_hash: 2539978340,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotationBodyData, angular_momentum_multiplier),
             },
             FieldInfoData {
                 name: "AngularMomentumThreshold",
+                name_hash: 3648174776,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotationBodyData, angular_momentum_threshold),
             },
             FieldInfoData {
                 name: "AngularMomentumDamping",
+                name_hash: 408122487,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotationBodyData, angular_momentum_damping),
             },
             FieldInfoData {
                 name: "AngularMomentumDampingAcc",
+                name_hash: 3679394870,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotationBodyData, angular_momentum_damping_acc),
             },
             FieldInfoData {
                 name: "AngularMomentumDampingDeacc",
+                name_hash: 3945782551,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotationBodyData, angular_momentum_damping_deacc),
             },
             FieldInfoData {
                 name: "UsePostSatisfyConstraints",
+                name_hash: 2580431755,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RotationBodyData, use_post_satisfy_constraints),
             },
             FieldInfoData {
                 name: "AngularConstraintMin",
+                name_hash: 731814824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotationBodyData, angular_constraint_min),
             },
             FieldInfoData {
                 name: "AngularConstraintMax",
+                name_hash: 731815094,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotationBodyData, angular_constraint_max),
             },
             FieldInfoData {
                 name: "RotationAxis",
+                name_hash: 3148542130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RotationBodyData, rotation_axis),
             },
             FieldInfoData {
                 name: "ExtendedConstraints",
+                name_hash: 1460566804,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ExtendedConstraintsData",
                 rust_offset: offset_of!(RotationBodyData, extended_constraints),
             },
             FieldInfoData {
                 name: "UseAngularMomentumThreshold",
+                name_hash: 1737105787,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RotationBodyData, use_angular_momentum_threshold),
             },
             FieldInfoData {
                 name: "UseAngularMomentumDamping",
+                name_hash: 246050484,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RotationBodyData, use_angular_momentum_damping),
             },
             FieldInfoData {
                 name: "UseAngularConstraint",
+                name_hash: 3510444449,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RotationBodyData, use_angular_constraint),
@@ -14649,6 +15520,7 @@ impl TypeObject for RotationBodyData {
 
 pub static ROTATIONBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotationBodyData-Array",
+    name_hash: 1462758309,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RotationBodyData"),
@@ -14657,7 +15529,8 @@ pub static ROTATIONBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ExtendedConstraintsData {
     pub _glacier_base: super::core::DataContainer,
     pub heading: f32,
@@ -14718,40 +15591,48 @@ impl super::core::DataContainerTrait for ExtendedConstraintsData {
 
 pub static EXTENDEDCONSTRAINTSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExtendedConstraintsData",
+    name_hash: 3781050916,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(ExtendedConstraintsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ExtendedConstraintsData as Default>::default())),
+            create_boxed: || Box::new(<ExtendedConstraintsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Heading",
+                name_hash: 2009143629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ExtendedConstraintsData, heading),
             },
             FieldInfoData {
                 name: "Width",
+                name_hash: 226981187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ExtendedConstraintsData, width),
             },
             FieldInfoData {
                 name: "Falloff",
+                name_hash: 1431733965,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ExtendedConstraintsData, falloff),
             },
             FieldInfoData {
                 name: "AngularConstraintMin",
+                name_hash: 731814824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ExtendedConstraintsData, angular_constraint_min),
             },
             FieldInfoData {
                 name: "AngularConstraintMax",
+                name_hash: 731815094,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ExtendedConstraintsData, angular_constraint_max),
@@ -14783,6 +15664,7 @@ impl TypeObject for ExtendedConstraintsData {
 
 pub static EXTENDEDCONSTRAINTSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExtendedConstraintsData-Array",
+    name_hash: 201684368,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ExtendedConstraintsData"),
@@ -14791,7 +15673,8 @@ pub static EXTENDEDCONSTRAINTSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MovingBodyData {
     pub _glacier_base: super::core::DataContainer,
     pub mass: f32,
@@ -14825,22 +15708,27 @@ impl super::core::DataContainerTrait for MovingBodyData {
 
 pub static MOVINGBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovingBodyData",
+    name_hash: 400231633,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(MovingBodyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MovingBodyData as Default>::default())),
+            create_boxed: || Box::new(<MovingBodyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Mass",
+                name_hash: 2088779625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MovingBodyData, mass),
             },
             FieldInfoData {
                 name: "Inertia",
+                name_hash: 1681436809,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MovingBodyData, inertia),
@@ -14872,6 +15760,7 @@ impl TypeObject for MovingBodyData {
 
 pub static MOVINGBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovingBodyData-Array",
+    name_hash: 2916736741,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("MovingBodyData"),
@@ -14880,7 +15769,8 @@ pub static MOVINGBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CameraLoosePartPhysicsData {
     pub _glacier_base: LoosePartPhysicsData,
     pub scale: f32,
@@ -14901,10 +15791,10 @@ impl CameraLoosePartPhysicsDataTrait for CameraLoosePartPhysicsData {
 }
 
 impl LoosePartPhysicsDataTrait for CameraLoosePartPhysicsData {
-    fn fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn fake_physics(&self) -> &Option<LockedTypeObject /* FakePhysicsData */> {
         self._glacier_base.fake_physics()
     }
-    fn fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn fake_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FakePhysicsData */> {
         self._glacier_base.fake_physics_mut()
     }
 }
@@ -14914,16 +15804,20 @@ impl super::core::DataContainerTrait for CameraLoosePartPhysicsData {
 
 pub static CAMERALOOSEPARTPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraLoosePartPhysicsData",
+    name_hash: 4014730698,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOOSEPARTPHYSICSDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CameraLoosePartPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CameraLoosePartPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<CameraLoosePartPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraLoosePartPhysicsData, scale),
@@ -14955,6 +15849,7 @@ impl TypeObject for CameraLoosePartPhysicsData {
 
 pub static CAMERALOOSEPARTPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraLoosePartPhysicsData-Array",
+    name_hash: 2878454142,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CameraLoosePartPhysicsData"),
@@ -14963,7 +15858,8 @@ pub static CAMERALOOSEPARTPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkableLoosePartPhysicsData {
     pub _glacier_base: LoosePartPhysicsData,
     pub networked: bool,
@@ -14984,10 +15880,10 @@ impl NetworkableLoosePartPhysicsDataTrait for NetworkableLoosePartPhysicsData {
 }
 
 impl LoosePartPhysicsDataTrait for NetworkableLoosePartPhysicsData {
-    fn fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn fake_physics(&self) -> &Option<LockedTypeObject /* FakePhysicsData */> {
         self._glacier_base.fake_physics()
     }
-    fn fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn fake_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FakePhysicsData */> {
         self._glacier_base.fake_physics_mut()
     }
 }
@@ -14997,16 +15893,20 @@ impl super::core::DataContainerTrait for NetworkableLoosePartPhysicsData {
 
 pub static NETWORKABLELOOSEPARTPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkableLoosePartPhysicsData",
+    name_hash: 187184871,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOOSEPARTPHYSICSDATA_TYPE_INFO),
+        super_class_offset: offset_of!(NetworkableLoosePartPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkableLoosePartPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<NetworkableLoosePartPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Networked",
+                name_hash: 1516563994,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NetworkableLoosePartPhysicsData, networked),
@@ -15038,6 +15938,7 @@ impl TypeObject for NetworkableLoosePartPhysicsData {
 
 pub static NETWORKABLELOOSEPARTPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkableLoosePartPhysicsData-Array",
+    name_hash: 1576515795,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("NetworkableLoosePartPhysicsData"),
@@ -15046,22 +15947,23 @@ pub static NETWORKABLELOOSEPARTPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LoosePartPhysicsData {
     pub _glacier_base: super::core::DataContainer,
-    pub fake_physics: Option<Arc<Mutex<dyn FakePhysicsDataTrait>>>,
+    pub fake_physics: Option<LockedTypeObject /* FakePhysicsData */>,
 }
 
 pub trait LoosePartPhysicsDataTrait: super::core::DataContainerTrait {
-    fn fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>>;
-    fn fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>>;
+    fn fake_physics(&self) -> &Option<LockedTypeObject /* FakePhysicsData */>;
+    fn fake_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FakePhysicsData */>;
 }
 
 impl LoosePartPhysicsDataTrait for LoosePartPhysicsData {
-    fn fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn fake_physics(&self) -> &Option<LockedTypeObject /* FakePhysicsData */> {
         &self.fake_physics
     }
-    fn fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn fake_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FakePhysicsData */> {
         &mut self.fake_physics
     }
 }
@@ -15071,16 +15973,20 @@ impl super::core::DataContainerTrait for LoosePartPhysicsData {
 
 pub static LOOSEPARTPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LoosePartPhysicsData",
+    name_hash: 1654408947,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LoosePartPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LoosePartPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<LoosePartPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FakePhysics",
+                name_hash: 3614234055,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FakePhysicsData",
                 rust_offset: offset_of!(LoosePartPhysicsData, fake_physics),
@@ -15112,6 +16018,7 @@ impl TypeObject for LoosePartPhysicsData {
 
 pub static LOOSEPARTPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LoosePartPhysicsData-Array",
+    name_hash: 3465208519,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("LoosePartPhysicsData"),
@@ -15120,7 +16027,8 @@ pub static LOOSEPARTPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WheelConfigMotorbikeData {
     pub _glacier_base: WheelConfigData,
     pub max_spring_force: f32,
@@ -15171,10 +16079,10 @@ impl WheelConfigDataTrait for WheelConfigMotorbikeData {
     fn inertia_mut(&mut self) -> &mut super::core::Vec3 {
         self._glacier_base.inertia_mut()
     }
-    fn rotation_body(&self) -> &Option<Arc<Mutex<dyn RotationBodyDataTrait>>> {
+    fn rotation_body(&self) -> &Option<LockedTypeObject /* RotationBodyData */> {
         self._glacier_base.rotation_body()
     }
-    fn rotation_body_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RotationBodyDataTrait>>> {
+    fn rotation_body_mut(&mut self) -> &mut Option<LockedTypeObject /* RotationBodyData */> {
         self._glacier_base.rotation_body_mut()
     }
     fn sphere_collision(&self) -> &SphereCollisionData {
@@ -15243,10 +16151,10 @@ impl WheelConfigDataTrait for WheelConfigMotorbikeData {
     fn engine_brake_max_factor_mut(&mut self) -> &mut f32 {
         self._glacier_base.engine_brake_max_factor_mut()
     }
-    fn transmission_loss(&self) -> &Vec<super::core::Vec2> {
+    fn transmission_loss(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */> {
         self._glacier_base.transmission_loss()
     }
-    fn transmission_loss_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+    fn transmission_loss_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */> {
         self._glacier_base.transmission_loss_mut()
     }
     fn diff_gear_ratio(&self) -> &f32 {
@@ -15315,16 +16223,16 @@ impl WheelConfigDataTrait for WheelConfigMotorbikeData {
     fn tracked_slip_steer_reduction_scale_mut(&mut self) -> &mut f32 {
         self._glacier_base.tracked_slip_steer_reduction_scale_mut()
     }
-    fn steer_inertia(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>> {
+    fn steer_inertia(&self) -> &Option<LockedTypeObject /* Curve2D */> {
         self._glacier_base.steer_inertia()
     }
-    fn steer_inertia_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>> {
+    fn steer_inertia_mut(&mut self) -> &mut Option<LockedTypeObject /* Curve2D */> {
         self._glacier_base.steer_inertia_mut()
     }
-    fn steering_sensitivity(&self) -> &Vec<SensitivityAtVelocity> {
+    fn steering_sensitivity(&self) -> &Vec<BoxedTypeObject /* SensitivityAtVelocity */> {
         self._glacier_base.steering_sensitivity()
     }
-    fn steering_sensitivity_mut(&mut self) -> &mut Vec<SensitivityAtVelocity> {
+    fn steering_sensitivity_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SensitivityAtVelocity */> {
         self._glacier_base.steering_sensitivity_mut()
     }
     fn tracked_steering_boost_on_opposite_torque(&self) -> &f32 {
@@ -15399,16 +16307,16 @@ impl WheelConfigDataTrait for WheelConfigMotorbikeData {
     fn allow_grip_slip_transition_mut(&mut self) -> &mut bool {
         self._glacier_base.allow_grip_slip_transition_mut()
     }
-    fn longitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity> {
+    fn longitude_friction_scale(&self) -> &Vec<BoxedTypeObject /* FrictionScaleAtVelocity */> {
         self._glacier_base.longitude_friction_scale()
     }
-    fn longitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity> {
+    fn longitude_friction_scale_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FrictionScaleAtVelocity */> {
         self._glacier_base.longitude_friction_scale_mut()
     }
-    fn lattitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity> {
+    fn lattitude_friction_scale(&self) -> &Vec<BoxedTypeObject /* FrictionScaleAtVelocity */> {
         self._glacier_base.lattitude_friction_scale()
     }
-    fn lattitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity> {
+    fn lattitude_friction_scale_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FrictionScaleAtVelocity */> {
         self._glacier_base.lattitude_friction_scale_mut()
     }
     fn wheel_friction_lattitude_brake_scale(&self) -> &f32 {
@@ -15646,28 +16554,34 @@ impl super::core::DataContainerTrait for WheelConfigMotorbikeData {
 
 pub static WHEELCONFIGMOTORBIKEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WheelConfigMotorbikeData",
+    name_hash: 1716900258,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WHEELCONFIGDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WheelConfigMotorbikeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WheelConfigMotorbikeData as Default>::default())),
+            create_boxed: || Box::new(<WheelConfigMotorbikeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxSpringForce",
+                name_hash: 140975709,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigMotorbikeData, max_spring_force),
             },
             FieldInfoData {
                 name: "CollisionYawDampeningDuration",
+                name_hash: 1688291961,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigMotorbikeData, collision_yaw_dampening_duration),
             },
             FieldInfoData {
                 name: "CollisionYawDampening",
+                name_hash: 659118567,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigMotorbikeData, collision_yaw_dampening),
@@ -15699,6 +16613,7 @@ impl TypeObject for WheelConfigMotorbikeData {
 
 pub static WHEELCONFIGMOTORBIKEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WheelConfigMotorbikeData-Array",
+    name_hash: 3963842582,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("WheelConfigMotorbikeData"),
@@ -15707,12 +16622,13 @@ pub static WHEELCONFIGMOTORBIKEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WheelConfigData {
     pub _glacier_base: super::core::DataContainer,
     pub offset: super::core::Vec3,
     pub inertia: super::core::Vec3,
-    pub rotation_body: Option<Arc<Mutex<dyn RotationBodyDataTrait>>>,
+    pub rotation_body: Option<LockedTypeObject /* RotationBodyData */>,
     pub sphere_collision: SphereCollisionData,
     pub spring: SpringData,
     pub mass: f32,
@@ -15724,7 +16640,7 @@ pub struct WheelConfigData {
     pub engine_brake_velocity_factor: f32,
     pub engine_brake_min_factor: f32,
     pub engine_brake_max_factor: f32,
-    pub transmission_loss: Vec<super::core::Vec2>,
+    pub transmission_loss: Vec<BoxedTypeObject /* super::core::Vec2 */>,
     pub diff_gear_ratio: f32,
     pub low_speed_steering_sensitivity: f32,
     pub mid_speed_steering_sensitivity: f32,
@@ -15736,8 +16652,8 @@ pub struct WheelConfigData {
     pub tracked_turn_speed_limit: f32,
     pub tracked_forward_speed_limit: f32,
     pub tracked_slip_steer_reduction_scale: f32,
-    pub steer_inertia: Option<Arc<Mutex<dyn Curve2DTrait>>>,
-    pub steering_sensitivity: Vec<SensitivityAtVelocity>,
+    pub steer_inertia: Option<LockedTypeObject /* Curve2D */>,
+    pub steering_sensitivity: Vec<BoxedTypeObject /* SensitivityAtVelocity */>,
     pub tracked_steering_boost_on_opposite_torque: f32,
     pub slope_grip_min_angle: f32,
     pub slope_grip_max_angle: f32,
@@ -15750,8 +16666,8 @@ pub struct WheelConfigData {
     pub longitudinal_friction_force_max_factor: f32,
     pub lateral_friction_force_max_factor: f32,
     pub allow_grip_slip_transition: bool,
-    pub longitude_friction_scale: Vec<FrictionScaleAtVelocity>,
-    pub lattitude_friction_scale: Vec<FrictionScaleAtVelocity>,
+    pub longitude_friction_scale: Vec<BoxedTypeObject /* FrictionScaleAtVelocity */>,
+    pub lattitude_friction_scale: Vec<BoxedTypeObject /* FrictionScaleAtVelocity */>,
     pub wheel_friction_lattitude_brake_scale: f32,
     pub resistance: f32,
     pub fx_torque_radius_multiplier: f32,
@@ -15797,8 +16713,8 @@ pub trait WheelConfigDataTrait: super::core::DataContainerTrait {
     fn offset_mut(&mut self) -> &mut super::core::Vec3;
     fn inertia(&self) -> &super::core::Vec3;
     fn inertia_mut(&mut self) -> &mut super::core::Vec3;
-    fn rotation_body(&self) -> &Option<Arc<Mutex<dyn RotationBodyDataTrait>>>;
-    fn rotation_body_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RotationBodyDataTrait>>>;
+    fn rotation_body(&self) -> &Option<LockedTypeObject /* RotationBodyData */>;
+    fn rotation_body_mut(&mut self) -> &mut Option<LockedTypeObject /* RotationBodyData */>;
     fn sphere_collision(&self) -> &SphereCollisionData;
     fn sphere_collision_mut(&mut self) -> &mut SphereCollisionData;
     fn spring(&self) -> &SpringData;
@@ -15821,8 +16737,8 @@ pub trait WheelConfigDataTrait: super::core::DataContainerTrait {
     fn engine_brake_min_factor_mut(&mut self) -> &mut f32;
     fn engine_brake_max_factor(&self) -> &f32;
     fn engine_brake_max_factor_mut(&mut self) -> &mut f32;
-    fn transmission_loss(&self) -> &Vec<super::core::Vec2>;
-    fn transmission_loss_mut(&mut self) -> &mut Vec<super::core::Vec2>;
+    fn transmission_loss(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn transmission_loss_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */>;
     fn diff_gear_ratio(&self) -> &f32;
     fn diff_gear_ratio_mut(&mut self) -> &mut f32;
     fn low_speed_steering_sensitivity(&self) -> &f32;
@@ -15845,10 +16761,10 @@ pub trait WheelConfigDataTrait: super::core::DataContainerTrait {
     fn tracked_forward_speed_limit_mut(&mut self) -> &mut f32;
     fn tracked_slip_steer_reduction_scale(&self) -> &f32;
     fn tracked_slip_steer_reduction_scale_mut(&mut self) -> &mut f32;
-    fn steer_inertia(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>>;
-    fn steer_inertia_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>>;
-    fn steering_sensitivity(&self) -> &Vec<SensitivityAtVelocity>;
-    fn steering_sensitivity_mut(&mut self) -> &mut Vec<SensitivityAtVelocity>;
+    fn steer_inertia(&self) -> &Option<LockedTypeObject /* Curve2D */>;
+    fn steer_inertia_mut(&mut self) -> &mut Option<LockedTypeObject /* Curve2D */>;
+    fn steering_sensitivity(&self) -> &Vec<BoxedTypeObject /* SensitivityAtVelocity */>;
+    fn steering_sensitivity_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SensitivityAtVelocity */>;
     fn tracked_steering_boost_on_opposite_torque(&self) -> &f32;
     fn tracked_steering_boost_on_opposite_torque_mut(&mut self) -> &mut f32;
     fn slope_grip_min_angle(&self) -> &f32;
@@ -15873,10 +16789,10 @@ pub trait WheelConfigDataTrait: super::core::DataContainerTrait {
     fn lateral_friction_force_max_factor_mut(&mut self) -> &mut f32;
     fn allow_grip_slip_transition(&self) -> &bool;
     fn allow_grip_slip_transition_mut(&mut self) -> &mut bool;
-    fn longitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity>;
-    fn longitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity>;
-    fn lattitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity>;
-    fn lattitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity>;
+    fn longitude_friction_scale(&self) -> &Vec<BoxedTypeObject /* FrictionScaleAtVelocity */>;
+    fn longitude_friction_scale_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FrictionScaleAtVelocity */>;
+    fn lattitude_friction_scale(&self) -> &Vec<BoxedTypeObject /* FrictionScaleAtVelocity */>;
+    fn lattitude_friction_scale_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FrictionScaleAtVelocity */>;
     fn wheel_friction_lattitude_brake_scale(&self) -> &f32;
     fn wheel_friction_lattitude_brake_scale_mut(&mut self) -> &mut f32;
     fn resistance(&self) -> &f32;
@@ -15968,10 +16884,10 @@ impl WheelConfigDataTrait for WheelConfigData {
     fn inertia_mut(&mut self) -> &mut super::core::Vec3 {
         &mut self.inertia
     }
-    fn rotation_body(&self) -> &Option<Arc<Mutex<dyn RotationBodyDataTrait>>> {
+    fn rotation_body(&self) -> &Option<LockedTypeObject /* RotationBodyData */> {
         &self.rotation_body
     }
-    fn rotation_body_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RotationBodyDataTrait>>> {
+    fn rotation_body_mut(&mut self) -> &mut Option<LockedTypeObject /* RotationBodyData */> {
         &mut self.rotation_body
     }
     fn sphere_collision(&self) -> &SphereCollisionData {
@@ -16040,10 +16956,10 @@ impl WheelConfigDataTrait for WheelConfigData {
     fn engine_brake_max_factor_mut(&mut self) -> &mut f32 {
         &mut self.engine_brake_max_factor
     }
-    fn transmission_loss(&self) -> &Vec<super::core::Vec2> {
+    fn transmission_loss(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &self.transmission_loss
     }
-    fn transmission_loss_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+    fn transmission_loss_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &mut self.transmission_loss
     }
     fn diff_gear_ratio(&self) -> &f32 {
@@ -16112,16 +17028,16 @@ impl WheelConfigDataTrait for WheelConfigData {
     fn tracked_slip_steer_reduction_scale_mut(&mut self) -> &mut f32 {
         &mut self.tracked_slip_steer_reduction_scale
     }
-    fn steer_inertia(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>> {
+    fn steer_inertia(&self) -> &Option<LockedTypeObject /* Curve2D */> {
         &self.steer_inertia
     }
-    fn steer_inertia_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>> {
+    fn steer_inertia_mut(&mut self) -> &mut Option<LockedTypeObject /* Curve2D */> {
         &mut self.steer_inertia
     }
-    fn steering_sensitivity(&self) -> &Vec<SensitivityAtVelocity> {
+    fn steering_sensitivity(&self) -> &Vec<BoxedTypeObject /* SensitivityAtVelocity */> {
         &self.steering_sensitivity
     }
-    fn steering_sensitivity_mut(&mut self) -> &mut Vec<SensitivityAtVelocity> {
+    fn steering_sensitivity_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SensitivityAtVelocity */> {
         &mut self.steering_sensitivity
     }
     fn tracked_steering_boost_on_opposite_torque(&self) -> &f32 {
@@ -16196,16 +17112,16 @@ impl WheelConfigDataTrait for WheelConfigData {
     fn allow_grip_slip_transition_mut(&mut self) -> &mut bool {
         &mut self.allow_grip_slip_transition
     }
-    fn longitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity> {
+    fn longitude_friction_scale(&self) -> &Vec<BoxedTypeObject /* FrictionScaleAtVelocity */> {
         &self.longitude_friction_scale
     }
-    fn longitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity> {
+    fn longitude_friction_scale_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FrictionScaleAtVelocity */> {
         &mut self.longitude_friction_scale
     }
-    fn lattitude_friction_scale(&self) -> &Vec<FrictionScaleAtVelocity> {
+    fn lattitude_friction_scale(&self) -> &Vec<BoxedTypeObject /* FrictionScaleAtVelocity */> {
         &self.lattitude_friction_scale
     }
-    fn lattitude_friction_scale_mut(&mut self) -> &mut Vec<FrictionScaleAtVelocity> {
+    fn lattitude_friction_scale_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FrictionScaleAtVelocity */> {
         &mut self.lattitude_friction_scale
     }
     fn wheel_friction_lattitude_brake_scale(&self) -> &f32 {
@@ -16443,490 +17359,573 @@ impl super::core::DataContainerTrait for WheelConfigData {
 
 pub static WHEELCONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WheelConfigData",
+    name_hash: 1417450060,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(WheelConfigData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WheelConfigData as Default>::default())),
+            create_boxed: || Box::new(<WheelConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Offset",
+                name_hash: 2871410728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(WheelConfigData, offset),
             },
             FieldInfoData {
                 name: "Inertia",
+                name_hash: 1681436809,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(WheelConfigData, inertia),
             },
             FieldInfoData {
                 name: "RotationBody",
+                name_hash: 3148736225,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RotationBodyData",
                 rust_offset: offset_of!(WheelConfigData, rotation_body),
             },
             FieldInfoData {
                 name: "SphereCollision",
+                name_hash: 2517711074,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SphereCollisionData",
                 rust_offset: offset_of!(WheelConfigData, sphere_collision),
             },
             FieldInfoData {
                 name: "Spring",
+                name_hash: 3324856916,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SpringData",
                 rust_offset: offset_of!(WheelConfigData, spring),
             },
             FieldInfoData {
                 name: "Mass",
+                name_hash: 2088779625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, mass),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, radius),
             },
             FieldInfoData {
                 name: "Width",
+                name_hash: 226981187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, width),
             },
             FieldInfoData {
                 name: "RollingResistanceInternalBaseFactor",
+                name_hash: 313472228,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, rolling_resistance_internal_base_factor),
             },
             FieldInfoData {
                 name: "RollingResistanceBaseFactor",
+                name_hash: 1977241987,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, rolling_resistance_base_factor),
             },
             FieldInfoData {
                 name: "RollingResistanceVelocityFactor",
+                name_hash: 3215467073,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, rolling_resistance_velocity_factor),
             },
             FieldInfoData {
                 name: "EngineBrakeVelocityFactor",
+                name_hash: 3527754894,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, engine_brake_velocity_factor),
             },
             FieldInfoData {
                 name: "EngineBrakeMinFactor",
+                name_hash: 1444818995,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, engine_brake_min_factor),
             },
             FieldInfoData {
                 name: "EngineBrakeMaxFactor",
+                name_hash: 1018553005,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, engine_brake_max_factor),
             },
             FieldInfoData {
                 name: "TransmissionLoss",
+                name_hash: 1052226128,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec2-Array",
                 rust_offset: offset_of!(WheelConfigData, transmission_loss),
             },
             FieldInfoData {
                 name: "DiffGearRatio",
+                name_hash: 424954360,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, diff_gear_ratio),
             },
             FieldInfoData {
                 name: "LowSpeedSteeringSensitivity",
+                name_hash: 4128407246,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, low_speed_steering_sensitivity),
             },
             FieldInfoData {
                 name: "MidSpeedSteeringSensitivity",
+                name_hash: 2353241178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, mid_speed_steering_sensitivity),
             },
             FieldInfoData {
                 name: "HighSpeedSteeringSensitivity",
+                name_hash: 1468359572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, high_speed_steering_sensitivity),
             },
             FieldInfoData {
                 name: "SensitivityRangeScale",
+                name_hash: 1713265071,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, sensitivity_range_scale),
             },
             FieldInfoData {
                 name: "LowSpeedSteeringSensitivityLimit",
+                name_hash: 1606276251,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, low_speed_steering_sensitivity_limit),
             },
             FieldInfoData {
                 name: "MidSpeedSteeringSensitivityLimit",
+                name_hash: 1766583183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, mid_speed_steering_sensitivity_limit),
             },
             FieldInfoData {
                 name: "HighSpeedSteeringSensitivityLimit",
+                name_hash: 525306113,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, high_speed_steering_sensitivity_limit),
             },
             FieldInfoData {
                 name: "TrackedTurnSpeedLimit",
+                name_hash: 2598948484,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, tracked_turn_speed_limit),
             },
             FieldInfoData {
                 name: "TrackedForwardSpeedLimit",
+                name_hash: 1013932930,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, tracked_forward_speed_limit),
             },
             FieldInfoData {
                 name: "TrackedSlipSteerReductionScale",
+                name_hash: 3052289657,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, tracked_slip_steer_reduction_scale),
             },
             FieldInfoData {
                 name: "SteerInertia",
+                name_hash: 848827836,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Curve2D",
                 rust_offset: offset_of!(WheelConfigData, steer_inertia),
             },
             FieldInfoData {
                 name: "SteeringSensitivity",
+                name_hash: 1426555133,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SensitivityAtVelocity-Array",
                 rust_offset: offset_of!(WheelConfigData, steering_sensitivity),
             },
             FieldInfoData {
                 name: "TrackedSteeringBoostOnOppositeTorque",
+                name_hash: 2873808761,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, tracked_steering_boost_on_opposite_torque),
             },
             FieldInfoData {
                 name: "SlopeGripMinAngle",
+                name_hash: 2194066087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, slope_grip_min_angle),
             },
             FieldInfoData {
                 name: "SlopeGripMaxAngle",
+                name_hash: 1317962745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, slope_grip_max_angle),
             },
             FieldInfoData {
                 name: "SlopeGripExponent",
+                name_hash: 1902079775,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WheelConfigData, slope_grip_exponent),
             },
             FieldInfoData {
                 name: "OffGroundGravityModifier",
+                name_hash: 2849668638,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, off_ground_gravity_modifier),
             },
             FieldInfoData {
                 name: "SideSlipAngleMaxSlipCondition",
+                name_hash: 3875040376,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, side_slip_angle_max_slip_condition),
             },
             FieldInfoData {
                 name: "AngularVelocityMinSlipCondition",
+                name_hash: 3049185647,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, angular_velocity_min_slip_condition),
             },
             FieldInfoData {
                 name: "WheelVelocityXMinSlipCondition",
+                name_hash: 3555418854,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, wheel_velocity_x_min_slip_condition),
             },
             FieldInfoData {
                 name: "WheelSlipRatioMaxSlipCondition",
+                name_hash: 4035440,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, wheel_slip_ratio_max_slip_condition),
             },
             FieldInfoData {
                 name: "LongitudinalFrictionForceMaxFactor",
+                name_hash: 4145733487,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, longitudinal_friction_force_max_factor),
             },
             FieldInfoData {
                 name: "LateralFrictionForceMaxFactor",
+                name_hash: 267896320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, lateral_friction_force_max_factor),
             },
             FieldInfoData {
                 name: "AllowGripSlipTransition",
+                name_hash: 1229210137,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WheelConfigData, allow_grip_slip_transition),
             },
             FieldInfoData {
                 name: "LongitudeFrictionScale",
+                name_hash: 1528459772,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FrictionScaleAtVelocity-Array",
                 rust_offset: offset_of!(WheelConfigData, longitude_friction_scale),
             },
             FieldInfoData {
                 name: "LattitudeFrictionScale",
+                name_hash: 2093823291,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FrictionScaleAtVelocity-Array",
                 rust_offset: offset_of!(WheelConfigData, lattitude_friction_scale),
             },
             FieldInfoData {
                 name: "WheelFrictionLattitudeBrakeScale",
+                name_hash: 3639987319,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, wheel_friction_lattitude_brake_scale),
             },
             FieldInfoData {
                 name: "Resistance",
+                name_hash: 61696806,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, resistance),
             },
             FieldInfoData {
                 name: "FxTorqueRadiusMultiplier",
+                name_hash: 667791392,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, fx_torque_radius_multiplier),
             },
             FieldInfoData {
                 name: "FrictionMomentVelocityMin",
+                name_hash: 1187371114,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, friction_moment_velocity_min),
             },
             FieldInfoData {
                 name: "FrictionMomentVelocityMax",
+                name_hash: 1187371380,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, friction_moment_velocity_max),
             },
             FieldInfoData {
                 name: "FrictionMomentMultiplier",
+                name_hash: 2140919388,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, friction_moment_multiplier),
             },
             FieldInfoData {
                 name: "FrictionMomentMaxFactor",
+                name_hash: 862687406,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, friction_moment_max_factor),
             },
             FieldInfoData {
                 name: "BrakeFactor",
+                name_hash: 1705735991,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, brake_factor),
             },
             FieldInfoData {
                 name: "BrakeForce",
+                name_hash: 3435369031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, brake_force),
             },
             FieldInfoData {
                 name: "AutoHandBrakeIfNoThrottleAndSteer",
+                name_hash: 4027555182,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WheelConfigData, auto_hand_brake_if_no_throttle_and_steer),
             },
             FieldInfoData {
                 name: "HandBrakeFactor",
+                name_hash: 575415412,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, hand_brake_factor),
             },
             FieldInfoData {
                 name: "HandBrakeForce",
+                name_hash: 2880094372,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, hand_brake_force),
             },
             FieldInfoData {
                 name: "TotalFrictionScale",
+                name_hash: 4120812253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, total_friction_scale),
             },
             FieldInfoData {
                 name: "TotalLateralFrictionScale",
+                name_hash: 4071760574,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, total_lateral_friction_scale),
             },
             FieldInfoData {
                 name: "LateralPosK",
+                name_hash: 1794073761,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, lateral_pos_k),
             },
             FieldInfoData {
                 name: "LateralNegK",
+                name_hash: 1793716961,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, lateral_neg_k),
             },
             FieldInfoData {
                 name: "LongitudinalPosK",
+                name_hash: 2235876046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, longitudinal_pos_k),
             },
             FieldInfoData {
                 name: "LongitudinalNegK",
+                name_hash: 2235083918,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, longitudinal_neg_k),
             },
             FieldInfoData {
                 name: "AlignMomScale",
+                name_hash: 3964733375,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, align_mom_scale),
             },
             FieldInfoData {
                 name: "WheelBaseLateral",
+                name_hash: 29121024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, wheel_base_lateral),
             },
             FieldInfoData {
                 name: "WheelBaseLongitudinal",
+                name_hash: 1965622255,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WheelConfigData, wheel_base_longitudinal),
             },
             FieldInfoData {
                 name: "DrivingType",
+                name_hash: 3293344276,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WheelConfigData, driving_type),
             },
             FieldInfoData {
                 name: "SteeringType",
+                name_hash: 2522217992,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WheelConfigData, steering_type),
             },
             FieldInfoData {
                 name: "FrictionMethod",
+                name_hash: 512648344,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WheelConfigData, friction_method),
             },
             FieldInfoData {
                 name: "RotationDirectionIndex",
+                name_hash: 3008488874,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WheelConfigData, rotation_direction_index),
             },
             FieldInfoData {
                 name: "SteeringAngleIndex",
+                name_hash: 892311087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WheelConfigData, steering_angle_index),
             },
             FieldInfoData {
                 name: "PacejkaConfigIndex",
+                name_hash: 2476871494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WheelConfigData, pacejka_config_index),
             },
             FieldInfoData {
                 name: "EngineIndex",
+                name_hash: 1485813685,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WheelConfigData, engine_index),
             },
             FieldInfoData {
                 name: "AckermanDeviceType",
+                name_hash: 508374905,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WheelConfigData, ackerman_device_type),
             },
             FieldInfoData {
                 name: "UseRollingResistanceVelocityFactor",
+                name_hash: 1119393506,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WheelConfigData, use_rolling_resistance_velocity_factor),
             },
             FieldInfoData {
                 name: "UseRollingResistanceBaseFactor",
+                name_hash: 3566324640,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WheelConfigData, use_rolling_resistance_base_factor),
             },
             FieldInfoData {
                 name: "UseEngineBrake",
+                name_hash: 4151667607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WheelConfigData, use_engine_brake),
             },
             FieldInfoData {
                 name: "IsAllowedToSpin",
+                name_hash: 3369853368,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WheelConfigData, is_allowed_to_spin),
             },
             FieldInfoData {
                 name: "HasSteeringInverted",
+                name_hash: 1649025497,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WheelConfigData, has_steering_inverted),
             },
             FieldInfoData {
                 name: "UseFrictionMoment",
+                name_hash: 4263491220,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WheelConfigData, use_friction_moment),
             },
             FieldInfoData {
                 name: "UseLowSpeedAutoBrake",
+                name_hash: 389204645,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WheelConfigData, use_low_speed_auto_brake),
             },
             FieldInfoData {
                 name: "AdjustWheelRotation",
+                name_hash: 2477470367,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WheelConfigData, adjust_wheel_rotation),
             },
             FieldInfoData {
                 name: "CollisionMaterialPair",
+                name_hash: 810888378,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialDecl",
                 rust_offset: offset_of!(WheelConfigData, collision_material_pair),
@@ -16958,6 +17957,7 @@ impl TypeObject for WheelConfigData {
 
 pub static WHEELCONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WheelConfigData-Array",
+    name_hash: 2278748920,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("WheelConfigData"),
@@ -16966,7 +17966,8 @@ pub static WHEELCONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FrictionScaleAtVelocity {
     pub friction_scale: f32,
     pub velocity: f32,
@@ -16996,21 +17997,25 @@ impl FrictionScaleAtVelocityTrait for FrictionScaleAtVelocity {
 
 pub static FRICTIONSCALEATVELOCITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FrictionScaleAtVelocity",
+    name_hash: 1306700349,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FrictionScaleAtVelocity as Default>::default())),
+            create_boxed: || Box::new(<FrictionScaleAtVelocity as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FrictionScale",
+                name_hash: 2895078207,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FrictionScaleAtVelocity, friction_scale),
             },
             FieldInfoData {
                 name: "Velocity",
+                name_hash: 3860766482,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FrictionScaleAtVelocity, velocity),
@@ -17042,6 +18047,7 @@ impl TypeObject for FrictionScaleAtVelocity {
 
 pub static FRICTIONSCALEATVELOCITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FrictionScaleAtVelocity-Array",
+    name_hash: 1528907401,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FrictionScaleAtVelocity"),
@@ -17050,7 +18056,8 @@ pub static FRICTIONSCALEATVELOCITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SensitivityAtVelocity {
     pub steering_sensitivity: f32,
     pub velocity: f32,
@@ -17080,21 +18087,25 @@ impl SensitivityAtVelocityTrait for SensitivityAtVelocity {
 
 pub static SENSITIVITYATVELOCITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SensitivityAtVelocity",
+    name_hash: 1495577322,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SensitivityAtVelocity as Default>::default())),
+            create_boxed: || Box::new(<SensitivityAtVelocity as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SteeringSensitivity",
+                name_hash: 1426555133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SensitivityAtVelocity, steering_sensitivity),
             },
             FieldInfoData {
                 name: "Velocity",
+                name_hash: 3860766482,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SensitivityAtVelocity, velocity),
@@ -17126,6 +18137,7 @@ impl TypeObject for SensitivityAtVelocity {
 
 pub static SENSITIVITYATVELOCITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SensitivityAtVelocity-Array",
+    name_hash: 2830458334,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("SensitivityAtVelocity"),
@@ -17134,7 +18146,8 @@ pub static SENSITIVITYATVELOCITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpringData {
     pub length: f32,
     pub stiffness: f32,
@@ -17218,57 +18231,67 @@ impl SpringDataTrait for SpringData {
 
 pub static SPRINGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpringData",
+    name_hash: 1435415140,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpringData as Default>::default())),
+            create_boxed: || Box::new(<SpringData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Length",
+                name_hash: 2906827577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpringData, length),
             },
             FieldInfoData {
                 name: "Stiffness",
+                name_hash: 721813632,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpringData, stiffness),
             },
             FieldInfoData {
                 name: "Damping",
+                name_hash: 3862601053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpringData, damping),
             },
             FieldInfoData {
                 name: "ProgressiveStartRatio",
+                name_hash: 623340227,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpringData, progressive_start_ratio),
             },
             FieldInfoData {
                 name: "ProgressiveExponent",
+                name_hash: 487101329,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpringData, progressive_exponent),
             },
             FieldInfoData {
                 name: "VisualClipOffset",
+                name_hash: 4006753322,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpringData, visual_clip_offset),
             },
             FieldInfoData {
                 name: "AttachOffsetY",
+                name_hash: 1742442042,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpringData, attach_offset_y),
             },
             FieldInfoData {
                 name: "DisabledStrenghModifier",
+                name_hash: 1291254003,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpringData, disabled_strengh_modifier),
@@ -17300,6 +18323,7 @@ impl TypeObject for SpringData {
 
 pub static SPRINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpringData-Array",
+    name_hash: 2492798544,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("SpringData"),
@@ -17308,7 +18332,8 @@ pub static SPRINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SphereCollisionData {
     pub counter_normal_brake_force_mod: f32,
 }
@@ -17329,15 +18354,18 @@ impl SphereCollisionDataTrait for SphereCollisionData {
 
 pub static SPHERECOLLISIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereCollisionData",
+    name_hash: 1007465938,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SphereCollisionData as Default>::default())),
+            create_boxed: || Box::new(<SphereCollisionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CounterNormalBrakeForceMod",
+                name_hash: 2290320390,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SphereCollisionData, counter_normal_brake_force_mod),
@@ -17369,6 +18397,7 @@ impl TypeObject for SphereCollisionData {
 
 pub static SPHERECOLLISIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereCollisionData-Array",
+    name_hash: 2497441126,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("SphereCollisionData"),
@@ -17377,7 +18406,8 @@ pub static SPHERECOLLISIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct JetEngineConfigData {
     pub _glacier_base: EngineConfigData,
     pub direction_vector_index: u32,
@@ -17390,7 +18420,7 @@ pub struct JetEngineConfigData {
     pub is_water_jet_engine: bool,
     pub use_force_position_water_test: bool,
     pub use_hull_in_water_test: bool,
-    pub steering_sensitivity: Vec<SensitivityAtVelocity>,
+    pub steering_sensitivity: Vec<BoxedTypeObject /* SensitivityAtVelocity */>,
     pub power_fade_out_range: super::core::Vec2,
 }
 
@@ -17415,8 +18445,8 @@ pub trait JetEngineConfigDataTrait: EngineConfigDataTrait {
     fn use_force_position_water_test_mut(&mut self) -> &mut bool;
     fn use_hull_in_water_test(&self) -> &bool;
     fn use_hull_in_water_test_mut(&mut self) -> &mut bool;
-    fn steering_sensitivity(&self) -> &Vec<SensitivityAtVelocity>;
-    fn steering_sensitivity_mut(&mut self) -> &mut Vec<SensitivityAtVelocity>;
+    fn steering_sensitivity(&self) -> &Vec<BoxedTypeObject /* SensitivityAtVelocity */>;
+    fn steering_sensitivity_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SensitivityAtVelocity */>;
     fn power_fade_out_range(&self) -> &super::core::Vec2;
     fn power_fade_out_range_mut(&mut self) -> &mut super::core::Vec2;
 }
@@ -17482,10 +18512,10 @@ impl JetEngineConfigDataTrait for JetEngineConfigData {
     fn use_hull_in_water_test_mut(&mut self) -> &mut bool {
         &mut self.use_hull_in_water_test
     }
-    fn steering_sensitivity(&self) -> &Vec<SensitivityAtVelocity> {
+    fn steering_sensitivity(&self) -> &Vec<BoxedTypeObject /* SensitivityAtVelocity */> {
         &self.steering_sensitivity
     }
-    fn steering_sensitivity_mut(&mut self) -> &mut Vec<SensitivityAtVelocity> {
+    fn steering_sensitivity_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SensitivityAtVelocity */> {
         &mut self.steering_sensitivity
     }
     fn power_fade_out_range(&self) -> &super::core::Vec2 {
@@ -17576,82 +18606,97 @@ impl super::core::DataContainerTrait for JetEngineConfigData {
 
 pub static JETENGINECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JetEngineConfigData",
+    name_hash: 1585076202,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENGINECONFIGDATA_TYPE_INFO),
+        super_class_offset: offset_of!(JetEngineConfigData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<JetEngineConfigData as Default>::default())),
+            create_boxed: || Box::new(<JetEngineConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DirectionVectorIndex",
+                name_hash: 3901228711,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(JetEngineConfigData, direction_vector_index),
             },
             FieldInfoData {
                 name: "ForceMagnitudeMultiplier",
+                name_hash: 3209574239,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(JetEngineConfigData, force_magnitude_multiplier),
             },
             FieldInfoData {
                 name: "AngleInputYMultiplier",
+                name_hash: 1243559936,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(JetEngineConfigData, angle_input_y_multiplier),
             },
             FieldInfoData {
                 name: "AngleInputPitchMultiplier",
+                name_hash: 872926687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(JetEngineConfigData, angle_input_pitch_multiplier),
             },
             FieldInfoData {
                 name: "PitchForceModifier",
+                name_hash: 1257808873,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(JetEngineConfigData, pitch_force_modifier),
             },
             FieldInfoData {
                 name: "MaxVelocity",
+                name_hash: 81127366,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(JetEngineConfigData, max_velocity),
             },
             FieldInfoData {
                 name: "IsTurnable",
+                name_hash: 2004357896,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(JetEngineConfigData, is_turnable),
             },
             FieldInfoData {
                 name: "IsWaterJetEngine",
+                name_hash: 3093729791,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(JetEngineConfigData, is_water_jet_engine),
             },
             FieldInfoData {
                 name: "UseForcePositionWaterTest",
+                name_hash: 2879401889,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(JetEngineConfigData, use_force_position_water_test),
             },
             FieldInfoData {
                 name: "UseHullInWaterTest",
+                name_hash: 3551602047,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(JetEngineConfigData, use_hull_in_water_test),
             },
             FieldInfoData {
                 name: "SteeringSensitivity",
+                name_hash: 1426555133,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SensitivityAtVelocity-Array",
                 rust_offset: offset_of!(JetEngineConfigData, steering_sensitivity),
             },
             FieldInfoData {
                 name: "PowerFadeOutRange",
+                name_hash: 4220367021,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(JetEngineConfigData, power_fade_out_range),
@@ -17683,6 +18728,7 @@ impl TypeObject for JetEngineConfigData {
 
 pub static JETENGINECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "JetEngineConfigData-Array",
+    name_hash: 3807560414,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("JetEngineConfigData"),
@@ -17691,12 +18737,13 @@ pub static JETENGINECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropellerEngineConfigData {
     pub _glacier_base: EngineConfigData,
     pub horisontal_force_offset: super::core::Vec3,
     pub propeller_type: PropellerType,
-    pub rotor_config: Option<Arc<Mutex<dyn RotorParametersTrait>>>,
+    pub rotor_config: Option<LockedTypeObject /* RotorParameters */>,
     pub force_magnitude_input_type: ForceMagnitudeInputType,
     pub direction_vector_index: u32,
     pub apply_force_as_torque: bool,
@@ -17747,8 +18794,8 @@ pub trait PropellerEngineConfigDataTrait: EngineConfigDataTrait {
     fn horisontal_force_offset_mut(&mut self) -> &mut super::core::Vec3;
     fn propeller_type(&self) -> &PropellerType;
     fn propeller_type_mut(&mut self) -> &mut PropellerType;
-    fn rotor_config(&self) -> &Option<Arc<Mutex<dyn RotorParametersTrait>>>;
-    fn rotor_config_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RotorParametersTrait>>>;
+    fn rotor_config(&self) -> &Option<LockedTypeObject /* RotorParameters */>;
+    fn rotor_config_mut(&mut self) -> &mut Option<LockedTypeObject /* RotorParameters */>;
     fn force_magnitude_input_type(&self) -> &ForceMagnitudeInputType;
     fn force_magnitude_input_type_mut(&mut self) -> &mut ForceMagnitudeInputType;
     fn direction_vector_index(&self) -> &u32;
@@ -17850,10 +18897,10 @@ impl PropellerEngineConfigDataTrait for PropellerEngineConfigData {
     fn propeller_type_mut(&mut self) -> &mut PropellerType {
         &mut self.propeller_type
     }
-    fn rotor_config(&self) -> &Option<Arc<Mutex<dyn RotorParametersTrait>>> {
+    fn rotor_config(&self) -> &Option<LockedTypeObject /* RotorParameters */> {
         &self.rotor_config
     }
-    fn rotor_config_mut(&mut self) -> &mut Option<Arc<Mutex<dyn RotorParametersTrait>>> {
+    fn rotor_config_mut(&mut self) -> &mut Option<LockedTypeObject /* RotorParameters */> {
         &mut self.rotor_config
     }
     fn force_magnitude_input_type(&self) -> &ForceMagnitudeInputType {
@@ -18196,286 +19243,335 @@ impl super::core::DataContainerTrait for PropellerEngineConfigData {
 
 pub static PROPELLERENGINECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropellerEngineConfigData",
+    name_hash: 111603774,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENGINECONFIGDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PropellerEngineConfigData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropellerEngineConfigData as Default>::default())),
+            create_boxed: || Box::new(<PropellerEngineConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HorisontalForceOffset",
+                name_hash: 3212041026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PropellerEngineConfigData, horisontal_force_offset),
             },
             FieldInfoData {
                 name: "PropellerType",
+                name_hash: 1200379762,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PropellerType",
                 rust_offset: offset_of!(PropellerEngineConfigData, propeller_type),
             },
             FieldInfoData {
                 name: "RotorConfig",
+                name_hash: 468078427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RotorParameters",
                 rust_offset: offset_of!(PropellerEngineConfigData, rotor_config),
             },
             FieldInfoData {
                 name: "ForceMagnitudeInputType",
+                name_hash: 3842564762,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ForceMagnitudeInputType",
                 rust_offset: offset_of!(PropellerEngineConfigData, force_magnitude_input_type),
             },
             FieldInfoData {
                 name: "DirectionVectorIndex",
+                name_hash: 3901228711,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PropellerEngineConfigData, direction_vector_index),
             },
             FieldInfoData {
                 name: "ApplyForceAsTorque",
+                name_hash: 4177674134,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PropellerEngineConfigData, apply_force_as_torque),
             },
             FieldInfoData {
                 name: "ForceMagnitudeMultiplier",
+                name_hash: 3209574239,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, force_magnitude_multiplier),
             },
             FieldInfoData {
                 name: "LiftForceSpringConstant",
+                name_hash: 201216672,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, lift_force_spring_constant),
             },
             FieldInfoData {
                 name: "LiftForceDampingConstant",
+                name_hash: 3660889641,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, lift_force_damping_constant),
             },
             FieldInfoData {
                 name: "CyclicInputScaleRoll",
+                name_hash: 3891841257,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, cyclic_input_scale_roll),
             },
             FieldInfoData {
                 name: "CyclicRollLiftMod",
+                name_hash: 1157893238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, cyclic_roll_lift_mod),
             },
             FieldInfoData {
                 name: "CyclicRollStrafeMod",
+                name_hash: 2784120854,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, cyclic_roll_strafe_mod),
             },
             FieldInfoData {
                 name: "CyclicInputScalePitch",
+                name_hash: 3869827346,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, cyclic_input_scale_pitch),
             },
             FieldInfoData {
                 name: "CyclicPitchLiftMod",
+                name_hash: 908927597,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, cyclic_pitch_lift_mod),
             },
             FieldInfoData {
                 name: "CyclicPitchStrafeMod",
+                name_hash: 1559244621,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, cyclic_pitch_strafe_mod),
             },
             FieldInfoData {
                 name: "CyclicPitchStrafeBrakeMod",
+                name_hash: 1510977458,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, cyclic_pitch_strafe_brake_mod),
             },
             FieldInfoData {
                 name: "CollectiveInputIdle",
+                name_hash: 3489057395,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, collective_input_idle),
             },
             FieldInfoData {
                 name: "CollectiveThrottleInputScale",
+                name_hash: 2328068935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, collective_throttle_input_scale),
             },
             FieldInfoData {
                 name: "CollectiveBrakeInputScale",
+                name_hash: 3062684400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, collective_brake_input_scale),
             },
             FieldInfoData {
                 name: "DefaultAngleOfAttack",
+                name_hash: 1125032846,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, default_angle_of_attack),
             },
             FieldInfoData {
                 name: "AttackAngleMod",
+                name_hash: 947227178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, attack_angle_mod),
             },
             FieldInfoData {
                 name: "StabilizerMod",
+                name_hash: 870578278,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, stabilizer_mod),
             },
             FieldInfoData {
                 name: "HorisontalMinEffectVelocity",
+                name_hash: 3650611512,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, horisontal_min_effect_velocity),
             },
             FieldInfoData {
                 name: "HorisontalMinEffectMod",
+                name_hash: 2678032425,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, horisontal_min_effect_mod),
             },
             FieldInfoData {
                 name: "EnableNewHelicopter",
+                name_hash: 4043707695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PropellerEngineConfigData, enable_new_helicopter),
             },
             FieldInfoData {
                 name: "SPAllowed",
+                name_hash: 1786637822,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PropellerEngineConfigData, s_p_allowed),
             },
             FieldInfoData {
                 name: "SPDefault",
+                name_hash: 2087493101,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PropellerEngineConfigData, s_p_default),
             },
             FieldInfoData {
                 name: "SPForwardInput",
+                name_hash: 106906539,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ForceMagnitudeInputType",
                 rust_offset: offset_of!(PropellerEngineConfigData, s_p_forward_input),
             },
             FieldInfoData {
                 name: "SPSidewaysInput",
+                name_hash: 71218679,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ForceMagnitudeInputType",
                 rust_offset: offset_of!(PropellerEngineConfigData, s_p_sideways_input),
             },
             FieldInfoData {
                 name: "SPVerticalInput",
+                name_hash: 335467042,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ForceMagnitudeInputType",
                 rust_offset: offset_of!(PropellerEngineConfigData, s_p_vertical_input),
             },
             FieldInfoData {
                 name: "SPPitchInput",
+                name_hash: 901615958,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ForceMagnitudeInputType",
                 rust_offset: offset_of!(PropellerEngineConfigData, s_p_pitch_input),
             },
             FieldInfoData {
                 name: "SPYawInput",
+                name_hash: 2110165023,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ForceMagnitudeInputType",
                 rust_offset: offset_of!(PropellerEngineConfigData, s_p_yaw_input),
             },
             FieldInfoData {
                 name: "SPForwardStrength",
+                name_hash: 439958200,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, s_p_forward_strength),
             },
             FieldInfoData {
                 name: "SPSidewaysStrength",
+                name_hash: 3287536100,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, s_p_sideways_strength),
             },
             FieldInfoData {
                 name: "SPVerticalStrength",
+                name_hash: 3767334993,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, s_p_vertical_strength),
             },
             FieldInfoData {
                 name: "SPReverseForceMod",
+                name_hash: 3894520797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, s_p_reverse_force_mod),
             },
             FieldInfoData {
                 name: "PitchStrength",
+                name_hash: 724430630,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, pitch_strength),
             },
             FieldInfoData {
                 name: "PitchLimit",
+                name_hash: 3055348630,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, pitch_limit),
             },
             FieldInfoData {
                 name: "PitchFromVel",
+                name_hash: 3054994922,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, pitch_from_vel),
             },
             FieldInfoData {
                 name: "VelocityFromPitch",
+                name_hash: 2548692482,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, velocity_from_pitch),
             },
             FieldInfoData {
                 name: "RollStrength",
+                name_hash: 3312814269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, roll_strength),
             },
             FieldInfoData {
                 name: "BankingStrength",
+                name_hash: 1620944870,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, banking_strength),
             },
             FieldInfoData {
                 name: "BankingLimit",
+                name_hash: 3461970646,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, banking_limit),
             },
             FieldInfoData {
                 name: "PitchUpWhenBankStrength",
+                name_hash: 1714831281,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, pitch_up_when_bank_strength),
             },
             FieldInfoData {
                 name: "PitchUpWhenBankLimit",
+                name_hash: 1223555233,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, pitch_up_when_bank_limit),
             },
             FieldInfoData {
                 name: "GravityMod",
+                name_hash: 3507401381,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropellerEngineConfigData, gravity_mod),
@@ -18507,6 +19603,7 @@ impl TypeObject for PropellerEngineConfigData {
 
 pub static PROPELLERENGINECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropellerEngineConfigData-Array",
+    name_hash: 3370336394,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PropellerEngineConfigData"),
@@ -18515,7 +19612,8 @@ pub static PROPELLERENGINECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RotorParameters {
     pub _glacier_base: super::core::DataContainer,
     pub cyclic_input_scale_roll: f32,
@@ -18524,7 +19622,7 @@ pub struct RotorParameters {
     pub collective_brake_input_scale: f32,
     pub collective_input_idle: f32,
     pub horizontal_force_modifier: f32,
-    pub angle_of_attack: Vec<super::core::Vec2>,
+    pub angle_of_attack: Vec<BoxedTypeObject /* super::core::Vec2 */>,
     pub cyclic_fade_out_offset: f32,
     pub additional_gravity_modifier: f32,
     pub reverse_throttle: bool,
@@ -18546,8 +19644,8 @@ pub trait RotorParametersTrait: super::core::DataContainerTrait {
     fn collective_input_idle_mut(&mut self) -> &mut f32;
     fn horizontal_force_modifier(&self) -> &f32;
     fn horizontal_force_modifier_mut(&mut self) -> &mut f32;
-    fn angle_of_attack(&self) -> &Vec<super::core::Vec2>;
-    fn angle_of_attack_mut(&mut self) -> &mut Vec<super::core::Vec2>;
+    fn angle_of_attack(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn angle_of_attack_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */>;
     fn cyclic_fade_out_offset(&self) -> &f32;
     fn cyclic_fade_out_offset_mut(&mut self) -> &mut f32;
     fn additional_gravity_modifier(&self) -> &f32;
@@ -18599,10 +19697,10 @@ impl RotorParametersTrait for RotorParameters {
     fn horizontal_force_modifier_mut(&mut self) -> &mut f32 {
         &mut self.horizontal_force_modifier
     }
-    fn angle_of_attack(&self) -> &Vec<super::core::Vec2> {
+    fn angle_of_attack(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &self.angle_of_attack
     }
-    fn angle_of_attack_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+    fn angle_of_attack_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &mut self.angle_of_attack
     }
     fn cyclic_fade_out_offset(&self) -> &f32 {
@@ -18648,88 +19746,104 @@ impl super::core::DataContainerTrait for RotorParameters {
 
 pub static ROTORPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotorParameters",
+    name_hash: 2394501931,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(RotorParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RotorParameters as Default>::default())),
+            create_boxed: || Box::new(<RotorParameters as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CyclicInputScaleRoll",
+                name_hash: 3891841257,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotorParameters, cyclic_input_scale_roll),
             },
             FieldInfoData {
                 name: "CyclicInputScalePitch",
+                name_hash: 3869827346,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotorParameters, cyclic_input_scale_pitch),
             },
             FieldInfoData {
                 name: "CollectiveThrottleInputScale",
+                name_hash: 2328068935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotorParameters, collective_throttle_input_scale),
             },
             FieldInfoData {
                 name: "CollectiveBrakeInputScale",
+                name_hash: 3062684400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotorParameters, collective_brake_input_scale),
             },
             FieldInfoData {
                 name: "CollectiveInputIdle",
+                name_hash: 3489057395,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotorParameters, collective_input_idle),
             },
             FieldInfoData {
                 name: "HorizontalForceModifier",
+                name_hash: 3642867601,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotorParameters, horizontal_force_modifier),
             },
             FieldInfoData {
                 name: "AngleOfAttack",
+                name_hash: 2971529797,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec2-Array",
                 rust_offset: offset_of!(RotorParameters, angle_of_attack),
             },
             FieldInfoData {
                 name: "CyclicFadeOutOffset",
+                name_hash: 3865352255,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotorParameters, cyclic_fade_out_offset),
             },
             FieldInfoData {
                 name: "AdditionalGravityModifier",
+                name_hash: 1847749677,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotorParameters, additional_gravity_modifier),
             },
             FieldInfoData {
                 name: "ReverseThrottle",
+                name_hash: 3564540269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RotorParameters, reverse_throttle),
             },
             FieldInfoData {
                 name: "EnableHorisontalMinEffect",
+                name_hash: 2851288174,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RotorParameters, enable_horisontal_min_effect),
             },
             FieldInfoData {
                 name: "HorisontalMinEffectVelocity",
+                name_hash: 3650611512,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotorParameters, horisontal_min_effect_velocity),
             },
             FieldInfoData {
                 name: "HorisontalMinEffectMod",
+                name_hash: 2678032425,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotorParameters, horisontal_min_effect_mod),
@@ -18761,6 +19875,7 @@ impl TypeObject for RotorParameters {
 
 pub static ROTORPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotorParameters-Array",
+    name_hash: 4167078559,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RotorParameters"),
@@ -18783,6 +19898,7 @@ pub enum ForceMagnitudeInputType {
 
 pub static FORCEMAGNITUDEINPUTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceMagnitudeInputType",
+    name_hash: 3842564762,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -18811,6 +19927,7 @@ impl TypeObject for ForceMagnitudeInputType {
 
 pub static FORCEMAGNITUDEINPUTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceMagnitudeInputType-Array",
+    name_hash: 36029870,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ForceMagnitudeInputType"),
@@ -18830,6 +19947,7 @@ pub enum PropellerType {
 
 pub static PROPELLERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropellerType",
+    name_hash: 1200379762,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -18858,6 +19976,7 @@ impl TypeObject for PropellerType {
 
 pub static PROPELLERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropellerType-Array",
+    name_hash: 3782856262,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PropellerType"),
@@ -18866,7 +19985,8 @@ pub static PROPELLERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CombustionEngineConfigData {
     pub _glacier_base: EngineConfigData,
 }
@@ -18957,12 +20077,15 @@ impl super::core::DataContainerTrait for CombustionEngineConfigData {
 
 pub static COMBUSTIONENGINECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CombustionEngineConfigData",
+    name_hash: 3377984712,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENGINECONFIGDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CombustionEngineConfigData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CombustionEngineConfigData as Default>::default())),
+            create_boxed: || Box::new(<CombustionEngineConfigData as Default>::default()),
         },
         fields: &[
         ],
@@ -18992,6 +20115,7 @@ impl TypeObject for CombustionEngineConfigData {
 
 pub static COMBUSTIONENGINECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CombustionEngineConfigData-Array",
+    name_hash: 470714236,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CombustionEngineConfigData"),
@@ -19000,7 +20124,8 @@ pub static COMBUSTIONENGINECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EngineConfigData {
     pub _glacier_base: super::core::DataContainer,
     pub position: super::core::Vec3,
@@ -19124,82 +20249,97 @@ impl super::core::DataContainerTrait for EngineConfigData {
 
 pub static ENGINECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EngineConfigData",
+    name_hash: 2954011825,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(EngineConfigData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EngineConfigData as Default>::default())),
+            create_boxed: || Box::new(<EngineConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Position",
+                name_hash: 3402582524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EngineConfigData, position),
             },
             FieldInfoData {
                 name: "RpmCurvePoints",
+                name_hash: 3171241218,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(EngineConfigData, rpm_curve_points),
             },
             FieldInfoData {
                 name: "TorqueCurvePoints",
+                name_hash: 3328974597,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(EngineConfigData, torque_curve_points),
             },
             FieldInfoData {
                 name: "RpmMin",
+                name_hash: 3287857536,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EngineConfigData, rpm_min),
             },
             FieldInfoData {
                 name: "RpmMax",
+                name_hash: 3287857310,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EngineConfigData, rpm_max),
             },
             FieldInfoData {
                 name: "RpmCut",
+                name_hash: 3287864328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EngineConfigData, rpm_cut),
             },
             FieldInfoData {
                 name: "EnginePowerMultiplier",
+                name_hash: 3037532383,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EngineConfigData, engine_power_multiplier),
             },
             FieldInfoData {
                 name: "InternalAccelerationFactor",
+                name_hash: 1996992141,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EngineConfigData, internal_acceleration_factor),
             },
             FieldInfoData {
                 name: "InternalDeaccelerationFactor",
+                name_hash: 820379788,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EngineConfigData, internal_deacceleration_factor),
             },
             FieldInfoData {
                 name: "MaxReverseSpeed",
+                name_hash: 931537174,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EngineConfigData, max_reverse_speed),
             },
             FieldInfoData {
                 name: "Boost",
+                name_hash: 211344160,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boost",
                 rust_offset: offset_of!(EngineConfigData, boost),
             },
             FieldInfoData {
                 name: "MaxVehicleHeightOffset",
+                name_hash: 3772622683,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EngineConfigData, max_vehicle_height_offset),
@@ -19231,6 +20371,7 @@ impl TypeObject for EngineConfigData {
 
 pub static ENGINECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EngineConfigData-Array",
+    name_hash: 3712227077,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("EngineConfigData"),
@@ -19239,7 +20380,8 @@ pub static ENGINECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Boost {
     pub forward_strength: f32,
     pub reverse_strength: f32,
@@ -19305,45 +20447,53 @@ impl BoostTrait for Boost {
 
 pub static BOOST_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Boost",
+    name_hash: 211344160,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Boost as Default>::default())),
+            create_boxed: || Box::new(<Boost as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ForwardStrength",
+                name_hash: 91624507,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Boost, forward_strength),
             },
             FieldInfoData {
                 name: "ReverseStrength",
+                name_hash: 91172096,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Boost, reverse_strength),
             },
             FieldInfoData {
                 name: "DissipationTime",
+                name_hash: 3822739865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Boost, dissipation_time),
             },
             FieldInfoData {
                 name: "RecoveryTime",
+                name_hash: 359615635,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Boost, recovery_time),
             },
             FieldInfoData {
                 name: "CrawlStrength",
+                name_hash: 3643856331,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Boost, crawl_strength),
             },
             FieldInfoData {
                 name: "AccelerationScale",
+                name_hash: 116231199,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Boost, acceleration_scale),
@@ -19375,6 +20525,7 @@ impl TypeObject for Boost {
 
 pub static BOOST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Boost-Array",
+    name_hash: 2815369364,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("Boost"),
@@ -19383,7 +20534,8 @@ pub static BOOST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GearboxConfigData {
     pub _glacier_base: super::core::DataContainer,
     pub forward_gear_ratios: Vec<f32>,
@@ -19534,100 +20686,118 @@ impl super::core::DataContainerTrait for GearboxConfigData {
 
 pub static GEARBOXCONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxConfigData",
+    name_hash: 2832016763,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(GearboxConfigData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GearboxConfigData as Default>::default())),
+            create_boxed: || Box::new(<GearboxConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ForwardGearRatios",
+                name_hash: 3289089437,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(GearboxConfigData, forward_gear_ratios),
             },
             FieldInfoData {
                 name: "ForwardGearSpeeds",
+                name_hash: 3306387643,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(GearboxConfigData, forward_gear_speeds),
             },
             FieldInfoData {
                 name: "ReverseGearRatios",
+                name_hash: 180205926,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(GearboxConfigData, reverse_gear_ratios),
             },
             FieldInfoData {
                 name: "ReverseGearSpeeds",
+                name_hash: 162915904,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(GearboxConfigData, reverse_gear_speeds),
             },
             FieldInfoData {
                 name: "GearboxType",
+                name_hash: 1540232153,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(GearboxConfigData, gearbox_type),
             },
             FieldInfoData {
                 name: "GearboxMode",
+                name_hash: 1539978082,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(GearboxConfigData, gearbox_mode),
             },
             FieldInfoData {
                 name: "GearChangeTime",
+                name_hash: 2688527911,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GearboxConfigData, gear_change_time),
             },
             FieldInfoData {
                 name: "GearDownSpeedFactor",
+                name_hash: 699099436,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GearboxConfigData, gear_down_speed_factor),
             },
             FieldInfoData {
                 name: "OppositeDirGearChangeMaxSpeed",
+                name_hash: 3344611765,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GearboxConfigData, opposite_dir_gear_change_max_speed),
             },
             FieldInfoData {
                 name: "OppositeDirGearChangeTime",
+                name_hash: 777981235,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GearboxConfigData, opposite_dir_gear_change_time),
             },
             FieldInfoData {
                 name: "ClutchSpeedFactor",
+                name_hash: 1429608074,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GearboxConfigData, clutch_speed_factor),
             },
             FieldInfoData {
                 name: "TransmissionEfficiency",
+                name_hash: 846717476,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GearboxConfigData, transmission_efficiency),
             },
             FieldInfoData {
                 name: "UseAutoClutch",
+                name_hash: 3208098444,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GearboxConfigData, use_auto_clutch),
             },
             FieldInfoData {
                 name: "UseClassicGearBoxAutoClutch",
+                name_hash: 1239657644,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GearboxConfigData, use_classic_gear_box_auto_clutch),
             },
             FieldInfoData {
                 name: "UseNeutralGear",
+                name_hash: 3124815010,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GearboxConfigData, use_neutral_gear),
@@ -19659,6 +20829,7 @@ impl TypeObject for GearboxConfigData {
 
 pub static GEARBOXCONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxConfigData-Array",
+    name_hash: 3104308559,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GearboxConfigData"),
@@ -19667,7 +20838,8 @@ pub static GEARBOXCONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VehicleInputTweakData {
     pub _glacier_base: super::core::DataContainer,
     pub input_tweak_type: VehicleInputTweakType,
@@ -19728,40 +20900,48 @@ impl super::core::DataContainerTrait for VehicleInputTweakData {
 
 pub static VEHICLEINPUTTWEAKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleInputTweakData",
+    name_hash: 1470978935,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(VehicleInputTweakData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VehicleInputTweakData as Default>::default())),
+            create_boxed: || Box::new(<VehicleInputTweakData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InputTweakType",
+                name_hash: 3111564359,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VehicleInputTweakType",
                 rust_offset: offset_of!(VehicleInputTweakData, input_tweak_type),
             },
             FieldInfoData {
                 name: "MinSpeed",
+                name_hash: 3368183944,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputTweakData, min_speed),
             },
             FieldInfoData {
                 name: "MaxSpeed",
+                name_hash: 396228950,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputTweakData, max_speed),
             },
             FieldInfoData {
                 name: "MinSpeedScale",
+                name_hash: 1840139696,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputTweakData, min_speed_scale),
             },
             FieldInfoData {
                 name: "MaxSpeedScale",
+                name_hash: 33238958,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputTweakData, max_speed_scale),
@@ -19793,6 +20973,7 @@ impl TypeObject for VehicleInputTweakData {
 
 pub static VEHICLEINPUTTWEAKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleInputTweakData-Array",
+    name_hash: 3078161731,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("VehicleInputTweakData"),
@@ -19814,6 +20995,7 @@ pub enum VehicleInputTweakType {
 
 pub static VEHICLEINPUTTWEAKTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleInputTweakType",
+    name_hash: 1471545087,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -19842,6 +21024,7 @@ impl TypeObject for VehicleInputTweakType {
 
 pub static VEHICLEINPUTTWEAKTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleInputTweakType-Array",
+    name_hash: 2983044299,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("VehicleInputTweakType"),
@@ -19850,7 +21033,8 @@ pub static VEHICLEINPUTTWEAKTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MotionDampingData {
     pub _glacier_base: super::core::DataContainer,
     pub linear_modifier: super::core::Vec3,
@@ -19911,40 +21095,48 @@ impl super::core::DataContainerTrait for MotionDampingData {
 
 pub static MOTIONDAMPINGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MotionDampingData",
+    name_hash: 636279891,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(MotionDampingData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MotionDampingData as Default>::default())),
+            create_boxed: || Box::new(<MotionDampingData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LinearModifier",
+                name_hash: 2104370415,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(MotionDampingData, linear_modifier),
             },
             FieldInfoData {
                 name: "Pitch",
+                name_hash: 232604323,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotionDampingData, pitch),
             },
             FieldInfoData {
                 name: "Yaw",
+                name_hash: 193468618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotionDampingData, yaw),
             },
             FieldInfoData {
                 name: "Roll",
+                name_hash: 2089387576,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotionDampingData, roll),
             },
             FieldInfoData {
                 name: "Linear",
+                name_hash: 2893456344,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotionDampingData, linear),
@@ -19976,6 +21168,7 @@ impl TypeObject for MotionDampingData {
 
 pub static MOTIONDAMPINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MotionDampingData-Array",
+    name_hash: 2996143975,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("MotionDampingData"),
@@ -19984,7 +21177,8 @@ pub static MOTIONDAMPINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StabilizerData {
     pub _glacier_base: super::core::DataContainer,
     pub pitch_strength: f32,
@@ -20054,46 +21248,55 @@ impl super::core::DataContainerTrait for StabilizerData {
 
 pub static STABILIZERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StabilizerData",
+    name_hash: 2959039088,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(StabilizerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StabilizerData as Default>::default())),
+            create_boxed: || Box::new(<StabilizerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PitchStrength",
+                name_hash: 724430630,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StabilizerData, pitch_strength),
             },
             FieldInfoData {
                 name: "RollStrength",
+                name_hash: 3312814269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StabilizerData, roll_strength),
             },
             FieldInfoData {
                 name: "Advanced",
+                name_hash: 2748179067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(StabilizerData, advanced),
             },
             FieldInfoData {
                 name: "YawStrength",
+                name_hash: 2378860303,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StabilizerData, yaw_strength),
             },
             FieldInfoData {
                 name: "AdvancedYaw",
+                name_hash: 2833028724,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(StabilizerData, advanced_yaw),
             },
             FieldInfoData {
                 name: "VerticalVelocityStrength",
+                name_hash: 3950176229,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StabilizerData, vertical_velocity_strength),
@@ -20125,6 +21328,7 @@ impl TypeObject for StabilizerData {
 
 pub static STABILIZERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StabilizerData-Array",
+    name_hash: 2979452996,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("StabilizerData"),
@@ -20133,15 +21337,16 @@ pub static STABILIZERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WingPhysicsData {
     pub _glacier_base: super::core::DataContainer,
     pub lift: f32,
     pub flap_lift: f32,
-    pub lift_coefficient: Option<Arc<Mutex<dyn Curve2DTrait>>>,
+    pub lift_coefficient: Option<LockedTypeObject /* Curve2D */>,
     pub drag: f32,
     pub flap_drag: f32,
-    pub drag_coefficient: Option<Arc<Mutex<dyn Curve2DTrait>>>,
+    pub drag_coefficient: Option<LockedTypeObject /* Curve2D */>,
     pub angular_velocity_lift_modifier: f32,
     pub drag_rotation_modifier: f32,
     pub base_angle_of_attack: f32,
@@ -20149,9 +21354,9 @@ pub struct WingPhysicsData {
     pub flap_turn_speed: f32,
     pub visual_flap_turn_speed: f32,
     pub visual_flap_angle_limit: f32,
-    pub max_flap_angle_scale_factor: Option<Arc<Mutex<dyn Curve2DTrait>>>,
+    pub max_flap_angle_scale_factor: Option<LockedTypeObject /* Curve2D */>,
     pub landing_flap_lift: f32,
-    pub landing_flap_logic: Option<Arc<Mutex<dyn LandingFlapDataTrait>>>,
+    pub landing_flap_logic: Option<LockedTypeObject /* LandingFlapData */>,
 }
 
 pub trait WingPhysicsDataTrait: super::core::DataContainerTrait {
@@ -20159,14 +21364,14 @@ pub trait WingPhysicsDataTrait: super::core::DataContainerTrait {
     fn lift_mut(&mut self) -> &mut f32;
     fn flap_lift(&self) -> &f32;
     fn flap_lift_mut(&mut self) -> &mut f32;
-    fn lift_coefficient(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>>;
-    fn lift_coefficient_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>>;
+    fn lift_coefficient(&self) -> &Option<LockedTypeObject /* Curve2D */>;
+    fn lift_coefficient_mut(&mut self) -> &mut Option<LockedTypeObject /* Curve2D */>;
     fn drag(&self) -> &f32;
     fn drag_mut(&mut self) -> &mut f32;
     fn flap_drag(&self) -> &f32;
     fn flap_drag_mut(&mut self) -> &mut f32;
-    fn drag_coefficient(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>>;
-    fn drag_coefficient_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>>;
+    fn drag_coefficient(&self) -> &Option<LockedTypeObject /* Curve2D */>;
+    fn drag_coefficient_mut(&mut self) -> &mut Option<LockedTypeObject /* Curve2D */>;
     fn angular_velocity_lift_modifier(&self) -> &f32;
     fn angular_velocity_lift_modifier_mut(&mut self) -> &mut f32;
     fn drag_rotation_modifier(&self) -> &f32;
@@ -20181,12 +21386,12 @@ pub trait WingPhysicsDataTrait: super::core::DataContainerTrait {
     fn visual_flap_turn_speed_mut(&mut self) -> &mut f32;
     fn visual_flap_angle_limit(&self) -> &f32;
     fn visual_flap_angle_limit_mut(&mut self) -> &mut f32;
-    fn max_flap_angle_scale_factor(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>>;
-    fn max_flap_angle_scale_factor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>>;
+    fn max_flap_angle_scale_factor(&self) -> &Option<LockedTypeObject /* Curve2D */>;
+    fn max_flap_angle_scale_factor_mut(&mut self) -> &mut Option<LockedTypeObject /* Curve2D */>;
     fn landing_flap_lift(&self) -> &f32;
     fn landing_flap_lift_mut(&mut self) -> &mut f32;
-    fn landing_flap_logic(&self) -> &Option<Arc<Mutex<dyn LandingFlapDataTrait>>>;
-    fn landing_flap_logic_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LandingFlapDataTrait>>>;
+    fn landing_flap_logic(&self) -> &Option<LockedTypeObject /* LandingFlapData */>;
+    fn landing_flap_logic_mut(&mut self) -> &mut Option<LockedTypeObject /* LandingFlapData */>;
 }
 
 impl WingPhysicsDataTrait for WingPhysicsData {
@@ -20202,10 +21407,10 @@ impl WingPhysicsDataTrait for WingPhysicsData {
     fn flap_lift_mut(&mut self) -> &mut f32 {
         &mut self.flap_lift
     }
-    fn lift_coefficient(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>> {
+    fn lift_coefficient(&self) -> &Option<LockedTypeObject /* Curve2D */> {
         &self.lift_coefficient
     }
-    fn lift_coefficient_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>> {
+    fn lift_coefficient_mut(&mut self) -> &mut Option<LockedTypeObject /* Curve2D */> {
         &mut self.lift_coefficient
     }
     fn drag(&self) -> &f32 {
@@ -20220,10 +21425,10 @@ impl WingPhysicsDataTrait for WingPhysicsData {
     fn flap_drag_mut(&mut self) -> &mut f32 {
         &mut self.flap_drag
     }
-    fn drag_coefficient(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>> {
+    fn drag_coefficient(&self) -> &Option<LockedTypeObject /* Curve2D */> {
         &self.drag_coefficient
     }
-    fn drag_coefficient_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>> {
+    fn drag_coefficient_mut(&mut self) -> &mut Option<LockedTypeObject /* Curve2D */> {
         &mut self.drag_coefficient
     }
     fn angular_velocity_lift_modifier(&self) -> &f32 {
@@ -20268,10 +21473,10 @@ impl WingPhysicsDataTrait for WingPhysicsData {
     fn visual_flap_angle_limit_mut(&mut self) -> &mut f32 {
         &mut self.visual_flap_angle_limit
     }
-    fn max_flap_angle_scale_factor(&self) -> &Option<Arc<Mutex<dyn Curve2DTrait>>> {
+    fn max_flap_angle_scale_factor(&self) -> &Option<LockedTypeObject /* Curve2D */> {
         &self.max_flap_angle_scale_factor
     }
-    fn max_flap_angle_scale_factor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn Curve2DTrait>>> {
+    fn max_flap_angle_scale_factor_mut(&mut self) -> &mut Option<LockedTypeObject /* Curve2D */> {
         &mut self.max_flap_angle_scale_factor
     }
     fn landing_flap_lift(&self) -> &f32 {
@@ -20280,10 +21485,10 @@ impl WingPhysicsDataTrait for WingPhysicsData {
     fn landing_flap_lift_mut(&mut self) -> &mut f32 {
         &mut self.landing_flap_lift
     }
-    fn landing_flap_logic(&self) -> &Option<Arc<Mutex<dyn LandingFlapDataTrait>>> {
+    fn landing_flap_logic(&self) -> &Option<LockedTypeObject /* LandingFlapData */> {
         &self.landing_flap_logic
     }
-    fn landing_flap_logic_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LandingFlapDataTrait>>> {
+    fn landing_flap_logic_mut(&mut self) -> &mut Option<LockedTypeObject /* LandingFlapData */> {
         &mut self.landing_flap_logic
     }
 }
@@ -20293,106 +21498,125 @@ impl super::core::DataContainerTrait for WingPhysicsData {
 
 pub static WINGPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WingPhysicsData",
+    name_hash: 112812329,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(WingPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WingPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<WingPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Lift",
+                name_hash: 2089009074,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WingPhysicsData, lift),
             },
             FieldInfoData {
                 name: "FlapLift",
+                name_hash: 2436170665,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WingPhysicsData, flap_lift),
             },
             FieldInfoData {
                 name: "LiftCoefficient",
+                name_hash: 2899213127,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Curve2D",
                 rust_offset: offset_of!(WingPhysicsData, lift_coefficient),
             },
             FieldInfoData {
                 name: "Drag",
+                name_hash: 2088752789,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WingPhysicsData, drag),
             },
             FieldInfoData {
                 name: "FlapDrag",
+                name_hash: 2436426702,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WingPhysicsData, flap_drag),
             },
             FieldInfoData {
                 name: "DragCoefficient",
+                name_hash: 4054248384,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Curve2D",
                 rust_offset: offset_of!(WingPhysicsData, drag_coefficient),
             },
             FieldInfoData {
                 name: "AngularVelocityLiftModifier",
+                name_hash: 1734554736,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WingPhysicsData, angular_velocity_lift_modifier),
             },
             FieldInfoData {
                 name: "DragRotationModifier",
+                name_hash: 951001014,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WingPhysicsData, drag_rotation_modifier),
             },
             FieldInfoData {
                 name: "BaseAngleOfAttack",
+                name_hash: 335385008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WingPhysicsData, base_angle_of_attack),
             },
             FieldInfoData {
                 name: "InputForFlap",
+                name_hash: 1375426899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WingPhysicsData, input_for_flap),
             },
             FieldInfoData {
                 name: "FlapTurnSpeed",
+                name_hash: 2891422820,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WingPhysicsData, flap_turn_speed),
             },
             FieldInfoData {
                 name: "VisualFlapTurnSpeed",
+                name_hash: 443872528,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WingPhysicsData, visual_flap_turn_speed),
             },
             FieldInfoData {
                 name: "VisualFlapAngleLimit",
+                name_hash: 2332810590,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WingPhysicsData, visual_flap_angle_limit),
             },
             FieldInfoData {
                 name: "MaxFlapAngleScaleFactor",
+                name_hash: 924054846,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Curve2D",
                 rust_offset: offset_of!(WingPhysicsData, max_flap_angle_scale_factor),
             },
             FieldInfoData {
                 name: "LandingFlapLift",
+                name_hash: 3100228014,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WingPhysicsData, landing_flap_lift),
             },
             FieldInfoData {
                 name: "LandingFlapLogic",
+                name_hash: 3523347703,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LandingFlapData",
                 rust_offset: offset_of!(WingPhysicsData, landing_flap_logic),
@@ -20424,6 +21648,7 @@ impl TypeObject for WingPhysicsData {
 
 pub static WINGPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WingPhysicsData-Array",
+    name_hash: 3440560029,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("WingPhysicsData"),
@@ -20432,22 +21657,23 @@ pub static WINGPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Curve2D {
     pub _glacier_base: super::core::DataContainer,
-    pub curve: Vec<super::core::Vec2>,
+    pub curve: Vec<BoxedTypeObject /* super::core::Vec2 */>,
 }
 
 pub trait Curve2DTrait: super::core::DataContainerTrait {
-    fn curve(&self) -> &Vec<super::core::Vec2>;
-    fn curve_mut(&mut self) -> &mut Vec<super::core::Vec2>;
+    fn curve(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn curve_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */>;
 }
 
 impl Curve2DTrait for Curve2D {
-    fn curve(&self) -> &Vec<super::core::Vec2> {
+    fn curve(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &self.curve
     }
-    fn curve_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+    fn curve_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &mut self.curve
     }
 }
@@ -20457,16 +21683,20 @@ impl super::core::DataContainerTrait for Curve2D {
 
 pub static CURVE2D_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Curve2D",
+    name_hash: 4178855332,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(Curve2D, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Curve2D as Default>::default())),
+            create_boxed: || Box::new(<Curve2D as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Curve",
+                name_hash: 212866962,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec2-Array",
                 rust_offset: offset_of!(Curve2D, curve),
@@ -20498,6 +21728,7 @@ impl TypeObject for Curve2D {
 
 pub static CURVE2D_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Curve2D-Array",
+    name_hash: 1054992,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("Curve2D"),
@@ -20506,7 +21737,8 @@ pub static CURVE2D_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LandingFlapData {
     pub _glacier_base: super::core::DataContainer,
     pub activation_height: f32,
@@ -20558,34 +21790,41 @@ impl super::core::DataContainerTrait for LandingFlapData {
 
 pub static LANDINGFLAPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LandingFlapData",
+    name_hash: 3100506345,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LandingFlapData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LandingFlapData as Default>::default())),
+            create_boxed: || Box::new(<LandingFlapData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ActivationHeight",
+                name_hash: 2266632686,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LandingFlapData, activation_height),
             },
             FieldInfoData {
                 name: "HeightTolerance",
+                name_hash: 593358163,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LandingFlapData, height_tolerance),
             },
             FieldInfoData {
                 name: "ActivationVelocity",
+                name_hash: 1432155942,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LandingFlapData, activation_velocity),
             },
             FieldInfoData {
                 name: "VelocityTolerance",
+                name_hash: 43464475,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LandingFlapData, velocity_tolerance),
@@ -20617,6 +21856,7 @@ impl TypeObject for LandingFlapData {
 
 pub static LANDINGFLAPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LandingFlapData-Array",
+    name_hash: 486174685,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("LandingFlapData"),
@@ -20625,7 +21865,8 @@ pub static LANDINGFLAPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AeroDynamicPhysicsData {
     pub _glacier_base: super::core::DataContainer,
     pub body_drag: super::core::Vec3,
@@ -20677,34 +21918,41 @@ impl super::core::DataContainerTrait for AeroDynamicPhysicsData {
 
 pub static AERODYNAMICPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AeroDynamicPhysicsData",
+    name_hash: 282803186,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(AeroDynamicPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AeroDynamicPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<AeroDynamicPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BodyDrag",
+                name_hash: 1687378661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AeroDynamicPhysicsData, body_drag),
             },
             FieldInfoData {
                 name: "BodyDragOffsetYZ",
+                name_hash: 2051746155,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AeroDynamicPhysicsData, body_drag_offset_y_z),
             },
             FieldInfoData {
                 name: "BodyDragOffsetXZ",
+                name_hash: 2051746122,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AeroDynamicPhysicsData, body_drag_offset_x_z),
             },
             FieldInfoData {
                 name: "BodyDragOffsetXY",
+                name_hash: 2051746121,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AeroDynamicPhysicsData, body_drag_offset_x_y),
@@ -20736,6 +21984,7 @@ impl TypeObject for AeroDynamicPhysicsData {
 
 pub static AERODYNAMICPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AeroDynamicPhysicsData-Array",
+    name_hash: 1216484038,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("AeroDynamicPhysicsData"),
@@ -20744,7 +21993,8 @@ pub static AERODYNAMICPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HovercraftFloatPhysicsData {
     pub _glacier_base: HullFloatPhysicsData,
     pub land_resistance_axis_mod: super::core::Vec3,
@@ -20916,34 +22166,41 @@ impl super::core::DataContainerTrait for HovercraftFloatPhysicsData {
 
 pub static HOVERCRAFTFLOATPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HovercraftFloatPhysicsData",
+    name_hash: 132609386,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(HULLFLOATPHYSICSDATA_TYPE_INFO),
+        super_class_offset: offset_of!(HovercraftFloatPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HovercraftFloatPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<HovercraftFloatPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LandResistanceAxisMod",
+                name_hash: 3707997700,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(HovercraftFloatPhysicsData, land_resistance_axis_mod),
             },
             FieldInfoData {
                 name: "LandFrictionAxisMod",
+                name_hash: 3677552229,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(HovercraftFloatPhysicsData, land_friction_axis_mod),
             },
             FieldInfoData {
                 name: "FrontLength",
+                name_hash: 2116152088,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HovercraftFloatPhysicsData, front_length),
             },
             FieldInfoData {
                 name: "SideLength",
+                name_hash: 45904162,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HovercraftFloatPhysicsData, side_length),
@@ -20975,6 +22232,7 @@ impl TypeObject for HovercraftFloatPhysicsData {
 
 pub static HOVERCRAFTFLOATPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HovercraftFloatPhysicsData-Array",
+    name_hash: 2097246,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("HovercraftFloatPhysicsData"),
@@ -20983,7 +22241,8 @@ pub static HOVERCRAFTFLOATPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoatFloatPhysicsData {
     pub _glacier_base: HullFloatPhysicsData,
     pub front_ratio: f32,
@@ -21128,16 +22387,20 @@ impl super::core::DataContainerTrait for BoatFloatPhysicsData {
 
 pub static BOATFLOATPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoatFloatPhysicsData",
+    name_hash: 1520442582,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(HULLFLOATPHYSICSDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BoatFloatPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoatFloatPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<BoatFloatPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FrontRatio",
+                name_hash: 596576293,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BoatFloatPhysicsData, front_ratio),
@@ -21169,6 +22432,7 @@ impl TypeObject for BoatFloatPhysicsData {
 
 pub static BOATFLOATPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoatFloatPhysicsData-Array",
+    name_hash: 3848290914,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("BoatFloatPhysicsData"),
@@ -21177,7 +22441,8 @@ pub static BOATFLOATPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HullFloatPhysicsData {
     pub _glacier_base: FloatPhysicsData,
     pub water_resistance_axis_mod: super::core::Vec3,
@@ -21361,112 +22626,132 @@ impl super::core::DataContainerTrait for HullFloatPhysicsData {
 
 pub static HULLFLOATPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HullFloatPhysicsData",
+    name_hash: 367526835,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(FLOATPHYSICSDATA_TYPE_INFO),
+        super_class_offset: offset_of!(HullFloatPhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HullFloatPhysicsData as Default>::default())),
+            create_boxed: || Box::new(<HullFloatPhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WaterResistanceAxisMod",
+                name_hash: 3948471318,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(HullFloatPhysicsData, water_resistance_axis_mod),
             },
             FieldInfoData {
                 name: "WaterFrictionAxisMod",
+                name_hash: 3626723959,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(HullFloatPhysicsData, water_friction_axis_mod),
             },
             FieldInfoData {
                 name: "Offset",
+                name_hash: 2871410728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(HullFloatPhysicsData, offset),
             },
             FieldInfoData {
                 name: "SubSurfaceSplits",
+                name_hash: 1890108277,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(HullFloatPhysicsData, sub_surface_splits),
             },
             FieldInfoData {
                 name: "Depth",
+                name_hash: 208780552,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, depth),
             },
             FieldInfoData {
                 name: "Width",
+                name_hash: 226981187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, width),
             },
             FieldInfoData {
                 name: "Length",
+                name_hash: 2906827577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, length),
             },
             FieldInfoData {
                 name: "FrontCurveDegree",
+                name_hash: 2319028903,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, front_curve_degree),
             },
             FieldInfoData {
                 name: "SideCurveDegree",
+                name_hash: 2221634077,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, side_curve_degree),
             },
             FieldInfoData {
                 name: "NonEngineSteer",
+                name_hash: 2436950673,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, non_engine_steer),
             },
             FieldInfoData {
                 name: "NonEngineSteerMinSpeed",
+                name_hash: 625608988,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, non_engine_steer_min_speed),
             },
             FieldInfoData {
                 name: "NonEngineSteerMaxSpeed",
+                name_hash: 1082953922,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, non_engine_steer_max_speed),
             },
             FieldInfoData {
                 name: "WaterDampeningMod",
+                name_hash: 4227810501,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, water_dampening_mod),
             },
             FieldInfoData {
                 name: "LiftModifier",
+                name_hash: 2708301317,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, lift_modifier),
             },
             FieldInfoData {
                 name: "SupportSizeMod",
+                name_hash: 115690313,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, support_size_mod),
             },
             FieldInfoData {
                 name: "AngularDampening",
+                name_hash: 705185012,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, angular_dampening),
             },
             FieldInfoData {
                 name: "FrictionThrottleModifier",
+                name_hash: 2928282680,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(HullFloatPhysicsData, friction_throttle_modifier),
@@ -21498,6 +22783,7 @@ impl TypeObject for HullFloatPhysicsData {
 
 pub static HULLFLOATPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HullFloatPhysicsData-Array",
+    name_hash: 94187271,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("HullFloatPhysicsData"),
@@ -21506,7 +22792,8 @@ pub static HULLFLOATPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VehiclePhysicsActionData {
     pub _glacier_base: PhysicsActionData,
 }
@@ -21543,12 +22830,15 @@ impl super::core::DataContainerTrait for VehiclePhysicsActionData {
 
 pub static VEHICLEPHYSICSACTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehiclePhysicsActionData",
+    name_hash: 3042079832,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSACTIONDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VehiclePhysicsActionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VehiclePhysicsActionData as Default>::default())),
+            create_boxed: || Box::new(<VehiclePhysicsActionData as Default>::default()),
         },
         fields: &[
         ],
@@ -21578,6 +22868,7 @@ impl TypeObject for VehiclePhysicsActionData {
 
 pub static VEHICLEPHYSICSACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehiclePhysicsActionData-Array",
+    name_hash: 207449836,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("VehiclePhysicsActionData"),
@@ -21586,21 +22877,22 @@ pub static VEHICLEPHYSICSACTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VehicleConfigData {
     pub _glacier_base: super::core::DataContainer,
     pub center_of_mass: super::core::Vec3,
     pub center_of_mass_handling_offset: super::core::Vec3,
     pub inertia_override: super::core::Vec3,
     pub inertia_modifier: super::core::Vec3,
-    pub aero_dynamic_physics: Option<Arc<Mutex<dyn AeroDynamicPhysicsDataTrait>>>,
-    pub motorbike_physics: Option<Arc<Mutex<dyn MotorbikeDataTrait>>>,
-    pub motion_damping: Option<Arc<Mutex<dyn MotionDampingDataTrait>>>,
+    pub aero_dynamic_physics: Option<LockedTypeObject /* AeroDynamicPhysicsData */>,
+    pub motorbike_physics: Option<LockedTypeObject /* MotorbikeData */>,
+    pub motion_damping: Option<LockedTypeObject /* MotionDampingData */>,
     pub input: VehicleInputData,
-    pub float_physics: Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>>,
-    pub stabilizer: Option<Arc<Mutex<dyn StabilizerDataTrait>>>,
-    pub stabilizers: Vec<StabilizerSettings>,
-    pub constant_force: Vec<ConstantForceData>,
+    pub float_physics: Option<LockedTypeObject /* FloatPhysicsData */>,
+    pub stabilizer: Option<LockedTypeObject /* StabilizerData */>,
+    pub stabilizers: Vec<BoxedTypeObject /* StabilizerSettings */>,
+    pub constant_force: Vec<BoxedTypeObject /* ConstantForceData */>,
     pub vehicle_mode_at_reset: VehicleMode,
     pub body_mass: f32,
     pub gravity_modifier: f32,
@@ -21649,22 +22941,22 @@ pub trait VehicleConfigDataTrait: super::core::DataContainerTrait {
     fn inertia_override_mut(&mut self) -> &mut super::core::Vec3;
     fn inertia_modifier(&self) -> &super::core::Vec3;
     fn inertia_modifier_mut(&mut self) -> &mut super::core::Vec3;
-    fn aero_dynamic_physics(&self) -> &Option<Arc<Mutex<dyn AeroDynamicPhysicsDataTrait>>>;
-    fn aero_dynamic_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AeroDynamicPhysicsDataTrait>>>;
-    fn motorbike_physics(&self) -> &Option<Arc<Mutex<dyn MotorbikeDataTrait>>>;
-    fn motorbike_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MotorbikeDataTrait>>>;
-    fn motion_damping(&self) -> &Option<Arc<Mutex<dyn MotionDampingDataTrait>>>;
-    fn motion_damping_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MotionDampingDataTrait>>>;
+    fn aero_dynamic_physics(&self) -> &Option<LockedTypeObject /* AeroDynamicPhysicsData */>;
+    fn aero_dynamic_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* AeroDynamicPhysicsData */>;
+    fn motorbike_physics(&self) -> &Option<LockedTypeObject /* MotorbikeData */>;
+    fn motorbike_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* MotorbikeData */>;
+    fn motion_damping(&self) -> &Option<LockedTypeObject /* MotionDampingData */>;
+    fn motion_damping_mut(&mut self) -> &mut Option<LockedTypeObject /* MotionDampingData */>;
     fn input(&self) -> &VehicleInputData;
     fn input_mut(&mut self) -> &mut VehicleInputData;
-    fn float_physics(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>>;
-    fn float_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>>;
-    fn stabilizer(&self) -> &Option<Arc<Mutex<dyn StabilizerDataTrait>>>;
-    fn stabilizer_mut(&mut self) -> &mut Option<Arc<Mutex<dyn StabilizerDataTrait>>>;
-    fn stabilizers(&self) -> &Vec<StabilizerSettings>;
-    fn stabilizers_mut(&mut self) -> &mut Vec<StabilizerSettings>;
-    fn constant_force(&self) -> &Vec<ConstantForceData>;
-    fn constant_force_mut(&mut self) -> &mut Vec<ConstantForceData>;
+    fn float_physics(&self) -> &Option<LockedTypeObject /* FloatPhysicsData */>;
+    fn float_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatPhysicsData */>;
+    fn stabilizer(&self) -> &Option<LockedTypeObject /* StabilizerData */>;
+    fn stabilizer_mut(&mut self) -> &mut Option<LockedTypeObject /* StabilizerData */>;
+    fn stabilizers(&self) -> &Vec<BoxedTypeObject /* StabilizerSettings */>;
+    fn stabilizers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* StabilizerSettings */>;
+    fn constant_force(&self) -> &Vec<BoxedTypeObject /* ConstantForceData */>;
+    fn constant_force_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ConstantForceData */>;
     fn vehicle_mode_at_reset(&self) -> &VehicleMode;
     fn vehicle_mode_at_reset_mut(&mut self) -> &mut VehicleMode;
     fn body_mass(&self) -> &f32;
@@ -21766,22 +23058,22 @@ impl VehicleConfigDataTrait for VehicleConfigData {
     fn inertia_modifier_mut(&mut self) -> &mut super::core::Vec3 {
         &mut self.inertia_modifier
     }
-    fn aero_dynamic_physics(&self) -> &Option<Arc<Mutex<dyn AeroDynamicPhysicsDataTrait>>> {
+    fn aero_dynamic_physics(&self) -> &Option<LockedTypeObject /* AeroDynamicPhysicsData */> {
         &self.aero_dynamic_physics
     }
-    fn aero_dynamic_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AeroDynamicPhysicsDataTrait>>> {
+    fn aero_dynamic_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* AeroDynamicPhysicsData */> {
         &mut self.aero_dynamic_physics
     }
-    fn motorbike_physics(&self) -> &Option<Arc<Mutex<dyn MotorbikeDataTrait>>> {
+    fn motorbike_physics(&self) -> &Option<LockedTypeObject /* MotorbikeData */> {
         &self.motorbike_physics
     }
-    fn motorbike_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MotorbikeDataTrait>>> {
+    fn motorbike_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* MotorbikeData */> {
         &mut self.motorbike_physics
     }
-    fn motion_damping(&self) -> &Option<Arc<Mutex<dyn MotionDampingDataTrait>>> {
+    fn motion_damping(&self) -> &Option<LockedTypeObject /* MotionDampingData */> {
         &self.motion_damping
     }
-    fn motion_damping_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MotionDampingDataTrait>>> {
+    fn motion_damping_mut(&mut self) -> &mut Option<LockedTypeObject /* MotionDampingData */> {
         &mut self.motion_damping
     }
     fn input(&self) -> &VehicleInputData {
@@ -21790,28 +23082,28 @@ impl VehicleConfigDataTrait for VehicleConfigData {
     fn input_mut(&mut self) -> &mut VehicleInputData {
         &mut self.input
     }
-    fn float_physics(&self) -> &Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
+    fn float_physics(&self) -> &Option<LockedTypeObject /* FloatPhysicsData */> {
         &self.float_physics
     }
-    fn float_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FloatPhysicsDataTrait>>> {
+    fn float_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FloatPhysicsData */> {
         &mut self.float_physics
     }
-    fn stabilizer(&self) -> &Option<Arc<Mutex<dyn StabilizerDataTrait>>> {
+    fn stabilizer(&self) -> &Option<LockedTypeObject /* StabilizerData */> {
         &self.stabilizer
     }
-    fn stabilizer_mut(&mut self) -> &mut Option<Arc<Mutex<dyn StabilizerDataTrait>>> {
+    fn stabilizer_mut(&mut self) -> &mut Option<LockedTypeObject /* StabilizerData */> {
         &mut self.stabilizer
     }
-    fn stabilizers(&self) -> &Vec<StabilizerSettings> {
+    fn stabilizers(&self) -> &Vec<BoxedTypeObject /* StabilizerSettings */> {
         &self.stabilizers
     }
-    fn stabilizers_mut(&mut self) -> &mut Vec<StabilizerSettings> {
+    fn stabilizers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* StabilizerSettings */> {
         &mut self.stabilizers
     }
-    fn constant_force(&self) -> &Vec<ConstantForceData> {
+    fn constant_force(&self) -> &Vec<BoxedTypeObject /* ConstantForceData */> {
         &self.constant_force
     }
-    fn constant_force_mut(&mut self) -> &mut Vec<ConstantForceData> {
+    fn constant_force_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ConstantForceData */> {
         &mut self.constant_force
     }
     fn vehicle_mode_at_reset(&self) -> &VehicleMode {
@@ -22043,304 +23335,356 @@ impl super::core::DataContainerTrait for VehicleConfigData {
 
 pub static VEHICLECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleConfigData",
+    name_hash: 223432231,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(VehicleConfigData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VehicleConfigData as Default>::default())),
+            create_boxed: || Box::new(<VehicleConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CenterOfMass",
+                name_hash: 361795531,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VehicleConfigData, center_of_mass),
             },
             FieldInfoData {
                 name: "CenterOfMassHandlingOffset",
+                name_hash: 168252105,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VehicleConfigData, center_of_mass_handling_offset),
             },
             FieldInfoData {
                 name: "InertiaOverride",
+                name_hash: 2873173501,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VehicleConfigData, inertia_override),
             },
             FieldInfoData {
                 name: "InertiaModifier",
+                name_hash: 3532865534,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VehicleConfigData, inertia_modifier),
             },
             FieldInfoData {
                 name: "AeroDynamicPhysics",
+                name_hash: 2399848130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AeroDynamicPhysicsData",
                 rust_offset: offset_of!(VehicleConfigData, aero_dynamic_physics),
             },
             FieldInfoData {
                 name: "MotorbikePhysics",
+                name_hash: 3743341024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MotorbikeData",
                 rust_offset: offset_of!(VehicleConfigData, motorbike_physics),
             },
             FieldInfoData {
                 name: "MotionDamping",
+                name_hash: 1754408739,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MotionDampingData",
                 rust_offset: offset_of!(VehicleConfigData, motion_damping),
             },
             FieldInfoData {
                 name: "Input",
+                name_hash: 214522259,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VehicleInputData",
                 rust_offset: offset_of!(VehicleConfigData, input),
             },
             FieldInfoData {
                 name: "FloatPhysics",
+                name_hash: 2331402366,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatPhysicsData",
                 rust_offset: offset_of!(VehicleConfigData, float_physics),
             },
             FieldInfoData {
                 name: "Stabilizer",
+                name_hash: 103642688,
                 flags: MemberInfoFlags::new(0),
                 field_type: "StabilizerData",
                 rust_offset: offset_of!(VehicleConfigData, stabilizer),
             },
             FieldInfoData {
                 name: "Stabilizers",
+                name_hash: 3420208691,
                 flags: MemberInfoFlags::new(144),
                 field_type: "StabilizerSettings-Array",
                 rust_offset: offset_of!(VehicleConfigData, stabilizers),
             },
             FieldInfoData {
                 name: "ConstantForce",
+                name_hash: 292465510,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ConstantForceData-Array",
                 rust_offset: offset_of!(VehicleConfigData, constant_force),
             },
             FieldInfoData {
                 name: "VehicleModeAtReset",
+                name_hash: 2802222942,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VehicleMode",
                 rust_offset: offset_of!(VehicleConfigData, vehicle_mode_at_reset),
             },
             FieldInfoData {
                 name: "BodyMass",
+                name_hash: 1687717849,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, body_mass),
             },
             FieldInfoData {
                 name: "GravityModifier",
+                name_hash: 1597941524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, gravity_modifier),
             },
             FieldInfoData {
                 name: "YawMin",
+                name_hash: 3424707936,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, yaw_min),
             },
             FieldInfoData {
                 name: "YawMax",
+                name_hash: 3424707710,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, yaw_max),
             },
             FieldInfoData {
                 name: "DownForceBaseFactor",
+                name_hash: 3150497810,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, down_force_base_factor),
             },
             FieldInfoData {
                 name: "DownForceWheelFactor",
+                name_hash: 2362709428,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, down_force_wheel_factor),
             },
             FieldInfoData {
                 name: "VehicleModeChangeEnteringTime",
+                name_hash: 2388855333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, vehicle_mode_change_entering_time),
             },
             FieldInfoData {
                 name: "VehicleModeChangeStartingTime",
+                name_hash: 3960598669,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, vehicle_mode_change_starting_time),
             },
             FieldInfoData {
                 name: "VehicleModeChangeStoppingTime",
+                name_hash: 1591712197,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, vehicle_mode_change_stopping_time),
             },
             FieldInfoData {
                 name: "VehicleModeChangeLeavingTime",
+                name_hash: 2810866003,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, vehicle_mode_change_leaving_time),
             },
             FieldInfoData {
                 name: "StandStillLowSpeedTimeLimit",
+                name_hash: 1874961716,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, stand_still_low_speed_time_limit),
             },
             FieldInfoData {
                 name: "StaticFrictionBreakCollisionMod",
+                name_hash: 2830214072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, static_friction_break_collision_mod),
             },
             FieldInfoData {
                 name: "StaticFrictionBreakVelocityMod",
+                name_hash: 2340632433,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, static_friction_break_velocity_mod),
             },
             FieldInfoData {
                 name: "CoefficientOfAirFriction",
+                name_hash: 2384886817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, coefficient_of_air_friction),
             },
             FieldInfoData {
                 name: "AirDensity",
+                name_hash: 2185227687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, air_density),
             },
             FieldInfoData {
                 name: "AirDragArea",
+                name_hash: 711586744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, air_drag_area),
             },
             FieldInfoData {
                 name: "WindResistanceBaseFactor",
+                name_hash: 2449706634,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, wind_resistance_base_factor),
             },
             FieldInfoData {
                 name: "WindResistanceVelocityFactor",
+                name_hash: 1925688264,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, wind_resistance_velocity_factor),
             },
             FieldInfoData {
                 name: "WindResistanceVelocityFactorMin",
+                name_hash: 2945998498,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, wind_resistance_velocity_factor_min),
             },
             FieldInfoData {
                 name: "WindResistanceVelocityFactorMax",
+                name_hash: 2945998268,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, wind_resistance_velocity_factor_max),
             },
             FieldInfoData {
                 name: "UseDownForce",
+                name_hash: 2101870921,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VehicleConfigData, use_down_force),
             },
             FieldInfoData {
                 name: "UseDownForceWheelFactor",
+                name_hash: 1501599031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VehicleConfigData, use_down_force_wheel_factor),
             },
             FieldInfoData {
                 name: "UseGearbox",
+                name_hash: 2279282370,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VehicleConfigData, use_gearbox),
             },
             FieldInfoData {
                 name: "UseStandStillBrake",
+                name_hash: 1632443835,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VehicleConfigData, use_stand_still_brake),
             },
             FieldInfoData {
                 name: "UseStandStillSleep",
+                name_hash: 1649809771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VehicleConfigData, use_stand_still_sleep),
             },
             FieldInfoData {
                 name: "UseTurnAroundForce",
+                name_hash: 3314651845,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VehicleConfigData, use_turn_around_force),
             },
             FieldInfoData {
                 name: "UseMotorcycleControl",
+                name_hash: 1123886874,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VehicleConfigData, use_motorcycle_control),
             },
             FieldInfoData {
                 name: "InvertPitchAllowed",
+                name_hash: 2854376649,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VehicleConfigData, invert_pitch_allowed),
             },
             FieldInfoData {
                 name: "UseWindResistance",
+                name_hash: 2549367409,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VehicleConfigData, use_wind_resistance),
             },
             FieldInfoData {
                 name: "UseInputYawAsThrottle",
+                name_hash: 857165157,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InputThrottle",
                 rust_offset: offset_of!(VehicleConfigData, use_input_yaw_as_throttle),
             },
             FieldInfoData {
                 name: "AntiRollBars",
+                name_hash: 3162631432,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntiRollBars",
                 rust_offset: offset_of!(VehicleConfigData, anti_roll_bars),
             },
             FieldInfoData {
                 name: "MaxGroundSpeed",
+                name_hash: 3861350035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, max_ground_speed),
             },
             FieldInfoData {
                 name: "ProximityExtScale",
+                name_hash: 3588712321,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VehicleConfigData, proximity_ext_scale),
             },
             FieldInfoData {
                 name: "ProximityHeightTranslation",
+                name_hash: 2388981380,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, proximity_height_translation),
             },
             FieldInfoData {
                 name: "FrictionAtLowVelocity",
+                name_hash: 317989457,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, friction_at_low_velocity),
             },
             FieldInfoData {
                 name: "ContactMaterialVelocityThreshold",
+                name_hash: 4077551694,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleConfigData, contact_material_velocity_threshold),
@@ -22372,6 +23716,7 @@ impl TypeObject for VehicleConfigData {
 
 pub static VEHICLECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleConfigData-Array",
+    name_hash: 1277247379,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("VehicleConfigData"),
@@ -22380,7 +23725,8 @@ pub static VEHICLECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MotorbikeData {
     pub _glacier_base: super::core::DataContainer,
     pub max_leaning_roll: f32,
@@ -22783,268 +24129,314 @@ impl super::core::DataContainerTrait for MotorbikeData {
 
 pub static MOTORBIKEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MotorbikeData",
+    name_hash: 2370837243,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(MotorbikeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MotorbikeData as Default>::default())),
+            create_boxed: || Box::new(<MotorbikeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxLeaningRoll",
+                name_hash: 2063770090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, max_leaning_roll),
             },
             FieldInfoData {
                 name: "CounterLeanForce",
+                name_hash: 2727731914,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, counter_lean_force),
             },
             FieldInfoData {
                 name: "StandStillLeanForce",
+                name_hash: 1573847100,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, stand_still_lean_force),
             },
             FieldInfoData {
                 name: "LeanForce",
+                name_hash: 3891742718,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, lean_force),
             },
             FieldInfoData {
                 name: "JumpForwardLeanMinAngle",
+                name_hash: 401127825,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, jump_forward_lean_min_angle),
             },
             FieldInfoData {
                 name: "JumpForwardLeanMomentum",
+                name_hash: 2197270066,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, jump_forward_lean_momentum),
             },
             FieldInfoData {
                 name: "JumpForwardLeanMinNoContactTime",
+                name_hash: 606700868,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, jump_forward_lean_min_no_contact_time),
             },
             FieldInfoData {
                 name: "LeanForceMaxVel",
+                name_hash: 90919029,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, lean_force_max_vel),
             },
             FieldInfoData {
                 name: "KickstandRoll",
+                name_hash: 743919134,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, kickstand_roll),
             },
             FieldInfoData {
                 name: "KickstandLinearDamping",
+                name_hash: 184258502,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, kickstand_linear_damping),
             },
             FieldInfoData {
                 name: "StandStillRoll",
+                name_hash: 877604538,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, stand_still_roll),
             },
             FieldInfoData {
                 name: "DampBigJumpImpact",
+                name_hash: 1921216113,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MotorbikeData, damp_big_jump_impact),
             },
             FieldInfoData {
                 name: "DampBigJumpImpactCounterForce",
+                name_hash: 425540600,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(MotorbikeData, damp_big_jump_impact_counter_force),
             },
             FieldInfoData {
                 name: "DampBigJumpImpactVelocity",
+                name_hash: 441919910,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, damp_big_jump_impact_velocity),
             },
             FieldInfoData {
                 name: "DampBigJumpMaxSpringForceFraction",
+                name_hash: 2911983201,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, damp_big_jump_max_spring_force_fraction),
             },
             FieldInfoData {
                 name: "DampBigJumpImpactVerticalVelocity",
+                name_hash: 3594468564,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, damp_big_jump_impact_vertical_velocity),
             },
             FieldInfoData {
                 name: "YawBrakeDampingLerpStartScale",
+                name_hash: 4278552638,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, yaw_brake_damping_lerp_start_scale),
             },
             FieldInfoData {
                 name: "YawBrakeDampingLerpEndScale",
+                name_hash: 3443030225,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, yaw_brake_damping_lerp_end_scale),
             },
             FieldInfoData {
                 name: "StoppieActivationVelocity",
+                name_hash: 2464692130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, stoppie_activation_velocity),
             },
             FieldInfoData {
                 name: "StoppieStartVelocity",
+                name_hash: 3715175158,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, stoppie_start_velocity),
             },
             FieldInfoData {
                 name: "StoppieStopVelocity",
+                name_hash: 3176785966,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, stoppie_stop_velocity),
             },
             FieldInfoData {
                 name: "StoppieMomentum",
+                name_hash: 2105377289,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, stoppie_momentum),
             },
             FieldInfoData {
                 name: "ShortOffgroundGravityMultiplier",
+                name_hash: 2398478128,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, short_offground_gravity_multiplier),
             },
             FieldInfoData {
                 name: "ShortOffgroundPeriod",
+                name_hash: 2265366232,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, short_offground_period),
             },
             FieldInfoData {
                 name: "WheelieSwitchOffNoContactTime",
+                name_hash: 2709167379,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_switch_off_no_contact_time),
             },
             FieldInfoData {
                 name: "WheelieMaxNoDownForceContactTime",
+                name_hash: 3008032341,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_max_no_down_force_contact_time),
             },
             FieldInfoData {
                 name: "WheelieMaxNoContactTime",
+                name_hash: 3277378970,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_max_no_contact_time),
             },
             FieldInfoData {
                 name: "WheelieSteeringFactor",
+                name_hash: 922430370,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_steering_factor),
             },
             FieldInfoData {
                 name: "WheelieInertia",
+                name_hash: 756716118,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_inertia),
             },
             FieldInfoData {
                 name: "WheelieStartVelocity",
+                name_hash: 1112627949,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_start_velocity),
             },
             FieldInfoData {
                 name: "WheelieMaxVelocityUndamped",
+                name_hash: 2044326939,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_max_velocity_undamped),
             },
             FieldInfoData {
                 name: "WheelieMaxVelocityDampRange",
+                name_hash: 911316990,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_max_velocity_damp_range),
             },
             FieldInfoData {
                 name: "WheelieOutAngularMomentum",
+                name_hash: 3287389598,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_out_angular_momentum),
             },
             FieldInfoData {
                 name: "WheelieSpringDamping",
+                name_hash: 2926554611,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_spring_damping),
             },
             FieldInfoData {
                 name: "WheelieSpringKScale",
+                name_hash: 1669808184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_spring_k_scale),
             },
             FieldInfoData {
                 name: "WheelieAngularDamping",
+                name_hash: 3467767936,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_angular_damping),
             },
             FieldInfoData {
                 name: "WheelieAngularDampingSpeed",
+                name_hash: 2883819815,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_angular_damping_speed),
             },
             FieldInfoData {
                 name: "WheelieForce",
+                name_hash: 1325583079,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(MotorbikeData, wheelie_force),
             },
             FieldInfoData {
                 name: "WheelieForceBodyOffset",
+                name_hash: 4050311162,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(MotorbikeData, wheelie_force_body_offset),
             },
             FieldInfoData {
                 name: "WheelieMaxAngle",
+                name_hash: 2419359695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_max_angle),
             },
             FieldInfoData {
                 name: "WheelieMaxVelocity",
+                name_hash: 2291827481,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_max_velocity),
             },
             FieldInfoData {
                 name: "WheelieVelocityForceScale",
+                name_hash: 581384360,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_velocity_force_scale),
             },
             FieldInfoData {
                 name: "WheelieAngularStartMomentum",
+                name_hash: 698093808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MotorbikeData, wheelie_angular_start_momentum),
@@ -23076,6 +24468,7 @@ impl TypeObject for MotorbikeData {
 
 pub static MOTORBIKEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MotorbikeData-Array",
+    name_hash: 1884099279,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("MotorbikeData"),
@@ -23084,7 +24477,8 @@ pub static MOTORBIKEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputThrottle {
     pub enabled: bool,
     pub forward_speed_supression_amount: f32,
@@ -23141,39 +24535,46 @@ impl InputThrottleTrait for InputThrottle {
 
 pub static INPUTTHROTTLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputThrottle",
+    name_hash: 3781305915,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputThrottle as Default>::default())),
+            create_boxed: || Box::new(<InputThrottle as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(InputThrottle, enabled),
             },
             FieldInfoData {
                 name: "ForwardSpeedSupressionAmount",
+                name_hash: 2570271452,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputThrottle, forward_speed_supression_amount),
             },
             FieldInfoData {
                 name: "BackwardSpeedSupressionAmount",
+                name_hash: 69277900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputThrottle, backward_speed_supression_amount),
             },
             FieldInfoData {
                 name: "SideSpeedSupressionAmount",
+                name_hash: 3455932924,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputThrottle, side_speed_supression_amount),
             },
             FieldInfoData {
                 name: "IgnoreBrakeSpeedThreshold",
+                name_hash: 3134332722,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(InputThrottle, ignore_brake_speed_threshold),
@@ -23205,6 +24606,7 @@ impl TypeObject for InputThrottle {
 
 pub static INPUTTHROTTLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputThrottle-Array",
+    name_hash: 4623759,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("InputThrottle"),
@@ -23213,7 +24615,8 @@ pub static INPUTTHROTTLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConstantForceData {
     pub condition: ForceCondition,
     pub type_of_force: ForceType,
@@ -23261,33 +24664,39 @@ impl ConstantForceDataTrait for ConstantForceData {
 
 pub static CONSTANTFORCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConstantForceData",
+    name_hash: 908290134,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConstantForceData as Default>::default())),
+            create_boxed: || Box::new(<ConstantForceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Condition",
+                name_hash: 1800624758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ForceCondition",
                 rust_offset: offset_of!(ConstantForceData, condition),
             },
             FieldInfoData {
                 name: "TypeOfForce",
+                name_hash: 2167151145,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ForceType",
                 rust_offset: offset_of!(ConstantForceData, type_of_force),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ConstantForceData, value),
             },
             FieldInfoData {
                 name: "Space",
+                name_hash: 230891329,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SpaceType",
                 rust_offset: offset_of!(ConstantForceData, space),
@@ -23319,6 +24728,7 @@ impl TypeObject for ConstantForceData {
 
 pub static CONSTANTFORCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConstantForceData-Array",
+    name_hash: 3826134498,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ConstantForceData"),
@@ -23338,6 +24748,7 @@ pub enum SpaceType {
 
 pub static SPACETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpaceType",
+    name_hash: 1824132793,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -23366,6 +24777,7 @@ impl TypeObject for SpaceType {
 
 pub static SPACETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpaceType-Array",
+    name_hash: 449993997,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("SpaceType"),
@@ -23385,6 +24797,7 @@ pub enum ForceType {
 
 pub static FORCETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceType",
+    name_hash: 3675611968,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -23413,6 +24826,7 @@ impl TypeObject for ForceType {
 
 pub static FORCETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceType-Array",
+    name_hash: 2286254580,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ForceType"),
@@ -23436,6 +24850,7 @@ pub enum ForceCondition {
 
 pub static FORCECONDITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceCondition",
+    name_hash: 3380902699,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -23464,6 +24879,7 @@ impl TypeObject for ForceCondition {
 
 pub static FORCECONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceCondition-Array",
+    name_hash: 1082251935,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ForceCondition"),
@@ -23472,7 +24888,8 @@ pub static FORCECONDITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StabilizerSettings {
     pub property: StabilizerProperty,
     pub strength: f32,
@@ -23538,45 +24955,53 @@ impl StabilizerSettingsTrait for StabilizerSettings {
 
 pub static STABILIZERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StabilizerSettings",
+    name_hash: 1630437061,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StabilizerSettings as Default>::default())),
+            create_boxed: || Box::new(<StabilizerSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Property",
+                name_hash: 3010621090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "StabilizerProperty",
                 rust_offset: offset_of!(StabilizerSettings, property),
             },
             FieldInfoData {
                 name: "Strength",
+                name_hash: 3531643328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StabilizerSettings, strength),
             },
             FieldInfoData {
                 name: "Advanced",
+                name_hash: 2748179067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(StabilizerSettings, advanced),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StabilizerSettings, radius),
             },
             FieldInfoData {
                 name: "Use2DRadiusTest",
+                name_hash: 2057171326,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(StabilizerSettings, use2_d_radius_test),
             },
             FieldInfoData {
                 name: "UseInputOverride",
+                name_hash: 2249171652,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(StabilizerSettings, use_input_override),
@@ -23608,6 +25033,7 @@ impl TypeObject for StabilizerSettings {
 
 pub static STABILIZERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StabilizerSettings-Array",
+    name_hash: 707245809,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("StabilizerSettings"),
@@ -23633,6 +25059,7 @@ pub enum StabilizerProperty {
 
 pub static STABILIZERPROPERTY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StabilizerProperty",
+    name_hash: 417557799,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -23661,6 +25088,7 @@ impl TypeObject for StabilizerProperty {
 
 pub static STABILIZERPROPERTY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StabilizerProperty-Array",
+    name_hash: 2324602515,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("StabilizerProperty"),
@@ -23669,51 +25097,56 @@ pub static STABILIZERPROPERTY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AntiRollBars {
-    pub front: Option<Arc<Mutex<dyn AntiRollBarTrait>>>,
-    pub rear: Option<Arc<Mutex<dyn AntiRollBarTrait>>>,
+    pub front: Option<LockedTypeObject /* AntiRollBar */>,
+    pub rear: Option<LockedTypeObject /* AntiRollBar */>,
 }
 
 pub trait AntiRollBarsTrait: TypeObject {
-    fn front(&self) -> &Option<Arc<Mutex<dyn AntiRollBarTrait>>>;
-    fn front_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AntiRollBarTrait>>>;
-    fn rear(&self) -> &Option<Arc<Mutex<dyn AntiRollBarTrait>>>;
-    fn rear_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AntiRollBarTrait>>>;
+    fn front(&self) -> &Option<LockedTypeObject /* AntiRollBar */>;
+    fn front_mut(&mut self) -> &mut Option<LockedTypeObject /* AntiRollBar */>;
+    fn rear(&self) -> &Option<LockedTypeObject /* AntiRollBar */>;
+    fn rear_mut(&mut self) -> &mut Option<LockedTypeObject /* AntiRollBar */>;
 }
 
 impl AntiRollBarsTrait for AntiRollBars {
-    fn front(&self) -> &Option<Arc<Mutex<dyn AntiRollBarTrait>>> {
+    fn front(&self) -> &Option<LockedTypeObject /* AntiRollBar */> {
         &self.front
     }
-    fn front_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AntiRollBarTrait>>> {
+    fn front_mut(&mut self) -> &mut Option<LockedTypeObject /* AntiRollBar */> {
         &mut self.front
     }
-    fn rear(&self) -> &Option<Arc<Mutex<dyn AntiRollBarTrait>>> {
+    fn rear(&self) -> &Option<LockedTypeObject /* AntiRollBar */> {
         &self.rear
     }
-    fn rear_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AntiRollBarTrait>>> {
+    fn rear_mut(&mut self) -> &mut Option<LockedTypeObject /* AntiRollBar */> {
         &mut self.rear
     }
 }
 
 pub static ANTIROLLBARS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AntiRollBars",
+    name_hash: 3162631432,
     flags: MemberInfoFlags::new(73),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AntiRollBars as Default>::default())),
+            create_boxed: || Box::new(<AntiRollBars as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Front",
+                name_hash: 207008228,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntiRollBar",
                 rust_offset: offset_of!(AntiRollBars, front),
             },
             FieldInfoData {
                 name: "Rear",
+                name_hash: 2089376897,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntiRollBar",
                 rust_offset: offset_of!(AntiRollBars, rear),
@@ -23745,6 +25178,7 @@ impl TypeObject for AntiRollBars {
 
 pub static ANTIROLLBARS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AntiRollBars-Array",
+    name_hash: 2862460732,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("AntiRollBars"),
@@ -23753,7 +25187,8 @@ pub static ANTIROLLBARS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AntiRollBar {
     pub _glacier_base: super::core::DataContainer,
     pub stiffness: f32,
@@ -23787,22 +25222,27 @@ impl super::core::DataContainerTrait for AntiRollBar {
 
 pub static ANTIROLLBAR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AntiRollBar",
+    name_hash: 3740051995,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(AntiRollBar, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AntiRollBar as Default>::default())),
+            create_boxed: || Box::new(<AntiRollBar as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Stiffness",
+                name_hash: 721813632,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AntiRollBar, stiffness),
             },
             FieldInfoData {
                 name: "TorqueActivationLimit",
+                name_hash: 2156176460,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AntiRollBar, torque_activation_limit),
@@ -23834,6 +25274,7 @@ impl TypeObject for AntiRollBar {
 
 pub static ANTIROLLBAR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AntiRollBar-Array",
+    name_hash: 1492664495,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("AntiRollBar"),
@@ -23842,7 +25283,8 @@ pub static ANTIROLLBAR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VehicleInputData {
     pub throttle_deadzone: f32,
     pub brake_deadzone: f32,
@@ -24034,129 +25476,151 @@ impl VehicleInputDataTrait for VehicleInputData {
 
 pub static VEHICLEINPUTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleInputData",
+    name_hash: 985692315,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VehicleInputData as Default>::default())),
+            create_boxed: || Box::new(<VehicleInputData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ThrottleDeadzone",
+                name_hash: 3586441143,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, throttle_deadzone),
             },
             FieldInfoData {
                 name: "BrakeDeadzone",
+                name_hash: 2635895680,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, brake_deadzone),
             },
             FieldInfoData {
                 name: "YawDeadzone",
+                name_hash: 221068432,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, yaw_deadzone),
             },
             FieldInfoData {
                 name: "PitchDeadzone",
+                name_hash: 2611479609,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, pitch_deadzone),
             },
             FieldInfoData {
                 name: "RollDeadzone",
+                name_hash: 3606820258,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, roll_deadzone),
             },
             FieldInfoData {
                 name: "ThrottleInertiaOutDuration",
+                name_hash: 3896636145,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, throttle_inertia_out_duration),
             },
             FieldInfoData {
                 name: "ThrottleInertiaInDuration",
+                name_hash: 4199800312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, throttle_inertia_in_duration),
             },
             FieldInfoData {
                 name: "ThrottleInertiaMinRatio",
+                name_hash: 3532696330,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, throttle_inertia_min_ratio),
             },
             FieldInfoData {
                 name: "BrakeInertiaOutDuration",
+                name_hash: 2112213382,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, brake_inertia_out_duration),
             },
             FieldInfoData {
                 name: "BrakeInertiaInDuration",
+                name_hash: 4079208687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, brake_inertia_in_duration),
             },
             FieldInfoData {
                 name: "BrakeInertiaMinRatio",
+                name_hash: 428285341,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, brake_inertia_min_ratio),
             },
             FieldInfoData {
                 name: "YawInertiaOutDuration",
+                name_hash: 2864738966,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, yaw_inertia_out_duration),
             },
             FieldInfoData {
                 name: "YawInertiaInDuration",
+                name_hash: 2493810687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, yaw_inertia_in_duration),
             },
             FieldInfoData {
                 name: "YawInertiaMinRatio",
+                name_hash: 3669874829,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, yaw_inertia_min_ratio),
             },
             FieldInfoData {
                 name: "PitchInertiaOutDuration",
+                name_hash: 3484064127,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, pitch_inertia_out_duration),
             },
             FieldInfoData {
                 name: "PitchInertiaInDuration",
+                name_hash: 1060816822,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, pitch_inertia_in_duration),
             },
             FieldInfoData {
                 name: "PitchInertiaMinRatio",
+                name_hash: 2659870532,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, pitch_inertia_min_ratio),
             },
             FieldInfoData {
                 name: "RollInertiaOutDuration",
+                name_hash: 2073583908,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, roll_inertia_out_duration),
             },
             FieldInfoData {
                 name: "RollInertiaInDuration",
+                name_hash: 2299067405,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, roll_inertia_in_duration),
             },
             FieldInfoData {
                 name: "RollInertiaMinRatio",
+                name_hash: 2058100927,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleInputData, roll_inertia_min_ratio),
@@ -24188,6 +25652,7 @@ impl TypeObject for VehicleInputData {
 
 pub static VEHICLEINPUTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleInputData-Array",
+    name_hash: 3775721263,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("VehicleInputData"),
@@ -24212,6 +25677,7 @@ pub enum VehicleMode {
 
 pub static VEHICLEMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleMode",
+    name_hash: 926230590,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -24240,6 +25706,7 @@ impl TypeObject for VehicleMode {
 
 pub static VEHICLEMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleMode-Array",
+    name_hash: 1765505162,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("VehicleMode"),
@@ -24248,7 +25715,8 @@ pub static VEHICLEMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GearboxNetState {
     pub gearbox_lock_mode: GearboxLockMode,
     pub gearbox_status: GearboxStatus,
@@ -24341,63 +25809,74 @@ impl GearboxNetStateTrait for GearboxNetState {
 
 pub static GEARBOXNETSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxNetState",
+    name_hash: 683181865,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GearboxNetState as Default>::default())),
+            create_boxed: || Box::new(<GearboxNetState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "GearboxLockMode",
+                name_hash: 106958761,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GearboxLockMode",
                 rust_offset: offset_of!(GearboxNetState, gearbox_lock_mode),
             },
             FieldInfoData {
                 name: "GearboxStatus",
+                name_hash: 2075740597,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GearboxStatus",
                 rust_offset: offset_of!(GearboxNetState, gearbox_status),
             },
             FieldInfoData {
                 name: "GearStatus",
+                name_hash: 94298976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GearStatus",
                 rust_offset: offset_of!(GearboxNetState, gear_status),
             },
             FieldInfoData {
                 name: "ClutchStatus",
+                name_hash: 140436180,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ClutchStatus",
                 rust_offset: offset_of!(GearboxNetState, clutch_status),
             },
             FieldInfoData {
                 name: "Gear",
+                name_hash: 2088707188,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int8",
                 rust_offset: offset_of!(GearboxNetState, gear),
             },
             FieldInfoData {
                 name: "GearTimer",
+                name_hash: 642833651,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GearboxNetState, gear_timer),
             },
             FieldInfoData {
                 name: "InvertedTimer",
+                name_hash: 2122529009,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GearboxNetState, inverted_timer),
             },
             FieldInfoData {
                 name: "ClutchToggle",
+                name_hash: 128349586,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GearboxNetState, clutch_toggle),
             },
             FieldInfoData {
                 name: "IsGearboxInverted",
+                name_hash: 689048392,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GearboxNetState, is_gearbox_inverted),
@@ -24429,6 +25908,7 @@ impl TypeObject for GearboxNetState {
 
 pub static GEARBOXNETSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxNetState-Array",
+    name_hash: 1465281949,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GearboxNetState"),
@@ -24448,6 +25928,7 @@ pub enum GearboxGearLimits {
 
 pub static GEARBOXGEARLIMITS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxGearLimits",
+    name_hash: 3396986774,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -24476,6 +25957,7 @@ impl TypeObject for GearboxGearLimits {
 
 pub static GEARBOXGEARLIMITS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxGearLimits-Array",
+    name_hash: 977722530,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GearboxGearLimits"),
@@ -24497,6 +25979,7 @@ pub enum ClutchStatus {
 
 pub static CLUTCHSTATUS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClutchStatus",
+    name_hash: 140436180,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -24525,6 +26008,7 @@ impl TypeObject for ClutchStatus {
 
 pub static CLUTCHSTATUS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClutchStatus-Array",
+    name_hash: 1516441440,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ClutchStatus"),
@@ -24548,6 +26032,7 @@ pub enum GearStatus {
 
 pub static GEARSTATUS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearStatus",
+    name_hash: 94298976,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -24576,6 +26061,7 @@ impl TypeObject for GearStatus {
 
 pub static GEARSTATUS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearStatus-Array",
+    name_hash: 3573963092,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GearStatus"),
@@ -24595,6 +26081,7 @@ pub enum GearboxStatus {
 
 pub static GEARBOXSTATUS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxStatus",
+    name_hash: 2075740597,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -24623,6 +26110,7 @@ impl TypeObject for GearboxStatus {
 
 pub static GEARBOXSTATUS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxStatus-Array",
+    name_hash: 3084003841,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GearboxStatus"),
@@ -24643,6 +26131,7 @@ pub enum GearboxLockMode {
 
 pub static GEARBOXLOCKMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxLockMode",
+    name_hash: 106958761,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -24671,6 +26160,7 @@ impl TypeObject for GearboxLockMode {
 
 pub static GEARBOXLOCKMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxLockMode-Array",
+    name_hash: 60970525,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GearboxLockMode"),
@@ -24691,6 +26181,7 @@ pub enum GearboxMode {
 
 pub static GEARBOXMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxMode",
+    name_hash: 1539978082,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -24719,6 +26210,7 @@ impl TypeObject for GearboxMode {
 
 pub static GEARBOXMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxMode-Array",
+    name_hash: 2887377494,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GearboxMode"),
@@ -24738,6 +26230,7 @@ pub enum GearboxType {
 
 pub static GEARBOXTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxType",
+    name_hash: 1540232153,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -24766,6 +26259,7 @@ impl TypeObject for GearboxType {
 
 pub static GEARBOXTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GearboxType-Array",
+    name_hash: 4130701805,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GearboxType"),
@@ -24774,7 +26268,8 @@ pub static GEARBOXTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IglooGrabToolSettings {
     pub _glacier_base: super::core::DataContainer,
     pub max_grab_distance: f32,
@@ -24871,64 +26366,76 @@ impl super::core::DataContainerTrait for IglooGrabToolSettings {
 
 pub static IGLOOGRABTOOLSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooGrabToolSettings",
+    name_hash: 824319308,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(IglooGrabToolSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IglooGrabToolSettings as Default>::default())),
+            create_boxed: || Box::new(<IglooGrabToolSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxGrabDistance",
+                name_hash: 2211366628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(IglooGrabToolSettings, max_grab_distance),
             },
             FieldInfoData {
                 name: "DebugPickPointSphereRadius",
+                name_hash: 599750888,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(IglooGrabToolSettings, debug_pick_point_sphere_radius),
             },
             FieldInfoData {
                 name: "DebugPickPointNormalLength",
+                name_hash: 156439814,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(IglooGrabToolSettings, debug_pick_point_normal_length),
             },
             FieldInfoData {
                 name: "DebugGrabHandSquareSize",
+                name_hash: 2291135685,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(IglooGrabToolSettings, debug_grab_hand_square_size),
             },
             FieldInfoData {
                 name: "DebugColorGrabHand",
+                name_hash: 2740333116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(IglooGrabToolSettings, debug_color_grab_hand),
             },
             FieldInfoData {
                 name: "DebugColorGrabTargetPosition",
+                name_hash: 3857469431,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(IglooGrabToolSettings, debug_color_grab_target_position),
             },
             FieldInfoData {
                 name: "DebugColorGrabOnServer",
+                name_hash: 1112495035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(IglooGrabToolSettings, debug_color_grab_on_server),
             },
             FieldInfoData {
                 name: "DebugColorGrabOnClient",
+                name_hash: 1727615463,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(IglooGrabToolSettings, debug_color_grab_on_client),
             },
             FieldInfoData {
                 name: "DebugColorGrabOnEffect",
+                name_hash: 1812750377,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(IglooGrabToolSettings, debug_color_grab_on_effect),
@@ -24960,6 +26467,7 @@ impl TypeObject for IglooGrabToolSettings {
 
 pub static IGLOOGRABTOOLSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooGrabToolSettings-Array",
+    name_hash: 1798618616,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("IglooGrabToolSettings"),
@@ -24968,7 +26476,8 @@ pub static IGLOOGRABTOOLSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRenderWorldDynamicState {
     pub part_enabled: Vec<bool>,
     pub add_to_world: bool,
@@ -25025,39 +26534,46 @@ impl PhysicsRenderWorldDynamicStateTrait for PhysicsRenderWorldDynamicState {
 
 pub static PHYSICSRENDERWORLDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRenderWorldDynamicState",
+    name_hash: 4066787588,
     flags: MemberInfoFlags::new(73),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRenderWorldDynamicState as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRenderWorldDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PartEnabled",
+                name_hash: 3273755287,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Boolean-Array",
                 rust_offset: offset_of!(PhysicsRenderWorldDynamicState, part_enabled),
             },
             FieldInfoData {
                 name: "AddToWorld",
+                name_hash: 3403684765,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PhysicsRenderWorldDynamicState, add_to_world),
             },
             FieldInfoData {
                 name: "CharacterPose",
+                name_hash: 3077951669,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterPoseType",
                 rust_offset: offset_of!(PhysicsRenderWorldDynamicState, character_pose),
             },
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(PhysicsRenderWorldDynamicState, transform),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(PhysicsRenderWorldDynamicState, field_flag_changed0),
@@ -25089,6 +26605,7 @@ impl TypeObject for PhysicsRenderWorldDynamicState {
 
 pub static PHYSICSRENDERWORLDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRenderWorldDynamicState-Array",
+    name_hash: 3056686384,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRenderWorldDynamicState"),
@@ -25097,22 +26614,23 @@ pub static PHYSICSRENDERWORLDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRenderWorldStaticState {
-    pub physics_component_data: Option<Arc<Mutex<dyn PhysicsComponentDataTrait>>>,
-    pub physics_body_data: Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>,
-    pub body_transform_fixups: Vec<super::core::LinearTransform>,
+    pub physics_component_data: Option<LockedTypeObject /* PhysicsComponentData */>,
+    pub physics_body_data: Option<LockedTypeObject /* PhysicsBodyData */>,
+    pub body_transform_fixups: Vec<BoxedTypeObject /* super::core::LinearTransform */>,
     pub transform_space: super::state_stream::TransformSpaceHandle,
     pub field_flag_changed0: u8,
 }
 
 pub trait PhysicsRenderWorldStaticStateTrait: TypeObject {
-    fn physics_component_data(&self) -> &Option<Arc<Mutex<dyn PhysicsComponentDataTrait>>>;
-    fn physics_component_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsComponentDataTrait>>>;
-    fn physics_body_data(&self) -> &Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>;
-    fn physics_body_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>>;
-    fn body_transform_fixups(&self) -> &Vec<super::core::LinearTransform>;
-    fn body_transform_fixups_mut(&mut self) -> &mut Vec<super::core::LinearTransform>;
+    fn physics_component_data(&self) -> &Option<LockedTypeObject /* PhysicsComponentData */>;
+    fn physics_component_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsComponentData */>;
+    fn physics_body_data(&self) -> &Option<LockedTypeObject /* PhysicsBodyData */>;
+    fn physics_body_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsBodyData */>;
+    fn body_transform_fixups(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */>;
+    fn body_transform_fixups_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */>;
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
     fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
     fn field_flag_changed0(&self) -> &u8;
@@ -25120,22 +26638,22 @@ pub trait PhysicsRenderWorldStaticStateTrait: TypeObject {
 }
 
 impl PhysicsRenderWorldStaticStateTrait for PhysicsRenderWorldStaticState {
-    fn physics_component_data(&self) -> &Option<Arc<Mutex<dyn PhysicsComponentDataTrait>>> {
+    fn physics_component_data(&self) -> &Option<LockedTypeObject /* PhysicsComponentData */> {
         &self.physics_component_data
     }
-    fn physics_component_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsComponentDataTrait>>> {
+    fn physics_component_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsComponentData */> {
         &mut self.physics_component_data
     }
-    fn physics_body_data(&self) -> &Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>> {
+    fn physics_body_data(&self) -> &Option<LockedTypeObject /* PhysicsBodyData */> {
         &self.physics_body_data
     }
-    fn physics_body_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsBodyDataTrait>>> {
+    fn physics_body_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsBodyData */> {
         &mut self.physics_body_data
     }
-    fn body_transform_fixups(&self) -> &Vec<super::core::LinearTransform> {
+    fn body_transform_fixups(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &self.body_transform_fixups
     }
-    fn body_transform_fixups_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+    fn body_transform_fixups_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &mut self.body_transform_fixups
     }
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle {
@@ -25154,39 +26672,46 @@ impl PhysicsRenderWorldStaticStateTrait for PhysicsRenderWorldStaticState {
 
 pub static PHYSICSRENDERWORLDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRenderWorldStaticState",
+    name_hash: 3755121801,
     flags: MemberInfoFlags::new(73),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRenderWorldStaticState as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRenderWorldStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "physicsComponentData",
+                name_hash: 301525905,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsComponentData",
                 rust_offset: offset_of!(PhysicsRenderWorldStaticState, physics_component_data),
             },
             FieldInfoData {
                 name: "physicsBodyData",
+                name_hash: 849291342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsBodyData",
                 rust_offset: offset_of!(PhysicsRenderWorldStaticState, physics_body_data),
             },
             FieldInfoData {
                 name: "bodyTransformFixups",
+                name_hash: 60575128,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinearTransform-Array",
                 rust_offset: offset_of!(PhysicsRenderWorldStaticState, body_transform_fixups),
             },
             FieldInfoData {
                 name: "TransformSpace",
+                name_hash: 3602558253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TransformSpaceHandle",
                 rust_offset: offset_of!(PhysicsRenderWorldStaticState, transform_space),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(PhysicsRenderWorldStaticState, field_flag_changed0),
@@ -25218,6 +26743,7 @@ impl TypeObject for PhysicsRenderWorldStaticState {
 
 pub static PHYSICSRENDERWORLDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRenderWorldStaticState-Array",
+    name_hash: 1381945917,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRenderWorldStaticState"),
@@ -25226,7 +26752,8 @@ pub static PHYSICSRENDERWORLDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsRenderWorldHandle {
 }
 
@@ -25238,11 +26765,13 @@ impl PhysicsRenderWorldHandleTrait for PhysicsRenderWorldHandle {
 
 pub static PHYSICSRENDERWORLDHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRenderWorldHandle",
+    name_hash: 4126362924,
     flags: MemberInfoFlags::new(73),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsRenderWorldHandle as Default>::default())),
+            create_boxed: || Box::new(<PhysicsRenderWorldHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -25272,6 +26801,7 @@ impl TypeObject for PhysicsRenderWorldHandle {
 
 pub static PHYSICSRENDERWORLDHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsRenderWorldHandle-Array",
+    name_hash: 2138447000,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsRenderWorldHandle"),
@@ -25280,7 +26810,8 @@ pub static PHYSICSRENDERWORLDHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsCategorySet {
     pub categories: u32,
 }
@@ -25301,15 +26832,18 @@ impl PhysicsCategorySetTrait for PhysicsCategorySet {
 
 pub static PHYSICSCATEGORYSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsCategorySet",
+    name_hash: 724921084,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsCategorySet as Default>::default())),
+            create_boxed: || Box::new(<PhysicsCategorySet as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Categories",
+                name_hash: 1039077843,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PhysicsCategorySet, categories),
@@ -25341,6 +26875,7 @@ impl TypeObject for PhysicsCategorySet {
 
 pub static PHYSICSCATEGORYSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsCategorySet-Array",
+    name_hash: 4187378376,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsCategorySet"),
@@ -25349,7 +26884,8 @@ pub static PHYSICSCATEGORYSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FBPhysicsWorldData {
     pub _glacier_base: super::entity::SubWorldDataComponent,
     pub max_body_count: u32,
@@ -25620,178 +27156,209 @@ impl super::core::DataContainerTrait for FBPhysicsWorldData {
 
 pub static FBPHYSICSWORLDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsWorldData",
+    name_hash: 1909788472,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SUBWORLDDATACOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(FBPhysicsWorldData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FBPhysicsWorldData as Default>::default())),
+            create_boxed: || Box::new(<FBPhysicsWorldData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxBodyCount",
+                name_hash: 2597194530,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_body_count),
             },
             FieldInfoData {
                 name: "MaxHeightfieldCount",
+                name_hash: 1510284655,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_heightfield_count),
             },
             FieldInfoData {
                 name: "MaxNonFixedShapeCount",
+                name_hash: 3575468484,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_non_fixed_shape_count),
             },
             FieldInfoData {
                 name: "MaxFixedShapeCount",
+                name_hash: 3938764587,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_fixed_shape_count),
             },
             FieldInfoData {
                 name: "MaxShapePairs",
+                name_hash: 1560055111,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_shape_pairs),
             },
             FieldInfoData {
                 name: "MaxShapePairBatches",
+                name_hash: 3333240350,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_shape_pair_batches),
             },
             FieldInfoData {
                 name: "ShapePairIndexCount",
+                name_hash: 3029378109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, shape_pair_index_count),
             },
             FieldInfoData {
                 name: "MaxContactCount",
+                name_hash: 191280946,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_contact_count),
             },
             FieldInfoData {
                 name: "MaxRayQueryCount",
+                name_hash: 3151750738,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_ray_query_count),
             },
             FieldInfoData {
                 name: "MaxRayQueryResultCount",
+                name_hash: 1730484795,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_ray_query_result_count),
             },
             FieldInfoData {
                 name: "MaxDirectionalDriveCount",
+                name_hash: 1045817110,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_directional_drive_count),
             },
             FieldInfoData {
                 name: "MaxTemporaryDirectionalDriveCount",
+                name_hash: 238453677,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_temporary_directional_drive_count),
             },
             FieldInfoData {
                 name: "MaxLockedLinearJointCount",
+                name_hash: 4179758323,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_locked_linear_joint_count),
             },
             FieldInfoData {
                 name: "MaxTemporaryLockedLinearJointCount",
+                name_hash: 2061456872,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_temporary_locked_linear_joint_count),
             },
             FieldInfoData {
                 name: "MaxAngularJointCount",
+                name_hash: 820406246,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_angular_joint_count),
             },
             FieldInfoData {
                 name: "MaxTemporaryAngularJointCount",
+                name_hash: 1080998109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_temporary_angular_joint_count),
             },
             FieldInfoData {
                 name: "MaxVertexCount",
+                name_hash: 184721626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_vertex_count),
             },
             FieldInfoData {
                 name: "MaxEdgeCount",
+                name_hash: 3064300561,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_edge_count),
             },
             FieldInfoData {
                 name: "MaxFixedPartitionCount",
+                name_hash: 3485996870,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_fixed_partition_count),
             },
             FieldInfoData {
                 name: "MaxCollisionReportCount",
+                name_hash: 2499283874,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_collision_report_count),
             },
             FieldInfoData {
                 name: "MaxImmediateQueryCount",
+                name_hash: 725144521,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_immediate_query_count),
             },
             FieldInfoData {
                 name: "MaxResultsPerImmediateQuery",
+                name_hash: 165034391,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_results_per_immediate_query),
             },
             FieldInfoData {
                 name: "MaxCullingTables",
+                name_hash: 2423594314,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_culling_tables),
             },
             FieldInfoData {
                 name: "MaxCullingGroupPairs",
+                name_hash: 83658273,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_culling_group_pairs),
             },
             FieldInfoData {
                 name: "MaxCullingTableSize",
+                name_hash: 3363212828,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_culling_table_size),
             },
             FieldInfoData {
                 name: "Gravity",
+                name_hash: 3295092963,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FBPhysicsWorldData, gravity),
             },
             FieldInfoData {
                 name: "MaxGJKIterations",
+                name_hash: 101643859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_g_j_k_iterations),
             },
             FieldInfoData {
                 name: "MaxSolveIterations",
+                name_hash: 454398966,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsWorldData, max_solve_iterations),
@@ -25823,6 +27390,7 @@ impl TypeObject for FBPhysicsWorldData {
 
 pub static FBPHYSICSWORLDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsWorldData-Array",
+    name_hash: 4034164876,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FBPhysicsWorldData"),
@@ -25831,7 +27399,8 @@ pub static FBPHYSICSWORLDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FBPhysicsSubLevelData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -25892,28 +27461,34 @@ impl super::core::DataContainerTrait for FBPhysicsSubLevelData {
 
 pub static FBPHYSICSSUBLEVELDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsSubLevelData",
+    name_hash: 716374504,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FBPhysicsSubLevelData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FBPhysicsSubLevelData as Default>::default())),
+            create_boxed: || Box::new(<FBPhysicsSubLevelData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(FBPhysicsSubLevelData, realm),
             },
             FieldInfoData {
                 name: "ServerFixedShapeCount",
+                name_hash: 71130810,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsSubLevelData, server_fixed_shape_count),
             },
             FieldInfoData {
                 name: "ClientFixedShapeCount",
+                name_hash: 799761766,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsSubLevelData, client_fixed_shape_count),
@@ -25945,6 +27520,7 @@ impl TypeObject for FBPhysicsSubLevelData {
 
 pub static FBPHYSICSSUBLEVELDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsSubLevelData-Array",
+    name_hash: 2346103772,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FBPhysicsSubLevelData"),
@@ -25976,6 +27552,7 @@ pub enum PhysicsCollisionCategory {
 
 pub static PHYSICSCOLLISIONCATEGORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsCollisionCategory",
+    name_hash: 3158908192,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -26004,6 +27581,7 @@ impl TypeObject for PhysicsCollisionCategory {
 
 pub static PHYSICSCOLLISIONCATEGORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsCollisionCategory-Array",
+    name_hash: 3743998612,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsCollisionCategory"),
@@ -26012,21 +27590,22 @@ pub static PHYSICSCOLLISIONCATEGORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FBPhysicsComponentData {
     pub _glacier_base: super::entity::ComponentData,
     pub realm: super::core::Realm,
-    pub bones: Vec<PhysicsBoneData>,
-    pub asset: Option<Arc<Mutex<dyn PhysicsAssetTrait>>>,
+    pub bones: Vec<BoxedTypeObject /* PhysicsBoneData */>,
+    pub asset: Option<LockedTypeObject /* PhysicsAsset */>,
 }
 
 pub trait FBPhysicsComponentDataTrait: super::entity::ComponentDataTrait {
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
-    fn bones(&self) -> &Vec<PhysicsBoneData>;
-    fn bones_mut(&mut self) -> &mut Vec<PhysicsBoneData>;
-    fn asset(&self) -> &Option<Arc<Mutex<dyn PhysicsAssetTrait>>>;
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsAssetTrait>>>;
+    fn bones(&self) -> &Vec<BoxedTypeObject /* PhysicsBoneData */>;
+    fn bones_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PhysicsBoneData */>;
+    fn asset(&self) -> &Option<LockedTypeObject /* PhysicsAsset */>;
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsAsset */>;
 }
 
 impl FBPhysicsComponentDataTrait for FBPhysicsComponentData {
@@ -26036,16 +27615,16 @@ impl FBPhysicsComponentDataTrait for FBPhysicsComponentData {
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         &mut self.realm
     }
-    fn bones(&self) -> &Vec<PhysicsBoneData> {
+    fn bones(&self) -> &Vec<BoxedTypeObject /* PhysicsBoneData */> {
         &self.bones
     }
-    fn bones_mut(&mut self) -> &mut Vec<PhysicsBoneData> {
+    fn bones_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PhysicsBoneData */> {
         &mut self.bones
     }
-    fn asset(&self) -> &Option<Arc<Mutex<dyn PhysicsAssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* PhysicsAsset */> {
         &self.asset
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsAssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsAsset */> {
         &mut self.asset
     }
 }
@@ -26057,10 +27636,10 @@ impl super::entity::ComponentDataTrait for FBPhysicsComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -26103,28 +27682,34 @@ impl super::core::DataContainerTrait for FBPhysicsComponentData {
 
 pub static FBPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsComponentData",
+    name_hash: 2293509749,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::COMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FBPhysicsComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FBPhysicsComponentData as Default>::default())),
+            create_boxed: || Box::new(<FBPhysicsComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(FBPhysicsComponentData, realm),
             },
             FieldInfoData {
                 name: "Bones",
+                name_hash: 211344688,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PhysicsBoneData-Array",
                 rust_offset: offset_of!(FBPhysicsComponentData, bones),
             },
             FieldInfoData {
                 name: "Asset",
+                name_hash: 205976053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsAsset",
                 rust_offset: offset_of!(FBPhysicsComponentData, asset),
@@ -26156,6 +27741,7 @@ impl TypeObject for FBPhysicsComponentData {
 
 pub static FBPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsComponentData-Array",
+    name_hash: 3144015681,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FBPhysicsComponentData"),
@@ -26164,15 +27750,16 @@ pub static FBPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsAsset {
     pub _glacier_base: super::core::Asset,
     pub realm: super::core::Realm,
     pub resource: glacier_reflect::builtin::ResourceRef,
-    pub locked_linear_joints: Vec<Option<Arc<Mutex<dyn FBPhysicsLockedLinearJointDataTrait>>>>,
-    pub angular_joints: Vec<Option<Arc<Mutex<dyn FBPhysicsAngularJointDataTrait>>>>,
-    pub directional_drives: Vec<Option<Arc<Mutex<dyn FBPhysicsDirectionalDriveDataTrait>>>>,
-    pub culling_tables: Vec<Option<Arc<Mutex<dyn PhysicsCullingTableDataTrait>>>>,
+    pub locked_linear_joints: Vec<Option<LockedTypeObject /* FBPhysicsLockedLinearJointData */>>,
+    pub angular_joints: Vec<Option<LockedTypeObject /* FBPhysicsAngularJointData */>>,
+    pub directional_drives: Vec<Option<LockedTypeObject /* FBPhysicsDirectionalDriveData */>>,
+    pub culling_tables: Vec<Option<LockedTypeObject /* PhysicsCullingTableData */>>,
 }
 
 pub trait PhysicsAssetTrait: super::core::AssetTrait {
@@ -26180,14 +27767,14 @@ pub trait PhysicsAssetTrait: super::core::AssetTrait {
     fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn resource(&self) -> &glacier_reflect::builtin::ResourceRef;
     fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef;
-    fn locked_linear_joints(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsLockedLinearJointDataTrait>>>>;
-    fn locked_linear_joints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsLockedLinearJointDataTrait>>>>;
-    fn angular_joints(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsAngularJointDataTrait>>>>;
-    fn angular_joints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsAngularJointDataTrait>>>>;
-    fn directional_drives(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsDirectionalDriveDataTrait>>>>;
-    fn directional_drives_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsDirectionalDriveDataTrait>>>>;
-    fn culling_tables(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsCullingTableDataTrait>>>>;
-    fn culling_tables_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsCullingTableDataTrait>>>>;
+    fn locked_linear_joints(&self) -> &Vec<Option<LockedTypeObject /* FBPhysicsLockedLinearJointData */>>;
+    fn locked_linear_joints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* FBPhysicsLockedLinearJointData */>>;
+    fn angular_joints(&self) -> &Vec<Option<LockedTypeObject /* FBPhysicsAngularJointData */>>;
+    fn angular_joints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* FBPhysicsAngularJointData */>>;
+    fn directional_drives(&self) -> &Vec<Option<LockedTypeObject /* FBPhysicsDirectionalDriveData */>>;
+    fn directional_drives_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* FBPhysicsDirectionalDriveData */>>;
+    fn culling_tables(&self) -> &Vec<Option<LockedTypeObject /* PhysicsCullingTableData */>>;
+    fn culling_tables_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsCullingTableData */>>;
 }
 
 impl PhysicsAssetTrait for PhysicsAsset {
@@ -26203,28 +27790,28 @@ impl PhysicsAssetTrait for PhysicsAsset {
     fn resource_mut(&mut self) -> &mut glacier_reflect::builtin::ResourceRef {
         &mut self.resource
     }
-    fn locked_linear_joints(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsLockedLinearJointDataTrait>>>> {
+    fn locked_linear_joints(&self) -> &Vec<Option<LockedTypeObject /* FBPhysicsLockedLinearJointData */>> {
         &self.locked_linear_joints
     }
-    fn locked_linear_joints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsLockedLinearJointDataTrait>>>> {
+    fn locked_linear_joints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* FBPhysicsLockedLinearJointData */>> {
         &mut self.locked_linear_joints
     }
-    fn angular_joints(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsAngularJointDataTrait>>>> {
+    fn angular_joints(&self) -> &Vec<Option<LockedTypeObject /* FBPhysicsAngularJointData */>> {
         &self.angular_joints
     }
-    fn angular_joints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsAngularJointDataTrait>>>> {
+    fn angular_joints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* FBPhysicsAngularJointData */>> {
         &mut self.angular_joints
     }
-    fn directional_drives(&self) -> &Vec<Option<Arc<Mutex<dyn FBPhysicsDirectionalDriveDataTrait>>>> {
+    fn directional_drives(&self) -> &Vec<Option<LockedTypeObject /* FBPhysicsDirectionalDriveData */>> {
         &self.directional_drives
     }
-    fn directional_drives_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FBPhysicsDirectionalDriveDataTrait>>>> {
+    fn directional_drives_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* FBPhysicsDirectionalDriveData */>> {
         &mut self.directional_drives
     }
-    fn culling_tables(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsCullingTableDataTrait>>>> {
+    fn culling_tables(&self) -> &Vec<Option<LockedTypeObject /* PhysicsCullingTableData */>> {
         &self.culling_tables
     }
-    fn culling_tables_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsCullingTableDataTrait>>>> {
+    fn culling_tables_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsCullingTableData */>> {
         &mut self.culling_tables
     }
 }
@@ -26243,46 +27830,55 @@ impl super::core::DataContainerTrait for PhysicsAsset {
 
 pub static PHYSICSASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAsset",
+    name_hash: 1725459518,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsAsset as Default>::default())),
+            create_boxed: || Box::new(<PhysicsAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PhysicsAsset, realm),
             },
             FieldInfoData {
                 name: "Resource",
+                name_hash: 74513935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(PhysicsAsset, resource),
             },
             FieldInfoData {
                 name: "LockedLinearJoints",
+                name_hash: 3958820151,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FBPhysicsLockedLinearJointData-Array",
                 rust_offset: offset_of!(PhysicsAsset, locked_linear_joints),
             },
             FieldInfoData {
                 name: "AngularJoints",
+                name_hash: 936108130,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FBPhysicsAngularJointData-Array",
                 rust_offset: offset_of!(PhysicsAsset, angular_joints),
             },
             FieldInfoData {
                 name: "DirectionalDrives",
+                name_hash: 2136103506,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FBPhysicsDirectionalDriveData-Array",
                 rust_offset: offset_of!(PhysicsAsset, directional_drives),
             },
             FieldInfoData {
                 name: "CullingTables",
+                name_hash: 1684977822,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PhysicsCullingTableData-Array",
                 rust_offset: offset_of!(PhysicsAsset, culling_tables),
@@ -26314,6 +27910,7 @@ impl TypeObject for PhysicsAsset {
 
 pub static PHYSICSASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAsset-Array",
+    name_hash: 4282498186,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsAsset"),
@@ -26322,7 +27919,8 @@ pub static PHYSICSASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsCullingTableData {
     pub _glacier_base: super::core::DataContainer,
     pub entries: Vec<bool>,
@@ -26365,28 +27963,34 @@ impl super::core::DataContainerTrait for PhysicsCullingTableData {
 
 pub static PHYSICSCULLINGTABLEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsCullingTableData",
+    name_hash: 3488141078,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsCullingTableData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsCullingTableData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsCullingTableData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Entries",
+                name_hash: 8238103,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Boolean-Array",
                 rust_offset: offset_of!(PhysicsCullingTableData, entries),
             },
             FieldInfoData {
                 name: "GroupASize",
+                name_hash: 1814446430,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PhysicsCullingTableData, group_a_size),
             },
             FieldInfoData {
                 name: "GroupBSize",
+                name_hash: 1806499933,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PhysicsCullingTableData, group_b_size),
@@ -26418,6 +28022,7 @@ impl TypeObject for PhysicsCullingTableData {
 
 pub static PHYSICSCULLINGTABLEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsCullingTableData-Array",
+    name_hash: 1680172066,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsCullingTableData"),
@@ -26426,7 +28031,8 @@ pub static PHYSICSCULLINGTABLEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FBPhysicsShapeData {
     pub convex_hull_index: u32,
     pub position: super::core::Vec3,
@@ -26528,69 +28134,81 @@ impl FBPhysicsShapeDataTrait for FBPhysicsShapeData {
 
 pub static FBPHYSICSSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsShapeData",
+    name_hash: 3994737493,
     flags: MemberInfoFlags::new(32841),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FBPhysicsShapeData as Default>::default())),
+            create_boxed: || Box::new(<FBPhysicsShapeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ConvexHullIndex",
+                name_hash: 330789903,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsShapeData, convex_hull_index),
             },
             FieldInfoData {
                 name: "Position",
+                name_hash: 3402582524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FBPhysicsShapeData, position),
             },
             FieldInfoData {
                 name: "Orientation",
+                name_hash: 1214674035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(FBPhysicsShapeData, orientation),
             },
             FieldInfoData {
                 name: "ShapeType",
+                name_hash: 2033969234,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsShapeType",
                 rust_offset: offset_of!(FBPhysicsShapeData, shape_type),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsShapeData, radius),
             },
             FieldInfoData {
                 name: "BodyIndexInPhysicsComponent",
+                name_hash: 828173480,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsShapeData, body_index_in_physics_component),
             },
             FieldInfoData {
                 name: "PartIndex",
+                name_hash: 3213901068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsShapeData, part_index),
             },
             FieldInfoData {
                 name: "InCategories",
+                name_hash: 2532991060,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsCategorySet",
                 rust_offset: offset_of!(FBPhysicsShapeData, in_categories),
             },
             FieldInfoData {
                 name: "CollidesWithCategories",
+                name_hash: 1092939718,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsCategorySet",
                 rust_offset: offset_of!(FBPhysicsShapeData, collides_with_categories),
             },
             FieldInfoData {
                 name: "Material",
+                name_hash: 845639918,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialDecl",
                 rust_offset: offset_of!(FBPhysicsShapeData, material),
@@ -26622,6 +28240,7 @@ impl TypeObject for FBPhysicsShapeData {
 
 pub static FBPHYSICSSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsShapeData-Array",
+    name_hash: 4070194017,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FBPhysicsShapeData"),
@@ -26630,17 +28249,18 @@ pub static FBPHYSICSSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FBPhysicsConvexHullData {
-    pub positions: Vec<super::core::Vec3>,
+    pub positions: Vec<BoxedTypeObject /* super::core::Vec3 */>,
     pub end_vertices: Vec<u32>,
     pub edge_cosines: Vec<f32>,
     pub next_edge_in_faces: Vec<u32>,
 }
 
 pub trait FBPhysicsConvexHullDataTrait: TypeObject {
-    fn positions(&self) -> &Vec<super::core::Vec3>;
-    fn positions_mut(&mut self) -> &mut Vec<super::core::Vec3>;
+    fn positions(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */>;
+    fn positions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */>;
     fn end_vertices(&self) -> &Vec<u32>;
     fn end_vertices_mut(&mut self) -> &mut Vec<u32>;
     fn edge_cosines(&self) -> &Vec<f32>;
@@ -26650,10 +28270,10 @@ pub trait FBPhysicsConvexHullDataTrait: TypeObject {
 }
 
 impl FBPhysicsConvexHullDataTrait for FBPhysicsConvexHullData {
-    fn positions(&self) -> &Vec<super::core::Vec3> {
+    fn positions(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &self.positions
     }
-    fn positions_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn positions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &mut self.positions
     }
     fn end_vertices(&self) -> &Vec<u32> {
@@ -26678,33 +28298,39 @@ impl FBPhysicsConvexHullDataTrait for FBPhysicsConvexHullData {
 
 pub static FBPHYSICSCONVEXHULLDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsConvexHullData",
+    name_hash: 1988539790,
     flags: MemberInfoFlags::new(73),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FBPhysicsConvexHullData as Default>::default())),
+            create_boxed: || Box::new(<FBPhysicsConvexHullData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Positions",
+                name_hash: 616073487,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec3-Array",
                 rust_offset: offset_of!(FBPhysicsConvexHullData, positions),
             },
             FieldInfoData {
                 name: "EndVertices",
+                name_hash: 960032323,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(FBPhysicsConvexHullData, end_vertices),
             },
             FieldInfoData {
                 name: "EdgeCosines",
+                name_hash: 3665953800,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(FBPhysicsConvexHullData, edge_cosines),
             },
             FieldInfoData {
                 name: "NextEdgeInFaces",
+                name_hash: 3563682708,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(FBPhysicsConvexHullData, next_edge_in_faces),
@@ -26736,6 +28362,7 @@ impl TypeObject for FBPhysicsConvexHullData {
 
 pub static FBPHYSICSCONVEXHULLDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsConvexHullData-Array",
+    name_hash: 2401418938,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FBPhysicsConvexHullData"),
@@ -26744,7 +28371,8 @@ pub static FBPHYSICSCONVEXHULLDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FBPhysicsDirectionalDriveData {
     pub _glacier_base: super::core::DataContainer,
     pub body_a_index_in_component: u32,
@@ -26931,124 +28559,146 @@ impl super::core::DataContainerTrait for FBPhysicsDirectionalDriveData {
 
 pub static FBPHYSICSDIRECTIONALDRIVEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsDirectionalDriveData",
+    name_hash: 1629408990,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(FBPhysicsDirectionalDriveData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FBPhysicsDirectionalDriveData as Default>::default())),
+            create_boxed: || Box::new(<FBPhysicsDirectionalDriveData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BodyAIndexInComponent",
+                name_hash: 2955330402,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, body_a_index_in_component),
             },
             FieldInfoData {
                 name: "BodyBIndexInComponent",
+                name_hash: 2293559969,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, body_b_index_in_component),
             },
             FieldInfoData {
                 name: "PositionOnBodyA",
+                name_hash: 185296300,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, position_on_body_a),
             },
             FieldInfoData {
                 name: "PositionOnBodyB",
+                name_hash: 185296303,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, position_on_body_b),
             },
             FieldInfoData {
                 name: "OrientationOnBodyA",
+                name_hash: 1387985155,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, orientation_on_body_a),
             },
             FieldInfoData {
                 name: "OrientationOnBodyB",
+                name_hash: 1387985152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, orientation_on_body_b),
             },
             FieldInfoData {
                 name: "AngularSpring",
+                name_hash: 1282659766,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, angular_spring),
             },
             FieldInfoData {
                 name: "AngularDamping",
+                name_hash: 2055444159,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, angular_damping),
             },
             FieldInfoData {
                 name: "LinearSpring",
+                name_hash: 994386185,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, linear_spring),
             },
             FieldInfoData {
                 name: "LinearDamping",
+                name_hash: 1796037280,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, linear_damping),
             },
             FieldInfoData {
                 name: "AngularLimitAxisSpace",
+                name_hash: 3683086197,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsConstraintLimitSpace",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, angular_limit_axis_space),
             },
             FieldInfoData {
                 name: "AngularLimitAxis",
+                name_hash: 620445489,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, angular_limit_axis),
             },
             FieldInfoData {
                 name: "SwingTorqueLimit",
+                name_hash: 1999250108,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, swing_torque_limit),
             },
             FieldInfoData {
                 name: "TwistTorqueLimit",
+                name_hash: 1869290165,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, twist_torque_limit),
             },
             FieldInfoData {
                 name: "LinearLimitAxisSpace",
+                name_hash: 725759306,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsConstraintLimitSpace",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, linear_limit_axis_space),
             },
             FieldInfoData {
                 name: "LinearLimitAxis",
+                name_hash: 1441960750,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, linear_limit_axis),
             },
             FieldInfoData {
                 name: "ForwardForceLimit",
+                name_hash: 833379478,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, forward_force_limit),
             },
             FieldInfoData {
                 name: "BackwardForceLimit",
+                name_hash: 2296943750,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, backward_force_limit),
             },
             FieldInfoData {
                 name: "RadialForceLimit",
+                name_hash: 2974067262,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsDirectionalDriveData, radial_force_limit),
@@ -27080,6 +28730,7 @@ impl TypeObject for FBPhysicsDirectionalDriveData {
 
 pub static FBPHYSICSDIRECTIONALDRIVEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsDirectionalDriveData-Array",
+    name_hash: 2468073578,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FBPhysicsDirectionalDriveData"),
@@ -27088,7 +28739,8 @@ pub static FBPHYSICSDIRECTIONALDRIVEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FBPhysicsAngularJointData {
     pub _glacier_base: super::core::DataContainer,
     pub body_a_index_in_component: u32,
@@ -27266,118 +28918,139 @@ impl super::core::DataContainerTrait for FBPhysicsAngularJointData {
 
 pub static FBPHYSICSANGULARJOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsAngularJointData",
+    name_hash: 738056750,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(FBPhysicsAngularJointData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FBPhysicsAngularJointData as Default>::default())),
+            create_boxed: || Box::new(<FBPhysicsAngularJointData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BodyAIndexInComponent",
+                name_hash: 2955330402,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, body_a_index_in_component),
             },
             FieldInfoData {
                 name: "BodyBIndexInComponent",
+                name_hash: 2293559969,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, body_b_index_in_component),
             },
             FieldInfoData {
                 name: "SwingSpring",
+                name_hash: 870988816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, swing_spring),
             },
             FieldInfoData {
                 name: "SwingDamping",
+                name_hash: 2221353241,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, swing_damping),
             },
             FieldInfoData {
                 name: "TwistSpring",
+                name_hash: 630407609,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, twist_spring),
             },
             FieldInfoData {
                 name: "TwistDamping",
+                name_hash: 3775546896,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, twist_damping),
             },
             FieldInfoData {
                 name: "SwingLimitY",
+                name_hash: 761336877,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, swing_limit_y),
             },
             FieldInfoData {
                 name: "SwingLimitZ",
+                name_hash: 761336878,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, swing_limit_z),
             },
             FieldInfoData {
                 name: "TwistLimit",
+                name_hash: 4285290173,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, twist_limit),
             },
             FieldInfoData {
                 name: "SoftSwingLimitY",
+                name_hash: 2378498403,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, soft_swing_limit_y),
             },
             FieldInfoData {
                 name: "SoftSwingLimitZ",
+                name_hash: 2378498400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, soft_swing_limit_z),
             },
             FieldInfoData {
                 name: "SoftTwistLimit",
+                name_hash: 4261944755,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, soft_twist_limit),
             },
             FieldInfoData {
                 name: "SwingVelocityLimit",
+                name_hash: 4060652931,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, swing_velocity_limit),
             },
             FieldInfoData {
                 name: "TwistVelocityLimit",
+                name_hash: 4028192842,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, twist_velocity_limit),
             },
             FieldInfoData {
                 name: "OrientationOnBodyA",
+                name_hash: 1387985155,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, orientation_on_body_a),
             },
             FieldInfoData {
                 name: "OrientationOnBodyB",
+                name_hash: 1387985152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, orientation_on_body_b),
             },
             FieldInfoData {
                 name: "SwingType",
+                name_hash: 241568313,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsAngularJointSwingType",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, swing_type),
             },
             FieldInfoData {
                 name: "TwistType",
+                name_hash: 2993997328,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PhysicsAngularJointTwistType",
                 rust_offset: offset_of!(FBPhysicsAngularJointData, twist_type),
@@ -27409,6 +29082,7 @@ impl TypeObject for FBPhysicsAngularJointData {
 
 pub static FBPHYSICSANGULARJOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsAngularJointData-Array",
+    name_hash: 45015706,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FBPhysicsAngularJointData"),
@@ -27417,7 +29091,8 @@ pub static FBPHYSICSANGULARJOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FBPhysicsLockedLinearJointData {
     pub _glacier_base: super::core::DataContainer,
     pub body_a_index_in_component: u32,
@@ -27469,34 +29144,41 @@ impl super::core::DataContainerTrait for FBPhysicsLockedLinearJointData {
 
 pub static FBPHYSICSLOCKEDLINEARJOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsLockedLinearJointData",
+    name_hash: 3323965499,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(FBPhysicsLockedLinearJointData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FBPhysicsLockedLinearJointData as Default>::default())),
+            create_boxed: || Box::new(<FBPhysicsLockedLinearJointData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BodyAIndexInComponent",
+                name_hash: 2955330402,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsLockedLinearJointData, body_a_index_in_component),
             },
             FieldInfoData {
                 name: "BodyBIndexInComponent",
+                name_hash: 2293559969,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(FBPhysicsLockedLinearJointData, body_b_index_in_component),
             },
             FieldInfoData {
                 name: "PositionOnBodyA",
+                name_hash: 185296300,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FBPhysicsLockedLinearJointData, position_on_body_a),
             },
             FieldInfoData {
                 name: "PositionOnBodyB",
+                name_hash: 185296303,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FBPhysicsLockedLinearJointData, position_on_body_b),
@@ -27528,6 +29210,7 @@ impl TypeObject for FBPhysicsLockedLinearJointData {
 
 pub static FBPHYSICSLOCKEDLINEARJOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsLockedLinearJointData-Array",
+    name_hash: 2743310223,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FBPhysicsLockedLinearJointData"),
@@ -27536,7 +29219,8 @@ pub static FBPHYSICSLOCKEDLINEARJOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FBPhysicsBodyData {
     pub motion_type: RigidBodyMotionType,
     pub reciprocal_mass: f32,
@@ -27593,39 +29277,46 @@ impl FBPhysicsBodyDataTrait for FBPhysicsBodyData {
 
 pub static FBPHYSICSBODYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsBodyData",
+    name_hash: 2921148650,
     flags: MemberInfoFlags::new(32841),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FBPhysicsBodyData as Default>::default())),
+            create_boxed: || Box::new(<FBPhysicsBodyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MotionType",
+                name_hash: 2158618691,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RigidBodyMotionType",
                 rust_offset: offset_of!(FBPhysicsBodyData, motion_type),
             },
             FieldInfoData {
                 name: "ReciprocalMass",
+                name_hash: 3344330551,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FBPhysicsBodyData, reciprocal_mass),
             },
             FieldInfoData {
                 name: "PrincipalAxesOfInertia",
+                name_hash: 3223029213,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Quat",
                 rust_offset: offset_of!(FBPhysicsBodyData, principal_axes_of_inertia),
             },
             FieldInfoData {
                 name: "UnitMassInverseInertia",
+                name_hash: 1462605299,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FBPhysicsBodyData, unit_mass_inverse_inertia),
             },
             FieldInfoData {
                 name: "CenterOfMassOffset",
+                name_hash: 1374097382,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FBPhysicsBodyData, center_of_mass_offset),
@@ -27657,6 +29348,7 @@ impl TypeObject for FBPhysicsBodyData {
 
 pub static FBPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FBPhysicsBodyData-Array",
+    name_hash: 26500062,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FBPhysicsBodyData"),
@@ -27665,24 +29357,25 @@ pub static FBPHYSICSBODYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsBoneData {
-    pub bone: Option<Arc<Mutex<dyn super::entity::ComponentDataTrait>>>,
+    pub bone: Option<LockedTypeObject /* super::entity::ComponentData */>,
     pub body_index: u32,
 }
 
 pub trait PhysicsBoneDataTrait: TypeObject {
-    fn bone(&self) -> &Option<Arc<Mutex<dyn super::entity::ComponentDataTrait>>>;
-    fn bone_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ComponentDataTrait>>>;
+    fn bone(&self) -> &Option<LockedTypeObject /* super::entity::ComponentData */>;
+    fn bone_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ComponentData */>;
     fn body_index(&self) -> &u32;
     fn body_index_mut(&mut self) -> &mut u32;
 }
 
 impl PhysicsBoneDataTrait for PhysicsBoneData {
-    fn bone(&self) -> &Option<Arc<Mutex<dyn super::entity::ComponentDataTrait>>> {
+    fn bone(&self) -> &Option<LockedTypeObject /* super::entity::ComponentData */> {
         &self.bone
     }
-    fn bone_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ComponentDataTrait>>> {
+    fn bone_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ComponentData */> {
         &mut self.bone
     }
     fn body_index(&self) -> &u32 {
@@ -27695,21 +29388,25 @@ impl PhysicsBoneDataTrait for PhysicsBoneData {
 
 pub static PHYSICSBONEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBoneData",
+    name_hash: 314790584,
     flags: MemberInfoFlags::new(73),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsBoneData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsBoneData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Bone",
+                name_hash: 2088812771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ComponentData",
                 rust_offset: offset_of!(PhysicsBoneData, bone),
             },
             FieldInfoData {
                 name: "BodyIndex",
+                name_hash: 4159382315,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PhysicsBoneData, body_index),
@@ -27741,6 +29438,7 @@ impl TypeObject for PhysicsBoneData {
 
 pub static PHYSICSBONEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBoneData-Array",
+    name_hash: 115825676,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsBoneData"),
@@ -27749,22 +29447,23 @@ pub static PHYSICSBONEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsTriangleArrayData {
     pub _glacier_base: super::core::DataContainer,
-    pub triangles: Vec<PhysicsTriangle>,
+    pub triangles: Vec<BoxedTypeObject /* PhysicsTriangle */>,
 }
 
 pub trait PhysicsTriangleArrayDataTrait: super::core::DataContainerTrait {
-    fn triangles(&self) -> &Vec<PhysicsTriangle>;
-    fn triangles_mut(&mut self) -> &mut Vec<PhysicsTriangle>;
+    fn triangles(&self) -> &Vec<BoxedTypeObject /* PhysicsTriangle */>;
+    fn triangles_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PhysicsTriangle */>;
 }
 
 impl PhysicsTriangleArrayDataTrait for PhysicsTriangleArrayData {
-    fn triangles(&self) -> &Vec<PhysicsTriangle> {
+    fn triangles(&self) -> &Vec<BoxedTypeObject /* PhysicsTriangle */> {
         &self.triangles
     }
-    fn triangles_mut(&mut self) -> &mut Vec<PhysicsTriangle> {
+    fn triangles_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PhysicsTriangle */> {
         &mut self.triangles
     }
 }
@@ -27774,16 +29473,20 @@ impl super::core::DataContainerTrait for PhysicsTriangleArrayData {
 
 pub static PHYSICSTRIANGLEARRAYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsTriangleArrayData",
+    name_hash: 1754679721,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsTriangleArrayData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsTriangleArrayData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsTriangleArrayData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Triangles",
+                name_hash: 3405133656,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PhysicsTriangle-Array",
                 rust_offset: offset_of!(PhysicsTriangleArrayData, triangles),
@@ -27815,6 +29518,7 @@ impl TypeObject for PhysicsTriangleArrayData {
 
 pub static PHYSICSTRIANGLEARRAYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsTriangleArrayData-Array",
+    name_hash: 1746669597,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsTriangleArrayData"),
@@ -27823,7 +29527,8 @@ pub static PHYSICSTRIANGLEARRAYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsTriangle {
     pub p0: super::core::Vec3,
     pub p1: super::core::Vec3,
@@ -27862,27 +29567,32 @@ impl PhysicsTriangleTrait for PhysicsTriangle {
 
 pub static PHYSICSTRIANGLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsTriangle",
+    name_hash: 1201491872,
     flags: MemberInfoFlags::new(36937),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsTriangle as Default>::default())),
+            create_boxed: || Box::new(<PhysicsTriangle as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "P0",
+                name_hash: 5862565,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PhysicsTriangle, p0),
             },
             FieldInfoData {
                 name: "P1",
+                name_hash: 5862564,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PhysicsTriangle, p1),
             },
             FieldInfoData {
                 name: "P2",
+                name_hash: 5862567,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PhysicsTriangle, p2),
@@ -27914,6 +29624,7 @@ impl TypeObject for PhysicsTriangle {
 
 pub static PHYSICSTRIANGLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsTriangle-Array",
+    name_hash: 4135122196,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsTriangle"),
@@ -27934,6 +29645,7 @@ pub enum PhysicsConstraintLimitSpace {
 
 pub static PHYSICSCONSTRAINTLIMITSPACE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintLimitSpace",
+    name_hash: 4138255962,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -27962,6 +29674,7 @@ impl TypeObject for PhysicsConstraintLimitSpace {
 
 pub static PHYSICSCONSTRAINTLIMITSPACE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintLimitSpace-Array",
+    name_hash: 937540078,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsConstraintLimitSpace"),
@@ -27985,6 +29698,7 @@ pub enum PhysicsAngularJointSwingType {
 
 pub static PHYSICSANGULARJOINTSWINGTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAngularJointSwingType",
+    name_hash: 1919904518,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -28013,6 +29727,7 @@ impl TypeObject for PhysicsAngularJointSwingType {
 
 pub static PHYSICSANGULARJOINTSWINGTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAngularJointSwingType-Array",
+    name_hash: 10369074,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsAngularJointSwingType"),
@@ -28033,6 +29748,7 @@ pub enum PhysicsAngularJointTwistType {
 
 pub static PHYSICSANGULARJOINTTWISTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAngularJointTwistType",
+    name_hash: 3471642671,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -28061,6 +29777,7 @@ impl TypeObject for PhysicsAngularJointTwistType {
 
 pub static PHYSICSANGULARJOINTTWISTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAngularJointTwistType-Array",
+    name_hash: 2055593371,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsAngularJointTwistType"),
@@ -28084,6 +29801,7 @@ pub enum PhysicsShapeType {
 
 pub static PHYSICSSHAPETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsShapeType",
+    name_hash: 2139834585,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -28112,6 +29830,7 @@ impl TypeObject for PhysicsShapeType {
 
 pub static PHYSICSSHAPETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsShapeType-Array",
+    name_hash: 38172397,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsShapeType"),
@@ -28130,6 +29849,7 @@ pub enum PhysicsComponentConstants {
 
 pub static PHYSICSCOMPONENTCONSTANTS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsComponentConstants",
+    name_hash: 3871999308,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -28158,6 +29878,7 @@ impl TypeObject for PhysicsComponentConstants {
 
 pub static PHYSICSCOMPONENTCONSTANTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsComponentConstants-Array",
+    name_hash: 1227531768,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsComponentConstants"),
@@ -28166,7 +29887,8 @@ pub static PHYSICSCOMPONENTCONSTANTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HavokMemoryContext {
     pub _glacier_base: IglooMemoryContext,
 }
@@ -28182,12 +29904,15 @@ impl IglooMemoryContextTrait for HavokMemoryContext {
 
 pub static HAVOKMEMORYCONTEXT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HavokMemoryContext",
+    name_hash: 4120163392,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IGLOOMEMORYCONTEXT_TYPE_INFO),
+        super_class_offset: offset_of!(HavokMemoryContext, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HavokMemoryContext as Default>::default())),
+            create_boxed: || Box::new(<HavokMemoryContext as Default>::default()),
         },
         fields: &[
         ],
@@ -28217,6 +29942,7 @@ impl TypeObject for HavokMemoryContext {
 
 pub static HAVOKMEMORYCONTEXT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HavokMemoryContext-Array",
+    name_hash: 1933413108,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("HavokMemoryContext"),
@@ -28225,7 +29951,8 @@ pub static HAVOKMEMORYCONTEXT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WindPhysicsAction {
     pub _glacier_base: PhysicsAction,
 }
@@ -28247,12 +29974,15 @@ impl super::entity::EntityBusPeerTrait for WindPhysicsAction {
 
 pub static WINDPHYSICSACTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WindPhysicsAction",
+    name_hash: 3102331844,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSACTION_TYPE_INFO),
+        super_class_offset: offset_of!(WindPhysicsAction, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WindPhysicsAction as Default>::default())),
+            create_boxed: || Box::new(<WindPhysicsAction as Default>::default()),
         },
         fields: &[
         ],
@@ -28282,6 +30012,7 @@ impl TypeObject for WindPhysicsAction {
 
 pub static WINDPHYSICSACTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WindPhysicsAction-Array",
+    name_hash: 2383149168,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("WindPhysicsAction"),
@@ -28290,7 +30021,8 @@ pub static WINDPHYSICSACTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientDestructionInfo {
     pub _glacier_base: DestructionInfo,
 }
@@ -28306,12 +30038,15 @@ impl DestructionInfoTrait for ClientDestructionInfo {
 
 pub static CLIENTDESTRUCTIONINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDestructionInfo",
+    name_hash: 4156084108,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DESTRUCTIONINFO_TYPE_INFO),
+        super_class_offset: offset_of!(ClientDestructionInfo, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientDestructionInfo as Default>::default())),
+            create_boxed: || Box::new(<ClientDestructionInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -28341,6 +30076,7 @@ impl TypeObject for ClientDestructionInfo {
 
 pub static CLIENTDESTRUCTIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientDestructionInfo-Array",
+    name_hash: 2119442360,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ClientDestructionInfo"),
@@ -28349,7 +30085,8 @@ pub static CLIENTDESTRUCTIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDestructionInfo {
     pub _glacier_base: DestructionInfo,
 }
@@ -28365,12 +30102,15 @@ impl DestructionInfoTrait for ServerDestructionInfo {
 
 pub static SERVERDESTRUCTIONINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDestructionInfo",
+    name_hash: 417170384,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DESTRUCTIONINFO_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDestructionInfo, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDestructionInfo as Default>::default())),
+            create_boxed: || Box::new(<ServerDestructionInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -28400,6 +30140,7 @@ impl TypeObject for ServerDestructionInfo {
 
 pub static SERVERDESTRUCTIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDestructionInfo-Array",
+    name_hash: 2421604964,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ServerDestructionInfo"),
@@ -28408,7 +30149,8 @@ pub static SERVERDESTRUCTIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DestructionInfo {
 }
 
@@ -28420,12 +30162,15 @@ impl DestructionInfoTrait for DestructionInfo {
 
 pub static DESTRUCTIONINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionInfo",
+    name_hash: 1533429013,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DestructionInfo as Default>::default())),
+            create_boxed: || Box::new(<DestructionInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -28455,6 +30200,7 @@ impl TypeObject for DestructionInfo {
 
 pub static DESTRUCTIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionInfo-Array",
+    name_hash: 1401025697,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("DestructionInfo"),
@@ -28463,7 +30209,8 @@ pub static DESTRUCTIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DestructionPhysicsComponent {
     pub _glacier_base: PhysicsComponent,
 }
@@ -28485,12 +30232,15 @@ impl super::entity::EntityBusPeerTrait for DestructionPhysicsComponent {
 
 pub static DESTRUCTIONPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionPhysicsComponent",
+    name_hash: 1181061471,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(DestructionPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DestructionPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<DestructionPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -28520,6 +30270,7 @@ impl TypeObject for DestructionPhysicsComponent {
 
 pub static DESTRUCTIONPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionPhysicsComponent-Array",
+    name_hash: 2646673003,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("DestructionPhysicsComponent"),
@@ -28528,7 +30279,8 @@ pub static DESTRUCTIONPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DestructionEntityFactory {
     pub _glacier_base: IglooEntityFactory,
 }
@@ -28544,12 +30296,15 @@ impl IglooEntityFactoryTrait for DestructionEntityFactory {
 
 pub static DESTRUCTIONENTITYFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionEntityFactory",
+    name_hash: 1885315252,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IGLOOENTITYFACTORY_TYPE_INFO),
+        super_class_offset: offset_of!(DestructionEntityFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DestructionEntityFactory as Default>::default())),
+            create_boxed: || Box::new(<DestructionEntityFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -28579,6 +30334,7 @@ impl TypeObject for DestructionEntityFactory {
 
 pub static DESTRUCTIONENTITYFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionEntityFactory-Array",
+    name_hash: 1187412992,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("DestructionEntityFactory"),
@@ -28587,7 +30343,8 @@ pub static DESTRUCTIONENTITYFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IglooSubsystem {
 }
 
@@ -28599,12 +30356,15 @@ impl IglooSubsystemTrait for IglooSubsystem {
 
 pub static IGLOOSUBSYSTEM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooSubsystem",
+    name_hash: 1941669510,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IglooSubsystem as Default>::default())),
+            create_boxed: || Box::new(<IglooSubsystem as Default>::default()),
         },
         fields: &[
         ],
@@ -28634,6 +30394,7 @@ impl TypeObject for IglooSubsystem {
 
 pub static IGLOOSUBSYSTEM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IglooSubsystem-Array",
+    name_hash: 2893083570,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("IglooSubsystem"),
@@ -28642,7 +30403,8 @@ pub static IGLOOSUBSYSTEM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsProxyEntity {
     pub _glacier_base: super::entity::ComponentEntity,
 }
@@ -28667,12 +30429,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsProxyEntity {
 
 pub static PHYSICSPROXYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsProxyEntity",
+    name_hash: 1097774521,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::COMPONENTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsProxyEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsProxyEntity as Default>::default())),
+            create_boxed: || Box::new(<PhysicsProxyEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -28702,6 +30467,7 @@ impl TypeObject for PhysicsProxyEntity {
 
 pub static PHYSICSPROXYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsProxyEntity-Array",
+    name_hash: 3827844109,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsProxyEntity"),
@@ -28710,7 +30476,8 @@ pub static PHYSICSPROXYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsComponent {
     pub _glacier_base: super::entity::Component,
 }
@@ -28729,12 +30496,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsComponent {
 
 pub static PHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsComponent",
+    name_hash: 2233789057,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::COMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<PhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -28764,6 +30534,7 @@ impl TypeObject for PhysicsComponent {
 
 pub static PHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsComponent-Array",
+    name_hash: 691291189,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsComponent"),
@@ -28772,7 +30543,8 @@ pub static PHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MultiCollisionEvent {
     pub _glacier_base: super::entity::EntityEvent,
 }
@@ -28788,12 +30560,15 @@ impl super::entity::EntityEventTrait for MultiCollisionEvent {
 
 pub static MULTICOLLISIONEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiCollisionEvent",
+    name_hash: 3717260094,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYEVENT_TYPE_INFO),
+        super_class_offset: offset_of!(MultiCollisionEvent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MultiCollisionEvent as Default>::default())),
+            create_boxed: || Box::new(<MultiCollisionEvent as Default>::default()),
         },
         fields: &[
         ],
@@ -28823,6 +30598,7 @@ impl TypeObject for MultiCollisionEvent {
 
 pub static MULTICOLLISIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiCollisionEvent-Array",
+    name_hash: 4063720330,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("MultiCollisionEvent"),
@@ -28831,7 +30607,8 @@ pub static MULTICOLLISIONEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PreSolveCollisionInfo {
     pub _glacier_base: CollisionInfo,
 }
@@ -28847,12 +30624,15 @@ impl CollisionInfoTrait for PreSolveCollisionInfo {
 
 pub static PRESOLVECOLLISIONINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreSolveCollisionInfo",
+    name_hash: 781854545,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COLLISIONINFO_TYPE_INFO),
+        super_class_offset: offset_of!(PreSolveCollisionInfo, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PreSolveCollisionInfo as Default>::default())),
+            create_boxed: || Box::new(<PreSolveCollisionInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -28882,6 +30662,7 @@ impl TypeObject for PreSolveCollisionInfo {
 
 pub static PRESOLVECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreSolveCollisionInfo-Array",
+    name_hash: 2132990309,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PreSolveCollisionInfo"),
@@ -28890,7 +30671,8 @@ pub static PRESOLVECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerShockwaveCollisionInfo {
     pub _glacier_base: ShockwaveCollisionInfo,
 }
@@ -28906,12 +30688,15 @@ impl ShockwaveCollisionInfoTrait for ServerShockwaveCollisionInfo {
 
 pub static SERVERSHOCKWAVECOLLISIONINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShockwaveCollisionInfo",
+    name_hash: 3529853609,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SHOCKWAVECOLLISIONINFO_TYPE_INFO),
+        super_class_offset: offset_of!(ServerShockwaveCollisionInfo, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerShockwaveCollisionInfo as Default>::default())),
+            create_boxed: || Box::new(<ServerShockwaveCollisionInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -28941,6 +30726,7 @@ impl TypeObject for ServerShockwaveCollisionInfo {
 
 pub static SERVERSHOCKWAVECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerShockwaveCollisionInfo-Array",
+    name_hash: 2875707677,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ServerShockwaveCollisionInfo"),
@@ -28949,7 +30735,8 @@ pub static SERVERSHOCKWAVECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientShockwaveCollisionInfo {
     pub _glacier_base: ShockwaveCollisionInfo,
 }
@@ -28965,12 +30752,15 @@ impl ShockwaveCollisionInfoTrait for ClientShockwaveCollisionInfo {
 
 pub static CLIENTSHOCKWAVECOLLISIONINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShockwaveCollisionInfo",
+    name_hash: 2508371573,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SHOCKWAVECOLLISIONINFO_TYPE_INFO),
+        super_class_offset: offset_of!(ClientShockwaveCollisionInfo, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientShockwaveCollisionInfo as Default>::default())),
+            create_boxed: || Box::new(<ClientShockwaveCollisionInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -29000,6 +30790,7 @@ impl TypeObject for ClientShockwaveCollisionInfo {
 
 pub static CLIENTSHOCKWAVECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientShockwaveCollisionInfo-Array",
+    name_hash: 2600101697,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ClientShockwaveCollisionInfo"),
@@ -29008,7 +30799,8 @@ pub static CLIENTSHOCKWAVECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShockwaveCollisionInfo {
 }
 
@@ -29020,12 +30812,15 @@ impl ShockwaveCollisionInfoTrait for ShockwaveCollisionInfo {
 
 pub static SHOCKWAVECOLLISIONINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShockwaveCollisionInfo",
+    name_hash: 837058444,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShockwaveCollisionInfo as Default>::default())),
+            create_boxed: || Box::new(<ShockwaveCollisionInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -29055,6 +30850,7 @@ impl TypeObject for ShockwaveCollisionInfo {
 
 pub static SHOCKWAVECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShockwaveCollisionInfo-Array",
+    name_hash: 1988349880,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ShockwaveCollisionInfo"),
@@ -29063,7 +30859,8 @@ pub static SHOCKWAVECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerFakeCollisionInfo {
     pub _glacier_base: FakeCollisionInfo,
 }
@@ -29079,12 +30876,15 @@ impl FakeCollisionInfoTrait for ServerFakeCollisionInfo {
 
 pub static SERVERFAKECOLLISIONINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFakeCollisionInfo",
+    name_hash: 2891899641,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(FAKECOLLISIONINFO_TYPE_INFO),
+        super_class_offset: offset_of!(ServerFakeCollisionInfo, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerFakeCollisionInfo as Default>::default())),
+            create_boxed: || Box::new(<ServerFakeCollisionInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -29114,6 +30914,7 @@ impl TypeObject for ServerFakeCollisionInfo {
 
 pub static SERVERFAKECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerFakeCollisionInfo-Array",
+    name_hash: 128295373,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ServerFakeCollisionInfo"),
@@ -29122,7 +30923,8 @@ pub static SERVERFAKECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientFakeCollisionInfo {
     pub _glacier_base: FakeCollisionInfo,
 }
@@ -29138,12 +30940,15 @@ impl FakeCollisionInfoTrait for ClientFakeCollisionInfo {
 
 pub static CLIENTFAKECOLLISIONINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientFakeCollisionInfo",
+    name_hash: 1570070949,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(FAKECOLLISIONINFO_TYPE_INFO),
+        super_class_offset: offset_of!(ClientFakeCollisionInfo, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientFakeCollisionInfo as Default>::default())),
+            create_boxed: || Box::new(<ClientFakeCollisionInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -29173,6 +30978,7 @@ impl TypeObject for ClientFakeCollisionInfo {
 
 pub static CLIENTFAKECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientFakeCollisionInfo-Array",
+    name_hash: 885881361,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ClientFakeCollisionInfo"),
@@ -29181,7 +30987,8 @@ pub static CLIENTFAKECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FakeCollisionInfo {
 }
 
@@ -29193,12 +31000,15 @@ impl FakeCollisionInfoTrait for FakeCollisionInfo {
 
 pub static FAKECOLLISIONINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FakeCollisionInfo",
+    name_hash: 665685436,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FakeCollisionInfo as Default>::default())),
+            create_boxed: || Box::new(<FakeCollisionInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -29228,6 +31038,7 @@ impl TypeObject for FakeCollisionInfo {
 
 pub static FAKECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FakeCollisionInfo-Array",
+    name_hash: 1888584968,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FakeCollisionInfo"),
@@ -29236,7 +31047,8 @@ pub static FAKECOLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CollisionInfo {
 }
 
@@ -29248,12 +31060,15 @@ impl CollisionInfoTrait for CollisionInfo {
 
 pub static COLLISIONINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CollisionInfo",
+    name_hash: 2885020053,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CollisionInfo as Default>::default())),
+            create_boxed: || Box::new(<CollisionInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -29283,6 +31098,7 @@ impl TypeObject for CollisionInfo {
 
 pub static COLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CollisionInfo-Array",
+    name_hash: 1599797537,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CollisionInfo"),
@@ -29291,7 +31107,8 @@ pub static COLLISIONINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PartPhysicsComponent {
     pub _glacier_base: PhysicsComponent,
 }
@@ -29313,12 +31130,15 @@ impl super::entity::EntityBusPeerTrait for PartPhysicsComponent {
 
 pub static PARTPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartPhysicsComponent",
+    name_hash: 2352186870,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(PartPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PartPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<PartPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -29348,6 +31168,7 @@ impl TypeObject for PartPhysicsComponent {
 
 pub static PARTPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartPhysicsComponent-Array",
+    name_hash: 1554614978,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PartPhysicsComponent"),
@@ -29356,7 +31177,8 @@ pub static PARTPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GroupPhysicsComponent {
     pub _glacier_base: PhysicsComponent,
 }
@@ -29378,12 +31200,15 @@ impl super::entity::EntityBusPeerTrait for GroupPhysicsComponent {
 
 pub static GROUPPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupPhysicsComponent",
+    name_hash: 3677821086,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(GroupPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GroupPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<GroupPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -29413,6 +31238,7 @@ impl TypeObject for GroupPhysicsComponent {
 
 pub static GROUPPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupPhysicsComponent-Array",
+    name_hash: 1290021290,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GroupPhysicsComponent"),
@@ -29421,7 +31247,8 @@ pub static GROUPPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ForceComponent {
     pub _glacier_base: super::entity::Component,
 }
@@ -29440,12 +31267,15 @@ impl super::entity::EntityBusPeerTrait for ForceComponent {
 
 pub static FORCECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceComponent",
+    name_hash: 3819361175,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::COMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ForceComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ForceComponent as Default>::default())),
+            create_boxed: || Box::new(<ForceComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -29475,6 +31305,7 @@ impl TypeObject for ForceComponent {
 
 pub static FORCECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceComponent-Array",
+    name_hash: 4039892003,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("ForceComponent"),
@@ -29483,7 +31314,8 @@ pub static FORCECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DefaultPartPhysicsComponent {
     pub _glacier_base: PartPhysicsComponent,
 }
@@ -29508,12 +31340,15 @@ impl super::entity::EntityBusPeerTrait for DefaultPartPhysicsComponent {
 
 pub static DEFAULTPARTPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DefaultPartPhysicsComponent",
+    name_hash: 2669746077,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PARTPHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(DefaultPartPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DefaultPartPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<DefaultPartPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -29543,6 +31378,7 @@ impl TypeObject for DefaultPartPhysicsComponent {
 
 pub static DEFAULTPARTPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DefaultPartPhysicsComponent-Array",
+    name_hash: 3146537,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("DefaultPartPhysicsComponent"),
@@ -29551,7 +31387,8 @@ pub static DEFAULTPARTPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterPhysicsComponent {
     pub _glacier_base: PhysicsComponent,
 }
@@ -29573,12 +31410,15 @@ impl super::entity::EntityBusPeerTrait for CharacterPhysicsComponent {
 
 pub static CHARACTERPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPhysicsComponent",
+    name_hash: 1107930296,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<CharacterPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -29608,6 +31448,7 @@ impl TypeObject for CharacterPhysicsComponent {
 
 pub static CHARACTERPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPhysicsComponent-Array",
+    name_hash: 201930252,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterPhysicsComponent"),
@@ -29616,7 +31457,8 @@ pub static CHARACTERPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsConstraintOwner {
     pub _glacier_base: super::entity::Entity,
 }
@@ -29635,12 +31477,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsConstraintOwner {
 
 pub static PHYSICSCONSTRAINTOWNER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintOwner",
+    name_hash: 1048618922,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsConstraintOwner, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsConstraintOwner as Default>::default())),
+            create_boxed: || Box::new(<PhysicsConstraintOwner as Default>::default()),
         },
         fields: &[
         ],
@@ -29670,6 +31515,7 @@ impl TypeObject for PhysicsConstraintOwner {
 
 pub static PHYSICSCONSTRAINTOWNER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraintOwner-Array",
+    name_hash: 758522398,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsConstraintOwner"),
@@ -29678,7 +31524,8 @@ pub static PHYSICSCONSTRAINTOWNER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsConstraint {
     pub _glacier_base: super::entity::Entity,
 }
@@ -29697,12 +31544,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsConstraint {
 
 pub static PHYSICSCONSTRAINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraint",
+    name_hash: 2438693195,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsConstraint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsConstraint as Default>::default())),
+            create_boxed: || Box::new(<PhysicsConstraint as Default>::default()),
         },
         fields: &[
         ],
@@ -29732,6 +31582,7 @@ impl TypeObject for PhysicsConstraint {
 
 pub static PHYSICSCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsConstraint-Array",
+    name_hash: 882409599,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsConstraint"),
@@ -29740,7 +31591,8 @@ pub static PHYSICSCONSTRAINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StaticWaterPhysicsBody {
     pub _glacier_base: WaterPhysicsBody,
 }
@@ -29765,12 +31617,15 @@ impl super::entity::EntityBusPeerTrait for StaticWaterPhysicsBody {
 
 pub static STATICWATERPHYSICSBODY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticWaterPhysicsBody",
+    name_hash: 2588529427,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WATERPHYSICSBODY_TYPE_INFO),
+        super_class_offset: offset_of!(StaticWaterPhysicsBody, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StaticWaterPhysicsBody as Default>::default())),
+            create_boxed: || Box::new(<StaticWaterPhysicsBody as Default>::default()),
         },
         fields: &[
         ],
@@ -29800,6 +31655,7 @@ impl TypeObject for StaticWaterPhysicsBody {
 
 pub static STATICWATERPHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticWaterPhysicsBody-Array",
+    name_hash: 928042407,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("StaticWaterPhysicsBody"),
@@ -29808,7 +31664,8 @@ pub static STATICWATERPHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsBody {
     pub _glacier_base: super::entity::Entity,
 }
@@ -29827,12 +31684,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsBody {
 
 pub static PHYSICSBODY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBody",
+    name_hash: 1744046942,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsBody, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsBody as Default>::default())),
+            create_boxed: || Box::new(<PhysicsBody as Default>::default()),
         },
         fields: &[
         ],
@@ -29862,6 +31722,7 @@ impl TypeObject for PhysicsBody {
 
 pub static PHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsBody-Array",
+    name_hash: 3373034730,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsBody"),
@@ -29870,7 +31731,8 @@ pub static PHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsAction {
     pub _glacier_base: super::entity::Entity,
 }
@@ -29889,12 +31751,15 @@ impl super::entity::EntityBusPeerTrait for PhysicsAction {
 
 pub static PHYSICSACTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAction",
+    name_hash: 1087723856,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsAction, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsAction as Default>::default())),
+            create_boxed: || Box::new(<PhysicsAction as Default>::default()),
         },
         fields: &[
         ],
@@ -29924,6 +31789,7 @@ impl TypeObject for PhysicsAction {
 
 pub static PHYSICSACTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAction-Array",
+    name_hash: 1194899428,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsAction"),
@@ -29932,7 +31798,8 @@ pub static PHYSICSACTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatPhysicsAction {
     pub _glacier_base: PhysicsAction,
 }
@@ -29954,12 +31821,15 @@ impl super::entity::EntityBusPeerTrait for FloatPhysicsAction {
 
 pub static FLOATPHYSICSACTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatPhysicsAction",
+    name_hash: 3130272256,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSACTION_TYPE_INFO),
+        super_class_offset: offset_of!(FloatPhysicsAction, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatPhysicsAction as Default>::default())),
+            create_boxed: || Box::new(<FloatPhysicsAction as Default>::default()),
         },
         fields: &[
         ],
@@ -29989,6 +31859,7 @@ impl TypeObject for FloatPhysicsAction {
 
 pub static FLOATPHYSICSACTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatPhysicsAction-Array",
+    name_hash: 3425325108,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FloatPhysicsAction"),
@@ -29997,7 +31868,8 @@ pub static FLOATPHYSICSACTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatPhysicsActionFactory {
     pub _glacier_base: IglooEntityFactory,
 }
@@ -30013,12 +31885,15 @@ impl IglooEntityFactoryTrait for FloatPhysicsActionFactory {
 
 pub static FLOATPHYSICSACTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatPhysicsActionFactory",
+    name_hash: 1162900724,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IGLOOENTITYFACTORY_TYPE_INFO),
+        super_class_offset: offset_of!(FloatPhysicsActionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatPhysicsActionFactory as Default>::default())),
+            create_boxed: || Box::new(<FloatPhysicsActionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -30048,6 +31923,7 @@ impl TypeObject for FloatPhysicsActionFactory {
 
 pub static FLOATPHYSICSACTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatPhysicsActionFactory-Array",
+    name_hash: 2144436416,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FloatPhysicsActionFactory"),
@@ -30056,7 +31932,8 @@ pub static FLOATPHYSICSACTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RagdollPhysicsComponent {
     pub _glacier_base: PhysicsComponent,
 }
@@ -30078,12 +31955,15 @@ impl super::entity::EntityBusPeerTrait for RagdollPhysicsComponent {
 
 pub static RAGDOLLPHYSICSCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RagdollPhysicsComponent",
+    name_hash: 880748510,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(RagdollPhysicsComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RagdollPhysicsComponent as Default>::default())),
+            create_boxed: || Box::new(<RagdollPhysicsComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -30113,6 +31993,7 @@ impl TypeObject for RagdollPhysicsComponent {
 
 pub static RAGDOLLPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RagdollPhysicsComponent-Array",
+    name_hash: 1838868842,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RagdollPhysicsComponent"),
@@ -30121,7 +32002,8 @@ pub static RAGDOLLPHYSICSCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaterPhysicsBody {
     pub _glacier_base: PhysicsBody,
 }
@@ -30143,12 +32025,15 @@ impl super::entity::EntityBusPeerTrait for WaterPhysicsBody {
 
 pub static WATERPHYSICSBODY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterPhysicsBody",
+    name_hash: 2483516235,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSBODY_TYPE_INFO),
+        super_class_offset: offset_of!(WaterPhysicsBody, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaterPhysicsBody as Default>::default())),
+            create_boxed: || Box::new(<WaterPhysicsBody as Default>::default()),
         },
         fields: &[
         ],
@@ -30178,6 +32063,7 @@ impl TypeObject for WaterPhysicsBody {
 
 pub static WATERPHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaterPhysicsBody-Array",
+    name_hash: 3639734911,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("WaterPhysicsBody"),
@@ -30186,7 +32072,8 @@ pub static WATERPHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TerrainPhysicsBody {
     pub _glacier_base: PhysicsBody,
 }
@@ -30208,12 +32095,15 @@ impl super::entity::EntityBusPeerTrait for TerrainPhysicsBody {
 
 pub static TERRAINPHYSICSBODY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainPhysicsBody",
+    name_hash: 1756779273,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSBODY_TYPE_INFO),
+        super_class_offset: offset_of!(TerrainPhysicsBody, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TerrainPhysicsBody as Default>::default())),
+            create_boxed: || Box::new(<TerrainPhysicsBody as Default>::default()),
         },
         fields: &[
         ],
@@ -30243,6 +32133,7 @@ impl TypeObject for TerrainPhysicsBody {
 
 pub static TERRAINPHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TerrainPhysicsBody-Array",
+    name_hash: 500263101,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("TerrainPhysicsBody"),
@@ -30251,7 +32142,8 @@ pub static TERRAINPHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RigidBody {
     pub _glacier_base: PhysicsBody,
 }
@@ -30273,12 +32165,15 @@ impl super::entity::EntityBusPeerTrait for RigidBody {
 
 pub static RIGIDBODY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBody",
+    name_hash: 77704516,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSBODY_TYPE_INFO),
+        super_class_offset: offset_of!(RigidBody, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RigidBody as Default>::default())),
+            create_boxed: || Box::new(<RigidBody as Default>::default()),
         },
         fields: &[
         ],
@@ -30308,6 +32203,7 @@ impl TypeObject for RigidBody {
 
 pub static RIGIDBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RigidBody-Array",
+    name_hash: 564195824,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("RigidBody"),
@@ -30316,7 +32212,8 @@ pub static RIGIDBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GroupRigidBody {
     pub _glacier_base: PhysicsBody,
 }
@@ -30338,12 +32235,15 @@ impl super::entity::EntityBusPeerTrait for GroupRigidBody {
 
 pub static GROUPRIGIDBODY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupRigidBody",
+    name_hash: 25938619,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSBODY_TYPE_INFO),
+        super_class_offset: offset_of!(GroupRigidBody, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GroupRigidBody as Default>::default())),
+            create_boxed: || Box::new(<GroupRigidBody as Default>::default()),
         },
         fields: &[
         ],
@@ -30373,6 +32273,7 @@ impl TypeObject for GroupRigidBody {
 
 pub static GROUPRIGIDBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GroupRigidBody-Array",
+    name_hash: 2805568015,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("GroupRigidBody"),
@@ -30381,7 +32282,8 @@ pub static GROUPRIGIDBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterPhysicsBody {
     pub _glacier_base: PhysicsBody,
 }
@@ -30403,12 +32305,15 @@ impl super::entity::EntityBusPeerTrait for CharacterPhysicsBody {
 
 pub static CHARACTERPHYSICSBODY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPhysicsBody",
+    name_hash: 3075908039,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSBODY_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterPhysicsBody, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterPhysicsBody as Default>::default())),
+            create_boxed: || Box::new(<CharacterPhysicsBody as Default>::default()),
         },
         fields: &[
         ],
@@ -30438,6 +32343,7 @@ impl TypeObject for CharacterPhysicsBody {
 
 pub static CHARACTERPHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterPhysicsBody-Array",
+    name_hash: 1313493747,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("CharacterPhysicsBody"),
@@ -30446,7 +32352,8 @@ pub static CHARACTERPHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AabbTriggerPhysicsBody {
     pub _glacier_base: PhysicsBody,
 }
@@ -30468,12 +32375,15 @@ impl super::entity::EntityBusPeerTrait for AabbTriggerPhysicsBody {
 
 pub static AABBTRIGGERPHYSICSBODY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AabbTriggerPhysicsBody",
+    name_hash: 3465374310,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSBODY_TYPE_INFO),
+        super_class_offset: offset_of!(AabbTriggerPhysicsBody, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AabbTriggerPhysicsBody as Default>::default())),
+            create_boxed: || Box::new(<AabbTriggerPhysicsBody as Default>::default()),
         },
         fields: &[
         ],
@@ -30503,6 +32413,7 @@ impl TypeObject for AabbTriggerPhysicsBody {
 
 pub static AABBTRIGGERPHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AabbTriggerPhysicsBody-Array",
+    name_hash: 3379169106,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("AabbTriggerPhysicsBody"),
@@ -30511,7 +32422,8 @@ pub static AABBTRIGGERPHYSICSBODY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsManager {
     pub _glacier_base: IglooSubsystem,
 }
@@ -30527,12 +32439,15 @@ impl IglooSubsystemTrait for PhysicsManager {
 
 pub static PHYSICSMANAGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsManager",
+    name_hash: 3440626333,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IGLOOSUBSYSTEM_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsManager, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsManager as Default>::default())),
+            create_boxed: || Box::new(<PhysicsManager as Default>::default()),
         },
         fields: &[
         ],
@@ -30562,6 +32477,7 @@ impl TypeObject for PhysicsManager {
 
 pub static PHYSICSMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsManager-Array",
+    name_hash: 1411184169,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsManager"),
@@ -30570,7 +32486,8 @@ pub static PHYSICSMANAGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsEntityCreator {
     pub _glacier_base: IglooEntityCreator,
 }
@@ -30586,12 +32503,15 @@ impl IglooEntityCreatorTrait for PhysicsEntityCreator {
 
 pub static PHYSICSENTITYCREATOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsEntityCreator",
+    name_hash: 1275074121,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IGLOOENTITYCREATOR_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsEntityCreator, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsEntityCreator as Default>::default())),
+            create_boxed: || Box::new(<PhysicsEntityCreator as Default>::default()),
         },
         fields: &[
         ],
@@ -30621,6 +32541,7 @@ impl TypeObject for PhysicsEntityCreator {
 
 pub static PHYSICSENTITYCREATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsEntityCreator-Array",
+    name_hash: 1710005373,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsEntityCreator"),
@@ -30629,7 +32550,8 @@ pub static PHYSICSENTITYCREATOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsEntityFactory {
     pub _glacier_base: IglooEntityFactory,
 }
@@ -30645,12 +32567,15 @@ impl IglooEntityFactoryTrait for PhysicsEntityFactory {
 
 pub static PHYSICSENTITYFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsEntityFactory",
+    name_hash: 88370593,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IGLOOENTITYFACTORY_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsEntityFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsEntityFactory as Default>::default())),
+            create_boxed: || Box::new(<PhysicsEntityFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -30680,6 +32605,7 @@ impl TypeObject for PhysicsEntityFactory {
 
 pub static PHYSICSENTITYFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsEntityFactory-Array",
+    name_hash: 1029036053,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsEntityFactory"),
@@ -30688,7 +32614,8 @@ pub static PHYSICSENTITYFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DestructionDebrisReferenceObjectData {
     pub _glacier_base: super::entity::SpatialReferenceObjectData,
     pub insert_type: DebrisInsertType,
@@ -30751,16 +32678,16 @@ impl super::entity::ReferenceObjectDataTrait for DestructionDebrisReferenceObjec
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
@@ -30827,34 +32754,41 @@ impl super::core::DataContainerTrait for DestructionDebrisReferenceObjectData {
 
 pub static DESTRUCTIONDEBRISREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionDebrisReferenceObjectData",
+    name_hash: 1790973470,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DestructionDebrisReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DestructionDebrisReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<DestructionDebrisReferenceObjectData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InsertType",
+                name_hash: 3793353290,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DebrisInsertType",
                 rust_offset: offset_of!(DestructionDebrisReferenceObjectData, insert_type),
             },
             FieldInfoData {
                 name: "Gap",
+                name_hash: 193444563,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DestructionDebrisReferenceObjectData, gap),
             },
             FieldInfoData {
                 name: "MaxPieceCount",
+                name_hash: 2195017512,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableInt",
                 rust_offset: offset_of!(DestructionDebrisReferenceObjectData, max_piece_count),
             },
             FieldInfoData {
                 name: "RandomSeed",
+                name_hash: 3548222249,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DestructionDebrisReferenceObjectData, random_seed),
@@ -30886,6 +32820,7 @@ impl TypeObject for DestructionDebrisReferenceObjectData {
 
 pub static DESTRUCTIONDEBRISREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionDebrisReferenceObjectData-Array",
+    name_hash: 764757802,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("DestructionDebrisReferenceObjectData"),
@@ -30906,6 +32841,7 @@ pub enum DebrisInsertType {
 
 pub static DEBRISINSERTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DebrisInsertType",
+    name_hash: 2833411265,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -30934,6 +32870,7 @@ impl TypeObject for DebrisInsertType {
 
 pub static DEBRISINSERTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DebrisInsertType-Array",
+    name_hash: 2941679349,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("DebrisInsertType"),
@@ -30942,7 +32879,8 @@ pub static DEBRISINSERTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DestructionControllerComponentData {
     pub _glacier_base: super::entity::GameComponentData,
     pub structural_integrity_analyzer_enable: bool,
@@ -31017,10 +32955,10 @@ impl super::entity::ComponentDataTrait for DestructionControllerComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -31063,46 +33001,55 @@ impl super::core::DataContainerTrait for DestructionControllerComponentData {
 
 pub static DESTRUCTIONCONTROLLERCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionControllerComponentData",
+    name_hash: 3515613464,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DestructionControllerComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DestructionControllerComponentData as Default>::default())),
+            create_boxed: || Box::new(<DestructionControllerComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StructuralIntegrityAnalyzerEnable",
+                name_hash: 2678793672,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DestructionControllerComponentData, structural_integrity_analyzer_enable),
             },
             FieldInfoData {
                 name: "BreakingLength",
+                name_hash: 365059974,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DestructionControllerComponentData, breaking_length),
             },
             FieldInfoData {
                 name: "FracturePosition",
+                name_hash: 3389627644,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DestructionControllerComponentData, fracture_position),
             },
             FieldInfoData {
                 name: "DestructionRadius",
+                name_hash: 3165645571,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DestructionControllerComponentData, destruction_radius),
             },
             FieldInfoData {
                 name: "Delay",
+                name_hash: 208768368,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DestructionControllerComponentData, delay),
             },
             FieldInfoData {
                 name: "RefineRadius",
+                name_hash: 4092993454,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DestructionControllerComponentData, refine_radius),
@@ -31134,6 +33081,7 @@ impl TypeObject for DestructionControllerComponentData {
 
 pub static DESTRUCTIONCONTROLLERCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionControllerComponentData-Array",
+    name_hash: 997821228,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("DestructionControllerComponentData"),
@@ -31142,7 +33090,8 @@ pub static DESTRUCTIONCONTROLLERCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EdgeModelInstance {
     pub transform: super::core::LinearTransform,
 }
@@ -31163,15 +33112,18 @@ impl EdgeModelInstanceTrait for EdgeModelInstance {
 
 pub static EDGEMODELINSTANCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EdgeModelInstance",
+    name_hash: 605622272,
     flags: MemberInfoFlags::new(32841),
     module: "Physics",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EdgeModelInstance as Default>::default())),
+            create_boxed: || Box::new(<EdgeModelInstance as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(EdgeModelInstance, transform),
@@ -31203,6 +33155,7 @@ impl TypeObject for EdgeModelInstance {
 
 pub static EDGEMODELINSTANCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EdgeModelInstance-Array",
+    name_hash: 457422388,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("EdgeModelInstance"),
@@ -31211,18 +33164,19 @@ pub static EDGEMODELINSTANCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DestructionPartComponentData {
     pub _glacier_base: super::entity::GameComponentData,
-    pub objects: Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>,
+    pub objects: Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>>,
     pub part_index: u32,
     pub fixed: bool,
     pub fragile: bool,
 }
 
 pub trait DestructionPartComponentDataTrait: super::entity::GameComponentDataTrait {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>>;
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>>;
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>>;
     fn part_index(&self) -> &u32;
     fn part_index_mut(&mut self) -> &mut u32;
     fn fixed(&self) -> &bool;
@@ -31232,10 +33186,10 @@ pub trait DestructionPartComponentDataTrait: super::entity::GameComponentDataTra
 }
 
 impl DestructionPartComponentDataTrait for DestructionPartComponentData {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         &self.objects
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         &mut self.objects
     }
     fn part_index(&self) -> &u32 {
@@ -31268,10 +33222,10 @@ impl super::entity::ComponentDataTrait for DestructionPartComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -31314,34 +33268,41 @@ impl super::core::DataContainerTrait for DestructionPartComponentData {
 
 pub static DESTRUCTIONPARTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionPartComponentData",
+    name_hash: 3749317107,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DestructionPartComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DestructionPartComponentData as Default>::default())),
+            create_boxed: || Box::new(<DestructionPartComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Objects",
+                name_hash: 105488131,
                 flags: MemberInfoFlags::new(144),
                 field_type: "GameObjectData-Array",
                 rust_offset: offset_of!(DestructionPartComponentData, objects),
             },
             FieldInfoData {
                 name: "PartIndex",
+                name_hash: 3213901068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DestructionPartComponentData, part_index),
             },
             FieldInfoData {
                 name: "Fixed",
+                name_hash: 206684275,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DestructionPartComponentData, fixed),
             },
             FieldInfoData {
                 name: "Fragile",
+                name_hash: 2082366423,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DestructionPartComponentData, fragile),
@@ -31373,6 +33334,7 @@ impl TypeObject for DestructionPartComponentData {
 
 pub static DESTRUCTIONPARTCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestructionPartComponentData-Array",
+    name_hash: 1500440007,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("DestructionPartComponentData"),
@@ -31381,7 +33343,8 @@ pub static DESTRUCTIONPARTCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FakeHingeData {
     pub _glacier_base: FakePhysicsData,
     pub pivot: super::core::Vec3,
@@ -31474,10 +33437,10 @@ impl FakeHingeDataTrait for FakeHingeData {
 }
 
 impl FakePhysicsDataTrait for FakeHingeData {
-    fn child_fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn child_fake_physics(&self) -> &Option<LockedTypeObject /* FakePhysicsData */> {
         self._glacier_base.child_fake_physics()
     }
-    fn child_fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn child_fake_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FakePhysicsData */> {
         self._glacier_base.child_fake_physics_mut()
     }
     fn start_speed(&self) -> &f32 {
@@ -31529,64 +33492,76 @@ impl super::core::DataContainerTrait for FakeHingeData {
 
 pub static FAKEHINGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FakeHingeData",
+    name_hash: 1082379057,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(FAKEPHYSICSDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FakeHingeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FakeHingeData as Default>::default())),
+            create_boxed: || Box::new(<FakeHingeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Pivot",
+                name_hash: 232602033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FakeHingeData, pivot),
             },
             FieldInfoData {
                 name: "RotationAxis",
+                name_hash: 3148542130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FakeHingeData, rotation_axis),
             },
             FieldInfoData {
                 name: "ExtensionAxis",
+                name_hash: 4281429311,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FakeHingeData, extension_axis),
             },
             FieldInfoData {
                 name: "MinAngle",
+                name_hash: 3356124462,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakeHingeData, min_angle),
             },
             FieldInfoData {
                 name: "MaxAngle",
+                name_hash: 417488496,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakeHingeData, max_angle),
             },
             FieldInfoData {
                 name: "AngularDampening",
+                name_hash: 705185012,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakeHingeData, angular_dampening),
             },
             FieldInfoData {
                 name: "PullbackAcceleration",
+                name_hash: 1407037897,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakeHingeData, pullback_acceleration),
             },
             FieldInfoData {
                 name: "ProgressiveExponent",
+                name_hash: 487101329,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakeHingeData, progressive_exponent),
             },
             FieldInfoData {
                 name: "InertiaModifier",
+                name_hash: 3532865534,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakeHingeData, inertia_modifier),
@@ -31618,6 +33593,7 @@ impl TypeObject for FakeHingeData {
 
 pub static FAKEHINGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FakeHingeData-Array",
+    name_hash: 3768065413,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FakeHingeData"),
@@ -31626,7 +33602,8 @@ pub static FAKEHINGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FakeSpringData {
     pub _glacier_base: FakePhysicsData,
     pub direction: super::core::Vec3,
@@ -31683,10 +33660,10 @@ impl FakeSpringDataTrait for FakeSpringData {
 }
 
 impl FakePhysicsDataTrait for FakeSpringData {
-    fn child_fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn child_fake_physics(&self) -> &Option<LockedTypeObject /* FakePhysicsData */> {
         self._glacier_base.child_fake_physics()
     }
-    fn child_fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn child_fake_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FakePhysicsData */> {
         self._glacier_base.child_fake_physics_mut()
     }
     fn start_speed(&self) -> &f32 {
@@ -31738,40 +33715,48 @@ impl super::core::DataContainerTrait for FakeSpringData {
 
 pub static FAKESPRINGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FakeSpringData",
+    name_hash: 2949037677,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(FAKEPHYSICSDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FakeSpringData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FakeSpringData as Default>::default())),
+            create_boxed: || Box::new(<FakeSpringData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Direction",
+                name_hash: 2698949952,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(FakeSpringData, direction),
             },
             FieldInfoData {
                 name: "Length",
+                name_hash: 2906827577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakeSpringData, length),
             },
             FieldInfoData {
                 name: "Acceleration",
+                name_hash: 62601415,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakeSpringData, acceleration),
             },
             FieldInfoData {
                 name: "ProgressiveExponent",
+                name_hash: 487101329,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakeSpringData, progressive_exponent),
             },
             FieldInfoData {
                 name: "Damping",
+                name_hash: 3862601053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakeSpringData, damping),
@@ -31803,6 +33788,7 @@ impl TypeObject for FakeSpringData {
 
 pub static FAKESPRINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FakeSpringData-Array",
+    name_hash: 2635137881,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FakeSpringData"),
@@ -31811,10 +33797,11 @@ pub static FAKESPRINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FakePhysicsData {
     pub _glacier_base: super::core::DataContainer,
-    pub child_fake_physics: Option<Arc<Mutex<dyn FakePhysicsDataTrait>>>,
+    pub child_fake_physics: Option<LockedTypeObject /* FakePhysicsData */>,
     pub start_speed: f32,
     pub gravity_modifier: f32,
     pub start_dampening: f32,
@@ -31825,8 +33812,8 @@ pub struct FakePhysicsData {
 }
 
 pub trait FakePhysicsDataTrait: super::core::DataContainerTrait {
-    fn child_fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>>;
-    fn child_fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>>;
+    fn child_fake_physics(&self) -> &Option<LockedTypeObject /* FakePhysicsData */>;
+    fn child_fake_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FakePhysicsData */>;
     fn start_speed(&self) -> &f32;
     fn start_speed_mut(&mut self) -> &mut f32;
     fn gravity_modifier(&self) -> &f32;
@@ -31844,10 +33831,10 @@ pub trait FakePhysicsDataTrait: super::core::DataContainerTrait {
 }
 
 impl FakePhysicsDataTrait for FakePhysicsData {
-    fn child_fake_physics(&self) -> &Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn child_fake_physics(&self) -> &Option<LockedTypeObject /* FakePhysicsData */> {
         &self.child_fake_physics
     }
-    fn child_fake_physics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FakePhysicsDataTrait>>> {
+    fn child_fake_physics_mut(&mut self) -> &mut Option<LockedTypeObject /* FakePhysicsData */> {
         &mut self.child_fake_physics
     }
     fn start_speed(&self) -> &f32 {
@@ -31899,58 +33886,69 @@ impl super::core::DataContainerTrait for FakePhysicsData {
 
 pub static FAKEPHYSICSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FakePhysicsData",
+    name_hash: 3389043127,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(FakePhysicsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FakePhysicsData as Default>::default())),
+            create_boxed: || Box::new(<FakePhysicsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ChildFakePhysics",
+                name_hash: 1652180525,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FakePhysicsData",
                 rust_offset: offset_of!(FakePhysicsData, child_fake_physics),
             },
             FieldInfoData {
                 name: "StartSpeed",
+                name_hash: 2753756066,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakePhysicsData, start_speed),
             },
             FieldInfoData {
                 name: "GravityModifier",
+                name_hash: 1597941524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakePhysicsData, gravity_modifier),
             },
             FieldInfoData {
                 name: "StartDampening",
+                name_hash: 3397890358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakePhysicsData, start_dampening),
             },
             FieldInfoData {
                 name: "EndDampening",
+                name_hash: 1802636313,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakePhysicsData, end_dampening),
             },
             FieldInfoData {
                 name: "MinSpeed",
+                name_hash: 3368183944,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakePhysicsData, min_speed),
             },
             FieldInfoData {
                 name: "MaxSpeed",
+                name_hash: 396228950,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakePhysicsData, max_speed),
             },
             FieldInfoData {
                 name: "Mass",
+                name_hash: 2088779625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FakePhysicsData, mass),
@@ -31982,6 +33980,7 @@ impl TypeObject for FakePhysicsData {
 
 pub static FAKEPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FakePhysicsData-Array",
+    name_hash: 2722106115,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("FakePhysicsData"),
@@ -31990,7 +33989,8 @@ pub static FAKEPHYSICSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsAngularLimitConstraintData {
     pub _glacier_base: PhysicsConstraintData,
     pub min_angle: f32,
@@ -32089,10 +34089,10 @@ impl PhysicsConstraintDataTrait for PhysicsAngularLimitConstraintData {
     fn world_index_mut(&mut self) -> &mut u8 {
         self._glacier_base.world_index_mut()
     }
-    fn initial_stance_data(&self) -> &Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data(&self) -> &Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data()
     }
-    fn initial_stance_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn PhysicsConstraintInitialStanceDataTrait>>> {
+    fn initial_stance_data_mut(&mut self) -> &mut Option<LockedTypeObject /* PhysicsConstraintInitialStanceData */> {
         self._glacier_base.initial_stance_data_mut()
     }
 }
@@ -32120,40 +34120,48 @@ impl super::core::DataContainerTrait for PhysicsAngularLimitConstraintData {
 
 pub static PHYSICSANGULARLIMITCONSTRAINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAngularLimitConstraintData",
+    name_hash: 2572341740,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSCONSTRAINTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsAngularLimitConstraintData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsAngularLimitConstraintData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsAngularLimitConstraintData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MinAngle",
+                name_hash: 3356124462,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsAngularLimitConstraintData, min_angle),
             },
             FieldInfoData {
                 name: "MaxAngle",
+                name_hash: 417488496,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsAngularLimitConstraintData, max_angle),
             },
             FieldInfoData {
                 name: "ConstrainedAxis",
+                name_hash: 3022539350,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AngularLimitConstraintAxis",
                 rust_offset: offset_of!(PhysicsAngularLimitConstraintData, constrained_axis),
             },
             FieldInfoData {
                 name: "AngularStiffness",
+                name_hash: 540835810,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PhysicsAngularLimitConstraintData, angular_stiffness),
             },
             FieldInfoData {
                 name: "TargetTransform",
+                name_hash: 927994776,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(PhysicsAngularLimitConstraintData, target_transform),
@@ -32185,6 +34193,7 @@ impl TypeObject for PhysicsAngularLimitConstraintData {
 
 pub static PHYSICSANGULARLIMITCONSTRAINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsAngularLimitConstraintData-Array",
+    name_hash: 2823959000,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("PhysicsAngularLimitConstraintData"),
@@ -32205,6 +34214,7 @@ pub enum AngularLimitConstraintAxis {
 
 pub static ANGULARLIMITCONSTRAINTAXIS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngularLimitConstraintAxis",
+    name_hash: 123655444,
     flags: MemberInfoFlags::new(49429),
     module: "Physics",
     data: TypeInfoData::Enum,
@@ -32233,6 +34243,7 @@ impl TypeObject for AngularLimitConstraintAxis {
 
 pub static ANGULARLIMITCONSTRAINTAXIS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngularLimitConstraintAxis-Array",
+    name_hash: 534491424,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("AngularLimitConstraintAxis"),
@@ -32241,7 +34252,8 @@ pub static ANGULARLIMITCONSTRAINTAXIS_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VehiclePhysicsActionFactory {
     pub _glacier_base: IglooEntityFactory,
 }
@@ -32257,12 +34269,15 @@ impl IglooEntityFactoryTrait for VehiclePhysicsActionFactory {
 
 pub static VEHICLEPHYSICSACTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehiclePhysicsActionFactory",
+    name_hash: 978812124,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IGLOOENTITYFACTORY_TYPE_INFO),
+        super_class_offset: offset_of!(VehiclePhysicsActionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VehiclePhysicsActionFactory as Default>::default())),
+            create_boxed: || Box::new(<VehiclePhysicsActionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -32292,6 +34307,7 @@ impl TypeObject for VehiclePhysicsActionFactory {
 
 pub static VEHICLEPHYSICSACTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehiclePhysicsActionFactory-Array",
+    name_hash: 4050027880,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("VehiclePhysicsActionFactory"),
@@ -32300,7 +34316,8 @@ pub static VEHICLEPHYSICSACTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VehiclePhysicsAction {
     pub _glacier_base: PhysicsAction,
 }
@@ -32322,12 +34339,15 @@ impl super::entity::EntityBusPeerTrait for VehiclePhysicsAction {
 
 pub static VEHICLEPHYSICSACTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehiclePhysicsAction",
+    name_hash: 2205050216,
     flags: MemberInfoFlags::new(101),
     module: "Physics",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PHYSICSACTION_TYPE_INFO),
+        super_class_offset: offset_of!(VehiclePhysicsAction, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VehiclePhysicsAction as Default>::default())),
+            create_boxed: || Box::new(<VehiclePhysicsAction as Default>::default()),
         },
         fields: &[
         ],
@@ -32357,6 +34377,7 @@ impl TypeObject for VehiclePhysicsAction {
 
 pub static VEHICLEPHYSICSACTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehiclePhysicsAction-Array",
+    name_hash: 2272180060,
     flags: MemberInfoFlags::new(145),
     module: "Physics",
     data: TypeInfoData::Array("VehiclePhysicsAction"),

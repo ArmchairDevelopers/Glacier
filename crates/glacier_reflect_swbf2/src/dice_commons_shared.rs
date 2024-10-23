@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -389,7 +390,8 @@ pub(crate) fn register_dice_commons_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(ENTITYCULLINGLEVEL_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BlueprintProxyEntityBase {
     pub _glacier_base: super::entity::Entity,
 }
@@ -408,12 +410,15 @@ impl super::entity::EntityBusPeerTrait for BlueprintProxyEntityBase {
 
 pub static BLUEPRINTPROXYENTITYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintProxyEntityBase",
+    name_hash: 3640473672,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BlueprintProxyEntityBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BlueprintProxyEntityBase as Default>::default())),
+            create_boxed: || Box::new(<BlueprintProxyEntityBase as Default>::default()),
         },
         fields: &[
         ],
@@ -443,6 +448,7 @@ impl TypeObject for BlueprintProxyEntityBase {
 
 pub static BLUEPRINTPROXYENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintProxyEntityBase-Array",
+    name_hash: 2390256380,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("BlueprintProxyEntityBase"),
@@ -454,6 +460,7 @@ pub static BLUEPRINTPROXYENTITYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 
 pub static DRAWTEXT2D_INT32_INT32_VEC4_VEC4__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DrawText2d(Int32,Int32,Vec4,Vec4)",
+    name_hash: 580428867,
     flags: MemberInfoFlags::new(793),
     module: "DiceCommonsShared",
     data: TypeInfoData::Unknown,
@@ -465,6 +472,7 @@ pub static DRAWTEXT2D_INT32_INT32_VEC4_VEC4__TYPE_INFO: &'static TypeInfo = &Typ
 
 pub static DRAWTEXT2D_INT32_INT32_VEC4_VEC3__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DrawText2d(Int32,Int32,Vec4,Vec3)",
+    name_hash: 580429028,
     flags: MemberInfoFlags::new(793),
     module: "DiceCommonsShared",
     data: TypeInfoData::Unknown,
@@ -476,6 +484,7 @@ pub static DRAWTEXT2D_INT32_INT32_VEC4_VEC3__TYPE_INFO: &'static TypeInfo = &Typ
 
 pub static DRAWTEXT2D_INT32_INT32_VEC4_INT32__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DrawText2d(Int32,Int32,Vec4,Int32)",
+    name_hash: 1379711925,
     flags: MemberInfoFlags::new(793),
     module: "DiceCommonsShared",
     data: TypeInfoData::Unknown,
@@ -487,6 +496,7 @@ pub static DRAWTEXT2D_INT32_INT32_VEC4_INT32__TYPE_INFO: &'static TypeInfo = &Ty
 
 pub static DRAWTEXT2D_INT32_INT32_VEC4_FLOAT32__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DrawText2d(Int32,Int32,Vec4,Float32)",
+    name_hash: 3167238710,
     flags: MemberInfoFlags::new(793),
     module: "DiceCommonsShared",
     data: TypeInfoData::Unknown,
@@ -498,6 +508,7 @@ pub static DRAWTEXT2D_INT32_INT32_VEC4_FLOAT32__TYPE_INFO: &'static TypeInfo = &
 
 pub static DRAWCOORDINATESYSTEM_MAT4__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DrawCoordinateSystem(Mat4)",
+    name_hash: 583096175,
     flags: MemberInfoFlags::new(793),
     module: "DiceCommonsShared",
     data: TypeInfoData::Unknown,
@@ -506,7 +517,8 @@ pub static DRAWCOORDINATESYSTEM_MAT4__TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ValueMatchEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -515,7 +527,7 @@ pub struct ValueMatchEntityData {
     pub time_scale: f32,
     pub time_offset: f32,
     pub input_values_names: Vec<String>,
-    pub match_and_trigger_array: Vec<MatchAndTriggerItem>,
+    pub match_and_trigger_array: Vec<BoxedTypeObject /* MatchAndTriggerItem */>,
 }
 
 pub trait ValueMatchEntityDataTrait: super::entity::EntityDataTrait {
@@ -531,8 +543,8 @@ pub trait ValueMatchEntityDataTrait: super::entity::EntityDataTrait {
     fn time_offset_mut(&mut self) -> &mut f32;
     fn input_values_names(&self) -> &Vec<String>;
     fn input_values_names_mut(&mut self) -> &mut Vec<String>;
-    fn match_and_trigger_array(&self) -> &Vec<MatchAndTriggerItem>;
-    fn match_and_trigger_array_mut(&mut self) -> &mut Vec<MatchAndTriggerItem>;
+    fn match_and_trigger_array(&self) -> &Vec<BoxedTypeObject /* MatchAndTriggerItem */>;
+    fn match_and_trigger_array_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MatchAndTriggerItem */>;
 }
 
 impl ValueMatchEntityDataTrait for ValueMatchEntityData {
@@ -572,10 +584,10 @@ impl ValueMatchEntityDataTrait for ValueMatchEntityData {
     fn input_values_names_mut(&mut self) -> &mut Vec<String> {
         &mut self.input_values_names
     }
-    fn match_and_trigger_array(&self) -> &Vec<MatchAndTriggerItem> {
+    fn match_and_trigger_array(&self) -> &Vec<BoxedTypeObject /* MatchAndTriggerItem */> {
         &self.match_and_trigger_array
     }
-    fn match_and_trigger_array_mut(&mut self) -> &mut Vec<MatchAndTriggerItem> {
+    fn match_and_trigger_array_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MatchAndTriggerItem */> {
         &mut self.match_and_trigger_array
     }
 }
@@ -603,52 +615,62 @@ impl super::core::DataContainerTrait for ValueMatchEntityData {
 
 pub static VALUEMATCHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ValueMatchEntityData",
+    name_hash: 1835921238,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ValueMatchEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ValueMatchEntityData as Default>::default())),
+            create_boxed: || Box::new(<ValueMatchEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(ValueMatchEntityData, realm),
             },
             FieldInfoData {
                 name: "DebugTextColor",
+                name_hash: 2811759668,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ValueMatchEntityData, debug_text_color),
             },
             FieldInfoData {
                 name: "UseExternalTime",
+                name_hash: 2902061742,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ValueMatchEntityData, use_external_time),
             },
             FieldInfoData {
                 name: "TimeScale",
+                name_hash: 169511528,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ValueMatchEntityData, time_scale),
             },
             FieldInfoData {
                 name: "TimeOffset",
+                name_hash: 2388918461,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ValueMatchEntityData, time_offset),
             },
             FieldInfoData {
                 name: "InputValuesNames",
+                name_hash: 3085011391,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(ValueMatchEntityData, input_values_names),
             },
             FieldInfoData {
                 name: "MatchAndTriggerArray",
+                name_hash: 654948636,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MatchAndTriggerItem-Array",
                 rust_offset: offset_of!(ValueMatchEntityData, match_and_trigger_array),
@@ -680,6 +702,7 @@ impl TypeObject for ValueMatchEntityData {
 
 pub static VALUEMATCHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ValueMatchEntityData-Array",
+    name_hash: 3772904674,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ValueMatchEntityData"),
@@ -688,33 +711,34 @@ pub static VALUEMATCHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MatchAndTriggerItem {
-    pub input_values_to_match: Vec<InputValueMatch>,
-    pub timed_event_triggers: Vec<TimeEventTrigger>,
+    pub input_values_to_match: Vec<BoxedTypeObject /* InputValueMatch */>,
+    pub timed_event_triggers: Vec<BoxedTypeObject /* TimeEventTrigger */>,
     pub stop_at: f32,
 }
 
 pub trait MatchAndTriggerItemTrait: TypeObject {
-    fn input_values_to_match(&self) -> &Vec<InputValueMatch>;
-    fn input_values_to_match_mut(&mut self) -> &mut Vec<InputValueMatch>;
-    fn timed_event_triggers(&self) -> &Vec<TimeEventTrigger>;
-    fn timed_event_triggers_mut(&mut self) -> &mut Vec<TimeEventTrigger>;
+    fn input_values_to_match(&self) -> &Vec<BoxedTypeObject /* InputValueMatch */>;
+    fn input_values_to_match_mut(&mut self) -> &mut Vec<BoxedTypeObject /* InputValueMatch */>;
+    fn timed_event_triggers(&self) -> &Vec<BoxedTypeObject /* TimeEventTrigger */>;
+    fn timed_event_triggers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TimeEventTrigger */>;
     fn stop_at(&self) -> &f32;
     fn stop_at_mut(&mut self) -> &mut f32;
 }
 
 impl MatchAndTriggerItemTrait for MatchAndTriggerItem {
-    fn input_values_to_match(&self) -> &Vec<InputValueMatch> {
+    fn input_values_to_match(&self) -> &Vec<BoxedTypeObject /* InputValueMatch */> {
         &self.input_values_to_match
     }
-    fn input_values_to_match_mut(&mut self) -> &mut Vec<InputValueMatch> {
+    fn input_values_to_match_mut(&mut self) -> &mut Vec<BoxedTypeObject /* InputValueMatch */> {
         &mut self.input_values_to_match
     }
-    fn timed_event_triggers(&self) -> &Vec<TimeEventTrigger> {
+    fn timed_event_triggers(&self) -> &Vec<BoxedTypeObject /* TimeEventTrigger */> {
         &self.timed_event_triggers
     }
-    fn timed_event_triggers_mut(&mut self) -> &mut Vec<TimeEventTrigger> {
+    fn timed_event_triggers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TimeEventTrigger */> {
         &mut self.timed_event_triggers
     }
     fn stop_at(&self) -> &f32 {
@@ -727,27 +751,32 @@ impl MatchAndTriggerItemTrait for MatchAndTriggerItem {
 
 pub static MATCHANDTRIGGERITEM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MatchAndTriggerItem",
+    name_hash: 2623143408,
     flags: MemberInfoFlags::new(73),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MatchAndTriggerItem as Default>::default())),
+            create_boxed: || Box::new(<MatchAndTriggerItem as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InputValuesToMatch",
+                name_hash: 3365398947,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InputValueMatch-Array",
                 rust_offset: offset_of!(MatchAndTriggerItem, input_values_to_match),
             },
             FieldInfoData {
                 name: "TimedEventTriggers",
+                name_hash: 3088010771,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TimeEventTrigger-Array",
                 rust_offset: offset_of!(MatchAndTriggerItem, timed_event_triggers),
             },
             FieldInfoData {
                 name: "StopAt",
+                name_hash: 3320223400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MatchAndTriggerItem, stop_at),
@@ -779,6 +808,7 @@ impl TypeObject for MatchAndTriggerItem {
 
 pub static MATCHANDTRIGGERITEM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MatchAndTriggerItem-Array",
+    name_hash: 48110532,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("MatchAndTriggerItem"),
@@ -787,7 +817,8 @@ pub static MATCHANDTRIGGERITEM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimeEventTrigger {
     pub output_event_hash: i32,
     pub time_to_trigger_event: f32,
@@ -817,21 +848,25 @@ impl TimeEventTriggerTrait for TimeEventTrigger {
 
 pub static TIMEEVENTTRIGGER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimeEventTrigger",
+    name_hash: 2615459204,
     flags: MemberInfoFlags::new(32841),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimeEventTrigger as Default>::default())),
+            create_boxed: || Box::new(<TimeEventTrigger as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OutputEventHash",
+                name_hash: 1931060516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TimeEventTrigger, output_event_hash),
             },
             FieldInfoData {
                 name: "TimeToTriggerEvent",
+                name_hash: 3227863039,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TimeEventTrigger, time_to_trigger_event),
@@ -863,6 +898,7 @@ impl TypeObject for TimeEventTrigger {
 
 pub static TIMEEVENTTRIGGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimeEventTrigger-Array",
+    name_hash: 3099275696,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("TimeEventTrigger"),
@@ -871,7 +907,8 @@ pub static TIMEEVENTTRIGGER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputValueMatch {
     pub input_values_names_index: i32,
     pub value_to_match: i32,
@@ -901,21 +938,25 @@ impl InputValueMatchTrait for InputValueMatch {
 
 pub static INPUTVALUEMATCH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputValueMatch",
+    name_hash: 2226808363,
     flags: MemberInfoFlags::new(32841),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputValueMatch as Default>::default())),
+            create_boxed: || Box::new(<InputValueMatch as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InputValuesNamesIndex",
+                name_hash: 551550689,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(InputValueMatch, input_values_names_index),
             },
             FieldInfoData {
                 name: "ValueToMatch",
+                name_hash: 4228831462,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(InputValueMatch, value_to_match),
@@ -947,6 +988,7 @@ impl TypeObject for InputValueMatch {
 
 pub static INPUTVALUEMATCH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputValueMatch-Array",
+    name_hash: 2235303327,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("InputValueMatch"),
@@ -955,13 +997,14 @@ pub static INPUTVALUEMATCH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SimpleRotationEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
     pub auto_start: bool,
     pub verify_entity_and_component_links: bool,
-    pub transform_modifiers: Vec<Option<Arc<Mutex<dyn TransformModifierDataTrait>>>>,
+    pub transform_modifiers: Vec<Option<LockedTypeObject /* TransformModifierData */>>,
     pub rotation_speed_multiplier: f32,
 }
 
@@ -972,8 +1015,8 @@ pub trait SimpleRotationEntityDataTrait: super::entity::EntityDataTrait {
     fn auto_start_mut(&mut self) -> &mut bool;
     fn verify_entity_and_component_links(&self) -> &bool;
     fn verify_entity_and_component_links_mut(&mut self) -> &mut bool;
-    fn transform_modifiers(&self) -> &Vec<Option<Arc<Mutex<dyn TransformModifierDataTrait>>>>;
-    fn transform_modifiers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformModifierDataTrait>>>>;
+    fn transform_modifiers(&self) -> &Vec<Option<LockedTypeObject /* TransformModifierData */>>;
+    fn transform_modifiers_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TransformModifierData */>>;
     fn rotation_speed_multiplier(&self) -> &f32;
     fn rotation_speed_multiplier_mut(&mut self) -> &mut f32;
 }
@@ -997,10 +1040,10 @@ impl SimpleRotationEntityDataTrait for SimpleRotationEntityData {
     fn verify_entity_and_component_links_mut(&mut self) -> &mut bool {
         &mut self.verify_entity_and_component_links
     }
-    fn transform_modifiers(&self) -> &Vec<Option<Arc<Mutex<dyn TransformModifierDataTrait>>>> {
+    fn transform_modifiers(&self) -> &Vec<Option<LockedTypeObject /* TransformModifierData */>> {
         &self.transform_modifiers
     }
-    fn transform_modifiers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TransformModifierDataTrait>>>> {
+    fn transform_modifiers_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TransformModifierData */>> {
         &mut self.transform_modifiers
     }
     fn rotation_speed_multiplier(&self) -> &f32 {
@@ -1034,40 +1077,48 @@ impl super::core::DataContainerTrait for SimpleRotationEntityData {
 
 pub static SIMPLEROTATIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimpleRotationEntityData",
+    name_hash: 3550933140,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SimpleRotationEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SimpleRotationEntityData as Default>::default())),
+            create_boxed: || Box::new(<SimpleRotationEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(SimpleRotationEntityData, realm),
             },
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SimpleRotationEntityData, auto_start),
             },
             FieldInfoData {
                 name: "VerifyEntityAndComponentLinks",
+                name_hash: 1965497630,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SimpleRotationEntityData, verify_entity_and_component_links),
             },
             FieldInfoData {
                 name: "TransformModifiers",
+                name_hash: 1961377965,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TransformModifierData-Array",
                 rust_offset: offset_of!(SimpleRotationEntityData, transform_modifiers),
             },
             FieldInfoData {
                 name: "RotationSpeedMultiplier",
+                name_hash: 2729011741,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SimpleRotationEntityData, rotation_speed_multiplier),
@@ -1099,6 +1150,7 @@ impl TypeObject for SimpleRotationEntityData {
 
 pub static SIMPLEROTATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimpleRotationEntityData-Array",
+    name_hash: 3819596960,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SimpleRotationEntityData"),
@@ -1107,7 +1159,8 @@ pub static SIMPLEROTATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PingPongRotationTransformModifierData {
     pub _glacier_base: TransformModifierData,
     pub min_angle_in_radians: f32,
@@ -1189,40 +1242,48 @@ impl super::core::DataContainerTrait for PingPongRotationTransformModifierData {
 
 pub static PINGPONGROTATIONTRANSFORMMODIFIERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PingPongRotationTransformModifierData",
+    name_hash: 538483388,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TRANSFORMMODIFIERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PingPongRotationTransformModifierData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PingPongRotationTransformModifierData as Default>::default())),
+            create_boxed: || Box::new(<PingPongRotationTransformModifierData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MinAngleInRadians",
+                name_hash: 1924757771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PingPongRotationTransformModifierData, min_angle_in_radians),
             },
             FieldInfoData {
                 name: "MaxAngleInRadians",
+                name_hash: 1855270293,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PingPongRotationTransformModifierData, max_angle_in_radians),
             },
             FieldInfoData {
                 name: "MinAngleInDegrees",
+                name_hash: 155107214,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PingPongRotationTransformModifierData, min_angle_in_degrees),
             },
             FieldInfoData {
                 name: "MaxAngleInDegrees",
+                name_hash: 3631677200,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PingPongRotationTransformModifierData, max_angle_in_degrees),
             },
             FieldInfoData {
                 name: "Frequency",
+                name_hash: 4112821953,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PingPongRotationTransformModifierData, frequency),
@@ -1254,6 +1315,7 @@ impl TypeObject for PingPongRotationTransformModifierData {
 
 pub static PINGPONGROTATIONTRANSFORMMODIFIERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PingPongRotationTransformModifierData-Array",
+    name_hash: 2186433032,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("PingPongRotationTransformModifierData"),
@@ -1262,7 +1324,8 @@ pub static PINGPONGROTATIONTRANSFORMMODIFIERDATA_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RotationTransformModifierData {
     pub _glacier_base: TransformModifierData,
     pub radians_per_second: f32,
@@ -1317,22 +1380,27 @@ impl super::core::DataContainerTrait for RotationTransformModifierData {
 
 pub static ROTATIONTRANSFORMMODIFIERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotationTransformModifierData",
+    name_hash: 2145976058,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TRANSFORMMODIFIERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RotationTransformModifierData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RotationTransformModifierData as Default>::default())),
+            create_boxed: || Box::new(<RotationTransformModifierData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RadiansPerSecond",
+                name_hash: 3087318736,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotationTransformModifierData, radians_per_second),
             },
             FieldInfoData {
                 name: "DegreesPerSecond",
+                name_hash: 1000646773,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotationTransformModifierData, degrees_per_second),
@@ -1364,6 +1432,7 @@ impl TypeObject for RotationTransformModifierData {
 
 pub static ROTATIONTRANSFORMMODIFIERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotationTransformModifierData-Array",
+    name_hash: 3960828366,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("RotationTransformModifierData"),
@@ -1372,7 +1441,8 @@ pub static ROTATIONTRANSFORMMODIFIERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformModifierData {
     pub _glacier_base: super::core::DataContainer,
     pub random_timing_to_apply: f32,
@@ -1415,28 +1485,34 @@ impl super::core::DataContainerTrait for TransformModifierData {
 
 pub static TRANSFORMMODIFIERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformModifierData",
+    name_hash: 1330919726,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TransformModifierData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformModifierData as Default>::default())),
+            create_boxed: || Box::new(<TransformModifierData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RandomTimingToApply",
+                name_hash: 2128868353,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TransformModifierData, random_timing_to_apply),
             },
             FieldInfoData {
                 name: "RotationAxis",
+                name_hash: 3148542130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RotationAxis",
                 rust_offset: offset_of!(TransformModifierData, rotation_axis),
             },
             FieldInfoData {
                 name: "RotationAxisVec",
+                name_hash: 2539995906,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TransformModifierData, rotation_axis_vec),
@@ -1468,6 +1544,7 @@ impl TypeObject for TransformModifierData {
 
 pub static TRANSFORMMODIFIERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformModifierData-Array",
+    name_hash: 2869985690,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("TransformModifierData"),
@@ -1488,6 +1565,7 @@ pub enum TransformModifierType {
 
 pub static TRANSFORMMODIFIERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformModifierType",
+    name_hash: 1330353318,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -1516,6 +1594,7 @@ impl TypeObject for TransformModifierType {
 
 pub static TRANSFORMMODIFIERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformModifierType-Array",
+    name_hash: 3061784850,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("TransformModifierType"),
@@ -1524,17 +1603,18 @@ pub static TRANSFORMMODIFIERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowplayHighlightEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub award_name_string_id: Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>,
+    pub award_name_string_id: Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */>,
     pub start_delta_time: i32,
     pub end_delta_time: i32,
 }
 
 pub trait ShadowplayHighlightEntityDataTrait: super::entity::EntityDataTrait {
-    fn award_name_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
-    fn award_name_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
+    fn award_name_string_id(&self) -> &Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */>;
+    fn award_name_string_id_mut(&mut self) -> &mut Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */>;
     fn start_delta_time(&self) -> &i32;
     fn start_delta_time_mut(&mut self) -> &mut i32;
     fn end_delta_time(&self) -> &i32;
@@ -1542,10 +1622,10 @@ pub trait ShadowplayHighlightEntityDataTrait: super::entity::EntityDataTrait {
 }
 
 impl ShadowplayHighlightEntityDataTrait for ShadowplayHighlightEntityData {
-    fn award_name_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
+    fn award_name_string_id(&self) -> &Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */> {
         &self.award_name_string_id
     }
-    fn award_name_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
+    fn award_name_string_id_mut(&mut self) -> &mut Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */> {
         &mut self.award_name_string_id
     }
     fn start_delta_time(&self) -> &i32 {
@@ -1585,28 +1665,34 @@ impl super::core::DataContainerTrait for ShadowplayHighlightEntityData {
 
 pub static SHADOWPLAYHIGHLIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowplayHighlightEntityData",
+    name_hash: 3712452540,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ShadowplayHighlightEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowplayHighlightEntityData as Default>::default())),
+            create_boxed: || Box::new(<ShadowplayHighlightEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AwardNameStringId",
+                name_hash: 2120058907,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalizedStringId",
                 rust_offset: offset_of!(ShadowplayHighlightEntityData, award_name_string_id),
             },
             FieldInfoData {
                 name: "StartDeltaTime",
+                name_hash: 1703830312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ShadowplayHighlightEntityData, start_delta_time),
             },
             FieldInfoData {
                 name: "EndDeltaTime",
+                name_hash: 3493111367,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ShadowplayHighlightEntityData, end_delta_time),
@@ -1638,6 +1724,7 @@ impl TypeObject for ShadowplayHighlightEntityData {
 
 pub static SHADOWPLAYHIGHLIGHTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowplayHighlightEntityData-Array",
+    name_hash: 2487156488,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ShadowplayHighlightEntityData"),
@@ -1646,7 +1733,8 @@ pub static SHADOWPLAYHIGHLIGHTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ShadowplaySettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enable: bool,
@@ -1689,22 +1777,27 @@ impl super::core::DataContainerTrait for ShadowplaySettings {
 
 pub static SHADOWPLAYSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowplaySettings",
+    name_hash: 1685254242,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(ShadowplaySettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ShadowplaySettings as Default>::default())),
+            create_boxed: || Box::new(<ShadowplaySettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ShadowplaySettings, enable),
             },
             FieldInfoData {
                 name: "DisplaySummary",
+                name_hash: 4177096403,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ShadowplaySettings, display_summary),
@@ -1736,6 +1829,7 @@ impl TypeObject for ShadowplaySettings {
 
 pub static SHADOWPLAYSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ShadowplaySettings-Array",
+    name_hash: 1369202518,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ShadowplaySettings"),
@@ -1744,7 +1838,8 @@ pub static SHADOWPLAYSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectableActionEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -1823,40 +1918,48 @@ impl super::core::DataContainerTrait for SelectableActionEntityData {
 
 pub static SELECTABLEACTIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectableActionEntityData",
+    name_hash: 1921686866,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectableActionEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectableActionEntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectableActionEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(SelectableActionEntityData, realm),
             },
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SelectableActionEntityData, enabled),
             },
             FieldInfoData {
                 name: "CooldownTime",
+                name_hash: 613462861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float64",
                 rust_offset: offset_of!(SelectableActionEntityData, cooldown_time),
             },
             FieldInfoData {
                 name: "AllowedSelectCount",
+                name_hash: 3103866710,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(SelectableActionEntityData, allowed_select_count),
             },
             FieldInfoData {
                 name: "Priority",
+                name_hash: 3062102871,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(SelectableActionEntityData, priority),
@@ -1888,6 +1991,7 @@ impl TypeObject for SelectableActionEntityData {
 
 pub static SELECTABLEACTIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectableActionEntityData-Array",
+    name_hash: 1057584358,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SelectableActionEntityData"),
@@ -1896,7 +2000,8 @@ pub static SELECTABLEACTIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RumbleEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub enabled: bool,
@@ -1966,34 +2071,41 @@ impl super::core::DataContainerTrait for RumbleEntityData {
 
 pub static RUMBLEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RumbleEntityData",
+    name_hash: 3284741103,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RumbleEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RumbleEntityData as Default>::default())),
+            create_boxed: || Box::new(<RumbleEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RumbleEntityData, enabled),
             },
             FieldInfoData {
                 name: "Duration",
+                name_hash: 1828507227,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RumbleEntityData, duration),
             },
             FieldInfoData {
                 name: "Low",
+                name_hash: 193454161,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RumbleEntityData, low),
             },
             FieldInfoData {
                 name: "High",
+                name_hash: 2089152523,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RumbleEntityData, high),
@@ -2025,6 +2137,7 @@ impl TypeObject for RumbleEntityData {
 
 pub static RUMBLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RumbleEntityData-Array",
+    name_hash: 3443247579,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("RumbleEntityData"),
@@ -2033,10 +2146,11 @@ pub static RUMBLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RaycastDirectionEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub attach: Option<Arc<Mutex<dyn EntityAttachDataTrait>>>,
+    pub attach: Option<LockedTypeObject /* EntityAttachData */>,
     pub continuous_update: bool,
     pub transform: super::core::LinearTransform,
     pub ray_horizontal_angle: f32,
@@ -2047,8 +2161,8 @@ pub struct RaycastDirectionEntityData {
 }
 
 pub trait RaycastDirectionEntityDataTrait: super::entity::EntityDataTrait {
-    fn attach(&self) -> &Option<Arc<Mutex<dyn EntityAttachDataTrait>>>;
-    fn attach_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityAttachDataTrait>>>;
+    fn attach(&self) -> &Option<LockedTypeObject /* EntityAttachData */>;
+    fn attach_mut(&mut self) -> &mut Option<LockedTypeObject /* EntityAttachData */>;
     fn continuous_update(&self) -> &bool;
     fn continuous_update_mut(&mut self) -> &mut bool;
     fn transform(&self) -> &super::core::LinearTransform;
@@ -2066,10 +2180,10 @@ pub trait RaycastDirectionEntityDataTrait: super::entity::EntityDataTrait {
 }
 
 impl RaycastDirectionEntityDataTrait for RaycastDirectionEntityData {
-    fn attach(&self) -> &Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
+    fn attach(&self) -> &Option<LockedTypeObject /* EntityAttachData */> {
         &self.attach
     }
-    fn attach_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
+    fn attach_mut(&mut self) -> &mut Option<LockedTypeObject /* EntityAttachData */> {
         &mut self.attach
     }
     fn continuous_update(&self) -> &bool {
@@ -2139,58 +2253,69 @@ impl super::core::DataContainerTrait for RaycastDirectionEntityData {
 
 pub static RAYCASTDIRECTIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RaycastDirectionEntityData",
+    name_hash: 559823876,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RaycastDirectionEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RaycastDirectionEntityData as Default>::default())),
+            create_boxed: || Box::new(<RaycastDirectionEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Attach",
+                name_hash: 2500885102,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EntityAttachData",
                 rust_offset: offset_of!(RaycastDirectionEntityData, attach),
             },
             FieldInfoData {
                 name: "ContinuousUpdate",
+                name_hash: 1186338873,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastDirectionEntityData, continuous_update),
             },
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(RaycastDirectionEntityData, transform),
             },
             FieldInfoData {
                 name: "RayHorizontalAngle",
+                name_hash: 1283751856,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RaycastDirectionEntityData, ray_horizontal_angle),
             },
             FieldInfoData {
                 name: "RayVerticalAngle",
+                name_hash: 761316956,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RaycastDirectionEntityData, ray_vertical_angle),
             },
             FieldInfoData {
                 name: "RayDistance",
+                name_hash: 223111116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RaycastDirectionEntityData, ray_distance),
             },
             FieldInfoData {
                 name: "LockHorizontalRotation",
+                name_hash: 3309499332,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastDirectionEntityData, lock_horizontal_rotation),
             },
             FieldInfoData {
                 name: "LockVerticalRotation",
+                name_hash: 3233359208,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastDirectionEntityData, lock_vertical_rotation),
@@ -2222,6 +2347,7 @@ impl TypeObject for RaycastDirectionEntityData {
 
 pub static RAYCASTDIRECTIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RaycastDirectionEntityData-Array",
+    name_hash: 1543082032,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("RaycastDirectionEntityData"),
@@ -2230,7 +2356,8 @@ pub static RAYCASTDIRECTIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomActionSelectorEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -2282,22 +2409,27 @@ impl super::core::DataContainerTrait for RandomActionSelectorEntityData {
 
 pub static RANDOMACTIONSELECTORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomActionSelectorEntityData",
+    name_hash: 1008899998,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RandomActionSelectorEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomActionSelectorEntityData as Default>::default())),
+            create_boxed: || Box::new(<RandomActionSelectorEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(RandomActionSelectorEntityData, realm),
             },
             FieldInfoData {
                 name: "SelectActionsDeterministically",
+                name_hash: 2309709396,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomActionSelectorEntityData, select_actions_deterministically),
@@ -2329,6 +2461,7 @@ impl TypeObject for RandomActionSelectorEntityData {
 
 pub static RANDOMACTIONSELECTORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomActionSelectorEntityData-Array",
+    name_hash: 2519918762,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("RandomActionSelectorEntityData"),
@@ -2337,7 +2470,8 @@ pub static RANDOMACTIONSELECTORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyStatusEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -2416,40 +2550,48 @@ impl super::core::DataContainerTrait for PropertyStatusEntityData {
 
 pub static PROPERTYSTATUSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyStatusEntityData",
+    name_hash: 1144369309,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PropertyStatusEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyStatusEntityData as Default>::default())),
+            create_boxed: || Box::new(<PropertyStatusEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PropertyStatusEntityData, realm),
             },
             FieldInfoData {
                 name: "TypeHash",
+                name_hash: 351092271,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyStatusEntityData, type_hash),
             },
             FieldInfoData {
                 name: "InHash",
+                name_hash: 2782918800,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyStatusEntityData, in_hash),
             },
             FieldInfoData {
                 name: "OutHash",
+                name_hash: 1070246745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyStatusEntityData, out_hash),
             },
             FieldInfoData {
                 name: "AlwaysSendEvents",
+                name_hash: 3595656247,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PropertyStatusEntityData, always_send_events),
@@ -2481,6 +2623,7 @@ impl TypeObject for PropertyStatusEntityData {
 
 pub static PROPERTYSTATUSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyStatusEntityData-Array",
+    name_hash: 2996001833,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("PropertyStatusEntityData"),
@@ -2489,7 +2632,8 @@ pub static PROPERTYSTATUSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertySelectEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -2595,58 +2739,69 @@ impl super::core::DataContainerTrait for PropertySelectEntityData {
 
 pub static PROPERTYSELECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertySelectEntityData",
+    name_hash: 2473858657,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PropertySelectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertySelectEntityData as Default>::default())),
+            create_boxed: || Box::new(<PropertySelectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PropertySelectEntityData, realm),
             },
             FieldInfoData {
                 name: "TypeHash",
+                name_hash: 351092271,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertySelectEntityData, type_hash),
             },
             FieldInfoData {
                 name: "InputPropertyHashes",
+                name_hash: 1551936464,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(PropertySelectEntityData, input_property_hashes),
             },
             FieldInfoData {
                 name: "InputEventHashes",
+                name_hash: 4043293339,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(PropertySelectEntityData, input_event_hashes),
             },
             FieldInfoData {
                 name: "OutHash",
+                name_hash: 1070246745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertySelectEntityData, out_hash),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PropertySelectEntityData, input_count),
             },
             FieldInfoData {
                 name: "SelectedIndex",
+                name_hash: 3097538226,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertySelectEntityData, selected_index),
             },
             FieldInfoData {
                 name: "AutoSelectOnPropertyChanged",
+                name_hash: 3865195046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PropertySelectEntityData, auto_select_on_property_changed),
@@ -2678,6 +2833,7 @@ impl TypeObject for PropertySelectEntityData {
 
 pub static PROPERTYSELECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertySelectEntityData-Array",
+    name_hash: 1872843093,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("PropertySelectEntityData"),
@@ -2686,7 +2842,8 @@ pub static PROPERTYSELECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PrioritizedBoolEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -2738,22 +2895,27 @@ impl super::core::DataContainerTrait for PrioritizedBoolEntityData {
 
 pub static PRIORITIZEDBOOLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PrioritizedBoolEntityData",
+    name_hash: 3056580441,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PrioritizedBoolEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PrioritizedBoolEntityData as Default>::default())),
+            create_boxed: || Box::new(<PrioritizedBoolEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PrioritizedBoolEntityData, realm),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PrioritizedBoolEntityData, input_count),
@@ -2785,6 +2947,7 @@ impl TypeObject for PrioritizedBoolEntityData {
 
 pub static PRIORITIZEDBOOLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PrioritizedBoolEntityData-Array",
+    name_hash: 2804139373,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("PrioritizedBoolEntityData"),
@@ -2793,7 +2956,8 @@ pub static PRIORITIZEDBOOLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NestedConditionalPropertyEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -2872,40 +3036,48 @@ impl super::core::DataContainerTrait for NestedConditionalPropertyEntityData {
 
 pub static NESTEDCONDITIONALPROPERTYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NestedConditionalPropertyEntityData",
+    name_hash: 1317166682,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(NestedConditionalPropertyEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NestedConditionalPropertyEntityData as Default>::default())),
+            create_boxed: || Box::new(<NestedConditionalPropertyEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(NestedConditionalPropertyEntityData, realm),
             },
             FieldInfoData {
                 name: "TypeHash",
+                name_hash: 351092271,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(NestedConditionalPropertyEntityData, type_hash),
             },
             FieldInfoData {
                 name: "EvaluateOnEvent",
+                name_hash: 3873438067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NestedConditionalPropertyEntityData, evaluate_on_event),
             },
             FieldInfoData {
                 name: "ConditionHashes",
+                name_hash: 2090199826,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(NestedConditionalPropertyEntityData, condition_hashes),
             },
             FieldInfoData {
                 name: "ValueHashes",
+                name_hash: 137208842,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(NestedConditionalPropertyEntityData, value_hashes),
@@ -2937,6 +3109,7 @@ impl TypeObject for NestedConditionalPropertyEntityData {
 
 pub static NESTEDCONDITIONALPROPERTYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NestedConditionalPropertyEntityData-Array",
+    name_hash: 3800912366,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("NestedConditionalPropertyEntityData"),
@@ -2945,11 +3118,12 @@ pub static NESTEDCONDITIONALPROPERTYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MultiPropertyGateEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
-    pub runtime_properties: Vec<MultiPropertyGatePropertyInfo>,
+    pub runtime_properties: Vec<BoxedTypeObject /* MultiPropertyGatePropertyInfo */>,
     pub write_properties_on_open_gate: bool,
     pub open: bool,
 }
@@ -2957,8 +3131,8 @@ pub struct MultiPropertyGateEntityData {
 pub trait MultiPropertyGateEntityDataTrait: super::entity::EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
-    fn runtime_properties(&self) -> &Vec<MultiPropertyGatePropertyInfo>;
-    fn runtime_properties_mut(&mut self) -> &mut Vec<MultiPropertyGatePropertyInfo>;
+    fn runtime_properties(&self) -> &Vec<BoxedTypeObject /* MultiPropertyGatePropertyInfo */>;
+    fn runtime_properties_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MultiPropertyGatePropertyInfo */>;
     fn write_properties_on_open_gate(&self) -> &bool;
     fn write_properties_on_open_gate_mut(&mut self) -> &mut bool;
     fn open(&self) -> &bool;
@@ -2972,10 +3146,10 @@ impl MultiPropertyGateEntityDataTrait for MultiPropertyGateEntityData {
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         &mut self.realm
     }
-    fn runtime_properties(&self) -> &Vec<MultiPropertyGatePropertyInfo> {
+    fn runtime_properties(&self) -> &Vec<BoxedTypeObject /* MultiPropertyGatePropertyInfo */> {
         &self.runtime_properties
     }
-    fn runtime_properties_mut(&mut self) -> &mut Vec<MultiPropertyGatePropertyInfo> {
+    fn runtime_properties_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MultiPropertyGatePropertyInfo */> {
         &mut self.runtime_properties
     }
     fn write_properties_on_open_gate(&self) -> &bool {
@@ -3015,34 +3189,41 @@ impl super::core::DataContainerTrait for MultiPropertyGateEntityData {
 
 pub static MULTIPROPERTYGATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiPropertyGateEntityData",
+    name_hash: 2705717655,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MultiPropertyGateEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MultiPropertyGateEntityData as Default>::default())),
+            create_boxed: || Box::new(<MultiPropertyGateEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(MultiPropertyGateEntityData, realm),
             },
             FieldInfoData {
                 name: "RuntimeProperties",
+                name_hash: 2340289272,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MultiPropertyGatePropertyInfo-Array",
                 rust_offset: offset_of!(MultiPropertyGateEntityData, runtime_properties),
             },
             FieldInfoData {
                 name: "WritePropertiesOnOpenGate",
+                name_hash: 3208744923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MultiPropertyGateEntityData, write_properties_on_open_gate),
             },
             FieldInfoData {
                 name: "Open",
+                name_hash: 2089008817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MultiPropertyGateEntityData, open),
@@ -3074,6 +3255,7 @@ impl TypeObject for MultiPropertyGateEntityData {
 
 pub static MULTIPROPERTYGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiPropertyGateEntityData-Array",
+    name_hash: 1320124963,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("MultiPropertyGateEntityData"),
@@ -3082,7 +3264,8 @@ pub static MULTIPROPERTYGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MultiPropertyGatePropertyInfo {
     pub type_hash: u32,
     pub property_hash: u32,
@@ -3112,21 +3295,25 @@ impl MultiPropertyGatePropertyInfoTrait for MultiPropertyGatePropertyInfo {
 
 pub static MULTIPROPERTYGATEPROPERTYINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiPropertyGatePropertyInfo",
+    name_hash: 176770325,
     flags: MemberInfoFlags::new(36937),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MultiPropertyGatePropertyInfo as Default>::default())),
+            create_boxed: || Box::new(<MultiPropertyGatePropertyInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TypeHash",
+                name_hash: 351092271,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(MultiPropertyGatePropertyInfo, type_hash),
             },
             FieldInfoData {
                 name: "PropertyHash",
+                name_hash: 3997998064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(MultiPropertyGatePropertyInfo, property_hash),
@@ -3158,6 +3345,7 @@ impl TypeObject for MultiPropertyGatePropertyInfo {
 
 pub static MULTIPROPERTYGATEPROPERTYINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiPropertyGatePropertyInfo-Array",
+    name_hash: 1657470113,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("MultiPropertyGatePropertyInfo"),
@@ -3166,7 +3354,8 @@ pub static MULTIPROPERTYGATEPROPERTYINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LogitechLEDPulseEffectEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub enabled: bool,
@@ -3236,34 +3425,41 @@ impl super::core::DataContainerTrait for LogitechLEDPulseEffectEntityData {
 
 pub static LOGITECHLEDPULSEEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDPulseEffectEntityData",
+    name_hash: 2417757884,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LogitechLEDPulseEffectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LogitechLEDPulseEffectEntityData as Default>::default())),
+            create_boxed: || Box::new(<LogitechLEDPulseEffectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LogitechLEDPulseEffectEntityData, enabled),
             },
             FieldInfoData {
                 name: "Color1",
+                name_hash: 2713814217,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LogitechLEDPulseEffectEntityData, color1),
             },
             FieldInfoData {
                 name: "Color2",
+                name_hash: 2713814218,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LogitechLEDPulseEffectEntityData, color2),
             },
             FieldInfoData {
                 name: "Duration",
+                name_hash: 1828507227,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LogitechLEDPulseEffectEntityData, duration),
@@ -3295,6 +3491,7 @@ impl TypeObject for LogitechLEDPulseEffectEntityData {
 
 pub static LOGITECHLEDPULSEEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDPulseEffectEntityData-Array",
+    name_hash: 203212296,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LogitechLEDPulseEffectEntityData"),
@@ -3303,7 +3500,8 @@ pub static LOGITECHLEDPULSEEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LogitechLEDInputConceptIdentifierEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub enabled: bool,
@@ -3364,28 +3562,34 @@ impl super::core::DataContainerTrait for LogitechLEDInputConceptIdentifierEntity
 
 pub static LOGITECHLEDINPUTCONCEPTIDENTIFIERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDInputConceptIdentifierEntityData",
+    name_hash: 582016385,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LogitechLEDInputConceptIdentifierEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LogitechLEDInputConceptIdentifierEntityData as Default>::default())),
+            create_boxed: || Box::new(<LogitechLEDInputConceptIdentifierEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LogitechLEDInputConceptIdentifierEntityData, enabled),
             },
             FieldInfoData {
                 name: "Color",
+                name_hash: 212387320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LogitechLEDInputConceptIdentifierEntityData, color),
             },
             FieldInfoData {
                 name: "InputConceptIdentifiers",
+                name_hash: 2927413955,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(LogitechLEDInputConceptIdentifierEntityData, input_concept_identifiers),
@@ -3417,6 +3621,7 @@ impl TypeObject for LogitechLEDInputConceptIdentifierEntityData {
 
 pub static LOGITECHLEDINPUTCONCEPTIDENTIFIERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDInputConceptIdentifierEntityData-Array",
+    name_hash: 178943797,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LogitechLEDInputConceptIdentifierEntityData"),
@@ -3425,7 +3630,8 @@ pub static LOGITECHLEDINPUTCONCEPTIDENTIFIERENTITYDATA_ARRAY_TYPE_INFO: &'static
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LogitechLEDFadeEffectEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub enabled: bool,
@@ -3495,34 +3701,41 @@ impl super::core::DataContainerTrait for LogitechLEDFadeEffectEntityData {
 
 pub static LOGITECHLEDFADEEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDFadeEffectEntityData",
+    name_hash: 2425860837,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LogitechLEDFadeEffectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LogitechLEDFadeEffectEntityData as Default>::default())),
+            create_boxed: || Box::new(<LogitechLEDFadeEffectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LogitechLEDFadeEffectEntityData, enabled),
             },
             FieldInfoData {
                 name: "Color1",
+                name_hash: 2713814217,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LogitechLEDFadeEffectEntityData, color1),
             },
             FieldInfoData {
                 name: "Color2",
+                name_hash: 2713814218,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LogitechLEDFadeEffectEntityData, color2),
             },
             FieldInfoData {
                 name: "Duration",
+                name_hash: 1828507227,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LogitechLEDFadeEffectEntityData, duration),
@@ -3554,6 +3767,7 @@ impl TypeObject for LogitechLEDFadeEffectEntityData {
 
 pub static LOGITECHLEDFADEEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDFadeEffectEntityData-Array",
+    name_hash: 2523397073,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LogitechLEDFadeEffectEntityData"),
@@ -3562,7 +3776,8 @@ pub static LOGITECHLEDFADEEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LogitechLEDConstantEffectEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub enabled: bool,
@@ -3614,22 +3829,27 @@ impl super::core::DataContainerTrait for LogitechLEDConstantEffectEntityData {
 
 pub static LOGITECHLEDCONSTANTEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDConstantEffectEntityData",
+    name_hash: 3811532253,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LogitechLEDConstantEffectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LogitechLEDConstantEffectEntityData as Default>::default())),
+            create_boxed: || Box::new(<LogitechLEDConstantEffectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LogitechLEDConstantEffectEntityData, enabled),
             },
             FieldInfoData {
                 name: "Color",
+                name_hash: 212387320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LogitechLEDConstantEffectEntityData, color),
@@ -3661,6 +3881,7 @@ impl TypeObject for LogitechLEDConstantEffectEntityData {
 
 pub static LOGITECHLEDCONSTANTEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDConstantEffectEntityData-Array",
+    name_hash: 958790121,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LogitechLEDConstantEffectEntityData"),
@@ -3669,7 +3890,8 @@ pub static LOGITECHLEDCONSTANTEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LogitechLEDConditionalInputConceptIdentifierEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub enabled: bool,
@@ -3748,40 +3970,48 @@ impl super::core::DataContainerTrait for LogitechLEDConditionalInputConceptIdent
 
 pub static LOGITECHLEDCONDITIONALINPUTCONCEPTIDENTIFIERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDConditionalInputConceptIdentifierEntityData",
+    name_hash: 3368667679,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LogitechLEDConditionalInputConceptIdentifierEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LogitechLEDConditionalInputConceptIdentifierEntityData as Default>::default())),
+            create_boxed: || Box::new(<LogitechLEDConditionalInputConceptIdentifierEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LogitechLEDConditionalInputConceptIdentifierEntityData, enabled),
             },
             FieldInfoData {
                 name: "ColorCondition",
+                name_hash: 3724299563,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LogitechLEDConditionalInputConceptIdentifierEntityData, color_condition),
             },
             FieldInfoData {
                 name: "ConditionTrueColor",
+                name_hash: 2787653757,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LogitechLEDConditionalInputConceptIdentifierEntityData, condition_true_color),
             },
             FieldInfoData {
                 name: "ConditionFalseColor",
+                name_hash: 2636737494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LogitechLEDConditionalInputConceptIdentifierEntityData, condition_false_color),
             },
             FieldInfoData {
                 name: "InputConceptIdentifiers",
+                name_hash: 2927413955,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(LogitechLEDConditionalInputConceptIdentifierEntityData, input_concept_identifiers),
@@ -3813,6 +4043,7 @@ impl TypeObject for LogitechLEDConditionalInputConceptIdentifierEntityData {
 
 pub static LOGITECHLEDCONDITIONALINPUTCONCEPTIDENTIFIERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDConditionalInputConceptIdentifierEntityData-Array",
+    name_hash: 3714911915,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LogitechLEDConditionalInputConceptIdentifierEntityData"),
@@ -3821,7 +4052,8 @@ pub static LOGITECHLEDCONDITIONALINPUTCONCEPTIDENTIFIERENTITYDATA_ARRAY_TYPE_INF
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LogitechLEDBarEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub enabled: bool,
@@ -3900,40 +4132,48 @@ impl super::core::DataContainerTrait for LogitechLEDBarEntityData {
 
 pub static LOGITECHLEDBARENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDBarEntityData",
+    name_hash: 464127269,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LogitechLEDBarEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LogitechLEDBarEntityData as Default>::default())),
+            create_boxed: || Box::new(<LogitechLEDBarEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LogitechLEDBarEntityData, enabled),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LogitechLEDBarEntityData, value),
             },
             FieldInfoData {
                 name: "BarColor",
+                name_hash: 3186704841,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LogitechLEDBarEntityData, bar_color),
             },
             FieldInfoData {
                 name: "BackgroundColor",
+                name_hash: 2973036470,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LogitechLEDBarEntityData, background_color),
             },
             FieldInfoData {
                 name: "InputDeviceKeys",
+                name_hash: 62416367,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InputDeviceKeys-Array",
                 rust_offset: offset_of!(LogitechLEDBarEntityData, input_device_keys),
@@ -3965,6 +4205,7 @@ impl TypeObject for LogitechLEDBarEntityData {
 
 pub static LOGITECHLEDBARENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogitechLEDBarEntityData-Array",
+    name_hash: 61783441,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LogitechLEDBarEntityData"),
@@ -3973,7 +4214,8 @@ pub static LOGITECHLEDBARENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocalLocatorEntityData {
     pub _glacier_base: super::entity::SpatialEntityData,
     pub realm: super::core::Realm,
@@ -4025,16 +4267,20 @@ impl super::core::DataContainerTrait for LocalLocatorEntityData {
 
 pub static LOCALLOCATORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalLocatorEntityData",
+    name_hash: 3012966379,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LocalLocatorEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocalLocatorEntityData as Default>::default())),
+            create_boxed: || Box::new(<LocalLocatorEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(LocalLocatorEntityData, realm),
@@ -4066,6 +4312,7 @@ impl TypeObject for LocalLocatorEntityData {
 
 pub static LOCALLOCATORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalLocatorEntityData-Array",
+    name_hash: 1013065695,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LocalLocatorEntityData"),
@@ -4074,13 +4321,14 @@ pub static LOCALLOCATORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WaveSelectorNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub output_wave: super::audio::AudioGraphNodePort,
     pub value: super::audio::AudioGraphNodePort,
     pub default_case_value: u32,
-    pub input_waves: Vec<Option<Arc<Mutex<dyn InputWavesGroupTrait>>>>,
+    pub input_waves: Vec<Option<LockedTypeObject /* InputWavesGroup */>>,
 }
 
 pub trait WaveSelectorNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
@@ -4090,8 +4338,8 @@ pub trait WaveSelectorNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn default_case_value(&self) -> &u32;
     fn default_case_value_mut(&mut self) -> &mut u32;
-    fn input_waves(&self) -> &Vec<Option<Arc<Mutex<dyn InputWavesGroupTrait>>>>;
-    fn input_waves_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputWavesGroupTrait>>>>;
+    fn input_waves(&self) -> &Vec<Option<LockedTypeObject /* InputWavesGroup */>>;
+    fn input_waves_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputWavesGroup */>>;
 }
 
 impl WaveSelectorNodeDataTrait for WaveSelectorNodeData {
@@ -4113,10 +4361,10 @@ impl WaveSelectorNodeDataTrait for WaveSelectorNodeData {
     fn default_case_value_mut(&mut self) -> &mut u32 {
         &mut self.default_case_value
     }
-    fn input_waves(&self) -> &Vec<Option<Arc<Mutex<dyn InputWavesGroupTrait>>>> {
+    fn input_waves(&self) -> &Vec<Option<LockedTypeObject /* InputWavesGroup */>> {
         &self.input_waves
     }
-    fn input_waves_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputWavesGroupTrait>>>> {
+    fn input_waves_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputWavesGroup */>> {
         &mut self.input_waves
     }
 }
@@ -4129,34 +4377,41 @@ impl super::core::DataContainerTrait for WaveSelectorNodeData {
 
 pub static WAVESELECTORNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaveSelectorNodeData",
+    name_hash: 3348933509,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WaveSelectorNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WaveSelectorNodeData as Default>::default())),
+            create_boxed: || Box::new(<WaveSelectorNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OutputWave",
+                name_hash: 543005759,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(WaveSelectorNodeData, output_wave),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(WaveSelectorNodeData, value),
             },
             FieldInfoData {
                 name: "DefaultCaseValue",
+                name_hash: 3296679953,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(WaveSelectorNodeData, default_case_value),
             },
             FieldInfoData {
                 name: "InputWaves",
+                name_hash: 1592421669,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InputWavesGroup-Array",
                 rust_offset: offset_of!(WaveSelectorNodeData, input_waves),
@@ -4188,6 +4443,7 @@ impl TypeObject for WaveSelectorNodeData {
 
 pub static WAVESELECTORNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WaveSelectorNodeData-Array",
+    name_hash: 4059591473,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("WaveSelectorNodeData"),
@@ -4196,25 +4452,26 @@ pub static WAVESELECTORNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputWavesGroup {
     pub _glacier_base: super::audio::AudioGraphNodePortGroup,
-    pub default_wave: Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>,
+    pub default_wave: Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */>,
     pub wave: super::audio::AudioGraphNodePort,
 }
 
 pub trait InputWavesGroupTrait: super::audio::AudioGraphNodePortGroupTrait {
-    fn default_wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
-    fn default_wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
+    fn default_wave(&self) -> &Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */>;
+    fn default_wave_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */>;
     fn wave(&self) -> &super::audio::AudioGraphNodePort;
     fn wave_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl InputWavesGroupTrait for InputWavesGroup {
-    fn default_wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
+    fn default_wave(&self) -> &Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */> {
         &self.default_wave
     }
-    fn default_wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
+    fn default_wave_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */> {
         &mut self.default_wave
     }
     fn wave(&self) -> &super::audio::AudioGraphNodePort {
@@ -4233,22 +4490,27 @@ impl super::core::DataContainerTrait for InputWavesGroup {
 
 pub static INPUTWAVESGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputWavesGroup",
+    name_hash: 3573542266,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEPORTGROUP_TYPE_INFO),
+        super_class_offset: offset_of!(InputWavesGroup, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputWavesGroup as Default>::default())),
+            create_boxed: || Box::new(<InputWavesGroup as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DefaultWave",
+                name_hash: 2015103915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundWaveAssetBase",
                 rust_offset: offset_of!(InputWavesGroup, default_wave),
             },
             FieldInfoData {
                 name: "Wave",
+                name_hash: 2089277184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(InputWavesGroup, wave),
@@ -4280,6 +4542,7 @@ impl TypeObject for InputWavesGroup {
 
 pub static INPUTWAVESGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputWavesGroup-Array",
+    name_hash: 1531265102,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("InputWavesGroup"),
@@ -4288,7 +4551,8 @@ pub static INPUTWAVESGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ValueCacheNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub store: super::audio::AudioGraphNodePort,
@@ -4352,40 +4616,48 @@ impl super::core::DataContainerTrait for ValueCacheNodeData {
 
 pub static VALUECACHENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ValueCacheNodeData",
+    name_hash: 461901522,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ValueCacheNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ValueCacheNodeData as Default>::default())),
+            create_boxed: || Box::new(<ValueCacheNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Store",
+                name_hash: 230763322,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ValueCacheNodeData, store),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ValueCacheNodeData, value),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ValueCacheNodeData, out),
             },
             FieldInfoData {
                 name: "DefaultValue",
+                name_hash: 2066049125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ValueCacheNodeData, default_value),
             },
             FieldInfoData {
                 name: "SetInitialValueAsDefault",
+                name_hash: 47763307,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ValueCacheNodeData, set_initial_value_as_default),
@@ -4417,6 +4689,7 @@ impl TypeObject for ValueCacheNodeData {
 
 pub static VALUECACHENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ValueCacheNodeData-Array",
+    name_hash: 3820357222,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ValueCacheNodeData"),
@@ -4425,7 +4698,8 @@ pub static VALUECACHENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SystemInformationNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub channel_count: super::audio::AudioGraphNodePort,
@@ -4453,16 +4727,20 @@ impl super::core::DataContainerTrait for SystemInformationNodeData {
 
 pub static SYSTEMINFORMATIONNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SystemInformationNodeData",
+    name_hash: 655608444,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SystemInformationNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SystemInformationNodeData as Default>::default())),
+            create_boxed: || Box::new(<SystemInformationNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ChannelCount",
+                name_hash: 1014205285,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SystemInformationNodeData, channel_count),
@@ -4494,6 +4772,7 @@ impl TypeObject for SystemInformationNodeData {
 
 pub static SYSTEMINFORMATIONNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SystemInformationNodeData-Array",
+    name_hash: 1033785928,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SystemInformationNodeData"),
@@ -4502,7 +4781,8 @@ pub static SYSTEMINFORMATIONNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SyncedRandomIntNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub trigger: super::audio::AudioGraphNodePort,
@@ -4575,46 +4855,55 @@ impl super::core::DataContainerTrait for SyncedRandomIntNodeData {
 
 pub static SYNCEDRANDOMINTNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SyncedRandomIntNodeData",
+    name_hash: 1682677755,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SyncedRandomIntNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SyncedRandomIntNodeData as Default>::default())),
+            create_boxed: || Box::new(<SyncedRandomIntNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Trigger",
+                name_hash: 2606354109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SyncedRandomIntNodeData, trigger),
             },
             FieldInfoData {
                 name: "Triggered",
+                name_hash: 3641208156,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SyncedRandomIntNodeData, triggered),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SyncedRandomIntNodeData, out),
             },
             FieldInfoData {
                 name: "Min",
+                name_hash: 193446607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SyncedRandomIntNodeData, min),
             },
             FieldInfoData {
                 name: "Max",
+                name_hash: 193446865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SyncedRandomIntNodeData, max),
             },
             FieldInfoData {
                 name: "HighPrecision",
+                name_hash: 2143407709,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SyncedRandomIntNodeData, high_precision),
@@ -4646,6 +4935,7 @@ impl TypeObject for SyncedRandomIntNodeData {
 
 pub static SYNCEDRANDOMINTNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SyncedRandomIntNodeData-Array",
+    name_hash: 1494767567,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SyncedRandomIntNodeData"),
@@ -4654,13 +4944,14 @@ pub static SYNCEDRANDOMINTNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StepLogicSamplerNodeConfigData {
     pub _glacier_base: super::audio::AudioGraphNodeConfigData,
     pub amplitude: f32,
     pub pitch: f32,
     pub rate_of_fire: f32,
-    pub wave: Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>,
+    pub wave: Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */>,
     pub maximum_rate_of_fire: f32,
     pub fade_type: super::audio::GainFaderFadeType,
 }
@@ -4672,8 +4963,8 @@ pub trait StepLogicSamplerNodeConfigDataTrait: super::audio::AudioGraphNodeConfi
     fn pitch_mut(&mut self) -> &mut f32;
     fn rate_of_fire(&self) -> &f32;
     fn rate_of_fire_mut(&mut self) -> &mut f32;
-    fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
-    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
+    fn wave(&self) -> &Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */>;
+    fn wave_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */>;
     fn maximum_rate_of_fire(&self) -> &f32;
     fn maximum_rate_of_fire_mut(&mut self) -> &mut f32;
     fn fade_type(&self) -> &super::audio::GainFaderFadeType;
@@ -4699,10 +4990,10 @@ impl StepLogicSamplerNodeConfigDataTrait for StepLogicSamplerNodeConfigData {
     fn rate_of_fire_mut(&mut self) -> &mut f32 {
         &mut self.rate_of_fire
     }
-    fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
+    fn wave(&self) -> &Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */> {
         &self.wave
     }
-    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
+    fn wave_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */> {
         &mut self.wave
     }
     fn maximum_rate_of_fire(&self) -> &f32 {
@@ -4720,10 +5011,10 @@ impl StepLogicSamplerNodeConfigDataTrait for StepLogicSamplerNodeConfigData {
 }
 
 impl super::audio::AudioGraphNodeConfigDataTrait for StepLogicSamplerNodeConfigData {
-    fn node(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
+    fn node(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphNodeData */> {
         self._glacier_base.node()
     }
-    fn node_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
+    fn node_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphNodeData */> {
         self._glacier_base.node_mut()
     }
     fn configured_property_flags(&self) -> &u64 {
@@ -4739,46 +5030,55 @@ impl super::core::DataContainerTrait for StepLogicSamplerNodeConfigData {
 
 pub static STEPLOGICSAMPLERNODECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StepLogicSamplerNodeConfigData",
+    name_hash: 3425852055,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODECONFIGDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StepLogicSamplerNodeConfigData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StepLogicSamplerNodeConfigData as Default>::default())),
+            create_boxed: || Box::new(<StepLogicSamplerNodeConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Amplitude",
+                name_hash: 698564572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StepLogicSamplerNodeConfigData, amplitude),
             },
             FieldInfoData {
                 name: "Pitch",
+                name_hash: 232604323,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StepLogicSamplerNodeConfigData, pitch),
             },
             FieldInfoData {
                 name: "RateOfFire",
+                name_hash: 3866082710,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StepLogicSamplerNodeConfigData, rate_of_fire),
             },
             FieldInfoData {
                 name: "Wave",
+                name_hash: 2089277184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundWaveAssetBase",
                 rust_offset: offset_of!(StepLogicSamplerNodeConfigData, wave),
             },
             FieldInfoData {
                 name: "MaximumRateOfFire",
+                name_hash: 3281074206,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StepLogicSamplerNodeConfigData, maximum_rate_of_fire),
             },
             FieldInfoData {
                 name: "FadeType",
+                name_hash: 4001206363,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GainFaderFadeType",
                 rust_offset: offset_of!(StepLogicSamplerNodeConfigData, fade_type),
@@ -4810,6 +5110,7 @@ impl TypeObject for StepLogicSamplerNodeConfigData {
 
 pub static STEPLOGICSAMPLERNODECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StepLogicSamplerNodeConfigData-Array",
+    name_hash: 3416302371,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("StepLogicSamplerNodeConfigData"),
@@ -4818,7 +5119,8 @@ pub static STEPLOGICSAMPLERNODECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StepLogicSamplerNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub external_wave: super::audio::AudioGraphNodePort,
@@ -4829,12 +5131,12 @@ pub struct StepLogicSamplerNodeData {
     pub release: super::audio::AudioGraphNodePort,
     pub output: super::audio::AudioGraphNodePort,
     pub finished: super::audio::AudioGraphNodePort,
-    pub wave: Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>,
-    pub plugins: Vec<StepLogicSamplerPlugins>,
-    pub pitch_source: Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>>,
+    pub wave: Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */>,
+    pub plugins: Vec<BoxedTypeObject /* StepLogicSamplerPlugins */>,
+    pub pitch_source: Option<LockedTypeObject /* super::audio::OutputNodeData */>,
     pub maximum_rate_of_fire: f32,
     pub fade_type: super::audio::GainFaderFadeType,
-    pub sampler_node_debug: Option<Arc<Mutex<dyn StepLogicSamplerNodeDebugDataTrait>>>,
+    pub sampler_node_debug: Option<LockedTypeObject /* StepLogicSamplerNodeDebugData */>,
 }
 
 pub trait StepLogicSamplerNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
@@ -4854,18 +5156,18 @@ pub trait StepLogicSamplerNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn output_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn finished(&self) -> &super::audio::AudioGraphNodePort;
     fn finished_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
-    fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
-    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>>;
-    fn plugins(&self) -> &Vec<StepLogicSamplerPlugins>;
-    fn plugins_mut(&mut self) -> &mut Vec<StepLogicSamplerPlugins>;
-    fn pitch_source(&self) -> &Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>>;
-    fn pitch_source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>>;
+    fn wave(&self) -> &Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */>;
+    fn wave_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */>;
+    fn plugins(&self) -> &Vec<BoxedTypeObject /* StepLogicSamplerPlugins */>;
+    fn plugins_mut(&mut self) -> &mut Vec<BoxedTypeObject /* StepLogicSamplerPlugins */>;
+    fn pitch_source(&self) -> &Option<LockedTypeObject /* super::audio::OutputNodeData */>;
+    fn pitch_source_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::OutputNodeData */>;
     fn maximum_rate_of_fire(&self) -> &f32;
     fn maximum_rate_of_fire_mut(&mut self) -> &mut f32;
     fn fade_type(&self) -> &super::audio::GainFaderFadeType;
     fn fade_type_mut(&mut self) -> &mut super::audio::GainFaderFadeType;
-    fn sampler_node_debug(&self) -> &Option<Arc<Mutex<dyn StepLogicSamplerNodeDebugDataTrait>>>;
-    fn sampler_node_debug_mut(&mut self) -> &mut Option<Arc<Mutex<dyn StepLogicSamplerNodeDebugDataTrait>>>;
+    fn sampler_node_debug(&self) -> &Option<LockedTypeObject /* StepLogicSamplerNodeDebugData */>;
+    fn sampler_node_debug_mut(&mut self) -> &mut Option<LockedTypeObject /* StepLogicSamplerNodeDebugData */>;
 }
 
 impl StepLogicSamplerNodeDataTrait for StepLogicSamplerNodeData {
@@ -4917,22 +5219,22 @@ impl StepLogicSamplerNodeDataTrait for StepLogicSamplerNodeData {
     fn finished_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
         &mut self.finished
     }
-    fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
+    fn wave(&self) -> &Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */> {
         &self.wave
     }
-    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetBaseTrait>>> {
+    fn wave_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundWaveAssetBase */> {
         &mut self.wave
     }
-    fn plugins(&self) -> &Vec<StepLogicSamplerPlugins> {
+    fn plugins(&self) -> &Vec<BoxedTypeObject /* StepLogicSamplerPlugins */> {
         &self.plugins
     }
-    fn plugins_mut(&mut self) -> &mut Vec<StepLogicSamplerPlugins> {
+    fn plugins_mut(&mut self) -> &mut Vec<BoxedTypeObject /* StepLogicSamplerPlugins */> {
         &mut self.plugins
     }
-    fn pitch_source(&self) -> &Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>> {
+    fn pitch_source(&self) -> &Option<LockedTypeObject /* super::audio::OutputNodeData */> {
         &self.pitch_source
     }
-    fn pitch_source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>> {
+    fn pitch_source_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::OutputNodeData */> {
         &mut self.pitch_source
     }
     fn maximum_rate_of_fire(&self) -> &f32 {
@@ -4947,10 +5249,10 @@ impl StepLogicSamplerNodeDataTrait for StepLogicSamplerNodeData {
     fn fade_type_mut(&mut self) -> &mut super::audio::GainFaderFadeType {
         &mut self.fade_type
     }
-    fn sampler_node_debug(&self) -> &Option<Arc<Mutex<dyn StepLogicSamplerNodeDebugDataTrait>>> {
+    fn sampler_node_debug(&self) -> &Option<LockedTypeObject /* StepLogicSamplerNodeDebugData */> {
         &self.sampler_node_debug
     }
-    fn sampler_node_debug_mut(&mut self) -> &mut Option<Arc<Mutex<dyn StepLogicSamplerNodeDebugDataTrait>>> {
+    fn sampler_node_debug_mut(&mut self) -> &mut Option<LockedTypeObject /* StepLogicSamplerNodeDebugData */> {
         &mut self.sampler_node_debug
     }
 }
@@ -4963,94 +5265,111 @@ impl super::core::DataContainerTrait for StepLogicSamplerNodeData {
 
 pub static STEPLOGICSAMPLERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StepLogicSamplerNodeData",
+    name_hash: 4264281149,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StepLogicSamplerNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StepLogicSamplerNodeData as Default>::default())),
+            create_boxed: || Box::new(<StepLogicSamplerNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExternalWave",
+                name_hash: 2162866621,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, external_wave),
             },
             FieldInfoData {
                 name: "Pitch",
+                name_hash: 232604323,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, pitch),
             },
             FieldInfoData {
                 name: "Amplitude",
+                name_hash: 698564572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, amplitude),
             },
             FieldInfoData {
                 name: "RateOfFire",
+                name_hash: 3866082710,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, rate_of_fire),
             },
             FieldInfoData {
                 name: "Trigger",
+                name_hash: 2606354109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, trigger),
             },
             FieldInfoData {
                 name: "Release",
+                name_hash: 1335266828,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, release),
             },
             FieldInfoData {
                 name: "Output",
+                name_hash: 2895736442,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, output),
             },
             FieldInfoData {
                 name: "Finished",
+                name_hash: 1223765815,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, finished),
             },
             FieldInfoData {
                 name: "Wave",
+                name_hash: 2089277184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundWaveAssetBase",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, wave),
             },
             FieldInfoData {
                 name: "Plugins",
+                name_hash: 14514271,
                 flags: MemberInfoFlags::new(144),
                 field_type: "StepLogicSamplerPlugins-Array",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, plugins),
             },
             FieldInfoData {
                 name: "PitchSource",
+                name_hash: 2033117566,
                 flags: MemberInfoFlags::new(0),
                 field_type: "OutputNodeData",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, pitch_source),
             },
             FieldInfoData {
                 name: "MaximumRateOfFire",
+                name_hash: 3281074206,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, maximum_rate_of_fire),
             },
             FieldInfoData {
                 name: "FadeType",
+                name_hash: 4001206363,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GainFaderFadeType",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, fade_type),
             },
             FieldInfoData {
                 name: "SamplerNodeDebug",
+                name_hash: 298896992,
                 flags: MemberInfoFlags::new(0),
                 field_type: "StepLogicSamplerNodeDebugData",
                 rust_offset: offset_of!(StepLogicSamplerNodeData, sampler_node_debug),
@@ -5082,6 +5401,7 @@ impl TypeObject for StepLogicSamplerNodeData {
 
 pub static STEPLOGICSAMPLERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StepLogicSamplerNodeData-Array",
+    name_hash: 3361071241,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("StepLogicSamplerNodeData"),
@@ -5090,7 +5410,8 @@ pub static STEPLOGICSAMPLERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StepLogicSamplerNodeDebugData {
     pub _glacier_base: super::core::DataContainer,
     pub enable_debug: bool,
@@ -5187,64 +5508,76 @@ impl super::core::DataContainerTrait for StepLogicSamplerNodeDebugData {
 
 pub static STEPLOGICSAMPLERNODEDEBUGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StepLogicSamplerNodeDebugData",
+    name_hash: 3730871692,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(StepLogicSamplerNodeDebugData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StepLogicSamplerNodeDebugData as Default>::default())),
+            create_boxed: || Box::new(<StepLogicSamplerNodeDebugData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EnableDebug",
+                name_hash: 634281781,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(StepLogicSamplerNodeDebugData, enable_debug),
             },
             FieldInfoData {
                 name: "DebugTextXPos",
+                name_hash: 3339242877,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(StepLogicSamplerNodeDebugData, debug_text_x_pos),
             },
             FieldInfoData {
                 name: "DebugTextYPos",
+                name_hash: 3339341980,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(StepLogicSamplerNodeDebugData, debug_text_y_pos),
             },
             FieldInfoData {
                 name: "EventDisplayTime",
+                name_hash: 830993990,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StepLogicSamplerNodeDebugData, event_display_time),
             },
             FieldInfoData {
                 name: "SamplerDebugInfoColor",
+                name_hash: 3619838419,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(StepLogicSamplerNodeDebugData, sampler_debug_info_color),
             },
             FieldInfoData {
                 name: "PropertiesDebugInfoColor",
+                name_hash: 1983868326,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(StepLogicSamplerNodeDebugData, properties_debug_info_color),
             },
             FieldInfoData {
                 name: "EventsDebugInfoColor",
+                name_hash: 256006744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(StepLogicSamplerNodeDebugData, events_debug_info_color),
             },
             FieldInfoData {
                 name: "ExternalWaveDebugInfoColor",
+                name_hash: 3326041183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(StepLogicSamplerNodeDebugData, external_wave_debug_info_color),
             },
             FieldInfoData {
                 name: "MuteSampler",
+                name_hash: 2296045208,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(StepLogicSamplerNodeDebugData, mute_sampler),
@@ -5276,6 +5609,7 @@ impl TypeObject for StepLogicSamplerNodeDebugData {
 
 pub static STEPLOGICSAMPLERNODEDEBUGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StepLogicSamplerNodeDebugData-Array",
+    name_hash: 288908728,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("StepLogicSamplerNodeDebugData"),
@@ -5284,7 +5618,8 @@ pub static STEPLOGICSAMPLERNODEDEBUGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StepLogicSamplerPlugins {
     pub snd_player: super::audio::SoundGraphPluginRef,
     pub resample: super::audio::SoundGraphPluginRef,
@@ -5341,39 +5676,46 @@ impl StepLogicSamplerPluginsTrait for StepLogicSamplerPlugins {
 
 pub static STEPLOGICSAMPLERPLUGINS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StepLogicSamplerPlugins",
+    name_hash: 217050807,
     flags: MemberInfoFlags::new(36937),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StepLogicSamplerPlugins as Default>::default())),
+            create_boxed: || Box::new(<StepLogicSamplerPlugins as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SndPlayer",
+                name_hash: 728257487,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(StepLogicSamplerPlugins, snd_player),
             },
             FieldInfoData {
                 name: "Resample",
+                name_hash: 53347764,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(StepLogicSamplerPlugins, resample),
             },
             FieldInfoData {
                 name: "Pause",
+                name_hash: 232316407,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(StepLogicSamplerPlugins, pause),
             },
             FieldInfoData {
                 name: "Gain",
+                name_hash: 2088703076,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(StepLogicSamplerPlugins, gain),
             },
             FieldInfoData {
                 name: "GainFader",
+                name_hash: 2943317296,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(StepLogicSamplerPlugins, gain_fader),
@@ -5405,6 +5747,7 @@ impl TypeObject for StepLogicSamplerPlugins {
 
 pub static STEPLOGICSAMPLERPLUGINS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StepLogicSamplerPlugins-Array",
+    name_hash: 3169388547,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("StepLogicSamplerPlugins"),
@@ -5413,22 +5756,23 @@ pub static STEPLOGICSAMPLERPLUGINS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SortValuesNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
-    pub sort_values: Vec<Option<Arc<Mutex<dyn SortValuesGroupTrait>>>>,
+    pub sort_values: Vec<Option<LockedTypeObject /* SortValuesGroup */>>,
 }
 
 pub trait SortValuesNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
-    fn sort_values(&self) -> &Vec<Option<Arc<Mutex<dyn SortValuesGroupTrait>>>>;
-    fn sort_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SortValuesGroupTrait>>>>;
+    fn sort_values(&self) -> &Vec<Option<LockedTypeObject /* SortValuesGroup */>>;
+    fn sort_values_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SortValuesGroup */>>;
 }
 
 impl SortValuesNodeDataTrait for SortValuesNodeData {
-    fn sort_values(&self) -> &Vec<Option<Arc<Mutex<dyn SortValuesGroupTrait>>>> {
+    fn sort_values(&self) -> &Vec<Option<LockedTypeObject /* SortValuesGroup */>> {
         &self.sort_values
     }
-    fn sort_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SortValuesGroupTrait>>>> {
+    fn sort_values_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SortValuesGroup */>> {
         &mut self.sort_values
     }
 }
@@ -5441,16 +5785,20 @@ impl super::core::DataContainerTrait for SortValuesNodeData {
 
 pub static SORTVALUESNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SortValuesNodeData",
+    name_hash: 3112727191,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SortValuesNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SortValuesNodeData as Default>::default())),
+            create_boxed: || Box::new(<SortValuesNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SortValues",
+                name_hash: 1083437895,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SortValuesGroup-Array",
                 rust_offset: offset_of!(SortValuesNodeData, sort_values),
@@ -5482,6 +5830,7 @@ impl TypeObject for SortValuesNodeData {
 
 pub static SORTVALUESNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SortValuesNodeData-Array",
+    name_hash: 1462287139,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SortValuesNodeData"),
@@ -5490,7 +5839,8 @@ pub static SORTVALUESNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SortValuesGroup {
     pub _glacier_base: super::audio::AudioGraphNodePortGroup,
     pub r#in: super::audio::AudioGraphNodePort,
@@ -5536,28 +5886,34 @@ impl super::core::DataContainerTrait for SortValuesGroup {
 
 pub static SORTVALUESGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SortValuesGroup",
+    name_hash: 327050968,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEPORTGROUP_TYPE_INFO),
+        super_class_offset: offset_of!(SortValuesGroup, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SortValuesGroup as Default>::default())),
+            create_boxed: || Box::new(<SortValuesGroup as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SortValuesGroup, r#in),
             },
             FieldInfoData {
                 name: "SortedValue",
+                name_hash: 3558803253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SortValuesGroup, sorted_value),
             },
             FieldInfoData {
                 name: "InputIndex",
+                name_hash: 1613850061,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SortValuesGroup, input_index),
@@ -5589,6 +5945,7 @@ impl TypeObject for SortValuesGroup {
 
 pub static SORTVALUESGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SortValuesGroup-Array",
+    name_hash: 693453164,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SortValuesGroup"),
@@ -5597,7 +5954,8 @@ pub static SORTVALUESGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SequencerNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub start: super::audio::AudioGraphNodePort,
@@ -5688,58 +6046,69 @@ impl super::core::DataContainerTrait for SequencerNodeData {
 
 pub static SEQUENCERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SequencerNodeData",
+    name_hash: 359611352,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SequencerNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SequencerNodeData as Default>::default())),
+            create_boxed: || Box::new(<SequencerNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Start",
+                name_hash: 230748069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SequencerNodeData, start),
             },
             FieldInfoData {
                 name: "Stop",
+                name_hash: 2089401213,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SequencerNodeData, stop),
             },
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SequencerNodeData, time),
             },
             FieldInfoData {
                 name: "OnStarted",
+                name_hash: 3101601957,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SequencerNodeData, on_started),
             },
             FieldInfoData {
                 name: "OnStopped",
+                name_hash: 3117993581,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SequencerNodeData, on_stopped),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SequencerNodeData, out),
             },
             FieldInfoData {
                 name: "Delay",
+                name_hash: 208768368,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SequencerNodeData, delay),
             },
             FieldInfoData {
                 name: "TimeMode",
+                name_hash: 2999663827,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimeMode",
                 rust_offset: offset_of!(SequencerNodeData, time_mode),
@@ -5771,6 +6140,7 @@ impl TypeObject for SequencerNodeData {
 
 pub static SEQUENCERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SequencerNodeData-Array",
+    name_hash: 332519020,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SequencerNodeData"),
@@ -5790,6 +6160,7 @@ pub enum TimeMode {
 
 pub static TIMEMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimeMode",
+    name_hash: 2999663827,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -5818,6 +6189,7 @@ impl TypeObject for TimeMode {
 
 pub static TIMEMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimeMode-Array",
+    name_hash: 1104824295,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("TimeMode"),
@@ -5826,7 +6198,8 @@ pub static TIMEMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SaturationNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub r#in: super::audio::AudioGraphNodePort,
@@ -5917,58 +6290,69 @@ impl super::core::DataContainerTrait for SaturationNodeData {
 
 pub static SATURATIONNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SaturationNodeData",
+    name_hash: 2739493865,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SaturationNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SaturationNodeData as Default>::default())),
+            create_boxed: || Box::new(<SaturationNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SaturationNodeData, r#in),
             },
             FieldInfoData {
                 name: "Gain",
+                name_hash: 2088703076,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SaturationNodeData, gain),
             },
             FieldInfoData {
                 name: "DCBias",
+                name_hash: 2559466715,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SaturationNodeData, d_c_bias),
             },
             FieldInfoData {
                 name: "Level",
+                name_hash: 218262515,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SaturationNodeData, level),
             },
             FieldInfoData {
                 name: "Mix",
+                name_hash: 193446617,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SaturationNodeData, mix),
             },
             FieldInfoData {
                 name: "SaturationType",
+                name_hash: 2558972865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SaturationTypes",
                 rust_offset: offset_of!(SaturationNodeData, saturation_type),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(SaturationNodeData, out),
             },
             FieldInfoData {
                 name: "SaturationPlugin",
+                name_hash: 3411805456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(SaturationNodeData, saturation_plugin),
@@ -6000,6 +6384,7 @@ impl TypeObject for SaturationNodeData {
 
 pub static SATURATIONNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SaturationNodeData-Array",
+    name_hash: 2100564701,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SaturationNodeData"),
@@ -6028,6 +6413,7 @@ pub enum SaturationTypes {
 
 pub static SATURATIONTYPES_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SaturationTypes",
+    name_hash: 2841725842,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -6056,6 +6442,7 @@ impl TypeObject for SaturationTypes {
 
 pub static SATURATIONTYPES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SaturationTypes-Array",
+    name_hash: 149525158,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SaturationTypes"),
@@ -6064,7 +6451,8 @@ pub static SATURATIONTYPES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RunOnceNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub r#in: super::audio::AudioGraphNodePort,
@@ -6119,34 +6507,41 @@ impl super::core::DataContainerTrait for RunOnceNodeData {
 
 pub static RUNONCENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RunOnceNodeData",
+    name_hash: 3521389307,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RunOnceNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RunOnceNodeData as Default>::default())),
+            create_boxed: || Box::new(<RunOnceNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(RunOnceNodeData, r#in),
             },
             FieldInfoData {
                 name: "Reset",
+                name_hash: 229946160,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(RunOnceNodeData, reset),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(RunOnceNodeData, out),
             },
             FieldInfoData {
                 name: "StartClosed",
+                name_hash: 77276087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RunOnceNodeData, start_closed),
@@ -6178,6 +6573,7 @@ impl TypeObject for RunOnceNodeData {
 
 pub static RUNONCENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RunOnceNodeData-Array",
+    name_hash: 2781289167,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("RunOnceNodeData"),
@@ -6186,7 +6582,8 @@ pub static RUNONCENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RaycastNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub send: super::audio::AudioGraphNodePort,
@@ -6376,124 +6773,146 @@ impl super::core::DataContainerTrait for RaycastNodeData {
 
 pub static RAYCASTNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RaycastNodeData",
+    name_hash: 352526490,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RaycastNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RaycastNodeData as Default>::default())),
+            create_boxed: || Box::new(<RaycastNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Send",
+                name_hash: 2089417369,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(RaycastNodeData, send),
             },
             FieldInfoData {
                 name: "Hit",
+                name_hash: 193458192,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(RaycastNodeData, hit),
             },
             FieldInfoData {
                 name: "Miss",
+                name_hash: 2088770913,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(RaycastNodeData, miss),
             },
             FieldInfoData {
                 name: "Left",
+                name_hash: 2089021886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RaycastNodeData, left),
             },
             FieldInfoData {
                 name: "Up",
+                name_hash: 5862272,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RaycastNodeData, up),
             },
             FieldInfoData {
                 name: "Forward",
+                name_hash: 1986470206,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RaycastNodeData, forward),
             },
             FieldInfoData {
                 name: "SeeThrough",
+                name_hash: 753481485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, see_through),
             },
             FieldInfoData {
                 name: "Penetrable",
+                name_hash: 1887765847,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, penetrable),
             },
             FieldInfoData {
                 name: "IncludeTerrain",
+                name_hash: 106414606,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, include_terrain),
             },
             FieldInfoData {
                 name: "IncludeWater",
+                name_hash: 796013708,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, include_water),
             },
             FieldInfoData {
                 name: "IncludeCharacters",
+                name_hash: 3133666035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, include_characters),
             },
             FieldInfoData {
                 name: "IncludeVehicles",
+                name_hash: 4052507474,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, include_vehicles),
             },
             FieldInfoData {
                 name: "IncludeRagdolls",
+                name_hash: 2446437525,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, include_ragdolls),
             },
             FieldInfoData {
                 name: "IncludeFixed",
+                name_hash: 813351567,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, include_fixed),
             },
             FieldInfoData {
                 name: "IncludeKeyframed",
+                name_hash: 149633399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, include_keyframed),
             },
             FieldInfoData {
                 name: "IncludeDynamic",
+                name_hash: 2793557740,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, include_dynamic),
             },
             FieldInfoData {
                 name: "DetailedQueryMode",
+                name_hash: 2780273852,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, detailed_query_mode),
             },
             FieldInfoData {
                 name: "EnableDebug",
+                name_hash: 634281781,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RaycastNodeData, enable_debug),
             },
             FieldInfoData {
                 name: "MaterialId",
+                name_hash: 1778871203,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(RaycastNodeData, material_id),
@@ -6525,6 +6944,7 @@ impl TypeObject for RaycastNodeData {
 
 pub static RAYCASTNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RaycastNodeData-Array",
+    name_hash: 1616282542,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("RaycastNodeData"),
@@ -6533,7 +6953,8 @@ pub static RAYCASTNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomIntegerNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub trigger: super::audio::AudioGraphNodePort,
@@ -6588,34 +7009,41 @@ impl super::core::DataContainerTrait for RandomIntegerNodeData {
 
 pub static RANDOMINTEGERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomIntegerNodeData",
+    name_hash: 1413461704,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RandomIntegerNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomIntegerNodeData as Default>::default())),
+            create_boxed: || Box::new(<RandomIntegerNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Trigger",
+                name_hash: 2606354109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(RandomIntegerNodeData, trigger),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(RandomIntegerNodeData, out),
             },
             FieldInfoData {
                 name: "Min",
+                name_hash: 193446607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RandomIntegerNodeData, min),
             },
             FieldInfoData {
                 name: "Max",
+                name_hash: 193446865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RandomIntegerNodeData, max),
@@ -6647,6 +7075,7 @@ impl TypeObject for RandomIntegerNodeData {
 
 pub static RANDOMINTEGERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomIntegerNodeData-Array",
+    name_hash: 2587871612,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("RandomIntegerNodeData"),
@@ -6655,22 +7084,23 @@ pub static RANDOMINTEGERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProfileOptionsReaderNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
-    pub profile_options: Vec<Option<Arc<Mutex<dyn ProfileOptionsGroupTrait>>>>,
+    pub profile_options: Vec<Option<LockedTypeObject /* ProfileOptionsGroup */>>,
 }
 
 pub trait ProfileOptionsReaderNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
-    fn profile_options(&self) -> &Vec<Option<Arc<Mutex<dyn ProfileOptionsGroupTrait>>>>;
-    fn profile_options_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ProfileOptionsGroupTrait>>>>;
+    fn profile_options(&self) -> &Vec<Option<LockedTypeObject /* ProfileOptionsGroup */>>;
+    fn profile_options_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ProfileOptionsGroup */>>;
 }
 
 impl ProfileOptionsReaderNodeDataTrait for ProfileOptionsReaderNodeData {
-    fn profile_options(&self) -> &Vec<Option<Arc<Mutex<dyn ProfileOptionsGroupTrait>>>> {
+    fn profile_options(&self) -> &Vec<Option<LockedTypeObject /* ProfileOptionsGroup */>> {
         &self.profile_options
     }
-    fn profile_options_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ProfileOptionsGroupTrait>>>> {
+    fn profile_options_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ProfileOptionsGroup */>> {
         &mut self.profile_options
     }
 }
@@ -6683,16 +7113,20 @@ impl super::core::DataContainerTrait for ProfileOptionsReaderNodeData {
 
 pub static PROFILEOPTIONSREADERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProfileOptionsReaderNodeData",
+    name_hash: 637130603,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ProfileOptionsReaderNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProfileOptionsReaderNodeData as Default>::default())),
+            create_boxed: || Box::new(<ProfileOptionsReaderNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ProfileOptions",
+                name_hash: 1140566110,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ProfileOptionsGroup-Array",
                 rust_offset: offset_of!(ProfileOptionsReaderNodeData, profile_options),
@@ -6724,6 +7158,7 @@ impl TypeObject for ProfileOptionsReaderNodeData {
 
 pub static PROFILEOPTIONSREADERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProfileOptionsReaderNodeData-Array",
+    name_hash: 2514446175,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ProfileOptionsReaderNodeData"),
@@ -6732,25 +7167,26 @@ pub static PROFILEOPTIONSREADERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProfileOptionsGroup {
     pub _glacier_base: super::audio::AudioGraphNodePortGroup,
-    pub profile_option_asset: Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataTrait>>>,
+    pub profile_option_asset: Option<LockedTypeObject /* super::gameplay_sim::ProfileOptionData */>,
     pub profile_option_value: super::audio::AudioGraphNodePort,
 }
 
 pub trait ProfileOptionsGroupTrait: super::audio::AudioGraphNodePortGroupTrait {
-    fn profile_option_asset(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataTrait>>>;
-    fn profile_option_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataTrait>>>;
+    fn profile_option_asset(&self) -> &Option<LockedTypeObject /* super::gameplay_sim::ProfileOptionData */>;
+    fn profile_option_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::gameplay_sim::ProfileOptionData */>;
     fn profile_option_value(&self) -> &super::audio::AudioGraphNodePort;
     fn profile_option_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl ProfileOptionsGroupTrait for ProfileOptionsGroup {
-    fn profile_option_asset(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataTrait>>> {
+    fn profile_option_asset(&self) -> &Option<LockedTypeObject /* super::gameplay_sim::ProfileOptionData */> {
         &self.profile_option_asset
     }
-    fn profile_option_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::ProfileOptionDataTrait>>> {
+    fn profile_option_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::gameplay_sim::ProfileOptionData */> {
         &mut self.profile_option_asset
     }
     fn profile_option_value(&self) -> &super::audio::AudioGraphNodePort {
@@ -6769,22 +7205,27 @@ impl super::core::DataContainerTrait for ProfileOptionsGroup {
 
 pub static PROFILEOPTIONSGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProfileOptionsGroup",
+    name_hash: 3132571489,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEPORTGROUP_TYPE_INFO),
+        super_class_offset: offset_of!(ProfileOptionsGroup, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProfileOptionsGroup as Default>::default())),
+            create_boxed: || Box::new(<ProfileOptionsGroup as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ProfileOptionAsset",
+                name_hash: 2969954429,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProfileOptionData",
                 rust_offset: offset_of!(ProfileOptionsGroup, profile_option_asset),
             },
             FieldInfoData {
                 name: "ProfileOptionValue",
+                name_hash: 2989336038,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ProfileOptionsGroup, profile_option_value),
@@ -6816,6 +7257,7 @@ impl TypeObject for ProfileOptionsGroup {
 
 pub static PROFILEOPTIONSGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProfileOptionsGroup-Array",
+    name_hash: 3504290389,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ProfileOptionsGroup"),
@@ -6824,7 +7266,8 @@ pub static PROFILEOPTIONSGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PassbyDetectorNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub time_to_apex: super::audio::AudioGraphNodePort,
@@ -6915,58 +7358,69 @@ impl super::core::DataContainerTrait for PassbyDetectorNodeData {
 
 pub static PASSBYDETECTORNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PassbyDetectorNodeData",
+    name_hash: 4169749605,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PassbyDetectorNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PassbyDetectorNodeData as Default>::default())),
+            create_boxed: || Box::new(<PassbyDetectorNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TimeToApex",
+                name_hash: 1571641607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(PassbyDetectorNodeData, time_to_apex),
             },
             FieldInfoData {
                 name: "ExtraDistance",
+                name_hash: 1781032892,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(PassbyDetectorNodeData, extra_distance),
             },
             FieldInfoData {
                 name: "SpeedThreshold",
+                name_hash: 1215144053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(PassbyDetectorNodeData, speed_threshold),
             },
             FieldInfoData {
                 name: "RelativeSpeedThreshold",
+                name_hash: 2814872897,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(PassbyDetectorNodeData, relative_speed_threshold),
             },
             FieldInfoData {
                 name: "CooldownTime",
+                name_hash: 613462861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(PassbyDetectorNodeData, cooldown_time),
             },
             FieldInfoData {
                 name: "Trigger",
+                name_hash: 2606354109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(PassbyDetectorNodeData, trigger),
             },
             FieldInfoData {
                 name: "Cancel",
+                name_hash: 2716109795,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(PassbyDetectorNodeData, cancel),
             },
             FieldInfoData {
                 name: "RelativeSpeedSmoothingRate",
+                name_hash: 342726486,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PassbyDetectorNodeData, relative_speed_smoothing_rate),
@@ -6998,6 +7452,7 @@ impl TypeObject for PassbyDetectorNodeData {
 
 pub static PASSBYDETECTORNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PassbyDetectorNodeData-Array",
+    name_hash: 1282194769,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("PassbyDetectorNodeData"),
@@ -7006,7 +7461,8 @@ pub static PASSBYDETECTORNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ParameterSmootherNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub r#in: super::audio::AudioGraphNodePort,
@@ -7052,28 +7508,34 @@ impl super::core::DataContainerTrait for ParameterSmootherNodeData {
 
 pub static PARAMETERSMOOTHERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ParameterSmootherNodeData",
+    name_hash: 2858087593,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ParameterSmootherNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ParameterSmootherNodeData as Default>::default())),
+            create_boxed: || Box::new(<ParameterSmootherNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ParameterSmootherNodeData, r#in),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ParameterSmootherNodeData, out),
             },
             FieldInfoData {
                 name: "SmoothingTime",
+                name_hash: 2916906290,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ParameterSmootherNodeData, smoothing_time),
@@ -7105,6 +7567,7 @@ impl TypeObject for ParameterSmootherNodeData {
 
 pub static PARAMETERSMOOTHERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ParameterSmootherNodeData-Array",
+    name_hash: 326433565,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ParameterSmootherNodeData"),
@@ -7113,7 +7576,8 @@ pub static PARAMETERSMOOTHERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NanCheckNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub r#in: super::audio::AudioGraphNodePort,
@@ -7168,34 +7632,41 @@ impl super::core::DataContainerTrait for NanCheckNodeData {
 
 pub static NANCHECKNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NanCheckNodeData",
+    name_hash: 3270054194,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(NanCheckNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NanCheckNodeData as Default>::default())),
+            create_boxed: || Box::new(<NanCheckNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(NanCheckNodeData, r#in),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(NanCheckNodeData, out),
             },
             FieldInfoData {
                 name: "NameNonMeta",
+                name_hash: 666851312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(NanCheckNodeData, name_non_meta),
             },
             FieldInfoData {
                 name: "NanCheckPlugin",
+                name_hash: 2199393547,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(NanCheckNodeData, nan_check_plugin),
@@ -7227,6 +7698,7 @@ impl TypeObject for NanCheckNodeData {
 
 pub static NANCHECKNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NanCheckNodeData-Array",
+    name_hash: 213587846,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("NanCheckNodeData"),
@@ -7235,7 +7707,8 @@ pub static NANCHECKNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LoudnessNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub r#in: super::audio::AudioGraphNodePort,
@@ -7344,70 +7817,83 @@ impl super::core::DataContainerTrait for LoudnessNodeData {
 
 pub static LOUDNESSNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LoudnessNodeData",
+    name_hash: 1968575212,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LoudnessNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LoudnessNodeData as Default>::default())),
+            create_boxed: || Box::new(<LoudnessNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(LoudnessNodeData, r#in),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(LoudnessNodeData, out),
             },
             FieldInfoData {
                 name: "Momentary",
+                name_hash: 3118863551,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(LoudnessNodeData, momentary),
             },
             FieldInfoData {
                 name: "Integrated",
+                name_hash: 1769896434,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(LoudnessNodeData, integrated),
             },
             FieldInfoData {
                 name: "Reset",
+                name_hash: 229946160,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(LoudnessNodeData, reset),
             },
             FieldInfoData {
                 name: "Plugin",
+                name_hash: 3384353452,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(LoudnessNodeData, plugin),
             },
             FieldInfoData {
                 name: "Trace",
+                name_hash: 227189956,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LoudnessNodeData, trace),
             },
             FieldInfoData {
                 name: "TraceLabel",
+                name_hash: 1727876738,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(LoudnessNodeData, trace_label),
             },
             FieldInfoData {
                 name: "IntegrationTime",
+                name_hash: 3046154350,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LoudnessNodeData, integration_time),
             },
             FieldInfoData {
                 name: "EnableClamp",
+                name_hash: 644913175,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LoudnessNodeData, enable_clamp),
@@ -7439,6 +7925,7 @@ impl TypeObject for LoudnessNodeData {
 
 pub static LOUDNESSNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LoudnessNodeData-Array",
+    name_hash: 3288478424,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LoudnessNodeData"),
@@ -7447,7 +7934,8 @@ pub static LOUDNESSNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ListenerNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub world_x: super::audio::AudioGraphNodePort,
@@ -7493,28 +7981,34 @@ impl super::core::DataContainerTrait for ListenerNodeData {
 
 pub static LISTENERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ListenerNodeData",
+    name_hash: 3401605451,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ListenerNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ListenerNodeData as Default>::default())),
+            create_boxed: || Box::new(<ListenerNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WorldX",
+                name_hash: 3192402367,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ListenerNodeData, world_x),
             },
             FieldInfoData {
                 name: "WorldY",
+                name_hash: 3192402366,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ListenerNodeData, world_y),
             },
             FieldInfoData {
                 name: "WorldZ",
+                name_hash: 3192402365,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ListenerNodeData, world_z),
@@ -7546,6 +8040,7 @@ impl TypeObject for ListenerNodeData {
 
 pub static LISTENERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ListenerNodeData-Array",
+    name_hash: 3726991487,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ListenerNodeData"),
@@ -7554,31 +8049,32 @@ pub static LISTENERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IndexMapperNodeConfigData {
     pub _glacier_base: super::audio::AudioGraphNodeConfigData,
-    pub dimension_groups: Vec<IndexMapperConfigGroup>,
+    pub dimension_groups: Vec<BoxedTypeObject /* IndexMapperConfigGroup */>,
 }
 
 pub trait IndexMapperNodeConfigDataTrait: super::audio::AudioGraphNodeConfigDataTrait {
-    fn dimension_groups(&self) -> &Vec<IndexMapperConfigGroup>;
-    fn dimension_groups_mut(&mut self) -> &mut Vec<IndexMapperConfigGroup>;
+    fn dimension_groups(&self) -> &Vec<BoxedTypeObject /* IndexMapperConfigGroup */>;
+    fn dimension_groups_mut(&mut self) -> &mut Vec<BoxedTypeObject /* IndexMapperConfigGroup */>;
 }
 
 impl IndexMapperNodeConfigDataTrait for IndexMapperNodeConfigData {
-    fn dimension_groups(&self) -> &Vec<IndexMapperConfigGroup> {
+    fn dimension_groups(&self) -> &Vec<BoxedTypeObject /* IndexMapperConfigGroup */> {
         &self.dimension_groups
     }
-    fn dimension_groups_mut(&mut self) -> &mut Vec<IndexMapperConfigGroup> {
+    fn dimension_groups_mut(&mut self) -> &mut Vec<BoxedTypeObject /* IndexMapperConfigGroup */> {
         &mut self.dimension_groups
     }
 }
 
 impl super::audio::AudioGraphNodeConfigDataTrait for IndexMapperNodeConfigData {
-    fn node(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
+    fn node(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphNodeData */> {
         self._glacier_base.node()
     }
-    fn node_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
+    fn node_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphNodeData */> {
         self._glacier_base.node_mut()
     }
     fn configured_property_flags(&self) -> &u64 {
@@ -7594,16 +8090,20 @@ impl super::core::DataContainerTrait for IndexMapperNodeConfigData {
 
 pub static INDEXMAPPERNODECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IndexMapperNodeConfigData",
+    name_hash: 2604324378,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODECONFIGDATA_TYPE_INFO),
+        super_class_offset: offset_of!(IndexMapperNodeConfigData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IndexMapperNodeConfigData as Default>::default())),
+            create_boxed: || Box::new(<IndexMapperNodeConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DimensionGroups",
+                name_hash: 2367791513,
                 flags: MemberInfoFlags::new(144),
                 field_type: "IndexMapperConfigGroup-Array",
                 rust_offset: offset_of!(IndexMapperNodeConfigData, dimension_groups),
@@ -7635,6 +8135,7 @@ impl TypeObject for IndexMapperNodeConfigData {
 
 pub static INDEXMAPPERNODECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IndexMapperNodeConfigData-Array",
+    name_hash: 3722467630,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("IndexMapperNodeConfigData"),
@@ -7643,7 +8144,8 @@ pub static INDEXMAPPERNODECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IndexMapperConfigGroup {
     pub dimension_size: u32,
 }
@@ -7664,15 +8166,18 @@ impl IndexMapperConfigGroupTrait for IndexMapperConfigGroup {
 
 pub static INDEXMAPPERCONFIGGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IndexMapperConfigGroup",
+    name_hash: 202840821,
     flags: MemberInfoFlags::new(36937),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IndexMapperConfigGroup as Default>::default())),
+            create_boxed: || Box::new(<IndexMapperConfigGroup as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DimensionSize",
+                name_hash: 1484701488,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(IndexMapperConfigGroup, dimension_size),
@@ -7704,6 +8209,7 @@ impl TypeObject for IndexMapperConfigGroup {
 
 pub static INDEXMAPPERCONFIGGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IndexMapperConfigGroup-Array",
+    name_hash: 3983027137,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("IndexMapperConfigGroup"),
@@ -7712,25 +8218,26 @@ pub static INDEXMAPPERCONFIGGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IndexMapperNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
-    pub dimension_groups: Vec<Option<Arc<Mutex<dyn IndexMapperGroupTrait>>>>,
+    pub dimension_groups: Vec<Option<LockedTypeObject /* IndexMapperGroup */>>,
     pub result: super::audio::AudioGraphNodePort,
 }
 
 pub trait IndexMapperNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
-    fn dimension_groups(&self) -> &Vec<Option<Arc<Mutex<dyn IndexMapperGroupTrait>>>>;
-    fn dimension_groups_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn IndexMapperGroupTrait>>>>;
+    fn dimension_groups(&self) -> &Vec<Option<LockedTypeObject /* IndexMapperGroup */>>;
+    fn dimension_groups_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* IndexMapperGroup */>>;
     fn result(&self) -> &super::audio::AudioGraphNodePort;
     fn result_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
 
 impl IndexMapperNodeDataTrait for IndexMapperNodeData {
-    fn dimension_groups(&self) -> &Vec<Option<Arc<Mutex<dyn IndexMapperGroupTrait>>>> {
+    fn dimension_groups(&self) -> &Vec<Option<LockedTypeObject /* IndexMapperGroup */>> {
         &self.dimension_groups
     }
-    fn dimension_groups_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn IndexMapperGroupTrait>>>> {
+    fn dimension_groups_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* IndexMapperGroup */>> {
         &mut self.dimension_groups
     }
     fn result(&self) -> &super::audio::AudioGraphNodePort {
@@ -7749,22 +8256,27 @@ impl super::core::DataContainerTrait for IndexMapperNodeData {
 
 pub static INDEXMAPPERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IndexMapperNodeData",
+    name_hash: 4157740912,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(IndexMapperNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IndexMapperNodeData as Default>::default())),
+            create_boxed: || Box::new(<IndexMapperNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DimensionGroups",
+                name_hash: 2367791513,
                 flags: MemberInfoFlags::new(144),
                 field_type: "IndexMapperGroup-Array",
                 rust_offset: offset_of!(IndexMapperNodeData, dimension_groups),
             },
             FieldInfoData {
                 name: "Result",
+                name_hash: 3293273164,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(IndexMapperNodeData, result),
@@ -7796,6 +8308,7 @@ impl TypeObject for IndexMapperNodeData {
 
 pub static INDEXMAPPERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IndexMapperNodeData-Array",
+    name_hash: 90395972,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("IndexMapperNodeData"),
@@ -7804,7 +8317,8 @@ pub static INDEXMAPPERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IndexMapperGroup {
     pub _glacier_base: super::audio::AudioGraphNodePortGroup,
     pub guid: glacier_util::guid::Guid,
@@ -7850,28 +8364,34 @@ impl super::core::DataContainerTrait for IndexMapperGroup {
 
 pub static INDEXMAPPERGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IndexMapperGroup",
+    name_hash: 2288920735,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEPORTGROUP_TYPE_INFO),
+        super_class_offset: offset_of!(IndexMapperGroup, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IndexMapperGroup as Default>::default())),
+            create_boxed: || Box::new(<IndexMapperGroup as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Guid",
+                name_hash: 2088724858,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(IndexMapperGroup, guid),
             },
             FieldInfoData {
                 name: "DimensionSize",
+                name_hash: 1484701488,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(IndexMapperGroup, dimension_size),
             },
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(IndexMapperGroup, r#in),
@@ -7903,6 +8423,7 @@ impl TypeObject for IndexMapperGroup {
 
 pub static INDEXMAPPERGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IndexMapperGroup-Array",
+    name_hash: 662588715,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("IndexMapperGroup"),
@@ -7911,7 +8432,8 @@ pub static INDEXMAPPERGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GateNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub r#in: super::audio::AudioGraphNodePort,
@@ -7975,40 +8497,48 @@ impl super::core::DataContainerTrait for GateNodeData {
 
 pub static GATENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GateNodeData",
+    name_hash: 743464962,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GateNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GateNodeData as Default>::default())),
+            create_boxed: || Box::new(<GateNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(GateNodeData, r#in),
             },
             FieldInfoData {
                 name: "Open",
+                name_hash: 2089008817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(GateNodeData, open),
             },
             FieldInfoData {
                 name: "Close",
+                name_hash: 212633683,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(GateNodeData, close),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(GateNodeData, out),
             },
             FieldInfoData {
                 name: "StartOpened",
+                name_hash: 248233008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GateNodeData, start_opened),
@@ -8040,6 +8570,7 @@ impl TypeObject for GateNodeData {
 
 pub static GATENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GateNodeData-Array",
+    name_hash: 4251139894,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("GateNodeData"),
@@ -8048,7 +8579,8 @@ pub static GATENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ForceIsNotLoopingNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
 }
@@ -8067,12 +8599,15 @@ impl super::core::DataContainerTrait for ForceIsNotLoopingNodeData {
 
 pub static FORCEISNOTLOOPINGNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceIsNotLoopingNodeData",
+    name_hash: 573049819,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ForceIsNotLoopingNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ForceIsNotLoopingNodeData as Default>::default())),
+            create_boxed: || Box::new(<ForceIsNotLoopingNodeData as Default>::default()),
         },
         fields: &[
         ],
@@ -8102,6 +8637,7 @@ impl TypeObject for ForceIsNotLoopingNodeData {
 
 pub static FORCEISNOTLOOPINGNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceIsNotLoopingNodeData-Array",
+    name_hash: 1607840495,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ForceIsNotLoopingNodeData"),
@@ -8110,7 +8646,8 @@ pub static FORCEISNOTLOOPINGNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ForceIsLoopingNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
 }
@@ -8129,12 +8666,15 @@ impl super::core::DataContainerTrait for ForceIsLoopingNodeData {
 
 pub static FORCEISLOOPINGNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceIsLoopingNodeData",
+    name_hash: 791098446,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ForceIsLoopingNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ForceIsLoopingNodeData as Default>::default())),
+            create_boxed: || Box::new(<ForceIsLoopingNodeData as Default>::default()),
         },
         fields: &[
         ],
@@ -8164,6 +8704,7 @@ impl TypeObject for ForceIsLoopingNodeData {
 
 pub static FORCEISLOOPINGNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForceIsLoopingNodeData-Array",
+    name_hash: 782732794,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ForceIsLoopingNodeData"),
@@ -8172,19 +8713,20 @@ pub static FORCEISLOOPINGNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventSelectorNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub index: super::audio::AudioGraphNodePort,
-    pub input_events: Vec<Option<Arc<Mutex<dyn InputEventsGroupTrait>>>>,
+    pub input_events: Vec<Option<LockedTypeObject /* InputEventsGroup */>>,
     pub out: super::audio::AudioGraphNodePort,
 }
 
 pub trait EventSelectorNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn index(&self) -> &super::audio::AudioGraphNodePort;
     fn index_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
-    fn input_events(&self) -> &Vec<Option<Arc<Mutex<dyn InputEventsGroupTrait>>>>;
-    fn input_events_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputEventsGroupTrait>>>>;
+    fn input_events(&self) -> &Vec<Option<LockedTypeObject /* InputEventsGroup */>>;
+    fn input_events_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputEventsGroup */>>;
     fn out(&self) -> &super::audio::AudioGraphNodePort;
     fn out_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
 }
@@ -8196,10 +8738,10 @@ impl EventSelectorNodeDataTrait for EventSelectorNodeData {
     fn index_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
         &mut self.index
     }
-    fn input_events(&self) -> &Vec<Option<Arc<Mutex<dyn InputEventsGroupTrait>>>> {
+    fn input_events(&self) -> &Vec<Option<LockedTypeObject /* InputEventsGroup */>> {
         &self.input_events
     }
-    fn input_events_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn InputEventsGroupTrait>>>> {
+    fn input_events_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* InputEventsGroup */>> {
         &mut self.input_events
     }
     fn out(&self) -> &super::audio::AudioGraphNodePort {
@@ -8218,28 +8760,34 @@ impl super::core::DataContainerTrait for EventSelectorNodeData {
 
 pub static EVENTSELECTORNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventSelectorNodeData",
+    name_hash: 2019867820,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EventSelectorNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventSelectorNodeData as Default>::default())),
+            create_boxed: || Box::new(<EventSelectorNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Index",
+                name_hash: 214509467,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(EventSelectorNodeData, index),
             },
             FieldInfoData {
                 name: "InputEvents",
+                name_hash: 1542460652,
                 flags: MemberInfoFlags::new(144),
                 field_type: "InputEventsGroup-Array",
                 rust_offset: offset_of!(EventSelectorNodeData, input_events),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(EventSelectorNodeData, out),
@@ -8271,6 +8819,7 @@ impl TypeObject for EventSelectorNodeData {
 
 pub static EVENTSELECTORNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventSelectorNodeData-Array",
+    name_hash: 1344089112,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("EventSelectorNodeData"),
@@ -8279,7 +8828,8 @@ pub static EVENTSELECTORNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputEventsGroup {
     pub _glacier_base: super::audio::AudioGraphNodePortGroup,
     pub r#in: super::audio::AudioGraphNodePort,
@@ -8307,16 +8857,20 @@ impl super::core::DataContainerTrait for InputEventsGroup {
 
 pub static INPUTEVENTSGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputEventsGroup",
+    name_hash: 457420499,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEPORTGROUP_TYPE_INFO),
+        super_class_offset: offset_of!(InputEventsGroup, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputEventsGroup as Default>::default())),
+            create_boxed: || Box::new(<InputEventsGroup as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(InputEventsGroup, r#in),
@@ -8348,6 +8902,7 @@ impl TypeObject for InputEventsGroup {
 
 pub static INPUTEVENTSGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputEventsGroup-Array",
+    name_hash: 2472557031,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("InputEventsGroup"),
@@ -8356,7 +8911,8 @@ pub static INPUTEVENTSGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventGateConditionValueNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub condition: EventGateConditionValueType,
@@ -8438,52 +8994,62 @@ impl super::core::DataContainerTrait for EventGateConditionValueNodeData {
 
 pub static EVENTGATECONDITIONVALUENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventGateConditionValueNodeData",
+    name_hash: 2539977750,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EventGateConditionValueNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventGateConditionValueNodeData as Default>::default())),
+            create_boxed: || Box::new(<EventGateConditionValueNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Condition",
+                name_hash: 1800624758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EventGateConditionValueType",
                 rust_offset: offset_of!(EventGateConditionValueNodeData, condition),
             },
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(EventGateConditionValueNodeData, r#in),
             },
             FieldInfoData {
                 name: "InValue",
+                name_hash: 1658462601,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(EventGateConditionValueNodeData, in_value),
             },
             FieldInfoData {
                 name: "CoolDownTime",
+                name_hash: 282296301,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(EventGateConditionValueNodeData, cool_down_time),
             },
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(EventGateConditionValueNodeData, enable),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(EventGateConditionValueNodeData, out),
             },
             FieldInfoData {
                 name: "OutValue",
+                name_hash: 993810272,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(EventGateConditionValueNodeData, out_value),
@@ -8515,6 +9081,7 @@ impl TypeObject for EventGateConditionValueNodeData {
 
 pub static EVENTGATECONDITIONVALUENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventGateConditionValueNodeData-Array",
+    name_hash: 3578745122,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("EventGateConditionValueNodeData"),
@@ -8540,6 +9107,7 @@ pub enum EventGateConditionValueType {
 
 pub static EVENTGATECONDITIONVALUETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventGateConditionValueType",
+    name_hash: 921384574,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -8568,6 +9136,7 @@ impl TypeObject for EventGateConditionValueType {
 
 pub static EVENTGATECONDITIONVALUETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventGateConditionValueType-Array",
+    name_hash: 3187865418,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("EventGateConditionValueType"),
@@ -8576,7 +9145,8 @@ pub static EVENTGATECONDITIONVALUETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DicePhysicsNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub angular_velocity_x: super::audio::AudioGraphNodePort,
@@ -8631,34 +9201,41 @@ impl super::core::DataContainerTrait for DicePhysicsNodeData {
 
 pub static DICEPHYSICSNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DicePhysicsNodeData",
+    name_hash: 238857365,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DicePhysicsNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DicePhysicsNodeData as Default>::default())),
+            create_boxed: || Box::new(<DicePhysicsNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AngularVelocity_X",
+                name_hash: 3631900631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DicePhysicsNodeData, angular_velocity_x),
             },
             FieldInfoData {
                 name: "AngularVelocity_Y",
+                name_hash: 3631900630,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DicePhysicsNodeData, angular_velocity_y),
             },
             FieldInfoData {
                 name: "AngularVelocity_Z",
+                name_hash: 3631900629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DicePhysicsNodeData, angular_velocity_z),
             },
             FieldInfoData {
                 name: "SignedSpeed",
+                name_hash: 565498448,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DicePhysicsNodeData, signed_speed),
@@ -8690,6 +9267,7 @@ impl TypeObject for DicePhysicsNodeData {
 
 pub static DICEPHYSICSNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DicePhysicsNodeData-Array",
+    name_hash: 2053635105,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DicePhysicsNodeData"),
@@ -8698,7 +9276,8 @@ pub static DICEPHYSICSNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceDivisibleLoopPlayerNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub start: super::audio::AudioGraphNodePort,
@@ -8706,9 +9285,9 @@ pub struct DiceDivisibleLoopPlayerNodeData {
     pub amplitude: super::audio::AudioGraphNodePort,
     pub freeze_segment: super::audio::AudioGraphNodePort,
     pub output: super::audio::AudioGraphNodePort,
-    pub wave: Option<Arc<Mutex<dyn super::audio::SoundWaveAssetTrait>>>,
+    pub wave: Option<LockedTypeObject /* super::audio::SoundWaveAsset */>,
     pub external_wave: super::audio::AudioGraphNodePort,
-    pub plugins: Vec<DiceDivisibleLoopPlayerPlugins>,
+    pub plugins: Vec<BoxedTypeObject /* DiceDivisibleLoopPlayerPlugins */>,
     pub cross_fade_length: f32,
     pub start_at_random_position: bool,
 }
@@ -8724,12 +9303,12 @@ pub trait DiceDivisibleLoopPlayerNodeDataTrait: super::audio::AudioGraphNodeData
     fn freeze_segment_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn output(&self) -> &super::audio::AudioGraphNodePort;
     fn output_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
-    fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetTrait>>>;
-    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetTrait>>>;
+    fn wave(&self) -> &Option<LockedTypeObject /* super::audio::SoundWaveAsset */>;
+    fn wave_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundWaveAsset */>;
     fn external_wave(&self) -> &super::audio::AudioGraphNodePort;
     fn external_wave_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
-    fn plugins(&self) -> &Vec<DiceDivisibleLoopPlayerPlugins>;
-    fn plugins_mut(&mut self) -> &mut Vec<DiceDivisibleLoopPlayerPlugins>;
+    fn plugins(&self) -> &Vec<BoxedTypeObject /* DiceDivisibleLoopPlayerPlugins */>;
+    fn plugins_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DiceDivisibleLoopPlayerPlugins */>;
     fn cross_fade_length(&self) -> &f32;
     fn cross_fade_length_mut(&mut self) -> &mut f32;
     fn start_at_random_position(&self) -> &bool;
@@ -8767,10 +9346,10 @@ impl DiceDivisibleLoopPlayerNodeDataTrait for DiceDivisibleLoopPlayerNodeData {
     fn output_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
         &mut self.output
     }
-    fn wave(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundWaveAssetTrait>>> {
+    fn wave(&self) -> &Option<LockedTypeObject /* super::audio::SoundWaveAsset */> {
         &self.wave
     }
-    fn wave_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundWaveAssetTrait>>> {
+    fn wave_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundWaveAsset */> {
         &mut self.wave
     }
     fn external_wave(&self) -> &super::audio::AudioGraphNodePort {
@@ -8779,10 +9358,10 @@ impl DiceDivisibleLoopPlayerNodeDataTrait for DiceDivisibleLoopPlayerNodeData {
     fn external_wave_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
         &mut self.external_wave
     }
-    fn plugins(&self) -> &Vec<DiceDivisibleLoopPlayerPlugins> {
+    fn plugins(&self) -> &Vec<BoxedTypeObject /* DiceDivisibleLoopPlayerPlugins */> {
         &self.plugins
     }
-    fn plugins_mut(&mut self) -> &mut Vec<DiceDivisibleLoopPlayerPlugins> {
+    fn plugins_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DiceDivisibleLoopPlayerPlugins */> {
         &mut self.plugins
     }
     fn cross_fade_length(&self) -> &f32 {
@@ -8807,70 +9386,83 @@ impl super::core::DataContainerTrait for DiceDivisibleLoopPlayerNodeData {
 
 pub static DICEDIVISIBLELOOPPLAYERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceDivisibleLoopPlayerNodeData",
+    name_hash: 3736821138,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceDivisibleLoopPlayerNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceDivisibleLoopPlayerNodeData as Default>::default())),
+            create_boxed: || Box::new(<DiceDivisibleLoopPlayerNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Start",
+                name_hash: 230748069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerNodeData, start),
             },
             FieldInfoData {
                 name: "Stop",
+                name_hash: 2089401213,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerNodeData, stop),
             },
             FieldInfoData {
                 name: "Amplitude",
+                name_hash: 698564572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerNodeData, amplitude),
             },
             FieldInfoData {
                 name: "FreezeSegment",
+                name_hash: 3532981773,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerNodeData, freeze_segment),
             },
             FieldInfoData {
                 name: "Output",
+                name_hash: 2895736442,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerNodeData, output),
             },
             FieldInfoData {
                 name: "Wave",
+                name_hash: 2089277184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundWaveAsset",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerNodeData, wave),
             },
             FieldInfoData {
                 name: "ExternalWave",
+                name_hash: 2162866621,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerNodeData, external_wave),
             },
             FieldInfoData {
                 name: "Plugins",
+                name_hash: 14514271,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DiceDivisibleLoopPlayerPlugins-Array",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerNodeData, plugins),
             },
             FieldInfoData {
                 name: "CrossFadeLength",
+                name_hash: 2603726337,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerNodeData, cross_fade_length),
             },
             FieldInfoData {
                 name: "StartAtRandomPosition",
+                name_hash: 663970258,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerNodeData, start_at_random_position),
@@ -8902,6 +9494,7 @@ impl TypeObject for DiceDivisibleLoopPlayerNodeData {
 
 pub static DICEDIVISIBLELOOPPLAYERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceDivisibleLoopPlayerNodeData-Array",
+    name_hash: 4060685478,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceDivisibleLoopPlayerNodeData"),
@@ -8910,7 +9503,8 @@ pub static DICEDIVISIBLELOOPPLAYERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceDivisibleLoopPlayerPlugins {
     pub snd_player: super::audio::SoundGraphPluginRef,
     pub pause: super::audio::SoundGraphPluginRef,
@@ -8958,33 +9552,39 @@ impl DiceDivisibleLoopPlayerPluginsTrait for DiceDivisibleLoopPlayerPlugins {
 
 pub static DICEDIVISIBLELOOPPLAYERPLUGINS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceDivisibleLoopPlayerPlugins",
+    name_hash: 577531768,
     flags: MemberInfoFlags::new(36937),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceDivisibleLoopPlayerPlugins as Default>::default())),
+            create_boxed: || Box::new(<DiceDivisibleLoopPlayerPlugins as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SndPlayer",
+                name_hash: 728257487,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerPlugins, snd_player),
             },
             FieldInfoData {
                 name: "Pause",
+                name_hash: 232316407,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerPlugins, pause),
             },
             FieldInfoData {
                 name: "Gain",
+                name_hash: 2088703076,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerPlugins, gain),
             },
             FieldInfoData {
                 name: "GainFader",
+                name_hash: 2943317296,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundGraphPluginRef",
                 rust_offset: offset_of!(DiceDivisibleLoopPlayerPlugins, gain_fader),
@@ -9016,6 +9616,7 @@ impl TypeObject for DiceDivisibleLoopPlayerPlugins {
 
 pub static DICEDIVISIBLELOOPPLAYERPLUGINS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceDivisibleLoopPlayerPlugins-Array",
+    name_hash: 2195654988,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceDivisibleLoopPlayerPlugins"),
@@ -9024,7 +9625,8 @@ pub static DICEDIVISIBLELOOPPLAYERPLUGINS_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceAdsrNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub trigger: super::audio::AudioGraphNodePort,
@@ -9142,76 +9744,90 @@ impl super::core::DataContainerTrait for DiceAdsrNodeData {
 
 pub static DICEADSRNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceAdsrNodeData",
+    name_hash: 2994863034,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceAdsrNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceAdsrNodeData as Default>::default())),
+            create_boxed: || Box::new(<DiceAdsrNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Trigger",
+                name_hash: 2606354109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceAdsrNodeData, trigger),
             },
             FieldInfoData {
                 name: "Release",
+                name_hash: 1335266828,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceAdsrNodeData, release),
             },
             FieldInfoData {
                 name: "A",
+                name_hash: 177636,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceAdsrNodeData, a),
             },
             FieldInfoData {
                 name: "D",
+                name_hash: 177633,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceAdsrNodeData, d),
             },
             FieldInfoData {
                 name: "S",
+                name_hash: 177654,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceAdsrNodeData, s),
             },
             FieldInfoData {
                 name: "R",
+                name_hash: 177655,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceAdsrNodeData, r),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceAdsrNodeData, value),
             },
             FieldInfoData {
                 name: "TriggerOutput",
+                name_hash: 2046336834,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceAdsrNodeData, trigger_output),
             },
             FieldInfoData {
                 name: "Finished",
+                name_hash: 1223765815,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(DiceAdsrNodeData, finished),
             },
             FieldInfoData {
                 name: "AlwaysStartFromZero",
+                name_hash: 2877047584,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceAdsrNodeData, always_start_from_zero),
             },
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAdsrNodeData, scale),
@@ -9243,6 +9859,7 @@ impl TypeObject for DiceAdsrNodeData {
 
 pub static DICEADSRNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceAdsrNodeData-Array",
+    name_hash: 3380166158,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceAdsrNodeData"),
@@ -9251,7 +9868,8 @@ pub static DICEADSRNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CounterNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub increment: super::audio::AudioGraphNodePort,
@@ -9333,52 +9951,62 @@ impl super::core::DataContainerTrait for CounterNodeData {
 
 pub static COUNTERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CounterNodeData",
+    name_hash: 3382684897,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CounterNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CounterNodeData as Default>::default())),
+            create_boxed: || Box::new(<CounterNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Increment",
+                name_hash: 1736970756,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(CounterNodeData, increment),
             },
             FieldInfoData {
                 name: "Decrement",
+                name_hash: 3899315554,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(CounterNodeData, decrement),
             },
             FieldInfoData {
                 name: "Reset",
+                name_hash: 229946160,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(CounterNodeData, reset),
             },
             FieldInfoData {
                 name: "HasChanged",
+                name_hash: 2470958941,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(CounterNodeData, has_changed),
             },
             FieldInfoData {
                 name: "OutputValue",
+                name_hash: 731416433,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(CounterNodeData, output_value),
             },
             FieldInfoData {
                 name: "StartValue",
+                name_hash: 2748522638,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CounterNodeData, start_value),
             },
             FieldInfoData {
                 name: "CountStep",
+                name_hash: 1973422516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CounterNodeData, count_step),
@@ -9410,6 +10038,7 @@ impl TypeObject for CounterNodeData {
 
 pub static COUNTERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CounterNodeData-Array",
+    name_hash: 1992542165,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CounterNodeData"),
@@ -9418,14 +10047,15 @@ pub static COUNTERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConfigurableRangeMapperNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub input_value: super::audio::AudioGraphNodePort,
     pub output_value: super::audio::AudioGraphNodePort,
     pub default_output_value: super::audio::AudioGraphNodePort,
     pub default_output_value_enabled: bool,
-    pub ranges: Vec<Option<Arc<Mutex<dyn ConfigurableRangeMapperEntryTrait>>>>,
+    pub ranges: Vec<Option<LockedTypeObject /* ConfigurableRangeMapperEntry */>>,
 }
 
 pub trait ConfigurableRangeMapperNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
@@ -9437,8 +10067,8 @@ pub trait ConfigurableRangeMapperNodeDataTrait: super::audio::AudioGraphNodeData
     fn default_output_value_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn default_output_value_enabled(&self) -> &bool;
     fn default_output_value_enabled_mut(&mut self) -> &mut bool;
-    fn ranges(&self) -> &Vec<Option<Arc<Mutex<dyn ConfigurableRangeMapperEntryTrait>>>>;
-    fn ranges_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ConfigurableRangeMapperEntryTrait>>>>;
+    fn ranges(&self) -> &Vec<Option<LockedTypeObject /* ConfigurableRangeMapperEntry */>>;
+    fn ranges_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ConfigurableRangeMapperEntry */>>;
 }
 
 impl ConfigurableRangeMapperNodeDataTrait for ConfigurableRangeMapperNodeData {
@@ -9466,10 +10096,10 @@ impl ConfigurableRangeMapperNodeDataTrait for ConfigurableRangeMapperNodeData {
     fn default_output_value_enabled_mut(&mut self) -> &mut bool {
         &mut self.default_output_value_enabled
     }
-    fn ranges(&self) -> &Vec<Option<Arc<Mutex<dyn ConfigurableRangeMapperEntryTrait>>>> {
+    fn ranges(&self) -> &Vec<Option<LockedTypeObject /* ConfigurableRangeMapperEntry */>> {
         &self.ranges
     }
-    fn ranges_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ConfigurableRangeMapperEntryTrait>>>> {
+    fn ranges_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ConfigurableRangeMapperEntry */>> {
         &mut self.ranges
     }
 }
@@ -9482,40 +10112,48 @@ impl super::core::DataContainerTrait for ConfigurableRangeMapperNodeData {
 
 pub static CONFIGURABLERANGEMAPPERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConfigurableRangeMapperNodeData",
+    name_hash: 593716374,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ConfigurableRangeMapperNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConfigurableRangeMapperNodeData as Default>::default())),
+            create_boxed: || Box::new(<ConfigurableRangeMapperNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InputValue",
+                name_hash: 1591366968,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ConfigurableRangeMapperNodeData, input_value),
             },
             FieldInfoData {
                 name: "OutputValue",
+                name_hash: 731416433,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ConfigurableRangeMapperNodeData, output_value),
             },
             FieldInfoData {
                 name: "DefaultOutputValue",
+                name_hash: 2261994170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ConfigurableRangeMapperNodeData, default_output_value),
             },
             FieldInfoData {
                 name: "DefaultOutputValueEnabled",
+                name_hash: 4075741855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ConfigurableRangeMapperNodeData, default_output_value_enabled),
             },
             FieldInfoData {
                 name: "Ranges",
+                name_hash: 3298755849,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ConfigurableRangeMapperEntry-Array",
                 rust_offset: offset_of!(ConfigurableRangeMapperNodeData, ranges),
@@ -9547,6 +10185,7 @@ impl TypeObject for ConfigurableRangeMapperNodeData {
 
 pub static CONFIGURABLERANGEMAPPERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConfigurableRangeMapperNodeData-Array",
+    name_hash: 228202914,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ConfigurableRangeMapperNodeData"),
@@ -9555,7 +10194,8 @@ pub static CONFIGURABLERANGEMAPPERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConfigurableRangeMapperEntry {
     pub _glacier_base: super::audio::AudioGraphNodePortGroup,
     pub range_start: super::audio::AudioGraphNodePort,
@@ -9601,28 +10241,34 @@ impl super::core::DataContainerTrait for ConfigurableRangeMapperEntry {
 
 pub static CONFIGURABLERANGEMAPPERENTRY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConfigurableRangeMapperEntry",
+    name_hash: 3876249042,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEPORTGROUP_TYPE_INFO),
+        super_class_offset: offset_of!(ConfigurableRangeMapperEntry, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConfigurableRangeMapperEntry as Default>::default())),
+            create_boxed: || Box::new(<ConfigurableRangeMapperEntry as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RangeStart",
+                name_hash: 1501057914,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ConfigurableRangeMapperEntry, range_start),
             },
             FieldInfoData {
                 name: "RangeEnd",
+                name_hash: 1752521717,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ConfigurableRangeMapperEntry, range_end),
             },
             FieldInfoData {
                 name: "OutputValue",
+                name_hash: 731416433,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ConfigurableRangeMapperEntry, output_value),
@@ -9654,6 +10300,7 @@ impl TypeObject for ConfigurableRangeMapperEntry {
 
 pub static CONFIGURABLERANGEMAPPERENTRY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConfigurableRangeMapperEntry-Array",
+    name_hash: 534254950,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ConfigurableRangeMapperEntry"),
@@ -9662,22 +10309,23 @@ pub static CONFIGURABLERANGEMAPPERENTRY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConditionValueNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
-    pub conditions: Vec<Option<Arc<Mutex<dyn ConditionValueGroupTrait>>>>,
+    pub conditions: Vec<Option<LockedTypeObject /* ConditionValueGroup */>>,
 }
 
 pub trait ConditionValueNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn ConditionValueGroupTrait>>>>;
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ConditionValueGroupTrait>>>>;
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* ConditionValueGroup */>>;
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ConditionValueGroup */>>;
 }
 
 impl ConditionValueNodeDataTrait for ConditionValueNodeData {
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn ConditionValueGroupTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* ConditionValueGroup */>> {
         &self.conditions
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ConditionValueGroupTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ConditionValueGroup */>> {
         &mut self.conditions
     }
 }
@@ -9690,16 +10338,20 @@ impl super::core::DataContainerTrait for ConditionValueNodeData {
 
 pub static CONDITIONVALUENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionValueNodeData",
+    name_hash: 458375597,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ConditionValueNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConditionValueNodeData as Default>::default())),
+            create_boxed: || Box::new(<ConditionValueNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Conditions",
+                name_hash: 3586042181,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ConditionValueGroup-Array",
                 rust_offset: offset_of!(ConditionValueNodeData, conditions),
@@ -9731,6 +10383,7 @@ impl TypeObject for ConditionValueNodeData {
 
 pub static CONDITIONVALUENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionValueNodeData-Array",
+    name_hash: 2268182041,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ConditionValueNodeData"),
@@ -9739,7 +10392,8 @@ pub static CONDITIONVALUENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConditionValueGroup {
     pub _glacier_base: super::audio::AudioGraphNodePortGroup,
     pub x: super::audio::AudioGraphNodePort,
@@ -9812,46 +10466,55 @@ impl super::core::DataContainerTrait for ConditionValueGroup {
 
 pub static CONDITIONVALUEGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionValueGroup",
+    name_hash: 1801563298,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEPORTGROUP_TYPE_INFO),
+        super_class_offset: offset_of!(ConditionValueGroup, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConditionValueGroup as Default>::default())),
+            create_boxed: || Box::new(<ConditionValueGroup as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "X",
+                name_hash: 177661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ConditionValueGroup, x),
             },
             FieldInfoData {
                 name: "Y",
+                name_hash: 177660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ConditionValueGroup, y),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ConditionValueGroup, out),
             },
             FieldInfoData {
                 name: "Condition",
+                name_hash: 1800624758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ConditionValueType",
                 rust_offset: offset_of!(ConditionValueGroup, condition),
             },
             FieldInfoData {
                 name: "ValueIfTrue",
+                name_hash: 88991863,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConditionValueGroup, value_if_true),
             },
             FieldInfoData {
                 name: "ValueIfFalse",
+                name_hash: 2915912540,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConditionValueGroup, value_if_false),
@@ -9883,6 +10546,7 @@ impl TypeObject for ConditionValueGroup {
 
 pub static CONDITIONVALUEGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionValueGroup-Array",
+    name_hash: 1602718486,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ConditionValueGroup"),
@@ -9908,6 +10572,7 @@ pub enum ConditionValueType {
 
 pub static CONDITIONVALUETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionValueType",
+    name_hash: 1485461637,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -9936,6 +10601,7 @@ impl TypeObject for ConditionValueType {
 
 pub static CONDITIONVALUETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionValueType-Array",
+    name_hash: 3685998641,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ConditionValueType"),
@@ -9944,22 +10610,23 @@ pub static CONDITIONVALUETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareValueNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
-    pub conditions: Vec<Option<Arc<Mutex<dyn CompareValueGroupTrait>>>>,
+    pub conditions: Vec<Option<LockedTypeObject /* CompareValueGroup */>>,
 }
 
 pub trait CompareValueNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn CompareValueGroupTrait>>>>;
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CompareValueGroupTrait>>>>;
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* CompareValueGroup */>>;
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CompareValueGroup */>>;
 }
 
 impl CompareValueNodeDataTrait for CompareValueNodeData {
-    fn conditions(&self) -> &Vec<Option<Arc<Mutex<dyn CompareValueGroupTrait>>>> {
+    fn conditions(&self) -> &Vec<Option<LockedTypeObject /* CompareValueGroup */>> {
         &self.conditions
     }
-    fn conditions_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CompareValueGroupTrait>>>> {
+    fn conditions_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CompareValueGroup */>> {
         &mut self.conditions
     }
 }
@@ -9972,16 +10639,20 @@ impl super::core::DataContainerTrait for CompareValueNodeData {
 
 pub static COMPAREVALUENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareValueNodeData",
+    name_hash: 72138777,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareValueNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareValueNodeData as Default>::default())),
+            create_boxed: || Box::new(<CompareValueNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Conditions",
+                name_hash: 3586042181,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CompareValueGroup-Array",
                 rust_offset: offset_of!(CompareValueNodeData, conditions),
@@ -10013,6 +10684,7 @@ impl TypeObject for CompareValueNodeData {
 
 pub static COMPAREVALUENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareValueNodeData-Array",
+    name_hash: 3981991341,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CompareValueNodeData"),
@@ -10021,7 +10693,8 @@ pub static COMPAREVALUENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareValueGroup {
     pub _glacier_base: super::audio::AudioGraphNodePortGroup,
     pub evaluate: super::audio::AudioGraphNodePort,
@@ -10103,52 +10776,62 @@ impl super::core::DataContainerTrait for CompareValueGroup {
 
 pub static COMPAREVALUEGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareValueGroup",
+    name_hash: 181092630,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEPORTGROUP_TYPE_INFO),
+        super_class_offset: offset_of!(CompareValueGroup, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareValueGroup as Default>::default())),
+            create_boxed: || Box::new(<CompareValueGroup as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Evaluate",
+                name_hash: 1831937182,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(CompareValueGroup, evaluate),
             },
             FieldInfoData {
                 name: "X",
+                name_hash: 177661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(CompareValueGroup, x),
             },
             FieldInfoData {
                 name: "Y",
+                name_hash: 177660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(CompareValueGroup, y),
             },
             FieldInfoData {
                 name: "True",
+                name_hash: 2089293587,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(CompareValueGroup, r#true),
             },
             FieldInfoData {
                 name: "False",
+                name_hash: 206401336,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(CompareValueGroup, r#false),
             },
             FieldInfoData {
                 name: "Condition",
+                name_hash: 1800624758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CompareValueConditionType",
                 rust_offset: offset_of!(CompareValueGroup, condition),
             },
             FieldInfoData {
                 name: "AutoEvaluate",
+                name_hash: 110934545,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CompareValueGroup, auto_evaluate),
@@ -10180,6 +10863,7 @@ impl TypeObject for CompareValueGroup {
 
 pub static COMPAREVALUEGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareValueGroup-Array",
+    name_hash: 798316066,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CompareValueGroup"),
@@ -10205,6 +10889,7 @@ pub enum CompareValueConditionType {
 
 pub static COMPAREVALUECONDITIONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareValueConditionType",
+    name_hash: 947219202,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -10233,6 +10918,7 @@ impl TypeObject for CompareValueConditionType {
 
 pub static COMPAREVALUECONDITIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareValueConditionType-Array",
+    name_hash: 2447673910,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CompareValueConditionType"),
@@ -10241,7 +10927,8 @@ pub static COMPAREVALUECONDITIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClampNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub r#in: super::audio::AudioGraphNodePort,
@@ -10296,34 +10983,41 @@ impl super::core::DataContainerTrait for ClampNodeData {
 
 pub static CLAMPNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClampNodeData",
+    name_hash: 236878406,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ClampNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClampNodeData as Default>::default())),
+            create_boxed: || Box::new(<ClampNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ClampNodeData, r#in),
             },
             FieldInfoData {
                 name: "Out",
+                name_hash: 193453899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ClampNodeData, out),
             },
             FieldInfoData {
                 name: "ClampMin",
+                name_hash: 722785724,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClampNodeData, clamp_min),
             },
             FieldInfoData {
                 name: "ClampMax",
+                name_hash: 722785954,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ClampNodeData, clamp_max),
@@ -10355,6 +11049,7 @@ impl TypeObject for ClampNodeData {
 
 pub static CLAMPNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClampNodeData-Array",
+    name_hash: 1425799154,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ClampNodeData"),
@@ -10363,14 +11058,15 @@ pub static CLAMPNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioEnvelopeSwitcherNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub index: super::audio::AudioGraphNodePort,
     pub advance: super::audio::AudioGraphNodePort,
     pub audio_envelope: super::audio::AudioGraphNodePort,
     pub index_changed: super::audio::AudioGraphNodePort,
-    pub audio_envelopes: Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>>,
+    pub audio_envelopes: Vec<Option<LockedTypeObject /* AudioEnvelopeAsset */>>,
     pub default_index: f32,
     pub is_random: bool,
     pub random_start_index: bool,
@@ -10385,8 +11081,8 @@ pub trait AudioEnvelopeSwitcherNodeDataTrait: super::audio::AudioGraphNodeDataTr
     fn audio_envelope_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn index_changed(&self) -> &super::audio::AudioGraphNodePort;
     fn index_changed_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
-    fn audio_envelopes(&self) -> &Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>>;
-    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>>;
+    fn audio_envelopes(&self) -> &Vec<Option<LockedTypeObject /* AudioEnvelopeAsset */>>;
+    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* AudioEnvelopeAsset */>>;
     fn default_index(&self) -> &f32;
     fn default_index_mut(&mut self) -> &mut f32;
     fn is_random(&self) -> &bool;
@@ -10420,10 +11116,10 @@ impl AudioEnvelopeSwitcherNodeDataTrait for AudioEnvelopeSwitcherNodeData {
     fn index_changed_mut(&mut self) -> &mut super::audio::AudioGraphNodePort {
         &mut self.index_changed
     }
-    fn audio_envelopes(&self) -> &Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>> {
+    fn audio_envelopes(&self) -> &Vec<Option<LockedTypeObject /* AudioEnvelopeAsset */>> {
         &self.audio_envelopes
     }
-    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>> {
+    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* AudioEnvelopeAsset */>> {
         &mut self.audio_envelopes
     }
     fn default_index(&self) -> &f32 {
@@ -10454,58 +11150,69 @@ impl super::core::DataContainerTrait for AudioEnvelopeSwitcherNodeData {
 
 pub static AUDIOENVELOPESWITCHERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopeSwitcherNodeData",
+    name_hash: 1142898184,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AudioEnvelopeSwitcherNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioEnvelopeSwitcherNodeData as Default>::default())),
+            create_boxed: || Box::new(<AudioEnvelopeSwitcherNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Index",
+                name_hash: 214509467,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AudioEnvelopeSwitcherNodeData, index),
             },
             FieldInfoData {
                 name: "Advance",
+                name_hash: 343579199,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AudioEnvelopeSwitcherNodeData, advance),
             },
             FieldInfoData {
                 name: "AudioEnvelope",
+                name_hash: 4008589053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AudioEnvelopeSwitcherNodeData, audio_envelope),
             },
             FieldInfoData {
                 name: "IndexChanged",
+                name_hash: 3560418393,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AudioEnvelopeSwitcherNodeData, index_changed),
             },
             FieldInfoData {
                 name: "AudioEnvelopes",
+                name_hash: 3434419950,
                 flags: MemberInfoFlags::new(144),
                 field_type: "AudioEnvelopeAsset-Array",
                 rust_offset: offset_of!(AudioEnvelopeSwitcherNodeData, audio_envelopes),
             },
             FieldInfoData {
                 name: "DefaultIndex",
+                name_hash: 2048165968,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioEnvelopeSwitcherNodeData, default_index),
             },
             FieldInfoData {
                 name: "IsRandom",
+                name_hash: 421699588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AudioEnvelopeSwitcherNodeData, is_random),
             },
             FieldInfoData {
                 name: "RandomStartIndex",
+                name_hash: 3711152288,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AudioEnvelopeSwitcherNodeData, random_start_index),
@@ -10537,6 +11244,7 @@ impl TypeObject for AudioEnvelopeSwitcherNodeData {
 
 pub static AUDIOENVELOPESWITCHERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopeSwitcherNodeData-Array",
+    name_hash: 3778265148,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioEnvelopeSwitcherNodeData"),
@@ -10545,31 +11253,32 @@ pub static AUDIOENVELOPESWITCHERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioEnvelopeSwitcherNodeConfigData {
     pub _glacier_base: super::audio::AudioGraphNodeConfigData,
-    pub audio_envelopes: Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>>,
+    pub audio_envelopes: Vec<Option<LockedTypeObject /* AudioEnvelopeAsset */>>,
 }
 
 pub trait AudioEnvelopeSwitcherNodeConfigDataTrait: super::audio::AudioGraphNodeConfigDataTrait {
-    fn audio_envelopes(&self) -> &Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>>;
-    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>>;
+    fn audio_envelopes(&self) -> &Vec<Option<LockedTypeObject /* AudioEnvelopeAsset */>>;
+    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* AudioEnvelopeAsset */>>;
 }
 
 impl AudioEnvelopeSwitcherNodeConfigDataTrait for AudioEnvelopeSwitcherNodeConfigData {
-    fn audio_envelopes(&self) -> &Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>> {
+    fn audio_envelopes(&self) -> &Vec<Option<LockedTypeObject /* AudioEnvelopeAsset */>> {
         &self.audio_envelopes
     }
-    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>> {
+    fn audio_envelopes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* AudioEnvelopeAsset */>> {
         &mut self.audio_envelopes
     }
 }
 
 impl super::audio::AudioGraphNodeConfigDataTrait for AudioEnvelopeSwitcherNodeConfigData {
-    fn node(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
+    fn node(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphNodeData */> {
         self._glacier_base.node()
     }
-    fn node_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphNodeDataTrait>>> {
+    fn node_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphNodeData */> {
         self._glacier_base.node_mut()
     }
     fn configured_property_flags(&self) -> &u64 {
@@ -10585,16 +11294,20 @@ impl super::core::DataContainerTrait for AudioEnvelopeSwitcherNodeConfigData {
 
 pub static AUDIOENVELOPESWITCHERNODECONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopeSwitcherNodeConfigData",
+    name_hash: 3427925730,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODECONFIGDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AudioEnvelopeSwitcherNodeConfigData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioEnvelopeSwitcherNodeConfigData as Default>::default())),
+            create_boxed: || Box::new(<AudioEnvelopeSwitcherNodeConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AudioEnvelopes",
+                name_hash: 3434419950,
                 flags: MemberInfoFlags::new(144),
                 field_type: "AudioEnvelopeAsset-Array",
                 rust_offset: offset_of!(AudioEnvelopeSwitcherNodeConfigData, audio_envelopes),
@@ -10626,6 +11339,7 @@ impl TypeObject for AudioEnvelopeSwitcherNodeConfigData {
 
 pub static AUDIOENVELOPESWITCHERNODECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopeSwitcherNodeConfigData-Array",
+    name_hash: 288116182,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioEnvelopeSwitcherNodeConfigData"),
@@ -10634,7 +11348,8 @@ pub static AUDIOENVELOPESWITCHERNODECONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioEnvelopeNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub x: super::audio::AudioGraphNodePort,
@@ -10642,7 +11357,7 @@ pub struct AudioEnvelopeNodeData {
     pub y: super::audio::AudioGraphNodePort,
     pub region: super::audio::AudioGraphNodePort,
     pub envelope: AudioEnvelope,
-    pub envelope_asset: Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>,
+    pub envelope_asset: Option<LockedTypeObject /* AudioEnvelopeAsset */>,
 }
 
 pub trait AudioEnvelopeNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
@@ -10656,8 +11371,8 @@ pub trait AudioEnvelopeNodeDataTrait: super::audio::AudioGraphNodeDataTrait {
     fn region_mut(&mut self) -> &mut super::audio::AudioGraphNodePort;
     fn envelope(&self) -> &AudioEnvelope;
     fn envelope_mut(&mut self) -> &mut AudioEnvelope;
-    fn envelope_asset(&self) -> &Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>;
-    fn envelope_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>>;
+    fn envelope_asset(&self) -> &Option<LockedTypeObject /* AudioEnvelopeAsset */>;
+    fn envelope_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* AudioEnvelopeAsset */>;
 }
 
 impl AudioEnvelopeNodeDataTrait for AudioEnvelopeNodeData {
@@ -10691,10 +11406,10 @@ impl AudioEnvelopeNodeDataTrait for AudioEnvelopeNodeData {
     fn envelope_mut(&mut self) -> &mut AudioEnvelope {
         &mut self.envelope
     }
-    fn envelope_asset(&self) -> &Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>> {
+    fn envelope_asset(&self) -> &Option<LockedTypeObject /* AudioEnvelopeAsset */> {
         &self.envelope_asset
     }
-    fn envelope_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AudioEnvelopeAssetTrait>>> {
+    fn envelope_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* AudioEnvelopeAsset */> {
         &mut self.envelope_asset
     }
 }
@@ -10707,46 +11422,55 @@ impl super::core::DataContainerTrait for AudioEnvelopeNodeData {
 
 pub static AUDIOENVELOPENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopeNodeData",
+    name_hash: 875857581,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AudioEnvelopeNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioEnvelopeNodeData as Default>::default())),
+            create_boxed: || Box::new(<AudioEnvelopeNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "X",
+                name_hash: 177661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AudioEnvelopeNodeData, x),
             },
             FieldInfoData {
                 name: "EnvelopeIn",
+                name_hash: 2922457036,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AudioEnvelopeNodeData, envelope_in),
             },
             FieldInfoData {
                 name: "Y",
+                name_hash: 177660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AudioEnvelopeNodeData, y),
             },
             FieldInfoData {
                 name: "Region",
+                name_hash: 3293978493,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AudioEnvelopeNodeData, region),
             },
             FieldInfoData {
                 name: "Envelope",
+                name_hash: 365527499,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioEnvelope",
                 rust_offset: offset_of!(AudioEnvelopeNodeData, envelope),
             },
             FieldInfoData {
                 name: "EnvelopeAsset",
+                name_hash: 3807726331,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioEnvelopeAsset",
                 rust_offset: offset_of!(AudioEnvelopeNodeData, envelope_asset),
@@ -10778,6 +11502,7 @@ impl TypeObject for AudioEnvelopeNodeData {
 
 pub static AUDIOENVELOPENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopeNodeData-Array",
+    name_hash: 3019094809,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioEnvelopeNodeData"),
@@ -10786,7 +11511,8 @@ pub static AUDIOENVELOPENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioEnvelopeAsset {
     pub _glacier_base: super::core::Asset,
     pub envelope: AudioEnvelope,
@@ -10820,16 +11546,20 @@ impl super::core::DataContainerTrait for AudioEnvelopeAsset {
 
 pub static AUDIOENVELOPEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopeAsset",
+    name_hash: 3167107789,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(AudioEnvelopeAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioEnvelopeAsset as Default>::default())),
+            create_boxed: || Box::new(<AudioEnvelopeAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Envelope",
+                name_hash: 365527499,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioEnvelope",
                 rust_offset: offset_of!(AudioEnvelopeAsset, envelope),
@@ -10861,6 +11591,7 @@ impl TypeObject for AudioEnvelopeAsset {
 
 pub static AUDIOENVELOPEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopeAsset-Array",
+    name_hash: 2719731449,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioEnvelopeAsset"),
@@ -10869,24 +11600,25 @@ pub static AUDIOENVELOPEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioEnvelope {
-    pub points: Vec<AudioEnvelopePoint>,
+    pub points: Vec<BoxedTypeObject /* AudioEnvelopePoint */>,
     pub default_curve_type: AudioEnvelopeLineType,
 }
 
 pub trait AudioEnvelopeTrait: TypeObject {
-    fn points(&self) -> &Vec<AudioEnvelopePoint>;
-    fn points_mut(&mut self) -> &mut Vec<AudioEnvelopePoint>;
+    fn points(&self) -> &Vec<BoxedTypeObject /* AudioEnvelopePoint */>;
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* AudioEnvelopePoint */>;
     fn default_curve_type(&self) -> &AudioEnvelopeLineType;
     fn default_curve_type_mut(&mut self) -> &mut AudioEnvelopeLineType;
 }
 
 impl AudioEnvelopeTrait for AudioEnvelope {
-    fn points(&self) -> &Vec<AudioEnvelopePoint> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* AudioEnvelopePoint */> {
         &self.points
     }
-    fn points_mut(&mut self) -> &mut Vec<AudioEnvelopePoint> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* AudioEnvelopePoint */> {
         &mut self.points
     }
     fn default_curve_type(&self) -> &AudioEnvelopeLineType {
@@ -10899,21 +11631,25 @@ impl AudioEnvelopeTrait for AudioEnvelope {
 
 pub static AUDIOENVELOPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelope",
+    name_hash: 4008589053,
     flags: MemberInfoFlags::new(73),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioEnvelope as Default>::default())),
+            create_boxed: || Box::new(<AudioEnvelope as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Points",
+                name_hash: 3383606106,
                 flags: MemberInfoFlags::new(144),
                 field_type: "AudioEnvelopePoint-Array",
                 rust_offset: offset_of!(AudioEnvelope, points),
             },
             FieldInfoData {
                 name: "DefaultCurveType",
+                name_hash: 3178483873,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioEnvelopeLineType",
                 rust_offset: offset_of!(AudioEnvelope, default_curve_type),
@@ -10945,6 +11681,7 @@ impl TypeObject for AudioEnvelope {
 
 pub static AUDIOENVELOPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelope-Array",
+    name_hash: 4137919433,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioEnvelope"),
@@ -10953,7 +11690,8 @@ pub static AUDIOENVELOPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioEnvelopePoint {
     pub point: super::core::Vec2,
     pub line_type: AudioEnvelopeLineType,
@@ -11001,33 +11739,39 @@ impl AudioEnvelopePointTrait for AudioEnvelopePoint {
 
 pub static AUDIOENVELOPEPOINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopePoint",
+    name_hash: 3146953457,
     flags: MemberInfoFlags::new(36937),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioEnvelopePoint as Default>::default())),
+            create_boxed: || Box::new(<AudioEnvelopePoint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Point",
+                name_hash: 232684041,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(AudioEnvelopePoint, point),
             },
             FieldInfoData {
                 name: "LineType",
+                name_hash: 2762496595,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioEnvelopeLineType",
                 rust_offset: offset_of!(AudioEnvelopePoint, line_type),
             },
             FieldInfoData {
                 name: "CurveScale",
+                name_hash: 1883346154,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioEnvelopePoint, curve_scale),
             },
             FieldInfoData {
                 name: "IsRegionBoundary",
+                name_hash: 2612688127,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AudioEnvelopePoint, is_region_boundary),
@@ -11059,6 +11803,7 @@ impl TypeObject for AudioEnvelopePoint {
 
 pub static AUDIOENVELOPEPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopePoint-Array",
+    name_hash: 2146833861,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioEnvelopePoint"),
@@ -11086,6 +11831,7 @@ pub enum SnapToGridGranularity {
 
 pub static SNAPTOGRIDGRANULARITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SnapToGridGranularity",
+    name_hash: 1199894654,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -11114,6 +11860,7 @@ impl TypeObject for SnapToGridGranularity {
 
 pub static SNAPTOGRIDGRANULARITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SnapToGridGranularity-Array",
+    name_hash: 3984601418,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SnapToGridGranularity"),
@@ -11137,6 +11884,7 @@ pub enum AudioEnvelopeLineType {
 
 pub static AUDIOENVELOPELINETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopeLineType",
+    name_hash: 1938686763,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -11165,6 +11913,7 @@ impl TypeObject for AudioEnvelopeLineType {
 
 pub static AUDIOENVELOPELINETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioEnvelopeLineType-Array",
+    name_hash: 2106679967,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioEnvelopeLineType"),
@@ -11173,7 +11922,8 @@ pub static AUDIOENVELOPELINETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AssetCrossfaderNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub asset_in: super::audio::AudioGraphNodePort,
@@ -11300,82 +12050,97 @@ impl super::core::DataContainerTrait for AssetCrossfaderNodeData {
 
 pub static ASSETCROSSFADERNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AssetCrossfaderNodeData",
+    name_hash: 421688431,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AssetCrossfaderNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AssetCrossfaderNodeData as Default>::default())),
+            create_boxed: || Box::new(<AssetCrossfaderNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AssetIn",
+                name_hash: 969624626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, asset_in),
             },
             FieldInfoData {
                 name: "CrossfadeTime",
+                name_hash: 3357526152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, crossfade_time),
             },
             FieldInfoData {
                 name: "ForceCrossfade",
+                name_hash: 1478536256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, force_crossfade),
             },
             FieldInfoData {
                 name: "AssetA",
+                name_hash: 2502242516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, asset_a),
             },
             FieldInfoData {
                 name: "AmplitudeA",
+                name_hash: 1577794333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, amplitude_a),
             },
             FieldInfoData {
                 name: "TriggerA",
+                name_hash: 110339612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, trigger_a),
             },
             FieldInfoData {
                 name: "ReleaseA",
+                name_hash: 1114132429,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, release_a),
             },
             FieldInfoData {
                 name: "AssetB",
+                name_hash: 2502242519,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, asset_b),
             },
             FieldInfoData {
                 name: "AmplitudeB",
+                name_hash: 1577794334,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, amplitude_b),
             },
             FieldInfoData {
                 name: "TriggerB",
+                name_hash: 110339615,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, trigger_b),
             },
             FieldInfoData {
                 name: "ReleaseB",
+                name_hash: 1114132430,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, release_b),
             },
             FieldInfoData {
                 name: "AutoCrossfadeOnAssetChange",
+                name_hash: 3782600773,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AssetCrossfaderNodeData, auto_crossfade_on_asset_change),
@@ -11407,6 +12172,7 @@ impl TypeObject for AssetCrossfaderNodeData {
 
 pub static ASSETCROSSFADERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AssetCrossfaderNodeData-Array",
+    name_hash: 3750326875,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AssetCrossfaderNodeData"),
@@ -11415,7 +12181,8 @@ pub static ASSETCROSSFADERNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ArOneShotNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub start: super::audio::AudioGraphNodePort,
@@ -11506,58 +12273,69 @@ impl super::core::DataContainerTrait for ArOneShotNodeData {
 
 pub static ARONESHOTNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArOneShotNodeData",
+    name_hash: 3828808098,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ArOneShotNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ArOneShotNodeData as Default>::default())),
+            create_boxed: || Box::new(<ArOneShotNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Start",
+                name_hash: 230748069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArOneShotNodeData, start),
             },
             FieldInfoData {
                 name: "Attack",
+                name_hash: 2500885101,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArOneShotNodeData, attack),
             },
             FieldInfoData {
                 name: "Hold",
+                name_hash: 2089155178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArOneShotNodeData, hold),
             },
             FieldInfoData {
                 name: "Release",
+                name_hash: 1335266828,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArOneShotNodeData, release),
             },
             FieldInfoData {
                 name: "Power",
+                name_hash: 232673018,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArOneShotNodeData, power),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArOneShotNodeData, value),
             },
             FieldInfoData {
                 name: "Started",
+                name_hash: 2176542788,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArOneShotNodeData, started),
             },
             FieldInfoData {
                 name: "Stopped",
+                name_hash: 2193212940,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArOneShotNodeData, stopped),
@@ -11589,6 +12367,7 @@ impl TypeObject for ArOneShotNodeData {
 
 pub static ARONESHOTNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArOneShotNodeData-Array",
+    name_hash: 2825033750,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ArOneShotNodeData"),
@@ -11597,7 +12376,8 @@ pub static ARONESHOTNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ArLoopingNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub start: super::audio::AudioGraphNodePort,
@@ -11688,58 +12468,69 @@ impl super::core::DataContainerTrait for ArLoopingNodeData {
 
 pub static ARLOOPINGNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArLoopingNodeData",
+    name_hash: 3601108282,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ArLoopingNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ArLoopingNodeData as Default>::default())),
+            create_boxed: || Box::new(<ArLoopingNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Start",
+                name_hash: 230748069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArLoopingNodeData, start),
             },
             FieldInfoData {
                 name: "Stop",
+                name_hash: 2089401213,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArLoopingNodeData, stop),
             },
             FieldInfoData {
                 name: "Attack",
+                name_hash: 2500885101,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArLoopingNodeData, attack),
             },
             FieldInfoData {
                 name: "Release",
+                name_hash: 1335266828,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArLoopingNodeData, release),
             },
             FieldInfoData {
                 name: "Power",
+                name_hash: 232673018,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArLoopingNodeData, power),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArLoopingNodeData, value),
             },
             FieldInfoData {
                 name: "Started",
+                name_hash: 2176542788,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArLoopingNodeData, started),
             },
             FieldInfoData {
                 name: "Stopped",
+                name_hash: 2193212940,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArLoopingNodeData, stopped),
@@ -11771,6 +12562,7 @@ impl TypeObject for ArLoopingNodeData {
 
 pub static ARLOOPINGNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArLoopingNodeData-Array",
+    name_hash: 950202254,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ArLoopingNodeData"),
@@ -11779,7 +12571,8 @@ pub static ARLOOPINGNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ArFlipFlopNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub start: super::audio::AudioGraphNodePort,
@@ -11915,88 +12708,104 @@ impl super::core::DataContainerTrait for ArFlipFlopNodeData {
 
 pub static ARFLIPFLOPNODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArFlipFlopNodeData",
+    name_hash: 2945097856,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ArFlipFlopNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ArFlipFlopNodeData as Default>::default())),
+            create_boxed: || Box::new(<ArFlipFlopNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Start",
+                name_hash: 230748069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, start),
             },
             FieldInfoData {
                 name: "Stop",
+                name_hash: 2089401213,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, stop),
             },
             FieldInfoData {
                 name: "StopEndCycle",
+                name_hash: 150469666,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, stop_end_cycle),
             },
             FieldInfoData {
                 name: "Attack",
+                name_hash: 2500885101,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, attack),
             },
             FieldInfoData {
                 name: "Hold",
+                name_hash: 2089155178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, hold),
             },
             FieldInfoData {
                 name: "Release",
+                name_hash: 1335266828,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, release),
             },
             FieldInfoData {
                 name: "Power",
+                name_hash: 232673018,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ArFlipFlopNodeData, power),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, value),
             },
             FieldInfoData {
                 name: "Started",
+                name_hash: 2176542788,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, started),
             },
             FieldInfoData {
                 name: "EndAttack",
+                name_hash: 3215395202,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, end_attack),
             },
             FieldInfoData {
                 name: "EndHold",
+                name_hash: 4285547909,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, end_hold),
             },
             FieldInfoData {
                 name: "EndRelease",
+                name_hash: 3772678659,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, end_release),
             },
             FieldInfoData {
                 name: "Stopped",
+                name_hash: 2193212940,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ArFlipFlopNodeData, stopped),
@@ -12028,6 +12837,7 @@ impl TypeObject for ArFlipFlopNodeData {
 
 pub static ARFLIPFLOPNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ArFlipFlopNodeData-Array",
+    name_hash: 4139755188,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ArFlipFlopNodeData"),
@@ -12036,7 +12846,8 @@ pub static ARFLIPFLOPNODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ListenerAreaTypeNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub area_type: super::audio::AudioGraphNodePort,
@@ -12082,28 +12893,34 @@ impl super::core::DataContainerTrait for ListenerAreaTypeNodeData {
 
 pub static LISTENERAREATYPENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ListenerAreaTypeNodeData",
+    name_hash: 2566463620,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ListenerAreaTypeNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ListenerAreaTypeNodeData as Default>::default())),
+            create_boxed: || Box::new(<ListenerAreaTypeNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AreaType",
+                name_hash: 3772263626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(ListenerAreaTypeNodeData, area_type),
             },
             FieldInfoData {
                 name: "UseDefaultListener",
+                name_hash: 829611027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ListenerAreaTypeNodeData, use_default_listener),
             },
             FieldInfoData {
                 name: "ListenerId",
+                name_hash: 1750046998,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ListenerAreaTypeNodeData, listener_id),
@@ -12135,6 +12952,7 @@ impl TypeObject for ListenerAreaTypeNodeData {
 
 pub static LISTENERAREATYPENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ListenerAreaTypeNodeData-Array",
+    name_hash: 4199404720,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ListenerAreaTypeNodeData"),
@@ -12143,7 +12961,8 @@ pub static LISTENERAREATYPENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AreaTypeNodeData {
     pub _glacier_base: super::audio::AudioGraphNodeData,
     pub check: super::audio::AudioGraphNodePort,
@@ -12189,28 +13008,34 @@ impl super::core::DataContainerTrait for AreaTypeNodeData {
 
 pub static AREATYPENODEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AreaTypeNodeData",
+    name_hash: 1869836570,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::AUDIOGRAPHNODEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AreaTypeNodeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AreaTypeNodeData as Default>::default())),
+            create_boxed: || Box::new(<AreaTypeNodeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Check",
+                name_hash: 212774723,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AreaTypeNodeData, check),
             },
             FieldInfoData {
                 name: "Result",
+                name_hash: 3293273164,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AreaTypeNodeData, result),
             },
             FieldInfoData {
                 name: "AreaType",
+                name_hash: 3772263626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphNodePort",
                 rust_offset: offset_of!(AreaTypeNodeData, area_type),
@@ -12242,6 +13067,7 @@ impl TypeObject for AreaTypeNodeData {
 
 pub static AREATYPENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AreaTypeNodeData-Array",
+    name_hash: 2128688174,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AreaTypeNodeData"),
@@ -12250,25 +13076,26 @@ pub static AREATYPENODEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VoiceOverSourceEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub voice_over_info: Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>,
+    pub voice_over_info: Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */>,
     pub transform: super::core::LinearTransform,
 }
 
 pub trait VoiceOverSourceEntityDataTrait: super::entity::EntityDataTrait {
-    fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
-    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
+    fn voice_over_info(&self) -> &Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */>;
+    fn voice_over_info_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */>;
     fn transform(&self) -> &super::core::LinearTransform;
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
 }
 
 impl VoiceOverSourceEntityDataTrait for VoiceOverSourceEntityData {
-    fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info(&self) -> &Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         &self.voice_over_info
     }
-    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         &mut self.voice_over_info
     }
     fn transform(&self) -> &super::core::LinearTransform {
@@ -12302,22 +13129,27 @@ impl super::core::DataContainerTrait for VoiceOverSourceEntityData {
 
 pub static VOICEOVERSOURCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverSourceEntityData",
+    name_hash: 3576294123,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VoiceOverSourceEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VoiceOverSourceEntityData as Default>::default())),
+            create_boxed: || Box::new(<VoiceOverSourceEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "VoiceOverInfo",
+                name_hash: 1260547539,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EntityVoiceOverInfo",
                 rust_offset: offset_of!(VoiceOverSourceEntityData, voice_over_info),
             },
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(VoiceOverSourceEntityData, transform),
@@ -12349,6 +13181,7 @@ impl TypeObject for VoiceOverSourceEntityData {
 
 pub static VOICEOVERSOURCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverSourceEntityData-Array",
+    name_hash: 4172290783,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("VoiceOverSourceEntityData"),
@@ -12357,7 +13190,8 @@ pub static VOICEOVERSOURCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VoiceOverSetLanguageEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub language_index: i32,
@@ -12400,16 +13234,20 @@ impl super::core::DataContainerTrait for VoiceOverSetLanguageEntityData {
 
 pub static VOICEOVERSETLANGUAGEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverSetLanguageEntityData",
+    name_hash: 3742091654,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VoiceOverSetLanguageEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VoiceOverSetLanguageEntityData as Default>::default())),
+            create_boxed: || Box::new(<VoiceOverSetLanguageEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LanguageIndex",
+                name_hash: 2501859817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VoiceOverSetLanguageEntityData, language_index),
@@ -12441,6 +13279,7 @@ impl TypeObject for VoiceOverSetLanguageEntityData {
 
 pub static VOICEOVERSETLANGUAGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverSetLanguageEntityData-Array",
+    name_hash: 3517413042,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("VoiceOverSetLanguageEntityData"),
@@ -12449,22 +13288,23 @@ pub static VOICEOVERSETLANGUAGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LanguageCollection {
     pub _glacier_base: super::core::DataContainer,
-    pub languages_string: Vec<Option<Arc<Mutex<dyn LanguageCollectionElementTrait>>>>,
+    pub languages_string: Vec<Option<LockedTypeObject /* LanguageCollectionElement */>>,
 }
 
 pub trait LanguageCollectionTrait: super::core::DataContainerTrait {
-    fn languages_string(&self) -> &Vec<Option<Arc<Mutex<dyn LanguageCollectionElementTrait>>>>;
-    fn languages_string_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LanguageCollectionElementTrait>>>>;
+    fn languages_string(&self) -> &Vec<Option<LockedTypeObject /* LanguageCollectionElement */>>;
+    fn languages_string_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* LanguageCollectionElement */>>;
 }
 
 impl LanguageCollectionTrait for LanguageCollection {
-    fn languages_string(&self) -> &Vec<Option<Arc<Mutex<dyn LanguageCollectionElementTrait>>>> {
+    fn languages_string(&self) -> &Vec<Option<LockedTypeObject /* LanguageCollectionElement */>> {
         &self.languages_string
     }
-    fn languages_string_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn LanguageCollectionElementTrait>>>> {
+    fn languages_string_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* LanguageCollectionElement */>> {
         &mut self.languages_string
     }
 }
@@ -12474,16 +13314,20 @@ impl super::core::DataContainerTrait for LanguageCollection {
 
 pub static LANGUAGECOLLECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LanguageCollection",
+    name_hash: 190370273,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LanguageCollection, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LanguageCollection as Default>::default())),
+            create_boxed: || Box::new(<LanguageCollection as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LanguagesString",
+                name_hash: 194844401,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LanguageCollectionElement-Array",
                 rust_offset: offset_of!(LanguageCollection, languages_string),
@@ -12515,6 +13359,7 @@ impl TypeObject for LanguageCollection {
 
 pub static LANGUAGECOLLECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LanguageCollection-Array",
+    name_hash: 2315562197,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LanguageCollection"),
@@ -12523,18 +13368,19 @@ pub static LANGUAGECOLLECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LanguageCollectionElement {
     pub _glacier_base: super::core::DataContainer,
     pub language: String,
-    pub language_string_id: Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>,
+    pub language_string_id: Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */>,
 }
 
 pub trait LanguageCollectionElementTrait: super::core::DataContainerTrait {
     fn language(&self) -> &String;
     fn language_mut(&mut self) -> &mut String;
-    fn language_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
-    fn language_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
+    fn language_string_id(&self) -> &Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */>;
+    fn language_string_id_mut(&mut self) -> &mut Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */>;
 }
 
 impl LanguageCollectionElementTrait for LanguageCollectionElement {
@@ -12544,10 +13390,10 @@ impl LanguageCollectionElementTrait for LanguageCollectionElement {
     fn language_mut(&mut self) -> &mut String {
         &mut self.language
     }
-    fn language_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
+    fn language_string_id(&self) -> &Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */> {
         &self.language_string_id
     }
-    fn language_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
+    fn language_string_id_mut(&mut self) -> &mut Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */> {
         &mut self.language_string_id
     }
 }
@@ -12557,22 +13403,27 @@ impl super::core::DataContainerTrait for LanguageCollectionElement {
 
 pub static LANGUAGECOLLECTIONELEMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LanguageCollectionElement",
+    name_hash: 596688831,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LanguageCollectionElement, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LanguageCollectionElement as Default>::default())),
+            create_boxed: || Box::new(<LanguageCollectionElement as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Language",
+                name_hash: 3872303031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(LanguageCollectionElement, language),
             },
             FieldInfoData {
                 name: "LanguageStringId",
+                name_hash: 4241723759,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalizedStringId",
                 rust_offset: offset_of!(LanguageCollectionElement, language_string_id),
@@ -12604,6 +13455,7 @@ impl TypeObject for LanguageCollectionElement {
 
 pub static LANGUAGECOLLECTIONELEMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LanguageCollectionElement-Array",
+    name_hash: 3651269899,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LanguageCollectionElement"),
@@ -12612,18 +13464,19 @@ pub static LANGUAGECOLLECTIONELEMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VoiceOverLocatorEntityData {
     pub _glacier_base: super::entity::SpatialEntityData,
     pub realm: super::core::Realm,
-    pub voice_over_info: Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>,
+    pub voice_over_info: Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */>,
 }
 
 pub trait VoiceOverLocatorEntityDataTrait: super::entity::SpatialEntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
-    fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
-    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>>;
+    fn voice_over_info(&self) -> &Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */>;
+    fn voice_over_info_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */>;
 }
 
 impl VoiceOverLocatorEntityDataTrait for VoiceOverLocatorEntityData {
@@ -12633,10 +13486,10 @@ impl VoiceOverLocatorEntityDataTrait for VoiceOverLocatorEntityData {
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         &mut self.realm
     }
-    fn voice_over_info(&self) -> &Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info(&self) -> &Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         &self.voice_over_info
     }
-    fn voice_over_info_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::EntityVoiceOverInfoTrait>>> {
+    fn voice_over_info_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::EntityVoiceOverInfo */> {
         &mut self.voice_over_info
     }
 }
@@ -12673,22 +13526,27 @@ impl super::core::DataContainerTrait for VoiceOverLocatorEntityData {
 
 pub static VOICEOVERLOCATORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverLocatorEntityData",
+    name_hash: 595727166,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VoiceOverLocatorEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VoiceOverLocatorEntityData as Default>::default())),
+            create_boxed: || Box::new(<VoiceOverLocatorEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(VoiceOverLocatorEntityData, realm),
             },
             FieldInfoData {
                 name: "VoiceOverInfo",
+                name_hash: 1260547539,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EntityVoiceOverInfo",
                 rust_offset: offset_of!(VoiceOverLocatorEntityData, voice_over_info),
@@ -12720,6 +13578,7 @@ impl TypeObject for VoiceOverLocatorEntityData {
 
 pub static VOICEOVERLOCATORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverLocatorEntityData-Array",
+    name_hash: 340566922,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("VoiceOverLocatorEntityData"),
@@ -12728,7 +13587,8 @@ pub static VOICEOVERLOCATORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntryControllableAttachData {
     pub _glacier_base: EntityAttachData,
     pub bone: super::entity::GameplayBones,
@@ -12767,16 +13627,16 @@ impl EntityAttachDataTrait for EntryControllableAttachData {
     fn use_rotation_mut(&mut self) -> &mut bool {
         self._glacier_base.use_rotation_mut()
     }
-    fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space(&self) -> &Option<LockedTypeObject /* CoordinateModificationData */> {
         self._glacier_base.coordinate_space()
     }
-    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space_mut(&mut self) -> &mut Option<LockedTypeObject /* CoordinateModificationData */> {
         self._glacier_base.coordinate_space_mut()
     }
-    fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset(&self) -> &Option<LockedTypeObject /* OffsetModificationData */> {
         self._glacier_base.offset()
     }
-    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset_mut(&mut self) -> &mut Option<LockedTypeObject /* OffsetModificationData */> {
         self._glacier_base.offset_mut()
     }
 }
@@ -12795,16 +13655,20 @@ impl super::core::DataContainerTrait for EntryControllableAttachData {
 
 pub static ENTRYCONTROLLABLEATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryControllableAttachData",
+    name_hash: 1533787147,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYATTACHDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EntryControllableAttachData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntryControllableAttachData as Default>::default())),
+            create_boxed: || Box::new(<EntryControllableAttachData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Bone",
+                name_hash: 2088812771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameplayBones",
                 rust_offset: offset_of!(EntryControllableAttachData, bone),
@@ -12836,6 +13700,7 @@ impl TypeObject for EntryControllableAttachData {
 
 pub static ENTRYCONTROLLABLEATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryControllableAttachData-Array",
+    name_hash: 3244952255,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("EntryControllableAttachData"),
@@ -12844,7 +13709,8 @@ pub static ENTRYCONTROLLABLEATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ControllableAttachData {
     pub _glacier_base: AnimatableAttachData,
 }
@@ -12883,16 +13749,16 @@ impl EntityAttachDataTrait for ControllableAttachData {
     fn use_rotation_mut(&mut self) -> &mut bool {
         self._glacier_base.use_rotation_mut()
     }
-    fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space(&self) -> &Option<LockedTypeObject /* CoordinateModificationData */> {
         self._glacier_base.coordinate_space()
     }
-    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space_mut(&mut self) -> &mut Option<LockedTypeObject /* CoordinateModificationData */> {
         self._glacier_base.coordinate_space_mut()
     }
-    fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset(&self) -> &Option<LockedTypeObject /* OffsetModificationData */> {
         self._glacier_base.offset()
     }
-    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset_mut(&mut self) -> &mut Option<LockedTypeObject /* OffsetModificationData */> {
         self._glacier_base.offset_mut()
     }
 }
@@ -12911,12 +13777,15 @@ impl super::core::DataContainerTrait for ControllableAttachData {
 
 pub static CONTROLLABLEATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ControllableAttachData",
+    name_hash: 4107383039,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ANIMATABLEATTACHDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ControllableAttachData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ControllableAttachData as Default>::default())),
+            create_boxed: || Box::new(<ControllableAttachData as Default>::default()),
         },
         fields: &[
         ],
@@ -12946,6 +13815,7 @@ impl TypeObject for ControllableAttachData {
 
 pub static CONTROLLABLEATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ControllableAttachData-Array",
+    name_hash: 1969673931,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ControllableAttachData"),
@@ -12954,7 +13824,8 @@ pub static CONTROLLABLEATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ModelAnimationAttachData {
     pub _glacier_base: EntityAttachData,
     pub bone: super::entity::GameplayBones,
@@ -12993,16 +13864,16 @@ impl EntityAttachDataTrait for ModelAnimationAttachData {
     fn use_rotation_mut(&mut self) -> &mut bool {
         self._glacier_base.use_rotation_mut()
     }
-    fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space(&self) -> &Option<LockedTypeObject /* CoordinateModificationData */> {
         self._glacier_base.coordinate_space()
     }
-    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space_mut(&mut self) -> &mut Option<LockedTypeObject /* CoordinateModificationData */> {
         self._glacier_base.coordinate_space_mut()
     }
-    fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset(&self) -> &Option<LockedTypeObject /* OffsetModificationData */> {
         self._glacier_base.offset()
     }
-    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset_mut(&mut self) -> &mut Option<LockedTypeObject /* OffsetModificationData */> {
         self._glacier_base.offset_mut()
     }
 }
@@ -13021,16 +13892,20 @@ impl super::core::DataContainerTrait for ModelAnimationAttachData {
 
 pub static MODELANIMATIONATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ModelAnimationAttachData",
+    name_hash: 1632689511,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYATTACHDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ModelAnimationAttachData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ModelAnimationAttachData as Default>::default())),
+            create_boxed: || Box::new(<ModelAnimationAttachData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Bone",
+                name_hash: 2088812771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameplayBones",
                 rust_offset: offset_of!(ModelAnimationAttachData, bone),
@@ -13062,6 +13937,7 @@ impl TypeObject for ModelAnimationAttachData {
 
 pub static MODELANIMATIONATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ModelAnimationAttachData-Array",
+    name_hash: 1923301203,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ModelAnimationAttachData"),
@@ -13070,7 +13946,8 @@ pub static MODELANIMATIONATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AnimatableAttachData {
     pub _glacier_base: EntityAttachData,
     pub bone: super::entity::GameplayBones,
@@ -13109,16 +13986,16 @@ impl EntityAttachDataTrait for AnimatableAttachData {
     fn use_rotation_mut(&mut self) -> &mut bool {
         self._glacier_base.use_rotation_mut()
     }
-    fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space(&self) -> &Option<LockedTypeObject /* CoordinateModificationData */> {
         self._glacier_base.coordinate_space()
     }
-    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space_mut(&mut self) -> &mut Option<LockedTypeObject /* CoordinateModificationData */> {
         self._glacier_base.coordinate_space_mut()
     }
-    fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset(&self) -> &Option<LockedTypeObject /* OffsetModificationData */> {
         self._glacier_base.offset()
     }
-    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset_mut(&mut self) -> &mut Option<LockedTypeObject /* OffsetModificationData */> {
         self._glacier_base.offset_mut()
     }
 }
@@ -13137,16 +14014,20 @@ impl super::core::DataContainerTrait for AnimatableAttachData {
 
 pub static ANIMATABLEATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimatableAttachData",
+    name_hash: 240555818,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYATTACHDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AnimatableAttachData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AnimatableAttachData as Default>::default())),
+            create_boxed: || Box::new(<AnimatableAttachData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Bone",
+                name_hash: 2088812771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameplayBones",
                 rust_offset: offset_of!(AnimatableAttachData, bone),
@@ -13178,6 +14059,7 @@ impl TypeObject for AnimatableAttachData {
 
 pub static ANIMATABLEATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimatableAttachData-Array",
+    name_hash: 3835802014,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AnimatableAttachData"),
@@ -13186,7 +14068,8 @@ pub static ANIMATABLEATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ComponentAttachData {
     pub _glacier_base: EntityAttachData,
 }
@@ -13216,16 +14099,16 @@ impl EntityAttachDataTrait for ComponentAttachData {
     fn use_rotation_mut(&mut self) -> &mut bool {
         self._glacier_base.use_rotation_mut()
     }
-    fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space(&self) -> &Option<LockedTypeObject /* CoordinateModificationData */> {
         self._glacier_base.coordinate_space()
     }
-    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space_mut(&mut self) -> &mut Option<LockedTypeObject /* CoordinateModificationData */> {
         self._glacier_base.coordinate_space_mut()
     }
-    fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset(&self) -> &Option<LockedTypeObject /* OffsetModificationData */> {
         self._glacier_base.offset()
     }
-    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset_mut(&mut self) -> &mut Option<LockedTypeObject /* OffsetModificationData */> {
         self._glacier_base.offset_mut()
     }
 }
@@ -13244,12 +14127,15 @@ impl super::core::DataContainerTrait for ComponentAttachData {
 
 pub static COMPONENTATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComponentAttachData",
+    name_hash: 330490193,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYATTACHDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ComponentAttachData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ComponentAttachData as Default>::default())),
+            create_boxed: || Box::new(<ComponentAttachData as Default>::default()),
         },
         fields: &[
         ],
@@ -13279,6 +14165,7 @@ impl TypeObject for ComponentAttachData {
 
 pub static COMPONENTATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComponentAttachData-Array",
+    name_hash: 2791248741,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ComponentAttachData"),
@@ -13287,14 +14174,15 @@ pub static COMPONENTATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityAttachData {
     pub _glacier_base: EntityLinkData,
     pub property_name: String,
     pub has_dynamic_transform_space_offset: bool,
     pub use_rotation: bool,
-    pub coordinate_space: Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>>,
-    pub offset: Option<Arc<Mutex<dyn OffsetModificationDataTrait>>>,
+    pub coordinate_space: Option<LockedTypeObject /* CoordinateModificationData */>,
+    pub offset: Option<LockedTypeObject /* OffsetModificationData */>,
 }
 
 pub trait EntityAttachDataTrait: EntityLinkDataTrait {
@@ -13304,10 +14192,10 @@ pub trait EntityAttachDataTrait: EntityLinkDataTrait {
     fn has_dynamic_transform_space_offset_mut(&mut self) -> &mut bool;
     fn use_rotation(&self) -> &bool;
     fn use_rotation_mut(&mut self) -> &mut bool;
-    fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>>;
-    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>>;
-    fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>>;
-    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>>;
+    fn coordinate_space(&self) -> &Option<LockedTypeObject /* CoordinateModificationData */>;
+    fn coordinate_space_mut(&mut self) -> &mut Option<LockedTypeObject /* CoordinateModificationData */>;
+    fn offset(&self) -> &Option<LockedTypeObject /* OffsetModificationData */>;
+    fn offset_mut(&mut self) -> &mut Option<LockedTypeObject /* OffsetModificationData */>;
 }
 
 impl EntityAttachDataTrait for EntityAttachData {
@@ -13329,16 +14217,16 @@ impl EntityAttachDataTrait for EntityAttachData {
     fn use_rotation_mut(&mut self) -> &mut bool {
         &mut self.use_rotation
     }
-    fn coordinate_space(&self) -> &Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space(&self) -> &Option<LockedTypeObject /* CoordinateModificationData */> {
         &self.coordinate_space
     }
-    fn coordinate_space_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CoordinateModificationDataTrait>>> {
+    fn coordinate_space_mut(&mut self) -> &mut Option<LockedTypeObject /* CoordinateModificationData */> {
         &mut self.coordinate_space
     }
-    fn offset(&self) -> &Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset(&self) -> &Option<LockedTypeObject /* OffsetModificationData */> {
         &self.offset
     }
-    fn offset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn OffsetModificationDataTrait>>> {
+    fn offset_mut(&mut self) -> &mut Option<LockedTypeObject /* OffsetModificationData */> {
         &mut self.offset
     }
 }
@@ -13357,40 +14245,48 @@ impl super::core::DataContainerTrait for EntityAttachData {
 
 pub static ENTITYATTACHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityAttachData",
+    name_hash: 2642520645,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYLINKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EntityAttachData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityAttachData as Default>::default())),
+            create_boxed: || Box::new(<EntityAttachData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PropertyName",
+                name_hash: 3998208485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EntityAttachData, property_name),
             },
             FieldInfoData {
                 name: "HasDynamicTransformSpaceOffset",
+                name_hash: 262235855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EntityAttachData, has_dynamic_transform_space_offset),
             },
             FieldInfoData {
                 name: "UseRotation",
+                name_hash: 1742642130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EntityAttachData, use_rotation),
             },
             FieldInfoData {
                 name: "CoordinateSpace",
+                name_hash: 4130195427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoordinateModificationData",
                 rust_offset: offset_of!(EntityAttachData, coordinate_space),
             },
             FieldInfoData {
                 name: "Offset",
+                name_hash: 2871410728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "OffsetModificationData",
                 rust_offset: offset_of!(EntityAttachData, offset),
@@ -13422,6 +14318,7 @@ impl TypeObject for EntityAttachData {
 
 pub static ENTITYATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityAttachData-Array",
+    name_hash: 2651685489,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("EntityAttachData"),
@@ -13430,7 +14327,8 @@ pub static ENTITYATTACHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ControllableTransformLinkData {
     pub _glacier_base: AnimatableTransformLinkData,
 }
@@ -13467,12 +14365,15 @@ impl super::core::DataContainerTrait for ControllableTransformLinkData {
 
 pub static CONTROLLABLETRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ControllableTransformLinkData",
+    name_hash: 153697336,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ANIMATABLETRANSFORMLINKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ControllableTransformLinkData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ControllableTransformLinkData as Default>::default())),
+            create_boxed: || Box::new(<ControllableTransformLinkData as Default>::default()),
         },
         fields: &[
         ],
@@ -13502,6 +14403,7 @@ impl TypeObject for ControllableTransformLinkData {
 
 pub static CONTROLLABLETRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ControllableTransformLinkData-Array",
+    name_hash: 3010880908,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ControllableTransformLinkData"),
@@ -13510,7 +14412,8 @@ pub static CONTROLLABLETRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntryControllableTransformLinkData {
     pub _glacier_base: EntityTransformLinkData,
     pub bone: super::entity::GameplayBones,
@@ -13547,16 +14450,20 @@ impl super::core::DataContainerTrait for EntryControllableTransformLinkData {
 
 pub static ENTRYCONTROLLABLETRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryControllableTransformLinkData",
+    name_hash: 2988851404,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYTRANSFORMLINKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EntryControllableTransformLinkData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntryControllableTransformLinkData as Default>::default())),
+            create_boxed: || Box::new(<EntryControllableTransformLinkData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Bone",
+                name_hash: 2088812771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameplayBones",
                 rust_offset: offset_of!(EntryControllableTransformLinkData, bone),
@@ -13588,6 +14495,7 @@ impl TypeObject for EntryControllableTransformLinkData {
 
 pub static ENTRYCONTROLLABLETRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntryControllableTransformLinkData-Array",
+    name_hash: 1386578296,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("EntryControllableTransformLinkData"),
@@ -13596,7 +14504,8 @@ pub static ENTRYCONTROLLABLETRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ComponentTransformLinkData {
     pub _glacier_base: EntityTransformLinkData,
 }
@@ -13624,12 +14533,15 @@ impl super::core::DataContainerTrait for ComponentTransformLinkData {
 
 pub static COMPONENTTRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComponentTransformLinkData",
+    name_hash: 3918222166,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYTRANSFORMLINKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ComponentTransformLinkData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ComponentTransformLinkData as Default>::default())),
+            create_boxed: || Box::new(<ComponentTransformLinkData as Default>::default()),
         },
         fields: &[
         ],
@@ -13659,6 +14571,7 @@ impl TypeObject for ComponentTransformLinkData {
 
 pub static COMPONENTTRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComponentTransformLinkData-Array",
+    name_hash: 4269431010,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ComponentTransformLinkData"),
@@ -13667,7 +14580,8 @@ pub static COMPONENTTRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ModelAnimationTransformLinkData {
     pub _glacier_base: EntityTransformLinkData,
     pub bone: super::entity::GameplayBones,
@@ -13704,16 +14618,20 @@ impl super::core::DataContainerTrait for ModelAnimationTransformLinkData {
 
 pub static MODELANIMATIONTRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ModelAnimationTransformLinkData",
+    name_hash: 3424450464,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYTRANSFORMLINKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ModelAnimationTransformLinkData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ModelAnimationTransformLinkData as Default>::default())),
+            create_boxed: || Box::new(<ModelAnimationTransformLinkData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Bone",
+                name_hash: 2088812771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameplayBones",
                 rust_offset: offset_of!(ModelAnimationTransformLinkData, bone),
@@ -13745,6 +14663,7 @@ impl TypeObject for ModelAnimationTransformLinkData {
 
 pub static MODELANIMATIONTRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ModelAnimationTransformLinkData-Array",
+    name_hash: 3591806228,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ModelAnimationTransformLinkData"),
@@ -13753,7 +14672,8 @@ pub static MODELANIMATIONTRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AnimatableTransformLinkData {
     pub _glacier_base: EntityTransformLinkData,
     pub bone: super::entity::GameplayBones,
@@ -13790,16 +14710,20 @@ impl super::core::DataContainerTrait for AnimatableTransformLinkData {
 
 pub static ANIMATABLETRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimatableTransformLinkData",
+    name_hash: 1397797645,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYTRANSFORMLINKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AnimatableTransformLinkData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AnimatableTransformLinkData as Default>::default())),
+            create_boxed: || Box::new(<AnimatableTransformLinkData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Bone",
+                name_hash: 2088812771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameplayBones",
                 rust_offset: offset_of!(AnimatableTransformLinkData, bone),
@@ -13831,6 +14755,7 @@ impl TypeObject for AnimatableTransformLinkData {
 
 pub static ANIMATABLETRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimatableTransformLinkData-Array",
+    name_hash: 200505017,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AnimatableTransformLinkData"),
@@ -13839,7 +14764,8 @@ pub static ANIMATABLETRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityCenterTransformLinkData {
     pub _glacier_base: EntityTransformLinkData,
 }
@@ -13867,12 +14793,15 @@ impl super::core::DataContainerTrait for EntityCenterTransformLinkData {
 
 pub static ENTITYCENTERTRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityCenterTransformLinkData",
+    name_hash: 4276905353,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYTRANSFORMLINKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EntityCenterTransformLinkData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityCenterTransformLinkData as Default>::default())),
+            create_boxed: || Box::new(<EntityCenterTransformLinkData as Default>::default()),
         },
         fields: &[
         ],
@@ -13902,6 +14831,7 @@ impl TypeObject for EntityCenterTransformLinkData {
 
 pub static ENTITYCENTERTRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityCenterTransformLinkData-Array",
+    name_hash: 434854717,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("EntityCenterTransformLinkData"),
@@ -13910,7 +14840,8 @@ pub static ENTITYCENTERTRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityTransformLinkData {
     pub _glacier_base: EntityLinkData,
 }
@@ -13935,12 +14866,15 @@ impl super::core::DataContainerTrait for EntityTransformLinkData {
 
 pub static ENTITYTRANSFORMLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTransformLinkData",
+    name_hash: 188361922,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYLINKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EntityTransformLinkData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityTransformLinkData as Default>::default())),
+            create_boxed: || Box::new(<EntityTransformLinkData as Default>::default()),
         },
         fields: &[
         ],
@@ -13970,6 +14904,7 @@ impl TypeObject for EntityTransformLinkData {
 
 pub static ENTITYTRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTransformLinkData-Array",
+    name_hash: 3564362870,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("EntityTransformLinkData"),
@@ -13978,7 +14913,8 @@ pub static ENTITYTRANSFORMLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityLinkData {
     pub _glacier_base: super::core::DataContainer,
     pub link_name: String,
@@ -14003,16 +14939,20 @@ impl super::core::DataContainerTrait for EntityLinkData {
 
 pub static ENTITYLINKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityLinkData",
+    name_hash: 2885135822,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(EntityLinkData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityLinkData as Default>::default())),
+            create_boxed: || Box::new(<EntityLinkData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LinkName",
+                name_hash: 2750159970,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EntityLinkData, link_name),
@@ -14044,6 +14984,7 @@ impl TypeObject for EntityLinkData {
 
 pub static ENTITYLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityLinkData-Array",
+    name_hash: 3410831226,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("EntityLinkData"),
@@ -14052,7 +14993,8 @@ pub static ENTITYLINKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OffsetModificationData {
     pub _glacier_base: super::core::DataContainer,
     pub offset_x_axis_in_world_space: bool,
@@ -14104,34 +15046,41 @@ impl super::core::DataContainerTrait for OffsetModificationData {
 
 pub static OFFSETMODIFICATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OffsetModificationData",
+    name_hash: 497203078,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(OffsetModificationData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OffsetModificationData as Default>::default())),
+            create_boxed: || Box::new(<OffsetModificationData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OffsetXAxisInWorldSpace",
+                name_hash: 1519201938,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OffsetModificationData, offset_x_axis_in_world_space),
             },
             FieldInfoData {
                 name: "OffsetYAxisInWorldSpace",
+                name_hash: 3463175187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OffsetModificationData, offset_y_axis_in_world_space),
             },
             FieldInfoData {
                 name: "OffsetZAxisInWorldSpace",
+                name_hash: 1673850640,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(OffsetModificationData, offset_z_axis_in_world_space),
             },
             FieldInfoData {
                 name: "Offset",
+                name_hash: 2871410728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(OffsetModificationData, offset),
@@ -14163,6 +15112,7 @@ impl TypeObject for OffsetModificationData {
 
 pub static OFFSETMODIFICATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OffsetModificationData-Array",
+    name_hash: 3443057842,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("OffsetModificationData"),
@@ -14171,7 +15121,8 @@ pub static OFFSETMODIFICATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoordinateModificationData {
     pub _glacier_base: super::core::DataContainer,
     pub left: super::entity::ModifierAxis,
@@ -14241,46 +15192,55 @@ impl super::core::DataContainerTrait for CoordinateModificationData {
 
 pub static COORDINATEMODIFICATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoordinateModificationData",
+    name_hash: 102932745,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(CoordinateModificationData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoordinateModificationData as Default>::default())),
+            create_boxed: || Box::new(<CoordinateModificationData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Left",
+                name_hash: 2089021886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ModifierAxis",
                 rust_offset: offset_of!(CoordinateModificationData, left),
             },
             FieldInfoData {
                 name: "Up",
+                name_hash: 5862272,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ModifierAxis",
                 rust_offset: offset_of!(CoordinateModificationData, up),
             },
             FieldInfoData {
                 name: "Forward",
+                name_hash: 1986470206,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ModifierAxis",
                 rust_offset: offset_of!(CoordinateModificationData, forward),
             },
             FieldInfoData {
                 name: "InvertLeft",
+                name_hash: 3753810092,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoordinateModificationData, invert_left),
             },
             FieldInfoData {
                 name: "InvertUp",
+                name_hash: 58661394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoordinateModificationData, invert_up),
             },
             FieldInfoData {
                 name: "InvertForward",
+                name_hash: 3827158252,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoordinateModificationData, invert_forward),
@@ -14312,6 +15272,7 @@ impl TypeObject for CoordinateModificationData {
 
 pub static COORDINATEMODIFICATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoordinateModificationData-Array",
+    name_hash: 1522546365,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CoordinateModificationData"),
@@ -14320,7 +15281,8 @@ pub static COORDINATEMODIFICATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WidgetReferenceEntityData {
     pub _glacier_base: super::entity::LogicReferenceObjectData,
 }
@@ -14353,16 +15315,16 @@ impl super::entity::ReferenceObjectDataTrait for WidgetReferenceEntityData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
@@ -14429,12 +15391,15 @@ impl super::core::DataContainerTrait for WidgetReferenceEntityData {
 
 pub static WIDGETREFERENCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WidgetReferenceEntityData",
+    name_hash: 83876777,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::LOGICREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WidgetReferenceEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WidgetReferenceEntityData as Default>::default())),
+            create_boxed: || Box::new(<WidgetReferenceEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -14464,6 +15429,7 @@ impl TypeObject for WidgetReferenceEntityData {
 
 pub static WIDGETREFERENCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WidgetReferenceEntityData-Array",
+    name_hash: 2783650333,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("WidgetReferenceEntityData"),
@@ -14472,25 +15438,26 @@ pub static WIDGETREFERENCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIVectorShapeAsset {
     pub _glacier_base: super::core::DataContainerPolicyAsset,
-    pub shapes: Vec<DiceUIVectorShape>,
+    pub shapes: Vec<BoxedTypeObject /* DiceUIVectorShape */>,
     pub layout_rect: super::core::Vec4,
 }
 
 pub trait DiceUIVectorShapeAssetTrait: super::core::DataContainerPolicyAssetTrait {
-    fn shapes(&self) -> &Vec<DiceUIVectorShape>;
-    fn shapes_mut(&mut self) -> &mut Vec<DiceUIVectorShape>;
+    fn shapes(&self) -> &Vec<BoxedTypeObject /* DiceUIVectorShape */>;
+    fn shapes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DiceUIVectorShape */>;
     fn layout_rect(&self) -> &super::core::Vec4;
     fn layout_rect_mut(&mut self) -> &mut super::core::Vec4;
 }
 
 impl DiceUIVectorShapeAssetTrait for DiceUIVectorShapeAsset {
-    fn shapes(&self) -> &Vec<DiceUIVectorShape> {
+    fn shapes(&self) -> &Vec<BoxedTypeObject /* DiceUIVectorShape */> {
         &self.shapes
     }
-    fn shapes_mut(&mut self) -> &mut Vec<DiceUIVectorShape> {
+    fn shapes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DiceUIVectorShape */> {
         &mut self.shapes
     }
     fn layout_rect(&self) -> &super::core::Vec4 {
@@ -14518,22 +15485,27 @@ impl super::core::DataContainerTrait for DiceUIVectorShapeAsset {
 
 pub static DICEUIVECTORSHAPEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorShapeAsset",
+    name_hash: 393991732,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINERPOLICYASSET_TYPE_INFO),
+        super_class_offset: offset_of!(DiceUIVectorShapeAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIVectorShapeAsset as Default>::default())),
+            create_boxed: || Box::new(<DiceUIVectorShapeAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Shapes",
+                name_hash: 3352896601,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DiceUIVectorShape-Array",
                 rust_offset: offset_of!(DiceUIVectorShapeAsset, shapes),
             },
             FieldInfoData {
                 name: "LayoutRect",
+                name_hash: 1931697087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(DiceUIVectorShapeAsset, layout_rect),
@@ -14565,6 +15537,7 @@ impl TypeObject for DiceUIVectorShapeAsset {
 
 pub static DICEUIVECTORSHAPEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorShapeAsset-Array",
+    name_hash: 513069440,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIVectorShapeAsset"),
@@ -14573,7 +15546,8 @@ pub static DICEUIVECTORSHAPEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIVectorShape {
     pub color: super::core::Vec3,
     pub alpha: f32,
@@ -14585,10 +15559,10 @@ pub struct DiceUIVectorShape {
     pub end_cap_type: DiceUIVectorShapeCapType,
     pub draw_style: DiceUIVectorShapeDrawStyle,
     pub path: DiceUIVectorPath,
-    pub inner_paths: Vec<DiceUIVectorPath>,
-    pub triangulated_points: Vec<super::core::Vec2>,
-    pub triangulated_expansions: Vec<super::core::Vec2>,
-    pub triangulated_colors: Vec<super::core::Vec4>,
+    pub inner_paths: Vec<BoxedTypeObject /* DiceUIVectorPath */>,
+    pub triangulated_points: Vec<BoxedTypeObject /* super::core::Vec2 */>,
+    pub triangulated_expansions: Vec<BoxedTypeObject /* super::core::Vec2 */>,
+    pub triangulated_colors: Vec<BoxedTypeObject /* super::core::Vec4 */>,
     pub triangulated_indices: Vec<u16>,
 }
 
@@ -14613,14 +15587,14 @@ pub trait DiceUIVectorShapeTrait: TypeObject {
     fn draw_style_mut(&mut self) -> &mut DiceUIVectorShapeDrawStyle;
     fn path(&self) -> &DiceUIVectorPath;
     fn path_mut(&mut self) -> &mut DiceUIVectorPath;
-    fn inner_paths(&self) -> &Vec<DiceUIVectorPath>;
-    fn inner_paths_mut(&mut self) -> &mut Vec<DiceUIVectorPath>;
-    fn triangulated_points(&self) -> &Vec<super::core::Vec2>;
-    fn triangulated_points_mut(&mut self) -> &mut Vec<super::core::Vec2>;
-    fn triangulated_expansions(&self) -> &Vec<super::core::Vec2>;
-    fn triangulated_expansions_mut(&mut self) -> &mut Vec<super::core::Vec2>;
-    fn triangulated_colors(&self) -> &Vec<super::core::Vec4>;
-    fn triangulated_colors_mut(&mut self) -> &mut Vec<super::core::Vec4>;
+    fn inner_paths(&self) -> &Vec<BoxedTypeObject /* DiceUIVectorPath */>;
+    fn inner_paths_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DiceUIVectorPath */>;
+    fn triangulated_points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn triangulated_points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn triangulated_expansions(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn triangulated_expansions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn triangulated_colors(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */>;
+    fn triangulated_colors_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */>;
     fn triangulated_indices(&self) -> &Vec<u16>;
     fn triangulated_indices_mut(&mut self) -> &mut Vec<u16>;
 }
@@ -14686,28 +15660,28 @@ impl DiceUIVectorShapeTrait for DiceUIVectorShape {
     fn path_mut(&mut self) -> &mut DiceUIVectorPath {
         &mut self.path
     }
-    fn inner_paths(&self) -> &Vec<DiceUIVectorPath> {
+    fn inner_paths(&self) -> &Vec<BoxedTypeObject /* DiceUIVectorPath */> {
         &self.inner_paths
     }
-    fn inner_paths_mut(&mut self) -> &mut Vec<DiceUIVectorPath> {
+    fn inner_paths_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DiceUIVectorPath */> {
         &mut self.inner_paths
     }
-    fn triangulated_points(&self) -> &Vec<super::core::Vec2> {
+    fn triangulated_points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &self.triangulated_points
     }
-    fn triangulated_points_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+    fn triangulated_points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &mut self.triangulated_points
     }
-    fn triangulated_expansions(&self) -> &Vec<super::core::Vec2> {
+    fn triangulated_expansions(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &self.triangulated_expansions
     }
-    fn triangulated_expansions_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+    fn triangulated_expansions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &mut self.triangulated_expansions
     }
-    fn triangulated_colors(&self) -> &Vec<super::core::Vec4> {
+    fn triangulated_colors(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &self.triangulated_colors
     }
-    fn triangulated_colors_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+    fn triangulated_colors_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &mut self.triangulated_colors
     }
     fn triangulated_indices(&self) -> &Vec<u16> {
@@ -14720,99 +15694,116 @@ impl DiceUIVectorShapeTrait for DiceUIVectorShape {
 
 pub static DICEUIVECTORSHAPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorShape",
+    name_hash: 3977270884,
     flags: MemberInfoFlags::new(73),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIVectorShape as Default>::default())),
+            create_boxed: || Box::new(<DiceUIVectorShape as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Color",
+                name_hash: 212387320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(DiceUIVectorShape, color),
             },
             FieldInfoData {
                 name: "Alpha",
+                name_hash: 205677681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIVectorShape, alpha),
             },
             FieldInfoData {
                 name: "SpecifyInnerOuterWidths",
+                name_hash: 2633981732,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUIVectorShape, specify_inner_outer_widths),
             },
             FieldInfoData {
                 name: "InnerWidth",
+                name_hash: 3360296221,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIVectorShape, inner_width),
             },
             FieldInfoData {
                 name: "OuterWidth",
+                name_hash: 4272208858,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIVectorShape, outer_width),
             },
             FieldInfoData {
                 name: "LineWidth",
+                name_hash: 962699949,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIVectorShape, line_width),
             },
             FieldInfoData {
                 name: "StartCapType",
+                name_hash: 2680344719,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DiceUIVectorShapeCapType",
                 rust_offset: offset_of!(DiceUIVectorShape, start_cap_type),
             },
             FieldInfoData {
                 name: "EndCapType",
+                name_hash: 3317185248,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DiceUIVectorShapeCapType",
                 rust_offset: offset_of!(DiceUIVectorShape, end_cap_type),
             },
             FieldInfoData {
                 name: "DrawStyle",
+                name_hash: 2413167986,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DiceUIVectorShapeDrawStyle",
                 rust_offset: offset_of!(DiceUIVectorShape, draw_style),
             },
             FieldInfoData {
                 name: "Path",
+                name_hash: 2089448296,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DiceUIVectorPath",
                 rust_offset: offset_of!(DiceUIVectorShape, path),
             },
             FieldInfoData {
                 name: "InnerPaths",
+                name_hash: 3361792709,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DiceUIVectorPath-Array",
                 rust_offset: offset_of!(DiceUIVectorShape, inner_paths),
             },
             FieldInfoData {
                 name: "TriangulatedPoints",
+                name_hash: 931656624,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec2-Array",
                 rust_offset: offset_of!(DiceUIVectorShape, triangulated_points),
             },
             FieldInfoData {
                 name: "TriangulatedExpansions",
+                name_hash: 2612011461,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec2-Array",
                 rust_offset: offset_of!(DiceUIVectorShape, triangulated_expansions),
             },
             FieldInfoData {
                 name: "TriangulatedColors",
+                name_hash: 123993569,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec4-Array",
                 rust_offset: offset_of!(DiceUIVectorShape, triangulated_colors),
             },
             FieldInfoData {
                 name: "TriangulatedIndices",
+                name_hash: 1550552400,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint16-Array",
                 rust_offset: offset_of!(DiceUIVectorShape, triangulated_indices),
@@ -14844,6 +15835,7 @@ impl TypeObject for DiceUIVectorShape {
 
 pub static DICEUIVECTORSHAPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorShape-Array",
+    name_hash: 1472313936,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIVectorShape"),
@@ -14852,36 +15844,40 @@ pub static DICEUIVECTORSHAPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIVectorPath {
-    pub corners: Vec<DiceUIVectorPathCorner>,
+    pub corners: Vec<BoxedTypeObject /* DiceUIVectorPathCorner */>,
 }
 
 pub trait DiceUIVectorPathTrait: TypeObject {
-    fn corners(&self) -> &Vec<DiceUIVectorPathCorner>;
-    fn corners_mut(&mut self) -> &mut Vec<DiceUIVectorPathCorner>;
+    fn corners(&self) -> &Vec<BoxedTypeObject /* DiceUIVectorPathCorner */>;
+    fn corners_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DiceUIVectorPathCorner */>;
 }
 
 impl DiceUIVectorPathTrait for DiceUIVectorPath {
-    fn corners(&self) -> &Vec<DiceUIVectorPathCorner> {
+    fn corners(&self) -> &Vec<BoxedTypeObject /* DiceUIVectorPathCorner */> {
         &self.corners
     }
-    fn corners_mut(&mut self) -> &mut Vec<DiceUIVectorPathCorner> {
+    fn corners_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DiceUIVectorPathCorner */> {
         &mut self.corners
     }
 }
 
 pub static DICEUIVECTORPATH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorPath",
+    name_hash: 4285518374,
     flags: MemberInfoFlags::new(73),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIVectorPath as Default>::default())),
+            create_boxed: || Box::new(<DiceUIVectorPath as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Corners",
+                name_hash: 3677527825,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DiceUIVectorPathCorner-Array",
                 rust_offset: offset_of!(DiceUIVectorPath, corners),
@@ -14913,6 +15909,7 @@ impl TypeObject for DiceUIVectorPath {
 
 pub static DICEUIVECTORPATH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorPath-Array",
+    name_hash: 255557266,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIVectorPath"),
@@ -14921,7 +15918,8 @@ pub static DICEUIVECTORPATH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIVectorPathCorner {
     pub corner_type: DiceUIVectorPathCornerType,
     pub radius: f32,
@@ -14987,45 +15985,53 @@ impl DiceUIVectorPathCornerTrait for DiceUIVectorPathCorner {
 
 pub static DICEUIVECTORPATHCORNER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorPathCorner",
+    name_hash: 2952203457,
     flags: MemberInfoFlags::new(36937),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIVectorPathCorner as Default>::default())),
+            create_boxed: || Box::new(<DiceUIVectorPathCorner as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CornerType",
+                name_hash: 3174963866,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DiceUIVectorPathCornerType",
                 rust_offset: offset_of!(DiceUIVectorPathCorner, corner_type),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIVectorPathCorner, radius),
             },
             FieldInfoData {
                 name: "Position",
+                name_hash: 3402582524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(DiceUIVectorPathCorner, position),
             },
             FieldInfoData {
                 name: "Expansion",
+                name_hash: 2333524892,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(DiceUIVectorPathCorner, expansion),
             },
             FieldInfoData {
                 name: "Color",
+                name_hash: 212387320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(DiceUIVectorPathCorner, color),
             },
             FieldInfoData {
                 name: "Alpha",
+                name_hash: 205677681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIVectorPathCorner, alpha),
@@ -15057,6 +16063,7 @@ impl TypeObject for DiceUIVectorPathCorner {
 
 pub static DICEUIVECTORPATHCORNER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorPathCorner-Array",
+    name_hash: 459478773,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIVectorPathCorner"),
@@ -15077,6 +16084,7 @@ pub enum DiceUIVectorPathCornerType {
 
 pub static DICEUIVECTORPATHCORNERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorPathCornerType",
+    name_hash: 3123231801,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -15105,6 +16113,7 @@ impl TypeObject for DiceUIVectorPathCornerType {
 
 pub static DICEUIVECTORPATHCORNERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorPathCornerType-Array",
+    name_hash: 3672976013,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIVectorPathCornerType"),
@@ -15125,6 +16134,7 @@ pub enum DiceUIVectorShapeDrawStyle {
 
 pub static DICEUIVECTORSHAPEDRAWSTYLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorShapeDrawStyle",
+    name_hash: 3065074291,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -15153,6 +16163,7 @@ impl TypeObject for DiceUIVectorShapeDrawStyle {
 
 pub static DICEUIVECTORSHAPEDRAWSTYLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorShapeDrawStyle-Array",
+    name_hash: 1545244231,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIVectorShapeDrawStyle"),
@@ -15173,6 +16184,7 @@ pub enum DiceUIVectorShapeCapType {
 
 pub static DICEUIVECTORSHAPECAPTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorShapeCapType",
+    name_hash: 2344815982,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -15201,6 +16213,7 @@ impl TypeObject for DiceUIVectorShapeCapType {
 
 pub static DICEUIVECTORSHAPECAPTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIVectorShapeCapType-Array",
+    name_hash: 1905083994,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIVectorShapeCapType"),
@@ -15209,7 +16222,8 @@ pub static DICEUIVECTORSHAPECAPTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocalizedStringIdPickerEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -15261,22 +16275,27 @@ impl super::core::DataContainerTrait for LocalizedStringIdPickerEntityData {
 
 pub static LOCALIZEDSTRINGIDPICKERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalizedStringIdPickerEntityData",
+    name_hash: 2899814895,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LocalizedStringIdPickerEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocalizedStringIdPickerEntityData as Default>::default())),
+            create_boxed: || Box::new(<LocalizedStringIdPickerEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(LocalizedStringIdPickerEntityData, realm),
             },
             FieldInfoData {
                 name: "Sid",
+                name_hash: 193466587,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(LocalizedStringIdPickerEntityData, sid),
@@ -15308,6 +16327,7 @@ impl TypeObject for LocalizedStringIdPickerEntityData {
 
 pub static LOCALIZEDSTRINGIDPICKERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalizedStringIdPickerEntityData-Array",
+    name_hash: 4071671771,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LocalizedStringIdPickerEntityData"),
@@ -15316,17 +16336,18 @@ pub static LOCALIZEDSTRINGIDPICKERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CheckedLocalizedStringEntityData {
     pub _glacier_base: super::u_i_incubator_shared::LocalizedStringEntityBaseData,
-    pub dynamic_string_id: Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>,
+    pub dynamic_string_id: Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */>,
     pub debug_string: String,
     pub sid: String,
 }
 
 pub trait CheckedLocalizedStringEntityDataTrait: super::u_i_incubator_shared::LocalizedStringEntityBaseDataTrait {
-    fn dynamic_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
-    fn dynamic_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>>;
+    fn dynamic_string_id(&self) -> &Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */>;
+    fn dynamic_string_id_mut(&mut self) -> &mut Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */>;
     fn debug_string(&self) -> &String;
     fn debug_string_mut(&mut self) -> &mut String;
     fn sid(&self) -> &String;
@@ -15334,10 +16355,10 @@ pub trait CheckedLocalizedStringEntityDataTrait: super::u_i_incubator_shared::Lo
 }
 
 impl CheckedLocalizedStringEntityDataTrait for CheckedLocalizedStringEntityData {
-    fn dynamic_string_id(&self) -> &Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
+    fn dynamic_string_id(&self) -> &Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */> {
         &self.dynamic_string_id
     }
-    fn dynamic_string_id_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::u_i_incubator_shared::LocalizedStringIdTrait>>> {
+    fn dynamic_string_id_mut(&mut self) -> &mut Option<LockedTypeObject /* super::u_i_incubator_shared::LocalizedStringId */> {
         &mut self.dynamic_string_id
     }
     fn debug_string(&self) -> &String {
@@ -15398,28 +16419,34 @@ impl super::core::DataContainerTrait for CheckedLocalizedStringEntityData {
 
 pub static CHECKEDLOCALIZEDSTRINGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CheckedLocalizedStringEntityData",
+    name_hash: 3293385027,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::u_i_incubator_shared::LOCALIZEDSTRINGENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CheckedLocalizedStringEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CheckedLocalizedStringEntityData as Default>::default())),
+            create_boxed: || Box::new(<CheckedLocalizedStringEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DynamicStringId",
+                name_hash: 1367661832,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalizedStringId",
                 rust_offset: offset_of!(CheckedLocalizedStringEntityData, dynamic_string_id),
             },
             FieldInfoData {
                 name: "DebugString",
+                name_hash: 3982518753,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CheckedLocalizedStringEntityData, debug_string),
             },
             FieldInfoData {
                 name: "Sid",
+                name_hash: 193466587,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CheckedLocalizedStringEntityData, sid),
@@ -15451,6 +16478,7 @@ impl TypeObject for CheckedLocalizedStringEntityData {
 
 pub static CHECKEDLOCALIZEDSTRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CheckedLocalizedStringEntityData-Array",
+    name_hash: 2549527671,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CheckedLocalizedStringEntityData"),
@@ -15459,22 +16487,23 @@ pub static CHECKEDLOCALIZEDSTRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MaterialRelationTriggarableEffectData {
     pub _glacier_base: super::entity::PhysicsMaterialRelationPropertyData,
-    pub effect: Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>,
+    pub effect: Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>,
 }
 
 pub trait MaterialRelationTriggarableEffectDataTrait: super::entity::PhysicsMaterialRelationPropertyDataTrait {
-    fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
-    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
+    fn effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
 }
 
 impl MaterialRelationTriggarableEffectDataTrait for MaterialRelationTriggarableEffectData {
-    fn effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &self.effect
     }
-    fn effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &mut self.effect
     }
 }
@@ -15490,16 +16519,20 @@ impl super::core::DataContainerTrait for MaterialRelationTriggarableEffectData {
 
 pub static MATERIALRELATIONTRIGGARABLEEFFECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialRelationTriggarableEffectData",
+    name_hash: 2497643865,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::PHYSICSMATERIALRELATIONPROPERTYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MaterialRelationTriggarableEffectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MaterialRelationTriggarableEffectData as Default>::default())),
+            create_boxed: || Box::new(<MaterialRelationTriggarableEffectData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Effect",
+                name_hash: 2332983090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectBlueprint",
                 rust_offset: offset_of!(MaterialRelationTriggarableEffectData, effect),
@@ -15531,6 +16564,7 @@ impl TypeObject for MaterialRelationTriggarableEffectData {
 
 pub static MATERIALRELATIONTRIGGARABLEEFFECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialRelationTriggarableEffectData-Array",
+    name_hash: 3415577453,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("MaterialRelationTriggarableEffectData"),
@@ -15539,7 +16573,8 @@ pub static MATERIALRELATIONTRIGGARABLEEFFECTDATA_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MaterialBasedEffectComponentData {
     pub _glacier_base: super::entity::GameComponentData,
     pub auto_start: bool,
@@ -15556,7 +16591,7 @@ pub struct MaterialBasedEffectComponentData {
     pub penetrable: bool,
     pub include_terrain: bool,
     pub max_instances: i32,
-    pub effect_parameters: Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>,
+    pub effect_parameters: Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>,
 }
 
 pub trait MaterialBasedEffectComponentDataTrait: super::entity::GameComponentDataTrait {
@@ -15588,8 +16623,8 @@ pub trait MaterialBasedEffectComponentDataTrait: super::entity::GameComponentDat
     fn include_terrain_mut(&mut self) -> &mut bool;
     fn max_instances(&self) -> &i32;
     fn max_instances_mut(&mut self) -> &mut i32;
-    fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
-    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
+    fn effect_parameters(&self) -> &Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>;
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>;
 }
 
 impl MaterialBasedEffectComponentDataTrait for MaterialBasedEffectComponentData {
@@ -15677,10 +16712,10 @@ impl MaterialBasedEffectComponentDataTrait for MaterialBasedEffectComponentData 
     fn max_instances_mut(&mut self) -> &mut i32 {
         &mut self.max_instances
     }
-    fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn effect_parameters(&self) -> &Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         &self.effect_parameters
     }
-    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         &mut self.effect_parameters
     }
 }
@@ -15695,10 +16730,10 @@ impl super::entity::ComponentDataTrait for MaterialBasedEffectComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -15741,100 +16776,118 @@ impl super::core::DataContainerTrait for MaterialBasedEffectComponentData {
 
 pub static MATERIALBASEDEFFECTCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialBasedEffectComponentData",
+    name_hash: 2892251863,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MaterialBasedEffectComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MaterialBasedEffectComponentData as Default>::default())),
+            create_boxed: || Box::new(<MaterialBasedEffectComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, auto_start),
             },
             FieldInfoData {
                 name: "OverrideHeight",
+                name_hash: 3774759278,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, override_height),
             },
             FieldInfoData {
                 name: "LocalPlayerOnly",
+                name_hash: 4035338447,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, local_player_only),
             },
             FieldInfoData {
                 name: "Material",
+                name_hash: 845639918,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialDecl",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, material),
             },
             FieldInfoData {
                 name: "TransformEffectWithComponent",
+                name_hash: 4239562419,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, transform_effect_with_component),
             },
             FieldInfoData {
                 name: "Snapping",
+                name_hash: 705021177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SnapType",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, snapping),
             },
             FieldInfoData {
                 name: "UseRayCast",
+                name_hash: 3612013193,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, use_ray_cast),
             },
             FieldInfoData {
                 name: "SpawnEffectOnLookupLocation",
+                name_hash: 635963575,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, spawn_effect_on_lookup_location),
             },
             FieldInfoData {
                 name: "RayDirection",
+                name_hash: 574551946,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, ray_direction),
             },
             FieldInfoData {
                 name: "RayDistance",
+                name_hash: 223111116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, ray_distance),
             },
             FieldInfoData {
                 name: "SeeThrough",
+                name_hash: 753481485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, see_through),
             },
             FieldInfoData {
                 name: "Penetrable",
+                name_hash: 1887765847,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, penetrable),
             },
             FieldInfoData {
                 name: "IncludeTerrain",
+                name_hash: 106414606,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, include_terrain),
             },
             FieldInfoData {
                 name: "MaxInstances",
+                name_hash: 3494173515,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, max_instances),
             },
             FieldInfoData {
                 name: "EffectParameters",
+                name_hash: 929782248,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EffectParameter-Array",
                 rust_offset: offset_of!(MaterialBasedEffectComponentData, effect_parameters),
@@ -15866,6 +16919,7 @@ impl TypeObject for MaterialBasedEffectComponentData {
 
 pub static MATERIALBASEDEFFECTCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialBasedEffectComponentData-Array",
+    name_hash: 1222605795,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("MaterialBasedEffectComponentData"),
@@ -15887,6 +16941,7 @@ pub enum SnapType {
 
 pub static SNAPTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SnapType",
+    name_hash: 704065105,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -15915,6 +16970,7 @@ impl TypeObject for SnapType {
 
 pub static SNAPTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SnapType-Array",
+    name_hash: 2749964389,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SnapType"),
@@ -15923,7 +16979,8 @@ pub static SNAPTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocatorComponentData {
     pub _glacier_base: super::entity::GameComponentData,
     pub realm: super::core::Realm,
@@ -15962,10 +17019,10 @@ impl super::entity::ComponentDataTrait for LocatorComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -16008,22 +17065,27 @@ impl super::core::DataContainerTrait for LocatorComponentData {
 
 pub static LOCATORCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocatorComponentData",
+    name_hash: 1367760434,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LocatorComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocatorComponentData as Default>::default())),
+            create_boxed: || Box::new(<LocatorComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(LocatorComponentData, realm),
             },
             FieldInfoData {
                 name: "IsUsedAsLinkTarget",
+                name_hash: 3118722907,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LocatorComponentData, is_used_as_link_target),
@@ -16055,6 +17117,7 @@ impl TypeObject for LocatorComponentData {
 
 pub static LOCATORCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocatorComponentData-Array",
+    name_hash: 2707301510,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("LocatorComponentData"),
@@ -16063,7 +17126,8 @@ pub static LOCATORCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ActorPhysicsComponentData {
     pub _glacier_base: super::game_shared::StaticModelPhysicsComponentData,
 }
@@ -16084,31 +17148,31 @@ impl super::gameplay_sim::GamePhysicsComponentDataTrait for ActorPhysicsComponen
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         self._glacier_base.realm_mut()
     }
-    fn effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn effect_parameters(&self) -> &Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         self._glacier_base.effect_parameters()
     }
-    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn effect_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         self._glacier_base.effect_parameters_mut()
     }
 }
 
 impl super::physics::PhysicsComponentDataTrait for ActorPhysicsComponentData {
-    fn physics_bodies(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
+    fn physics_bodies(&self) -> &Vec<Option<LockedTypeObject /* super::physics::PhysicsBodyData */>> {
         self._glacier_base.physics_bodies()
     }
-    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsBodyDataTrait>>>> {
+    fn physics_bodies_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::physics::PhysicsBodyData */>> {
         self._glacier_base.physics_bodies_mut()
     }
-    fn physics_constraints(&self) -> &Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints(&self) -> &Vec<Option<LockedTypeObject /* super::physics::PhysicsConstraintData */>> {
         self._glacier_base.physics_constraints()
     }
-    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::physics::PhysicsConstraintDataTrait>>>> {
+    fn physics_constraints_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::physics::PhysicsConstraintData */>> {
         self._glacier_base.physics_constraints_mut()
     }
-    fn parts(&self) -> &Vec<super::physics::PhysicsPartData> {
+    fn parts(&self) -> &Vec<BoxedTypeObject /* super::physics::PhysicsPartData */> {
         self._glacier_base.parts()
     }
-    fn parts_mut(&mut self) -> &mut Vec<super::physics::PhysicsPartData> {
+    fn parts_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::physics::PhysicsPartData */> {
         self._glacier_base.parts_mut()
     }
     fn movable_parts(&self) -> &bool {
@@ -16138,10 +17202,10 @@ impl super::entity::ComponentDataTrait for ActorPhysicsComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -16184,12 +17248,15 @@ impl super::core::DataContainerTrait for ActorPhysicsComponentData {
 
 pub static ACTORPHYSICSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActorPhysicsComponentData",
+    name_hash: 1923830682,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_shared::STATICMODELPHYSICSCOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ActorPhysicsComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ActorPhysicsComponentData as Default>::default())),
+            create_boxed: || Box::new(<ActorPhysicsComponentData as Default>::default()),
         },
         fields: &[
         ],
@@ -16219,6 +17286,7 @@ impl TypeObject for ActorPhysicsComponentData {
 
 pub static ACTORPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActorPhysicsComponentData-Array",
+    name_hash: 907605678,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ActorPhysicsComponentData"),
@@ -16227,22 +17295,23 @@ pub static ACTORPHYSICSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ActorCustomizationComponentData {
     pub _glacier_base: super::entity::GameComponentData,
-    pub customization: Option<Arc<Mutex<dyn ActorCustomizationDataTrait>>>,
+    pub customization: Option<LockedTypeObject /* ActorCustomizationData */>,
 }
 
 pub trait ActorCustomizationComponentDataTrait: super::entity::GameComponentDataTrait {
-    fn customization(&self) -> &Option<Arc<Mutex<dyn ActorCustomizationDataTrait>>>;
-    fn customization_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ActorCustomizationDataTrait>>>;
+    fn customization(&self) -> &Option<LockedTypeObject /* ActorCustomizationData */>;
+    fn customization_mut(&mut self) -> &mut Option<LockedTypeObject /* ActorCustomizationData */>;
 }
 
 impl ActorCustomizationComponentDataTrait for ActorCustomizationComponentData {
-    fn customization(&self) -> &Option<Arc<Mutex<dyn ActorCustomizationDataTrait>>> {
+    fn customization(&self) -> &Option<LockedTypeObject /* ActorCustomizationData */> {
         &self.customization
     }
-    fn customization_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ActorCustomizationDataTrait>>> {
+    fn customization_mut(&mut self) -> &mut Option<LockedTypeObject /* ActorCustomizationData */> {
         &mut self.customization
     }
 }
@@ -16257,10 +17326,10 @@ impl super::entity::ComponentDataTrait for ActorCustomizationComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -16303,16 +17372,20 @@ impl super::core::DataContainerTrait for ActorCustomizationComponentData {
 
 pub static ACTORCUSTOMIZATIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActorCustomizationComponentData",
+    name_hash: 2545198508,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ActorCustomizationComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ActorCustomizationComponentData as Default>::default())),
+            create_boxed: || Box::new(<ActorCustomizationComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Customization",
+                name_hash: 1998291608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ActorCustomizationData",
                 rust_offset: offset_of!(ActorCustomizationComponentData, customization),
@@ -16344,6 +17417,7 @@ impl TypeObject for ActorCustomizationComponentData {
 
 pub static ACTORCUSTOMIZATIONCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActorCustomizationComponentData-Array",
+    name_hash: 804771096,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ActorCustomizationComponentData"),
@@ -16352,31 +17426,32 @@ pub static ACTORCUSTOMIZATIONCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ActorCustomizationData {
     pub _glacier_base: super::core::DataContainerPolicyAsset,
-    pub visual_groups: Vec<super::game_shared::CustomizeVisual>,
-    pub ant_game_states: Vec<Option<Arc<Mutex<dyn super::game_shared::WriteAntGameStateDataTrait>>>>,
+    pub visual_groups: Vec<BoxedTypeObject /* super::game_shared::CustomizeVisual */>,
+    pub ant_game_states: Vec<Option<LockedTypeObject /* super::game_shared::WriteAntGameStateData */>>,
 }
 
 pub trait ActorCustomizationDataTrait: super::core::DataContainerPolicyAssetTrait {
-    fn visual_groups(&self) -> &Vec<super::game_shared::CustomizeVisual>;
-    fn visual_groups_mut(&mut self) -> &mut Vec<super::game_shared::CustomizeVisual>;
-    fn ant_game_states(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::WriteAntGameStateDataTrait>>>>;
-    fn ant_game_states_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::WriteAntGameStateDataTrait>>>>;
+    fn visual_groups(&self) -> &Vec<BoxedTypeObject /* super::game_shared::CustomizeVisual */>;
+    fn visual_groups_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::game_shared::CustomizeVisual */>;
+    fn ant_game_states(&self) -> &Vec<Option<LockedTypeObject /* super::game_shared::WriteAntGameStateData */>>;
+    fn ant_game_states_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::game_shared::WriteAntGameStateData */>>;
 }
 
 impl ActorCustomizationDataTrait for ActorCustomizationData {
-    fn visual_groups(&self) -> &Vec<super::game_shared::CustomizeVisual> {
+    fn visual_groups(&self) -> &Vec<BoxedTypeObject /* super::game_shared::CustomizeVisual */> {
         &self.visual_groups
     }
-    fn visual_groups_mut(&mut self) -> &mut Vec<super::game_shared::CustomizeVisual> {
+    fn visual_groups_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::game_shared::CustomizeVisual */> {
         &mut self.visual_groups
     }
-    fn ant_game_states(&self) -> &Vec<Option<Arc<Mutex<dyn super::game_shared::WriteAntGameStateDataTrait>>>> {
+    fn ant_game_states(&self) -> &Vec<Option<LockedTypeObject /* super::game_shared::WriteAntGameStateData */>> {
         &self.ant_game_states
     }
-    fn ant_game_states_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::game_shared::WriteAntGameStateDataTrait>>>> {
+    fn ant_game_states_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::game_shared::WriteAntGameStateData */>> {
         &mut self.ant_game_states
     }
 }
@@ -16398,22 +17473,27 @@ impl super::core::DataContainerTrait for ActorCustomizationData {
 
 pub static ACTORCUSTOMIZATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActorCustomizationData",
+    name_hash: 4276156579,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINERPOLICYASSET_TYPE_INFO),
+        super_class_offset: offset_of!(ActorCustomizationData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ActorCustomizationData as Default>::default())),
+            create_boxed: || Box::new(<ActorCustomizationData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "VisualGroups",
+                name_hash: 1154342877,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CustomizeVisual-Array",
                 rust_offset: offset_of!(ActorCustomizationData, visual_groups),
             },
             FieldInfoData {
                 name: "AntGameStates",
+                name_hash: 1141188948,
                 flags: MemberInfoFlags::new(144),
                 field_type: "WriteAntGameStateData-Array",
                 rust_offset: offset_of!(ActorCustomizationData, ant_game_states),
@@ -16445,6 +17525,7 @@ impl TypeObject for ActorCustomizationData {
 
 pub static ACTORCUSTOMIZATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActorCustomizationData-Array",
+    name_hash: 1965497367,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ActorCustomizationData"),
@@ -16456,6 +17537,7 @@ pub static ACTORCUSTOMIZATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 
 pub static DRAWVERLETCAPSULE_MAT4_FLOAT32_FLOAT32_VEC4__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DrawVerletCapsule(Mat4,Float32,Float32,Vec4)",
+    name_hash: 122907841,
     flags: MemberInfoFlags::new(793),
     module: "DiceCommonsShared",
     data: TypeInfoData::Unknown,
@@ -16464,7 +17546,8 @@ pub static DRAWVERLETCAPSULE_MAT4_FLOAT32_FLOAT32_VEC4__TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoolDownGateEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -16525,28 +17608,34 @@ impl super::core::DataContainerTrait for CoolDownGateEntityData {
 
 pub static COOLDOWNGATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoolDownGateEntityData",
+    name_hash: 4263471876,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CoolDownGateEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoolDownGateEntityData as Default>::default())),
+            create_boxed: || Box::new(<CoolDownGateEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CoolDownGateEntityData, realm),
             },
             FieldInfoData {
                 name: "CoolDownTime",
+                name_hash: 282296301,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CoolDownGateEntityData, cool_down_time),
             },
             FieldInfoData {
                 name: "StartOpened",
+                name_hash: 248233008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoolDownGateEntityData, start_opened),
@@ -16578,6 +17667,7 @@ impl TypeObject for CoolDownGateEntityData {
 
 pub static COOLDOWNGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoolDownGateEntityData-Array",
+    name_hash: 4137811760,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CoolDownGateEntityData"),
@@ -16586,7 +17676,8 @@ pub static COOLDOWNGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConditionalPropertyEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -16674,46 +17765,55 @@ impl super::core::DataContainerTrait for ConditionalPropertyEntityData {
 
 pub static CONDITIONALPROPERTYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalPropertyEntityData",
+    name_hash: 3871015639,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ConditionalPropertyEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConditionalPropertyEntityData as Default>::default())),
+            create_boxed: || Box::new(<ConditionalPropertyEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(ConditionalPropertyEntityData, realm),
             },
             FieldInfoData {
                 name: "Condition",
+                name_hash: 1800624758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ConditionalPropertyEntityData, condition),
             },
             FieldInfoData {
                 name: "TypeHash",
+                name_hash: 351092271,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ConditionalPropertyEntityData, type_hash),
             },
             FieldInfoData {
                 name: "ValueIfFalsePropertyHash",
+                name_hash: 2636843625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ConditionalPropertyEntityData, value_if_false_property_hash),
             },
             FieldInfoData {
                 name: "ValueIfTruePropertyHash",
+                name_hash: 1305170882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ConditionalPropertyEntityData, value_if_true_property_hash),
             },
             FieldInfoData {
                 name: "OutHash",
+                name_hash: 1070246745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ConditionalPropertyEntityData, out_hash),
@@ -16745,6 +17845,7 @@ impl TypeObject for ConditionalPropertyEntityData {
 
 pub static CONDITIONALPROPERTYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConditionalPropertyEntityData-Array",
+    name_hash: 424033251,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ConditionalPropertyEntityData"),
@@ -16753,7 +17854,8 @@ pub static CONDITIONALPROPERTYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientEmitTraceBookmarkEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub bookmark_name: String,
@@ -16805,22 +17907,27 @@ impl super::core::DataContainerTrait for ClientEmitTraceBookmarkEntityData {
 
 pub static CLIENTEMITTRACEBOOKMARKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEmitTraceBookmarkEntityData",
+    name_hash: 3728621791,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ClientEmitTraceBookmarkEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientEmitTraceBookmarkEntityData as Default>::default())),
+            create_boxed: || Box::new(<ClientEmitTraceBookmarkEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BookmarkName",
+                name_hash: 86413758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ClientEmitTraceBookmarkEntityData, bookmark_name),
             },
             FieldInfoData {
                 name: "BookmarkDescription",
+                name_hash: 3331945567,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ClientEmitTraceBookmarkEntityData, bookmark_description),
@@ -16852,6 +17959,7 @@ impl TypeObject for ClientEmitTraceBookmarkEntityData {
 
 pub static CLIENTEMITTRACEBOOKMARKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientEmitTraceBookmarkEntityData-Array",
+    name_hash: 1145001451,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ClientEmitTraceBookmarkEntityData"),
@@ -16860,13 +17968,14 @@ pub static CLIENTEMITTRACEBOOKMARKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CameraShakeEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub local_player: super::core::LocalPlayerId,
     pub transform: super::core::LinearTransform,
     pub enabled: bool,
-    pub trigger_shake_profile: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
+    pub trigger_shake_profile: Option<LockedTypeObject /* super::core::FloatCurve */>,
     pub pitch: CameraShakeAxisData,
     pub yaw: CameraShakeAxisData,
     pub roll: CameraShakeAxisData,
@@ -16884,8 +17993,8 @@ pub trait CameraShakeEntityDataTrait: super::entity::EntityDataTrait {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
     fn enabled(&self) -> &bool;
     fn enabled_mut(&mut self) -> &mut bool;
-    fn trigger_shake_profile(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn trigger_shake_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn trigger_shake_profile(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn trigger_shake_profile_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
     fn pitch(&self) -> &CameraShakeAxisData;
     fn pitch_mut(&mut self) -> &mut CameraShakeAxisData;
     fn yaw(&self) -> &CameraShakeAxisData;
@@ -16923,10 +18032,10 @@ impl CameraShakeEntityDataTrait for CameraShakeEntityData {
     fn enabled_mut(&mut self) -> &mut bool {
         &mut self.enabled
     }
-    fn trigger_shake_profile(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn trigger_shake_profile(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.trigger_shake_profile
     }
-    fn trigger_shake_profile_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn trigger_shake_profile_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.trigger_shake_profile
     }
     fn pitch(&self) -> &CameraShakeAxisData {
@@ -17002,82 +18111,97 @@ impl super::core::DataContainerTrait for CameraShakeEntityData {
 
 pub static CAMERASHAKEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraShakeEntityData",
+    name_hash: 2171412963,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CameraShakeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CameraShakeEntityData as Default>::default())),
+            create_boxed: || Box::new(<CameraShakeEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LocalPlayer",
+                name_hash: 162647195,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalPlayerId",
                 rust_offset: offset_of!(CameraShakeEntityData, local_player),
             },
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(CameraShakeEntityData, transform),
             },
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CameraShakeEntityData, enabled),
             },
             FieldInfoData {
                 name: "TriggerShakeProfile",
+                name_hash: 2086463298,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(CameraShakeEntityData, trigger_shake_profile),
             },
             FieldInfoData {
                 name: "Pitch",
+                name_hash: 232604323,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CameraShakeAxisData",
                 rust_offset: offset_of!(CameraShakeEntityData, pitch),
             },
             FieldInfoData {
                 name: "Yaw",
+                name_hash: 193468618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CameraShakeAxisData",
                 rust_offset: offset_of!(CameraShakeEntityData, yaw),
             },
             FieldInfoData {
                 name: "Roll",
+                name_hash: 2089387576,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CameraShakeAxisData",
                 rust_offset: offset_of!(CameraShakeEntityData, roll),
             },
             FieldInfoData {
                 name: "FadeOutStartDistance",
+                name_hash: 86428302,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraShakeEntityData, fade_out_start_distance),
             },
             FieldInfoData {
                 name: "FadeOutEndDistance",
+                name_hash: 1804887425,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraShakeEntityData, fade_out_end_distance),
             },
             FieldInfoData {
                 name: "TriggerShakeTime",
+                name_hash: 2969295228,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraShakeEntityData, trigger_shake_time),
             },
             FieldInfoData {
                 name: "Amplitude",
+                name_hash: 698564572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraShakeEntityData, amplitude),
             },
             FieldInfoData {
                 name: "Intensity",
+                name_hash: 3836394730,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraShakeEntityData, intensity),
@@ -17109,6 +18233,7 @@ impl TypeObject for CameraShakeEntityData {
 
 pub static CAMERASHAKEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraShakeEntityData-Array",
+    name_hash: 197211607,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CameraShakeEntityData"),
@@ -17117,7 +18242,8 @@ pub static CAMERASHAKEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CameraShakeAxisData {
     pub intensity: f32,
     pub sin_range: f32,
@@ -17174,39 +18300,46 @@ impl CameraShakeAxisDataTrait for CameraShakeAxisData {
 
 pub static CAMERASHAKEAXISDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraShakeAxisData",
+    name_hash: 3234524123,
     flags: MemberInfoFlags::new(36937),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CameraShakeAxisData as Default>::default())),
+            create_boxed: || Box::new(<CameraShakeAxisData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Intensity",
+                name_hash: 3836394730,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraShakeAxisData, intensity),
             },
             FieldInfoData {
                 name: "SinRange",
+                name_hash: 3041495790,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraShakeAxisData, sin_range),
             },
             FieldInfoData {
                 name: "SinFrequency",
+                name_hash: 3087547541,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraShakeAxisData, sin_frequency),
             },
             FieldInfoData {
                 name: "NoiseRange",
+                name_hash: 1482091268,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraShakeAxisData, noise_range),
             },
             FieldInfoData {
                 name: "NoiseFrequency",
+                name_hash: 1382679103,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraShakeAxisData, noise_frequency),
@@ -17238,6 +18371,7 @@ impl TypeObject for CameraShakeAxisData {
 
 pub static CAMERASHAKEAXISDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraShakeAxisData-Array",
+    name_hash: 3844117231,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CameraShakeAxisData"),
@@ -17246,7 +18380,8 @@ pub static CAMERASHAKEAXISDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BlueprintSpawnReferenceObjectData {
     pub _glacier_base: super::entity::ReferenceObjectData,
     pub realm: super::core::Realm,
@@ -17354,16 +18489,16 @@ impl super::entity::ReferenceObjectDataTrait for BlueprintSpawnReferenceObjectDa
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
@@ -17430,70 +18565,83 @@ impl super::core::DataContainerTrait for BlueprintSpawnReferenceObjectData {
 
 pub static BLUEPRINTSPAWNREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintSpawnReferenceObjectData",
+    name_hash: 2687487327,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::REFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BlueprintSpawnReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BlueprintSpawnReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<BlueprintSpawnReferenceObjectData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(BlueprintSpawnReferenceObjectData, realm),
             },
             FieldInfoData {
                 name: "InitialAutoSpawn",
+                name_hash: 3746373231,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BlueprintSpawnReferenceObjectData, initial_auto_spawn),
             },
             FieldInfoData {
                 name: "AutoSpawn",
+                name_hash: 792472241,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BlueprintSpawnReferenceObjectData, auto_spawn),
             },
             FieldInfoData {
                 name: "QueueSpawnEvent",
+                name_hash: 938847395,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BlueprintSpawnReferenceObjectData, queue_spawn_event),
             },
             FieldInfoData {
                 name: "UseAsSpawnPoint",
+                name_hash: 3790673059,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BlueprintSpawnReferenceObjectData, use_as_spawn_point),
             },
             FieldInfoData {
                 name: "SpawnsOccupyLocations",
+                name_hash: 2733514544,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BlueprintSpawnReferenceObjectData, spawns_occupy_locations),
             },
             FieldInfoData {
                 name: "InitialSpawnDelay",
+                name_hash: 2240280789,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BlueprintSpawnReferenceObjectData, initial_spawn_delay),
             },
             FieldInfoData {
                 name: "SpawnDelay",
+                name_hash: 3473198411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BlueprintSpawnReferenceObjectData, spawn_delay),
             },
             FieldInfoData {
                 name: "MaxCount",
+                name_hash: 415061138,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(BlueprintSpawnReferenceObjectData, max_count),
             },
             FieldInfoData {
                 name: "MaxCountSimultaneously",
+                name_hash: 2090824542,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(BlueprintSpawnReferenceObjectData, max_count_simultaneously),
@@ -17525,6 +18673,7 @@ impl TypeObject for BlueprintSpawnReferenceObjectData {
 
 pub static BLUEPRINTSPAWNREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintSpawnReferenceObjectData-Array",
+    name_hash: 1296581227,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("BlueprintSpawnReferenceObjectData"),
@@ -17533,25 +18682,26 @@ pub static BLUEPRINTSPAWNREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterProxyData {
     pub _glacier_base: BlueprintProxyData,
-    pub template: Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>>,
+    pub template: Option<LockedTypeObject /* super::game_shared::CharacterSpawnTemplateData */>,
     pub use_local_player_character: bool,
 }
 
 pub trait CharacterProxyDataTrait: BlueprintProxyDataTrait {
-    fn template(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>>;
-    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>>;
+    fn template(&self) -> &Option<LockedTypeObject /* super::game_shared::CharacterSpawnTemplateData */>;
+    fn template_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::CharacterSpawnTemplateData */>;
     fn use_local_player_character(&self) -> &bool;
     fn use_local_player_character_mut(&mut self) -> &mut bool;
 }
 
 impl CharacterProxyDataTrait for CharacterProxyData {
-    fn template(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>> {
+    fn template(&self) -> &Option<LockedTypeObject /* super::game_shared::CharacterSpawnTemplateData */> {
         &self.template
     }
-    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>> {
+    fn template_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::CharacterSpawnTemplateData */> {
         &mut self.template
     }
     fn use_local_player_character(&self) -> &bool {
@@ -17575,10 +18725,10 @@ impl BlueprintProxyDataTrait for CharacterProxyData {
     fn preview_spawn_position_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.preview_spawn_position_mut()
     }
-    fn connected_properties(&self) -> &Vec<ProxyPropertyContainer> {
+    fn connected_properties(&self) -> &Vec<BoxedTypeObject /* ProxyPropertyContainer */> {
         self._glacier_base.connected_properties()
     }
-    fn connected_properties_mut(&mut self) -> &mut Vec<ProxyPropertyContainer> {
+    fn connected_properties_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ProxyPropertyContainer */> {
         self._glacier_base.connected_properties_mut()
     }
 }
@@ -17608,16 +18758,16 @@ impl super::entity::ReferenceObjectDataTrait for CharacterProxyData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
@@ -17684,22 +18834,27 @@ impl super::core::DataContainerTrait for CharacterProxyData {
 
 pub static CHARACTERPROXYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterProxyData",
+    name_hash: 3947672896,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BLUEPRINTPROXYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterProxyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterProxyData as Default>::default())),
+            create_boxed: || Box::new(<CharacterProxyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Template",
+                name_hash: 2427043285,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterSpawnTemplateData",
                 rust_offset: offset_of!(CharacterProxyData, template),
             },
             FieldInfoData {
                 name: "UseLocalPlayerCharacter",
+                name_hash: 2421011425,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterProxyData, use_local_player_character),
@@ -17731,6 +18886,7 @@ impl TypeObject for CharacterProxyData {
 
 pub static CHARACTERPROXYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterProxyData-Array",
+    name_hash: 3442625524,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CharacterProxyData"),
@@ -17739,12 +18895,13 @@ pub static CHARACTERPROXYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BlueprintProxyData {
     pub _glacier_base: BlueprintProxyPropertyFilterData,
     pub preview_in_game_view: bool,
     pub preview_spawn_position: super::core::LinearTransform,
-    pub connected_properties: Vec<ProxyPropertyContainer>,
+    pub connected_properties: Vec<BoxedTypeObject /* ProxyPropertyContainer */>,
 }
 
 pub trait BlueprintProxyDataTrait: BlueprintProxyPropertyFilterDataTrait {
@@ -17752,8 +18909,8 @@ pub trait BlueprintProxyDataTrait: BlueprintProxyPropertyFilterDataTrait {
     fn preview_in_game_view_mut(&mut self) -> &mut bool;
     fn preview_spawn_position(&self) -> &super::core::LinearTransform;
     fn preview_spawn_position_mut(&mut self) -> &mut super::core::LinearTransform;
-    fn connected_properties(&self) -> &Vec<ProxyPropertyContainer>;
-    fn connected_properties_mut(&mut self) -> &mut Vec<ProxyPropertyContainer>;
+    fn connected_properties(&self) -> &Vec<BoxedTypeObject /* ProxyPropertyContainer */>;
+    fn connected_properties_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ProxyPropertyContainer */>;
 }
 
 impl BlueprintProxyDataTrait for BlueprintProxyData {
@@ -17769,10 +18926,10 @@ impl BlueprintProxyDataTrait for BlueprintProxyData {
     fn preview_spawn_position_mut(&mut self) -> &mut super::core::LinearTransform {
         &mut self.preview_spawn_position
     }
-    fn connected_properties(&self) -> &Vec<ProxyPropertyContainer> {
+    fn connected_properties(&self) -> &Vec<BoxedTypeObject /* ProxyPropertyContainer */> {
         &self.connected_properties
     }
-    fn connected_properties_mut(&mut self) -> &mut Vec<ProxyPropertyContainer> {
+    fn connected_properties_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ProxyPropertyContainer */> {
         &mut self.connected_properties
     }
 }
@@ -17802,16 +18959,16 @@ impl super::entity::ReferenceObjectDataTrait for BlueprintProxyData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
@@ -17878,28 +19035,34 @@ impl super::core::DataContainerTrait for BlueprintProxyData {
 
 pub static BLUEPRINTPROXYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintProxyData",
+    name_hash: 2492724278,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BLUEPRINTPROXYPROPERTYFILTERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BlueprintProxyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BlueprintProxyData as Default>::default())),
+            create_boxed: || Box::new(<BlueprintProxyData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PreviewInGameView",
+                name_hash: 2397157355,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BlueprintProxyData, preview_in_game_view),
             },
             FieldInfoData {
                 name: "PreviewSpawnPosition",
+                name_hash: 3504274989,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(BlueprintProxyData, preview_spawn_position),
             },
             FieldInfoData {
                 name: "ConnectedProperties",
+                name_hash: 2818888859,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ProxyPropertyContainer-Array",
                 rust_offset: offset_of!(BlueprintProxyData, connected_properties),
@@ -17931,6 +19094,7 @@ impl TypeObject for BlueprintProxyData {
 
 pub static BLUEPRINTPROXYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintProxyData-Array",
+    name_hash: 4211337346,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("BlueprintProxyData"),
@@ -17939,7 +19103,8 @@ pub static BLUEPRINTPROXYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProxyPropertyContainer {
     pub target_realm: super::core::Realm,
     pub target_field_id: i32,
@@ -17978,27 +19143,32 @@ impl ProxyPropertyContainerTrait for ProxyPropertyContainer {
 
 pub static PROXYPROPERTYCONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProxyPropertyContainer",
+    name_hash: 4123386473,
     flags: MemberInfoFlags::new(36937),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProxyPropertyContainer as Default>::default())),
+            create_boxed: || Box::new(<ProxyPropertyContainer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TargetRealm",
+                name_hash: 2239377635,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(ProxyPropertyContainer, target_realm),
             },
             FieldInfoData {
                 name: "TargetFieldId",
+                name_hash: 2227058747,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ProxyPropertyContainer, target_field_id),
             },
             FieldInfoData {
                 name: "PropertyTypeHash",
+                name_hash: 3738736008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ProxyPropertyContainer, property_type_hash),
@@ -18030,6 +19200,7 @@ impl TypeObject for ProxyPropertyContainer {
 
 pub static PROXYPROPERTYCONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProxyPropertyContainer-Array",
+    name_hash: 899381597,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ProxyPropertyContainer"),
@@ -18038,7 +19209,8 @@ pub static PROXYPROPERTYCONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BlueprintProxyPropertyFilterData {
     pub _glacier_base: super::entity::LogicReferenceObjectData,
 }
@@ -18071,16 +19243,16 @@ impl super::entity::ReferenceObjectDataTrait for BlueprintProxyPropertyFilterDat
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
@@ -18147,12 +19319,15 @@ impl super::core::DataContainerTrait for BlueprintProxyPropertyFilterData {
 
 pub static BLUEPRINTPROXYPROPERTYFILTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintProxyPropertyFilterData",
+    name_hash: 3901477329,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::LOGICREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BlueprintProxyPropertyFilterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BlueprintProxyPropertyFilterData as Default>::default())),
+            create_boxed: || Box::new(<BlueprintProxyPropertyFilterData as Default>::default()),
         },
         fields: &[
         ],
@@ -18182,6 +19357,7 @@ impl TypeObject for BlueprintProxyPropertyFilterData {
 
 pub static BLUEPRINTPROXYPROPERTYFILTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintProxyPropertyFilterData-Array",
+    name_hash: 3544867813,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("BlueprintProxyPropertyFilterData"),
@@ -18190,7 +19366,8 @@ pub static BLUEPRINTPROXYPROPERTYFILTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ActorEntityData {
     pub _glacier_base: super::physics::GamePhysicsEntityData,
     pub realm: super::core::Realm,
@@ -18295,16 +19472,16 @@ impl super::entity::GameComponentEntityDataTrait for ActorEntityData {
 }
 
 impl super::entity::ComponentEntityDataTrait for ActorEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -18365,64 +19542,76 @@ impl super::core::DataContainerTrait for ActorEntityData {
 
 pub static ACTORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActorEntityData",
+    name_hash: 713811397,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::physics::GAMEPHYSICSENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ActorEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ActorEntityData as Default>::default())),
+            create_boxed: || Box::new(<ActorEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(ActorEntityData, realm),
             },
             FieldInfoData {
                 name: "RenderSkeletonBasePose",
+                name_hash: 3869533106,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SparseTransformArray",
                 rust_offset: offset_of!(ActorEntityData, render_skeleton_base_pose),
             },
             FieldInfoData {
                 name: "MeshType",
+                name_hash: 1821946062,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MeshType",
                 rust_offset: offset_of!(ActorEntityData, mesh_type),
             },
             FieldInfoData {
                 name: "MeshPartCount",
+                name_hash: 3449407426,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ActorEntityData, mesh_part_count),
             },
             FieldInfoData {
                 name: "UpdateAnimatableTransform",
+                name_hash: 239356140,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActorEntityData, update_animatable_transform),
             },
             FieldInfoData {
                 name: "UpdatePhysicsTransform",
+                name_hash: 4210204083,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActorEntityData, update_physics_transform),
             },
             FieldInfoData {
                 name: "ServerPhysicsEnabled",
+                name_hash: 1632705006,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActorEntityData, server_physics_enabled),
             },
             FieldInfoData {
                 name: "IsFindable",
+                name_hash: 3472545872,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActorEntityData, is_findable),
             },
             FieldInfoData {
                 name: "EnableUpdates",
+                name_hash: 771920806,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ActorEntityData, enable_updates),
@@ -18454,6 +19643,7 @@ impl TypeObject for ActorEntityData {
 
 pub static ACTORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ActorEntityData-Array",
+    name_hash: 1941331441,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ActorEntityData"),
@@ -18476,6 +19666,7 @@ pub enum DiceUIAnalogPadType {
 
 pub static DICEUIANALOGPADTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIAnalogPadType",
+    name_hash: 3651708469,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -18504,6 +19695,7 @@ impl TypeObject for DiceUIAnalogPadType {
 
 pub static DICEUIANALOGPADTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIAnalogPadType-Array",
+    name_hash: 4160022145,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIAnalogPadType"),
@@ -18512,7 +19704,8 @@ pub static DICEUIANALOGPADTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIInputManagerSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub automatic_typing_mode: bool,
@@ -18573,34 +19766,41 @@ impl super::core::DataContainerTrait for DiceUIInputManagerSettings {
 
 pub static DICEUIINPUTMANAGERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIInputManagerSettings",
+    name_hash: 3485643250,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(DiceUIInputManagerSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIInputManagerSettings as Default>::default())),
+            create_boxed: || Box::new(<DiceUIInputManagerSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AutomaticTypingMode",
+                name_hash: 3636332102,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUIInputManagerSettings, automatic_typing_mode),
             },
             FieldInfoData {
                 name: "TreatTouchAsMouse",
+                name_hash: 2532280485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUIInputManagerSettings, treat_touch_as_mouse),
             },
             FieldInfoData {
                 name: "ScrollWheelDeadZone",
+                name_hash: 4199146305,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIInputManagerSettings, scroll_wheel_dead_zone),
             },
             FieldInfoData {
                 name: "DoubleClickTime",
+                name_hash: 4105019307,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIInputManagerSettings, double_click_time),
@@ -18632,6 +19832,7 @@ impl TypeObject for DiceUIInputManagerSettings {
 
 pub static DICEUIINPUTMANAGERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIInputManagerSettings-Array",
+    name_hash: 2963933382,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIInputManagerSettings"),
@@ -18640,7 +19841,8 @@ pub static DICEUIINPUTMANAGERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUITypingInputListenerElementData {
     pub _glacier_base: super::game_shared_u_i::UIElementEntityData,
     pub max_text_length: u32,
@@ -18818,52 +20020,62 @@ impl super::core::DataContainerTrait for DiceUITypingInputListenerElementData {
 
 pub static DICEUITYPINGINPUTLISTENERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUITypingInputListenerElementData",
+    name_hash: 440242793,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_shared_u_i::UIELEMENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceUITypingInputListenerElementData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUITypingInputListenerElementData as Default>::default())),
+            create_boxed: || Box::new(<DiceUITypingInputListenerElementData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxTextLength",
+                name_hash: 3158252880,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DiceUITypingInputListenerElementData, max_text_length),
             },
             FieldInfoData {
                 name: "DefaultText",
+                name_hash: 2015080531,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(DiceUITypingInputListenerElementData, default_text),
             },
             FieldInfoData {
                 name: "Title",
+                name_hash: 227868805,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(DiceUITypingInputListenerElementData, title),
             },
             FieldInfoData {
                 name: "Description",
+                name_hash: 1636673251,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(DiceUITypingInputListenerElementData, description),
             },
             FieldInfoData {
                 name: "InputText",
+                name_hash: 2651441390,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(DiceUITypingInputListenerElementData, input_text),
             },
             FieldInfoData {
                 name: "AllowMultiline",
+                name_hash: 45788987,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUITypingInputListenerElementData, allow_multiline),
             },
             FieldInfoData {
                 name: "AbortOnEscape",
+                name_hash: 2566849615,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUITypingInputListenerElementData, abort_on_escape),
@@ -18895,6 +20107,7 @@ impl TypeObject for DiceUITypingInputListenerElementData {
 
 pub static DICEUITYPINGINPUTLISTENERELEMENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUITypingInputListenerElementData-Array",
+    name_hash: 2702649693,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUITypingInputListenerElementData"),
@@ -18903,7 +20116,8 @@ pub static DICEUITYPINGINPUTLISTENERELEMENTDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIMouseInputListenerElementData {
     pub _glacier_base: super::game_shared_u_i::UIElementEntityData,
     pub mouse_button: super::u_i::UIMouseButton,
@@ -19045,28 +20259,34 @@ impl super::core::DataContainerTrait for DiceUIMouseInputListenerElementData {
 
 pub static DICEUIMOUSEINPUTLISTENERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIMouseInputListenerElementData",
+    name_hash: 1034219285,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_shared_u_i::UIELEMENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceUIMouseInputListenerElementData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIMouseInputListenerElementData as Default>::default())),
+            create_boxed: || Box::new(<DiceUIMouseInputListenerElementData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MouseButton",
+                name_hash: 1234605106,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIMouseButton",
                 rust_offset: offset_of!(DiceUIMouseInputListenerElementData, mouse_button),
             },
             FieldInfoData {
                 name: "ConsumeInput",
+                name_hash: 182566815,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUIMouseInputListenerElementData, consume_input),
             },
             FieldInfoData {
                 name: "FullScreen",
+                name_hash: 3418622618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUIMouseInputListenerElementData, full_screen),
@@ -19098,6 +20318,7 @@ impl TypeObject for DiceUIMouseInputListenerElementData {
 
 pub static DICEUIMOUSEINPUTLISTENERELEMENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIMouseInputListenerElementData-Array",
+    name_hash: 2560106145,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIMouseInputListenerElementData"),
@@ -19106,7 +20327,8 @@ pub static DICEUIMOUSEINPUTLISTENERELEMENTDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIInputActionListenerElementData {
     pub _glacier_base: super::game_shared_u_i::UIElementEntityData,
     pub input_action: super::u_i::UIInputAction,
@@ -19239,22 +20461,27 @@ impl super::core::DataContainerTrait for DiceUIInputActionListenerElementData {
 
 pub static DICEUIINPUTACTIONLISTENERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIInputActionListenerElementData",
+    name_hash: 2211242538,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_shared_u_i::UIELEMENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceUIInputActionListenerElementData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIInputActionListenerElementData as Default>::default())),
+            create_boxed: || Box::new(<DiceUIInputActionListenerElementData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InputAction",
+                name_hash: 1407707693,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIInputAction",
                 rust_offset: offset_of!(DiceUIInputActionListenerElementData, input_action),
             },
             FieldInfoData {
                 name: "ConsumeInput",
+                name_hash: 182566815,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUIInputActionListenerElementData, consume_input),
@@ -19286,6 +20513,7 @@ impl TypeObject for DiceUIInputActionListenerElementData {
 
 pub static DICEUIINPUTACTIONLISTENERELEMENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIInputActionListenerElementData-Array",
+    name_hash: 1784954014,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIInputActionListenerElementData"),
@@ -19294,7 +20522,8 @@ pub static DICEUIINPUTACTIONLISTENERELEMENTDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIInputBlockerElementData {
     pub _glacier_base: super::game_shared_u_i::UIElementEntityData,
     pub full_screen: bool,
@@ -19418,16 +20647,20 @@ impl super::core::DataContainerTrait for DiceUIInputBlockerElementData {
 
 pub static DICEUIINPUTBLOCKERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIInputBlockerElementData",
+    name_hash: 2654914516,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_shared_u_i::UIELEMENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceUIInputBlockerElementData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIInputBlockerElementData as Default>::default())),
+            create_boxed: || Box::new(<DiceUIInputBlockerElementData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FullScreen",
+                name_hash: 3418622618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUIInputBlockerElementData, full_screen),
@@ -19459,6 +20692,7 @@ impl TypeObject for DiceUIInputBlockerElementData {
 
 pub static DICEUIINPUTBLOCKERELEMENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIInputBlockerElementData-Array",
+    name_hash: 1943712864,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIInputBlockerElementData"),
@@ -19467,7 +20701,8 @@ pub static DICEUIINPUTBLOCKERELEMENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIAnalogStickInputListenerElementData {
     pub _glacier_base: super::game_shared_u_i::UIElementEntityData,
     pub analog_stick: DiceUIAnalogStick,
@@ -19627,40 +20862,48 @@ impl super::core::DataContainerTrait for DiceUIAnalogStickInputListenerElementDa
 
 pub static DICEUIANALOGSTICKINPUTLISTENERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIAnalogStickInputListenerElementData",
+    name_hash: 3132208120,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_shared_u_i::UIELEMENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceUIAnalogStickInputListenerElementData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIAnalogStickInputListenerElementData as Default>::default())),
+            create_boxed: || Box::new(<DiceUIAnalogStickInputListenerElementData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AnalogStick",
+                name_hash: 737758793,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DiceUIAnalogStick",
                 rust_offset: offset_of!(DiceUIAnalogStickInputListenerElementData, analog_stick),
             },
             FieldInfoData {
                 name: "ConsumeInput",
+                name_hash: 182566815,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUIAnalogStickInputListenerElementData, consume_input),
             },
             FieldInfoData {
                 name: "FlipYAxis",
+                name_hash: 1346913068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUIAnalogStickInputListenerElementData, flip_y_axis),
             },
             FieldInfoData {
                 name: "TriggerThreshold",
+                name_hash: 2293412650,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIAnalogStickInputListenerElementData, trigger_threshold),
             },
             FieldInfoData {
                 name: "DeadZone",
+                name_hash: 3291734079,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIAnalogStickInputListenerElementData, dead_zone),
@@ -19692,6 +20935,7 @@ impl TypeObject for DiceUIAnalogStickInputListenerElementData {
 
 pub static DICEUIANALOGSTICKINPUTLISTENERELEMENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIAnalogStickInputListenerElementData-Array",
+    name_hash: 1881517516,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIAnalogStickInputListenerElementData"),
@@ -19711,6 +20955,7 @@ pub enum DiceUIAnalogStick {
 
 pub static DICEUIANALOGSTICK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIAnalogStick",
+    name_hash: 2703673502,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -19739,6 +20984,7 @@ impl TypeObject for DiceUIAnalogStick {
 
 pub static DICEUIANALOGSTICK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIAnalogStick-Array",
+    name_hash: 2480396714,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIAnalogStick"),
@@ -19747,7 +20993,8 @@ pub static DICEUIANALOGSTICK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIAnalogPadInputListenerElementData {
     pub _glacier_base: super::game_shared_u_i::UIElementEntityData,
     pub analog_pad_type: DiceUIAnalogPadType,
@@ -19880,22 +21127,27 @@ impl super::core::DataContainerTrait for DiceUIAnalogPadInputListenerElementData
 
 pub static DICEUIANALOGPADINPUTLISTENERELEMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIAnalogPadInputListenerElementData",
+    name_hash: 230425067,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_shared_u_i::UIELEMENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceUIAnalogPadInputListenerElementData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIAnalogPadInputListenerElementData as Default>::default())),
+            create_boxed: || Box::new(<DiceUIAnalogPadInputListenerElementData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AnalogPadType",
+                name_hash: 2857694370,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DiceUIAnalogPadType",
                 rust_offset: offset_of!(DiceUIAnalogPadInputListenerElementData, analog_pad_type),
             },
             FieldInfoData {
                 name: "ConsumeInput",
+                name_hash: 182566815,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceUIAnalogPadInputListenerElementData, consume_input),
@@ -19927,6 +21179,7 @@ impl TypeObject for DiceUIAnalogPadInputListenerElementData {
 
 pub static DICEUIANALOGPADINPUTLISTENERELEMENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIAnalogPadInputListenerElementData-Array",
+    name_hash: 1379365343,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIAnalogPadInputListenerElementData"),
@@ -19935,7 +21188,8 @@ pub static DICEUIANALOGPADINPUTLISTENERELEMENTDATA_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIInputManagerEntityData {
     pub _glacier_base: super::entity::EntityData,
 }
@@ -19969,12 +21223,15 @@ impl super::core::DataContainerTrait for DiceUIInputManagerEntityData {
 
 pub static DICEUIINPUTMANAGERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIInputManagerEntityData",
+    name_hash: 3825231324,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceUIInputManagerEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIInputManagerEntityData as Default>::default())),
+            create_boxed: || Box::new(<DiceUIInputManagerEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -20004,6 +21261,7 @@ impl TypeObject for DiceUIInputManagerEntityData {
 
 pub static DICEUIINPUTMANAGERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIInputManagerEntityData-Array",
+    name_hash: 4200214120,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIInputManagerEntityData"),
@@ -20012,14 +21270,15 @@ pub static DICEUIINPUTMANAGERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceDebugUIInputFlowSimulationData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
     pub title: String,
     pub force_game_pad_on_windows: bool,
     pub player: i32,
-    pub actions: Vec<DiceUIInputFlowAction>,
+    pub actions: Vec<BoxedTypeObject /* DiceUIInputFlowAction */>,
 }
 
 pub trait DiceDebugUIInputFlowSimulationDataTrait: super::entity::EntityDataTrait {
@@ -20031,8 +21290,8 @@ pub trait DiceDebugUIInputFlowSimulationDataTrait: super::entity::EntityDataTrai
     fn force_game_pad_on_windows_mut(&mut self) -> &mut bool;
     fn player(&self) -> &i32;
     fn player_mut(&mut self) -> &mut i32;
-    fn actions(&self) -> &Vec<DiceUIInputFlowAction>;
-    fn actions_mut(&mut self) -> &mut Vec<DiceUIInputFlowAction>;
+    fn actions(&self) -> &Vec<BoxedTypeObject /* DiceUIInputFlowAction */>;
+    fn actions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DiceUIInputFlowAction */>;
 }
 
 impl DiceDebugUIInputFlowSimulationDataTrait for DiceDebugUIInputFlowSimulationData {
@@ -20060,10 +21319,10 @@ impl DiceDebugUIInputFlowSimulationDataTrait for DiceDebugUIInputFlowSimulationD
     fn player_mut(&mut self) -> &mut i32 {
         &mut self.player
     }
-    fn actions(&self) -> &Vec<DiceUIInputFlowAction> {
+    fn actions(&self) -> &Vec<BoxedTypeObject /* DiceUIInputFlowAction */> {
         &self.actions
     }
-    fn actions_mut(&mut self) -> &mut Vec<DiceUIInputFlowAction> {
+    fn actions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DiceUIInputFlowAction */> {
         &mut self.actions
     }
 }
@@ -20091,40 +21350,48 @@ impl super::core::DataContainerTrait for DiceDebugUIInputFlowSimulationData {
 
 pub static DICEDEBUGUIINPUTFLOWSIMULATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceDebugUIInputFlowSimulationData",
+    name_hash: 1964669572,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceDebugUIInputFlowSimulationData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceDebugUIInputFlowSimulationData as Default>::default())),
+            create_boxed: || Box::new(<DiceDebugUIInputFlowSimulationData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(DiceDebugUIInputFlowSimulationData, realm),
             },
             FieldInfoData {
                 name: "Title",
+                name_hash: 227868805,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(DiceDebugUIInputFlowSimulationData, title),
             },
             FieldInfoData {
                 name: "ForceGamePadOnWindows",
+                name_hash: 801791037,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceDebugUIInputFlowSimulationData, force_game_pad_on_windows),
             },
             FieldInfoData {
                 name: "Player",
+                name_hash: 3384765366,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(DiceDebugUIInputFlowSimulationData, player),
             },
             FieldInfoData {
                 name: "Actions",
+                name_hash: 373511656,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DiceUIInputFlowAction-Array",
                 rust_offset: offset_of!(DiceDebugUIInputFlowSimulationData, actions),
@@ -20156,6 +21423,7 @@ impl TypeObject for DiceDebugUIInputFlowSimulationData {
 
 pub static DICEDEBUGUIINPUTFLOWSIMULATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceDebugUIInputFlowSimulationData-Array",
+    name_hash: 2760552112,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceDebugUIInputFlowSimulationData"),
@@ -20164,7 +21432,8 @@ pub static DICEDEBUGUIINPUTFLOWSIMULATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceUIInputFlowAction {
     pub name: String,
     pub action: super::u_i::UIInputAction,
@@ -20212,33 +21481,39 @@ impl DiceUIInputFlowActionTrait for DiceUIInputFlowAction {
 
 pub static DICEUIINPUTFLOWACTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIInputFlowAction",
+    name_hash: 1236891880,
     flags: MemberInfoFlags::new(73),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceUIInputFlowAction as Default>::default())),
+            create_boxed: || Box::new(<DiceUIInputFlowAction as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(DiceUIInputFlowAction, name),
             },
             FieldInfoData {
                 name: "Action",
+                name_hash: 2484178491,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIInputAction",
                 rust_offset: offset_of!(DiceUIInputFlowAction, action),
             },
             FieldInfoData {
                 name: "PressDuration",
+                name_hash: 676661148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIInputFlowAction, press_duration),
             },
             FieldInfoData {
                 name: "WaitAfterRelease",
+                name_hash: 4063898915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceUIInputFlowAction, wait_after_release),
@@ -20270,6 +21545,7 @@ impl TypeObject for DiceUIInputFlowAction {
 
 pub static DICEUIINPUTFLOWACTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceUIInputFlowAction-Array",
+    name_hash: 2845469404,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceUIInputFlowAction"),
@@ -20278,7 +21554,8 @@ pub static DICEUIINPUTFLOWACTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterDefinitionComponentData {
     pub _glacier_base: super::entity::GameComponentData,
 }
@@ -20299,10 +21576,10 @@ impl super::entity::ComponentDataTrait for CharacterDefinitionComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -20345,12 +21622,15 @@ impl super::core::DataContainerTrait for CharacterDefinitionComponentData {
 
 pub static CHARACTERDEFINITIONCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterDefinitionComponentData",
+    name_hash: 3461110102,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterDefinitionComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterDefinitionComponentData as Default>::default())),
+            create_boxed: || Box::new(<CharacterDefinitionComponentData as Default>::default()),
         },
         fields: &[
         ],
@@ -20380,6 +21660,7 @@ impl TypeObject for CharacterDefinitionComponentData {
 
 pub static CHARACTERDEFINITIONCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterDefinitionComponentData-Array",
+    name_hash: 2372394722,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CharacterDefinitionComponentData"),
@@ -20388,22 +21669,23 @@ pub static CHARACTERDEFINITIONCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterDefinitionSpawnData {
     pub _glacier_base: super::game_shared::CharacterSpawnReferenceObjectData,
-    pub character_definition: Option<Arc<Mutex<dyn CharacterDefinitionTrait>>>,
+    pub character_definition: Option<LockedTypeObject /* CharacterDefinition */>,
 }
 
 pub trait CharacterDefinitionSpawnDataTrait: super::game_shared::CharacterSpawnReferenceObjectDataTrait {
-    fn character_definition(&self) -> &Option<Arc<Mutex<dyn CharacterDefinitionTrait>>>;
-    fn character_definition_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterDefinitionTrait>>>;
+    fn character_definition(&self) -> &Option<LockedTypeObject /* CharacterDefinition */>;
+    fn character_definition_mut(&mut self) -> &mut Option<LockedTypeObject /* CharacterDefinition */>;
 }
 
 impl CharacterDefinitionSpawnDataTrait for CharacterDefinitionSpawnData {
-    fn character_definition(&self) -> &Option<Arc<Mutex<dyn CharacterDefinitionTrait>>> {
+    fn character_definition(&self) -> &Option<LockedTypeObject /* CharacterDefinition */> {
         &self.character_definition
     }
-    fn character_definition_mut(&mut self) -> &mut Option<Arc<Mutex<dyn CharacterDefinitionTrait>>> {
+    fn character_definition_mut(&mut self) -> &mut Option<LockedTypeObject /* CharacterDefinition */> {
         &mut self.character_definition
     }
 }
@@ -20421,10 +21703,10 @@ impl super::game_shared::CharacterSpawnReferenceObjectDataTrait for CharacterDef
     fn allow_fallback_on_next_availabe_vehicle_entry_mut(&mut self) -> &mut bool {
         self._glacier_base.allow_fallback_on_next_availabe_vehicle_entry_mut()
     }
-    fn template(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>> {
+    fn template(&self) -> &Option<LockedTypeObject /* super::game_shared::CharacterSpawnTemplateData */> {
         self._glacier_base.template()
     }
-    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterSpawnTemplateDataTrait>>> {
+    fn template_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::CharacterSpawnTemplateData */> {
         self._glacier_base.template_mut()
     }
     fn spawn_visible(&self) -> &bool {
@@ -20589,10 +21871,10 @@ impl super::game_shared::SpawnReferenceObjectDataTrait for CharacterDefinitionSp
 }
 
 impl super::gameplay_sim::GameplaySpawnReferenceObjectDataTrait for CharacterDefinitionSpawnData {
-    fn extra_spawn_data(&self) -> &Vec<Option<Arc<Mutex<dyn super::gameplay_sim::ExtraSpawnDataTrait>>>> {
+    fn extra_spawn_data(&self) -> &Vec<Option<LockedTypeObject /* super::gameplay_sim::ExtraSpawnData */>> {
         self._glacier_base.extra_spawn_data()
     }
-    fn extra_spawn_data_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::gameplay_sim::ExtraSpawnDataTrait>>>> {
+    fn extra_spawn_data_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::gameplay_sim::ExtraSpawnData */>> {
         self._glacier_base.extra_spawn_data_mut()
     }
     fn enabled(&self) -> &bool {
@@ -20709,16 +21991,16 @@ impl super::entity::ReferenceObjectDataTrait for CharacterDefinitionSpawnData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::entity::ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::entity::ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &super::entity::StreamRealm {
@@ -20785,16 +22067,20 @@ impl super::core::DataContainerTrait for CharacterDefinitionSpawnData {
 
 pub static CHARACTERDEFINITIONSPAWNDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterDefinitionSpawnData",
+    name_hash: 744430210,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_shared::CHARACTERSPAWNREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterDefinitionSpawnData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterDefinitionSpawnData as Default>::default())),
+            create_boxed: || Box::new(<CharacterDefinitionSpawnData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CharacterDefinition",
+                name_hash: 1778073705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterDefinition",
                 rust_offset: offset_of!(CharacterDefinitionSpawnData, character_definition),
@@ -20826,6 +22112,7 @@ impl TypeObject for CharacterDefinitionSpawnData {
 
 pub static CHARACTERDEFINITIONSPAWNDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterDefinitionSpawnData-Array",
+    name_hash: 2637420982,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CharacterDefinitionSpawnData"),
@@ -20834,28 +22121,29 @@ pub static CHARACTERDEFINITIONSPAWNDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterDefinition {
     pub _glacier_base: super::core::DataContainerPolicyAsset,
-    pub character_blueprint: Option<Arc<Mutex<dyn super::game_shared::CharacterBlueprintTrait>>>,
+    pub character_blueprint: Option<LockedTypeObject /* super::game_shared::CharacterBlueprint */>,
     pub face_poser_library: super::ant::AntRef,
-    pub meshes: Vec<Option<Arc<Mutex<dyn CharacterDefinitionMeshTrait>>>>,
+    pub meshes: Vec<Option<LockedTypeObject /* CharacterDefinitionMesh */>>,
 }
 
 pub trait CharacterDefinitionTrait: super::core::DataContainerPolicyAssetTrait {
-    fn character_blueprint(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterBlueprintTrait>>>;
-    fn character_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterBlueprintTrait>>>;
+    fn character_blueprint(&self) -> &Option<LockedTypeObject /* super::game_shared::CharacterBlueprint */>;
+    fn character_blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::CharacterBlueprint */>;
     fn face_poser_library(&self) -> &super::ant::AntRef;
     fn face_poser_library_mut(&mut self) -> &mut super::ant::AntRef;
-    fn meshes(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterDefinitionMeshTrait>>>>;
-    fn meshes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterDefinitionMeshTrait>>>>;
+    fn meshes(&self) -> &Vec<Option<LockedTypeObject /* CharacterDefinitionMesh */>>;
+    fn meshes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterDefinitionMesh */>>;
 }
 
 impl CharacterDefinitionTrait for CharacterDefinition {
-    fn character_blueprint(&self) -> &Option<Arc<Mutex<dyn super::game_shared::CharacterBlueprintTrait>>> {
+    fn character_blueprint(&self) -> &Option<LockedTypeObject /* super::game_shared::CharacterBlueprint */> {
         &self.character_blueprint
     }
-    fn character_blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::game_shared::CharacterBlueprintTrait>>> {
+    fn character_blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* super::game_shared::CharacterBlueprint */> {
         &mut self.character_blueprint
     }
     fn face_poser_library(&self) -> &super::ant::AntRef {
@@ -20864,10 +22152,10 @@ impl CharacterDefinitionTrait for CharacterDefinition {
     fn face_poser_library_mut(&mut self) -> &mut super::ant::AntRef {
         &mut self.face_poser_library
     }
-    fn meshes(&self) -> &Vec<Option<Arc<Mutex<dyn CharacterDefinitionMeshTrait>>>> {
+    fn meshes(&self) -> &Vec<Option<LockedTypeObject /* CharacterDefinitionMesh */>> {
         &self.meshes
     }
-    fn meshes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CharacterDefinitionMeshTrait>>>> {
+    fn meshes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CharacterDefinitionMesh */>> {
         &mut self.meshes
     }
 }
@@ -20889,28 +22177,34 @@ impl super::core::DataContainerTrait for CharacterDefinition {
 
 pub static CHARACTERDEFINITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterDefinition",
+    name_hash: 1778073705,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINERPOLICYASSET_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterDefinition, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterDefinition as Default>::default())),
+            create_boxed: || Box::new(<CharacterDefinition as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CharacterBlueprint",
+                name_hash: 1806128211,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CharacterBlueprint",
                 rust_offset: offset_of!(CharacterDefinition, character_blueprint),
             },
             FieldInfoData {
                 name: "FacePoserLibrary",
+                name_hash: 2878950592,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(CharacterDefinition, face_poser_library),
             },
             FieldInfoData {
                 name: "Meshes",
+                name_hash: 2648066496,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CharacterDefinitionMesh-Array",
                 rust_offset: offset_of!(CharacterDefinition, meshes),
@@ -20942,6 +22236,7 @@ impl TypeObject for CharacterDefinition {
 
 pub static CHARACTERDEFINITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterDefinition-Array",
+    name_hash: 534730589,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CharacterDefinition"),
@@ -20950,12 +22245,13 @@ pub static CHARACTERDEFINITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CharacterDefinitionMesh {
     pub _glacier_base: super::core::DataContainer,
     pub guid: glacier_util::guid::Guid,
     pub object_tag: String,
-    pub mesh_asset: Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>,
+    pub mesh_asset: Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>,
     pub attach_to_joint: String,
     pub attach_offset: super::core::LinearTransform,
     pub visible: bool,
@@ -20966,8 +22262,8 @@ pub trait CharacterDefinitionMeshTrait: super::core::DataContainerTrait {
     fn guid_mut(&mut self) -> &mut glacier_util::guid::Guid;
     fn object_tag(&self) -> &String;
     fn object_tag_mut(&mut self) -> &mut String;
-    fn mesh_asset(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
-    fn mesh_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn mesh_asset(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>;
+    fn mesh_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>;
     fn attach_to_joint(&self) -> &String;
     fn attach_to_joint_mut(&mut self) -> &mut String;
     fn attach_offset(&self) -> &super::core::LinearTransform;
@@ -20989,10 +22285,10 @@ impl CharacterDefinitionMeshTrait for CharacterDefinitionMesh {
     fn object_tag_mut(&mut self) -> &mut String {
         &mut self.object_tag
     }
-    fn mesh_asset(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh_asset(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         &self.mesh_asset
     }
-    fn mesh_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn mesh_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         &mut self.mesh_asset
     }
     fn attach_to_joint(&self) -> &String {
@@ -21020,46 +22316,55 @@ impl super::core::DataContainerTrait for CharacterDefinitionMesh {
 
 pub static CHARACTERDEFINITIONMESH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterDefinitionMesh",
+    name_hash: 2099712026,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(CharacterDefinitionMesh, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CharacterDefinitionMesh as Default>::default())),
+            create_boxed: || Box::new(<CharacterDefinitionMesh as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Guid",
+                name_hash: 2088724858,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(CharacterDefinitionMesh, guid),
             },
             FieldInfoData {
                 name: "ObjectTag",
+                name_hash: 3207461890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CharacterDefinitionMesh, object_tag),
             },
             FieldInfoData {
                 name: "MeshAsset",
+                name_hash: 15738982,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MeshBaseAsset",
                 rust_offset: offset_of!(CharacterDefinitionMesh, mesh_asset),
             },
             FieldInfoData {
                 name: "AttachToJoint",
+                name_hash: 1013700163,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CharacterDefinitionMesh, attach_to_joint),
             },
             FieldInfoData {
                 name: "AttachOffset",
+                name_hash: 4087467523,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(CharacterDefinitionMesh, attach_offset),
             },
             FieldInfoData {
                 name: "Visible",
+                name_hash: 901540267,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CharacterDefinitionMesh, visible),
@@ -21091,6 +22396,7 @@ impl TypeObject for CharacterDefinitionMesh {
 
 pub static CHARACTERDEFINITIONMESH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CharacterDefinitionMesh-Array",
+    name_hash: 848302894,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("CharacterDefinitionMesh"),
@@ -21099,7 +22405,8 @@ pub static CHARACTERDEFINITIONMESH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceAudioSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub obstruction_max_queries_per_frame: u32,
@@ -21250,94 +22557,111 @@ impl super::core::DataContainerTrait for DiceAudioSettings {
 
 pub static DICEAUDIOSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceAudioSettings",
+    name_hash: 1333680029,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(DiceAudioSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceAudioSettings as Default>::default())),
+            create_boxed: || Box::new(<DiceAudioSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ObstructionMaxQueriesPerFrame",
+                name_hash: 2517616949,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_max_queries_per_frame),
             },
             FieldInfoData {
                 name: "ObstructionQueryStageThreshold",
+                name_hash: 2970800622,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_query_stage_threshold),
             },
             FieldInfoData {
                 name: "ObstructionMaxObstruction",
+                name_hash: 3451241617,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_max_obstruction),
             },
             FieldInfoData {
                 name: "ObstructionMaxObstructionDistance",
+                name_hash: 2843254354,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_max_obstruction_distance),
             },
             FieldInfoData {
                 name: "ObstructionRelativeVelocityThreshold",
+                name_hash: 3918973603,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_relative_velocity_threshold),
             },
             FieldInfoData {
                 name: "ObstructionMaxInactiveTime",
+                name_hash: 1092294557,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_max_inactive_time),
             },
             FieldInfoData {
                 name: "ObstructionUseRadiusAngleAsObstructionValue",
+                name_hash: 1949904102,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_use_radius_angle_as_obstruction_value),
             },
             FieldInfoData {
                 name: "ObstructionMultiStageRaycastsEnabled",
+                name_hash: 3057402371,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_multi_stage_raycasts_enabled),
             },
             FieldInfoData {
                 name: "ObstructionMultiStageRaycastsOuterDistance",
+                name_hash: 2297805116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_multi_stage_raycasts_outer_distance),
             },
             FieldInfoData {
                 name: "ObstructionMultiStageRaycastsSecondStageScalar",
+                name_hash: 3038712764,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_multi_stage_raycasts_second_stage_scalar),
             },
             FieldInfoData {
                 name: "ObstructionMultiStageRaycastsAttackSpeed",
+                name_hash: 60475369,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_multi_stage_raycasts_attack_speed),
             },
             FieldInfoData {
                 name: "ObstructionMultiStageRaycastsReleaseSpeed",
+                name_hash: 2712638536,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_multi_stage_raycasts_release_speed),
             },
             FieldInfoData {
                 name: "ObstructionMultiStageRaycastsFirstStageAngle",
+                name_hash: 257111897,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_multi_stage_raycasts_first_stage_angle),
             },
             FieldInfoData {
                 name: "ObstructionMultiStageRaycastsMaxObstruction",
+                name_hash: 2820832576,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceAudioSettings, obstruction_multi_stage_raycasts_max_obstruction),
@@ -21369,6 +22693,7 @@ impl TypeObject for DiceAudioSettings {
 
 pub static DICEAUDIOSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceAudioSettings-Array",
+    name_hash: 1367163689,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceAudioSettings"),
@@ -21377,7 +22702,8 @@ pub static DICEAUDIOSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DistanceScopeStageData {
     pub _glacier_base: super::audio::SoundScopeStageData,
     pub distance: f32,
@@ -21405,16 +22731,20 @@ impl super::core::DataContainerTrait for DistanceScopeStageData {
 
 pub static DISTANCESCOPESTAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceScopeStageData",
+    name_hash: 2703334584,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::SOUNDSCOPESTAGEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DistanceScopeStageData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DistanceScopeStageData as Default>::default())),
+            create_boxed: || Box::new(<DistanceScopeStageData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Distance",
+                name_hash: 408560070,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DistanceScopeStageData, distance),
@@ -21446,6 +22776,7 @@ impl TypeObject for DistanceScopeStageData {
 
 pub static DISTANCESCOPESTAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistanceScopeStageData-Array",
+    name_hash: 3109365260,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DistanceScopeStageData"),
@@ -21454,7 +22785,8 @@ pub static DISTANCESCOPESTAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ComboScopeStageData {
     pub _glacier_base: super::audio::SoundScopeStageData,
     pub newest_count: u32,
@@ -21500,28 +22832,34 @@ impl super::core::DataContainerTrait for ComboScopeStageData {
 
 pub static COMBOSCOPESTAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComboScopeStageData",
+    name_hash: 3578339511,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::SOUNDSCOPESTAGEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ComboScopeStageData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ComboScopeStageData as Default>::default())),
+            create_boxed: || Box::new(<ComboScopeStageData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "NewestCount",
+                name_hash: 4238783608,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ComboScopeStageData, newest_count),
             },
             FieldInfoData {
                 name: "NewestThreshold",
+                name_hash: 645237420,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ComboScopeStageData, newest_threshold),
             },
             FieldInfoData {
                 name: "ClosestCount",
+                name_hash: 4143870103,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ComboScopeStageData, closest_count),
@@ -21553,6 +22891,7 @@ impl TypeObject for ComboScopeStageData {
 
 pub static COMBOSCOPESTAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComboScopeStageData-Array",
+    name_hash: 2212477443,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ComboScopeStageData"),
@@ -21561,7 +22900,8 @@ pub static COMBOSCOPESTAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AngularScopeStageData {
     pub _glacier_base: super::audio::SoundScopeStageData,
     pub inner_angle: f32,
@@ -21616,34 +22956,41 @@ impl super::core::DataContainerTrait for AngularScopeStageData {
 
 pub static ANGULARSCOPESTAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngularScopeStageData",
+    name_hash: 265677017,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::audio::SOUNDSCOPESTAGEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AngularScopeStageData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AngularScopeStageData as Default>::default())),
+            create_boxed: || Box::new(<AngularScopeStageData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InnerAngle",
+                name_hash: 3372545274,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AngularScopeStageData, inner_angle),
             },
             FieldInfoData {
                 name: "OuterAngle",
+                name_hash: 4288979453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AngularScopeStageData, outer_angle),
             },
             FieldInfoData {
                 name: "ScallingFactor",
+                name_hash: 3321416025,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AngularScopeStageData, scalling_factor),
             },
             FieldInfoData {
                 name: "Count",
+                name_hash: 212413894,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(AngularScopeStageData, count),
@@ -21675,6 +23022,7 @@ impl TypeObject for AngularScopeStageData {
 
 pub static ANGULARSCOPESTAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AngularScopeStageData-Array",
+    name_hash: 2282297069,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AngularScopeStageData"),
@@ -21683,31 +23031,32 @@ pub static ANGULARSCOPESTAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WhooshbyPlayerEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub whooshby_closing_sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
+    pub whooshby_closing_sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
     pub whooshby_trigger_closing_distance_threshold: f32,
-    pub whooshby_separating_sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
+    pub whooshby_separating_sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
     pub whooshby_trigger_separating_distance_threshold: f32,
 }
 
 pub trait WhooshbyPlayerEntityDataTrait: super::entity::EntityDataTrait {
-    fn whooshby_closing_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn whooshby_closing_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn whooshby_closing_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn whooshby_closing_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
     fn whooshby_trigger_closing_distance_threshold(&self) -> &f32;
     fn whooshby_trigger_closing_distance_threshold_mut(&mut self) -> &mut f32;
-    fn whooshby_separating_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn whooshby_separating_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn whooshby_separating_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn whooshby_separating_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
     fn whooshby_trigger_separating_distance_threshold(&self) -> &f32;
     fn whooshby_trigger_separating_distance_threshold_mut(&mut self) -> &mut f32;
 }
 
 impl WhooshbyPlayerEntityDataTrait for WhooshbyPlayerEntityData {
-    fn whooshby_closing_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn whooshby_closing_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.whooshby_closing_sound
     }
-    fn whooshby_closing_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn whooshby_closing_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.whooshby_closing_sound
     }
     fn whooshby_trigger_closing_distance_threshold(&self) -> &f32 {
@@ -21716,10 +23065,10 @@ impl WhooshbyPlayerEntityDataTrait for WhooshbyPlayerEntityData {
     fn whooshby_trigger_closing_distance_threshold_mut(&mut self) -> &mut f32 {
         &mut self.whooshby_trigger_closing_distance_threshold
     }
-    fn whooshby_separating_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn whooshby_separating_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.whooshby_separating_sound
     }
-    fn whooshby_separating_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn whooshby_separating_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.whooshby_separating_sound
     }
     fn whooshby_trigger_separating_distance_threshold(&self) -> &f32 {
@@ -21753,34 +23102,41 @@ impl super::core::DataContainerTrait for WhooshbyPlayerEntityData {
 
 pub static WHOOSHBYPLAYERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WhooshbyPlayerEntityData",
+    name_hash: 2493606594,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WhooshbyPlayerEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WhooshbyPlayerEntityData as Default>::default())),
+            create_boxed: || Box::new(<WhooshbyPlayerEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WhooshbyClosingSound",
+                name_hash: 1404201962,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(WhooshbyPlayerEntityData, whooshby_closing_sound),
             },
             FieldInfoData {
                 name: "WhooshbyTriggerClosingDistanceThreshold",
+                name_hash: 1180011205,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WhooshbyPlayerEntityData, whooshby_trigger_closing_distance_threshold),
             },
             FieldInfoData {
                 name: "WhooshbySeparatingSound",
+                name_hash: 1070957881,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(WhooshbyPlayerEntityData, whooshby_separating_sound),
             },
             FieldInfoData {
                 name: "WhooshbyTriggerSeparatingDistanceThreshold",
+                name_hash: 1988125078,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WhooshbyPlayerEntityData, whooshby_trigger_separating_distance_threshold),
@@ -21812,6 +23168,7 @@ impl TypeObject for WhooshbyPlayerEntityData {
 
 pub static WHOOSHBYPLAYERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WhooshbyPlayerEntityData-Array",
+    name_hash: 701602422,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("WhooshbyPlayerEntityData"),
@@ -21820,10 +23177,11 @@ pub static WHOOSHBYPLAYERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioProximityReverbEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub reverbs: Vec<AudioProximityReverbData>,
+    pub reverbs: Vec<BoxedTypeObject /* AudioProximityReverbData */>,
     pub indooriness_attack: f32,
     pub indooriness_decay: f32,
     pub surface_closeness_attack: f32,
@@ -21832,8 +23190,8 @@ pub struct AudioProximityReverbEntityData {
 }
 
 pub trait AudioProximityReverbEntityDataTrait: super::entity::EntityDataTrait {
-    fn reverbs(&self) -> &Vec<AudioProximityReverbData>;
-    fn reverbs_mut(&mut self) -> &mut Vec<AudioProximityReverbData>;
+    fn reverbs(&self) -> &Vec<BoxedTypeObject /* AudioProximityReverbData */>;
+    fn reverbs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* AudioProximityReverbData */>;
     fn indooriness_attack(&self) -> &f32;
     fn indooriness_attack_mut(&mut self) -> &mut f32;
     fn indooriness_decay(&self) -> &f32;
@@ -21847,10 +23205,10 @@ pub trait AudioProximityReverbEntityDataTrait: super::entity::EntityDataTrait {
 }
 
 impl AudioProximityReverbEntityDataTrait for AudioProximityReverbEntityData {
-    fn reverbs(&self) -> &Vec<AudioProximityReverbData> {
+    fn reverbs(&self) -> &Vec<BoxedTypeObject /* AudioProximityReverbData */> {
         &self.reverbs
     }
-    fn reverbs_mut(&mut self) -> &mut Vec<AudioProximityReverbData> {
+    fn reverbs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* AudioProximityReverbData */> {
         &mut self.reverbs
     }
     fn indooriness_attack(&self) -> &f32 {
@@ -21908,46 +23266,55 @@ impl super::core::DataContainerTrait for AudioProximityReverbEntityData {
 
 pub static AUDIOPROXIMITYREVERBENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioProximityReverbEntityData",
+    name_hash: 41598969,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AudioProximityReverbEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioProximityReverbEntityData as Default>::default())),
+            create_boxed: || Box::new(<AudioProximityReverbEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Reverbs",
+                name_hash: 1309051938,
                 flags: MemberInfoFlags::new(144),
                 field_type: "AudioProximityReverbData-Array",
                 rust_offset: offset_of!(AudioProximityReverbEntityData, reverbs),
             },
             FieldInfoData {
                 name: "IndoorinessAttack",
+                name_hash: 842649822,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityReverbEntityData, indooriness_attack),
             },
             FieldInfoData {
                 name: "IndoorinessDecay",
+                name_hash: 3406622636,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityReverbEntityData, indooriness_decay),
             },
             FieldInfoData {
                 name: "SurfaceClosenessAttack",
+                name_hash: 1696478021,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityReverbEntityData, surface_closeness_attack),
             },
             FieldInfoData {
                 name: "SurfaceClosenessDecay",
+                name_hash: 1997571031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityReverbEntityData, surface_closeness_decay),
             },
             FieldInfoData {
                 name: "LocalPlayerId",
+                name_hash: 1029133718,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalPlayerId",
                 rust_offset: offset_of!(AudioProximityReverbEntityData, local_player_id),
@@ -21979,6 +23346,7 @@ impl TypeObject for AudioProximityReverbEntityData {
 
 pub static AUDIOPROXIMITYREVERBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioProximityReverbEntityData-Array",
+    name_hash: 1282621133,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioProximityReverbEntityData"),
@@ -21987,30 +23355,31 @@ pub static AUDIOPROXIMITYREVERBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioProximityReverbData {
-    pub impulse_response: Option<Arc<Mutex<dyn super::audio::ImpulseResponseAssetTrait>>>,
+    pub impulse_response: Option<LockedTypeObject /* super::audio::ImpulseResponseAsset */>,
     pub gain: f32,
-    pub indooriness_response: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
-    pub surface_closeness_response: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
+    pub indooriness_response: Option<LockedTypeObject /* super::core::FloatCurve */>,
+    pub surface_closeness_response: Option<LockedTypeObject /* super::core::FloatCurve */>,
 }
 
 pub trait AudioProximityReverbDataTrait: TypeObject {
-    fn impulse_response(&self) -> &Option<Arc<Mutex<dyn super::audio::ImpulseResponseAssetTrait>>>;
-    fn impulse_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::ImpulseResponseAssetTrait>>>;
+    fn impulse_response(&self) -> &Option<LockedTypeObject /* super::audio::ImpulseResponseAsset */>;
+    fn impulse_response_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::ImpulseResponseAsset */>;
     fn gain(&self) -> &f32;
     fn gain_mut(&mut self) -> &mut f32;
-    fn indooriness_response(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn indooriness_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn surface_closeness_response(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn surface_closeness_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn indooriness_response(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn indooriness_response_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn surface_closeness_response(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn surface_closeness_response_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
 }
 
 impl AudioProximityReverbDataTrait for AudioProximityReverbData {
-    fn impulse_response(&self) -> &Option<Arc<Mutex<dyn super::audio::ImpulseResponseAssetTrait>>> {
+    fn impulse_response(&self) -> &Option<LockedTypeObject /* super::audio::ImpulseResponseAsset */> {
         &self.impulse_response
     }
-    fn impulse_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::ImpulseResponseAssetTrait>>> {
+    fn impulse_response_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::ImpulseResponseAsset */> {
         &mut self.impulse_response
     }
     fn gain(&self) -> &f32 {
@@ -22019,49 +23388,55 @@ impl AudioProximityReverbDataTrait for AudioProximityReverbData {
     fn gain_mut(&mut self) -> &mut f32 {
         &mut self.gain
     }
-    fn indooriness_response(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn indooriness_response(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.indooriness_response
     }
-    fn indooriness_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn indooriness_response_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.indooriness_response
     }
-    fn surface_closeness_response(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn surface_closeness_response(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.surface_closeness_response
     }
-    fn surface_closeness_response_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn surface_closeness_response_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.surface_closeness_response
     }
 }
 
 pub static AUDIOPROXIMITYREVERBDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioProximityReverbData",
+    name_hash: 3384744098,
     flags: MemberInfoFlags::new(73),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioProximityReverbData as Default>::default())),
+            create_boxed: || Box::new(<AudioProximityReverbData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ImpulseResponse",
+                name_hash: 182557405,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ImpulseResponseAsset",
                 rust_offset: offset_of!(AudioProximityReverbData, impulse_response),
             },
             FieldInfoData {
                 name: "Gain",
+                name_hash: 2088703076,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityReverbData, gain),
             },
             FieldInfoData {
                 name: "IndoorinessResponse",
+                name_hash: 1763378293,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(AudioProximityReverbData, indooriness_response),
             },
             FieldInfoData {
                 name: "SurfaceClosenessResponse",
+                name_hash: 1466470062,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(AudioProximityReverbData, surface_closeness_response),
@@ -22093,6 +23468,7 @@ impl TypeObject for AudioProximityReverbData {
 
 pub static AUDIOPROXIMITYREVERBDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioProximityReverbData-Array",
+    name_hash: 3779458838,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioProximityReverbData"),
@@ -22101,7 +23477,8 @@ pub static AUDIOPROXIMITYREVERBDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioProximityDetectorReaderEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub scaled_enclosedness_min: f32,
@@ -22180,40 +23557,48 @@ impl super::core::DataContainerTrait for AudioProximityDetectorReaderEntityData 
 
 pub static AUDIOPROXIMITYDETECTORREADERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioProximityDetectorReaderEntityData",
+    name_hash: 1892294994,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AudioProximityDetectorReaderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioProximityDetectorReaderEntityData as Default>::default())),
+            create_boxed: || Box::new(<AudioProximityDetectorReaderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ScaledEnclosednessMin",
+                name_hash: 1351434113,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityDetectorReaderEntityData, scaled_enclosedness_min),
             },
             FieldInfoData {
                 name: "ScaledEnclosednessMax",
+                name_hash: 1351433887,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityDetectorReaderEntityData, scaled_enclosedness_max),
             },
             FieldInfoData {
                 name: "ScaledEnclosednessAttack",
+                name_hash: 3464067427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityDetectorReaderEntityData, scaled_enclosedness_attack),
             },
             FieldInfoData {
                 name: "ScaledEnclosednessDecay",
+                name_hash: 2850154353,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityDetectorReaderEntityData, scaled_enclosedness_decay),
             },
             FieldInfoData {
                 name: "LocalPlayerId",
+                name_hash: 1029133718,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalPlayerId",
                 rust_offset: offset_of!(AudioProximityDetectorReaderEntityData, local_player_id),
@@ -22245,6 +23630,7 @@ impl TypeObject for AudioProximityDetectorReaderEntityData {
 
 pub static AUDIOPROXIMITYDETECTORREADERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioProximityDetectorReaderEntityData-Array",
+    name_hash: 3084646630,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioProximityDetectorReaderEntityData"),
@@ -22253,7 +23639,8 @@ pub static AUDIOPROXIMITYDETECTORREADERENTITYDATA_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioProximityDetectorEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub offset: super::core::Vec3,
@@ -22350,52 +23737,62 @@ impl super::core::DataContainerTrait for AudioProximityDetectorEntityData {
 
 pub static AUDIOPROXIMITYDETECTORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioProximityDetectorEntityData",
+    name_hash: 3594558647,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AudioProximityDetectorEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioProximityDetectorEntityData as Default>::default())),
+            create_boxed: || Box::new(<AudioProximityDetectorEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Offset",
+                name_hash: 2871410728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AudioProximityDetectorEntityData, offset),
             },
             FieldInfoData {
                 name: "RaycastRadius",
+                name_hash: 223104402,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityDetectorEntityData, raycast_radius),
             },
             FieldInfoData {
                 name: "RaycastCount",
+                name_hash: 3370456553,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(AudioProximityDetectorEntityData, raycast_count),
             },
             FieldInfoData {
                 name: "ForwardBiasMaxDistance",
+                name_hash: 3070366448,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityDetectorEntityData, forward_bias_max_distance),
             },
             FieldInfoData {
                 name: "ForwardBiasMaxSpeed",
+                name_hash: 3032848820,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityDetectorEntityData, forward_bias_max_speed),
             },
             FieldInfoData {
                 name: "ForwardBiasMinSpeed",
+                name_hash: 1562782570,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioProximityDetectorEntityData, forward_bias_min_speed),
             },
             FieldInfoData {
                 name: "ProximityType",
+                name_hash: 259289960,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProximityDetectorType",
                 rust_offset: offset_of!(AudioProximityDetectorEntityData, proximity_type),
@@ -22427,6 +23824,7 @@ impl TypeObject for AudioProximityDetectorEntityData {
 
 pub static AUDIOPROXIMITYDETECTORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioProximityDetectorEntityData-Array",
+    name_hash: 1468282371,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioProximityDetectorEntityData"),
@@ -22446,6 +23844,7 @@ pub enum ProximityDetectorType {
 
 pub static PROXIMITYDETECTORTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProximityDetectorType",
+    name_hash: 2150450642,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -22474,6 +23873,7 @@ impl TypeObject for ProximityDetectorType {
 
 pub static PROXIMITYDETECTORTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProximityDetectorType-Array",
+    name_hash: 858291558,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("ProximityDetectorType"),
@@ -22482,17 +23882,18 @@ pub static PROXIMITYDETECTORTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VoiceOverIntervalEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub interval: Option<Arc<Mutex<dyn super::audio::VoiceOverIntervalTrait>>>,
+    pub interval: Option<LockedTypeObject /* super::audio::VoiceOverInterval */>,
     pub time_threshold: f32,
     pub reset_if_threshold_reached: bool,
 }
 
 pub trait VoiceOverIntervalEntityDataTrait: super::entity::EntityDataTrait {
-    fn interval(&self) -> &Option<Arc<Mutex<dyn super::audio::VoiceOverIntervalTrait>>>;
-    fn interval_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::VoiceOverIntervalTrait>>>;
+    fn interval(&self) -> &Option<LockedTypeObject /* super::audio::VoiceOverInterval */>;
+    fn interval_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::VoiceOverInterval */>;
     fn time_threshold(&self) -> &f32;
     fn time_threshold_mut(&mut self) -> &mut f32;
     fn reset_if_threshold_reached(&self) -> &bool;
@@ -22500,10 +23901,10 @@ pub trait VoiceOverIntervalEntityDataTrait: super::entity::EntityDataTrait {
 }
 
 impl VoiceOverIntervalEntityDataTrait for VoiceOverIntervalEntityData {
-    fn interval(&self) -> &Option<Arc<Mutex<dyn super::audio::VoiceOverIntervalTrait>>> {
+    fn interval(&self) -> &Option<LockedTypeObject /* super::audio::VoiceOverInterval */> {
         &self.interval
     }
-    fn interval_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::VoiceOverIntervalTrait>>> {
+    fn interval_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::VoiceOverInterval */> {
         &mut self.interval
     }
     fn time_threshold(&self) -> &f32 {
@@ -22543,28 +23944,34 @@ impl super::core::DataContainerTrait for VoiceOverIntervalEntityData {
 
 pub static VOICEOVERINTERVALENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverIntervalEntityData",
+    name_hash: 1295999817,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VoiceOverIntervalEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VoiceOverIntervalEntityData as Default>::default())),
+            create_boxed: || Box::new(<VoiceOverIntervalEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Interval",
+                name_hash: 4280103418,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VoiceOverInterval",
                 rust_offset: offset_of!(VoiceOverIntervalEntityData, interval),
             },
             FieldInfoData {
                 name: "TimeThreshold",
+                name_hash: 780400743,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VoiceOverIntervalEntityData, time_threshold),
             },
             FieldInfoData {
                 name: "ResetIfThresholdReached",
+                name_hash: 2737647636,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VoiceOverIntervalEntityData, reset_if_threshold_reached),
@@ -22596,6 +24003,7 @@ impl TypeObject for VoiceOverIntervalEntityData {
 
 pub static VOICEOVERINTERVALENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverIntervalEntityData-Array",
+    name_hash: 1588701565,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("VoiceOverIntervalEntityData"),
@@ -22604,25 +24012,26 @@ pub static VOICEOVERINTERVALENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VoiceOverConversationCheckEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub queue_group: Option<Arc<Mutex<dyn super::audio::VoiceOverConversationQueueGroupTrait>>>,
+    pub queue_group: Option<LockedTypeObject /* super::audio::VoiceOverConversationQueueGroup */>,
     pub continuous_update: bool,
 }
 
 pub trait VoiceOverConversationCheckEntityDataTrait: super::entity::EntityDataTrait {
-    fn queue_group(&self) -> &Option<Arc<Mutex<dyn super::audio::VoiceOverConversationQueueGroupTrait>>>;
-    fn queue_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::VoiceOverConversationQueueGroupTrait>>>;
+    fn queue_group(&self) -> &Option<LockedTypeObject /* super::audio::VoiceOverConversationQueueGroup */>;
+    fn queue_group_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::VoiceOverConversationQueueGroup */>;
     fn continuous_update(&self) -> &bool;
     fn continuous_update_mut(&mut self) -> &mut bool;
 }
 
 impl VoiceOverConversationCheckEntityDataTrait for VoiceOverConversationCheckEntityData {
-    fn queue_group(&self) -> &Option<Arc<Mutex<dyn super::audio::VoiceOverConversationQueueGroupTrait>>> {
+    fn queue_group(&self) -> &Option<LockedTypeObject /* super::audio::VoiceOverConversationQueueGroup */> {
         &self.queue_group
     }
-    fn queue_group_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::VoiceOverConversationQueueGroupTrait>>> {
+    fn queue_group_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::VoiceOverConversationQueueGroup */> {
         &mut self.queue_group
     }
     fn continuous_update(&self) -> &bool {
@@ -22656,22 +24065,27 @@ impl super::core::DataContainerTrait for VoiceOverConversationCheckEntityData {
 
 pub static VOICEOVERCONVERSATIONCHECKENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverConversationCheckEntityData",
+    name_hash: 3097889405,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VoiceOverConversationCheckEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VoiceOverConversationCheckEntityData as Default>::default())),
+            create_boxed: || Box::new(<VoiceOverConversationCheckEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "QueueGroup",
+                name_hash: 2016027659,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VoiceOverConversationQueueGroup",
                 rust_offset: offset_of!(VoiceOverConversationCheckEntityData, queue_group),
             },
             FieldInfoData {
                 name: "ContinuousUpdate",
+                name_hash: 1186338873,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VoiceOverConversationCheckEntityData, continuous_update),
@@ -22703,6 +24117,7 @@ impl TypeObject for VoiceOverConversationCheckEntityData {
 
 pub static VOICEOVERCONVERSATIONCHECKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverConversationCheckEntityData-Array",
+    name_hash: 2865502025,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("VoiceOverConversationCheckEntityData"),
@@ -22711,7 +24126,8 @@ pub static VOICEOVERCONVERSATIONCHECKENTITYDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VoiceOverContextAreaResultEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub position: super::core::Vec3,
@@ -22754,16 +24170,20 @@ impl super::core::DataContainerTrait for VoiceOverContextAreaResultEntityData {
 
 pub static VOICEOVERCONTEXTAREARESULTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverContextAreaResultEntityData",
+    name_hash: 2862442903,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VoiceOverContextAreaResultEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VoiceOverContextAreaResultEntityData as Default>::default())),
+            create_boxed: || Box::new(<VoiceOverContextAreaResultEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Position",
+                name_hash: 3402582524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VoiceOverContextAreaResultEntityData, position),
@@ -22795,6 +24215,7 @@ impl TypeObject for VoiceOverContextAreaResultEntityData {
 
 pub static VOICEOVERCONTEXTAREARESULTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverContextAreaResultEntityData-Array",
+    name_hash: 937095715,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("VoiceOverContextAreaResultEntityData"),
@@ -22803,7 +24224,8 @@ pub static VOICEOVERCONTEXTAREARESULTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VoiceOverContextAreaEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub enable_on_creation: bool,
@@ -22855,22 +24277,27 @@ impl super::core::DataContainerTrait for VoiceOverContextAreaEntityData {
 
 pub static VOICEOVERCONTEXTAREAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverContextAreaEntityData",
+    name_hash: 2269253214,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VoiceOverContextAreaEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VoiceOverContextAreaEntityData as Default>::default())),
+            create_boxed: || Box::new(<VoiceOverContextAreaEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EnableOnCreation",
+                name_hash: 348824620,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VoiceOverContextAreaEntityData, enable_on_creation),
             },
             FieldInfoData {
                 name: "ContextId",
+                name_hash: 2421062423,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VoiceOverContextAreaEntityData, context_id),
@@ -22902,6 +24329,7 @@ impl TypeObject for VoiceOverContextAreaEntityData {
 
 pub static VOICEOVERCONTEXTAREAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VoiceOverContextAreaEntityData-Array",
+    name_hash: 2576396266,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("VoiceOverContextAreaEntityData"),
@@ -22910,75 +24338,76 @@ pub static VOICEOVERCONTEXTAREAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VehicleSoundEntityData {
     pub _glacier_base: DiceSoundEntityData,
-    pub velocity_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub angular_velocity_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub g_force_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub local_player_in_vehicle_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub interior_cam_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub in_driver_pos_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub roll_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub tilt_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub yaw_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub roll_speed_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub tilt_speed_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub yaw_speed_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub throttle_input_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub roll_input_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub yaw_input_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub tilt_input_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub camera_fov_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub free_camera_active_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
+    pub velocity_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub angular_velocity_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub g_force_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub local_player_in_vehicle_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub interior_cam_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub in_driver_pos_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub roll_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub tilt_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub yaw_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub roll_speed_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub tilt_speed_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub yaw_speed_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub throttle_input_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub roll_input_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub yaw_input_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub tilt_input_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub camera_fov_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub free_camera_active_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
     pub throttle_input_action: i32,
     pub roll_input_action: i32,
     pub yaw_input_action: i32,
     pub tilt_input_action: i32,
     pub proximity_output_max_speed: f32,
-    pub proximity_output: Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>>,
-    pub proximity_enabled_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub proximity_distance_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
-    pub proximity_enclosedness_parameter: Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>,
+    pub proximity_output: Option<LockedTypeObject /* super::audio::OutputNodeData */>,
+    pub proximity_enabled_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub proximity_distance_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
+    pub proximity_enclosedness_parameter: Option<LockedTypeObject /* super::audio::AudioGraphParameter */>,
 }
 
 pub trait VehicleSoundEntityDataTrait: DiceSoundEntityDataTrait {
-    fn velocity_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn velocity_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn angular_velocity_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn angular_velocity_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn g_force_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn g_force_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn local_player_in_vehicle_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn local_player_in_vehicle_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn interior_cam_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn interior_cam_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn in_driver_pos_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn in_driver_pos_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn roll_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn roll_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn tilt_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn tilt_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn yaw_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn yaw_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn roll_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn roll_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn tilt_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn tilt_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn yaw_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn yaw_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn throttle_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn throttle_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn roll_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn roll_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn yaw_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn yaw_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn tilt_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn tilt_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn camera_fov_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn camera_fov_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn free_camera_active_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn free_camera_active_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn velocity_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn velocity_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn angular_velocity_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn angular_velocity_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn g_force_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn g_force_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn local_player_in_vehicle_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn local_player_in_vehicle_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn interior_cam_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn interior_cam_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn in_driver_pos_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn in_driver_pos_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn roll_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn roll_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn tilt_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn tilt_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn yaw_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn yaw_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn roll_speed_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn roll_speed_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn tilt_speed_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn tilt_speed_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn yaw_speed_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn yaw_speed_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn throttle_input_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn throttle_input_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn roll_input_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn roll_input_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn yaw_input_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn yaw_input_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn tilt_input_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn tilt_input_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn camera_fov_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn camera_fov_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn free_camera_active_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn free_camera_active_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
     fn throttle_input_action(&self) -> &i32;
     fn throttle_input_action_mut(&mut self) -> &mut i32;
     fn roll_input_action(&self) -> &i32;
@@ -22989,123 +24418,123 @@ pub trait VehicleSoundEntityDataTrait: DiceSoundEntityDataTrait {
     fn tilt_input_action_mut(&mut self) -> &mut i32;
     fn proximity_output_max_speed(&self) -> &f32;
     fn proximity_output_max_speed_mut(&mut self) -> &mut f32;
-    fn proximity_output(&self) -> &Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>>;
-    fn proximity_output_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>>;
-    fn proximity_enabled_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn proximity_enabled_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn proximity_distance_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn proximity_distance_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn proximity_enclosedness_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
-    fn proximity_enclosedness_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>>;
+    fn proximity_output(&self) -> &Option<LockedTypeObject /* super::audio::OutputNodeData */>;
+    fn proximity_output_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::OutputNodeData */>;
+    fn proximity_enabled_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn proximity_enabled_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn proximity_distance_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn proximity_distance_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn proximity_enclosedness_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
+    fn proximity_enclosedness_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */>;
 }
 
 impl VehicleSoundEntityDataTrait for VehicleSoundEntityData {
-    fn velocity_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn velocity_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.velocity_parameter
     }
-    fn velocity_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn velocity_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.velocity_parameter
     }
-    fn angular_velocity_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn angular_velocity_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.angular_velocity_parameter
     }
-    fn angular_velocity_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn angular_velocity_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.angular_velocity_parameter
     }
-    fn g_force_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn g_force_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.g_force_parameter
     }
-    fn g_force_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn g_force_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.g_force_parameter
     }
-    fn local_player_in_vehicle_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn local_player_in_vehicle_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.local_player_in_vehicle_parameter
     }
-    fn local_player_in_vehicle_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn local_player_in_vehicle_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.local_player_in_vehicle_parameter
     }
-    fn interior_cam_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn interior_cam_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.interior_cam_parameter
     }
-    fn interior_cam_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn interior_cam_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.interior_cam_parameter
     }
-    fn in_driver_pos_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn in_driver_pos_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.in_driver_pos_parameter
     }
-    fn in_driver_pos_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn in_driver_pos_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.in_driver_pos_parameter
     }
-    fn roll_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn roll_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.roll_parameter
     }
-    fn roll_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn roll_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.roll_parameter
     }
-    fn tilt_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn tilt_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.tilt_parameter
     }
-    fn tilt_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn tilt_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.tilt_parameter
     }
-    fn yaw_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn yaw_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.yaw_parameter
     }
-    fn yaw_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn yaw_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.yaw_parameter
     }
-    fn roll_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn roll_speed_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.roll_speed_parameter
     }
-    fn roll_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn roll_speed_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.roll_speed_parameter
     }
-    fn tilt_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn tilt_speed_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.tilt_speed_parameter
     }
-    fn tilt_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn tilt_speed_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.tilt_speed_parameter
     }
-    fn yaw_speed_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn yaw_speed_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.yaw_speed_parameter
     }
-    fn yaw_speed_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn yaw_speed_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.yaw_speed_parameter
     }
-    fn throttle_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn throttle_input_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.throttle_input_parameter
     }
-    fn throttle_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn throttle_input_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.throttle_input_parameter
     }
-    fn roll_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn roll_input_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.roll_input_parameter
     }
-    fn roll_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn roll_input_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.roll_input_parameter
     }
-    fn yaw_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn yaw_input_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.yaw_input_parameter
     }
-    fn yaw_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn yaw_input_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.yaw_input_parameter
     }
-    fn tilt_input_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn tilt_input_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.tilt_input_parameter
     }
-    fn tilt_input_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn tilt_input_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.tilt_input_parameter
     }
-    fn camera_fov_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn camera_fov_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.camera_fov_parameter
     }
-    fn camera_fov_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn camera_fov_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.camera_fov_parameter
     }
-    fn free_camera_active_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn free_camera_active_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.free_camera_active_parameter
     }
-    fn free_camera_active_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn free_camera_active_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.free_camera_active_parameter
     }
     fn throttle_input_action(&self) -> &i32 {
@@ -23138,37 +24567,37 @@ impl VehicleSoundEntityDataTrait for VehicleSoundEntityData {
     fn proximity_output_max_speed_mut(&mut self) -> &mut f32 {
         &mut self.proximity_output_max_speed
     }
-    fn proximity_output(&self) -> &Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>> {
+    fn proximity_output(&self) -> &Option<LockedTypeObject /* super::audio::OutputNodeData */> {
         &self.proximity_output
     }
-    fn proximity_output_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::OutputNodeDataTrait>>> {
+    fn proximity_output_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::OutputNodeData */> {
         &mut self.proximity_output
     }
-    fn proximity_enabled_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn proximity_enabled_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.proximity_enabled_parameter
     }
-    fn proximity_enabled_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn proximity_enabled_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.proximity_enabled_parameter
     }
-    fn proximity_distance_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn proximity_distance_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.proximity_distance_parameter
     }
-    fn proximity_distance_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn proximity_distance_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.proximity_distance_parameter
     }
-    fn proximity_enclosedness_parameter(&self) -> &Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn proximity_enclosedness_parameter(&self) -> &Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &self.proximity_enclosedness_parameter
     }
-    fn proximity_enclosedness_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::AudioGraphParameterTrait>>> {
+    fn proximity_enclosedness_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::AudioGraphParameter */> {
         &mut self.proximity_enclosedness_parameter
     }
 }
 
 impl DiceSoundEntityDataTrait for VehicleSoundEntityData {
-    fn attach(&self) -> &Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
+    fn attach(&self) -> &Option<LockedTypeObject /* EntityAttachData */> {
         self._glacier_base.attach()
     }
-    fn attach_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
+    fn attach_mut(&mut self) -> &mut Option<LockedTypeObject /* EntityAttachData */> {
         self._glacier_base.attach_mut()
     }
     fn update_position(&self) -> &bool {
@@ -23183,16 +24612,16 @@ impl DiceSoundEntityDataTrait for VehicleSoundEntityData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn default_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn default_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         self._glacier_base.default_sound()
     }
-    fn default_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn default_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         self._glacier_base.default_sound_mut()
     }
-    fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         self._glacier_base.sound()
     }
-    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         self._glacier_base.sound_mut()
     }
     fn play_on_creation(&self) -> &bool {
@@ -23244,172 +24673,202 @@ impl super::core::DataContainerTrait for VehicleSoundEntityData {
 
 pub static VEHICLESOUNDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleSoundEntityData",
+    name_hash: 583195925,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DICESOUNDENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VehicleSoundEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VehicleSoundEntityData as Default>::default())),
+            create_boxed: || Box::new(<VehicleSoundEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "VelocityParameter",
+                name_hash: 1765011227,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, velocity_parameter),
             },
             FieldInfoData {
                 name: "AngularVelocityParameter",
+                name_hash: 170905785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, angular_velocity_parameter),
             },
             FieldInfoData {
                 name: "GForceParameter",
+                name_hash: 988470806,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, g_force_parameter),
             },
             FieldInfoData {
                 name: "LocalPlayerInVehicleParameter",
+                name_hash: 1678460301,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, local_player_in_vehicle_parameter),
             },
             FieldInfoData {
                 name: "InteriorCamParameter",
+                name_hash: 163137203,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, interior_cam_parameter),
             },
             FieldInfoData {
                 name: "InDriverPosParameter",
+                name_hash: 522157913,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, in_driver_pos_parameter),
             },
             FieldInfoData {
                 name: "RollParameter",
+                name_hash: 2474888305,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, roll_parameter),
             },
             FieldInfoData {
                 name: "TiltParameter",
+                name_hash: 1883291817,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, tilt_parameter),
             },
             FieldInfoData {
                 name: "YawParameter",
+                name_hash: 1246478403,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, yaw_parameter),
             },
             FieldInfoData {
                 name: "RollSpeedParameter",
+                name_hash: 1760745974,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, roll_speed_parameter),
             },
             FieldInfoData {
                 name: "TiltSpeedParameter",
+                name_hash: 1761905070,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, tilt_speed_parameter),
             },
             FieldInfoData {
                 name: "YawSpeedParameter",
+                name_hash: 3224277508,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, yaw_speed_parameter),
             },
             FieldInfoData {
                 name: "ThrottleInputParameter",
+                name_hash: 1917009874,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, throttle_input_parameter),
             },
             FieldInfoData {
                 name: "RollInputParameter",
+                name_hash: 397814599,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, roll_input_parameter),
             },
             FieldInfoData {
                 name: "YawInputParameter",
+                name_hash: 428484981,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, yaw_input_parameter),
             },
             FieldInfoData {
                 name: "TiltInputParameter",
+                name_hash: 351633695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, tilt_input_parameter),
             },
             FieldInfoData {
                 name: "CameraFovParameter",
+                name_hash: 1360546346,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, camera_fov_parameter),
             },
             FieldInfoData {
                 name: "FreeCameraActiveParameter",
+                name_hash: 3808990381,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, free_camera_active_parameter),
             },
             FieldInfoData {
                 name: "ThrottleInputAction",
+                name_hash: 4031576069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VehicleSoundEntityData, throttle_input_action),
             },
             FieldInfoData {
                 name: "RollInputAction",
+                name_hash: 9564976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VehicleSoundEntityData, roll_input_action),
             },
             FieldInfoData {
                 name: "YawInputAction",
+                name_hash: 1432982466,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VehicleSoundEntityData, yaw_input_action),
             },
             FieldInfoData {
                 name: "TiltInputAction",
+                name_hash: 3635993704,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(VehicleSoundEntityData, tilt_input_action),
             },
             FieldInfoData {
                 name: "ProximityOutputMaxSpeed",
+                name_hash: 2100738620,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VehicleSoundEntityData, proximity_output_max_speed),
             },
             FieldInfoData {
                 name: "ProximityOutput",
+                name_hash: 3964770799,
                 flags: MemberInfoFlags::new(0),
                 field_type: "OutputNodeData",
                 rust_offset: offset_of!(VehicleSoundEntityData, proximity_output),
             },
             FieldInfoData {
                 name: "ProximityEnabledParameter",
+                name_hash: 348168028,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, proximity_enabled_parameter),
             },
             FieldInfoData {
                 name: "ProximityDistanceParameter",
+                name_hash: 2383269178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, proximity_distance_parameter),
             },
             FieldInfoData {
                 name: "ProximityEnclosednessParameter",
+                name_hash: 3377740939,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioGraphParameter",
                 rust_offset: offset_of!(VehicleSoundEntityData, proximity_enclosedness_parameter),
@@ -23441,6 +24900,7 @@ impl TypeObject for VehicleSoundEntityData {
 
 pub static VEHICLESOUNDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VehicleSoundEntityData-Array",
+    name_hash: 3287321761,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("VehicleSoundEntityData"),
@@ -23449,25 +24909,26 @@ pub static VEHICLESOUNDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SoundProviderEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub sound_bank: Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>>,
+    pub sound_bank: Vec<Option<LockedTypeObject /* super::audio::SoundAsset */>>,
     pub index: i32,
 }
 
 pub trait SoundProviderEntityDataTrait: super::entity::EntityDataTrait {
-    fn sound_bank(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>>;
-    fn sound_bank_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>>;
+    fn sound_bank(&self) -> &Vec<Option<LockedTypeObject /* super::audio::SoundAsset */>>;
+    fn sound_bank_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::audio::SoundAsset */>>;
     fn index(&self) -> &i32;
     fn index_mut(&mut self) -> &mut i32;
 }
 
 impl SoundProviderEntityDataTrait for SoundProviderEntityData {
-    fn sound_bank(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>> {
+    fn sound_bank(&self) -> &Vec<Option<LockedTypeObject /* super::audio::SoundAsset */>> {
         &self.sound_bank
     }
-    fn sound_bank_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>> {
+    fn sound_bank_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::audio::SoundAsset */>> {
         &mut self.sound_bank
     }
     fn index(&self) -> &i32 {
@@ -23501,22 +24962,27 @@ impl super::core::DataContainerTrait for SoundProviderEntityData {
 
 pub static SOUNDPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundProviderEntityData",
+    name_hash: 3809196076,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SoundProviderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SoundProviderEntityData as Default>::default())),
+            create_boxed: || Box::new(<SoundProviderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SoundBank",
+                name_hash: 523835744,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SoundAsset-Array",
                 rust_offset: offset_of!(SoundProviderEntityData, sound_bank),
             },
             FieldInfoData {
                 name: "Index",
+                name_hash: 214509467,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SoundProviderEntityData, index),
@@ -23548,6 +25014,7 @@ impl TypeObject for SoundProviderEntityData {
 
 pub static SOUNDPROVIDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundProviderEntityData-Array",
+    name_hash: 1978845080,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SoundProviderEntityData"),
@@ -23556,31 +25023,32 @@ pub static SOUNDPROVIDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SoundAssetDataEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub sound_assets: Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>>,
-    pub data_assets: Vec<Option<Arc<Mutex<dyn super::audio::SoundDataAssetTrait>>>>,
+    pub sound_assets: Vec<Option<LockedTypeObject /* super::audio::SoundAsset */>>,
+    pub data_assets: Vec<Option<LockedTypeObject /* super::audio::SoundDataAsset */>>,
 }
 
 pub trait SoundAssetDataEntityDataTrait: super::entity::EntityDataTrait {
-    fn sound_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>>;
-    fn sound_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>>;
-    fn data_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundDataAssetTrait>>>>;
-    fn data_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundDataAssetTrait>>>>;
+    fn sound_assets(&self) -> &Vec<Option<LockedTypeObject /* super::audio::SoundAsset */>>;
+    fn sound_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::audio::SoundAsset */>>;
+    fn data_assets(&self) -> &Vec<Option<LockedTypeObject /* super::audio::SoundDataAsset */>>;
+    fn data_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::audio::SoundDataAsset */>>;
 }
 
 impl SoundAssetDataEntityDataTrait for SoundAssetDataEntityData {
-    fn sound_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>> {
+    fn sound_assets(&self) -> &Vec<Option<LockedTypeObject /* super::audio::SoundAsset */>> {
         &self.sound_assets
     }
-    fn sound_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>> {
+    fn sound_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::audio::SoundAsset */>> {
         &mut self.sound_assets
     }
-    fn data_assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::audio::SoundDataAssetTrait>>>> {
+    fn data_assets(&self) -> &Vec<Option<LockedTypeObject /* super::audio::SoundDataAsset */>> {
         &self.data_assets
     }
-    fn data_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::audio::SoundDataAssetTrait>>>> {
+    fn data_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::audio::SoundDataAsset */>> {
         &mut self.data_assets
     }
 }
@@ -23608,22 +25076,27 @@ impl super::core::DataContainerTrait for SoundAssetDataEntityData {
 
 pub static SOUNDASSETDATAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundAssetDataEntityData",
+    name_hash: 598897741,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SoundAssetDataEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SoundAssetDataEntityData as Default>::default())),
+            create_boxed: || Box::new(<SoundAssetDataEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SoundAssets",
+                name_hash: 3728303845,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SoundAsset-Array",
                 rust_offset: offset_of!(SoundAssetDataEntityData, sound_assets),
             },
             FieldInfoData {
                 name: "DataAssets",
+                name_hash: 4187781142,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SoundDataAsset-Array",
                 rust_offset: offset_of!(SoundAssetDataEntityData, data_assets),
@@ -23655,6 +25128,7 @@ impl TypeObject for SoundAssetDataEntityData {
 
 pub static SOUNDASSETDATAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundAssetDataEntityData-Array",
+    name_hash: 3199019129,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SoundAssetDataEntityData"),
@@ -23663,7 +25137,8 @@ pub static SOUNDASSETDATAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SoundActivityTesterEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub test_case_name: String,
@@ -23671,7 +25146,7 @@ pub struct SoundActivityTesterEntityData {
     pub auto_success: bool,
     pub auto_start: bool,
     pub detect_at_least_one_asset: bool,
-    pub assets_to_track: Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>>,
+    pub assets_to_track: Vec<Option<LockedTypeObject /* super::core::Asset */>>,
 }
 
 pub trait SoundActivityTesterEntityDataTrait: super::entity::EntityDataTrait {
@@ -23685,8 +25160,8 @@ pub trait SoundActivityTesterEntityDataTrait: super::entity::EntityDataTrait {
     fn auto_start_mut(&mut self) -> &mut bool;
     fn detect_at_least_one_asset(&self) -> &bool;
     fn detect_at_least_one_asset_mut(&mut self) -> &mut bool;
-    fn assets_to_track(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>>;
-    fn assets_to_track_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>>;
+    fn assets_to_track(&self) -> &Vec<Option<LockedTypeObject /* super::core::Asset */>>;
+    fn assets_to_track_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::Asset */>>;
 }
 
 impl SoundActivityTesterEntityDataTrait for SoundActivityTesterEntityData {
@@ -23720,10 +25195,10 @@ impl SoundActivityTesterEntityDataTrait for SoundActivityTesterEntityData {
     fn detect_at_least_one_asset_mut(&mut self) -> &mut bool {
         &mut self.detect_at_least_one_asset
     }
-    fn assets_to_track(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>> {
+    fn assets_to_track(&self) -> &Vec<Option<LockedTypeObject /* super::core::Asset */>> {
         &self.assets_to_track
     }
-    fn assets_to_track_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>> {
+    fn assets_to_track_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::Asset */>> {
         &mut self.assets_to_track
     }
 }
@@ -23751,46 +25226,55 @@ impl super::core::DataContainerTrait for SoundActivityTesterEntityData {
 
 pub static SOUNDACTIVITYTESTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundActivityTesterEntityData",
+    name_hash: 3601952641,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SoundActivityTesterEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SoundActivityTesterEntityData as Default>::default())),
+            create_boxed: || Box::new(<SoundActivityTesterEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TestCaseName",
+                name_hash: 2495365472,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(SoundActivityTesterEntityData, test_case_name),
             },
             FieldInfoData {
                 name: "TimeOut",
+                name_hash: 3344659518,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SoundActivityTesterEntityData, time_out),
             },
             FieldInfoData {
                 name: "AutoSuccess",
+                name_hash: 4205869673,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SoundActivityTesterEntityData, auto_success),
             },
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SoundActivityTesterEntityData, auto_start),
             },
             FieldInfoData {
                 name: "DetectAtLeastOneAsset",
+                name_hash: 2876581676,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SoundActivityTesterEntityData, detect_at_least_one_asset),
             },
             FieldInfoData {
                 name: "AssetsToTrack",
+                name_hash: 2369138322,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Asset-Array",
                 rust_offset: offset_of!(SoundActivityTesterEntityData, assets_to_track),
@@ -23822,6 +25306,7 @@ impl TypeObject for SoundActivityTesterEntityData {
 
 pub static SOUNDACTIVITYTESTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SoundActivityTesterEntityData-Array",
+    name_hash: 1968212277,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("SoundActivityTesterEntityData"),
@@ -23830,7 +25315,8 @@ pub static SOUNDACTIVITYTESTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MusicEventPriorityEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub realm: super::core::Realm,
@@ -23882,22 +25368,27 @@ impl super::core::DataContainerTrait for MusicEventPriorityEntityData {
 
 pub static MUSICEVENTPRIORITYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MusicEventPriorityEntityData",
+    name_hash: 1222755153,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MusicEventPriorityEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MusicEventPriorityEntityData as Default>::default())),
+            create_boxed: || Box::new(<MusicEventPriorityEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(MusicEventPriorityEntityData, realm),
             },
             FieldInfoData {
                 name: "MusicEventNames",
+                name_hash: 1509486588,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(MusicEventPriorityEntityData, music_event_names),
@@ -23929,6 +25420,7 @@ impl TypeObject for MusicEventPriorityEntityData {
 
 pub static MUSICEVENTPRIORITYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MusicEventPriorityEntityData-Array",
+    name_hash: 1873769829,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("MusicEventPriorityEntityData"),
@@ -23937,17 +25429,18 @@ pub static MUSICEVENTPRIORITYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceSoundSpatialEntityData {
     pub _glacier_base: super::entity::SpatialEntityData,
-    pub sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
+    pub sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
     pub play_on_creation: bool,
     pub amplitude: f32,
 }
 
 pub trait DiceSoundSpatialEntityDataTrait: super::entity::SpatialEntityDataTrait {
-    fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
     fn play_on_creation(&self) -> &bool;
     fn play_on_creation_mut(&mut self) -> &mut bool;
     fn amplitude(&self) -> &f32;
@@ -23955,10 +25448,10 @@ pub trait DiceSoundSpatialEntityDataTrait: super::entity::SpatialEntityDataTrait
 }
 
 impl DiceSoundSpatialEntityDataTrait for DiceSoundSpatialEntityData {
-    fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.sound
     }
-    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.sound
     }
     fn play_on_creation(&self) -> &bool {
@@ -24007,28 +25500,34 @@ impl super::core::DataContainerTrait for DiceSoundSpatialEntityData {
 
 pub static DICESOUNDSPATIALENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceSoundSpatialEntityData",
+    name_hash: 2457527828,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceSoundSpatialEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceSoundSpatialEntityData as Default>::default())),
+            create_boxed: || Box::new(<DiceSoundSpatialEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Sound",
+                name_hash: 231353798,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(DiceSoundSpatialEntityData, sound),
             },
             FieldInfoData {
                 name: "PlayOnCreation",
+                name_hash: 2168204873,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceSoundSpatialEntityData, play_on_creation),
             },
             FieldInfoData {
                 name: "Amplitude",
+                name_hash: 698564572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceSoundSpatialEntityData, amplitude),
@@ -24060,6 +25559,7 @@ impl TypeObject for DiceSoundSpatialEntityData {
 
 pub static DICESOUNDSPATIALENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceSoundSpatialEntityData-Array",
+    name_hash: 771785248,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceSoundSpatialEntityData"),
@@ -24068,14 +25568,15 @@ pub static DICESOUNDSPATIALENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceSoundEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub attach: Option<Arc<Mutex<dyn EntityAttachDataTrait>>>,
+    pub attach: Option<LockedTypeObject /* EntityAttachData */>,
     pub update_position: bool,
     pub transform: super::core::LinearTransform,
-    pub default_sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
-    pub sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
+    pub default_sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
+    pub sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
     pub play_on_creation: bool,
     pub enable_on_creation: bool,
     pub forget_on_destroy: bool,
@@ -24083,16 +25584,16 @@ pub struct DiceSoundEntityData {
 }
 
 pub trait DiceSoundEntityDataTrait: super::entity::EntityDataTrait {
-    fn attach(&self) -> &Option<Arc<Mutex<dyn EntityAttachDataTrait>>>;
-    fn attach_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityAttachDataTrait>>>;
+    fn attach(&self) -> &Option<LockedTypeObject /* EntityAttachData */>;
+    fn attach_mut(&mut self) -> &mut Option<LockedTypeObject /* EntityAttachData */>;
     fn update_position(&self) -> &bool;
     fn update_position_mut(&mut self) -> &mut bool;
     fn transform(&self) -> &super::core::LinearTransform;
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
-    fn default_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn default_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn default_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn default_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
     fn play_on_creation(&self) -> &bool;
     fn play_on_creation_mut(&mut self) -> &mut bool;
     fn enable_on_creation(&self) -> &bool;
@@ -24104,10 +25605,10 @@ pub trait DiceSoundEntityDataTrait: super::entity::EntityDataTrait {
 }
 
 impl DiceSoundEntityDataTrait for DiceSoundEntityData {
-    fn attach(&self) -> &Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
+    fn attach(&self) -> &Option<LockedTypeObject /* EntityAttachData */> {
         &self.attach
     }
-    fn attach_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityAttachDataTrait>>> {
+    fn attach_mut(&mut self) -> &mut Option<LockedTypeObject /* EntityAttachData */> {
         &mut self.attach
     }
     fn update_position(&self) -> &bool {
@@ -24122,16 +25623,16 @@ impl DiceSoundEntityDataTrait for DiceSoundEntityData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         &mut self.transform
     }
-    fn default_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn default_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.default_sound
     }
-    fn default_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn default_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.default_sound
     }
-    fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.sound
     }
-    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.sound
     }
     fn play_on_creation(&self) -> &bool {
@@ -24183,64 +25684,76 @@ impl super::core::DataContainerTrait for DiceSoundEntityData {
 
 pub static DICESOUNDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceSoundEntityData",
+    name_hash: 3393455686,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceSoundEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceSoundEntityData as Default>::default())),
+            create_boxed: || Box::new(<DiceSoundEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Attach",
+                name_hash: 2500885102,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EntityAttachData",
                 rust_offset: offset_of!(DiceSoundEntityData, attach),
             },
             FieldInfoData {
                 name: "UpdatePosition",
+                name_hash: 1876148909,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceSoundEntityData, update_position),
             },
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(DiceSoundEntityData, transform),
             },
             FieldInfoData {
                 name: "DefaultSound",
+                name_hash: 2078444557,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(DiceSoundEntityData, default_sound),
             },
             FieldInfoData {
                 name: "Sound",
+                name_hash: 231353798,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(DiceSoundEntityData, sound),
             },
             FieldInfoData {
                 name: "PlayOnCreation",
+                name_hash: 2168204873,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceSoundEntityData, play_on_creation),
             },
             FieldInfoData {
                 name: "EnableOnCreation",
+                name_hash: 348824620,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceSoundEntityData, enable_on_creation),
             },
             FieldInfoData {
                 name: "ForgetOnDestroy",
+                name_hash: 618562347,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceSoundEntityData, forget_on_destroy),
             },
             FieldInfoData {
                 name: "MasterAmplitude",
+                name_hash: 1033950080,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceSoundEntityData, master_amplitude),
@@ -24272,6 +25785,7 @@ impl TypeObject for DiceSoundEntityData {
 
 pub static DICESOUNDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceSoundEntityData-Array",
+    name_hash: 2988082162,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceSoundEntityData"),
@@ -24280,11 +25794,12 @@ pub static DICESOUNDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DiceSoundAreaEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
-    pub big_world: Option<Arc<Mutex<dyn super::gameplay_sim::BigWorldSettingsAssetTrait>>>,
+    pub sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
+    pub big_world: Option<LockedTypeObject /* super::gameplay_sim::BigWorldSettingsAsset */>,
     pub perimeter_size: f32,
     pub relevance_multiplier: f32,
     pub min_relevance_budget: f32,
@@ -24298,10 +25813,10 @@ pub struct DiceSoundAreaEntityData {
 }
 
 pub trait DiceSoundAreaEntityDataTrait: super::entity::EntityDataTrait {
-    fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn big_world(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::BigWorldSettingsAssetTrait>>>;
-    fn big_world_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::BigWorldSettingsAssetTrait>>>;
+    fn sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn big_world(&self) -> &Option<LockedTypeObject /* super::gameplay_sim::BigWorldSettingsAsset */>;
+    fn big_world_mut(&mut self) -> &mut Option<LockedTypeObject /* super::gameplay_sim::BigWorldSettingsAsset */>;
     fn perimeter_size(&self) -> &f32;
     fn perimeter_size_mut(&mut self) -> &mut f32;
     fn relevance_multiplier(&self) -> &f32;
@@ -24325,16 +25840,16 @@ pub trait DiceSoundAreaEntityDataTrait: super::entity::EntityDataTrait {
 }
 
 impl DiceSoundAreaEntityDataTrait for DiceSoundAreaEntityData {
-    fn sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.sound
     }
-    fn sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.sound
     }
-    fn big_world(&self) -> &Option<Arc<Mutex<dyn super::gameplay_sim::BigWorldSettingsAssetTrait>>> {
+    fn big_world(&self) -> &Option<LockedTypeObject /* super::gameplay_sim::BigWorldSettingsAsset */> {
         &self.big_world
     }
-    fn big_world_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::gameplay_sim::BigWorldSettingsAssetTrait>>> {
+    fn big_world_mut(&mut self) -> &mut Option<LockedTypeObject /* super::gameplay_sim::BigWorldSettingsAsset */> {
         &mut self.big_world
     }
     fn perimeter_size(&self) -> &f32 {
@@ -24422,82 +25937,97 @@ impl super::core::DataContainerTrait for DiceSoundAreaEntityData {
 
 pub static DICESOUNDAREAENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceSoundAreaEntityData",
+    name_hash: 4063027633,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DiceSoundAreaEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DiceSoundAreaEntityData as Default>::default())),
+            create_boxed: || Box::new(<DiceSoundAreaEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Sound",
+                name_hash: 231353798,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, sound),
             },
             FieldInfoData {
                 name: "BigWorld",
+                name_hash: 4205700235,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BigWorldSettingsAsset",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, big_world),
             },
             FieldInfoData {
                 name: "PerimeterSize",
+                name_hash: 156564773,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, perimeter_size),
             },
             FieldInfoData {
                 name: "RelevanceMultiplier",
+                name_hash: 3495794351,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, relevance_multiplier),
             },
             FieldInfoData {
                 name: "MinRelevanceBudget",
+                name_hash: 4050735531,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, min_relevance_budget),
             },
             FieldInfoData {
                 name: "RelevanceFalloff",
+                name_hash: 1856356236,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FadeCurveType",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, relevance_falloff),
             },
             FieldInfoData {
                 name: "EnableOnCreation",
+                name_hash: 348824620,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, enable_on_creation),
             },
             FieldInfoData {
                 name: "Priority",
+                name_hash: 3062102871,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, priority),
             },
             FieldInfoData {
                 name: "UseLegacyBehavior",
+                name_hash: 4066039615,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, use_legacy_behavior),
             },
             FieldInfoData {
                 name: "FaceListener",
+                name_hash: 3563530970,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, face_listener),
             },
             FieldInfoData {
                 name: "IgnoreVerticalPerimeter",
+                name_hash: 2464526538,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, ignore_vertical_perimeter),
             },
             FieldInfoData {
                 name: "AreaType",
+                name_hash: 3772263626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(DiceSoundAreaEntityData, area_type),
@@ -24529,6 +26059,7 @@ impl TypeObject for DiceSoundAreaEntityData {
 
 pub static DICESOUNDAREAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DiceSoundAreaEntityData-Array",
+    name_hash: 1800934405,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DiceSoundAreaEntityData"),
@@ -24537,7 +26068,8 @@ pub static DICESOUNDAREAENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioCurveFactorEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub curves_guids: Vec<glacier_util::guid::Guid>,
@@ -24598,28 +26130,34 @@ impl super::core::DataContainerTrait for AudioCurveFactorEntityData {
 
 pub static AUDIOCURVEFACTORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioCurveFactorEntityData",
+    name_hash: 1496763106,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AudioCurveFactorEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioCurveFactorEntityData as Default>::default())),
+            create_boxed: || Box::new(<AudioCurveFactorEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CurvesGuids",
+                name_hash: 3160072301,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Guid-Array",
                 rust_offset: offset_of!(AudioCurveFactorEntityData, curves_guids),
             },
             FieldInfoData {
                 name: "Factor",
+                name_hash: 2515882920,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioCurveFactorEntityData, factor),
             },
             FieldInfoData {
                 name: "ResetFactorOnDestroy",
+                name_hash: 1464748510,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AudioCurveFactorEntityData, reset_factor_on_destroy),
@@ -24651,6 +26189,7 @@ impl TypeObject for AudioCurveFactorEntityData {
 
 pub static AUDIOCURVEFACTORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioCurveFactorEntityData-Array",
+    name_hash: 561650134,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AudioCurveFactorEntityData"),
@@ -24659,22 +26198,23 @@ pub static AUDIOCURVEFACTORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DebrisClusterSoundsComponentData {
     pub _glacier_base: super::entity::GameComponentData,
-    pub debris_cluster_sounds: Vec<DebrisClusterSound>,
+    pub debris_cluster_sounds: Vec<BoxedTypeObject /* DebrisClusterSound */>,
 }
 
 pub trait DebrisClusterSoundsComponentDataTrait: super::entity::GameComponentDataTrait {
-    fn debris_cluster_sounds(&self) -> &Vec<DebrisClusterSound>;
-    fn debris_cluster_sounds_mut(&mut self) -> &mut Vec<DebrisClusterSound>;
+    fn debris_cluster_sounds(&self) -> &Vec<BoxedTypeObject /* DebrisClusterSound */>;
+    fn debris_cluster_sounds_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DebrisClusterSound */>;
 }
 
 impl DebrisClusterSoundsComponentDataTrait for DebrisClusterSoundsComponentData {
-    fn debris_cluster_sounds(&self) -> &Vec<DebrisClusterSound> {
+    fn debris_cluster_sounds(&self) -> &Vec<BoxedTypeObject /* DebrisClusterSound */> {
         &self.debris_cluster_sounds
     }
-    fn debris_cluster_sounds_mut(&mut self) -> &mut Vec<DebrisClusterSound> {
+    fn debris_cluster_sounds_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DebrisClusterSound */> {
         &mut self.debris_cluster_sounds
     }
 }
@@ -24689,10 +26229,10 @@ impl super::entity::ComponentDataTrait for DebrisClusterSoundsComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -24735,16 +26275,20 @@ impl super::core::DataContainerTrait for DebrisClusterSoundsComponentData {
 
 pub static DEBRISCLUSTERSOUNDSCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DebrisClusterSoundsComponentData",
+    name_hash: 673743339,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DebrisClusterSoundsComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DebrisClusterSoundsComponentData as Default>::default())),
+            create_boxed: || Box::new(<DebrisClusterSoundsComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DebrisClusterSounds",
+                name_hash: 1334050548,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DebrisClusterSound-Array",
                 rust_offset: offset_of!(DebrisClusterSoundsComponentData, debris_cluster_sounds),
@@ -24776,6 +26320,7 @@ impl TypeObject for DebrisClusterSoundsComponentData {
 
 pub static DEBRISCLUSTERSOUNDSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DebrisClusterSoundsComponentData-Array",
+    name_hash: 2885939679,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DebrisClusterSoundsComponentData"),
@@ -24784,19 +26329,20 @@ pub static DEBRISCLUSTERSOUNDSCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DebrisClusterSound {
-    pub activation_sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
-    pub collision_sound: Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>,
+    pub activation_sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
+    pub collision_sound: Option<LockedTypeObject /* super::audio::SoundAsset */>,
     pub collision_sound_speed_threshold: f32,
     pub part_index: u32,
 }
 
 pub trait DebrisClusterSoundTrait: TypeObject {
-    fn activation_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn activation_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn collision_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
-    fn collision_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>>;
+    fn activation_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn activation_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn collision_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */>;
+    fn collision_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */>;
     fn collision_sound_speed_threshold(&self) -> &f32;
     fn collision_sound_speed_threshold_mut(&mut self) -> &mut f32;
     fn part_index(&self) -> &u32;
@@ -24804,16 +26350,16 @@ pub trait DebrisClusterSoundTrait: TypeObject {
 }
 
 impl DebrisClusterSoundTrait for DebrisClusterSound {
-    fn activation_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn activation_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.activation_sound
     }
-    fn activation_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn activation_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.activation_sound
     }
-    fn collision_sound(&self) -> &Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn collision_sound(&self) -> &Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &self.collision_sound
     }
-    fn collision_sound_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::audio::SoundAssetTrait>>> {
+    fn collision_sound_mut(&mut self) -> &mut Option<LockedTypeObject /* super::audio::SoundAsset */> {
         &mut self.collision_sound
     }
     fn collision_sound_speed_threshold(&self) -> &f32 {
@@ -24832,33 +26378,39 @@ impl DebrisClusterSoundTrait for DebrisClusterSound {
 
 pub static DEBRISCLUSTERSOUND_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DebrisClusterSound",
+    name_hash: 170576295,
     flags: MemberInfoFlags::new(73),
     module: "DiceCommonsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DebrisClusterSound as Default>::default())),
+            create_boxed: || Box::new(<DebrisClusterSound as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ActivationSound",
+                name_hash: 1740567090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(DebrisClusterSound, activation_sound),
             },
             FieldInfoData {
                 name: "CollisionSound",
+                name_hash: 699473880,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SoundAsset",
                 rust_offset: offset_of!(DebrisClusterSound, collision_sound),
             },
             FieldInfoData {
                 name: "CollisionSoundSpeedThreshold",
+                name_hash: 2566530984,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DebrisClusterSound, collision_sound_speed_threshold),
             },
             FieldInfoData {
                 name: "PartIndex",
+                name_hash: 3213901068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DebrisClusterSound, part_index),
@@ -24890,6 +26442,7 @@ impl TypeObject for DebrisClusterSound {
 
 pub static DEBRISCLUSTERSOUND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DebrisClusterSound-Array",
+    name_hash: 2148096787,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DebrisClusterSound"),
@@ -24898,7 +26451,8 @@ pub static DEBRISCLUSTERSOUND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DofReaderEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub dof_set: super::ant::AntRef,
@@ -24977,40 +26531,48 @@ impl super::core::DataContainerTrait for DofReaderEntityData {
 
 pub static DOFREADERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DofReaderEntityData",
+    name_hash: 4075750470,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DofReaderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DofReaderEntityData as Default>::default())),
+            create_boxed: || Box::new(<DofReaderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DofSet",
+                name_hash: 2610327466,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AntRef",
                 rust_offset: offset_of!(DofReaderEntityData, dof_set),
             },
             FieldInfoData {
                 name: "DofSetName",
+                name_hash: 1528058605,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(DofReaderEntityData, dof_set_name),
             },
             FieldInfoData {
                 name: "DofNamesHashId",
+                name_hash: 3978875715,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(DofReaderEntityData, dof_names_hash_id),
             },
             FieldInfoData {
                 name: "StartReadingContinouslyOnSpawn",
+                name_hash: 3590049344,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofReaderEntityData, start_reading_continously_on_spawn),
             },
             FieldInfoData {
                 name: "ReadOnceOnSpawn",
+                name_hash: 773521066,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DofReaderEntityData, read_once_on_spawn),
@@ -25042,6 +26604,7 @@ impl TypeObject for DofReaderEntityData {
 
 pub static DOFREADERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DofReaderEntityData-Array",
+    name_hash: 2055995890,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("DofReaderEntityData"),
@@ -25050,7 +26613,8 @@ pub static DOFREADERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AnimatableCullingEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub culling_level: EntityCullingLevel,
@@ -25120,34 +26684,41 @@ impl super::core::DataContainerTrait for AnimatableCullingEntityData {
 
 pub static ANIMATABLECULLINGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimatableCullingEntityData",
+    name_hash: 2413715724,
     flags: MemberInfoFlags::new(101),
     module: "DiceCommonsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AnimatableCullingEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AnimatableCullingEntityData as Default>::default())),
+            create_boxed: || Box::new(<AnimatableCullingEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CullingLevel",
+                name_hash: 730117541,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EntityCullingLevel",
                 rust_offset: offset_of!(AnimatableCullingEntityData, culling_level),
             },
             FieldInfoData {
                 name: "CullingDistance",
+                name_hash: 1073297232,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AnimatableCullingEntityData, culling_distance),
             },
             FieldInfoData {
                 name: "ForceCull",
+                name_hash: 3676201198,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AnimatableCullingEntityData, force_cull),
             },
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(AnimatableCullingEntityData, enabled),
@@ -25179,6 +26750,7 @@ impl TypeObject for AnimatableCullingEntityData {
 
 pub static ANIMATABLECULLINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimatableCullingEntityData-Array",
+    name_hash: 398512440,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("AnimatableCullingEntityData"),
@@ -25201,6 +26773,7 @@ pub enum EntityCullingLevel {
 
 pub static ENTITYCULLINGLEVEL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityCullingLevel",
+    name_hash: 1834009150,
     flags: MemberInfoFlags::new(49429),
     module: "DiceCommonsShared",
     data: TypeInfoData::Enum,
@@ -25229,6 +26802,7 @@ impl TypeObject for EntityCullingLevel {
 
 pub static ENTITYCULLINGLEVEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityCullingLevel-Array",
+    name_hash: 270701194,
     flags: MemberInfoFlags::new(145),
     module: "DiceCommonsShared",
     data: TypeInfoData::Array("EntityCullingLevel"),

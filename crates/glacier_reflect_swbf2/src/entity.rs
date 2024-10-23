@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -945,7 +946,8 @@ pub(crate) fn register_entity_types(registry: &mut TypeRegistry) {
     registry.register_type(NOTENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldPartInclusion {
     pub _glacier_base: SubWorldInclusion,
 }
@@ -957,10 +959,10 @@ impl WorldPartInclusionTrait for WorldPartInclusion {
 }
 
 impl SubWorldInclusionTrait for WorldPartInclusion {
-    fn criteria(&self) -> &Vec<Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>>> {
+    fn criteria(&self) -> &Vec<Option<LockedTypeObject /* SubWorldInclusionCriterion */>> {
         self._glacier_base.criteria()
     }
-    fn criteria_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>>> {
+    fn criteria_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SubWorldInclusionCriterion */>> {
         self._glacier_base.criteria_mut()
     }
 }
@@ -979,12 +981,15 @@ impl super::core::DataContainerTrait for WorldPartInclusion {
 
 pub static WORLDPARTINCLUSION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartInclusion",
+    name_hash: 1055877366,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SUBWORLDINCLUSION_TYPE_INFO),
+        super_class_offset: offset_of!(WorldPartInclusion, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldPartInclusion as Default>::default())),
+            create_boxed: || Box::new(<WorldPartInclusion as Default>::default()),
         },
         fields: &[
         ],
@@ -1014,6 +1019,7 @@ impl TypeObject for WorldPartInclusion {
 
 pub static WORLDPARTINCLUSION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartInclusion-Array",
+    name_hash: 3548622274,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WorldPartInclusion"),
@@ -1022,7 +1028,8 @@ pub static WORLDPARTINCLUSION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldPartInclusionCriterion {
     pub _glacier_base: SubWorldInclusionCriterion,
 }
@@ -1053,12 +1060,15 @@ impl super::core::DataContainerTrait for WorldPartInclusionCriterion {
 
 pub static WORLDPARTINCLUSIONCRITERION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartInclusionCriterion",
+    name_hash: 3062116229,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SUBWORLDINCLUSIONCRITERION_TYPE_INFO),
+        super_class_offset: offset_of!(WorldPartInclusionCriterion, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldPartInclusionCriterion as Default>::default())),
+            create_boxed: || Box::new(<WorldPartInclusionCriterion as Default>::default()),
         },
         fields: &[
         ],
@@ -1088,6 +1098,7 @@ impl TypeObject for WorldPartInclusionCriterion {
 
 pub static WORLDPARTINCLUSIONCRITERION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartInclusionCriterion-Array",
+    name_hash: 963835697,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WorldPartInclusionCriterion"),
@@ -1096,7 +1107,8 @@ pub static WORLDPARTINCLUSIONCRITERION_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldPartInclusionSetting {
     pub _glacier_base: SubWorldInclusionSetting,
 }
@@ -1108,10 +1120,10 @@ impl WorldPartInclusionSettingTrait for WorldPartInclusionSetting {
 }
 
 impl SubWorldInclusionSettingTrait for WorldPartInclusionSetting {
-    fn criterion(&self) -> &Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>> {
+    fn criterion(&self) -> &Option<LockedTypeObject /* SubWorldInclusionCriterion */> {
         self._glacier_base.criterion()
     }
-    fn criterion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>> {
+    fn criterion_mut(&mut self) -> &mut Option<LockedTypeObject /* SubWorldInclusionCriterion */> {
         self._glacier_base.criterion_mut()
     }
     fn enabled_options(&self) -> &Vec<String> {
@@ -1127,12 +1139,15 @@ impl super::core::DataContainerTrait for WorldPartInclusionSetting {
 
 pub static WORLDPARTINCLUSIONSETTING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartInclusionSetting",
+    name_hash: 4073490752,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SUBWORLDINCLUSIONSETTING_TYPE_INFO),
+        super_class_offset: offset_of!(WorldPartInclusionSetting, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldPartInclusionSetting as Default>::default())),
+            create_boxed: || Box::new(<WorldPartInclusionSetting as Default>::default()),
         },
         fields: &[
         ],
@@ -1162,6 +1177,7 @@ impl TypeObject for WorldPartInclusionSetting {
 
 pub static WORLDPARTINCLUSIONSETTING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartInclusionSetting-Array",
+    name_hash: 1916870644,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WorldPartInclusionSetting"),
@@ -1170,7 +1186,8 @@ pub static WORLDPARTINCLUSIONSETTING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldPartInclusionSettings {
     pub _glacier_base: SubWorldInclusionSettings,
 }
@@ -1182,10 +1199,10 @@ impl WorldPartInclusionSettingsTrait for WorldPartInclusionSettings {
 }
 
 impl SubWorldInclusionSettingsTrait for WorldPartInclusionSettings {
-    fn settings(&self) -> &Vec<Option<Arc<Mutex<dyn SubWorldInclusionSettingTrait>>>> {
+    fn settings(&self) -> &Vec<Option<LockedTypeObject /* SubWorldInclusionSetting */>> {
         self._glacier_base.settings()
     }
-    fn settings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SubWorldInclusionSettingTrait>>>> {
+    fn settings_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SubWorldInclusionSetting */>> {
         self._glacier_base.settings_mut()
     }
 }
@@ -1195,12 +1212,15 @@ impl super::core::DataContainerTrait for WorldPartInclusionSettings {
 
 pub static WORLDPARTINCLUSIONSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartInclusionSettings",
+    name_hash: 1281208627,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SUBWORLDINCLUSIONSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(WorldPartInclusionSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldPartInclusionSettings as Default>::default())),
+            create_boxed: || Box::new(<WorldPartInclusionSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -1230,6 +1250,7 @@ impl TypeObject for WorldPartInclusionSettings {
 
 pub static WORLDPARTINCLUSIONSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartInclusionSettings-Array",
+    name_hash: 402586759,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WorldPartInclusionSettings"),
@@ -1238,7 +1259,8 @@ pub static WORLDPARTINCLUSIONSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AssemblyDescriptorData {
     pub _glacier_base: InterfaceDescriptorData,
 }
@@ -1250,37 +1272,37 @@ impl AssemblyDescriptorDataTrait for AssemblyDescriptorData {
 }
 
 impl InterfaceDescriptorDataTrait for AssemblyDescriptorData {
-    fn input_events(&self) -> &Vec<DynamicEvent> {
+    fn input_events(&self) -> &Vec<BoxedTypeObject /* DynamicEvent */> {
         self._glacier_base.input_events()
     }
-    fn input_events_mut(&mut self) -> &mut Vec<DynamicEvent> {
+    fn input_events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicEvent */> {
         self._glacier_base.input_events_mut()
     }
-    fn output_events(&self) -> &Vec<DynamicEvent> {
+    fn output_events(&self) -> &Vec<BoxedTypeObject /* DynamicEvent */> {
         self._glacier_base.output_events()
     }
-    fn output_events_mut(&mut self) -> &mut Vec<DynamicEvent> {
+    fn output_events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicEvent */> {
         self._glacier_base.output_events_mut()
     }
-    fn input_links(&self) -> &Vec<DynamicLink> {
+    fn input_links(&self) -> &Vec<BoxedTypeObject /* DynamicLink */> {
         self._glacier_base.input_links()
     }
-    fn input_links_mut(&mut self) -> &mut Vec<DynamicLink> {
+    fn input_links_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicLink */> {
         self._glacier_base.input_links_mut()
     }
-    fn output_links(&self) -> &Vec<DynamicLink> {
+    fn output_links(&self) -> &Vec<BoxedTypeObject /* DynamicLink */> {
         self._glacier_base.output_links()
     }
-    fn output_links_mut(&mut self) -> &mut Vec<DynamicLink> {
+    fn output_links_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicLink */> {
         self._glacier_base.output_links_mut()
     }
 }
 
 impl super::core::DynamicDataContainerTrait for AssemblyDescriptorData {
-    fn fields(&self) -> &Vec<super::core::DataField> {
+    fn fields(&self) -> &Vec<BoxedTypeObject /* super::core::DataField */> {
         self._glacier_base.fields()
     }
-    fn fields_mut(&mut self) -> &mut Vec<super::core::DataField> {
+    fn fields_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::DataField */> {
         self._glacier_base.fields_mut()
     }
 }
@@ -1290,12 +1312,15 @@ impl super::core::DataContainerTrait for AssemblyDescriptorData {
 
 pub static ASSEMBLYDESCRIPTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AssemblyDescriptorData",
+    name_hash: 536295064,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(INTERFACEDESCRIPTORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AssemblyDescriptorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AssemblyDescriptorData as Default>::default())),
+            create_boxed: || Box::new(<AssemblyDescriptorData as Default>::default()),
         },
         fields: &[
         ],
@@ -1325,6 +1350,7 @@ impl TypeObject for AssemblyDescriptorData {
 
 pub static ASSEMBLYDESCRIPTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AssemblyDescriptorData-Array",
+    name_hash: 3117867180,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AssemblyDescriptorData"),
@@ -1333,7 +1359,8 @@ pub static ASSEMBLYDESCRIPTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldObjectListData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -1349,12 +1376,15 @@ impl super::core::DataContainerTrait for WorldObjectListData {
 
 pub static WORLDOBJECTLISTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldObjectListData",
+    name_hash: 3821418112,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(WorldObjectListData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldObjectListData as Default>::default())),
+            create_boxed: || Box::new(<WorldObjectListData as Default>::default()),
         },
         fields: &[
         ],
@@ -1384,6 +1414,7 @@ impl TypeObject for WorldObjectListData {
 
 pub static WORLDOBJECTLISTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldObjectListData-Array",
+    name_hash: 3402874036,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WorldObjectListData"),
@@ -1392,7 +1423,8 @@ pub static WORLDOBJECTLISTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldPartReferenceObjectData {
     pub _glacier_base: LayerReferenceObjectData,
 }
@@ -1413,16 +1445,16 @@ impl ReferenceObjectDataTrait for WorldPartReferenceObjectData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &StreamRealm {
@@ -1489,12 +1521,15 @@ impl super::core::DataContainerTrait for WorldPartReferenceObjectData {
 
 pub static WORLDPARTREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartReferenceObjectData",
+    name_hash: 3578523902,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LAYERREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WorldPartReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldPartReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<WorldPartReferenceObjectData as Default>::default()),
         },
         fields: &[
         ],
@@ -1524,6 +1559,7 @@ impl TypeObject for WorldPartReferenceObjectData {
 
 pub static WORLDPARTREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartReferenceObjectData-Array",
+    name_hash: 4054159818,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WorldPartReferenceObjectData"),
@@ -1532,7 +1568,8 @@ pub static WORLDPARTREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReadOnlyLayerReferenceObjectData {
     pub _glacier_base: LayerReferenceObjectData,
 }
@@ -1553,16 +1590,16 @@ impl ReferenceObjectDataTrait for ReadOnlyLayerReferenceObjectData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &StreamRealm {
@@ -1629,12 +1666,15 @@ impl super::core::DataContainerTrait for ReadOnlyLayerReferenceObjectData {
 
 pub static READONLYLAYERREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadOnlyLayerReferenceObjectData",
+    name_hash: 2009364462,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LAYERREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ReadOnlyLayerReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReadOnlyLayerReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<ReadOnlyLayerReferenceObjectData as Default>::default()),
         },
         fields: &[
         ],
@@ -1664,6 +1704,7 @@ impl TypeObject for ReadOnlyLayerReferenceObjectData {
 
 pub static READONLYLAYERREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadOnlyLayerReferenceObjectData-Array",
+    name_hash: 3029635290,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ReadOnlyLayerReferenceObjectData"),
@@ -1672,7 +1713,8 @@ pub static READONLYLAYERREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LayerReferenceObjectData {
     pub _glacier_base: ReferenceObjectData,
 }
@@ -1690,16 +1732,16 @@ impl ReferenceObjectDataTrait for LayerReferenceObjectData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &StreamRealm {
@@ -1766,12 +1808,15 @@ impl super::core::DataContainerTrait for LayerReferenceObjectData {
 
 pub static LAYERREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayerReferenceObjectData",
+    name_hash: 1838106280,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(REFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LayerReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LayerReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<LayerReferenceObjectData as Default>::default()),
         },
         fields: &[
         ],
@@ -1801,6 +1846,7 @@ impl TypeObject for LayerReferenceObjectData {
 
 pub static LAYERREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayerReferenceObjectData-Array",
+    name_hash: 3225913372,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LayerReferenceObjectData"),
@@ -1809,13 +1855,14 @@ pub static LAYERREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubWorldReferenceObjectData {
     pub _glacier_base: ReferenceObjectData,
     pub bundle_name: String,
     pub preloaded_bundle_names: Vec<String>,
     pub bundle_heap: BundleHeapInfo,
-    pub inclusion_settings: Option<Arc<Mutex<dyn SubWorldInclusionSettingsTrait>>>,
+    pub inclusion_settings: Option<LockedTypeObject /* SubWorldInclusionSettings */>,
     pub auto_load: bool,
     pub is_detached_sub_level: bool,
     pub is_win32_sub_level: bool,
@@ -1827,7 +1874,7 @@ pub struct SubWorldReferenceObjectData {
     pub is_linux_sub_level: bool,
     pub on_level_load_fire_on_stream_in: bool,
     pub use_peer_filtering: bool,
-    pub parents: Vec<SharedBundleReference>,
+    pub parents: Vec<BoxedTypeObject /* SharedBundleReference */>,
 }
 
 pub trait SubWorldReferenceObjectDataTrait: ReferenceObjectDataTrait {
@@ -1837,8 +1884,8 @@ pub trait SubWorldReferenceObjectDataTrait: ReferenceObjectDataTrait {
     fn preloaded_bundle_names_mut(&mut self) -> &mut Vec<String>;
     fn bundle_heap(&self) -> &BundleHeapInfo;
     fn bundle_heap_mut(&mut self) -> &mut BundleHeapInfo;
-    fn inclusion_settings(&self) -> &Option<Arc<Mutex<dyn SubWorldInclusionSettingsTrait>>>;
-    fn inclusion_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SubWorldInclusionSettingsTrait>>>;
+    fn inclusion_settings(&self) -> &Option<LockedTypeObject /* SubWorldInclusionSettings */>;
+    fn inclusion_settings_mut(&mut self) -> &mut Option<LockedTypeObject /* SubWorldInclusionSettings */>;
     fn auto_load(&self) -> &bool;
     fn auto_load_mut(&mut self) -> &mut bool;
     fn is_detached_sub_level(&self) -> &bool;
@@ -1861,8 +1908,8 @@ pub trait SubWorldReferenceObjectDataTrait: ReferenceObjectDataTrait {
     fn on_level_load_fire_on_stream_in_mut(&mut self) -> &mut bool;
     fn use_peer_filtering(&self) -> &bool;
     fn use_peer_filtering_mut(&mut self) -> &mut bool;
-    fn parents(&self) -> &Vec<SharedBundleReference>;
-    fn parents_mut(&mut self) -> &mut Vec<SharedBundleReference>;
+    fn parents(&self) -> &Vec<BoxedTypeObject /* SharedBundleReference */>;
+    fn parents_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SharedBundleReference */>;
 }
 
 impl SubWorldReferenceObjectDataTrait for SubWorldReferenceObjectData {
@@ -1884,10 +1931,10 @@ impl SubWorldReferenceObjectDataTrait for SubWorldReferenceObjectData {
     fn bundle_heap_mut(&mut self) -> &mut BundleHeapInfo {
         &mut self.bundle_heap
     }
-    fn inclusion_settings(&self) -> &Option<Arc<Mutex<dyn SubWorldInclusionSettingsTrait>>> {
+    fn inclusion_settings(&self) -> &Option<LockedTypeObject /* SubWorldInclusionSettings */> {
         &self.inclusion_settings
     }
-    fn inclusion_settings_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SubWorldInclusionSettingsTrait>>> {
+    fn inclusion_settings_mut(&mut self) -> &mut Option<LockedTypeObject /* SubWorldInclusionSettings */> {
         &mut self.inclusion_settings
     }
     fn auto_load(&self) -> &bool {
@@ -1956,10 +2003,10 @@ impl SubWorldReferenceObjectDataTrait for SubWorldReferenceObjectData {
     fn use_peer_filtering_mut(&mut self) -> &mut bool {
         &mut self.use_peer_filtering
     }
-    fn parents(&self) -> &Vec<SharedBundleReference> {
+    fn parents(&self) -> &Vec<BoxedTypeObject /* SharedBundleReference */> {
         &self.parents
     }
-    fn parents_mut(&mut self) -> &mut Vec<SharedBundleReference> {
+    fn parents_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SharedBundleReference */> {
         &mut self.parents
     }
 }
@@ -1971,16 +2018,16 @@ impl ReferenceObjectDataTrait for SubWorldReferenceObjectData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &StreamRealm {
@@ -2047,106 +2094,125 @@ impl super::core::DataContainerTrait for SubWorldReferenceObjectData {
 
 pub static SUBWORLDREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldReferenceObjectData",
+    name_hash: 4042638957,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(REFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SubWorldReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubWorldReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<SubWorldReferenceObjectData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BundleName",
+                name_hash: 461157046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, bundle_name),
             },
             FieldInfoData {
                 name: "PreloadedBundleNames",
+                name_hash: 198878053,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, preloaded_bundle_names),
             },
             FieldInfoData {
                 name: "BundleHeap",
+                name_hash: 460806893,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BundleHeapInfo",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, bundle_heap),
             },
             FieldInfoData {
                 name: "InclusionSettings",
+                name_hash: 1787638950,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SubWorldInclusionSettings",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, inclusion_settings),
             },
             FieldInfoData {
                 name: "AutoLoad",
+                name_hash: 3537348684,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, auto_load),
             },
             FieldInfoData {
                 name: "IsDetachedSubLevel",
+                name_hash: 2388296915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, is_detached_sub_level),
             },
             FieldInfoData {
                 name: "IsWin32SubLevel",
+                name_hash: 2682003100,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, is_win32_sub_level),
             },
             FieldInfoData {
                 name: "IsGen4aSubLevel",
+                name_hash: 4098771572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, is_gen4a_sub_level),
             },
             FieldInfoData {
                 name: "IsGen4bSubLevel",
+                name_hash: 139225463,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, is_gen4b_sub_level),
             },
             FieldInfoData {
                 name: "IsIOSSubLevel",
+                name_hash: 4180944952,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, is_i_o_s_sub_level),
             },
             FieldInfoData {
                 name: "IsAndroidSubLevel",
+                name_hash: 867634550,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, is_android_sub_level),
             },
             FieldInfoData {
                 name: "IsOSXSubLevel",
+                name_hash: 2688156201,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, is_o_s_x_sub_level),
             },
             FieldInfoData {
                 name: "IsLinuxSubLevel",
+                name_hash: 4067552587,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, is_linux_sub_level),
             },
             FieldInfoData {
                 name: "OnLevelLoadFireOnStreamIn",
+                name_hash: 4149123414,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, on_level_load_fire_on_stream_in),
             },
             FieldInfoData {
                 name: "UsePeerFiltering",
+                name_hash: 3192098660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, use_peer_filtering),
             },
             FieldInfoData {
                 name: "Parents",
+                name_hash: 3887384042,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SharedBundleReference-Array",
                 rust_offset: offset_of!(SubWorldReferenceObjectData, parents),
@@ -2178,6 +2244,7 @@ impl TypeObject for SubWorldReferenceObjectData {
 
 pub static SUBWORLDREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldReferenceObjectData-Array",
+    name_hash: 2540047193,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SubWorldReferenceObjectData"),
@@ -2186,7 +2253,8 @@ pub static SUBWORLDREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DetachedSubWorldData {
     pub _glacier_base: WorldData,
     pub reset_destruction_state: bool,
@@ -2234,10 +2302,10 @@ impl WorldDataTrait for DetachedSubWorldData {
 }
 
 impl SubWorldDataTrait for DetachedSubWorldData {
-    fn runtime_material_grid(&self) -> &Option<Arc<Mutex<dyn MaterialGridDataTrait>>> {
+    fn runtime_material_grid(&self) -> &Option<LockedTypeObject /* MaterialGridData */> {
         self._glacier_base.runtime_material_grid()
     }
-    fn runtime_material_grid_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MaterialGridDataTrait>>> {
+    fn runtime_material_grid_mut(&mut self) -> &mut Option<LockedTypeObject /* MaterialGridData */> {
         self._glacier_base.runtime_material_grid_mut()
     }
     fn is_win32_sub_level(&self) -> &bool {
@@ -2288,16 +2356,16 @@ impl SubWorldDataTrait for DetachedSubWorldData {
     fn persistence_setting_mut(&mut self) -> &mut BlueprintPersistenceSetting {
         self._glacier_base.persistence_setting_mut()
     }
-    fn auto_asset_collector(&self) -> &Option<Arc<Mutex<dyn AutoAssetCollectorTrait>>> {
+    fn auto_asset_collector(&self) -> &Option<LockedTypeObject /* AutoAssetCollector */> {
         self._glacier_base.auto_asset_collector()
     }
-    fn auto_asset_collector_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AutoAssetCollectorTrait>>> {
+    fn auto_asset_collector_mut(&mut self) -> &mut Option<LockedTypeObject /* AutoAssetCollector */> {
         self._glacier_base.auto_asset_collector_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn SubWorldDataComponentTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* SubWorldDataComponent */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SubWorldDataComponentTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SubWorldDataComponent */>> {
         self._glacier_base.components_mut()
     }
 }
@@ -2315,25 +2383,25 @@ impl PrefabBlueprintTrait for DetachedSubWorldData {
 }
 
 impl BlueprintTrait for DetachedSubWorldData {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl EntityBusDataTrait for DetachedSubWorldData {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -2345,22 +2413,22 @@ impl super::core::DataBusDataTrait for DetachedSubWorldData {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -2379,16 +2447,20 @@ impl super::core::DataContainerTrait for DetachedSubWorldData {
 
 pub static DETACHEDSUBWORLDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DetachedSubWorldData",
+    name_hash: 1627283725,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WORLDDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DetachedSubWorldData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DetachedSubWorldData as Default>::default())),
+            create_boxed: || Box::new(<DetachedSubWorldData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ResetDestructionState",
+                name_hash: 1536730777,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DetachedSubWorldData, reset_destruction_state),
@@ -2420,6 +2492,7 @@ impl TypeObject for DetachedSubWorldData {
 
 pub static DETACHEDSUBWORLDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DetachedSubWorldData-Array",
+    name_hash: 4239107257,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DetachedSubWorldData"),
@@ -2428,7 +2501,8 @@ pub static DETACHEDSUBWORLDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldData {
     pub _glacier_base: SubWorldData,
     pub world_size_x_z: f32,
@@ -2476,10 +2550,10 @@ impl WorldDataTrait for WorldData {
 }
 
 impl SubWorldDataTrait for WorldData {
-    fn runtime_material_grid(&self) -> &Option<Arc<Mutex<dyn MaterialGridDataTrait>>> {
+    fn runtime_material_grid(&self) -> &Option<LockedTypeObject /* MaterialGridData */> {
         self._glacier_base.runtime_material_grid()
     }
-    fn runtime_material_grid_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MaterialGridDataTrait>>> {
+    fn runtime_material_grid_mut(&mut self) -> &mut Option<LockedTypeObject /* MaterialGridData */> {
         self._glacier_base.runtime_material_grid_mut()
     }
     fn is_win32_sub_level(&self) -> &bool {
@@ -2530,16 +2604,16 @@ impl SubWorldDataTrait for WorldData {
     fn persistence_setting_mut(&mut self) -> &mut BlueprintPersistenceSetting {
         self._glacier_base.persistence_setting_mut()
     }
-    fn auto_asset_collector(&self) -> &Option<Arc<Mutex<dyn AutoAssetCollectorTrait>>> {
+    fn auto_asset_collector(&self) -> &Option<LockedTypeObject /* AutoAssetCollector */> {
         self._glacier_base.auto_asset_collector()
     }
-    fn auto_asset_collector_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AutoAssetCollectorTrait>>> {
+    fn auto_asset_collector_mut(&mut self) -> &mut Option<LockedTypeObject /* AutoAssetCollector */> {
         self._glacier_base.auto_asset_collector_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn SubWorldDataComponentTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* SubWorldDataComponent */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SubWorldDataComponentTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SubWorldDataComponent */>> {
         self._glacier_base.components_mut()
     }
 }
@@ -2557,25 +2631,25 @@ impl PrefabBlueprintTrait for WorldData {
 }
 
 impl BlueprintTrait for WorldData {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl EntityBusDataTrait for WorldData {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -2587,22 +2661,22 @@ impl super::core::DataBusDataTrait for WorldData {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -2621,34 +2695,41 @@ impl super::core::DataContainerTrait for WorldData {
 
 pub static WORLDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldData",
+    name_hash: 2491518455,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SUBWORLDDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WorldData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldData as Default>::default())),
+            create_boxed: || Box::new(<WorldData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WorldSizeXZ",
+                name_hash: 3734169344,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldData, world_size_x_z),
             },
             FieldInfoData {
                 name: "WorldSizeY",
+                name_hash: 633758747,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldData, world_size_y),
             },
             FieldInfoData {
                 name: "IsProceduralLevel",
+                name_hash: 4073676268,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WorldData, is_procedural_level),
             },
             FieldInfoData {
                 name: "IsDedicatedServerLevel",
+                name_hash: 3894583735,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(WorldData, is_dedicated_server_level),
@@ -2680,6 +2761,7 @@ impl TypeObject for WorldData {
 
 pub static WORLDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldData-Array",
+    name_hash: 2689144771,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WorldData"),
@@ -2688,10 +2770,11 @@ pub static WORLDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubWorldData {
     pub _glacier_base: SpatialPrefabBlueprint,
-    pub runtime_material_grid: Option<Arc<Mutex<dyn MaterialGridDataTrait>>>,
+    pub runtime_material_grid: Option<LockedTypeObject /* MaterialGridData */>,
     pub is_win32_sub_level: bool,
     pub is_gen4a_sub_level: bool,
     pub is_gen4b_sub_level: bool,
@@ -2700,13 +2783,13 @@ pub struct SubWorldData {
     pub is_o_s_x_sub_level: bool,
     pub is_linux_sub_level: bool,
     pub persistence_setting: BlueprintPersistenceSetting,
-    pub auto_asset_collector: Option<Arc<Mutex<dyn AutoAssetCollectorTrait>>>,
-    pub components: Vec<Option<Arc<Mutex<dyn SubWorldDataComponentTrait>>>>,
+    pub auto_asset_collector: Option<LockedTypeObject /* AutoAssetCollector */>,
+    pub components: Vec<Option<LockedTypeObject /* SubWorldDataComponent */>>,
 }
 
 pub trait SubWorldDataTrait: SpatialPrefabBlueprintTrait {
-    fn runtime_material_grid(&self) -> &Option<Arc<Mutex<dyn MaterialGridDataTrait>>>;
-    fn runtime_material_grid_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MaterialGridDataTrait>>>;
+    fn runtime_material_grid(&self) -> &Option<LockedTypeObject /* MaterialGridData */>;
+    fn runtime_material_grid_mut(&mut self) -> &mut Option<LockedTypeObject /* MaterialGridData */>;
     fn is_win32_sub_level(&self) -> &bool;
     fn is_win32_sub_level_mut(&mut self) -> &mut bool;
     fn is_gen4a_sub_level(&self) -> &bool;
@@ -2723,17 +2806,17 @@ pub trait SubWorldDataTrait: SpatialPrefabBlueprintTrait {
     fn is_linux_sub_level_mut(&mut self) -> &mut bool;
     fn persistence_setting(&self) -> &BlueprintPersistenceSetting;
     fn persistence_setting_mut(&mut self) -> &mut BlueprintPersistenceSetting;
-    fn auto_asset_collector(&self) -> &Option<Arc<Mutex<dyn AutoAssetCollectorTrait>>>;
-    fn auto_asset_collector_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AutoAssetCollectorTrait>>>;
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn SubWorldDataComponentTrait>>>>;
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SubWorldDataComponentTrait>>>>;
+    fn auto_asset_collector(&self) -> &Option<LockedTypeObject /* AutoAssetCollector */>;
+    fn auto_asset_collector_mut(&mut self) -> &mut Option<LockedTypeObject /* AutoAssetCollector */>;
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* SubWorldDataComponent */>>;
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SubWorldDataComponent */>>;
 }
 
 impl SubWorldDataTrait for SubWorldData {
-    fn runtime_material_grid(&self) -> &Option<Arc<Mutex<dyn MaterialGridDataTrait>>> {
+    fn runtime_material_grid(&self) -> &Option<LockedTypeObject /* MaterialGridData */> {
         &self.runtime_material_grid
     }
-    fn runtime_material_grid_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MaterialGridDataTrait>>> {
+    fn runtime_material_grid_mut(&mut self) -> &mut Option<LockedTypeObject /* MaterialGridData */> {
         &mut self.runtime_material_grid
     }
     fn is_win32_sub_level(&self) -> &bool {
@@ -2784,16 +2867,16 @@ impl SubWorldDataTrait for SubWorldData {
     fn persistence_setting_mut(&mut self) -> &mut BlueprintPersistenceSetting {
         &mut self.persistence_setting
     }
-    fn auto_asset_collector(&self) -> &Option<Arc<Mutex<dyn AutoAssetCollectorTrait>>> {
+    fn auto_asset_collector(&self) -> &Option<LockedTypeObject /* AutoAssetCollector */> {
         &self.auto_asset_collector
     }
-    fn auto_asset_collector_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AutoAssetCollectorTrait>>> {
+    fn auto_asset_collector_mut(&mut self) -> &mut Option<LockedTypeObject /* AutoAssetCollector */> {
         &mut self.auto_asset_collector
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn SubWorldDataComponentTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* SubWorldDataComponent */>> {
         &self.components
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SubWorldDataComponentTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SubWorldDataComponent */>> {
         &mut self.components
     }
 }
@@ -2811,25 +2894,25 @@ impl PrefabBlueprintTrait for SubWorldData {
 }
 
 impl BlueprintTrait for SubWorldData {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl EntityBusDataTrait for SubWorldData {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -2841,22 +2924,22 @@ impl super::core::DataBusDataTrait for SubWorldData {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -2875,76 +2958,90 @@ impl super::core::DataContainerTrait for SubWorldData {
 
 pub static SUBWORLDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldData",
+    name_hash: 1556892979,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPATIALPREFABBLUEPRINT_TYPE_INFO),
+        super_class_offset: offset_of!(SubWorldData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubWorldData as Default>::default())),
+            create_boxed: || Box::new(<SubWorldData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RuntimeMaterialGrid",
+                name_hash: 1453435306,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialGridData",
                 rust_offset: offset_of!(SubWorldData, runtime_material_grid),
             },
             FieldInfoData {
                 name: "IsWin32SubLevel",
+                name_hash: 2682003100,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldData, is_win32_sub_level),
             },
             FieldInfoData {
                 name: "IsGen4aSubLevel",
+                name_hash: 4098771572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldData, is_gen4a_sub_level),
             },
             FieldInfoData {
                 name: "IsGen4bSubLevel",
+                name_hash: 139225463,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldData, is_gen4b_sub_level),
             },
             FieldInfoData {
                 name: "IsAndroidSubLevel",
+                name_hash: 867634550,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldData, is_android_sub_level),
             },
             FieldInfoData {
                 name: "IsIOSSubLevel",
+                name_hash: 4180944952,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldData, is_i_o_s_sub_level),
             },
             FieldInfoData {
                 name: "IsOSXSubLevel",
+                name_hash: 2688156201,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldData, is_o_s_x_sub_level),
             },
             FieldInfoData {
                 name: "IsLinuxSubLevel",
+                name_hash: 4067552587,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SubWorldData, is_linux_sub_level),
             },
             FieldInfoData {
                 name: "PersistenceSetting",
+                name_hash: 3641697508,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BlueprintPersistenceSetting",
                 rust_offset: offset_of!(SubWorldData, persistence_setting),
             },
             FieldInfoData {
                 name: "AutoAssetCollector",
+                name_hash: 3958760185,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AutoAssetCollector",
                 rust_offset: offset_of!(SubWorldData, auto_asset_collector),
             },
             FieldInfoData {
                 name: "Components",
+                name_hash: 3391050425,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SubWorldDataComponent-Array",
                 rust_offset: offset_of!(SubWorldData, components),
@@ -2976,6 +3073,7 @@ impl TypeObject for SubWorldData {
 
 pub static SUBWORLDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldData-Array",
+    name_hash: 3220347015,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SubWorldData"),
@@ -2984,7 +3082,8 @@ pub static SUBWORLDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubWorldDataComponent {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -3000,12 +3099,15 @@ impl super::core::DataContainerTrait for SubWorldDataComponent {
 
 pub static SUBWORLDDATACOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldDataComponent",
+    name_hash: 2978528508,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(SubWorldDataComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubWorldDataComponent as Default>::default())),
+            create_boxed: || Box::new(<SubWorldDataComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -3035,6 +3137,7 @@ impl TypeObject for SubWorldDataComponent {
 
 pub static SUBWORLDDATACOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldDataComponent-Array",
+    name_hash: 3651085512,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SubWorldDataComponent"),
@@ -3043,7 +3146,8 @@ pub static SUBWORLDDATACOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldPartData {
     pub _glacier_base: LayerData,
 }
@@ -3079,25 +3183,25 @@ impl PrefabBlueprintTrait for WorldPartData {
 }
 
 impl BlueprintTrait for WorldPartData {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl EntityBusDataTrait for WorldPartData {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -3109,22 +3213,22 @@ impl super::core::DataBusDataTrait for WorldPartData {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -3143,12 +3247,15 @@ impl super::core::DataContainerTrait for WorldPartData {
 
 pub static WORLDPARTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartData",
+    name_hash: 173330176,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LAYERDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WorldPartData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldPartData as Default>::default())),
+            create_boxed: || Box::new(<WorldPartData as Default>::default()),
         },
         fields: &[
         ],
@@ -3178,6 +3285,7 @@ impl TypeObject for WorldPartData {
 
 pub static WORLDPARTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldPartData-Array",
+    name_hash: 890418484,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WorldPartData"),
@@ -3186,7 +3294,8 @@ pub static WORLDPARTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LayerData {
     pub _glacier_base: PrefabBlueprint,
     pub enabled: bool,
@@ -3225,25 +3334,25 @@ impl PrefabBlueprintTrait for LayerData {
 }
 
 impl BlueprintTrait for LayerData {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl EntityBusDataTrait for LayerData {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -3255,22 +3364,22 @@ impl super::core::DataBusDataTrait for LayerData {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -3289,22 +3398,27 @@ impl super::core::DataContainerTrait for LayerData {
 
 pub static LAYERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayerData",
+    name_hash: 3033212822,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PREFABBLUEPRINT_TYPE_INFO),
+        super_class_offset: offset_of!(LayerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LayerData as Default>::default())),
+            create_boxed: || Box::new(<LayerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LayerData, enabled),
             },
             FieldInfoData {
                 name: "HackToSolveRealTimeTweakingIssue",
+                name_hash: 1452521702,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(LayerData, hack_to_solve_real_time_tweaking_issue),
@@ -3336,6 +3450,7 @@ impl TypeObject for LayerData {
 
 pub static LAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LayerData-Array",
+    name_hash: 1820859554,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LayerData"),
@@ -3344,22 +3459,23 @@ pub static LAYERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubWorldInclusionSettings {
     pub _glacier_base: super::core::DataContainer,
-    pub settings: Vec<Option<Arc<Mutex<dyn SubWorldInclusionSettingTrait>>>>,
+    pub settings: Vec<Option<LockedTypeObject /* SubWorldInclusionSetting */>>,
 }
 
 pub trait SubWorldInclusionSettingsTrait: super::core::DataContainerTrait {
-    fn settings(&self) -> &Vec<Option<Arc<Mutex<dyn SubWorldInclusionSettingTrait>>>>;
-    fn settings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SubWorldInclusionSettingTrait>>>>;
+    fn settings(&self) -> &Vec<Option<LockedTypeObject /* SubWorldInclusionSetting */>>;
+    fn settings_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SubWorldInclusionSetting */>>;
 }
 
 impl SubWorldInclusionSettingsTrait for SubWorldInclusionSettings {
-    fn settings(&self) -> &Vec<Option<Arc<Mutex<dyn SubWorldInclusionSettingTrait>>>> {
+    fn settings(&self) -> &Vec<Option<LockedTypeObject /* SubWorldInclusionSetting */>> {
         &self.settings
     }
-    fn settings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SubWorldInclusionSettingTrait>>>> {
+    fn settings_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SubWorldInclusionSetting */>> {
         &mut self.settings
     }
 }
@@ -3369,16 +3485,20 @@ impl super::core::DataContainerTrait for SubWorldInclusionSettings {
 
 pub static SUBWORLDINCLUSIONSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldInclusionSettings",
+    name_hash: 367586080,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(SubWorldInclusionSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubWorldInclusionSettings as Default>::default())),
+            create_boxed: || Box::new(<SubWorldInclusionSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Settings",
+                name_hash: 649772672,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SubWorldInclusionSetting-Array",
                 rust_offset: offset_of!(SubWorldInclusionSettings, settings),
@@ -3410,6 +3530,7 @@ impl TypeObject for SubWorldInclusionSettings {
 
 pub static SUBWORLDINCLUSIONSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldInclusionSettings-Array",
+    name_hash: 283848852,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SubWorldInclusionSettings"),
@@ -3418,25 +3539,26 @@ pub static SUBWORLDINCLUSIONSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubWorldInclusionSetting {
     pub _glacier_base: super::core::DataContainer,
-    pub criterion: Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>>,
+    pub criterion: Option<LockedTypeObject /* SubWorldInclusionCriterion */>,
     pub enabled_options: Vec<String>,
 }
 
 pub trait SubWorldInclusionSettingTrait: super::core::DataContainerTrait {
-    fn criterion(&self) -> &Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>>;
-    fn criterion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>>;
+    fn criterion(&self) -> &Option<LockedTypeObject /* SubWorldInclusionCriterion */>;
+    fn criterion_mut(&mut self) -> &mut Option<LockedTypeObject /* SubWorldInclusionCriterion */>;
     fn enabled_options(&self) -> &Vec<String>;
     fn enabled_options_mut(&mut self) -> &mut Vec<String>;
 }
 
 impl SubWorldInclusionSettingTrait for SubWorldInclusionSetting {
-    fn criterion(&self) -> &Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>> {
+    fn criterion(&self) -> &Option<LockedTypeObject /* SubWorldInclusionCriterion */> {
         &self.criterion
     }
-    fn criterion_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>> {
+    fn criterion_mut(&mut self) -> &mut Option<LockedTypeObject /* SubWorldInclusionCriterion */> {
         &mut self.criterion
     }
     fn enabled_options(&self) -> &Vec<String> {
@@ -3452,22 +3574,27 @@ impl super::core::DataContainerTrait for SubWorldInclusionSetting {
 
 pub static SUBWORLDINCLUSIONSETTING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldInclusionSetting",
+    name_hash: 1442794739,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(SubWorldInclusionSetting, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubWorldInclusionSetting as Default>::default())),
+            create_boxed: || Box::new(<SubWorldInclusionSetting as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Criterion",
+                name_hash: 2480005462,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SubWorldInclusionCriterion",
                 rust_offset: offset_of!(SubWorldInclusionSetting, criterion),
             },
             FieldInfoData {
                 name: "EnabledOptions",
+                name_hash: 2588709552,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(SubWorldInclusionSetting, enabled_options),
@@ -3499,6 +3626,7 @@ impl TypeObject for SubWorldInclusionSetting {
 
 pub static SUBWORLDINCLUSIONSETTING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldInclusionSetting-Array",
+    name_hash: 1570400455,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SubWorldInclusionSetting"),
@@ -3507,22 +3635,23 @@ pub static SUBWORLDINCLUSIONSETTING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubWorldInclusion {
     pub _glacier_base: super::core::Asset,
-    pub criteria: Vec<Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>>>,
+    pub criteria: Vec<Option<LockedTypeObject /* SubWorldInclusionCriterion */>>,
 }
 
 pub trait SubWorldInclusionTrait: super::core::AssetTrait {
-    fn criteria(&self) -> &Vec<Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>>>;
-    fn criteria_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>>>;
+    fn criteria(&self) -> &Vec<Option<LockedTypeObject /* SubWorldInclusionCriterion */>>;
+    fn criteria_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SubWorldInclusionCriterion */>>;
 }
 
 impl SubWorldInclusionTrait for SubWorldInclusion {
-    fn criteria(&self) -> &Vec<Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>>> {
+    fn criteria(&self) -> &Vec<Option<LockedTypeObject /* SubWorldInclusionCriterion */>> {
         &self.criteria
     }
-    fn criteria_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SubWorldInclusionCriterionTrait>>>> {
+    fn criteria_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SubWorldInclusionCriterion */>> {
         &mut self.criteria
     }
 }
@@ -3541,16 +3670,20 @@ impl super::core::DataContainerTrait for SubWorldInclusion {
 
 pub static SUBWORLDINCLUSION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldInclusion",
+    name_hash: 3679119717,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(SubWorldInclusion, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubWorldInclusion as Default>::default())),
+            create_boxed: || Box::new(<SubWorldInclusion as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Criteria",
+                name_hash: 335452726,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SubWorldInclusionCriterion-Array",
                 rust_offset: offset_of!(SubWorldInclusion, criteria),
@@ -3582,6 +3715,7 @@ impl TypeObject for SubWorldInclusion {
 
 pub static SUBWORLDINCLUSION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldInclusion-Array",
+    name_hash: 558502481,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SubWorldInclusion"),
@@ -3590,7 +3724,8 @@ pub static SUBWORLDINCLUSION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubWorldInclusionCriterion {
     pub _glacier_base: super::core::DataContainer,
     pub name: String,
@@ -3624,22 +3759,27 @@ impl super::core::DataContainerTrait for SubWorldInclusionCriterion {
 
 pub static SUBWORLDINCLUSIONCRITERION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldInclusionCriterion",
+    name_hash: 1766703542,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(SubWorldInclusionCriterion, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubWorldInclusionCriterion as Default>::default())),
+            create_boxed: || Box::new(<SubWorldInclusionCriterion as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(SubWorldInclusionCriterion, name),
             },
             FieldInfoData {
                 name: "Options",
+                name_hash: 958915349,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(SubWorldInclusionCriterion, options),
@@ -3671,6 +3811,7 @@ impl TypeObject for SubWorldInclusionCriterion {
 
 pub static SUBWORLDINCLUSIONCRITERION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubWorldInclusionCriterion-Array",
+    name_hash: 2520897026,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SubWorldInclusionCriterion"),
@@ -3679,10 +3820,11 @@ pub static SUBWORLDINCLUSIONCRITERION_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LevelSetup {
     pub name: String,
-    pub inclusion_options: Vec<LevelSetupOption>,
+    pub inclusion_options: Vec<BoxedTypeObject /* LevelSetupOption */>,
     pub difficulty_index: u32,
     pub start_point: String,
     pub is_save_game: bool,
@@ -3695,8 +3837,8 @@ pub struct LevelSetup {
 pub trait LevelSetupTrait: TypeObject {
     fn name(&self) -> &String;
     fn name_mut(&mut self) -> &mut String;
-    fn inclusion_options(&self) -> &Vec<LevelSetupOption>;
-    fn inclusion_options_mut(&mut self) -> &mut Vec<LevelSetupOption>;
+    fn inclusion_options(&self) -> &Vec<BoxedTypeObject /* LevelSetupOption */>;
+    fn inclusion_options_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LevelSetupOption */>;
     fn difficulty_index(&self) -> &u32;
     fn difficulty_index_mut(&mut self) -> &mut u32;
     fn start_point(&self) -> &String;
@@ -3720,10 +3862,10 @@ impl LevelSetupTrait for LevelSetup {
     fn name_mut(&mut self) -> &mut String {
         &mut self.name
     }
-    fn inclusion_options(&self) -> &Vec<LevelSetupOption> {
+    fn inclusion_options(&self) -> &Vec<BoxedTypeObject /* LevelSetupOption */> {
         &self.inclusion_options
     }
-    fn inclusion_options_mut(&mut self) -> &mut Vec<LevelSetupOption> {
+    fn inclusion_options_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LevelSetupOption */> {
         &mut self.inclusion_options
     }
     fn difficulty_index(&self) -> &u32 {
@@ -3772,63 +3914,74 @@ impl LevelSetupTrait for LevelSetup {
 
 pub static LEVELSETUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LevelSetup",
+    name_hash: 1198400020,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LevelSetup as Default>::default())),
+            create_boxed: || Box::new(<LevelSetup as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(LevelSetup, name),
             },
             FieldInfoData {
                 name: "InclusionOptions",
+                name_hash: 1857959091,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LevelSetupOption-Array",
                 rust_offset: offset_of!(LevelSetup, inclusion_options),
             },
             FieldInfoData {
                 name: "DifficultyIndex",
+                name_hash: 302070728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(LevelSetup, difficulty_index),
             },
             FieldInfoData {
                 name: "StartPoint",
+                name_hash: 2755831849,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(LevelSetup, start_point),
             },
             FieldInfoData {
                 name: "IsSaveGame",
+                name_hash: 3625496752,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LevelSetup, is_save_game),
             },
             FieldInfoData {
                 name: "HasPersistentSave",
+                name_hash: 1104880027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LevelSetup, has_persistent_save),
             },
             FieldInfoData {
                 name: "ForceReloadResources",
+                name_hash: 3211157744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LevelSetup, force_reload_resources),
             },
             FieldInfoData {
                 name: "LevelManagerInitialLevel",
+                name_hash: 992374984,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(LevelSetup, level_manager_initial_level),
             },
             FieldInfoData {
                 name: "LevelManagerStartPoint",
+                name_hash: 4230321356,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(LevelSetup, level_manager_start_point),
@@ -3860,6 +4013,7 @@ impl TypeObject for LevelSetup {
 
 pub static LEVELSETUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LevelSetup-Array",
+    name_hash: 863026720,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LevelSetup"),
@@ -3868,7 +4022,8 @@ pub static LEVELSETUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LevelSetupOption {
     pub criterion: String,
     pub value: String,
@@ -3898,21 +4053,25 @@ impl LevelSetupOptionTrait for LevelSetupOption {
 
 pub static LEVELSETUPOPTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LevelSetupOption",
+    name_hash: 2288590967,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LevelSetupOption as Default>::default())),
+            create_boxed: || Box::new(<LevelSetupOption as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Criterion",
+                name_hash: 2480005462,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(LevelSetupOption, criterion),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(LevelSetupOption, value),
@@ -3944,6 +4103,7 @@ impl TypeObject for LevelSetupOption {
 
 pub static LEVELSETUPOPTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LevelSetupOption-Array",
+    name_hash: 3644099139,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LevelSetupOption"),
@@ -3952,7 +4112,8 @@ pub static LEVELSETUPOPTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreateSchematicsInstanceEntity {
     pub _glacier_base: Entity,
 }
@@ -3971,12 +4132,15 @@ impl EntityBusPeerTrait for CreateSchematicsInstanceEntity {
 
 pub static CREATESCHEMATICSINSTANCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreateSchematicsInstanceEntity",
+    name_hash: 3977093519,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CreateSchematicsInstanceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreateSchematicsInstanceEntity as Default>::default())),
+            create_boxed: || Box::new(<CreateSchematicsInstanceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4006,6 +4170,7 @@ impl TypeObject for CreateSchematicsInstanceEntity {
 
 pub static CREATESCHEMATICSINSTANCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreateSchematicsInstanceEntity-Array",
+    name_hash: 3196173883,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CreateSchematicsInstanceEntity"),
@@ -4014,7 +4179,8 @@ pub static CREATESCHEMATICSINSTANCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GetEntityBusEntity {
     pub _glacier_base: Entity,
 }
@@ -4033,12 +4199,15 @@ impl EntityBusPeerTrait for GetEntityBusEntity {
 
 pub static GETENTITYBUSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetEntityBusEntity",
+    name_hash: 4036210743,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(GetEntityBusEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GetEntityBusEntity as Default>::default())),
+            create_boxed: || Box::new(<GetEntityBusEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4068,6 +4237,7 @@ impl TypeObject for GetEntityBusEntity {
 
 pub static GETENTITYBUSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetEntityBusEntity-Array",
+    name_hash: 3015174531,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("GetEntityBusEntity"),
@@ -4076,7 +4246,8 @@ pub static GETENTITYBUSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GetEntityEntity {
     pub _glacier_base: Entity,
 }
@@ -4095,12 +4266,15 @@ impl EntityBusPeerTrait for GetEntityEntity {
 
 pub static GETENTITYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetEntityEntity",
+    name_hash: 3339482963,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(GetEntityEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GetEntityEntity as Default>::default())),
+            create_boxed: || Box::new(<GetEntityEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4130,6 +4304,7 @@ impl TypeObject for GetEntityEntity {
 
 pub static GETENTITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetEntityEntity-Array",
+    name_hash: 4055720551,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("GetEntityEntity"),
@@ -4138,7 +4313,8 @@ pub static GETENTITYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CallFunctionEntity {
     pub _glacier_base: Entity,
 }
@@ -4157,12 +4333,15 @@ impl EntityBusPeerTrait for CallFunctionEntity {
 
 pub static CALLFUNCTIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CallFunctionEntity",
+    name_hash: 3650895966,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CallFunctionEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CallFunctionEntity as Default>::default())),
+            create_boxed: || Box::new(<CallFunctionEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4192,6 +4371,7 @@ impl TypeObject for CallFunctionEntity {
 
 pub static CALLFUNCTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CallFunctionEntity-Array",
+    name_hash: 2806538730,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CallFunctionEntity"),
@@ -4200,7 +4380,8 @@ pub static CALLFUNCTIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityTransformSpace {
 }
 
@@ -4212,12 +4393,15 @@ impl EntityTransformSpaceTrait for EntityTransformSpace {
 
 pub static ENTITYTRANSFORMSPACE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTransformSpace",
+    name_hash: 263248950,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityTransformSpace as Default>::default())),
+            create_boxed: || Box::new(<EntityTransformSpace as Default>::default()),
         },
         fields: &[
         ],
@@ -4247,6 +4431,7 @@ impl TypeObject for EntityTransformSpace {
 
 pub static ENTITYTRANSFORMSPACE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityTransformSpace-Array",
+    name_hash: 573493378,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EntityTransformSpace"),
@@ -4255,7 +4440,8 @@ pub static ENTITYTRANSFORMSPACE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Entity {
     pub _glacier_base: EntityBusPeer,
 }
@@ -4271,12 +4457,15 @@ impl EntityBusPeerTrait for Entity {
 
 pub static ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Entity",
+    name_hash: 2342964382,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYBUSPEER_TYPE_INFO),
+        super_class_offset: offset_of!(Entity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Entity as Default>::default())),
+            create_boxed: || Box::new(<Entity as Default>::default()),
         },
         fields: &[
         ],
@@ -4306,6 +4495,7 @@ impl TypeObject for Entity {
 
 pub static ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Entity-Array",
+    name_hash: 1196088746,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Entity"),
@@ -4314,7 +4504,8 @@ pub static ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ComponentEntity {
     pub _glacier_base: SpatialEntity,
 }
@@ -4336,12 +4527,15 @@ impl EntityBusPeerTrait for ComponentEntity {
 
 pub static COMPONENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComponentEntity",
+    name_hash: 2187906833,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ComponentEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ComponentEntity as Default>::default())),
+            create_boxed: || Box::new(<ComponentEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4371,6 +4565,7 @@ impl TypeObject for ComponentEntity {
 
 pub static COMPONENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComponentEntity-Array",
+    name_hash: 4152643749,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ComponentEntity"),
@@ -4379,7 +4574,8 @@ pub static COMPONENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Component {
     pub _glacier_base: EntityBusPeer,
 }
@@ -4395,12 +4591,15 @@ impl EntityBusPeerTrait for Component {
 
 pub static COMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Component",
+    name_hash: 1924866442,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYBUSPEER_TYPE_INFO),
+        super_class_offset: offset_of!(Component, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Component as Default>::default())),
+            create_boxed: || Box::new(<Component as Default>::default()),
         },
         fields: &[
         ],
@@ -4430,6 +4629,7 @@ impl TypeObject for Component {
 
 pub static COMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Component-Array",
+    name_hash: 1387822270,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Component"),
@@ -4438,7 +4638,8 @@ pub static COMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareAxisAlignedBoxEntity {
     pub _glacier_base: Entity,
 }
@@ -4457,12 +4658,15 @@ impl EntityBusPeerTrait for CompareAxisAlignedBoxEntity {
 
 pub static COMPAREAXISALIGNEDBOXENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareAxisAlignedBoxEntity",
+    name_hash: 2836733251,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareAxisAlignedBoxEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareAxisAlignedBoxEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareAxisAlignedBoxEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4492,6 +4696,7 @@ impl TypeObject for CompareAxisAlignedBoxEntity {
 
 pub static COMPAREAXISALIGNEDBOXENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareAxisAlignedBoxEntity-Array",
+    name_hash: 2912403575,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareAxisAlignedBoxEntity"),
@@ -4500,7 +4705,8 @@ pub static COMPAREAXISALIGNEDBOXENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareUintRangeEntity {
     pub _glacier_base: Entity,
 }
@@ -4519,12 +4725,15 @@ impl EntityBusPeerTrait for CompareUintRangeEntity {
 
 pub static COMPAREUINTRANGEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareUintRangeEntity",
+    name_hash: 4012700160,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareUintRangeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareUintRangeEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareUintRangeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4554,6 +4763,7 @@ impl TypeObject for CompareUintRangeEntity {
 
 pub static COMPAREUINTRANGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareUintRangeEntity-Array",
+    name_hash: 2453215284,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareUintRangeEntity"),
@@ -4562,7 +4772,8 @@ pub static COMPAREUINTRANGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareIntRangeEntity {
     pub _glacier_base: Entity,
 }
@@ -4581,12 +4792,15 @@ impl EntityBusPeerTrait for CompareIntRangeEntity {
 
 pub static COMPAREINTRANGEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareIntRangeEntity",
+    name_hash: 2122647925,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareIntRangeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareIntRangeEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareIntRangeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4616,6 +4830,7 @@ impl TypeObject for CompareIntRangeEntity {
 
 pub static COMPAREINTRANGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareIntRangeEntity-Array",
+    name_hash: 3744397889,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareIntRangeEntity"),
@@ -4624,7 +4839,8 @@ pub static COMPAREINTRANGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareVec4Entity {
     pub _glacier_base: Entity,
 }
@@ -4643,12 +4859,15 @@ impl EntityBusPeerTrait for CompareVec4Entity {
 
 pub static COMPAREVEC4ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareVec4Entity",
+    name_hash: 315937245,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareVec4Entity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareVec4Entity as Default>::default())),
+            create_boxed: || Box::new(<CompareVec4Entity as Default>::default()),
         },
         fields: &[
         ],
@@ -4678,6 +4897,7 @@ impl TypeObject for CompareVec4Entity {
 
 pub static COMPAREVEC4ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareVec4Entity-Array",
+    name_hash: 873623017,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareVec4Entity"),
@@ -4686,7 +4906,8 @@ pub static COMPAREVEC4ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareVec3Entity {
     pub _glacier_base: Entity,
 }
@@ -4705,12 +4926,15 @@ impl EntityBusPeerTrait for CompareVec3Entity {
 
 pub static COMPAREVEC3ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareVec3Entity",
+    name_hash: 1971429082,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareVec3Entity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareVec3Entity as Default>::default())),
+            create_boxed: || Box::new(<CompareVec3Entity as Default>::default()),
         },
         fields: &[
         ],
@@ -4740,6 +4964,7 @@ impl TypeObject for CompareVec3Entity {
 
 pub static COMPAREVEC3ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareVec3Entity-Array",
+    name_hash: 421196398,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareVec3Entity"),
@@ -4748,7 +4973,8 @@ pub static COMPAREVEC3ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareFloatRangeEntity {
     pub _glacier_base: Entity,
 }
@@ -4767,12 +4993,15 @@ impl EntityBusPeerTrait for CompareFloatRangeEntity {
 
 pub static COMPAREFLOATRANGEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareFloatRangeEntity",
+    name_hash: 499359606,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareFloatRangeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareFloatRangeEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareFloatRangeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4802,6 +5031,7 @@ impl TypeObject for CompareFloatRangeEntity {
 
 pub static COMPAREFLOATRANGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareFloatRangeEntity-Array",
+    name_hash: 3343303746,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareFloatRangeEntity"),
@@ -4810,7 +5040,8 @@ pub static COMPAREFLOATRANGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareStringEntity {
     pub _glacier_base: Entity,
 }
@@ -4829,12 +5060,15 @@ impl EntityBusPeerTrait for CompareStringEntity {
 
 pub static COMPARESTRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareStringEntity",
+    name_hash: 2778268044,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareStringEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareStringEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareStringEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4864,6 +5098,7 @@ impl TypeObject for CompareStringEntity {
 
 pub static COMPARESTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareStringEntity-Array",
+    name_hash: 4094808504,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareStringEntity"),
@@ -4872,7 +5107,8 @@ pub static COMPARESTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareFloatEntity {
     pub _glacier_base: Entity,
 }
@@ -4891,12 +5127,15 @@ impl EntityBusPeerTrait for CompareFloatEntity {
 
 pub static COMPAREFLOATENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareFloatEntity",
+    name_hash: 99833513,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareFloatEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareFloatEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareFloatEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4926,6 +5165,7 @@ impl TypeObject for CompareFloatEntity {
 
 pub static COMPAREFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareFloatEntity-Array",
+    name_hash: 2353978653,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareFloatEntity"),
@@ -4934,7 +5174,8 @@ pub static COMPAREFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareUintEntity {
     pub _glacier_base: Entity,
 }
@@ -4953,12 +5194,15 @@ impl EntityBusPeerTrait for CompareUintEntity {
 
 pub static COMPAREUINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareUintEntity",
+    name_hash: 3433494303,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareUintEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareUintEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareUintEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -4988,6 +5232,7 @@ impl TypeObject for CompareUintEntity {
 
 pub static COMPAREUINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareUintEntity-Array",
+    name_hash: 2411199403,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareUintEntity"),
@@ -4996,7 +5241,8 @@ pub static COMPAREUINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareIntEntity {
     pub _glacier_base: Entity,
 }
@@ -5015,12 +5261,15 @@ impl EntityBusPeerTrait for CompareIntEntity {
 
 pub static COMPAREINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareIntEntity",
+    name_hash: 2961243146,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareIntEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareIntEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareIntEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5050,6 +5299,7 @@ impl TypeObject for CompareIntEntity {
 
 pub static COMPAREINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareIntEntity-Array",
+    name_hash: 2769827646,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareIntEntity"),
@@ -5058,7 +5308,8 @@ pub static COMPAREINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareBoolEntity {
     pub _glacier_base: Entity,
 }
@@ -5077,12 +5328,15 @@ impl EntityBusPeerTrait for CompareBoolEntity {
 
 pub static COMPAREBOOLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareBoolEntity",
+    name_hash: 1049480727,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareBoolEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareBoolEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareBoolEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5112,6 +5366,7 @@ impl TypeObject for CompareBoolEntity {
 
 pub static COMPAREBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareBoolEntity-Array",
+    name_hash: 1017427619,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareBoolEntity"),
@@ -5120,7 +5375,8 @@ pub static COMPAREBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerDilationEntity {
     pub _glacier_base: Entity,
 }
@@ -5139,12 +5395,15 @@ impl EntityBusPeerTrait for ServerDilationEntity {
 
 pub static SERVERDILATIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDilationEntity",
+    name_hash: 333505703,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerDilationEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerDilationEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerDilationEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5174,6 +5433,7 @@ impl TypeObject for ServerDilationEntity {
 
 pub static SERVERDILATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerDilationEntity-Array",
+    name_hash: 3735533075,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ServerDilationEntity"),
@@ -5182,7 +5442,8 @@ pub static SERVERDILATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientBalancedDilationEntity {
     pub _glacier_base: Entity,
 }
@@ -5201,12 +5462,15 @@ impl EntityBusPeerTrait for ClientBalancedDilationEntity {
 
 pub static CLIENTBALANCEDDILATIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBalancedDilationEntity",
+    name_hash: 783000185,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientBalancedDilationEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientBalancedDilationEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientBalancedDilationEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5236,6 +5500,7 @@ impl TypeObject for ClientBalancedDilationEntity {
 
 pub static CLIENTBALANCEDDILATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientBalancedDilationEntity-Array",
+    name_hash: 1130627405,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ClientBalancedDilationEntity"),
@@ -5244,7 +5509,8 @@ pub static CLIENTBALANCEDDILATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AnimTrackData {
 }
 
@@ -5256,12 +5522,15 @@ impl AnimTrackDataTrait for AnimTrackData {
 
 pub static ANIMTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimTrackData",
+    name_hash: 4257453041,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AnimTrackData as Default>::default())),
+            create_boxed: || Box::new(<AnimTrackData as Default>::default()),
         },
         fields: &[
         ],
@@ -5291,6 +5560,7 @@ impl TypeObject for AnimTrackData {
 
 pub static ANIMTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimTrackData-Array",
+    name_hash: 2508961477,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AnimTrackData"),
@@ -5299,7 +5569,8 @@ pub static ANIMTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SequenceEntity {
     pub _glacier_base: Entity,
 }
@@ -5318,12 +5589,15 @@ impl EntityBusPeerTrait for SequenceEntity {
 
 pub static SEQUENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SequenceEntity",
+    name_hash: 2641259361,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SequenceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SequenceEntity as Default>::default())),
+            create_boxed: || Box::new(<SequenceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5353,6 +5627,7 @@ impl TypeObject for SequenceEntity {
 
 pub static SEQUENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SequenceEntity-Array",
+    name_hash: 2739365461,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SequenceEntity"),
@@ -5361,7 +5636,8 @@ pub static SEQUENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StringBuilderEntity {
     pub _glacier_base: Entity,
 }
@@ -5380,12 +5656,15 @@ impl EntityBusPeerTrait for StringBuilderEntity {
 
 pub static STRINGBUILDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringBuilderEntity",
+    name_hash: 1170240458,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(StringBuilderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StringBuilderEntity as Default>::default())),
+            create_boxed: || Box::new(<StringBuilderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5415,6 +5694,7 @@ impl TypeObject for StringBuilderEntity {
 
 pub static STRINGBUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringBuilderEntity-Array",
+    name_hash: 80920446,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("StringBuilderEntity"),
@@ -5423,7 +5703,8 @@ pub static STRINGBUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4ChangedEntity {
     pub _glacier_base: Entity,
 }
@@ -5442,12 +5723,15 @@ impl EntityBusPeerTrait for Vec4ChangedEntity {
 
 pub static VEC4CHANGEDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4ChangedEntity",
+    name_hash: 425208088,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec4ChangedEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4ChangedEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec4ChangedEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5477,6 +5761,7 @@ impl TypeObject for Vec4ChangedEntity {
 
 pub static VEC4CHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4ChangedEntity-Array",
+    name_hash: 1170453292,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec4ChangedEntity"),
@@ -5485,7 +5770,8 @@ pub static VEC4CHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3ChangedEntity {
     pub _glacier_base: Entity,
 }
@@ -5504,12 +5790,15 @@ impl EntityBusPeerTrait for Vec3ChangedEntity {
 
 pub static VEC3CHANGEDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3ChangedEntity",
+    name_hash: 2458147519,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec3ChangedEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3ChangedEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec3ChangedEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5539,6 +5828,7 @@ impl TypeObject for Vec3ChangedEntity {
 
 pub static VEC3CHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3ChangedEntity-Array",
+    name_hash: 4120760331,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec3ChangedEntity"),
@@ -5547,7 +5837,8 @@ pub static VEC3CHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec2ChangedEntity {
     pub _glacier_base: Entity,
 }
@@ -5566,12 +5857,15 @@ impl EntityBusPeerTrait for Vec2ChangedEntity {
 
 pub static VEC2CHANGEDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2ChangedEntity",
+    name_hash: 1536785374,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec2ChangedEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec2ChangedEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec2ChangedEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5601,6 +5895,7 @@ impl TypeObject for Vec2ChangedEntity {
 
 pub static VEC2CHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2ChangedEntity-Array",
+    name_hash: 472137066,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec2ChangedEntity"),
@@ -5609,7 +5904,8 @@ pub static VEC2CHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntChangedEntity {
     pub _glacier_base: Entity,
 }
@@ -5628,12 +5924,15 @@ impl EntityBusPeerTrait for IntChangedEntity {
 
 pub static INTCHANGEDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntChangedEntity",
+    name_hash: 231460367,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(IntChangedEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntChangedEntity as Default>::default())),
+            create_boxed: || Box::new(<IntChangedEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5663,6 +5962,7 @@ impl TypeObject for IntChangedEntity {
 
 pub static INTCHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntChangedEntity-Array",
+    name_hash: 1968130747,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("IntChangedEntity"),
@@ -5671,7 +5971,8 @@ pub static INTCHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatChangedEntity {
     pub _glacier_base: Entity,
 }
@@ -5690,12 +5991,15 @@ impl EntityBusPeerTrait for FloatChangedEntity {
 
 pub static FLOATCHANGEDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatChangedEntity",
+    name_hash: 3199237452,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(FloatChangedEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatChangedEntity as Default>::default())),
+            create_boxed: || Box::new(<FloatChangedEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5725,6 +6029,7 @@ impl TypeObject for FloatChangedEntity {
 
 pub static FLOATCHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatChangedEntity-Array",
+    name_hash: 1108024824,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatChangedEntity"),
@@ -5733,7 +6038,8 @@ pub static FLOATCHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolChangedEntity {
     pub _glacier_base: Entity,
 }
@@ -5752,12 +6058,15 @@ impl EntityBusPeerTrait for BoolChangedEntity {
 
 pub static BOOLCHANGEDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolChangedEntity",
+    name_hash: 682297746,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BoolChangedEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolChangedEntity as Default>::default())),
+            create_boxed: || Box::new(<BoolChangedEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5787,6 +6096,7 @@ impl TypeObject for BoolChangedEntity {
 
 pub static BOOLCHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolChangedEntity-Array",
+    name_hash: 3557413030,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BoolChangedEntity"),
@@ -5795,7 +6105,8 @@ pub static BOOLCHANGEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareTransformEntity {
     pub _glacier_base: Entity,
 }
@@ -5814,12 +6125,15 @@ impl EntityBusPeerTrait for CompareTransformEntity {
 
 pub static COMPARETRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareTransformEntity",
+    name_hash: 2468060117,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareTransformEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareTransformEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareTransformEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -5849,6 +6163,7 @@ impl TypeObject for CompareTransformEntity {
 
 pub static COMPARETRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareTransformEntity-Array",
+    name_hash: 2185845729,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareTransformEntity"),
@@ -5860,6 +6175,7 @@ pub static COMPARETRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 
 pub static GETSCHEMATICSINSTANCE_SCHEMATICSINSTANCE_ENTITY__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetSchematicsInstance(SchematicsInstance,Entity)",
+    name_hash: 1494489989,
     flags: MemberInfoFlags::new(793),
     module: "Entity",
     data: TypeInfoData::Unknown,
@@ -5871,6 +6187,7 @@ pub static GETSCHEMATICSINSTANCE_SCHEMATICSINSTANCE_ENTITY__TYPE_INFO: &'static 
 
 pub static GETSCHEMATICSINSTANCE_SCHEMATICSINSTANCE_ENTITYBUS__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetSchematicsInstance(SchematicsInstance,EntityBus)",
+    name_hash: 3219488353,
     flags: MemberInfoFlags::new(793),
     module: "Entity",
     data: TypeInfoData::Unknown,
@@ -5882,6 +6199,7 @@ pub static GETSCHEMATICSINSTANCE_SCHEMATICSINSTANCE_ENTITYBUS__TYPE_INFO: &'stat
 
 pub static DESTROYENTITY_ENTITY__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DestroyEntity(Entity)",
+    name_hash: 311302086,
     flags: MemberInfoFlags::new(793),
     module: "Entity",
     data: TypeInfoData::Unknown,
@@ -5893,6 +6211,7 @@ pub static DESTROYENTITY_ENTITY__TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static CREATEENTITY_ENTITY_ENTITYBUS_OBJECTBLUEPRINT_LINEARTRANSFORM__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreateEntity(Entity,EntityBus,ObjectBlueprint,LinearTransform)",
+    name_hash: 2393638776,
     flags: MemberInfoFlags::new(793),
     module: "Entity",
     data: TypeInfoData::Unknown,
@@ -5904,6 +6223,7 @@ pub static CREATEENTITY_ENTITY_ENTITYBUS_OBJECTBLUEPRINT_LINEARTRANSFORM__TYPE_I
 
 pub static CASTTOSPATIAL_SPATIALENTITY_ENTITY__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CastToSpatial(SpatialEntity,Entity)",
+    name_hash: 4139245238,
     flags: MemberInfoFlags::new(793),
     module: "Entity",
     data: TypeInfoData::Unknown,
@@ -5915,6 +6235,7 @@ pub static CASTTOSPATIAL_SPATIALENTITY_ENTITY__TYPE_INFO: &'static TypeInfo = &T
 
 pub static GETTRANSFORM_SPATIALENTITY_LINEARTRANSFORM__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetTransform(SpatialEntity,LinearTransform)",
+    name_hash: 1614703274,
     flags: MemberInfoFlags::new(793),
     module: "Entity",
     data: TypeInfoData::Unknown,
@@ -5926,6 +6247,7 @@ pub static GETTRANSFORM_SPATIALENTITY_LINEARTRANSFORM__TYPE_INFO: &'static TypeI
 
 pub static SETTRANSFORM_SPATIALENTITY_LINEARTRANSFORM__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetTransform(SpatialEntity,LinearTransform)",
+    name_hash: 54752446,
     flags: MemberInfoFlags::new(793),
     module: "Entity",
     data: TypeInfoData::Unknown,
@@ -5950,6 +6272,7 @@ pub enum UpdatePassMask {
 
 pub static UPDATEPASSMASK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdatePassMask",
+    name_hash: 2149276401,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -5978,6 +6301,7 @@ impl TypeObject for UpdatePassMask {
 
 pub static UPDATEPASSMASK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdatePassMask-Array",
+    name_hash: 3260857797,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("UpdatePassMask"),
@@ -6003,6 +6327,7 @@ pub enum UpdatePass {
 
 pub static UPDATEPASS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdatePass",
+    name_hash: 2270785669,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -6031,6 +6356,7 @@ impl TypeObject for UpdatePass {
 
 pub static UPDATEPASS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdatePass-Array",
+    name_hash: 527759409,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("UpdatePass"),
@@ -6039,22 +6365,23 @@ pub static UPDATEPASS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GameDataContainerAsset {
     pub _glacier_base: super::core::Asset,
-    pub data: Option<Arc<Mutex<dyn super::core::GameDataContainerTrait>>>,
+    pub data: Option<LockedTypeObject /* super::core::GameDataContainer */>,
 }
 
 pub trait GameDataContainerAssetTrait: super::core::AssetTrait {
-    fn data(&self) -> &Option<Arc<Mutex<dyn super::core::GameDataContainerTrait>>>;
-    fn data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::GameDataContainerTrait>>>;
+    fn data(&self) -> &Option<LockedTypeObject /* super::core::GameDataContainer */>;
+    fn data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::GameDataContainer */>;
 }
 
 impl GameDataContainerAssetTrait for GameDataContainerAsset {
-    fn data(&self) -> &Option<Arc<Mutex<dyn super::core::GameDataContainerTrait>>> {
+    fn data(&self) -> &Option<LockedTypeObject /* super::core::GameDataContainer */> {
         &self.data
     }
-    fn data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::GameDataContainerTrait>>> {
+    fn data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::GameDataContainer */> {
         &mut self.data
     }
 }
@@ -6073,16 +6400,20 @@ impl super::core::DataContainerTrait for GameDataContainerAsset {
 
 pub static GAMEDATACONTAINERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameDataContainerAsset",
+    name_hash: 3834009356,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(GameDataContainerAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GameDataContainerAsset as Default>::default())),
+            create_boxed: || Box::new(<GameDataContainerAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameDataContainer",
                 rust_offset: offset_of!(GameDataContainerAsset, data),
@@ -6114,6 +6445,7 @@ impl TypeObject for GameDataContainerAsset {
 
 pub static GAMEDATACONTAINERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameDataContainerAsset-Array",
+    name_hash: 2215200568,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("GameDataContainerAsset"),
@@ -6122,22 +6454,23 @@ pub static GAMEDATACONTAINERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DataContainerAsset {
     pub _glacier_base: super::core::Asset,
-    pub data: Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>,
+    pub data: Option<LockedTypeObject /* super::core::DataContainer */>,
 }
 
 pub trait DataContainerAssetTrait: super::core::AssetTrait {
-    fn data(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
-    fn data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
+    fn data(&self) -> &Option<LockedTypeObject /* super::core::DataContainer */>;
+    fn data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DataContainer */>;
 }
 
 impl DataContainerAssetTrait for DataContainerAsset {
-    fn data(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
+    fn data(&self) -> &Option<LockedTypeObject /* super::core::DataContainer */> {
         &self.data
     }
-    fn data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
+    fn data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DataContainer */> {
         &mut self.data
     }
 }
@@ -6156,16 +6489,20 @@ impl super::core::DataContainerTrait for DataContainerAsset {
 
 pub static DATACONTAINERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataContainerAsset",
+    name_hash: 1590371042,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(DataContainerAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DataContainerAsset as Default>::default())),
+            create_boxed: || Box::new(<DataContainerAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Data",
+                name_hash: 2088730869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(DataContainerAsset, data),
@@ -6197,6 +6534,7 @@ impl TypeObject for DataContainerAsset {
 
 pub static DATACONTAINERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataContainerAsset-Array",
+    name_hash: 183529942,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DataContainerAsset"),
@@ -6205,24 +6543,25 @@ pub static DATACONTAINERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StaticInstancingData {
-    pub transforms: Vec<super::core::LinearTransform>,
+    pub transforms: Vec<BoxedTypeObject /* super::core::LinearTransform */>,
     pub mesh_ids: Vec<i32>,
 }
 
 pub trait StaticInstancingDataTrait: TypeObject {
-    fn transforms(&self) -> &Vec<super::core::LinearTransform>;
-    fn transforms_mut(&mut self) -> &mut Vec<super::core::LinearTransform>;
+    fn transforms(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */>;
+    fn transforms_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */>;
     fn mesh_ids(&self) -> &Vec<i32>;
     fn mesh_ids_mut(&mut self) -> &mut Vec<i32>;
 }
 
 impl StaticInstancingDataTrait for StaticInstancingData {
-    fn transforms(&self) -> &Vec<super::core::LinearTransform> {
+    fn transforms(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &self.transforms
     }
-    fn transforms_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+    fn transforms_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &mut self.transforms
     }
     fn mesh_ids(&self) -> &Vec<i32> {
@@ -6235,21 +6574,25 @@ impl StaticInstancingDataTrait for StaticInstancingData {
 
 pub static STATICINSTANCINGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticInstancingData",
+    name_hash: 2408684673,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StaticInstancingData as Default>::default())),
+            create_boxed: || Box::new(<StaticInstancingData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transforms",
+                name_hash: 1906106874,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinearTransform-Array",
                 rust_offset: offset_of!(StaticInstancingData, transforms),
             },
             FieldInfoData {
                 name: "MeshIds",
+                name_hash: 1486894824,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(StaticInstancingData, mesh_ids),
@@ -6281,6 +6624,7 @@ impl TypeObject for StaticInstancingData {
 
 pub static STATICINSTANCINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticInstancingData-Array",
+    name_hash: 1390310965,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("StaticInstancingData"),
@@ -6289,22 +6633,23 @@ pub static STATICINSTANCINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PartData {
     pub _glacier_base: ComponentData,
-    pub part_states: Vec<Option<Arc<Mutex<dyn PartStateTrait>>>>,
+    pub part_states: Vec<Option<LockedTypeObject /* PartState */>>,
 }
 
 pub trait PartDataTrait: ComponentDataTrait {
-    fn part_states(&self) -> &Vec<Option<Arc<Mutex<dyn PartStateTrait>>>>;
-    fn part_states_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PartStateTrait>>>>;
+    fn part_states(&self) -> &Vec<Option<LockedTypeObject /* PartState */>>;
+    fn part_states_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PartState */>>;
 }
 
 impl PartDataTrait for PartData {
-    fn part_states(&self) -> &Vec<Option<Arc<Mutex<dyn PartStateTrait>>>> {
+    fn part_states(&self) -> &Vec<Option<LockedTypeObject /* PartState */>> {
         &self.part_states
     }
-    fn part_states_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PartStateTrait>>>> {
+    fn part_states_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PartState */>> {
         &mut self.part_states
     }
 }
@@ -6316,10 +6661,10 @@ impl ComponentDataTrait for PartData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -6362,16 +6707,20 @@ impl super::core::DataContainerTrait for PartData {
 
 pub static PARTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartData",
+    name_hash: 3741217410,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PartData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PartData as Default>::default())),
+            create_boxed: || Box::new(<PartData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PartStates",
+                name_hash: 1836451638,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PartState-Array",
                 rust_offset: offset_of!(PartData, part_states),
@@ -6403,6 +6752,7 @@ impl TypeObject for PartData {
 
 pub static PARTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartData-Array",
+    name_hash: 2415210934,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PartData"),
@@ -6411,18 +6761,19 @@ pub static PARTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PartState {
     pub _glacier_base: GameObjectData,
     pub part_index: u32,
-    pub objects: Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>,
+    pub objects: Vec<Option<LockedTypeObject /* GameObjectData */>>,
 }
 
 pub trait PartStateTrait: GameObjectDataTrait {
     fn part_index(&self) -> &u32;
     fn part_index_mut(&mut self) -> &mut u32;
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>;
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>;
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>>;
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>>;
 }
 
 impl PartStateTrait for PartState {
@@ -6432,10 +6783,10 @@ impl PartStateTrait for PartState {
     fn part_index_mut(&mut self) -> &mut u32 {
         &mut self.part_index
     }
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         &self.objects
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         &mut self.objects
     }
 }
@@ -6460,22 +6811,27 @@ impl super::core::DataContainerTrait for PartState {
 
 pub static PARTSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartState",
+    name_hash: 3179262629,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(GAMEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PartState, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PartState as Default>::default())),
+            create_boxed: || Box::new(<PartState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PartIndex",
+                name_hash: 3213901068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PartState, part_index),
             },
             FieldInfoData {
                 name: "Objects",
+                name_hash: 105488131,
                 flags: MemberInfoFlags::new(144),
                 field_type: "GameObjectData-Array",
                 rust_offset: offset_of!(PartState, objects),
@@ -6507,6 +6863,7 @@ impl TypeObject for PartState {
 
 pub static PARTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PartState-Array",
+    name_hash: 2305854225,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PartState"),
@@ -6515,7 +6872,8 @@ pub static PARTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoneComponentData {
     pub _glacier_base: GameComponentData,
 }
@@ -6536,10 +6894,10 @@ impl ComponentDataTrait for BoneComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -6582,12 +6940,15 @@ impl super::core::DataContainerTrait for BoneComponentData {
 
 pub static BONECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoneComponentData",
+    name_hash: 13531164,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BoneComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoneComponentData as Default>::default())),
+            create_boxed: || Box::new(<BoneComponentData as Default>::default()),
         },
         fields: &[
         ],
@@ -6617,6 +6978,7 @@ impl TypeObject for BoneComponentData {
 
 pub static BONECOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoneComponentData-Array",
+    name_hash: 3350786088,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BoneComponentData"),
@@ -6625,7 +6987,8 @@ pub static BONECOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GameComponentData {
     pub _glacier_base: ComponentData,
 }
@@ -6643,10 +7006,10 @@ impl ComponentDataTrait for GameComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -6689,12 +7052,15 @@ impl super::core::DataContainerTrait for GameComponentData {
 
 pub static GAMECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameComponentData",
+    name_hash: 403720980,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GameComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GameComponentData as Default>::default())),
+            create_boxed: || Box::new(<GameComponentData as Default>::default()),
         },
         fields: &[
         ],
@@ -6724,6 +7090,7 @@ impl TypeObject for GameComponentData {
 
 pub static GAMECOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameComponentData-Array",
+    name_hash: 2303567648,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("GameComponentData"),
@@ -6732,11 +7099,12 @@ pub static GAMECOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ComponentData {
     pub _glacier_base: GameObjectData,
     pub transform: super::core::LinearTransform,
-    pub components: Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>,
+    pub components: Vec<Option<LockedTypeObject /* GameObjectData */>>,
     pub client_index: u8,
     pub server_index: u8,
     pub excluded: bool,
@@ -6745,8 +7113,8 @@ pub struct ComponentData {
 pub trait ComponentDataTrait: GameObjectDataTrait {
     fn transform(&self) -> &super::core::LinearTransform;
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform;
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>;
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>;
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>>;
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>>;
     fn client_index(&self) -> &u8;
     fn client_index_mut(&mut self) -> &mut u8;
     fn server_index(&self) -> &u8;
@@ -6762,10 +7130,10 @@ impl ComponentDataTrait for ComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         &mut self.transform
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         &self.components
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         &mut self.components
     }
     fn client_index(&self) -> &u8 {
@@ -6808,40 +7176,48 @@ impl super::core::DataContainerTrait for ComponentData {
 
 pub static COMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComponentData",
+    name_hash: 3070458298,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(GAMEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ComponentData as Default>::default())),
+            create_boxed: || Box::new(<ComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(ComponentData, transform),
             },
             FieldInfoData {
                 name: "Components",
+                name_hash: 3391050425,
                 flags: MemberInfoFlags::new(144),
                 field_type: "GameObjectData-Array",
                 rust_offset: offset_of!(ComponentData, components),
             },
             FieldInfoData {
                 name: "ClientIndex",
+                name_hash: 3672183426,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(ComponentData, client_index),
             },
             FieldInfoData {
                 name: "ServerIndex",
+                name_hash: 3635956702,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(ComponentData, server_index),
             },
             FieldInfoData {
                 name: "Excluded",
+                name_hash: 755715367,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ComponentData, excluded),
@@ -6873,6 +7249,7 @@ impl TypeObject for ComponentData {
 
 pub static COMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComponentData-Array",
+    name_hash: 2493594638,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ComponentData"),
@@ -6881,7 +7258,8 @@ pub static COMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GameComponentEntityData {
     pub _glacier_base: ComponentEntityData,
     pub enabled: bool,
@@ -6902,16 +7280,16 @@ impl GameComponentEntityDataTrait for GameComponentEntityData {
 }
 
 impl ComponentEntityDataTrait for GameComponentEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -6972,16 +7350,20 @@ impl super::core::DataContainerTrait for GameComponentEntityData {
 
 pub static GAMECOMPONENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameComponentEntityData",
+    name_hash: 2608855439,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPONENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GameComponentEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GameComponentEntityData as Default>::default())),
+            create_boxed: || Box::new(<GameComponentEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(GameComponentEntityData, enabled),
@@ -7013,6 +7395,7 @@ impl TypeObject for GameComponentEntityData {
 
 pub static GAMECOMPONENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameComponentEntityData-Array",
+    name_hash: 4283831867,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("GameComponentEntityData"),
@@ -7021,11 +7404,12 @@ pub static GAMECOMPONENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ComponentEntityData {
     pub _glacier_base: SpatialEntityData,
-    pub components: Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>,
-    pub part_bounding_boxes: Vec<super::core::AxisAlignedBox>,
+    pub components: Vec<Option<LockedTypeObject /* GameObjectData */>>,
+    pub part_bounding_boxes: Vec<BoxedTypeObject /* super::core::AxisAlignedBox */>,
     pub client_runtime_component_count: u8,
     pub server_runtime_component_count: u8,
     pub client_runtime_transformation_count: u8,
@@ -7033,10 +7417,10 @@ pub struct ComponentEntityData {
 }
 
 pub trait ComponentEntityDataTrait: SpatialEntityDataTrait {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>;
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>;
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox>;
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox>;
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>>;
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>>;
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */>;
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */>;
     fn client_runtime_component_count(&self) -> &u8;
     fn client_runtime_component_count_mut(&mut self) -> &mut u8;
     fn server_runtime_component_count(&self) -> &u8;
@@ -7048,16 +7432,16 @@ pub trait ComponentEntityDataTrait: SpatialEntityDataTrait {
 }
 
 impl ComponentEntityDataTrait for ComponentEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         &self.components
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         &mut self.components
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         &self.part_bounding_boxes
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         &mut self.part_bounding_boxes
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -7118,46 +7502,55 @@ impl super::core::DataContainerTrait for ComponentEntityData {
 
 pub static COMPONENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComponentEntityData",
+    name_hash: 429047521,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ComponentEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ComponentEntityData as Default>::default())),
+            create_boxed: || Box::new(<ComponentEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Components",
+                name_hash: 3391050425,
                 flags: MemberInfoFlags::new(144),
                 field_type: "GameObjectData-Array",
                 rust_offset: offset_of!(ComponentEntityData, components),
             },
             FieldInfoData {
                 name: "PartBoundingBoxes",
+                name_hash: 440640163,
                 flags: MemberInfoFlags::new(144),
                 field_type: "AxisAlignedBox-Array",
                 rust_offset: offset_of!(ComponentEntityData, part_bounding_boxes),
             },
             FieldInfoData {
                 name: "ClientRuntimeComponentCount",
+                name_hash: 3486435084,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(ComponentEntityData, client_runtime_component_count),
             },
             FieldInfoData {
                 name: "ServerRuntimeComponentCount",
+                name_hash: 3516027216,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(ComponentEntityData, server_runtime_component_count),
             },
             FieldInfoData {
                 name: "ClientRuntimeTransformationCount",
+                name_hash: 1176130482,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(ComponentEntityData, client_runtime_transformation_count),
             },
             FieldInfoData {
                 name: "ServerRuntimeTransformationCount",
+                name_hash: 2987418094,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(ComponentEntityData, server_runtime_transformation_count),
@@ -7189,6 +7582,7 @@ impl TypeObject for ComponentEntityData {
 
 pub static COMPONENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComponentEntityData-Array",
+    name_hash: 1228691925,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ComponentEntityData"),
@@ -7197,7 +7591,8 @@ pub static COMPONENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScriptEntityData {
     pub _glacier_base: EntityData,
     pub code: String,
@@ -7249,22 +7644,27 @@ impl super::core::DataContainerTrait for ScriptEntityData {
 
 pub static SCRIPTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScriptEntityData",
+    name_hash: 3207095777,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ScriptEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScriptEntityData as Default>::default())),
+            create_boxed: || Box::new(<ScriptEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Code",
+                name_hash: 2088844616,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ScriptEntityData, code),
             },
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(ScriptEntityData, realm),
@@ -7296,6 +7696,7 @@ impl TypeObject for ScriptEntityData {
 
 pub static SCRIPTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScriptEntityData-Array",
+    name_hash: 1211318485,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ScriptEntityData"),
@@ -7304,7 +7705,8 @@ pub static SCRIPTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpatialEntityData {
     pub _glacier_base: EntityData,
     pub transform: super::core::LinearTransform,
@@ -7347,16 +7749,20 @@ impl super::core::DataContainerTrait for SpatialEntityData {
 
 pub static SPATIALENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialEntityData",
+    name_hash: 2775136508,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpatialEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpatialEntityData as Default>::default())),
+            create_boxed: || Box::new(<SpatialEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(SpatialEntityData, transform),
@@ -7388,6 +7794,7 @@ impl TypeObject for SpatialEntityData {
 
 pub static SPATIALENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialEntityData-Array",
+    name_hash: 1793892552,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SpatialEntityData"),
@@ -7396,7 +7803,8 @@ pub static SPATIALENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityData {
     pub _glacier_base: GameObjectData,
 }
@@ -7427,12 +7835,15 @@ impl super::core::DataContainerTrait for EntityData {
 
 pub static ENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityData",
+    name_hash: 1697786030,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(GAMEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityData as Default>::default())),
+            create_boxed: || Box::new(<EntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -7462,6 +7873,7 @@ impl TypeObject for EntityData {
 
 pub static ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityData-Array",
+    name_hash: 243536154,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EntityData"),
@@ -7484,6 +7896,7 @@ pub enum EntityCreatorType {
 
 pub static ENTITYCREATORTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityCreatorType",
+    name_hash: 2954916666,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -7512,6 +7925,7 @@ impl TypeObject for EntityCreatorType {
 
 pub static ENTITYCREATORTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityCreatorType-Array",
+    name_hash: 3572716942,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EntityCreatorType"),
@@ -7520,7 +7934,8 @@ pub static ENTITYCREATORTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GameObjectData {
     pub _glacier_base: super::core::DataBusPeer,
 }
@@ -7548,12 +7963,15 @@ impl super::core::DataContainerTrait for GameObjectData {
 
 pub static GAMEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameObjectData",
+    name_hash: 3354513198,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATABUSPEER_TYPE_INFO),
+        super_class_offset: offset_of!(GameObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GameObjectData as Default>::default())),
+            create_boxed: || Box::new(<GameObjectData as Default>::default()),
         },
         fields: &[
         ],
@@ -7583,6 +8001,7 @@ impl TypeObject for GameObjectData {
 
 pub static GAMEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameObjectData-Array",
+    name_hash: 84318106,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("GameObjectData"),
@@ -7603,6 +8022,7 @@ pub enum SubRealm {
 
 pub static SUBREALM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubRealm",
+    name_hash: 1747841366,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -7631,6 +8051,7 @@ impl TypeObject for SubRealm {
 
 pub static SUBREALM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubRealm-Array",
+    name_hash: 3759896290,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SubRealm"),
@@ -7653,6 +8074,7 @@ pub enum TimeShape {
 
 pub static TIMESHAPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimeShape",
+    name_hash: 169691295,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -7681,6 +8103,7 @@ impl TypeObject for TimeShape {
 
 pub static TIMESHAPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimeShape-Array",
+    name_hash: 939879723,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TimeShape"),
@@ -7703,6 +8126,7 @@ pub enum DilationPriority {
 
 pub static DILATIONPRIORITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DilationPriority",
+    name_hash: 1767577547,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -7731,6 +8155,7 @@ impl TypeObject for DilationPriority {
 
 pub static DILATIONPRIORITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DilationPriority-Array",
+    name_hash: 3968792319,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DilationPriority"),
@@ -7757,6 +8182,7 @@ pub enum TimeDeltaType {
 
 pub static TIMEDELTATYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimeDeltaType",
+    name_hash: 1100516816,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -7785,6 +8211,7 @@ impl TypeObject for TimeDeltaType {
 
 pub static TIMEDELTATYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimeDeltaType-Array",
+    name_hash: 3752938596,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TimeDeltaType"),
@@ -7793,11 +8220,12 @@ pub static TIMEDELTATYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SchematicChannelEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
-    pub channel: Option<Arc<Mutex<dyn SchematicChannelAssetTrait>>>,
+    pub channel: Option<LockedTypeObject /* SchematicChannelAsset */>,
     pub input_properties: Vec<i32>,
     pub input_ref_properties: Vec<i32>,
     pub output_properties: Vec<i32>,
@@ -7807,8 +8235,8 @@ pub struct SchematicChannelEntityData {
 pub trait SchematicChannelEntityDataTrait: EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
-    fn channel(&self) -> &Option<Arc<Mutex<dyn SchematicChannelAssetTrait>>>;
-    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicChannelAssetTrait>>>;
+    fn channel(&self) -> &Option<LockedTypeObject /* SchematicChannelAsset */>;
+    fn channel_mut(&mut self) -> &mut Option<LockedTypeObject /* SchematicChannelAsset */>;
     fn input_properties(&self) -> &Vec<i32>;
     fn input_properties_mut(&mut self) -> &mut Vec<i32>;
     fn input_ref_properties(&self) -> &Vec<i32>;
@@ -7826,10 +8254,10 @@ impl SchematicChannelEntityDataTrait for SchematicChannelEntityData {
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         &mut self.realm
     }
-    fn channel(&self) -> &Option<Arc<Mutex<dyn SchematicChannelAssetTrait>>> {
+    fn channel(&self) -> &Option<LockedTypeObject /* SchematicChannelAsset */> {
         &self.channel
     }
-    fn channel_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SchematicChannelAssetTrait>>> {
+    fn channel_mut(&mut self) -> &mut Option<LockedTypeObject /* SchematicChannelAsset */> {
         &mut self.channel
     }
     fn input_properties(&self) -> &Vec<i32> {
@@ -7881,46 +8309,55 @@ impl super::core::DataContainerTrait for SchematicChannelEntityData {
 
 pub static SCHEMATICCHANNELENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SchematicChannelEntityData",
+    name_hash: 2207306978,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SchematicChannelEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SchematicChannelEntityData as Default>::default())),
+            create_boxed: || Box::new(<SchematicChannelEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(SchematicChannelEntityData, realm),
             },
             FieldInfoData {
                 name: "Channel",
+                name_hash: 4082709062,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SchematicChannelAsset",
                 rust_offset: offset_of!(SchematicChannelEntityData, channel),
             },
             FieldInfoData {
                 name: "InputProperties",
+                name_hash: 883986194,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(SchematicChannelEntityData, input_properties),
             },
             FieldInfoData {
                 name: "InputRefProperties",
+                name_hash: 3512215619,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(SchematicChannelEntityData, input_ref_properties),
             },
             FieldInfoData {
                 name: "OutputProperties",
+                name_hash: 1376339771,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(SchematicChannelEntityData, output_properties),
             },
             FieldInfoData {
                 name: "OutputRefProperties",
+                name_hash: 3421685194,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(SchematicChannelEntityData, output_ref_properties),
@@ -7952,6 +8389,7 @@ impl TypeObject for SchematicChannelEntityData {
 
 pub static SCHEMATICCHANNELENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SchematicChannelEntityData-Array",
+    name_hash: 3987973078,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SchematicChannelEntityData"),
@@ -7960,40 +8398,41 @@ pub static SCHEMATICCHANNELENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SchematicChannelAsset {
     pub _glacier_base: super::core::Asset,
-    pub events: Vec<EventChannel>,
-    pub links: Vec<LinkChannel>,
-    pub properties: Vec<PropertyChannel>,
+    pub events: Vec<BoxedTypeObject /* EventChannel */>,
+    pub links: Vec<BoxedTypeObject /* LinkChannel */>,
+    pub properties: Vec<BoxedTypeObject /* PropertyChannel */>,
 }
 
 pub trait SchematicChannelAssetTrait: super::core::AssetTrait {
-    fn events(&self) -> &Vec<EventChannel>;
-    fn events_mut(&mut self) -> &mut Vec<EventChannel>;
-    fn links(&self) -> &Vec<LinkChannel>;
-    fn links_mut(&mut self) -> &mut Vec<LinkChannel>;
-    fn properties(&self) -> &Vec<PropertyChannel>;
-    fn properties_mut(&mut self) -> &mut Vec<PropertyChannel>;
+    fn events(&self) -> &Vec<BoxedTypeObject /* EventChannel */>;
+    fn events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventChannel */>;
+    fn links(&self) -> &Vec<BoxedTypeObject /* LinkChannel */>;
+    fn links_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LinkChannel */>;
+    fn properties(&self) -> &Vec<BoxedTypeObject /* PropertyChannel */>;
+    fn properties_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PropertyChannel */>;
 }
 
 impl SchematicChannelAssetTrait for SchematicChannelAsset {
-    fn events(&self) -> &Vec<EventChannel> {
+    fn events(&self) -> &Vec<BoxedTypeObject /* EventChannel */> {
         &self.events
     }
-    fn events_mut(&mut self) -> &mut Vec<EventChannel> {
+    fn events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventChannel */> {
         &mut self.events
     }
-    fn links(&self) -> &Vec<LinkChannel> {
+    fn links(&self) -> &Vec<BoxedTypeObject /* LinkChannel */> {
         &self.links
     }
-    fn links_mut(&mut self) -> &mut Vec<LinkChannel> {
+    fn links_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LinkChannel */> {
         &mut self.links
     }
-    fn properties(&self) -> &Vec<PropertyChannel> {
+    fn properties(&self) -> &Vec<BoxedTypeObject /* PropertyChannel */> {
         &self.properties
     }
-    fn properties_mut(&mut self) -> &mut Vec<PropertyChannel> {
+    fn properties_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PropertyChannel */> {
         &mut self.properties
     }
 }
@@ -8012,28 +8451,34 @@ impl super::core::DataContainerTrait for SchematicChannelAsset {
 
 pub static SCHEMATICCHANNELASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SchematicChannelAsset",
+    name_hash: 3831486521,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(SchematicChannelAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SchematicChannelAsset as Default>::default())),
+            create_boxed: || Box::new(<SchematicChannelAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Events",
+                name_hash: 2352146554,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EventChannel-Array",
                 rust_offset: offset_of!(SchematicChannelAsset, events),
             },
             FieldInfoData {
                 name: "Links",
+                name_hash: 217830710,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinkChannel-Array",
                 rust_offset: offset_of!(SchematicChannelAsset, links),
             },
             FieldInfoData {
                 name: "Properties",
+                name_hash: 1506334468,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PropertyChannel-Array",
                 rust_offset: offset_of!(SchematicChannelAsset, properties),
@@ -8065,6 +8510,7 @@ impl TypeObject for SchematicChannelAsset {
 
 pub static SCHEMATICCHANNELASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SchematicChannelAsset-Array",
+    name_hash: 4043916941,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SchematicChannelAsset"),
@@ -8073,7 +8519,8 @@ pub static SCHEMATICCHANNELASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyChannel {
     pub realm: super::core::Realm,
     pub id: i32,
@@ -8112,27 +8559,32 @@ impl PropertyChannelTrait for PropertyChannel {
 
 pub static PROPERTYCHANNEL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyChannel",
+    name_hash: 613091393,
     flags: MemberInfoFlags::new(32841),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyChannel as Default>::default())),
+            create_boxed: || Box::new(<PropertyChannel as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PropertyChannel, realm),
             },
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyChannel, id),
             },
             FieldInfoData {
                 name: "FieldTypeHash",
+                name_hash: 2276905517,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyChannel, field_type_hash),
@@ -8164,6 +8616,7 @@ impl TypeObject for PropertyChannel {
 
 pub static PROPERTYCHANNEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyChannel-Array",
+    name_hash: 1223012981,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PropertyChannel"),
@@ -8172,7 +8625,8 @@ pub static PROPERTYCHANNEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventChannel {
     pub realm: super::core::Realm,
 }
@@ -8193,15 +8647,18 @@ impl EventChannelTrait for EventChannel {
 
 pub static EVENTCHANNEL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventChannel",
+    name_hash: 1086771370,
     flags: MemberInfoFlags::new(32841),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventChannel as Default>::default())),
+            create_boxed: || Box::new(<EventChannel as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(EventChannel, realm),
@@ -8233,6 +8690,7 @@ impl TypeObject for EventChannel {
 
 pub static EVENTCHANNEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventChannel-Array",
+    name_hash: 1605831454,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventChannel"),
@@ -8241,7 +8699,8 @@ pub static EVENTCHANNEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinkChannel {
     pub realm: super::core::Realm,
     pub id: i32,
@@ -8280,27 +8739,32 @@ impl LinkChannelTrait for LinkChannel {
 
 pub static LINKCHANNEL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkChannel",
+    name_hash: 1622577254,
     flags: MemberInfoFlags::new(32841),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinkChannel as Default>::default())),
+            create_boxed: || Box::new(<LinkChannel as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(LinkChannel, realm),
             },
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinkChannel, id),
             },
             FieldInfoData {
                 name: "LinkTypeHash",
+                name_hash: 2193082575,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinkChannel, link_type_hash),
@@ -8332,6 +8796,7 @@ impl TypeObject for LinkChannel {
 
 pub static LINKCHANNEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkChannel-Array",
+    name_hash: 3143085394,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LinkChannel"),
@@ -8340,7 +8805,8 @@ pub static LINKCHANNEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LogicPrefabReferenceObjectData {
     pub _glacier_base: LogicReferenceObjectData,
 }
@@ -8373,16 +8839,16 @@ impl ReferenceObjectDataTrait for LogicPrefabReferenceObjectData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &StreamRealm {
@@ -8449,12 +8915,15 @@ impl super::core::DataContainerTrait for LogicPrefabReferenceObjectData {
 
 pub static LOGICPREFABREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogicPrefabReferenceObjectData",
+    name_hash: 2525712103,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LOGICREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LogicPrefabReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LogicPrefabReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<LogicPrefabReferenceObjectData as Default>::default()),
         },
         fields: &[
         ],
@@ -8484,6 +8953,7 @@ impl TypeObject for LogicPrefabReferenceObjectData {
 
 pub static LOGICPREFABREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogicPrefabReferenceObjectData-Array",
+    name_hash: 491573459,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LogicPrefabReferenceObjectData"),
@@ -8492,7 +8962,8 @@ pub static LOGICPREFABREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpatialPrefabReferenceObjectData {
     pub _glacier_base: SpatialReferenceObjectData,
     pub persistence_setting: BlueprintPersistenceSetting,
@@ -8528,16 +8999,16 @@ impl ReferenceObjectDataTrait for SpatialPrefabReferenceObjectData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &StreamRealm {
@@ -8604,16 +9075,20 @@ impl super::core::DataContainerTrait for SpatialPrefabReferenceObjectData {
 
 pub static SPATIALPREFABREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialPrefabReferenceObjectData",
+    name_hash: 3577490203,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPATIALREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpatialPrefabReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpatialPrefabReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<SpatialPrefabReferenceObjectData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PersistenceSetting",
+                name_hash: 3641697508,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BlueprintPersistenceSetting",
                 rust_offset: offset_of!(SpatialPrefabReferenceObjectData, persistence_setting),
@@ -8645,6 +9120,7 @@ impl TypeObject for SpatialPrefabReferenceObjectData {
 
 pub static SPATIALPREFABREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialPrefabReferenceObjectData-Array",
+    name_hash: 2804187567,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SpatialPrefabReferenceObjectData"),
@@ -8653,7 +9129,8 @@ pub static SPATIALPREFABREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectReferenceObjectData {
     pub _glacier_base: SpatialReferenceObjectData,
 }
@@ -8680,16 +9157,16 @@ impl ReferenceObjectDataTrait for ObjectReferenceObjectData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &StreamRealm {
@@ -8756,12 +9233,15 @@ impl super::core::DataContainerTrait for ObjectReferenceObjectData {
 
 pub static OBJECTREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectReferenceObjectData",
+    name_hash: 1278256830,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPATIALREFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<ObjectReferenceObjectData as Default>::default()),
         },
         fields: &[
         ],
@@ -8791,6 +9271,7 @@ impl TypeObject for ObjectReferenceObjectData {
 
 pub static OBJECTREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectReferenceObjectData-Array",
+    name_hash: 3044792074,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectReferenceObjectData"),
@@ -8799,7 +9280,8 @@ pub static OBJECTREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LogicReferenceObjectData {
     pub _glacier_base: ReferenceObjectData,
     pub local_player_id: super::core::LocalPlayerId,
@@ -8835,16 +9317,16 @@ impl ReferenceObjectDataTrait for LogicReferenceObjectData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &StreamRealm {
@@ -8911,22 +9393,27 @@ impl super::core::DataContainerTrait for LogicReferenceObjectData {
 
 pub static LOGICREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogicReferenceObjectData",
+    name_hash: 1046548357,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(REFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LogicReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LogicReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<LogicReferenceObjectData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LocalPlayerId",
+                name_hash: 1029133718,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalPlayerId",
                 rust_offset: offset_of!(LogicReferenceObjectData, local_player_id),
             },
             FieldInfoData {
                 name: "SubRealm",
+                name_hash: 1747841366,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SubRealm",
                 rust_offset: offset_of!(LogicReferenceObjectData, sub_realm),
@@ -8958,6 +9445,7 @@ impl TypeObject for LogicReferenceObjectData {
 
 pub static LOGICREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogicReferenceObjectData-Array",
+    name_hash: 729274161,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LogicReferenceObjectData"),
@@ -8966,7 +9454,8 @@ pub static LOGICREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpatialReferenceObjectData {
     pub _glacier_base: ReferenceObjectData,
     pub local_player_id: super::core::LocalPlayerId,
@@ -8993,16 +9482,16 @@ impl ReferenceObjectDataTrait for SpatialReferenceObjectData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.blueprint_transform_mut()
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint()
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* Blueprint */> {
         self._glacier_base.blueprint_mut()
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation()
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         self._glacier_base.object_variation_mut()
     }
     fn stream_realm(&self) -> &StreamRealm {
@@ -9069,16 +9558,20 @@ impl super::core::DataContainerTrait for SpatialReferenceObjectData {
 
 pub static SPATIALREFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialReferenceObjectData",
+    name_hash: 2733579001,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(REFERENCEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpatialReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpatialReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<SpatialReferenceObjectData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LocalPlayerId",
+                name_hash: 1029133718,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalPlayerId",
                 rust_offset: offset_of!(SpatialReferenceObjectData, local_player_id),
@@ -9110,6 +9603,7 @@ impl TypeObject for SpatialReferenceObjectData {
 
 pub static SPATIALREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialReferenceObjectData-Array",
+    name_hash: 1736432077,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SpatialReferenceObjectData"),
@@ -9118,12 +9612,13 @@ pub static SPATIALREFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReferenceObjectData {
     pub _glacier_base: GameObjectData,
     pub blueprint_transform: super::core::LinearTransform,
-    pub blueprint: Option<Arc<Mutex<dyn BlueprintTrait>>>,
-    pub object_variation: Option<Arc<Mutex<dyn ObjectVariationTrait>>>,
+    pub blueprint: Option<LockedTypeObject /* Blueprint */>,
+    pub object_variation: Option<LockedTypeObject /* ObjectVariation */>,
     pub stream_realm: StreamRealm,
     pub radiosity_type_override: super::core::RadiosityTypeOverride,
     pub lightmap_resolution_scale: u32,
@@ -9136,10 +9631,10 @@ pub struct ReferenceObjectData {
 pub trait ReferenceObjectDataTrait: GameObjectDataTrait {
     fn blueprint_transform(&self) -> &super::core::LinearTransform;
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform;
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn BlueprintTrait>>>;
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BlueprintTrait>>>;
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>>;
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>>;
+    fn blueprint(&self) -> &Option<LockedTypeObject /* Blueprint */>;
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* Blueprint */>;
+    fn object_variation(&self) -> &Option<LockedTypeObject /* ObjectVariation */>;
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */>;
     fn stream_realm(&self) -> &StreamRealm;
     fn stream_realm_mut(&mut self) -> &mut StreamRealm;
     fn radiosity_type_override(&self) -> &super::core::RadiosityTypeOverride;
@@ -9163,16 +9658,16 @@ impl ReferenceObjectDataTrait for ReferenceObjectData {
     fn blueprint_transform_mut(&mut self) -> &mut super::core::LinearTransform {
         &mut self.blueprint_transform
     }
-    fn blueprint(&self) -> &Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint(&self) -> &Option<LockedTypeObject /* Blueprint */> {
         &self.blueprint
     }
-    fn blueprint_mut(&mut self) -> &mut Option<Arc<Mutex<dyn BlueprintTrait>>> {
+    fn blueprint_mut(&mut self) -> &mut Option<LockedTypeObject /* Blueprint */> {
         &mut self.blueprint
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         &self.object_variation
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         &mut self.object_variation
     }
     fn stream_realm(&self) -> &StreamRealm {
@@ -9239,70 +9734,83 @@ impl super::core::DataContainerTrait for ReferenceObjectData {
 
 pub static REFERENCEOBJECTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReferenceObjectData",
+    name_hash: 1647409771,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(GAMEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ReferenceObjectData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReferenceObjectData as Default>::default())),
+            create_boxed: || Box::new(<ReferenceObjectData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BlueprintTransform",
+                name_hash: 3885036614,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(ReferenceObjectData, blueprint_transform),
             },
             FieldInfoData {
                 name: "Blueprint",
+                name_hash: 4232469066,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Blueprint",
                 rust_offset: offset_of!(ReferenceObjectData, blueprint),
             },
             FieldInfoData {
                 name: "ObjectVariation",
+                name_hash: 3624336577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ObjectVariation",
                 rust_offset: offset_of!(ReferenceObjectData, object_variation),
             },
             FieldInfoData {
                 name: "StreamRealm",
+                name_hash: 1844114478,
                 flags: MemberInfoFlags::new(0),
                 field_type: "StreamRealm",
                 rust_offset: offset_of!(ReferenceObjectData, stream_realm),
             },
             FieldInfoData {
                 name: "RadiosityTypeOverride",
+                name_hash: 1603143183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RadiosityTypeOverride",
                 rust_offset: offset_of!(ReferenceObjectData, radiosity_type_override),
             },
             FieldInfoData {
                 name: "LightmapResolutionScale",
+                name_hash: 3283963665,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReferenceObjectData, lightmap_resolution_scale),
             },
             FieldInfoData {
                 name: "LightmapScaleWithSize",
+                name_hash: 3783970680,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ReferenceObjectData, lightmap_scale_with_size),
             },
             FieldInfoData {
                 name: "RenderingOverrides",
+                name_hash: 4053255464,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RenderingOverrides",
                 rust_offset: offset_of!(ReferenceObjectData, rendering_overrides),
             },
             FieldInfoData {
                 name: "Excluded",
+                name_hash: 755715367,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ReferenceObjectData, excluded),
             },
             FieldInfoData {
                 name: "CreateIndestructibleEntity",
+                name_hash: 3455809225,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ReferenceObjectData, create_indestructible_entity),
@@ -9334,6 +9842,7 @@ impl TypeObject for ReferenceObjectData {
 
 pub static REFERENCEOBJECTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReferenceObjectData-Array",
+    name_hash: 872761951,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ReferenceObjectData"),
@@ -9354,6 +9863,7 @@ pub enum StreamRealm {
 
 pub static STREAMREALM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamRealm",
+    name_hash: 1844114478,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -9382,6 +9892,7 @@ impl TypeObject for StreamRealm {
 
 pub static STREAMREALM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamRealm-Array",
+    name_hash: 2894560410,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("StreamRealm"),
@@ -9390,22 +9901,23 @@ pub static STREAMREALM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectVariationCollection {
     pub _glacier_base: super::core::DataContainer,
-    pub variations: Vec<Option<Arc<Mutex<dyn ObjectVariationTrait>>>>,
+    pub variations: Vec<Option<LockedTypeObject /* ObjectVariation */>>,
 }
 
 pub trait ObjectVariationCollectionTrait: super::core::DataContainerTrait {
-    fn variations(&self) -> &Vec<Option<Arc<Mutex<dyn ObjectVariationTrait>>>>;
-    fn variations_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ObjectVariationTrait>>>>;
+    fn variations(&self) -> &Vec<Option<LockedTypeObject /* ObjectVariation */>>;
+    fn variations_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ObjectVariation */>>;
 }
 
 impl ObjectVariationCollectionTrait for ObjectVariationCollection {
-    fn variations(&self) -> &Vec<Option<Arc<Mutex<dyn ObjectVariationTrait>>>> {
+    fn variations(&self) -> &Vec<Option<LockedTypeObject /* ObjectVariation */>> {
         &self.variations
     }
-    fn variations_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ObjectVariationTrait>>>> {
+    fn variations_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ObjectVariation */>> {
         &mut self.variations
     }
 }
@@ -9415,16 +9927,20 @@ impl super::core::DataContainerTrait for ObjectVariationCollection {
 
 pub static OBJECTVARIATIONCOLLECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationCollection",
+    name_hash: 2837543895,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectVariationCollection, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectVariationCollection as Default>::default())),
+            create_boxed: || Box::new(<ObjectVariationCollection as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Variations",
+                name_hash: 2728063271,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ObjectVariation-Array",
                 rust_offset: offset_of!(ObjectVariationCollection, variations),
@@ -9456,6 +9972,7 @@ impl TypeObject for ObjectVariationCollection {
 
 pub static OBJECTVARIATIONCOLLECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationCollection-Array",
+    name_hash: 3605230819,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectVariationCollection"),
@@ -9464,7 +9981,8 @@ pub static OBJECTVARIATIONCOLLECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectVariation {
     pub _glacier_base: super::core::Asset,
     pub name_hash: u32,
@@ -9498,16 +10016,20 @@ impl super::core::DataContainerTrait for ObjectVariation {
 
 pub static OBJECTVARIATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariation",
+    name_hash: 3624336577,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectVariation, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectVariation as Default>::default())),
+            create_boxed: || Box::new(<ObjectVariation as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "NameHash",
+                name_hash: 994057744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ObjectVariation, name_hash),
@@ -9539,6 +10061,7 @@ impl TypeObject for ObjectVariation {
 
 pub static OBJECTVARIATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariation-Array",
+    name_hash: 1806108405,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectVariation"),
@@ -9547,46 +10070,47 @@ pub static OBJECTVARIATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DataContainerCollectionBlueprint {
     pub _glacier_base: Blueprint,
-    pub data_containers: Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>,
+    pub data_containers: Vec<Option<LockedTypeObject /* super::core::DataContainer */>>,
 }
 
 pub trait DataContainerCollectionBlueprintTrait: BlueprintTrait {
-    fn data_containers(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>;
-    fn data_containers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>;
+    fn data_containers(&self) -> &Vec<Option<LockedTypeObject /* super::core::DataContainer */>>;
+    fn data_containers_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::DataContainer */>>;
 }
 
 impl DataContainerCollectionBlueprintTrait for DataContainerCollectionBlueprint {
-    fn data_containers(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+    fn data_containers(&self) -> &Vec<Option<LockedTypeObject /* super::core::DataContainer */>> {
         &self.data_containers
     }
-    fn data_containers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+    fn data_containers_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::DataContainer */>> {
         &mut self.data_containers
     }
 }
 
 impl BlueprintTrait for DataContainerCollectionBlueprint {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl EntityBusDataTrait for DataContainerCollectionBlueprint {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -9598,22 +10122,22 @@ impl super::core::DataBusDataTrait for DataContainerCollectionBlueprint {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -9632,16 +10156,20 @@ impl super::core::DataContainerTrait for DataContainerCollectionBlueprint {
 
 pub static DATACONTAINERCOLLECTIONBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataContainerCollectionBlueprint",
+    name_hash: 2518098059,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BLUEPRINT_TYPE_INFO),
+        super_class_offset: offset_of!(DataContainerCollectionBlueprint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DataContainerCollectionBlueprint as Default>::default())),
+            create_boxed: || Box::new(<DataContainerCollectionBlueprint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DataContainers",
+                name_hash: 1951136449,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DataContainer-Array",
                 rust_offset: offset_of!(DataContainerCollectionBlueprint, data_containers),
@@ -9673,6 +10201,7 @@ impl TypeObject for DataContainerCollectionBlueprint {
 
 pub static DATACONTAINERCOLLECTIONBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataContainerCollectionBlueprint-Array",
+    name_hash: 1294913343,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DataContainerCollectionBlueprint"),
@@ -9681,7 +10210,8 @@ pub static DATACONTAINERCOLLECTIONBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LogicPrefabBlueprint {
     pub _glacier_base: PrefabBlueprint,
 }
@@ -9702,25 +10232,25 @@ impl PrefabBlueprintTrait for LogicPrefabBlueprint {
 }
 
 impl BlueprintTrait for LogicPrefabBlueprint {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl EntityBusDataTrait for LogicPrefabBlueprint {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -9732,22 +10262,22 @@ impl super::core::DataBusDataTrait for LogicPrefabBlueprint {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -9766,12 +10296,15 @@ impl super::core::DataContainerTrait for LogicPrefabBlueprint {
 
 pub static LOGICPREFABBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogicPrefabBlueprint",
+    name_hash: 2313043142,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PREFABBLUEPRINT_TYPE_INFO),
+        super_class_offset: offset_of!(LogicPrefabBlueprint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LogicPrefabBlueprint as Default>::default())),
+            create_boxed: || Box::new(<LogicPrefabBlueprint as Default>::default()),
         },
         fields: &[
         ],
@@ -9801,6 +10334,7 @@ impl TypeObject for LogicPrefabBlueprint {
 
 pub static LOGICPREFABBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogicPrefabBlueprint-Array",
+    name_hash: 2200148594,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LogicPrefabBlueprint"),
@@ -9809,7 +10343,8 @@ pub static LOGICPREFABBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpatialPrefabBlueprint {
     pub _glacier_base: PrefabBlueprint,
 }
@@ -9830,25 +10365,25 @@ impl PrefabBlueprintTrait for SpatialPrefabBlueprint {
 }
 
 impl BlueprintTrait for SpatialPrefabBlueprint {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl EntityBusDataTrait for SpatialPrefabBlueprint {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -9860,22 +10395,22 @@ impl super::core::DataBusDataTrait for SpatialPrefabBlueprint {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -9894,12 +10429,15 @@ impl super::core::DataContainerTrait for SpatialPrefabBlueprint {
 
 pub static SPATIALPREFABBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialPrefabBlueprint",
+    name_hash: 1338740858,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PREFABBLUEPRINT_TYPE_INFO),
+        super_class_offset: offset_of!(SpatialPrefabBlueprint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpatialPrefabBlueprint as Default>::default())),
+            create_boxed: || Box::new(<SpatialPrefabBlueprint as Default>::default()),
         },
         fields: &[
         ],
@@ -9929,6 +10467,7 @@ impl TypeObject for SpatialPrefabBlueprint {
 
 pub static SPATIALPREFABBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialPrefabBlueprint-Array",
+    name_hash: 3607044942,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SpatialPrefabBlueprint"),
@@ -9937,7 +10476,8 @@ pub static SPATIALPREFABBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PrefabBlueprint {
     pub _glacier_base: Blueprint,
     pub time_delta_type: TimeDeltaType,
@@ -9958,25 +10498,25 @@ impl PrefabBlueprintTrait for PrefabBlueprint {
 }
 
 impl BlueprintTrait for PrefabBlueprint {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl EntityBusDataTrait for PrefabBlueprint {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -9988,22 +10528,22 @@ impl super::core::DataBusDataTrait for PrefabBlueprint {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -10022,16 +10562,20 @@ impl super::core::DataContainerTrait for PrefabBlueprint {
 
 pub static PREFABBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PrefabBlueprint",
+    name_hash: 618349416,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BLUEPRINT_TYPE_INFO),
+        super_class_offset: offset_of!(PrefabBlueprint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PrefabBlueprint as Default>::default())),
+            create_boxed: || Box::new(<PrefabBlueprint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TimeDeltaType",
+                name_hash: 1100516816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimeDeltaType",
                 rust_offset: offset_of!(PrefabBlueprint, time_delta_type),
@@ -10063,6 +10607,7 @@ impl TypeObject for PrefabBlueprint {
 
 pub static PREFABBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PrefabBlueprint-Array",
+    name_hash: 2324305244,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PrefabBlueprint"),
@@ -10071,46 +10616,47 @@ pub static PREFABBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectBlueprint {
     pub _glacier_base: Blueprint,
-    pub object: Option<Arc<Mutex<dyn EntityDataTrait>>>,
+    pub object: Option<LockedTypeObject /* EntityData */>,
 }
 
 pub trait ObjectBlueprintTrait: BlueprintTrait {
-    fn object(&self) -> &Option<Arc<Mutex<dyn EntityDataTrait>>>;
-    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityDataTrait>>>;
+    fn object(&self) -> &Option<LockedTypeObject /* EntityData */>;
+    fn object_mut(&mut self) -> &mut Option<LockedTypeObject /* EntityData */>;
 }
 
 impl ObjectBlueprintTrait for ObjectBlueprint {
-    fn object(&self) -> &Option<Arc<Mutex<dyn EntityDataTrait>>> {
+    fn object(&self) -> &Option<LockedTypeObject /* EntityData */> {
         &self.object
     }
-    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EntityDataTrait>>> {
+    fn object_mut(&mut self) -> &mut Option<LockedTypeObject /* EntityData */> {
         &mut self.object
     }
 }
 
 impl BlueprintTrait for ObjectBlueprint {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects()
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         self._glacier_base.objects_mut()
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics()
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         self._glacier_base.schematics_mut()
     }
 }
 
 impl EntityBusDataTrait for ObjectBlueprint {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -10122,22 +10668,22 @@ impl super::core::DataBusDataTrait for ObjectBlueprint {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -10156,16 +10702,20 @@ impl super::core::DataContainerTrait for ObjectBlueprint {
 
 pub static OBJECTBLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectBlueprint",
+    name_hash: 1489969119,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BLUEPRINT_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectBlueprint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectBlueprint as Default>::default())),
+            create_boxed: || Box::new(<ObjectBlueprint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Object",
+                name_hash: 2866508144,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EntityData",
                 rust_offset: offset_of!(ObjectBlueprint, object),
@@ -10197,6 +10747,7 @@ impl TypeObject for ObjectBlueprint {
 
 pub static OBJECTBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectBlueprint-Array",
+    name_hash: 1706783979,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectBlueprint"),
@@ -10205,40 +10756,41 @@ pub static OBJECTBLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Blueprint {
     pub _glacier_base: EntityBusData,
-    pub objects: Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>,
-    pub schematics: Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>>,
+    pub objects: Vec<Option<LockedTypeObject /* GameObjectData */>>,
+    pub schematics: Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */>,
 }
 
 pub trait BlueprintTrait: EntityBusDataTrait {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>;
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>;
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>>;
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>>;
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>>;
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>>;
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */>;
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */>;
 }
 
 impl BlueprintTrait for Blueprint {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         &self.objects
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         &mut self.objects
     }
-    fn schematics(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         &self.schematics
     }
-    fn schematics_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn schematics_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         &mut self.schematics
     }
 }
 
 impl EntityBusDataTrait for Blueprint {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections()
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         self._glacier_base.event_connections_mut()
     }
 }
@@ -10250,22 +10802,22 @@ impl super::core::DataBusDataTrait for Blueprint {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -10284,22 +10836,27 @@ impl super::core::DataContainerTrait for Blueprint {
 
 pub static BLUEPRINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Blueprint",
+    name_hash: 4232469066,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYBUSDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Blueprint, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Blueprint as Default>::default())),
+            create_boxed: || Box::new(<Blueprint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Objects",
+                name_hash: 105488131,
                 flags: MemberInfoFlags::new(144),
                 field_type: "GameObjectData-Array",
                 rust_offset: offset_of!(Blueprint, objects),
             },
             FieldInfoData {
                 name: "Schematics",
+                name_hash: 736570521,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SchematicsBaseAsset",
                 rust_offset: offset_of!(Blueprint, schematics),
@@ -10331,6 +10888,7 @@ impl TypeObject for Blueprint {
 
 pub static BLUEPRINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Blueprint-Array",
+    name_hash: 449545726,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Blueprint"),
@@ -10352,6 +10910,7 @@ pub enum BlueprintPersistenceSetting {
 
 pub static BLUEPRINTPERSISTENCESETTING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintPersistenceSetting",
+    name_hash: 3528233003,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -10380,6 +10939,7 @@ impl TypeObject for BlueprintPersistenceSetting {
 
 pub static BLUEPRINTPERSISTENCESETTING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BlueprintPersistenceSetting-Array",
+    name_hash: 1178972063,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BlueprintPersistenceSetting"),
@@ -10388,22 +10948,23 @@ pub static BLUEPRINTPERSISTENCESETTING_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityBusData {
     pub _glacier_base: super::core::DataBusData,
-    pub event_connections: Vec<EventConnection>,
+    pub event_connections: Vec<BoxedTypeObject /* EventConnection */>,
 }
 
 pub trait EntityBusDataTrait: super::core::DataBusDataTrait {
-    fn event_connections(&self) -> &Vec<EventConnection>;
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection>;
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */>;
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */>;
 }
 
 impl EntityBusDataTrait for EntityBusData {
-    fn event_connections(&self) -> &Vec<EventConnection> {
+    fn event_connections(&self) -> &Vec<BoxedTypeObject /* EventConnection */> {
         &self.event_connections
     }
-    fn event_connections_mut(&mut self) -> &mut Vec<EventConnection> {
+    fn event_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventConnection */> {
         &mut self.event_connections
     }
 }
@@ -10415,22 +10976,22 @@ impl super::core::DataBusDataTrait for EntityBusData {
     fn flags_mut(&mut self) -> &mut u16 {
         self._glacier_base.flags_mut()
     }
-    fn property_connections(&self) -> &Vec<super::core::PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections()
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<super::core::PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::PropertyConnection */> {
         self._glacier_base.property_connections_mut()
     }
-    fn link_connections(&self) -> &Vec<super::core::LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections()
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<super::core::LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinkConnection */> {
         self._glacier_base.link_connections_mut()
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface()
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DynamicDataContainer */> {
         self._glacier_base.interface_mut()
     }
 }
@@ -10449,16 +11010,20 @@ impl super::core::DataContainerTrait for EntityBusData {
 
 pub static ENTITYBUSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityBusData",
+    name_hash: 1583801930,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATABUSDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EntityBusData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityBusData as Default>::default())),
+            create_boxed: || Box::new(<EntityBusData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EventConnections",
+                name_hash: 2156913324,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EventConnection-Array",
                 rust_offset: offset_of!(EntityBusData, event_connections),
@@ -10490,6 +11055,7 @@ impl TypeObject for EntityBusData {
 
 pub static ENTITYBUSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityBusData-Array",
+    name_hash: 1847923198,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EntityBusData"),
@@ -10498,58 +11064,59 @@ pub static ENTITYBUSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InterfaceDescriptorData {
     pub _glacier_base: super::core::DynamicDataContainer,
-    pub input_events: Vec<DynamicEvent>,
-    pub output_events: Vec<DynamicEvent>,
-    pub input_links: Vec<DynamicLink>,
-    pub output_links: Vec<DynamicLink>,
+    pub input_events: Vec<BoxedTypeObject /* DynamicEvent */>,
+    pub output_events: Vec<BoxedTypeObject /* DynamicEvent */>,
+    pub input_links: Vec<BoxedTypeObject /* DynamicLink */>,
+    pub output_links: Vec<BoxedTypeObject /* DynamicLink */>,
 }
 
 pub trait InterfaceDescriptorDataTrait: super::core::DynamicDataContainerTrait {
-    fn input_events(&self) -> &Vec<DynamicEvent>;
-    fn input_events_mut(&mut self) -> &mut Vec<DynamicEvent>;
-    fn output_events(&self) -> &Vec<DynamicEvent>;
-    fn output_events_mut(&mut self) -> &mut Vec<DynamicEvent>;
-    fn input_links(&self) -> &Vec<DynamicLink>;
-    fn input_links_mut(&mut self) -> &mut Vec<DynamicLink>;
-    fn output_links(&self) -> &Vec<DynamicLink>;
-    fn output_links_mut(&mut self) -> &mut Vec<DynamicLink>;
+    fn input_events(&self) -> &Vec<BoxedTypeObject /* DynamicEvent */>;
+    fn input_events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicEvent */>;
+    fn output_events(&self) -> &Vec<BoxedTypeObject /* DynamicEvent */>;
+    fn output_events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicEvent */>;
+    fn input_links(&self) -> &Vec<BoxedTypeObject /* DynamicLink */>;
+    fn input_links_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicLink */>;
+    fn output_links(&self) -> &Vec<BoxedTypeObject /* DynamicLink */>;
+    fn output_links_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicLink */>;
 }
 
 impl InterfaceDescriptorDataTrait for InterfaceDescriptorData {
-    fn input_events(&self) -> &Vec<DynamicEvent> {
+    fn input_events(&self) -> &Vec<BoxedTypeObject /* DynamicEvent */> {
         &self.input_events
     }
-    fn input_events_mut(&mut self) -> &mut Vec<DynamicEvent> {
+    fn input_events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicEvent */> {
         &mut self.input_events
     }
-    fn output_events(&self) -> &Vec<DynamicEvent> {
+    fn output_events(&self) -> &Vec<BoxedTypeObject /* DynamicEvent */> {
         &self.output_events
     }
-    fn output_events_mut(&mut self) -> &mut Vec<DynamicEvent> {
+    fn output_events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicEvent */> {
         &mut self.output_events
     }
-    fn input_links(&self) -> &Vec<DynamicLink> {
+    fn input_links(&self) -> &Vec<BoxedTypeObject /* DynamicLink */> {
         &self.input_links
     }
-    fn input_links_mut(&mut self) -> &mut Vec<DynamicLink> {
+    fn input_links_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicLink */> {
         &mut self.input_links
     }
-    fn output_links(&self) -> &Vec<DynamicLink> {
+    fn output_links(&self) -> &Vec<BoxedTypeObject /* DynamicLink */> {
         &self.output_links
     }
-    fn output_links_mut(&mut self) -> &mut Vec<DynamicLink> {
+    fn output_links_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DynamicLink */> {
         &mut self.output_links
     }
 }
 
 impl super::core::DynamicDataContainerTrait for InterfaceDescriptorData {
-    fn fields(&self) -> &Vec<super::core::DataField> {
+    fn fields(&self) -> &Vec<BoxedTypeObject /* super::core::DataField */> {
         self._glacier_base.fields()
     }
-    fn fields_mut(&mut self) -> &mut Vec<super::core::DataField> {
+    fn fields_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::DataField */> {
         self._glacier_base.fields_mut()
     }
 }
@@ -10559,34 +11126,41 @@ impl super::core::DataContainerTrait for InterfaceDescriptorData {
 
 pub static INTERFACEDESCRIPTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InterfaceDescriptorData",
+    name_hash: 362024803,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DYNAMICDATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(InterfaceDescriptorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InterfaceDescriptorData as Default>::default())),
+            create_boxed: || Box::new(<InterfaceDescriptorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InputEvents",
+                name_hash: 1542460652,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DynamicEvent-Array",
                 rust_offset: offset_of!(InterfaceDescriptorData, input_events),
             },
             FieldInfoData {
                 name: "OutputEvents",
+                name_hash: 3452448709,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DynamicEvent-Array",
                 rust_offset: offset_of!(InterfaceDescriptorData, output_events),
             },
             FieldInfoData {
                 name: "InputLinks",
+                name_hash: 1626510432,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DynamicLink-Array",
                 rust_offset: offset_of!(InterfaceDescriptorData, input_links),
             },
             FieldInfoData {
                 name: "OutputLinks",
+                name_hash: 748160425,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DynamicLink-Array",
                 rust_offset: offset_of!(InterfaceDescriptorData, output_links),
@@ -10618,6 +11192,7 @@ impl TypeObject for InterfaceDescriptorData {
 
 pub static INTERFACEDESCRIPTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InterfaceDescriptorData-Array",
+    name_hash: 3418637143,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("InterfaceDescriptorData"),
@@ -10626,7 +11201,8 @@ pub static INTERFACEDESCRIPTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DynamicLink {
     pub id: i32,
 }
@@ -10647,15 +11223,18 @@ impl DynamicLinkTrait for DynamicLink {
 
 pub static DYNAMICLINK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DynamicLink",
+    name_hash: 3682201776,
     flags: MemberInfoFlags::new(32841),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DynamicLink as Default>::default())),
+            create_boxed: || Box::new(<DynamicLink as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(DynamicLink, id),
@@ -10687,6 +11266,7 @@ impl TypeObject for DynamicLink {
 
 pub static DYNAMICLINK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DynamicLink-Array",
+    name_hash: 790437380,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DynamicLink"),
@@ -10695,7 +11275,8 @@ pub static DYNAMICLINK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DynamicEvent {
     pub id: i32,
 }
@@ -10716,15 +11297,18 @@ impl DynamicEventTrait for DynamicEvent {
 
 pub static DYNAMICEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DynamicEvent",
+    name_hash: 1242509212,
     flags: MemberInfoFlags::new(32841),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DynamicEvent as Default>::default())),
+            create_boxed: || Box::new(<DynamicEvent as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(DynamicEvent, id),
@@ -10756,6 +11340,7 @@ impl TypeObject for DynamicEvent {
 
 pub static DYNAMICEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DynamicEvent-Array",
+    name_hash: 1602570152,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DynamicEvent"),
@@ -10764,20 +11349,21 @@ pub static DYNAMICEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventConnection {
-    pub source: Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>,
-    pub target: Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>,
+    pub source: Option<LockedTypeObject /* super::core::DataContainer */>,
+    pub target: Option<LockedTypeObject /* super::core::DataContainer */>,
     pub source_event: EventSpec,
     pub target_event: EventSpec,
     pub target_type: EventConnectionTargetType,
 }
 
 pub trait EventConnectionTrait: TypeObject {
-    fn source(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
-    fn source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
-    fn target(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
-    fn target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
+    fn source(&self) -> &Option<LockedTypeObject /* super::core::DataContainer */>;
+    fn source_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DataContainer */>;
+    fn target(&self) -> &Option<LockedTypeObject /* super::core::DataContainer */>;
+    fn target_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DataContainer */>;
     fn source_event(&self) -> &EventSpec;
     fn source_event_mut(&mut self) -> &mut EventSpec;
     fn target_event(&self) -> &EventSpec;
@@ -10787,16 +11373,16 @@ pub trait EventConnectionTrait: TypeObject {
 }
 
 impl EventConnectionTrait for EventConnection {
-    fn source(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
+    fn source(&self) -> &Option<LockedTypeObject /* super::core::DataContainer */> {
         &self.source
     }
-    fn source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
+    fn source_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DataContainer */> {
         &mut self.source
     }
-    fn target(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
+    fn target(&self) -> &Option<LockedTypeObject /* super::core::DataContainer */> {
         &self.target
     }
-    fn target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
+    fn target_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DataContainer */> {
         &mut self.target
     }
     fn source_event(&self) -> &EventSpec {
@@ -10821,39 +11407,46 @@ impl EventConnectionTrait for EventConnection {
 
 pub static EVENTCONNECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventConnection",
+    name_hash: 3969876735,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventConnection as Default>::default())),
+            create_boxed: || Box::new(<EventConnection as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Source",
+                name_hash: 3339738264,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(EventConnection, source),
             },
             FieldInfoData {
                 name: "Target",
+                name_hash: 3215022804,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(EventConnection, target),
             },
             FieldInfoData {
                 name: "SourceEvent",
+                name_hash: 3000664532,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EventSpec",
                 rust_offset: offset_of!(EventConnection, source_event),
             },
             FieldInfoData {
                 name: "TargetEvent",
+                name_hash: 2254399000,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EventSpec",
                 rust_offset: offset_of!(EventConnection, target_event),
             },
             FieldInfoData {
                 name: "TargetType",
+                name_hash: 328114796,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EventConnectionTargetType",
                 rust_offset: offset_of!(EventConnection, target_type),
@@ -10885,6 +11478,7 @@ impl TypeObject for EventConnection {
 
 pub static EVENTCONNECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventConnection-Array",
+    name_hash: 2563385547,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventConnection"),
@@ -10908,6 +11502,7 @@ pub enum EventConnectionTargetType {
 
 pub static EVENTCONNECTIONTARGETTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventConnectionTargetType",
+    name_hash: 1454871510,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -10936,6 +11531,7 @@ impl TypeObject for EventConnectionTargetType {
 
 pub static EVENTCONNECTIONTARGETTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventConnectionTargetType-Array",
+    name_hash: 2834626914,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventConnectionTargetType"),
@@ -10944,7 +11540,8 @@ pub static EVENTCONNECTIONTARGETTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventSpec {
     pub id: i32,
 }
@@ -10965,15 +11562,18 @@ impl EventSpecTrait for EventSpec {
 
 pub static EVENTSPEC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventSpec",
+    name_hash: 4133264204,
     flags: MemberInfoFlags::new(32841),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventSpec as Default>::default())),
+            create_boxed: || Box::new(<EventSpec as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EventSpec, id),
@@ -11005,6 +11605,7 @@ impl TypeObject for EventSpec {
 
 pub static EVENTSPEC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventSpec-Array",
+    name_hash: 3721772024,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventSpec"),
@@ -11013,7 +11614,8 @@ pub static EVENTSPEC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareAxisAlignedBoxEntityData {
     pub _glacier_base: CompareEntityBaseData,
     pub a: super::core::AxisAlignedBox,
@@ -11092,22 +11694,27 @@ impl super::core::DataContainerTrait for CompareAxisAlignedBoxEntityData {
 
 pub static COMPAREAXISALIGNEDBOXENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareAxisAlignedBoxEntityData",
+    name_hash: 1027389747,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPAREENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareAxisAlignedBoxEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareAxisAlignedBoxEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareAxisAlignedBoxEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "A",
+                name_hash: 177636,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AxisAlignedBox",
                 rust_offset: offset_of!(CompareAxisAlignedBoxEntityData, a),
             },
             FieldInfoData {
                 name: "B",
+                name_hash: 177639,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AxisAlignedBox",
                 rust_offset: offset_of!(CompareAxisAlignedBoxEntityData, b),
@@ -11139,6 +11746,7 @@ impl TypeObject for CompareAxisAlignedBoxEntityData {
 
 pub static COMPAREAXISALIGNEDBOXENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareAxisAlignedBoxEntityData-Array",
+    name_hash: 3322152071,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareAxisAlignedBoxEntityData"),
@@ -11147,7 +11755,8 @@ pub static COMPAREAXISALIGNEDBOXENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareUintRangeEntityData {
     pub _glacier_base: CompareEntityBaseData,
     pub value: u32,
@@ -11235,28 +11844,34 @@ impl super::core::DataContainerTrait for CompareUintRangeEntityData {
 
 pub static COMPAREUINTRANGEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareUintRangeEntityData",
+    name_hash: 3229267248,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPAREENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareUintRangeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareUintRangeEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareUintRangeEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CompareUintRangeEntityData, value),
             },
             FieldInfoData {
                 name: "Min",
+                name_hash: 193446607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CompareUintRangeEntityData, min),
             },
             FieldInfoData {
                 name: "Max",
+                name_hash: 193446865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CompareUintRangeEntityData, max),
@@ -11288,6 +11903,7 @@ impl TypeObject for CompareUintRangeEntityData {
 
 pub static COMPAREUINTRANGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareUintRangeEntityData-Array",
+    name_hash: 3888071300,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareUintRangeEntityData"),
@@ -11296,7 +11912,8 @@ pub static COMPAREUINTRANGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareIntRangeEntityData {
     pub _glacier_base: CompareEntityBaseData,
     pub value: i32,
@@ -11384,28 +12001,34 @@ impl super::core::DataContainerTrait for CompareIntRangeEntityData {
 
 pub static COMPAREINTRANGEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareIntRangeEntityData",
+    name_hash: 3829796997,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPAREENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareIntRangeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareIntRangeEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareIntRangeEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CompareIntRangeEntityData, value),
             },
             FieldInfoData {
                 name: "Min",
+                name_hash: 193446607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CompareIntRangeEntityData, min),
             },
             FieldInfoData {
                 name: "Max",
+                name_hash: 193446865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CompareIntRangeEntityData, max),
@@ -11437,6 +12060,7 @@ impl TypeObject for CompareIntRangeEntityData {
 
 pub static COMPAREINTRANGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareIntRangeEntityData-Array",
+    name_hash: 3814299697,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareIntRangeEntityData"),
@@ -11445,7 +12069,8 @@ pub static COMPAREINTRANGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareFloatRangeEntityData {
     pub _glacier_base: CompareEntityBaseData,
     pub value: f32,
@@ -11533,28 +12158,34 @@ impl super::core::DataContainerTrait for CompareFloatRangeEntityData {
 
 pub static COMPAREFLOATRANGEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareFloatRangeEntityData",
+    name_hash: 2364792902,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPAREENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareFloatRangeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareFloatRangeEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareFloatRangeEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CompareFloatRangeEntityData, value),
             },
             FieldInfoData {
                 name: "Min",
+                name_hash: 193446607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CompareFloatRangeEntityData, min),
             },
             FieldInfoData {
                 name: "Max",
+                name_hash: 193446865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CompareFloatRangeEntityData, max),
@@ -11586,6 +12217,7 @@ impl TypeObject for CompareFloatRangeEntityData {
 
 pub static COMPAREFLOATRANGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareFloatRangeEntityData-Array",
+    name_hash: 2479218162,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareFloatRangeEntityData"),
@@ -11594,7 +12226,8 @@ pub static COMPAREFLOATRANGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareStringEntityData {
     pub _glacier_base: CompareEntityBaseData,
     pub a: String,
@@ -11673,22 +12306,27 @@ impl super::core::DataContainerTrait for CompareStringEntityData {
 
 pub static COMPARESTRINGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareStringEntityData",
+    name_hash: 3862382780,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPAREENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareStringEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareStringEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareStringEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "A",
+                name_hash: 177636,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CompareStringEntityData, a),
             },
             FieldInfoData {
                 name: "B",
+                name_hash: 177639,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CompareStringEntityData, b),
@@ -11720,6 +12358,7 @@ impl TypeObject for CompareStringEntityData {
 
 pub static COMPARESTRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareStringEntityData-Array",
+    name_hash: 4231757832,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareStringEntityData"),
@@ -11728,7 +12367,8 @@ pub static COMPARESTRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareVec4EntityData {
     pub _glacier_base: CompareEntityBaseData,
     pub value_a: super::core::Vec4,
@@ -11816,28 +12456,34 @@ impl super::core::DataContainerTrait for CompareVec4EntityData {
 
 pub static COMPAREVEC4ENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareVec4EntityData",
+    name_hash: 844014765,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPAREENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareVec4EntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareVec4EntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareVec4EntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ValueA",
+                name_hash: 3142410607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(CompareVec4EntityData, value_a),
             },
             FieldInfoData {
                 name: "ValueB",
+                name_hash: 3142410604,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(CompareVec4EntityData, value_b),
             },
             FieldInfoData {
                 name: "Tolerance",
+                name_hash: 178343404,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CompareVec4EntityData, tolerance),
@@ -11869,6 +12515,7 @@ impl TypeObject for CompareVec4EntityData {
 
 pub static COMPAREVEC4ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareVec4EntityData-Array",
+    name_hash: 2964085017,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareVec4EntityData"),
@@ -11877,7 +12524,8 @@ pub static COMPAREVEC4ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareVec3EntityData {
     pub _glacier_base: CompareEntityBaseData,
     pub value_a: super::core::Vec3,
@@ -11965,28 +12613,34 @@ impl super::core::DataContainerTrait for CompareVec3EntityData {
 
 pub static COMPAREVEC3ENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareVec3EntityData",
+    name_hash: 2293259242,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPAREENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareVec3EntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareVec3EntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareVec3EntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ValueA",
+                name_hash: 3142410607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CompareVec3EntityData, value_a),
             },
             FieldInfoData {
                 name: "ValueB",
+                name_hash: 3142410604,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CompareVec3EntityData, value_b),
             },
             FieldInfoData {
                 name: "Tolerance",
+                name_hash: 178343404,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CompareVec3EntityData, tolerance),
@@ -12018,6 +12672,7 @@ impl TypeObject for CompareVec3EntityData {
 
 pub static COMPAREVEC3ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareVec3EntityData-Array",
+    name_hash: 1184614110,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareVec3EntityData"),
@@ -12026,7 +12681,8 @@ pub static COMPAREVEC3ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareFloatEntityData {
     pub _glacier_base: CompareEntityBaseData,
     pub a: f32,
@@ -12105,22 +12761,27 @@ impl super::core::DataContainerTrait for CompareFloatEntityData {
 
 pub static COMPAREFLOATENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareFloatEntityData",
+    name_hash: 3883933145,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPAREENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareFloatEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareFloatEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareFloatEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "A",
+                name_hash: 177636,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CompareFloatEntityData, a),
             },
             FieldInfoData {
                 name: "B",
+                name_hash: 177639,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CompareFloatEntityData, b),
@@ -12152,6 +12813,7 @@ impl TypeObject for CompareFloatEntityData {
 
 pub static COMPAREFLOATENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareFloatEntityData-Array",
+    name_hash: 3318156269,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareFloatEntityData"),
@@ -12160,7 +12822,8 @@ pub static COMPAREFLOATENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareUintEntityData {
     pub _glacier_base: CompareEntityBaseData,
     pub a: u32,
@@ -12239,22 +12902,27 @@ impl super::core::DataContainerTrait for CompareUintEntityData {
 
 pub static COMPAREUINTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareUintEntityData",
+    name_hash: 660061167,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPAREENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareUintEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareUintEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareUintEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "A",
+                name_hash: 177636,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CompareUintEntityData, a),
             },
             FieldInfoData {
                 name: "B",
+                name_hash: 177639,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CompareUintEntityData, b),
@@ -12286,6 +12954,7 @@ impl TypeObject for CompareUintEntityData {
 
 pub static COMPAREUINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareUintEntityData-Array",
+    name_hash: 3849738715,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareUintEntityData"),
@@ -12294,7 +12963,8 @@ pub static COMPAREUINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareIntEntityData {
     pub _glacier_base: CompareEntityBaseData,
     pub a: i32,
@@ -12373,22 +13043,27 @@ impl super::core::DataContainerTrait for CompareIntEntityData {
 
 pub static COMPAREINTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareIntEntityData",
+    name_hash: 3241317434,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPAREENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareIntEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareIntEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareIntEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "A",
+                name_hash: 177636,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CompareIntEntityData, a),
             },
             FieldInfoData {
                 name: "B",
+                name_hash: 177639,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CompareIntEntityData, b),
@@ -12420,6 +13095,7 @@ impl TypeObject for CompareIntEntityData {
 
 pub static COMPAREINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareIntEntityData-Array",
+    name_hash: 760886926,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareIntEntityData"),
@@ -12428,7 +13104,8 @@ pub static COMPAREINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareBoolEntityData {
     pub _glacier_base: CompareEntityBaseData,
     pub bool: bool,
@@ -12498,16 +13175,20 @@ impl super::core::DataContainerTrait for CompareBoolEntityData {
 
 pub static COMPAREBOOLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareBoolEntityData",
+    name_hash: 1312902887,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPAREENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareBoolEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareBoolEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareBoolEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Bool",
+                name_hash: 2088812747,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CompareBoolEntityData, bool),
@@ -12539,6 +13220,7 @@ impl TypeObject for CompareBoolEntityData {
 
 pub static COMPAREBOOLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareBoolEntityData-Array",
+    name_hash: 1166201043,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareBoolEntityData"),
@@ -12547,7 +13229,8 @@ pub static COMPAREBOOLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareEntityBaseData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -12617,34 +13300,41 @@ impl super::core::DataContainerTrait for CompareEntityBaseData {
 
 pub static COMPAREENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareEntityBaseData",
+    name_hash: 1595634876,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareEntityBaseData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareEntityBaseData as Default>::default())),
+            create_boxed: || Box::new(<CompareEntityBaseData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CompareEntityBaseData, realm),
             },
             FieldInfoData {
                 name: "TriggerOnPropertyChange",
+                name_hash: 3134109917,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CompareEntityBaseData, trigger_on_property_change),
             },
             FieldInfoData {
                 name: "TriggerOnStart",
+                name_hash: 3859836348,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CompareEntityBaseData, trigger_on_start),
             },
             FieldInfoData {
                 name: "AlwaysSend",
+                name_hash: 579845256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CompareEntityBaseData, always_send),
@@ -12676,6 +13366,7 @@ impl TypeObject for CompareEntityBaseData {
 
 pub static COMPAREENTITYBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareEntityBaseData-Array",
+    name_hash: 2458954760,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareEntityBaseData"),
@@ -12684,7 +13375,8 @@ pub static COMPAREENTITYBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientProfilerData {
     pub _glacier_base: EntityData,
     pub profiler_name: String,
@@ -12727,16 +13419,20 @@ impl super::core::DataContainerTrait for ClientProfilerData {
 
 pub static CLIENTPROFILERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientProfilerData",
+    name_hash: 562040981,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ClientProfilerData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientProfilerData as Default>::default())),
+            create_boxed: || Box::new(<ClientProfilerData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ProfilerName",
+                name_hash: 3407717723,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ClientProfilerData, profiler_name),
@@ -12768,6 +13464,7 @@ impl TypeObject for ClientProfilerData {
 
 pub static CLIENTPROFILERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientProfilerData-Array",
+    name_hash: 1940283425,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ClientProfilerData"),
@@ -12776,10 +13473,11 @@ pub static CLIENTPROFILERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ChildEffectEntityData {
     pub _glacier_base: SpatialEntityData,
-    pub components: Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>,
+    pub components: Vec<Option<LockedTypeObject /* GameObjectData */>>,
     pub start_delay: f32,
     pub attach_to_spawn_surface: bool,
     pub enable: super::core::QualityScalableBool,
@@ -12788,8 +13486,8 @@ pub struct ChildEffectEntityData {
 }
 
 pub trait ChildEffectEntityDataTrait: SpatialEntityDataTrait {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>;
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>>;
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>>;
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>>;
     fn start_delay(&self) -> &f32;
     fn start_delay_mut(&mut self) -> &mut f32;
     fn attach_to_spawn_surface(&self) -> &bool;
@@ -12803,10 +13501,10 @@ pub trait ChildEffectEntityDataTrait: SpatialEntityDataTrait {
 }
 
 impl ChildEffectEntityDataTrait for ChildEffectEntityData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* GameObjectData */>> {
         &self.components
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* GameObjectData */>> {
         &mut self.components
     }
     fn start_delay(&self) -> &f32 {
@@ -12873,46 +13571,55 @@ impl super::core::DataContainerTrait for ChildEffectEntityData {
 
 pub static CHILDEFFECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ChildEffectEntityData",
+    name_hash: 4173154355,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ChildEffectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ChildEffectEntityData as Default>::default())),
+            create_boxed: || Box::new(<ChildEffectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Components",
+                name_hash: 3391050425,
                 flags: MemberInfoFlags::new(144),
                 field_type: "GameObjectData-Array",
                 rust_offset: offset_of!(ChildEffectEntityData, components),
             },
             FieldInfoData {
                 name: "StartDelay",
+                name_hash: 2731915920,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ChildEffectEntityData, start_delay),
             },
             FieldInfoData {
                 name: "AttachToSpawnSurface",
+                name_hash: 4224066779,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ChildEffectEntityData, attach_to_spawn_surface),
             },
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableBool",
                 rust_offset: offset_of!(ChildEffectEntityData, enable),
             },
             FieldInfoData {
                 name: "OverrideDrawOrder",
+                name_hash: 3411677887,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ChildEffectEntityData, override_draw_order),
             },
             FieldInfoData {
                 name: "KeepAlive",
+                name_hash: 2097661609,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ChildEffectEntityData, keep_alive),
@@ -12944,6 +13651,7 @@ impl TypeObject for ChildEffectEntityData {
 
 pub static CHILDEFFECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ChildEffectEntityData-Array",
+    name_hash: 3916682119,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ChildEffectEntityData"),
@@ -12964,6 +13672,7 @@ pub enum BundleType {
 
 pub static BUNDLETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleType",
+    name_hash: 460109193,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -12992,6 +13701,7 @@ impl TypeObject for BundleType {
 
 pub static BUNDLETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleType-Array",
+    name_hash: 3379014461,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BundleType"),
@@ -13000,25 +13710,26 @@ pub static BUNDLETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutoAssetCollector {
     pub _glacier_base: super::core::DataContainer,
-    pub assets: Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>>,
+    pub assets: Vec<Option<LockedTypeObject /* super::core::Asset */>>,
     pub auto_collect_minimum_usage_percentage: f32,
 }
 
 pub trait AutoAssetCollectorTrait: super::core::DataContainerTrait {
-    fn assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>>;
-    fn assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>>;
+    fn assets(&self) -> &Vec<Option<LockedTypeObject /* super::core::Asset */>>;
+    fn assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::Asset */>>;
     fn auto_collect_minimum_usage_percentage(&self) -> &f32;
     fn auto_collect_minimum_usage_percentage_mut(&mut self) -> &mut f32;
 }
 
 impl AutoAssetCollectorTrait for AutoAssetCollector {
-    fn assets(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>> {
+    fn assets(&self) -> &Vec<Option<LockedTypeObject /* super::core::Asset */>> {
         &self.assets
     }
-    fn assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::AssetTrait>>>> {
+    fn assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::Asset */>> {
         &mut self.assets
     }
     fn auto_collect_minimum_usage_percentage(&self) -> &f32 {
@@ -13034,22 +13745,27 @@ impl super::core::DataContainerTrait for AutoAssetCollector {
 
 pub static AUTOASSETCOLLECTOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoAssetCollector",
+    name_hash: 3958760185,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(AutoAssetCollector, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutoAssetCollector as Default>::default())),
+            create_boxed: || Box::new(<AutoAssetCollector as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Assets",
+                name_hash: 2502242534,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Asset-Array",
                 rust_offset: offset_of!(AutoAssetCollector, assets),
             },
             FieldInfoData {
                 name: "AutoCollectMinimumUsagePercentage",
+                name_hash: 1798719391,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AutoAssetCollector, auto_collect_minimum_usage_percentage),
@@ -13081,6 +13797,7 @@ impl TypeObject for AutoAssetCollector {
 
 pub static AUTOASSETCOLLECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutoAssetCollector-Array",
+    name_hash: 1551671757,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AutoAssetCollector"),
@@ -13089,22 +13806,23 @@ pub static AUTOASSETCOLLECTOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkedObjectsAsset {
     pub _glacier_base: super::core::Asset,
-    pub objects: Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>,
+    pub objects: Vec<Option<LockedTypeObject /* super::core::DataContainer */>>,
 }
 
 pub trait NetworkedObjectsAssetTrait: super::core::AssetTrait {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>;
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>;
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* super::core::DataContainer */>>;
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::DataContainer */>>;
 }
 
 impl NetworkedObjectsAssetTrait for NetworkedObjectsAsset {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* super::core::DataContainer */>> {
         &self.objects
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::DataContainer */>> {
         &mut self.objects
     }
 }
@@ -13123,16 +13841,20 @@ impl super::core::DataContainerTrait for NetworkedObjectsAsset {
 
 pub static NETWORKEDOBJECTSASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkedObjectsAsset",
+    name_hash: 3224882604,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(NetworkedObjectsAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkedObjectsAsset as Default>::default())),
+            create_boxed: || Box::new(<NetworkedObjectsAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Objects",
+                name_hash: 105488131,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DataContainer-Array",
                 rust_offset: offset_of!(NetworkedObjectsAsset, objects),
@@ -13164,6 +13886,7 @@ impl TypeObject for NetworkedObjectsAsset {
 
 pub static NETWORKEDOBJECTSASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkedObjectsAsset-Array",
+    name_hash: 2285436184,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("NetworkedObjectsAsset"),
@@ -13172,25 +13895,26 @@ pub static NETWORKEDOBJECTSASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NetworkRegistryAsset {
     pub _glacier_base: super::core::Asset,
-    pub objects: Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>,
+    pub objects: Vec<Option<LockedTypeObject /* super::core::DataContainer */>>,
     pub checksum: u32,
 }
 
 pub trait NetworkRegistryAssetTrait: super::core::AssetTrait {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>;
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>>;
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* super::core::DataContainer */>>;
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::DataContainer */>>;
     fn checksum(&self) -> &u32;
     fn checksum_mut(&mut self) -> &mut u32;
 }
 
 impl NetworkRegistryAssetTrait for NetworkRegistryAsset {
-    fn objects(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+    fn objects(&self) -> &Vec<Option<LockedTypeObject /* super::core::DataContainer */>> {
         &self.objects
     }
-    fn objects_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>> {
+    fn objects_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::DataContainer */>> {
         &mut self.objects
     }
     fn checksum(&self) -> &u32 {
@@ -13215,22 +13939,27 @@ impl super::core::DataContainerTrait for NetworkRegistryAsset {
 
 pub static NETWORKREGISTRYASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkRegistryAsset",
+    name_hash: 1476561886,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(NetworkRegistryAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NetworkRegistryAsset as Default>::default())),
+            create_boxed: || Box::new(<NetworkRegistryAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Objects",
+                name_hash: 105488131,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DataContainer-Array",
                 rust_offset: offset_of!(NetworkRegistryAsset, objects),
             },
             FieldInfoData {
                 name: "Checksum",
+                name_hash: 1443481128,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(NetworkRegistryAsset, checksum),
@@ -13262,6 +13991,7 @@ impl TypeObject for NetworkRegistryAsset {
 
 pub static NETWORKREGISTRYASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NetworkRegistryAsset-Array",
+    name_hash: 2803453290,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("NetworkRegistryAsset"),
@@ -13270,7 +14000,8 @@ pub static NETWORKREGISTRYASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BundleHeapInfo {
     pub heap_type: BundleHeapType,
     pub initial_size: u32,
@@ -13309,27 +14040,32 @@ impl BundleHeapInfoTrait for BundleHeapInfo {
 
 pub static BUNDLEHEAPINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleHeapInfo",
+    name_hash: 1819457507,
     flags: MemberInfoFlags::new(36937),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BundleHeapInfo as Default>::default())),
+            create_boxed: || Box::new(<BundleHeapInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "HeapType",
+                name_hash: 1892364577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BundleHeapType",
                 rust_offset: offset_of!(BundleHeapInfo, heap_type),
             },
             FieldInfoData {
                 name: "InitialSize",
+                name_hash: 2584380574,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(BundleHeapInfo, initial_size),
             },
             FieldInfoData {
                 name: "AllowGrow",
+                name_hash: 2314451249,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BundleHeapInfo, allow_grow),
@@ -13361,6 +14097,7 @@ impl TypeObject for BundleHeapInfo {
 
 pub static BUNDLEHEAPINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleHeapInfo-Array",
+    name_hash: 102714327,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BundleHeapInfo"),
@@ -13385,6 +14122,7 @@ pub enum BundleHeapType {
 
 pub static BUNDLEHEAPTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleHeapType",
+    name_hash: 1820115349,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -13413,6 +14151,7 @@ impl TypeObject for BundleHeapType {
 
 pub static BUNDLEHEAPTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleHeapType-Array",
+    name_hash: 262394145,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BundleHeapType"),
@@ -13421,7 +14160,8 @@ pub static BUNDLEHEAPTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BundleSettingsInfo {
     pub group_identifier: u32,
     pub group_name: String,
@@ -13451,21 +14191,25 @@ impl BundleSettingsInfoTrait for BundleSettingsInfo {
 
 pub static BUNDLESETTINGSINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleSettingsInfo",
+    name_hash: 2785571642,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BundleSettingsInfo as Default>::default())),
+            create_boxed: || Box::new(<BundleSettingsInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "GroupIdentifier",
+                name_hash: 1147653529,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(BundleSettingsInfo, group_identifier),
             },
             FieldInfoData {
                 name: "GroupName",
+                name_hash: 3178263901,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(BundleSettingsInfo, group_name),
@@ -13497,6 +14241,7 @@ impl TypeObject for BundleSettingsInfo {
 
 pub static BUNDLESETTINGSINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleSettingsInfo-Array",
+    name_hash: 2564511118,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BundleSettingsInfo"),
@@ -13505,7 +14250,8 @@ pub static BUNDLESETTINGSINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshOperationData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -13521,12 +14267,15 @@ impl super::core::DataContainerTrait for MeshOperationData {
 
 pub static MESHOPERATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshOperationData",
+    name_hash: 2273150003,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(MeshOperationData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshOperationData as Default>::default())),
+            create_boxed: || Box::new(<MeshOperationData as Default>::default()),
         },
         fields: &[
         ],
@@ -13556,6 +14305,7 @@ impl TypeObject for MeshOperationData {
 
 pub static MESHOPERATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshOperationData-Array",
+    name_hash: 779161479,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MeshOperationData"),
@@ -13564,7 +14314,8 @@ pub static MESHOPERATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SkeletonBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -13589,12 +14340,15 @@ impl super::core::DataContainerTrait for SkeletonBaseAsset {
 
 pub static SKELETONBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SkeletonBaseAsset",
+    name_hash: 2019976961,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(SkeletonBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SkeletonBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<SkeletonBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -13624,6 +14378,7 @@ impl TypeObject for SkeletonBaseAsset {
 
 pub static SKELETONBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SkeletonBaseAsset-Array",
+    name_hash: 2076254389,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SkeletonBaseAsset"),
@@ -13632,13 +14387,14 @@ pub static SKELETONBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformPartPropertyTrackData {
     pub _glacier_base: PropertyTrackData,
     pub transform_part: TransformPart,
     pub pre_infinity: CurveInfinityType,
     pub post_infinity: CurveInfinityType,
-    pub values: Vec<TransformPartPropertyKey>,
+    pub values: Vec<BoxedTypeObject /* TransformPartPropertyKey */>,
     pub evaluator_fps: f32,
     pub weighted: bool,
     pub key_start_index: u32,
@@ -13654,8 +14410,8 @@ pub trait TransformPartPropertyTrackDataTrait: PropertyTrackDataTrait {
     fn pre_infinity_mut(&mut self) -> &mut CurveInfinityType;
     fn post_infinity(&self) -> &CurveInfinityType;
     fn post_infinity_mut(&mut self) -> &mut CurveInfinityType;
-    fn values(&self) -> &Vec<TransformPartPropertyKey>;
-    fn values_mut(&mut self) -> &mut Vec<TransformPartPropertyKey>;
+    fn values(&self) -> &Vec<BoxedTypeObject /* TransformPartPropertyKey */>;
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TransformPartPropertyKey */>;
     fn evaluator_fps(&self) -> &f32;
     fn evaluator_fps_mut(&mut self) -> &mut f32;
     fn weighted(&self) -> &bool;
@@ -13689,10 +14445,10 @@ impl TransformPartPropertyTrackDataTrait for TransformPartPropertyTrackData {
     fn post_infinity_mut(&mut self) -> &mut CurveInfinityType {
         &mut self.post_infinity
     }
-    fn values(&self) -> &Vec<TransformPartPropertyKey> {
+    fn values(&self) -> &Vec<BoxedTypeObject /* TransformPartPropertyKey */> {
         &self.values
     }
-    fn values_mut(&mut self) -> &mut Vec<TransformPartPropertyKey> {
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TransformPartPropertyKey */> {
         &mut self.values
     }
     fn evaluator_fps(&self) -> &f32 {
@@ -13753,70 +14509,83 @@ impl super::core::DataContainerTrait for TransformPartPropertyTrackData {
 
 pub static TRANSFORMPARTPROPERTYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformPartPropertyTrackData",
+    name_hash: 3797366086,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformPartPropertyTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformPartPropertyTrackData as Default>::default())),
+            create_boxed: || Box::new(<TransformPartPropertyTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TransformPart",
+                name_hash: 3623005534,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TransformPart",
                 rust_offset: offset_of!(TransformPartPropertyTrackData, transform_part),
             },
             FieldInfoData {
                 name: "PreInfinity",
+                name_hash: 887592928,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CurveInfinityType",
                 rust_offset: offset_of!(TransformPartPropertyTrackData, pre_infinity),
             },
             FieldInfoData {
                 name: "PostInfinity",
+                name_hash: 1471303071,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CurveInfinityType",
                 rust_offset: offset_of!(TransformPartPropertyTrackData, post_infinity),
             },
             FieldInfoData {
                 name: "Values",
+                name_hash: 3142410589,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TransformPartPropertyKey-Array",
                 rust_offset: offset_of!(TransformPartPropertyTrackData, values),
             },
             FieldInfoData {
                 name: "EvaluatorFps",
+                name_hash: 868692579,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TransformPartPropertyTrackData, evaluator_fps),
             },
             FieldInfoData {
                 name: "Weighted",
+                name_hash: 222605828,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransformPartPropertyTrackData, weighted),
             },
             FieldInfoData {
                 name: "KeyStartIndex",
+                name_hash: 331027820,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TransformPartPropertyTrackData, key_start_index),
             },
             FieldInfoData {
                 name: "KeyCount",
+                name_hash: 4061186033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TransformPartPropertyTrackData, key_count),
             },
             FieldInfoData {
                 name: "IsStatic",
+                name_hash: 471816263,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransformPartPropertyTrackData, is_static),
             },
             FieldInfoData {
                 name: "Resource",
+                name_hash: 74513935,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(TransformPartPropertyTrackData, resource),
@@ -13848,6 +14617,7 @@ impl TypeObject for TransformPartPropertyTrackData {
 
 pub static TRANSFORMPARTPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformPartPropertyTrackData-Array",
+    name_hash: 1033171698,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformPartPropertyTrackData"),
@@ -13856,7 +14626,8 @@ pub static TRANSFORMPARTPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformPartPropertyKey {
     pub value: f32,
     pub in_anim_tangent_type: AnimTangentType,
@@ -13931,51 +14702,60 @@ impl TransformPartPropertyKeyTrait for TransformPartPropertyKey {
 
 pub static TRANSFORMPARTPROPERTYKEY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformPartPropertyKey",
+    name_hash: 2787959790,
     flags: MemberInfoFlags::new(36937),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformPartPropertyKey as Default>::default())),
+            create_boxed: || Box::new(<TransformPartPropertyKey as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TransformPartPropertyKey, value),
             },
             FieldInfoData {
                 name: "InAnimTangentType",
+                name_hash: 2457732018,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AnimTangentType",
                 rust_offset: offset_of!(TransformPartPropertyKey, in_anim_tangent_type),
             },
             FieldInfoData {
                 name: "InAngle",
+                name_hash: 1631648579,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TransformPartPropertyKey, in_angle),
             },
             FieldInfoData {
                 name: "InWeight",
+                name_hash: 3141238946,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TransformPartPropertyKey, in_weight),
             },
             FieldInfoData {
                 name: "OutAnimTangentType",
+                name_hash: 741684763,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AnimTangentType",
                 rust_offset: offset_of!(TransformPartPropertyKey, out_anim_tangent_type),
             },
             FieldInfoData {
                 name: "OutAngle",
+                name_hash: 968880426,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TransformPartPropertyKey, out_angle),
             },
             FieldInfoData {
                 name: "OutWeight",
+                name_hash: 2466352171,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TransformPartPropertyKey, out_weight),
@@ -14007,6 +14787,7 @@ impl TypeObject for TransformPartPropertyKey {
 
 pub static TRANSFORMPARTPROPERTYKEY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformPartPropertyKey-Array",
+    name_hash: 2728262874,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformPartPropertyKey"),
@@ -14033,6 +14814,7 @@ pub enum AnimTangentType {
 
 pub static ANIMTANGENTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimTangentType",
+    name_hash: 2982156949,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -14061,6 +14843,7 @@ impl TypeObject for AnimTangentType {
 
 pub static ANIMTANGENTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AnimTangentType-Array",
+    name_hash: 4198885921,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AnimTangentType"),
@@ -14083,6 +14866,7 @@ pub enum CurveInfinityType {
 
 pub static CURVEINFINITYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurveInfinityType",
+    name_hash: 4020299688,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -14111,6 +14895,7 @@ impl TypeObject for CurveInfinityType {
 
 pub static CURVEINFINITYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CurveInfinityType-Array",
+    name_hash: 726526236,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CurveInfinityType"),
@@ -14134,6 +14919,7 @@ pub enum TransformPart {
 
 pub static TRANSFORMPART_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformPart",
+    name_hash: 3623005534,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -14162,6 +14948,7 @@ impl TypeObject for TransformPart {
 
 pub static TRANSFORMPART_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformPart-Array",
+    name_hash: 435982058,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformPart"),
@@ -14170,22 +14957,23 @@ pub static TRANSFORMPART_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4PropertyTrackData {
     pub _glacier_base: SimplePropertyTrackData,
-    pub values: Vec<super::core::Vec4>,
+    pub values: Vec<BoxedTypeObject /* super::core::Vec4 */>,
 }
 
 pub trait Vec4PropertyTrackDataTrait: SimplePropertyTrackDataTrait {
-    fn values(&self) -> &Vec<super::core::Vec4>;
-    fn values_mut(&mut self) -> &mut Vec<super::core::Vec4>;
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */>;
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */>;
 }
 
 impl Vec4PropertyTrackDataTrait for Vec4PropertyTrackData {
-    fn values(&self) -> &Vec<super::core::Vec4> {
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &self.values
     }
-    fn values_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &mut self.values
     }
 }
@@ -14219,16 +15007,20 @@ impl super::core::DataContainerTrait for Vec4PropertyTrackData {
 
 pub static VEC4PROPERTYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4PropertyTrackData",
+    name_hash: 3800725561,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SIMPLEPROPERTYTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec4PropertyTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4PropertyTrackData as Default>::default())),
+            create_boxed: || Box::new(<Vec4PropertyTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Values",
+                name_hash: 3142410589,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec4-Array",
                 rust_offset: offset_of!(Vec4PropertyTrackData, values),
@@ -14260,6 +15052,7 @@ impl TypeObject for Vec4PropertyTrackData {
 
 pub static VEC4PROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4PropertyTrackData-Array",
+    name_hash: 3433817741,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec4PropertyTrackData"),
@@ -14268,22 +15061,23 @@ pub static VEC4PROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3PropertyTrackData {
     pub _glacier_base: SimplePropertyTrackData,
-    pub values: Vec<super::core::Vec3>,
+    pub values: Vec<BoxedTypeObject /* super::core::Vec3 */>,
 }
 
 pub trait Vec3PropertyTrackDataTrait: SimplePropertyTrackDataTrait {
-    fn values(&self) -> &Vec<super::core::Vec3>;
-    fn values_mut(&mut self) -> &mut Vec<super::core::Vec3>;
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */>;
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */>;
 }
 
 impl Vec3PropertyTrackDataTrait for Vec3PropertyTrackData {
-    fn values(&self) -> &Vec<super::core::Vec3> {
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &self.values
     }
-    fn values_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &mut self.values
     }
 }
@@ -14317,16 +15111,20 @@ impl super::core::DataContainerTrait for Vec3PropertyTrackData {
 
 pub static VEC3PROPERTYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3PropertyTrackData",
+    name_hash: 2895536542,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SIMPLEPROPERTYTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec3PropertyTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3PropertyTrackData as Default>::default())),
+            create_boxed: || Box::new(<Vec3PropertyTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Values",
+                name_hash: 3142410589,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec3-Array",
                 rust_offset: offset_of!(Vec3PropertyTrackData, values),
@@ -14358,6 +15156,7 @@ impl TypeObject for Vec3PropertyTrackData {
 
 pub static VEC3PROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3PropertyTrackData-Array",
+    name_hash: 3302372010,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec3PropertyTrackData"),
@@ -14366,22 +15165,23 @@ pub static VEC3PROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec2PropertyTrackData {
     pub _glacier_base: SimplePropertyTrackData,
-    pub values: Vec<super::core::Vec2>,
+    pub values: Vec<BoxedTypeObject /* super::core::Vec2 */>,
 }
 
 pub trait Vec2PropertyTrackDataTrait: SimplePropertyTrackDataTrait {
-    fn values(&self) -> &Vec<super::core::Vec2>;
-    fn values_mut(&mut self) -> &mut Vec<super::core::Vec2>;
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */>;
 }
 
 impl Vec2PropertyTrackDataTrait for Vec2PropertyTrackData {
-    fn values(&self) -> &Vec<super::core::Vec2> {
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &self.values
     }
-    fn values_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &mut self.values
     }
 }
@@ -14415,16 +15215,20 @@ impl super::core::DataContainerTrait for Vec2PropertyTrackData {
 
 pub static VEC2PROPERTYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2PropertyTrackData",
+    name_hash: 2168216703,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SIMPLEPROPERTYTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec2PropertyTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec2PropertyTrackData as Default>::default())),
+            create_boxed: || Box::new(<Vec2PropertyTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Values",
+                name_hash: 3142410589,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec2-Array",
                 rust_offset: offset_of!(Vec2PropertyTrackData, values),
@@ -14456,6 +15260,7 @@ impl TypeObject for Vec2PropertyTrackData {
 
 pub static VEC2PROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2PropertyTrackData-Array",
+    name_hash: 3439600203,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec2PropertyTrackData"),
@@ -14464,22 +15269,23 @@ pub static VEC2PROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformPropertyTrackData {
     pub _glacier_base: SimplePropertyTrackData,
-    pub values: Vec<super::core::LinearTransform>,
+    pub values: Vec<BoxedTypeObject /* super::core::LinearTransform */>,
 }
 
 pub trait TransformPropertyTrackDataTrait: SimplePropertyTrackDataTrait {
-    fn values(&self) -> &Vec<super::core::LinearTransform>;
-    fn values_mut(&mut self) -> &mut Vec<super::core::LinearTransform>;
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */>;
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */>;
 }
 
 impl TransformPropertyTrackDataTrait for TransformPropertyTrackData {
-    fn values(&self) -> &Vec<super::core::LinearTransform> {
+    fn values(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &self.values
     }
-    fn values_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+    fn values_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &mut self.values
     }
 }
@@ -14513,16 +15319,20 @@ impl super::core::DataContainerTrait for TransformPropertyTrackData {
 
 pub static TRANSFORMPROPERTYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformPropertyTrackData",
+    name_hash: 2785092241,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SIMPLEPROPERTYTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformPropertyTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformPropertyTrackData as Default>::default())),
+            create_boxed: || Box::new(<TransformPropertyTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Values",
+                name_hash: 3142410589,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinearTransform-Array",
                 rust_offset: offset_of!(TransformPropertyTrackData, values),
@@ -14554,6 +15364,7 @@ impl TypeObject for TransformPropertyTrackData {
 
 pub static TRANSFORMPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformPropertyTrackData-Array",
+    name_hash: 200098853,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformPropertyTrackData"),
@@ -14562,7 +15373,8 @@ pub static TRANSFORMPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntPropertyTrackData {
     pub _glacier_base: SimplePropertyTrackData,
     pub values: Vec<i32>,
@@ -14611,16 +15423,20 @@ impl super::core::DataContainerTrait for IntPropertyTrackData {
 
 pub static INTPROPERTYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntPropertyTrackData",
+    name_hash: 141954862,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SIMPLEPROPERTYTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(IntPropertyTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntPropertyTrackData as Default>::default())),
+            create_boxed: || Box::new(<IntPropertyTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Values",
+                name_hash: 3142410589,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(IntPropertyTrackData, values),
@@ -14652,6 +15468,7 @@ impl TypeObject for IntPropertyTrackData {
 
 pub static INTPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntPropertyTrackData-Array",
+    name_hash: 666556314,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("IntPropertyTrackData"),
@@ -14660,7 +15477,8 @@ pub static INTPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatPropertyTrackData {
     pub _glacier_base: SimplePropertyTrackData,
     pub values: Vec<f32>,
@@ -14709,16 +15527,20 @@ impl super::core::DataContainerTrait for FloatPropertyTrackData {
 
 pub static FLOATPROPERTYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatPropertyTrackData",
+    name_hash: 2570683501,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SIMPLEPROPERTYTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FloatPropertyTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatPropertyTrackData as Default>::default())),
+            create_boxed: || Box::new(<FloatPropertyTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Values",
+                name_hash: 3142410589,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(FloatPropertyTrackData, values),
@@ -14750,6 +15572,7 @@ impl TypeObject for FloatPropertyTrackData {
 
 pub static FLOATPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatPropertyTrackData-Array",
+    name_hash: 3741337945,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatPropertyTrackData"),
@@ -14758,7 +15581,8 @@ pub static FLOATPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolPropertyTrackData {
     pub _glacier_base: SimplePropertyTrackData,
     pub values: Vec<bool>,
@@ -14807,16 +15631,20 @@ impl super::core::DataContainerTrait for BoolPropertyTrackData {
 
 pub static BOOLPROPERTYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolPropertyTrackData",
+    name_hash: 3369755699,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SIMPLEPROPERTYTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BoolPropertyTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolPropertyTrackData as Default>::default())),
+            create_boxed: || Box::new(<BoolPropertyTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Values",
+                name_hash: 3142410589,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Boolean-Array",
                 rust_offset: offset_of!(BoolPropertyTrackData, values),
@@ -14848,6 +15676,7 @@ impl TypeObject for BoolPropertyTrackData {
 
 pub static BOOLPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolPropertyTrackData-Array",
+    name_hash: 4193644423,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BoolPropertyTrackData"),
@@ -14856,7 +15685,8 @@ pub static BOOLPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SimplePropertyTrackData {
     pub _glacier_base: PropertyTrackData,
     pub interpolation_type: InterpolationType,
@@ -14896,16 +15726,20 @@ impl super::core::DataContainerTrait for SimplePropertyTrackData {
 
 pub static SIMPLEPROPERTYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimplePropertyTrackData",
+    name_hash: 2954023379,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYTRACKDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SimplePropertyTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SimplePropertyTrackData as Default>::default())),
+            create_boxed: || Box::new(<SimplePropertyTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InterpolationType",
+                name_hash: 1709219799,
                 flags: MemberInfoFlags::new(0),
                 field_type: "InterpolationType",
                 rust_offset: offset_of!(SimplePropertyTrackData, interpolation_type),
@@ -14937,6 +15771,7 @@ impl TypeObject for SimplePropertyTrackData {
 
 pub static SIMPLEPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimplePropertyTrackData-Array",
+    name_hash: 2109578471,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SimplePropertyTrackData"),
@@ -14945,10 +15780,11 @@ pub static SIMPLEPROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SequenceEntityData {
     pub _glacier_base: EntityData,
-    pub events: Vec<SequenceEventData>,
+    pub events: Vec<BoxedTypeObject /* SequenceEventData */>,
     pub sequence_start_time: i32,
     pub sequence_length: i32,
     pub looping: bool,
@@ -14956,8 +15792,8 @@ pub struct SequenceEntityData {
     pub auto_play_first_frame: bool,
     pub play_in_reverse: bool,
     pub realm: super::core::Realm,
-    pub property_tracks: Vec<Option<Arc<Mutex<dyn PropertyTrackDataTrait>>>>,
-    pub custom_sequence_tracks: Vec<Option<Arc<Mutex<dyn CustomSequenceTrackDataTrait>>>>,
+    pub property_tracks: Vec<Option<LockedTypeObject /* PropertyTrackData */>>,
+    pub custom_sequence_tracks: Vec<Option<LockedTypeObject /* CustomSequenceTrackData */>>,
     pub client_update_pass: UpdatePass,
     pub server_update_pass: UpdatePass,
     pub external_time: f32,
@@ -14965,8 +15801,8 @@ pub struct SequenceEntityData {
 }
 
 pub trait SequenceEntityDataTrait: EntityDataTrait {
-    fn events(&self) -> &Vec<SequenceEventData>;
-    fn events_mut(&mut self) -> &mut Vec<SequenceEventData>;
+    fn events(&self) -> &Vec<BoxedTypeObject /* SequenceEventData */>;
+    fn events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SequenceEventData */>;
     fn sequence_start_time(&self) -> &i32;
     fn sequence_start_time_mut(&mut self) -> &mut i32;
     fn sequence_length(&self) -> &i32;
@@ -14981,10 +15817,10 @@ pub trait SequenceEntityDataTrait: EntityDataTrait {
     fn play_in_reverse_mut(&mut self) -> &mut bool;
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
-    fn property_tracks(&self) -> &Vec<Option<Arc<Mutex<dyn PropertyTrackDataTrait>>>>;
-    fn property_tracks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PropertyTrackDataTrait>>>>;
-    fn custom_sequence_tracks(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackDataTrait>>>>;
-    fn custom_sequence_tracks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackDataTrait>>>>;
+    fn property_tracks(&self) -> &Vec<Option<LockedTypeObject /* PropertyTrackData */>>;
+    fn property_tracks_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PropertyTrackData */>>;
+    fn custom_sequence_tracks(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackData */>>;
+    fn custom_sequence_tracks_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackData */>>;
     fn client_update_pass(&self) -> &UpdatePass;
     fn client_update_pass_mut(&mut self) -> &mut UpdatePass;
     fn server_update_pass(&self) -> &UpdatePass;
@@ -14996,10 +15832,10 @@ pub trait SequenceEntityDataTrait: EntityDataTrait {
 }
 
 impl SequenceEntityDataTrait for SequenceEntityData {
-    fn events(&self) -> &Vec<SequenceEventData> {
+    fn events(&self) -> &Vec<BoxedTypeObject /* SequenceEventData */> {
         &self.events
     }
-    fn events_mut(&mut self) -> &mut Vec<SequenceEventData> {
+    fn events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SequenceEventData */> {
         &mut self.events
     }
     fn sequence_start_time(&self) -> &i32 {
@@ -15044,16 +15880,16 @@ impl SequenceEntityDataTrait for SequenceEntityData {
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         &mut self.realm
     }
-    fn property_tracks(&self) -> &Vec<Option<Arc<Mutex<dyn PropertyTrackDataTrait>>>> {
+    fn property_tracks(&self) -> &Vec<Option<LockedTypeObject /* PropertyTrackData */>> {
         &self.property_tracks
     }
-    fn property_tracks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PropertyTrackDataTrait>>>> {
+    fn property_tracks_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PropertyTrackData */>> {
         &mut self.property_tracks
     }
-    fn custom_sequence_tracks(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackDataTrait>>>> {
+    fn custom_sequence_tracks(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackData */>> {
         &self.custom_sequence_tracks
     }
-    fn custom_sequence_tracks_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackDataTrait>>>> {
+    fn custom_sequence_tracks_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackData */>> {
         &mut self.custom_sequence_tracks
     }
     fn client_update_pass(&self) -> &UpdatePass {
@@ -15105,94 +15941,111 @@ impl super::core::DataContainerTrait for SequenceEntityData {
 
 pub static SEQUENCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SequenceEntityData",
+    name_hash: 1001057937,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SequenceEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SequenceEntityData as Default>::default())),
+            create_boxed: || Box::new(<SequenceEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Events",
+                name_hash: 2352146554,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SequenceEventData-Array",
                 rust_offset: offset_of!(SequenceEntityData, events),
             },
             FieldInfoData {
                 name: "SequenceStartTime",
+                name_hash: 1603593583,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SequenceEntityData, sequence_start_time),
             },
             FieldInfoData {
                 name: "SequenceLength",
+                name_hash: 2068204742,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SequenceEntityData, sequence_length),
             },
             FieldInfoData {
                 name: "Looping",
+                name_hash: 1366646169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SequenceEntityData, looping),
             },
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SequenceEntityData, auto_start),
             },
             FieldInfoData {
                 name: "AutoPlayFirstFrame",
+                name_hash: 3638007145,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SequenceEntityData, auto_play_first_frame),
             },
             FieldInfoData {
                 name: "PlayInReverse",
+                name_hash: 2845503782,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SequenceEntityData, play_in_reverse),
             },
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(SequenceEntityData, realm),
             },
             FieldInfoData {
                 name: "PropertyTracks",
+                name_hash: 3471592734,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PropertyTrackData-Array",
                 rust_offset: offset_of!(SequenceEntityData, property_tracks),
             },
             FieldInfoData {
                 name: "CustomSequenceTracks",
+                name_hash: 2058346709,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CustomSequenceTrackData-Array",
                 rust_offset: offset_of!(SequenceEntityData, custom_sequence_tracks),
             },
             FieldInfoData {
                 name: "ClientUpdatePass",
+                name_hash: 2631769212,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UpdatePass",
                 rust_offset: offset_of!(SequenceEntityData, client_update_pass),
             },
             FieldInfoData {
                 name: "ServerUpdatePass",
+                name_hash: 2515352480,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UpdatePass",
                 rust_offset: offset_of!(SequenceEntityData, server_update_pass),
             },
             FieldInfoData {
                 name: "ExternalTime",
+                name_hash: 2162678253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SequenceEntityData, external_time),
             },
             FieldInfoData {
                 name: "PlaybackSpeed",
+                name_hash: 2521405901,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SequenceEntityData, playback_speed),
@@ -15224,6 +16077,7 @@ impl TypeObject for SequenceEntityData {
 
 pub static SEQUENCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SequenceEntityData-Array",
+    name_hash: 3837792293,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SequenceEntityData"),
@@ -15232,33 +16086,34 @@ pub static SEQUENCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CustomSequenceTrackData {
     pub _glacier_base: EntityData,
     pub track_name: String,
-    pub input_link_map: Vec<Option<Arc<Mutex<dyn CustomSequenceTrackLinkMappingTrait>>>>,
-    pub output_link_map: Vec<Option<Arc<Mutex<dyn CustomSequenceTrackLinkMappingTrait>>>>,
-    pub event_map: Vec<Option<Arc<Mutex<dyn CustomSequenceTrackEventMappingTrait>>>>,
-    pub source_property_map: Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>>,
-    pub target_property_map: Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>>,
-    pub source_and_target_property_map: Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>>,
+    pub input_link_map: Vec<Option<LockedTypeObject /* CustomSequenceTrackLinkMapping */>>,
+    pub output_link_map: Vec<Option<LockedTypeObject /* CustomSequenceTrackLinkMapping */>>,
+    pub event_map: Vec<Option<LockedTypeObject /* CustomSequenceTrackEventMapping */>>,
+    pub source_property_map: Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>>,
+    pub target_property_map: Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>>,
+    pub source_and_target_property_map: Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>>,
 }
 
 pub trait CustomSequenceTrackDataTrait: EntityDataTrait {
     fn track_name(&self) -> &String;
     fn track_name_mut(&mut self) -> &mut String;
-    fn input_link_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackLinkMappingTrait>>>>;
-    fn input_link_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackLinkMappingTrait>>>>;
-    fn output_link_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackLinkMappingTrait>>>>;
-    fn output_link_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackLinkMappingTrait>>>>;
-    fn event_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackEventMappingTrait>>>>;
-    fn event_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackEventMappingTrait>>>>;
-    fn source_property_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>>;
-    fn source_property_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>>;
-    fn target_property_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>>;
-    fn target_property_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>>;
-    fn source_and_target_property_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>>;
-    fn source_and_target_property_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>>;
+    fn input_link_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackLinkMapping */>>;
+    fn input_link_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackLinkMapping */>>;
+    fn output_link_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackLinkMapping */>>;
+    fn output_link_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackLinkMapping */>>;
+    fn event_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackEventMapping */>>;
+    fn event_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackEventMapping */>>;
+    fn source_property_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>>;
+    fn source_property_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>>;
+    fn target_property_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>>;
+    fn target_property_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>>;
+    fn source_and_target_property_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>>;
+    fn source_and_target_property_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>>;
 }
 
 impl CustomSequenceTrackDataTrait for CustomSequenceTrackData {
@@ -15268,40 +16123,40 @@ impl CustomSequenceTrackDataTrait for CustomSequenceTrackData {
     fn track_name_mut(&mut self) -> &mut String {
         &mut self.track_name
     }
-    fn input_link_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackLinkMappingTrait>>>> {
+    fn input_link_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackLinkMapping */>> {
         &self.input_link_map
     }
-    fn input_link_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackLinkMappingTrait>>>> {
+    fn input_link_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackLinkMapping */>> {
         &mut self.input_link_map
     }
-    fn output_link_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackLinkMappingTrait>>>> {
+    fn output_link_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackLinkMapping */>> {
         &self.output_link_map
     }
-    fn output_link_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackLinkMappingTrait>>>> {
+    fn output_link_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackLinkMapping */>> {
         &mut self.output_link_map
     }
-    fn event_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackEventMappingTrait>>>> {
+    fn event_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackEventMapping */>> {
         &self.event_map
     }
-    fn event_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackEventMappingTrait>>>> {
+    fn event_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackEventMapping */>> {
         &mut self.event_map
     }
-    fn source_property_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>> {
+    fn source_property_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>> {
         &self.source_property_map
     }
-    fn source_property_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>> {
+    fn source_property_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>> {
         &mut self.source_property_map
     }
-    fn target_property_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>> {
+    fn target_property_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>> {
         &self.target_property_map
     }
-    fn target_property_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>> {
+    fn target_property_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>> {
         &mut self.target_property_map
     }
-    fn source_and_target_property_map(&self) -> &Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>> {
+    fn source_and_target_property_map(&self) -> &Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>> {
         &self.source_and_target_property_map
     }
-    fn source_and_target_property_map_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn CustomSequenceTrackPropertyMappingTrait>>>> {
+    fn source_and_target_property_map_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* CustomSequenceTrackPropertyMapping */>> {
         &mut self.source_and_target_property_map
     }
 }
@@ -15329,52 +16184,62 @@ impl super::core::DataContainerTrait for CustomSequenceTrackData {
 
 pub static CUSTOMSEQUENCETRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomSequenceTrackData",
+    name_hash: 2879414486,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CustomSequenceTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CustomSequenceTrackData as Default>::default())),
+            create_boxed: || Box::new(<CustomSequenceTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TrackName",
+                name_hash: 1755529293,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CustomSequenceTrackData, track_name),
             },
             FieldInfoData {
                 name: "InputLinkMap",
+                name_hash: 1743335471,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CustomSequenceTrackLinkMapping-Array",
                 rust_offset: offset_of!(CustomSequenceTrackData, input_link_map),
             },
             FieldInfoData {
                 name: "OutputLinkMap",
+                name_hash: 2997861030,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CustomSequenceTrackLinkMapping-Array",
                 rust_offset: offset_of!(CustomSequenceTrackData, output_link_map),
             },
             FieldInfoData {
                 name: "EventMap",
+                name_hash: 1687029045,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CustomSequenceTrackEventMapping-Array",
                 rust_offset: offset_of!(CustomSequenceTrackData, event_map),
             },
             FieldInfoData {
                 name: "SourcePropertyMap",
+                name_hash: 130951907,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CustomSequenceTrackPropertyMapping-Array",
                 rust_offset: offset_of!(CustomSequenceTrackData, source_property_map),
             },
             FieldInfoData {
                 name: "TargetPropertyMap",
+                name_hash: 1050699055,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CustomSequenceTrackPropertyMapping-Array",
                 rust_offset: offset_of!(CustomSequenceTrackData, target_property_map),
             },
             FieldInfoData {
                 name: "SourceAndTargetPropertyMap",
+                name_hash: 3803134969,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CustomSequenceTrackPropertyMapping-Array",
                 rust_offset: offset_of!(CustomSequenceTrackData, source_and_target_property_map),
@@ -15406,6 +16271,7 @@ impl TypeObject for CustomSequenceTrackData {
 
 pub static CUSTOMSEQUENCETRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomSequenceTrackData-Array",
+    name_hash: 1854113378,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CustomSequenceTrackData"),
@@ -15414,7 +16280,8 @@ pub static CUSTOMSEQUENCETRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CustomSequenceTrackPropertyMapping {
     pub _glacier_base: super::core::DataContainer,
     pub track_property_i_d: i32,
@@ -15448,22 +16315,27 @@ impl super::core::DataContainerTrait for CustomSequenceTrackPropertyMapping {
 
 pub static CUSTOMSEQUENCETRACKPROPERTYMAPPING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomSequenceTrackPropertyMapping",
+    name_hash: 1809661581,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(CustomSequenceTrackPropertyMapping, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CustomSequenceTrackPropertyMapping as Default>::default())),
+            create_boxed: || Box::new(<CustomSequenceTrackPropertyMapping as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TrackPropertyID",
+                name_hash: 3764113472,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CustomSequenceTrackPropertyMapping, track_property_i_d),
             },
             FieldInfoData {
                 name: "SequencePropertyID",
+                name_hash: 2623680624,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CustomSequenceTrackPropertyMapping, sequence_property_i_d),
@@ -15495,6 +16367,7 @@ impl TypeObject for CustomSequenceTrackPropertyMapping {
 
 pub static CUSTOMSEQUENCETRACKPROPERTYMAPPING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomSequenceTrackPropertyMapping-Array",
+    name_hash: 3113919033,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CustomSequenceTrackPropertyMapping"),
@@ -15503,7 +16376,8 @@ pub static CUSTOMSEQUENCETRACKPROPERTYMAPPING_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CustomSequenceTrackEventMapping {
     pub _glacier_base: super::core::DataContainer,
     pub track_event_i_d: i32,
@@ -15537,22 +16411,27 @@ impl super::core::DataContainerTrait for CustomSequenceTrackEventMapping {
 
 pub static CUSTOMSEQUENCETRACKEVENTMAPPING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomSequenceTrackEventMapping",
+    name_hash: 2667646278,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(CustomSequenceTrackEventMapping, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CustomSequenceTrackEventMapping as Default>::default())),
+            create_boxed: || Box::new(<CustomSequenceTrackEventMapping as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TrackEventID",
+                name_hash: 3785607275,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CustomSequenceTrackEventMapping, track_event_i_d),
             },
             FieldInfoData {
                 name: "SequenceEventID",
+                name_hash: 959482075,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CustomSequenceTrackEventMapping, sequence_event_i_d),
@@ -15584,6 +16463,7 @@ impl TypeObject for CustomSequenceTrackEventMapping {
 
 pub static CUSTOMSEQUENCETRACKEVENTMAPPING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomSequenceTrackEventMapping-Array",
+    name_hash: 943770354,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CustomSequenceTrackEventMapping"),
@@ -15592,7 +16472,8 @@ pub static CUSTOMSEQUENCETRACKEVENTMAPPING_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CustomSequenceTrackLinkMapping {
     pub _glacier_base: super::core::DataContainer,
     pub track_link_i_d: i32,
@@ -15626,22 +16507,27 @@ impl super::core::DataContainerTrait for CustomSequenceTrackLinkMapping {
 
 pub static CUSTOMSEQUENCETRACKLINKMAPPING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomSequenceTrackLinkMapping",
+    name_hash: 3094064490,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(CustomSequenceTrackLinkMapping, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CustomSequenceTrackLinkMapping as Default>::default())),
+            create_boxed: || Box::new(<CustomSequenceTrackLinkMapping as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TrackLinkID",
+                name_hash: 749830855,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CustomSequenceTrackLinkMapping, track_link_i_d),
             },
             FieldInfoData {
                 name: "SequenceLinkID",
+                name_hash: 2081585527,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CustomSequenceTrackLinkMapping, sequence_link_i_d),
@@ -15673,6 +16559,7 @@ impl TypeObject for CustomSequenceTrackLinkMapping {
 
 pub static CUSTOMSEQUENCETRACKLINKMAPPING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomSequenceTrackLinkMapping-Array",
+    name_hash: 3236837470,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CustomSequenceTrackLinkMapping"),
@@ -15681,7 +16568,8 @@ pub static CUSTOMSEQUENCETRACKLINKMAPPING_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyTrackData {
     pub _glacier_base: super::core::DataContainer,
     pub id: i32,
@@ -15715,22 +16603,27 @@ impl super::core::DataContainerTrait for PropertyTrackData {
 
 pub static PROPERTYTRACKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyTrackData",
+    name_hash: 2713395901,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(PropertyTrackData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyTrackData as Default>::default())),
+            create_boxed: || Box::new(<PropertyTrackData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyTrackData, id),
             },
             FieldInfoData {
                 name: "Times",
+                name_hash: 227876771,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(PropertyTrackData, times),
@@ -15762,6 +16655,7 @@ impl TypeObject for PropertyTrackData {
 
 pub static PROPERTYTRACKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyTrackData-Array",
+    name_hash: 4203880201,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PropertyTrackData"),
@@ -15783,6 +16677,7 @@ pub enum InterpolationType {
 
 pub static INTERPOLATIONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InterpolationType",
+    name_hash: 1709219799,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -15811,6 +16706,7 @@ impl TypeObject for InterpolationType {
 
 pub static INTERPOLATIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InterpolationType-Array",
+    name_hash: 393058531,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("InterpolationType"),
@@ -15819,7 +16715,8 @@ pub static INTERPOLATIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SequenceEventData {
     pub event: EventSpec,
     pub time: i32,
@@ -15849,21 +16746,25 @@ impl SequenceEventDataTrait for SequenceEventData {
 
 pub static SEQUENCEEVENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SequenceEventData",
+    name_hash: 1198287110,
     flags: MemberInfoFlags::new(32841),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SequenceEventData as Default>::default())),
+            create_boxed: || Box::new(<SequenceEventData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Event",
+                name_hash: 201427689,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EventSpec",
                 rust_offset: offset_of!(SequenceEventData, event),
             },
             FieldInfoData {
                 name: "Time",
+                name_hash: 2089313744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SequenceEventData, time),
@@ -15895,6 +16796,7 @@ impl TypeObject for SequenceEventData {
 
 pub static SEQUENCEEVENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SequenceEventData-Array",
+    name_hash: 3940660786,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SequenceEventData"),
@@ -15903,7 +16805,8 @@ pub static SEQUENCEEVENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityClassInfoAsset {
     pub _glacier_base: super::core::ClassInfoAsset,
 }
@@ -15936,10 +16839,10 @@ impl super::core::ClassInfoAssetTrait for EntityClassInfoAsset {
 }
 
 impl super::core::ComplexTypeInfoAssetTrait for EntityClassInfoAsset {
-    fn field_collections(&self) -> &Vec<super::core::TypeInfoFieldCollectionRef> {
+    fn field_collections(&self) -> &Vec<BoxedTypeObject /* super::core::TypeInfoFieldCollectionRef */> {
         self._glacier_base.field_collections()
     }
-    fn field_collections_mut(&mut self) -> &mut Vec<super::core::TypeInfoFieldCollectionRef> {
+    fn field_collections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::TypeInfoFieldCollectionRef */> {
         self._glacier_base.field_collections_mut()
     }
     fn alignment(&self) -> &u32 {
@@ -15969,10 +16872,10 @@ impl super::core::TypeInfoAssetTrait for EntityClassInfoAsset {
     fn is_meta_mut(&mut self) -> &mut bool {
         self._glacier_base.is_meta_mut()
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* super::core::TypeInfoAttribute */>> {
         self._glacier_base.attributes()
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::core::TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::core::TypeInfoAttribute */>> {
         self._glacier_base.attributes_mut()
     }
     fn is_native(&self) -> &bool {
@@ -15997,12 +16900,15 @@ impl super::core::DataContainerTrait for EntityClassInfoAsset {
 
 pub static ENTITYCLASSINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityClassInfoAsset",
+    name_hash: 2378529326,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::CLASSINFOASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EntityClassInfoAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityClassInfoAsset as Default>::default())),
+            create_boxed: || Box::new(<EntityClassInfoAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -16032,6 +16938,7 @@ impl TypeObject for EntityClassInfoAsset {
 
 pub static ENTITYCLASSINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityClassInfoAsset-Array",
+    name_hash: 3282993818,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EntityClassInfoAsset"),
@@ -16040,7 +16947,8 @@ pub static ENTITYCLASSINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutopaintOutputOverrideBase {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -16056,12 +16964,15 @@ impl super::core::DataContainerTrait for AutopaintOutputOverrideBase {
 
 pub static AUTOPAINTOUTPUTOVERRIDEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutputOverrideBase",
+    name_hash: 3372168406,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(AutopaintOutputOverrideBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutopaintOutputOverrideBase as Default>::default())),
+            create_boxed: || Box::new(<AutopaintOutputOverrideBase as Default>::default()),
         },
         fields: &[
         ],
@@ -16091,6 +17002,7 @@ impl TypeObject for AutopaintOutputOverrideBase {
 
 pub static AUTOPAINTOUTPUTOVERRIDEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutputOverrideBase-Array",
+    name_hash: 3568392802,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AutopaintOutputOverrideBase"),
@@ -16099,7 +17011,8 @@ pub static AUTOPAINTOUTPUTOVERRIDEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutopaintOutputBase {
     pub _glacier_base: super::core::Asset,
 }
@@ -16124,12 +17037,15 @@ impl super::core::DataContainerTrait for AutopaintOutputBase {
 
 pub static AUTOPAINTOUTPUTBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutputBase",
+    name_hash: 704698722,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(AutopaintOutputBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutopaintOutputBase as Default>::default())),
+            create_boxed: || Box::new(<AutopaintOutputBase as Default>::default()),
         },
         fields: &[
         ],
@@ -16159,6 +17075,7 @@ impl TypeObject for AutopaintOutputBase {
 
 pub static AUTOPAINTOUTPUTBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutputBase-Array",
+    name_hash: 238356566,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AutopaintOutputBase"),
@@ -16167,22 +17084,23 @@ pub static AUTOPAINTOUTPUTBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AutopaintOutputsBase {
     pub _glacier_base: super::core::Asset,
-    pub outputs: Vec<Option<Arc<Mutex<dyn AutopaintOutputBaseTrait>>>>,
+    pub outputs: Vec<Option<LockedTypeObject /* AutopaintOutputBase */>>,
 }
 
 pub trait AutopaintOutputsBaseTrait: super::core::AssetTrait {
-    fn outputs(&self) -> &Vec<Option<Arc<Mutex<dyn AutopaintOutputBaseTrait>>>>;
-    fn outputs_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn AutopaintOutputBaseTrait>>>>;
+    fn outputs(&self) -> &Vec<Option<LockedTypeObject /* AutopaintOutputBase */>>;
+    fn outputs_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* AutopaintOutputBase */>>;
 }
 
 impl AutopaintOutputsBaseTrait for AutopaintOutputsBase {
-    fn outputs(&self) -> &Vec<Option<Arc<Mutex<dyn AutopaintOutputBaseTrait>>>> {
+    fn outputs(&self) -> &Vec<Option<LockedTypeObject /* AutopaintOutputBase */>> {
         &self.outputs
     }
-    fn outputs_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn AutopaintOutputBaseTrait>>>> {
+    fn outputs_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* AutopaintOutputBase */>> {
         &mut self.outputs
     }
 }
@@ -16201,16 +17119,20 @@ impl super::core::DataContainerTrait for AutopaintOutputsBase {
 
 pub static AUTOPAINTOUTPUTSBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutputsBase",
+    name_hash: 1799351345,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(AutopaintOutputsBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AutopaintOutputsBase as Default>::default())),
+            create_boxed: || Box::new(<AutopaintOutputsBase as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Outputs",
+                name_hash: 1070022089,
                 flags: MemberInfoFlags::new(144),
                 field_type: "AutopaintOutputBase-Array",
                 rust_offset: offset_of!(AutopaintOutputsBase, outputs),
@@ -16242,6 +17164,7 @@ impl TypeObject for AutopaintOutputsBase {
 
 pub static AUTOPAINTOUTPUTSBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AutopaintOutputsBase-Array",
+    name_hash: 1781071493,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AutopaintOutputsBase"),
@@ -16272,6 +17195,7 @@ pub enum RasterType {
 
 pub static RASTERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterType",
+    name_hash: 2617211102,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -16300,6 +17224,7 @@ impl TypeObject for RasterType {
 
 pub static RASTERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterType-Array",
+    name_hash: 2723412586,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RasterType"),
@@ -16323,6 +17248,7 @@ pub enum RasterFormat {
 
 pub static RASTERFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterFormat",
+    name_hash: 1744737829,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -16351,6 +17277,7 @@ impl TypeObject for RasterFormat {
 
 pub static RASTERFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RasterFormat-Array",
+    name_hash: 4218162833,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RasterFormat"),
@@ -16359,7 +17286,8 @@ pub static RASTERFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BaseShapeDataBase {
     pub _glacier_base: GameObjectData,
 }
@@ -16390,12 +17318,15 @@ impl super::core::DataContainerTrait for BaseShapeDataBase {
 
 pub static BASESHAPEDATABASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseShapeDataBase",
+    name_hash: 1999962746,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(GAMEOBJECTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BaseShapeDataBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BaseShapeDataBase as Default>::default())),
+            create_boxed: || Box::new(<BaseShapeDataBase as Default>::default()),
         },
         fields: &[
         ],
@@ -16425,6 +17356,7 @@ impl TypeObject for BaseShapeDataBase {
 
 pub static BASESHAPEDATABASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseShapeDataBase-Array",
+    name_hash: 2553681230,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BaseShapeDataBase"),
@@ -16433,7 +17365,8 @@ pub static BASESHAPEDATABASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BaseMaterialDataPair {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -16449,12 +17382,15 @@ impl super::core::DataContainerTrait for BaseMaterialDataPair {
 
 pub static BASEMATERIALDATAPAIR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseMaterialDataPair",
+    name_hash: 3326573633,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(BaseMaterialDataPair, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BaseMaterialDataPair as Default>::default())),
+            create_boxed: || Box::new(<BaseMaterialDataPair as Default>::default()),
         },
         fields: &[
         ],
@@ -16484,6 +17420,7 @@ impl TypeObject for BaseMaterialDataPair {
 
 pub static BASEMATERIALDATAPAIR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseMaterialDataPair-Array",
+    name_hash: 2871600757,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BaseMaterialDataPair"),
@@ -16492,30 +17429,31 @@ pub static BASEMATERIALDATAPAIR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MaterialGridData {
     pub _glacier_base: super::core::Asset,
     pub default_material: MaterialDecl,
-    pub material_pairs: Vec<MaterialDecl>,
+    pub material_pairs: Vec<BoxedTypeObject /* MaterialDecl */>,
     pub material_index_map: Vec<u32>,
     pub default_material_index: u32,
-    pub material_properties: Vec<MaterialRelationPropertyPair>,
-    pub interaction_grid: Vec<MaterialInteractionGridRow>,
+    pub material_properties: Vec<BoxedTypeObject /* MaterialRelationPropertyPair */>,
+    pub interaction_grid: Vec<BoxedTypeObject /* MaterialInteractionGridRow */>,
 }
 
 pub trait MaterialGridDataTrait: super::core::AssetTrait {
     fn default_material(&self) -> &MaterialDecl;
     fn default_material_mut(&mut self) -> &mut MaterialDecl;
-    fn material_pairs(&self) -> &Vec<MaterialDecl>;
-    fn material_pairs_mut(&mut self) -> &mut Vec<MaterialDecl>;
+    fn material_pairs(&self) -> &Vec<BoxedTypeObject /* MaterialDecl */>;
+    fn material_pairs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MaterialDecl */>;
     fn material_index_map(&self) -> &Vec<u32>;
     fn material_index_map_mut(&mut self) -> &mut Vec<u32>;
     fn default_material_index(&self) -> &u32;
     fn default_material_index_mut(&mut self) -> &mut u32;
-    fn material_properties(&self) -> &Vec<MaterialRelationPropertyPair>;
-    fn material_properties_mut(&mut self) -> &mut Vec<MaterialRelationPropertyPair>;
-    fn interaction_grid(&self) -> &Vec<MaterialInteractionGridRow>;
-    fn interaction_grid_mut(&mut self) -> &mut Vec<MaterialInteractionGridRow>;
+    fn material_properties(&self) -> &Vec<BoxedTypeObject /* MaterialRelationPropertyPair */>;
+    fn material_properties_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MaterialRelationPropertyPair */>;
+    fn interaction_grid(&self) -> &Vec<BoxedTypeObject /* MaterialInteractionGridRow */>;
+    fn interaction_grid_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MaterialInteractionGridRow */>;
 }
 
 impl MaterialGridDataTrait for MaterialGridData {
@@ -16525,10 +17463,10 @@ impl MaterialGridDataTrait for MaterialGridData {
     fn default_material_mut(&mut self) -> &mut MaterialDecl {
         &mut self.default_material
     }
-    fn material_pairs(&self) -> &Vec<MaterialDecl> {
+    fn material_pairs(&self) -> &Vec<BoxedTypeObject /* MaterialDecl */> {
         &self.material_pairs
     }
-    fn material_pairs_mut(&mut self) -> &mut Vec<MaterialDecl> {
+    fn material_pairs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MaterialDecl */> {
         &mut self.material_pairs
     }
     fn material_index_map(&self) -> &Vec<u32> {
@@ -16543,16 +17481,16 @@ impl MaterialGridDataTrait for MaterialGridData {
     fn default_material_index_mut(&mut self) -> &mut u32 {
         &mut self.default_material_index
     }
-    fn material_properties(&self) -> &Vec<MaterialRelationPropertyPair> {
+    fn material_properties(&self) -> &Vec<BoxedTypeObject /* MaterialRelationPropertyPair */> {
         &self.material_properties
     }
-    fn material_properties_mut(&mut self) -> &mut Vec<MaterialRelationPropertyPair> {
+    fn material_properties_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MaterialRelationPropertyPair */> {
         &mut self.material_properties
     }
-    fn interaction_grid(&self) -> &Vec<MaterialInteractionGridRow> {
+    fn interaction_grid(&self) -> &Vec<BoxedTypeObject /* MaterialInteractionGridRow */> {
         &self.interaction_grid
     }
-    fn interaction_grid_mut(&mut self) -> &mut Vec<MaterialInteractionGridRow> {
+    fn interaction_grid_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MaterialInteractionGridRow */> {
         &mut self.interaction_grid
     }
 }
@@ -16571,46 +17509,55 @@ impl super::core::DataContainerTrait for MaterialGridData {
 
 pub static MATERIALGRIDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialGridData",
+    name_hash: 3134818726,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(MaterialGridData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MaterialGridData as Default>::default())),
+            create_boxed: || Box::new(<MaterialGridData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DefaultMaterial",
+                name_hash: 1956671429,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialDecl",
                 rust_offset: offset_of!(MaterialGridData, default_material),
             },
             FieldInfoData {
                 name: "MaterialPairs",
+                name_hash: 1030971927,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MaterialDecl-Array",
                 rust_offset: offset_of!(MaterialGridData, material_pairs),
             },
             FieldInfoData {
                 name: "MaterialIndexMap",
+                name_hash: 3087328300,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(MaterialGridData, material_index_map),
             },
             FieldInfoData {
                 name: "DefaultMaterialIndex",
+                name_hash: 214719451,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(MaterialGridData, default_material_index),
             },
             FieldInfoData {
                 name: "MaterialProperties",
+                name_hash: 1479818927,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MaterialRelationPropertyPair-Array",
                 rust_offset: offset_of!(MaterialGridData, material_properties),
             },
             FieldInfoData {
                 name: "InteractionGrid",
+                name_hash: 691097959,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MaterialInteractionGridRow-Array",
                 rust_offset: offset_of!(MaterialGridData, interaction_grid),
@@ -16642,6 +17589,7 @@ impl TypeObject for MaterialGridData {
 
 pub static MATERIALGRIDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialGridData-Array",
+    name_hash: 1408292370,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MaterialGridData"),
@@ -16650,36 +17598,40 @@ pub static MATERIALGRIDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MaterialInteractionGridRow {
-    pub items: Vec<MaterialRelationPropertyPair>,
+    pub items: Vec<BoxedTypeObject /* MaterialRelationPropertyPair */>,
 }
 
 pub trait MaterialInteractionGridRowTrait: TypeObject {
-    fn items(&self) -> &Vec<MaterialRelationPropertyPair>;
-    fn items_mut(&mut self) -> &mut Vec<MaterialRelationPropertyPair>;
+    fn items(&self) -> &Vec<BoxedTypeObject /* MaterialRelationPropertyPair */>;
+    fn items_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MaterialRelationPropertyPair */>;
 }
 
 impl MaterialInteractionGridRowTrait for MaterialInteractionGridRow {
-    fn items(&self) -> &Vec<MaterialRelationPropertyPair> {
+    fn items(&self) -> &Vec<BoxedTypeObject /* MaterialRelationPropertyPair */> {
         &self.items
     }
-    fn items_mut(&mut self) -> &mut Vec<MaterialRelationPropertyPair> {
+    fn items_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MaterialRelationPropertyPair */> {
         &mut self.items
     }
 }
 
 pub static MATERIALINTERACTIONGRIDROW_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialInteractionGridRow",
+    name_hash: 365592902,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MaterialInteractionGridRow as Default>::default())),
+            create_boxed: || Box::new(<MaterialInteractionGridRow as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Items",
+                name_hash: 215446531,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MaterialRelationPropertyPair-Array",
                 rust_offset: offset_of!(MaterialInteractionGridRow, items),
@@ -16711,6 +17663,7 @@ impl TypeObject for MaterialInteractionGridRow {
 
 pub static MATERIALINTERACTIONGRIDROW_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialInteractionGridRow-Array",
+    name_hash: 1162952434,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MaterialInteractionGridRow"),
@@ -16719,51 +17672,56 @@ pub static MATERIALINTERACTIONGRIDROW_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MaterialRelationPropertyPair {
-    pub physics_material_properties: Vec<Option<Arc<Mutex<dyn PhysicsMaterialRelationPropertyDataTrait>>>>,
-    pub physics_property_properties: Vec<Option<Arc<Mutex<dyn PhysicsPropertyRelationPropertyDataTrait>>>>,
+    pub physics_material_properties: Vec<Option<LockedTypeObject /* PhysicsMaterialRelationPropertyData */>>,
+    pub physics_property_properties: Vec<Option<LockedTypeObject /* PhysicsPropertyRelationPropertyData */>>,
 }
 
 pub trait MaterialRelationPropertyPairTrait: TypeObject {
-    fn physics_material_properties(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsMaterialRelationPropertyDataTrait>>>>;
-    fn physics_material_properties_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsMaterialRelationPropertyDataTrait>>>>;
-    fn physics_property_properties(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsPropertyRelationPropertyDataTrait>>>>;
-    fn physics_property_properties_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsPropertyRelationPropertyDataTrait>>>>;
+    fn physics_material_properties(&self) -> &Vec<Option<LockedTypeObject /* PhysicsMaterialRelationPropertyData */>>;
+    fn physics_material_properties_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsMaterialRelationPropertyData */>>;
+    fn physics_property_properties(&self) -> &Vec<Option<LockedTypeObject /* PhysicsPropertyRelationPropertyData */>>;
+    fn physics_property_properties_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsPropertyRelationPropertyData */>>;
 }
 
 impl MaterialRelationPropertyPairTrait for MaterialRelationPropertyPair {
-    fn physics_material_properties(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsMaterialRelationPropertyDataTrait>>>> {
+    fn physics_material_properties(&self) -> &Vec<Option<LockedTypeObject /* PhysicsMaterialRelationPropertyData */>> {
         &self.physics_material_properties
     }
-    fn physics_material_properties_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsMaterialRelationPropertyDataTrait>>>> {
+    fn physics_material_properties_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsMaterialRelationPropertyData */>> {
         &mut self.physics_material_properties
     }
-    fn physics_property_properties(&self) -> &Vec<Option<Arc<Mutex<dyn PhysicsPropertyRelationPropertyDataTrait>>>> {
+    fn physics_property_properties(&self) -> &Vec<Option<LockedTypeObject /* PhysicsPropertyRelationPropertyData */>> {
         &self.physics_property_properties
     }
-    fn physics_property_properties_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn PhysicsPropertyRelationPropertyDataTrait>>>> {
+    fn physics_property_properties_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* PhysicsPropertyRelationPropertyData */>> {
         &mut self.physics_property_properties
     }
 }
 
 pub static MATERIALRELATIONPROPERTYPAIR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialRelationPropertyPair",
+    name_hash: 3517544133,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MaterialRelationPropertyPair as Default>::default())),
+            create_boxed: || Box::new(<MaterialRelationPropertyPair as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PhysicsMaterialProperties",
+                name_hash: 1069720196,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PhysicsMaterialRelationPropertyData-Array",
                 rust_offset: offset_of!(MaterialRelationPropertyPair, physics_material_properties),
             },
             FieldInfoData {
                 name: "PhysicsPropertyProperties",
+                name_hash: 1287888840,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PhysicsPropertyRelationPropertyData-Array",
                 rust_offset: offset_of!(MaterialRelationPropertyPair, physics_property_properties),
@@ -16795,6 +17753,7 @@ impl TypeObject for MaterialRelationPropertyPair {
 
 pub static MATERIALRELATIONPROPERTYPAIR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialRelationPropertyPair-Array",
+    name_hash: 4177309425,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MaterialRelationPropertyPair"),
@@ -16803,7 +17762,8 @@ pub static MATERIALRELATIONPROPERTYPAIR_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsPropertyRelationPropertyData {
     pub _glacier_base: MaterialRelationPropertyData,
 }
@@ -16822,12 +17782,15 @@ impl super::core::DataContainerTrait for PhysicsPropertyRelationPropertyData {
 
 pub static PHYSICSPROPERTYRELATIONPROPERTYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPropertyRelationPropertyData",
+    name_hash: 1033255192,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MATERIALRELATIONPROPERTYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsPropertyRelationPropertyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsPropertyRelationPropertyData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsPropertyRelationPropertyData as Default>::default()),
         },
         fields: &[
         ],
@@ -16857,6 +17820,7 @@ impl TypeObject for PhysicsPropertyRelationPropertyData {
 
 pub static PHYSICSPROPERTYRELATIONPROPERTYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsPropertyRelationPropertyData-Array",
+    name_hash: 3293430572,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PhysicsPropertyRelationPropertyData"),
@@ -16865,7 +17829,8 @@ pub static PHYSICSPROPERTYRELATIONPROPERTYDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PhysicsMaterialRelationPropertyData {
     pub _glacier_base: MaterialRelationPropertyData,
 }
@@ -16884,12 +17849,15 @@ impl super::core::DataContainerTrait for PhysicsMaterialRelationPropertyData {
 
 pub static PHYSICSMATERIALRELATIONPROPERTYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsMaterialRelationPropertyData",
+    name_hash: 2627406036,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(MATERIALRELATIONPROPERTYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PhysicsMaterialRelationPropertyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PhysicsMaterialRelationPropertyData as Default>::default())),
+            create_boxed: || Box::new(<PhysicsMaterialRelationPropertyData as Default>::default()),
         },
         fields: &[
         ],
@@ -16919,6 +17887,7 @@ impl TypeObject for PhysicsMaterialRelationPropertyData {
 
 pub static PHYSICSMATERIALRELATIONPROPERTYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PhysicsMaterialRelationPropertyData-Array",
+    name_hash: 1352906080,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PhysicsMaterialRelationPropertyData"),
@@ -16927,7 +17896,8 @@ pub static PHYSICSMATERIALRELATIONPROPERTYDATA_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MaterialRelationPropertyData {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -16943,12 +17913,15 @@ impl super::core::DataContainerTrait for MaterialRelationPropertyData {
 
 pub static MATERIALRELATIONPROPERTYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialRelationPropertyData",
+    name_hash: 3516826367,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(MaterialRelationPropertyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MaterialRelationPropertyData as Default>::default())),
+            create_boxed: || Box::new(<MaterialRelationPropertyData as Default>::default()),
         },
         fields: &[
         ],
@@ -16978,6 +17951,7 @@ impl TypeObject for MaterialRelationPropertyData {
 
 pub static MATERIALRELATIONPROPERTYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialRelationPropertyData-Array",
+    name_hash: 17377483,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MaterialRelationPropertyData"),
@@ -16986,7 +17960,8 @@ pub static MATERIALRELATIONPROPERTYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MaterialDecl {
     pub packed: u32,
 }
@@ -17007,15 +17982,18 @@ impl MaterialDeclTrait for MaterialDecl {
 
 pub static MATERIALDECL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialDecl",
+    name_hash: 160677792,
     flags: MemberInfoFlags::new(32841),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MaterialDecl as Default>::default())),
+            create_boxed: || Box::new(<MaterialDecl as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Packed",
+                name_hash: 3372112125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(MaterialDecl, packed),
@@ -17047,6 +18025,7 @@ impl TypeObject for MaterialDecl {
 
 pub static MATERIALDECL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MaterialDecl-Array",
+    name_hash: 1401120020,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MaterialDecl"),
@@ -17055,7 +18034,8 @@ pub static MATERIALDECL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StringBuilderEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -17107,22 +18087,27 @@ impl super::core::DataContainerTrait for StringBuilderEntityData {
 
 pub static STRINGBUILDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringBuilderEntityData",
+    name_hash: 1429220602,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StringBuilderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StringBuilderEntityData as Default>::default())),
+            create_boxed: || Box::new(<StringBuilderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(StringBuilderEntityData, realm),
             },
             FieldInfoData {
                 name: "NumStrings",
+                name_hash: 661944949,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(StringBuilderEntityData, num_strings),
@@ -17154,6 +18139,7 @@ impl TypeObject for StringBuilderEntityData {
 
 pub static STRINGBUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringBuilderEntityData-Array",
+    name_hash: 1367809998,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("StringBuilderEntityData"),
@@ -17162,7 +18148,8 @@ pub static STRINGBUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4ChangedEntityData {
     pub _glacier_base: PropertyChangedEntityData,
     pub realm: super::core::Realm,
@@ -17226,28 +18213,34 @@ impl super::core::DataContainerTrait for Vec4ChangedEntityData {
 
 pub static VEC4CHANGEDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4ChangedEntityData",
+    name_hash: 3978015784,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYCHANGEDENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec4ChangedEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4ChangedEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec4ChangedEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec4ChangedEntityData, realm),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(Vec4ChangedEntityData, value),
             },
             FieldInfoData {
                 name: "AlwaysSend",
+                name_hash: 579845256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(Vec4ChangedEntityData, always_send),
@@ -17279,6 +18272,7 @@ impl TypeObject for Vec4ChangedEntityData {
 
 pub static VEC4CHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4ChangedEntityData-Array",
+    name_hash: 3251639708,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec4ChangedEntityData"),
@@ -17287,7 +18281,8 @@ pub static VEC4CHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3ChangedEntityData {
     pub _glacier_base: PropertyChangedEntityData,
     pub realm: super::core::Realm,
@@ -17351,28 +18346,34 @@ impl super::core::DataContainerTrait for Vec3ChangedEntityData {
 
 pub static VEC3CHANGEDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3ChangedEntityData",
+    name_hash: 2663585743,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYCHANGEDENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec3ChangedEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3ChangedEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec3ChangedEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec3ChangedEntityData, realm),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(Vec3ChangedEntityData, value),
             },
             FieldInfoData {
                 name: "AlwaysSend",
+                name_hash: 579845256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(Vec3ChangedEntityData, always_send),
@@ -17404,6 +18405,7 @@ impl TypeObject for Vec3ChangedEntityData {
 
 pub static VEC3CHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3ChangedEntityData-Array",
+    name_hash: 2973148411,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec3ChangedEntityData"),
@@ -17412,7 +18414,8 @@ pub static VEC3CHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec2ChangedEntityData {
     pub _glacier_base: PropertyChangedEntityData,
     pub realm: super::core::Realm,
@@ -17476,28 +18479,34 @@ impl super::core::DataContainerTrait for Vec2ChangedEntityData {
 
 pub static VEC2CHANGEDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2ChangedEntityData",
+    name_hash: 1102231790,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYCHANGEDENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec2ChangedEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec2ChangedEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec2ChangedEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec2ChangedEntityData, realm),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(Vec2ChangedEntityData, value),
             },
             FieldInfoData {
                 name: "AlwaysSend",
+                name_hash: 579845256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(Vec2ChangedEntityData, always_send),
@@ -17529,6 +18538,7 @@ impl TypeObject for Vec2ChangedEntityData {
 
 pub static VEC2CHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2ChangedEntityData-Array",
+    name_hash: 1114608090,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec2ChangedEntityData"),
@@ -17537,7 +18547,8 @@ pub static VEC2CHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntChangedEntityData {
     pub _glacier_base: PropertyChangedEntityData,
     pub realm: super::core::Realm,
@@ -17601,28 +18612,34 @@ impl super::core::DataContainerTrait for IntChangedEntityData {
 
 pub static INTCHANGEDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntChangedEntityData",
+    name_hash: 2347667199,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYCHANGEDENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(IntChangedEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntChangedEntityData as Default>::default())),
+            create_boxed: || Box::new(<IntChangedEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(IntChangedEntityData, realm),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IntChangedEntityData, value),
             },
             FieldInfoData {
                 name: "AlwaysSend",
+                name_hash: 579845256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(IntChangedEntityData, always_send),
@@ -17654,6 +18671,7 @@ impl TypeObject for IntChangedEntityData {
 
 pub static INTCHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntChangedEntityData-Array",
+    name_hash: 4063376587,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("IntChangedEntityData"),
@@ -17662,7 +18680,8 @@ pub static INTCHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatChangedEntityData {
     pub _glacier_base: PropertyChangedEntityData,
     pub realm: super::core::Realm,
@@ -17726,28 +18745,34 @@ impl super::core::DataContainerTrait for FloatChangedEntityData {
 
 pub static FLOATCHANGEDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatChangedEntityData",
+    name_hash: 1910678908,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYCHANGEDENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FloatChangedEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatChangedEntityData as Default>::default())),
+            create_boxed: || Box::new(<FloatChangedEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(FloatChangedEntityData, realm),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatChangedEntityData, value),
             },
             FieldInfoData {
                 name: "AlwaysSend",
+                name_hash: 579845256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FloatChangedEntityData, always_send),
@@ -17779,6 +18804,7 @@ impl TypeObject for FloatChangedEntityData {
 
 pub static FLOATCHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatChangedEntityData-Array",
+    name_hash: 4242894152,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatChangedEntityData"),
@@ -17787,7 +18813,8 @@ pub static FLOATCHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolChangedEntityData {
     pub _glacier_base: PropertyChangedEntityData,
     pub realm: super::core::Realm,
@@ -17851,28 +18878,34 @@ impl super::core::DataContainerTrait for BoolChangedEntityData {
 
 pub static BOOLCHANGEDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolChangedEntityData",
+    name_hash: 859316642,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROPERTYCHANGEDENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BoolChangedEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolChangedEntityData as Default>::default())),
+            create_boxed: || Box::new(<BoolChangedEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(BoolChangedEntityData, realm),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoolChangedEntityData, value),
             },
             FieldInfoData {
                 name: "AlwaysSend",
+                name_hash: 579845256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoolChangedEntityData, always_send),
@@ -17904,6 +18937,7 @@ impl TypeObject for BoolChangedEntityData {
 
 pub static BOOLCHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolChangedEntityData-Array",
+    name_hash: 2376187926,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BoolChangedEntityData"),
@@ -17912,7 +18946,8 @@ pub static BOOLCHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyChangedEntityData {
     pub _glacier_base: EntityData,
 }
@@ -17946,12 +18981,15 @@ impl super::core::DataContainerTrait for PropertyChangedEntityData {
 
 pub static PROPERTYCHANGEDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyChangedEntityData",
+    name_hash: 3834317547,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PropertyChangedEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyChangedEntityData as Default>::default())),
+            create_boxed: || Box::new(<PropertyChangedEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -17981,6 +19019,7 @@ impl TypeObject for PropertyChangedEntityData {
 
 pub static PROPERTYCHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyChangedEntityData-Array",
+    name_hash: 2489924319,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PropertyChangedEntityData"),
@@ -17989,7 +19028,8 @@ pub static PROPERTYCHANGEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareTransformEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -18068,40 +19108,48 @@ impl super::core::DataContainerTrait for CompareTransformEntityData {
 
 pub static COMPARETRANSFORMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareTransformEntityData",
+    name_hash: 2891557541,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareTransformEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareTransformEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareTransformEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CompareTransformEntityData, realm),
             },
             FieldInfoData {
                 name: "A",
+                name_hash: 177636,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(CompareTransformEntityData, a),
             },
             FieldInfoData {
                 name: "B",
+                name_hash: 177639,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(CompareTransformEntityData, b),
             },
             FieldInfoData {
                 name: "TriggerOnPropertyChange",
+                name_hash: 3134109917,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CompareTransformEntityData, trigger_on_property_change),
             },
             FieldInfoData {
                 name: "TriggerOnStart",
+                name_hash: 3859836348,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CompareTransformEntityData, trigger_on_start),
@@ -18133,6 +19181,7 @@ impl TypeObject for CompareTransformEntityData {
 
 pub static COMPARETRANSFORMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareTransformEntityData-Array",
+    name_hash: 3789849361,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareTransformEntityData"),
@@ -18141,18 +19190,19 @@ pub static COMPARETRANSFORMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SwitchEnumEntityData {
     pub _glacier_base: ImpliedEnumTypeLogicEntityData,
     pub fire_on_property_changed: bool,
-    pub output_events: Vec<EventName>,
+    pub output_events: Vec<BoxedTypeObject /* EventName */>,
 }
 
 pub trait SwitchEnumEntityDataTrait: ImpliedEnumTypeLogicEntityDataTrait {
     fn fire_on_property_changed(&self) -> &bool;
     fn fire_on_property_changed_mut(&mut self) -> &mut bool;
-    fn output_events(&self) -> &Vec<EventName>;
-    fn output_events_mut(&mut self) -> &mut Vec<EventName>;
+    fn output_events(&self) -> &Vec<BoxedTypeObject /* EventName */>;
+    fn output_events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventName */>;
 }
 
 impl SwitchEnumEntityDataTrait for SwitchEnumEntityData {
@@ -18162,10 +19212,10 @@ impl SwitchEnumEntityDataTrait for SwitchEnumEntityData {
     fn fire_on_property_changed_mut(&mut self) -> &mut bool {
         &mut self.fire_on_property_changed
     }
-    fn output_events(&self) -> &Vec<EventName> {
+    fn output_events(&self) -> &Vec<BoxedTypeObject /* EventName */> {
         &self.output_events
     }
-    fn output_events_mut(&mut self) -> &mut Vec<EventName> {
+    fn output_events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EventName */> {
         &mut self.output_events
     }
 }
@@ -18211,22 +19261,27 @@ impl super::core::DataContainerTrait for SwitchEnumEntityData {
 
 pub static SWITCHENUMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SwitchEnumEntityData",
+    name_hash: 1931039695,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IMPLIEDENUMTYPELOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SwitchEnumEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SwitchEnumEntityData as Default>::default())),
+            create_boxed: || Box::new(<SwitchEnumEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FireOnPropertyChanged",
+                name_hash: 2602932313,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SwitchEnumEntityData, fire_on_property_changed),
             },
             FieldInfoData {
                 name: "OutputEvents",
+                name_hash: 3452448709,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EventName-Array",
                 rust_offset: offset_of!(SwitchEnumEntityData, output_events),
@@ -18258,6 +19313,7 @@ impl TypeObject for SwitchEnumEntityData {
 
 pub static SWITCHENUMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SwitchEnumEntityData-Array",
+    name_hash: 2487869691,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SwitchEnumEntityData"),
@@ -18266,7 +19322,8 @@ pub static SWITCHENUMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventName {
     pub enum_value: i32,
     pub hash: u32,
@@ -18305,27 +19362,32 @@ impl EventNameTrait for EventName {
 
 pub static EVENTNAME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventName",
+    name_hash: 4132530094,
     flags: MemberInfoFlags::new(36937),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventName as Default>::default())),
+            create_boxed: || Box::new(<EventName as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EnumValue",
+                name_hash: 1043067517,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EventName, enum_value),
             },
             FieldInfoData {
                 name: "Hash",
+                name_hash: 2089161879,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EventName, hash),
             },
             FieldInfoData {
                 name: "IsConnected",
+                name_hash: 292566976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EventName, is_connected),
@@ -18357,6 +19419,7 @@ impl TypeObject for EventName {
 
 pub static EVENTNAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventName-Array",
+    name_hash: 1339461658,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventName"),
@@ -18365,22 +19428,23 @@ pub static EVENTNAME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SetEnumEntityData {
     pub _glacier_base: ExplicitEnumTypeLogicEntityData,
-    pub input_events: Vec<SetEnumValueContainer>,
+    pub input_events: Vec<BoxedTypeObject /* SetEnumValueContainer */>,
 }
 
 pub trait SetEnumEntityDataTrait: ExplicitEnumTypeLogicEntityDataTrait {
-    fn input_events(&self) -> &Vec<SetEnumValueContainer>;
-    fn input_events_mut(&mut self) -> &mut Vec<SetEnumValueContainer>;
+    fn input_events(&self) -> &Vec<BoxedTypeObject /* SetEnumValueContainer */>;
+    fn input_events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SetEnumValueContainer */>;
 }
 
 impl SetEnumEntityDataTrait for SetEnumEntityData {
-    fn input_events(&self) -> &Vec<SetEnumValueContainer> {
+    fn input_events(&self) -> &Vec<BoxedTypeObject /* SetEnumValueContainer */> {
         &self.input_events
     }
-    fn input_events_mut(&mut self) -> &mut Vec<SetEnumValueContainer> {
+    fn input_events_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SetEnumValueContainer */> {
         &mut self.input_events
     }
 }
@@ -18426,16 +19490,20 @@ impl super::core::DataContainerTrait for SetEnumEntityData {
 
 pub static SETENUMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetEnumEntityData",
+    name_hash: 2244796063,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EXPLICITENUMTYPELOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SetEnumEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SetEnumEntityData as Default>::default())),
+            create_boxed: || Box::new(<SetEnumEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InputEvents",
+                name_hash: 1542460652,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SetEnumValueContainer-Array",
                 rust_offset: offset_of!(SetEnumEntityData, input_events),
@@ -18467,6 +19535,7 @@ impl TypeObject for SetEnumEntityData {
 
 pub static SETENUMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetEnumEntityData-Array",
+    name_hash: 445481771,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SetEnumEntityData"),
@@ -18475,7 +19544,8 @@ pub static SETENUMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SetEnumValueContainer {
     pub value: i32,
     pub input_event_hash: u32,
@@ -18505,21 +19575,25 @@ impl SetEnumValueContainerTrait for SetEnumValueContainer {
 
 pub static SETENUMVALUECONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetEnumValueContainer",
+    name_hash: 1774203960,
     flags: MemberInfoFlags::new(36937),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SetEnumValueContainer as Default>::default())),
+            create_boxed: || Box::new(<SetEnumValueContainer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SetEnumValueContainer, value),
             },
             FieldInfoData {
                 name: "InputEventHash",
+                name_hash: 559810541,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(SetEnumValueContainer, input_event_hash),
@@ -18551,6 +19625,7 @@ impl TypeObject for SetEnumValueContainer {
 
 pub static SETENUMVALUECONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetEnumValueContainer-Array",
+    name_hash: 392650124,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SetEnumValueContainer"),
@@ -18559,7 +19634,8 @@ pub static SETENUMVALUECONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntToEnumEntityData {
     pub _glacier_base: ExplicitEnumTypeLogicEntityData,
     pub r#in: i32,
@@ -18620,16 +19696,20 @@ impl super::core::DataContainerTrait for IntToEnumEntityData {
 
 pub static INTTOENUMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntToEnumEntityData",
+    name_hash: 2436362453,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EXPLICITENUMTYPELOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(IntToEnumEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntToEnumEntityData as Default>::default())),
+            create_boxed: || Box::new(<IntToEnumEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IntToEnumEntityData, r#in),
@@ -18661,6 +19741,7 @@ impl TypeObject for IntToEnumEntityData {
 
 pub static INTTOENUMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntToEnumEntityData-Array",
+    name_hash: 3146871009,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("IntToEnumEntityData"),
@@ -18669,7 +19750,8 @@ pub static INTTOENUMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WriteArrayElementEntityData {
     pub _glacier_base: WriteVariableBaseEntityData,
     pub element_index: i32,
@@ -18748,16 +19830,20 @@ impl super::core::DataContainerTrait for WriteArrayElementEntityData {
 
 pub static WRITEARRAYELEMENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriteArrayElementEntityData",
+    name_hash: 2827660212,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WRITEVARIABLEBASEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WriteArrayElementEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WriteArrayElementEntityData as Default>::default())),
+            create_boxed: || Box::new(<WriteArrayElementEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ElementIndex",
+                name_hash: 2692677381,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(WriteArrayElementEntityData, element_index),
@@ -18789,6 +19875,7 @@ impl TypeObject for WriteArrayElementEntityData {
 
 pub static WRITEARRAYELEMENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriteArrayElementEntityData-Array",
+    name_hash: 1942865664,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WriteArrayElementEntityData"),
@@ -18797,7 +19884,8 @@ pub static WRITEARRAYELEMENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReadArraySizeEntityData {
     pub _glacier_base: ReadVariableBaseEntityData,
 }
@@ -18867,12 +19955,15 @@ impl super::core::DataContainerTrait for ReadArraySizeEntityData {
 
 pub static READARRAYSIZEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadArraySizeEntityData",
+    name_hash: 2216718560,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(READVARIABLEBASEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ReadArraySizeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReadArraySizeEntityData as Default>::default())),
+            create_boxed: || Box::new(<ReadArraySizeEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -18902,6 +19993,7 @@ impl TypeObject for ReadArraySizeEntityData {
 
 pub static READARRAYSIZEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadArraySizeEntityData-Array",
+    name_hash: 3235645140,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ReadArraySizeEntityData"),
@@ -18910,7 +20002,8 @@ pub static READARRAYSIZEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReadArrayElementEntityData {
     pub _glacier_base: ReadVariableBaseEntityData,
     pub element_index: i32,
@@ -18989,16 +20082,20 @@ impl super::core::DataContainerTrait for ReadArrayElementEntityData {
 
 pub static READARRAYELEMENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadArrayElementEntityData",
+    name_hash: 1777492571,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(READVARIABLEBASEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ReadArrayElementEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReadArrayElementEntityData as Default>::default())),
+            create_boxed: || Box::new(<ReadArrayElementEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ElementIndex",
+                name_hash: 2692677381,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ReadArrayElementEntityData, element_index),
@@ -19030,6 +20127,7 @@ impl TypeObject for ReadArrayElementEntityData {
 
 pub static READARRAYELEMENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadArrayElementEntityData-Array",
+    name_hash: 1688660335,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ReadArrayElementEntityData"),
@@ -19038,7 +20136,8 @@ pub static READARRAYELEMENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ForEachVariableEntityData {
     pub _glacier_base: ReadVariableBaseEntityData,
 }
@@ -19108,12 +20207,15 @@ impl super::core::DataContainerTrait for ForEachVariableEntityData {
 
 pub static FOREACHVARIABLEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForEachVariableEntityData",
+    name_hash: 2240274012,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(READVARIABLEBASEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ForEachVariableEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ForEachVariableEntityData as Default>::default())),
+            create_boxed: || Box::new(<ForEachVariableEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -19143,6 +20245,7 @@ impl TypeObject for ForEachVariableEntityData {
 
 pub static FOREACHVARIABLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForEachVariableEntityData-Array",
+    name_hash: 783943400,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ForEachVariableEntityData"),
@@ -19151,7 +20254,8 @@ pub static FOREACHVARIABLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClearArrayVariableEntityData {
     pub _glacier_base: WriteVariableBaseEntityData,
 }
@@ -19221,12 +20325,15 @@ impl super::core::DataContainerTrait for ClearArrayVariableEntityData {
 
 pub static CLEARARRAYVARIABLEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClearArrayVariableEntityData",
+    name_hash: 1566988040,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WRITEVARIABLEBASEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ClearArrayVariableEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClearArrayVariableEntityData as Default>::default())),
+            create_boxed: || Box::new(<ClearArrayVariableEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -19256,6 +20363,7 @@ impl TypeObject for ClearArrayVariableEntityData {
 
 pub static CLEARARRAYVARIABLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClearArrayVariableEntityData-Array",
+    name_hash: 61446460,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ClearArrayVariableEntityData"),
@@ -19264,7 +20372,8 @@ pub static CLEARARRAYVARIABLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AddToArrayVariableEntityData {
     pub _glacier_base: WriteVariableBaseEntityData,
 }
@@ -19334,12 +20443,15 @@ impl super::core::DataContainerTrait for AddToArrayVariableEntityData {
 
 pub static ADDTOARRAYVARIABLEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AddToArrayVariableEntityData",
+    name_hash: 3838851691,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WRITEVARIABLEBASEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AddToArrayVariableEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AddToArrayVariableEntityData as Default>::default())),
+            create_boxed: || Box::new(<AddToArrayVariableEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -19369,6 +20481,7 @@ impl TypeObject for AddToArrayVariableEntityData {
 
 pub static ADDTOARRAYVARIABLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AddToArrayVariableEntityData-Array",
+    name_hash: 1655966303,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AddToArrayVariableEntityData"),
@@ -19377,7 +20490,8 @@ pub static ADDTOARRAYVARIABLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WriteVariableEntityData {
     pub _glacier_base: WriteVariableBaseEntityData,
 }
@@ -19447,12 +20561,15 @@ impl super::core::DataContainerTrait for WriteVariableEntityData {
 
 pub static WRITEVARIABLEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriteVariableEntityData",
+    name_hash: 1388411093,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(WRITEVARIABLEBASEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WriteVariableEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WriteVariableEntityData as Default>::default())),
+            create_boxed: || Box::new(<WriteVariableEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -19482,6 +20599,7 @@ impl TypeObject for WriteVariableEntityData {
 
 pub static WRITEVARIABLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriteVariableEntityData-Array",
+    name_hash: 2954950881,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WriteVariableEntityData"),
@@ -19490,7 +20608,8 @@ pub static WRITEVARIABLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReadVariableEntityData {
     pub _glacier_base: ReadVariableBaseEntityData,
 }
@@ -19560,12 +20679,15 @@ impl super::core::DataContainerTrait for ReadVariableEntityData {
 
 pub static READVARIABLEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadVariableEntityData",
+    name_hash: 771448122,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(READVARIABLEBASEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ReadVariableEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReadVariableEntityData as Default>::default())),
+            create_boxed: || Box::new(<ReadVariableEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -19595,6 +20717,7 @@ impl TypeObject for ReadVariableEntityData {
 
 pub static READVARIABLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadVariableEntityData-Array",
+    name_hash: 2312486798,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ReadVariableEntityData"),
@@ -19603,7 +20726,8 @@ pub static READVARIABLEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WriteVariableBaseEntityData {
     pub _glacier_base: VariableBaseEntityData,
 }
@@ -19670,12 +20794,15 @@ impl super::core::DataContainerTrait for WriteVariableBaseEntityData {
 
 pub static WRITEVARIABLEBASEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriteVariableBaseEntityData",
+    name_hash: 4290470144,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VARIABLEBASEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WriteVariableBaseEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WriteVariableBaseEntityData as Default>::default())),
+            create_boxed: || Box::new(<WriteVariableBaseEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -19705,6 +20832,7 @@ impl TypeObject for WriteVariableBaseEntityData {
 
 pub static WRITEVARIABLEBASEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriteVariableBaseEntityData-Array",
+    name_hash: 3583952692,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WriteVariableBaseEntityData"),
@@ -19713,7 +20841,8 @@ pub static WRITEVARIABLEBASEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReadVariableBaseEntityData {
     pub _glacier_base: VariableBaseEntityData,
 }
@@ -19780,12 +20909,15 @@ impl super::core::DataContainerTrait for ReadVariableBaseEntityData {
 
 pub static READVARIABLEBASEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadVariableBaseEntityData",
+    name_hash: 1843956143,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VARIABLEBASEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ReadVariableBaseEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReadVariableBaseEntityData as Default>::default())),
+            create_boxed: || Box::new(<ReadVariableBaseEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -19815,6 +20947,7 @@ impl TypeObject for ReadVariableBaseEntityData {
 
 pub static READVARIABLEBASEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadVariableBaseEntityData-Array",
+    name_hash: 3986061083,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ReadVariableBaseEntityData"),
@@ -19823,7 +20956,8 @@ pub static READVARIABLEBASEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VariableBaseEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -19902,40 +21036,48 @@ impl super::core::DataContainerTrait for VariableBaseEntityData {
 
 pub static VARIABLEBASEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VariableBaseEntityData",
+    name_hash: 1320332349,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VariableBaseEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VariableBaseEntityData as Default>::default())),
+            create_boxed: || Box::new(<VariableBaseEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(VariableBaseEntityData, realm),
             },
             FieldInfoData {
                 name: "FieldNameHash",
+                name_hash: 4253991058,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VariableBaseEntityData, field_name_hash),
             },
             FieldInfoData {
                 name: "FieldType",
+                name_hash: 3059058943,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeRef",
                 rust_offset: offset_of!(VariableBaseEntityData, field_type),
             },
             FieldInfoData {
                 name: "FieldOffset",
+                name_hash: 2228247466,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(VariableBaseEntityData, field_offset),
             },
             FieldInfoData {
                 name: "UseData",
+                name_hash: 2350151606,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VariableBaseEntityData, use_data),
@@ -19967,6 +21109,7 @@ impl TypeObject for VariableBaseEntityData {
 
 pub static VARIABLEBASEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VariableBaseEntityData-Array",
+    name_hash: 2892679305,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("VariableBaseEntityData"),
@@ -19975,7 +21118,8 @@ pub static VARIABLEBASEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HighlightEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -20054,40 +21198,48 @@ impl super::core::DataContainerTrait for HighlightEntityData {
 
 pub static HIGHLIGHTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HighlightEntityData",
+    name_hash: 4200112862,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(HighlightEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HighlightEntityData as Default>::default())),
+            create_boxed: || Box::new(<HighlightEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(HighlightEntityData, realm),
             },
             FieldInfoData {
                 name: "Color",
+                name_hash: 212387320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(HighlightEntityData, color),
             },
             FieldInfoData {
                 name: "Alpha",
+                name_hash: 205677681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(HighlightEntityData, alpha),
             },
             FieldInfoData {
                 name: "TopLeft",
+                name_hash: 3716917173,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(HighlightEntityData, top_left),
             },
             FieldInfoData {
                 name: "BottomRight",
+                name_hash: 626009514,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(HighlightEntityData, bottom_right),
@@ -20119,6 +21271,7 @@ impl TypeObject for HighlightEntityData {
 
 pub static HIGHLIGHTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HighlightEntityData-Array",
+    name_hash: 2909054058,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("HighlightEntityData"),
@@ -20127,12 +21280,13 @@ pub static HIGHLIGHTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TextSequenceEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
     pub events: Vec<String>,
-    pub items: Vec<Option<Arc<Mutex<dyn TextSequenceItemTrait>>>>,
+    pub items: Vec<Option<LockedTypeObject /* TextSequenceItem */>>,
     pub screen_position: super::core::Vec2,
 }
 
@@ -20141,8 +21295,8 @@ pub trait TextSequenceEntityDataTrait: EntityDataTrait {
     fn realm_mut(&mut self) -> &mut super::core::Realm;
     fn events(&self) -> &Vec<String>;
     fn events_mut(&mut self) -> &mut Vec<String>;
-    fn items(&self) -> &Vec<Option<Arc<Mutex<dyn TextSequenceItemTrait>>>>;
-    fn items_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TextSequenceItemTrait>>>>;
+    fn items(&self) -> &Vec<Option<LockedTypeObject /* TextSequenceItem */>>;
+    fn items_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TextSequenceItem */>>;
     fn screen_position(&self) -> &super::core::Vec2;
     fn screen_position_mut(&mut self) -> &mut super::core::Vec2;
 }
@@ -20160,10 +21314,10 @@ impl TextSequenceEntityDataTrait for TextSequenceEntityData {
     fn events_mut(&mut self) -> &mut Vec<String> {
         &mut self.events
     }
-    fn items(&self) -> &Vec<Option<Arc<Mutex<dyn TextSequenceItemTrait>>>> {
+    fn items(&self) -> &Vec<Option<LockedTypeObject /* TextSequenceItem */>> {
         &self.items
     }
-    fn items_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TextSequenceItemTrait>>>> {
+    fn items_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TextSequenceItem */>> {
         &mut self.items
     }
     fn screen_position(&self) -> &super::core::Vec2 {
@@ -20197,34 +21351,41 @@ impl super::core::DataContainerTrait for TextSequenceEntityData {
 
 pub static TEXTSEQUENCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextSequenceEntityData",
+    name_hash: 1379040428,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TextSequenceEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TextSequenceEntityData as Default>::default())),
+            create_boxed: || Box::new(<TextSequenceEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TextSequenceEntityData, realm),
             },
             FieldInfoData {
                 name: "Events",
+                name_hash: 2352146554,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(TextSequenceEntityData, events),
             },
             FieldInfoData {
                 name: "Items",
+                name_hash: 215446531,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TextSequenceItem-Array",
                 rust_offset: offset_of!(TextSequenceEntityData, items),
             },
             FieldInfoData {
                 name: "ScreenPosition",
+                name_hash: 2288910864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(TextSequenceEntityData, screen_position),
@@ -20256,6 +21417,7 @@ impl TypeObject for TextSequenceEntityData {
 
 pub static TEXTSEQUENCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextSequenceEntityData-Array",
+    name_hash: 1027271704,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TextSequenceEntityData"),
@@ -20264,7 +21426,8 @@ pub static TEXTSEQUENCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TextSequenceItem {
     pub _glacier_base: super::core::DataContainer,
     pub text: String,
@@ -20334,46 +21497,55 @@ impl super::core::DataContainerTrait for TextSequenceItem {
 
 pub static TEXTSEQUENCEITEM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextSequenceItem",
+    name_hash: 2673554290,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TextSequenceItem, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TextSequenceItem as Default>::default())),
+            create_boxed: || Box::new(<TextSequenceItem as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Text",
+                name_hash: 2089309304,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TextSequenceItem, text),
             },
             FieldInfoData {
                 name: "TextColor",
+                name_hash: 2527550245,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TextSequenceItem, text_color),
             },
             FieldInfoData {
                 name: "ScreenPosition",
+                name_hash: 2288910864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(TextSequenceItem, screen_position),
             },
             FieldInfoData {
                 name: "UseEntityScreenPosition",
+                name_hash: 2699366408,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TextSequenceItem, use_entity_screen_position),
             },
             FieldInfoData {
                 name: "TimeToShow",
+                name_hash: 1572258312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TextSequenceItem, time_to_show),
             },
             FieldInfoData {
                 name: "TriggerEvent",
+                name_hash: 3587741969,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TextSequenceItem, trigger_event),
@@ -20405,6 +21577,7 @@ impl TypeObject for TextSequenceItem {
 
 pub static TEXTSEQUENCEITEM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextSequenceItem-Array",
+    name_hash: 1744677446,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TextSequenceItem"),
@@ -20413,7 +21586,8 @@ pub static TEXTSEQUENCEITEM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TreeBase {
     pub _glacier_base: super::core::Asset,
 }
@@ -20438,12 +21612,15 @@ impl super::core::DataContainerTrait for TreeBase {
 
 pub static TREEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TreeBase",
+    name_hash: 4238092246,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TreeBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TreeBase as Default>::default())),
+            create_boxed: || Box::new(<TreeBase as Default>::default()),
         },
         fields: &[
         ],
@@ -20473,6 +21650,7 @@ impl TypeObject for TreeBase {
 
 pub static TREEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TreeBase-Array",
+    name_hash: 3573058914,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TreeBase"),
@@ -20481,7 +21659,8 @@ pub static TREEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TreeNodeBase {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -20497,12 +21676,15 @@ impl super::core::DataContainerTrait for TreeNodeBase {
 
 pub static TREENODEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TreeNodeBase",
+    name_hash: 2053360182,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TreeNodeBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TreeNodeBase as Default>::default())),
+            create_boxed: || Box::new(<TreeNodeBase as Default>::default()),
         },
         fields: &[
         ],
@@ -20532,6 +21714,7 @@ impl TypeObject for TreeNodeBase {
 
 pub static TREENODEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TreeNodeBase-Array",
+    name_hash: 4007411330,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TreeNodeBase"),
@@ -20540,7 +21723,8 @@ pub static TREENODEBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubLevelDestroyedMessage {
 }
 
@@ -20552,11 +21736,13 @@ impl SubLevelDestroyedMessageTrait for SubLevelDestroyedMessage {
 
 pub static SUBLEVELDESTROYEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubLevelDestroyedMessage",
+    name_hash: 1013789343,
     flags: MemberInfoFlags::new(36937),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubLevelDestroyedMessage as Default>::default())),
+            create_boxed: || Box::new(<SubLevelDestroyedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -20583,7 +21769,8 @@ impl TypeObject for SubLevelDestroyedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubLevelEntitiesCreatedMessage {
 }
 
@@ -20595,11 +21782,13 @@ impl SubLevelEntitiesCreatedMessageTrait for SubLevelEntitiesCreatedMessage {
 
 pub static SUBLEVELENTITIESCREATEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubLevelEntitiesCreatedMessage",
+    name_hash: 2720897889,
     flags: MemberInfoFlags::new(36937),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubLevelEntitiesCreatedMessage as Default>::default())),
+            create_boxed: || Box::new(<SubLevelEntitiesCreatedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -20626,7 +21815,8 @@ impl TypeObject for SubLevelEntitiesCreatedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReportInstallationProgressEntityData {
     pub _glacier_base: EntityData,
     pub install_group_name: String,
@@ -20669,16 +21859,20 @@ impl super::core::DataContainerTrait for ReportInstallationProgressEntityData {
 
 pub static REPORTINSTALLATIONPROGRESSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReportInstallationProgressEntityData",
+    name_hash: 843041153,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ReportInstallationProgressEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReportInstallationProgressEntityData as Default>::default())),
+            create_boxed: || Box::new(<ReportInstallationProgressEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InstallGroupName",
+                name_hash: 384214428,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ReportInstallationProgressEntityData, install_group_name),
@@ -20710,6 +21904,7 @@ impl TypeObject for ReportInstallationProgressEntityData {
 
 pub static REPORTINSTALLATIONPROGRESSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReportInstallationProgressEntityData-Array",
+    name_hash: 3166331701,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ReportInstallationProgressEntityData"),
@@ -20718,7 +21913,8 @@ pub static REPORTINSTALLATIONPROGRESSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocalPlayerIdEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -20779,28 +21975,34 @@ impl super::core::DataContainerTrait for LocalPlayerIdEntityData {
 
 pub static LOCALPLAYERIDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerIdEntityData",
+    name_hash: 1508500733,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LocalPlayerIdEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocalPlayerIdEntityData as Default>::default())),
+            create_boxed: || Box::new(<LocalPlayerIdEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(LocalPlayerIdEntityData, realm),
             },
             FieldInfoData {
                 name: "DefaultValue",
+                name_hash: 2066049125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalPlayerId",
                 rust_offset: offset_of!(LocalPlayerIdEntityData, default_value),
             },
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalPlayerId",
                 rust_offset: offset_of!(LocalPlayerIdEntityData, r#in),
@@ -20832,6 +22034,7 @@ impl TypeObject for LocalPlayerIdEntityData {
 
 pub static LOCALPLAYERIDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerIdEntityData-Array",
+    name_hash: 2267664841,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LocalPlayerIdEntityData"),
@@ -20840,7 +22043,8 @@ pub static LOCALPLAYERIDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatCacheEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -20901,28 +22105,34 @@ impl super::core::DataContainerTrait for FloatCacheEntityData {
 
 pub static FLOATCACHEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCacheEntityData",
+    name_hash: 1279773490,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FloatCacheEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatCacheEntityData as Default>::default())),
+            create_boxed: || Box::new(<FloatCacheEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(FloatCacheEntityData, realm),
             },
             FieldInfoData {
                 name: "LoadOnCreate",
+                name_hash: 4195698790,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FloatCacheEntityData, load_on_create),
             },
             FieldInfoData {
                 name: "InValue",
+                name_hash: 1658462601,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatCacheEntityData, in_value),
@@ -20954,6 +22164,7 @@ impl TypeObject for FloatCacheEntityData {
 
 pub static FLOATCACHEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCacheEntityData-Array",
+    name_hash: 1958564230,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatCacheEntityData"),
@@ -20962,7 +22173,8 @@ pub static FLOATCACHEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MultilineStringEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -21014,22 +22226,27 @@ impl super::core::DataContainerTrait for MultilineStringEntityData {
 
 pub static MULTILINESTRINGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultilineStringEntityData",
+    name_hash: 569498364,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MultilineStringEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MultilineStringEntityData as Default>::default())),
+            create_boxed: || Box::new(<MultilineStringEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(MultilineStringEntityData, realm),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(MultilineStringEntityData, value),
@@ -21061,6 +22278,7 @@ impl TypeObject for MultilineStringEntityData {
 
 pub static MULTILINESTRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultilineStringEntityData-Array",
+    name_hash: 2280047304,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MultilineStringEntityData"),
@@ -21069,7 +22287,8 @@ pub static MULTILINESTRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StringEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -21121,22 +22340,27 @@ impl super::core::DataContainerTrait for StringEntityData {
 
 pub static STRINGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringEntityData",
+    name_hash: 978612923,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StringEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StringEntityData as Default>::default())),
+            create_boxed: || Box::new(<StringEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(StringEntityData, realm),
             },
             FieldInfoData {
                 name: "DefaultString",
+                name_hash: 4156748411,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(StringEntityData, default_string),
@@ -21168,6 +22392,7 @@ impl TypeObject for StringEntityData {
 
 pub static STRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringEntityData-Array",
+    name_hash: 2380282383,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("StringEntityData"),
@@ -21176,7 +22401,8 @@ pub static STRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -21228,22 +22454,27 @@ impl super::core::DataContainerTrait for TransformEntityData {
 
 pub static TRANSFORMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformEntityData",
+    name_hash: 134583810,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformEntityData as Default>::default())),
+            create_boxed: || Box::new(<TransformEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TransformEntityData, realm),
             },
             FieldInfoData {
                 name: "DefaultTransform",
+                name_hash: 1812491362,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(TransformEntityData, default_transform),
@@ -21275,6 +22506,7 @@ impl TypeObject for TransformEntityData {
 
 pub static TRANSFORMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformEntityData-Array",
+    name_hash: 3584619830,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformEntityData"),
@@ -21283,7 +22515,8 @@ pub static TRANSFORMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AxisAlignedBoxEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -21344,28 +22577,34 @@ impl super::core::DataContainerTrait for AxisAlignedBoxEntityData {
 
 pub static AXISALIGNEDBOXENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AxisAlignedBoxEntityData",
+    name_hash: 293091700,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AxisAlignedBoxEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AxisAlignedBoxEntityData as Default>::default())),
+            create_boxed: || Box::new(<AxisAlignedBoxEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(AxisAlignedBoxEntityData, realm),
             },
             FieldInfoData {
                 name: "AabbMin",
+                name_hash: 439431439,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AxisAlignedBoxEntityData, aabb_min),
             },
             FieldInfoData {
                 name: "AabbMax",
+                name_hash: 439431697,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AxisAlignedBoxEntityData, aabb_max),
@@ -21397,6 +22636,7 @@ impl TypeObject for AxisAlignedBoxEntityData {
 
 pub static AXISALIGNEDBOXENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AxisAlignedBoxEntityData-Array",
+    name_hash: 2698683712,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AxisAlignedBoxEntityData"),
@@ -21405,7 +22645,8 @@ pub static AXISALIGNEDBOXENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vector4EntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -21457,22 +22698,27 @@ impl super::core::DataContainerTrait for Vector4EntityData {
 
 pub static VECTOR4ENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vector4EntityData",
+    name_hash: 3992958051,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vector4EntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vector4EntityData as Default>::default())),
+            create_boxed: || Box::new(<Vector4EntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vector4EntityData, realm),
             },
             FieldInfoData {
                 name: "DefaultVec4",
+                name_hash: 2014870058,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(Vector4EntityData, default_vec4),
@@ -21504,6 +22750,7 @@ impl TypeObject for Vector4EntityData {
 
 pub static VECTOR4ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vector4EntityData-Array",
+    name_hash: 1368893527,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vector4EntityData"),
@@ -21512,7 +22759,8 @@ pub static VECTOR4ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vector3EntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -21564,22 +22812,27 @@ impl super::core::DataContainerTrait for Vector3EntityData {
 
 pub static VECTOR3ENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vector3EntityData",
+    name_hash: 1226610340,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vector3EntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vector3EntityData as Default>::default())),
+            create_boxed: || Box::new(<Vector3EntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vector3EntityData, realm),
             },
             FieldInfoData {
                 name: "DefaultVec3",
+                name_hash: 2014870061,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(Vector3EntityData, default_vec3),
@@ -21611,6 +22864,7 @@ impl TypeObject for Vector3EntityData {
 
 pub static VECTOR3ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vector3EntityData-Array",
+    name_hash: 1666263568,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vector3EntityData"),
@@ -21619,7 +22873,8 @@ pub static VECTOR3ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -21680,28 +22935,34 @@ impl super::core::DataContainerTrait for FloatEntityData {
 
 pub static FLOATENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatEntityData",
+    name_hash: 2274474750,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FloatEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatEntityData as Default>::default())),
+            create_boxed: || Box::new(<FloatEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(FloatEntityData, realm),
             },
             FieldInfoData {
                 name: "DefaultValue",
+                name_hash: 2066049125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatEntityData, default_value),
             },
             FieldInfoData {
                 name: "IncDecValue",
+                name_hash: 3097399752,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatEntityData, inc_dec_value),
@@ -21733,6 +22994,7 @@ impl TypeObject for FloatEntityData {
 
 pub static FLOATENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatEntityData-Array",
+    name_hash: 4154121162,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatEntityData"),
@@ -21741,7 +23003,8 @@ pub static FLOATENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIntEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -21802,28 +23065,34 @@ impl super::core::DataContainerTrait for UIntEntityData {
 
 pub static UINTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIntEntityData",
+    name_hash: 2656697480,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UIntEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIntEntityData as Default>::default())),
+            create_boxed: || Box::new(<UIntEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(UIntEntityData, realm),
             },
             FieldInfoData {
                 name: "DefaultValue",
+                name_hash: 2066049125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(UIntEntityData, default_value),
             },
             FieldInfoData {
                 name: "IncDecValue",
+                name_hash: 3097399752,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(UIntEntityData, inc_dec_value),
@@ -21855,6 +23124,7 @@ impl TypeObject for UIntEntityData {
 
 pub static UINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIntEntityData-Array",
+    name_hash: 3038994108,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("UIntEntityData"),
@@ -21863,7 +23133,8 @@ pub static UINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -21924,28 +23195,34 @@ impl super::core::DataContainerTrait for IntEntityData {
 
 pub static INTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntEntityData",
+    name_hash: 3115598749,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(IntEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntEntityData as Default>::default())),
+            create_boxed: || Box::new(<IntEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(IntEntityData, realm),
             },
             FieldInfoData {
                 name: "DefaultValue",
+                name_hash: 2066049125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IntEntityData, default_value),
             },
             FieldInfoData {
                 name: "IncDecValue",
+                name_hash: 3097399752,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IntEntityData, inc_dec_value),
@@ -21977,6 +23254,7 @@ impl TypeObject for IntEntityData {
 
 pub static INTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntEntityData-Array",
+    name_hash: 2138320681,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("IntEntityData"),
@@ -21985,7 +23263,8 @@ pub static INTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -22037,22 +23316,27 @@ impl super::core::DataContainerTrait for BoolEntityData {
 
 pub static BOOLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolEntityData",
+    name_hash: 3649190752,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BoolEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolEntityData as Default>::default())),
+            create_boxed: || Box::new(<BoolEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(BoolEntityData, realm),
             },
             FieldInfoData {
                 name: "DefaultValue",
+                name_hash: 2066049125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoolEntityData, default_value),
@@ -22084,6 +23368,7 @@ impl TypeObject for BoolEntityData {
 
 pub static BOOLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolEntityData-Array",
+    name_hash: 3423318356,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BoolEntityData"),
@@ -22092,31 +23377,32 @@ pub static BOOLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MasterSkeletonAsset {
     pub _glacier_base: super::core::Asset,
-    pub master_skeleton: Option<Arc<Mutex<dyn SkeletonAssetTrait>>>,
-    pub sub_skeletons: Vec<SubSkeleton>,
+    pub master_skeleton: Option<LockedTypeObject /* SkeletonAsset */>,
+    pub sub_skeletons: Vec<BoxedTypeObject /* SubSkeleton */>,
 }
 
 pub trait MasterSkeletonAssetTrait: super::core::AssetTrait {
-    fn master_skeleton(&self) -> &Option<Arc<Mutex<dyn SkeletonAssetTrait>>>;
-    fn master_skeleton_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SkeletonAssetTrait>>>;
-    fn sub_skeletons(&self) -> &Vec<SubSkeleton>;
-    fn sub_skeletons_mut(&mut self) -> &mut Vec<SubSkeleton>;
+    fn master_skeleton(&self) -> &Option<LockedTypeObject /* SkeletonAsset */>;
+    fn master_skeleton_mut(&mut self) -> &mut Option<LockedTypeObject /* SkeletonAsset */>;
+    fn sub_skeletons(&self) -> &Vec<BoxedTypeObject /* SubSkeleton */>;
+    fn sub_skeletons_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SubSkeleton */>;
 }
 
 impl MasterSkeletonAssetTrait for MasterSkeletonAsset {
-    fn master_skeleton(&self) -> &Option<Arc<Mutex<dyn SkeletonAssetTrait>>> {
+    fn master_skeleton(&self) -> &Option<LockedTypeObject /* SkeletonAsset */> {
         &self.master_skeleton
     }
-    fn master_skeleton_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SkeletonAssetTrait>>> {
+    fn master_skeleton_mut(&mut self) -> &mut Option<LockedTypeObject /* SkeletonAsset */> {
         &mut self.master_skeleton
     }
-    fn sub_skeletons(&self) -> &Vec<SubSkeleton> {
+    fn sub_skeletons(&self) -> &Vec<BoxedTypeObject /* SubSkeleton */> {
         &self.sub_skeletons
     }
-    fn sub_skeletons_mut(&mut self) -> &mut Vec<SubSkeleton> {
+    fn sub_skeletons_mut(&mut self) -> &mut Vec<BoxedTypeObject /* SubSkeleton */> {
         &mut self.sub_skeletons
     }
 }
@@ -22135,22 +23421,27 @@ impl super::core::DataContainerTrait for MasterSkeletonAsset {
 
 pub static MASTERSKELETONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MasterSkeletonAsset",
+    name_hash: 2238702888,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(MasterSkeletonAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MasterSkeletonAsset as Default>::default())),
+            create_boxed: || Box::new(<MasterSkeletonAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MasterSkeleton",
+                name_hash: 1934150648,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SkeletonAsset",
                 rust_offset: offset_of!(MasterSkeletonAsset, master_skeleton),
             },
             FieldInfoData {
                 name: "SubSkeletons",
+                name_hash: 2966147091,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SubSkeleton-Array",
                 rust_offset: offset_of!(MasterSkeletonAsset, sub_skeletons),
@@ -22182,6 +23473,7 @@ impl TypeObject for MasterSkeletonAsset {
 
 pub static MASTERSKELETONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MasterSkeletonAsset-Array",
+    name_hash: 784664220,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MasterSkeletonAsset"),
@@ -22190,27 +23482,28 @@ pub static MASTERSKELETONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubSkeleton {
-    pub skeleton: Option<Arc<Mutex<dyn SkeletonAssetTrait>>>,
+    pub skeleton: Option<LockedTypeObject /* SkeletonAsset */>,
     pub bone_map: Vec<i32>,
-    pub transform_map: Vec<super::core::LinearTransform>,
+    pub transform_map: Vec<BoxedTypeObject /* super::core::LinearTransform */>,
 }
 
 pub trait SubSkeletonTrait: TypeObject {
-    fn skeleton(&self) -> &Option<Arc<Mutex<dyn SkeletonAssetTrait>>>;
-    fn skeleton_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SkeletonAssetTrait>>>;
+    fn skeleton(&self) -> &Option<LockedTypeObject /* SkeletonAsset */>;
+    fn skeleton_mut(&mut self) -> &mut Option<LockedTypeObject /* SkeletonAsset */>;
     fn bone_map(&self) -> &Vec<i32>;
     fn bone_map_mut(&mut self) -> &mut Vec<i32>;
-    fn transform_map(&self) -> &Vec<super::core::LinearTransform>;
-    fn transform_map_mut(&mut self) -> &mut Vec<super::core::LinearTransform>;
+    fn transform_map(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */>;
+    fn transform_map_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */>;
 }
 
 impl SubSkeletonTrait for SubSkeleton {
-    fn skeleton(&self) -> &Option<Arc<Mutex<dyn SkeletonAssetTrait>>> {
+    fn skeleton(&self) -> &Option<LockedTypeObject /* SkeletonAsset */> {
         &self.skeleton
     }
-    fn skeleton_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SkeletonAssetTrait>>> {
+    fn skeleton_mut(&mut self) -> &mut Option<LockedTypeObject /* SkeletonAsset */> {
         &mut self.skeleton
     }
     fn bone_map(&self) -> &Vec<i32> {
@@ -22219,37 +23512,42 @@ impl SubSkeletonTrait for SubSkeleton {
     fn bone_map_mut(&mut self) -> &mut Vec<i32> {
         &mut self.bone_map
     }
-    fn transform_map(&self) -> &Vec<super::core::LinearTransform> {
+    fn transform_map(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &self.transform_map
     }
-    fn transform_map_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+    fn transform_map_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &mut self.transform_map
     }
 }
 
 pub static SUBSKELETON_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubSkeleton",
+    name_hash: 610485344,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubSkeleton as Default>::default())),
+            create_boxed: || Box::new(<SubSkeleton as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Skeleton",
+                name_hash: 291024164,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SkeletonAsset",
                 rust_offset: offset_of!(SubSkeleton, skeleton),
             },
             FieldInfoData {
                 name: "BoneMap",
+                name_hash: 2521060607,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(SubSkeleton, bone_map),
             },
             FieldInfoData {
                 name: "TransformMap",
+                name_hash: 1281121973,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinearTransform-Array",
                 rust_offset: offset_of!(SubSkeleton, transform_map),
@@ -22281,6 +23579,7 @@ impl TypeObject for SubSkeleton {
 
 pub static SUBSKELETON_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubSkeleton-Array",
+    name_hash: 3352263252,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SubSkeleton"),
@@ -22289,15 +23588,16 @@ pub static SUBSKELETON_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SkeletonAsset {
     pub _glacier_base: SkeletonBaseAsset,
     pub bone_names: Vec<String>,
     pub bone_name_hashes: Vec<u32>,
     pub hierarchy: Vec<i32>,
-    pub local_pose: Vec<super::core::LinearTransform>,
-    pub model_pose: Vec<super::core::LinearTransform>,
-    pub inverse_model_pose: Vec<super::core::LinearTransform>,
+    pub local_pose: Vec<BoxedTypeObject /* super::core::LinearTransform */>,
+    pub model_pose: Vec<BoxedTypeObject /* super::core::LinearTransform */>,
+    pub inverse_model_pose: Vec<BoxedTypeObject /* super::core::LinearTransform */>,
     pub server_skeleton_to_skeleton_map: Vec<i32>,
     pub skeleton_to_server_skeleton_map: Vec<i32>,
     pub server_hierarchy: Vec<i32>,
@@ -22312,12 +23612,12 @@ pub trait SkeletonAssetTrait: SkeletonBaseAssetTrait {
     fn bone_name_hashes_mut(&mut self) -> &mut Vec<u32>;
     fn hierarchy(&self) -> &Vec<i32>;
     fn hierarchy_mut(&mut self) -> &mut Vec<i32>;
-    fn local_pose(&self) -> &Vec<super::core::LinearTransform>;
-    fn local_pose_mut(&mut self) -> &mut Vec<super::core::LinearTransform>;
-    fn model_pose(&self) -> &Vec<super::core::LinearTransform>;
-    fn model_pose_mut(&mut self) -> &mut Vec<super::core::LinearTransform>;
-    fn inverse_model_pose(&self) -> &Vec<super::core::LinearTransform>;
-    fn inverse_model_pose_mut(&mut self) -> &mut Vec<super::core::LinearTransform>;
+    fn local_pose(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */>;
+    fn local_pose_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */>;
+    fn model_pose(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */>;
+    fn model_pose_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */>;
+    fn inverse_model_pose(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */>;
+    fn inverse_model_pose_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */>;
     fn server_skeleton_to_skeleton_map(&self) -> &Vec<i32>;
     fn server_skeleton_to_skeleton_map_mut(&mut self) -> &mut Vec<i32>;
     fn skeleton_to_server_skeleton_map(&self) -> &Vec<i32>;
@@ -22349,22 +23649,22 @@ impl SkeletonAssetTrait for SkeletonAsset {
     fn hierarchy_mut(&mut self) -> &mut Vec<i32> {
         &mut self.hierarchy
     }
-    fn local_pose(&self) -> &Vec<super::core::LinearTransform> {
+    fn local_pose(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &self.local_pose
     }
-    fn local_pose_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+    fn local_pose_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &mut self.local_pose
     }
-    fn model_pose(&self) -> &Vec<super::core::LinearTransform> {
+    fn model_pose(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &self.model_pose
     }
-    fn model_pose_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+    fn model_pose_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &mut self.model_pose
     }
-    fn inverse_model_pose(&self) -> &Vec<super::core::LinearTransform> {
+    fn inverse_model_pose(&self) -> &Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &self.inverse_model_pose
     }
-    fn inverse_model_pose_mut(&mut self) -> &mut Vec<super::core::LinearTransform> {
+    fn inverse_model_pose_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::LinearTransform */> {
         &mut self.inverse_model_pose
     }
     fn server_skeleton_to_skeleton_map(&self) -> &Vec<i32> {
@@ -22416,76 +23716,90 @@ impl super::core::DataContainerTrait for SkeletonAsset {
 
 pub static SKELETONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SkeletonAsset",
+    name_hash: 2375870068,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SKELETONBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(SkeletonAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SkeletonAsset as Default>::default())),
+            create_boxed: || Box::new(<SkeletonAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BoneNames",
+                name_hash: 951771351,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(SkeletonAsset, bone_names),
             },
             FieldInfoData {
                 name: "BoneNameHashes",
+                name_hash: 1617794368,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(SkeletonAsset, bone_name_hashes),
             },
             FieldInfoData {
                 name: "Hierarchy",
+                name_hash: 2981249554,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(SkeletonAsset, hierarchy),
             },
             FieldInfoData {
                 name: "LocalPose",
+                name_hash: 773169313,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinearTransform-Array",
                 rust_offset: offset_of!(SkeletonAsset, local_pose),
             },
             FieldInfoData {
                 name: "ModelPose",
+                name_hash: 4243999587,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinearTransform-Array",
                 rust_offset: offset_of!(SkeletonAsset, model_pose),
             },
             FieldInfoData {
                 name: "InverseModelPose",
+                name_hash: 4285590163,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinearTransform-Array",
                 rust_offset: offset_of!(SkeletonAsset, inverse_model_pose),
             },
             FieldInfoData {
                 name: "ServerSkeletonToSkeletonMap",
+                name_hash: 2428566471,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(SkeletonAsset, server_skeleton_to_skeleton_map),
             },
             FieldInfoData {
                 name: "SkeletonToServerSkeletonMap",
+                name_hash: 3008373063,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(SkeletonAsset, skeleton_to_server_skeleton_map),
             },
             FieldInfoData {
                 name: "ServerHierarchy",
+                name_hash: 3579270615,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(SkeletonAsset, server_hierarchy),
             },
             FieldInfoData {
                 name: "GameplayBonesToSkeleton",
+                name_hash: 3014053344,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(SkeletonAsset, gameplay_bones_to_skeleton),
             },
             FieldInfoData {
                 name: "GameplayBonesToServerSkeleton",
+                name_hash: 3698466053,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(SkeletonAsset, gameplay_bones_to_server_skeleton),
@@ -22517,6 +23831,7 @@ impl TypeObject for SkeletonAsset {
 
 pub static SKELETONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SkeletonAsset-Array",
+    name_hash: 3272413760,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SkeletonAsset"),
@@ -22525,7 +23840,8 @@ pub static SKELETONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoneSelection {
     pub bone_name_hashes: Vec<u32>,
 }
@@ -22546,15 +23862,18 @@ impl BoneSelectionTrait for BoneSelection {
 
 pub static BONESELECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoneSelection",
+    name_hash: 29366051,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoneSelection as Default>::default())),
+            create_boxed: || Box::new(<BoneSelection as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BoneNameHashes",
+                name_hash: 1617794368,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(BoneSelection, bone_name_hashes),
@@ -22586,6 +23905,7 @@ impl TypeObject for BoneSelection {
 
 pub static BONESELECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoneSelection-Array",
+    name_hash: 3011713687,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BoneSelection"),
@@ -22594,7 +23914,8 @@ pub static BONESELECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GameplayBone {
     pub name: String,
     pub bone: GameplayBones,
@@ -22624,21 +23945,25 @@ impl GameplayBoneTrait for GameplayBone {
 
 pub static GAMEPLAYBONE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameplayBone",
+    name_hash: 3287829481,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GameplayBone as Default>::default())),
+            create_boxed: || Box::new(<GameplayBone as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(GameplayBone, name),
             },
             FieldInfoData {
                 name: "Bone",
+                name_hash: 2088812771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GameplayBones",
                 rust_offset: offset_of!(GameplayBone, bone),
@@ -22670,6 +23995,7 @@ impl TypeObject for GameplayBone {
 
 pub static GAMEPLAYBONE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameplayBone-Array",
+    name_hash: 2169963229,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("GameplayBone"),
@@ -22713,6 +24039,7 @@ pub enum GameplayBones {
 
 pub static GAMEPLAYBONES_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameplayBones",
+    name_hash: 1124190586,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -22741,6 +24068,7 @@ impl TypeObject for GameplayBones {
 
 pub static GAMEPLAYBONES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameplayBones-Array",
+    name_hash: 2453412942,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("GameplayBones"),
@@ -22749,7 +24077,8 @@ pub static GAMEPLAYBONES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SharedBundleReference {
     pub name: String,
     pub heap: BundleHeapInfo,
@@ -22779,21 +24108,25 @@ impl SharedBundleReferenceTrait for SharedBundleReference {
 
 pub static SHAREDBUNDLEREFERENCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedBundleReference",
+    name_hash: 1463219059,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SharedBundleReference as Default>::default())),
+            create_boxed: || Box::new(<SharedBundleReference as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(SharedBundleReference, name),
             },
             FieldInfoData {
                 name: "Heap",
+                name_hash: 2089157081,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BundleHeapInfo",
                 rust_offset: offset_of!(SharedBundleReference, heap),
@@ -22825,6 +24158,7 @@ impl TypeObject for SharedBundleReference {
 
 pub static SHAREDBUNDLEREFERENCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedBundleReference-Array",
+    name_hash: 3969183559,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SharedBundleReference"),
@@ -22833,7 +24167,8 @@ pub static SHAREDBUNDLEREFERENCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SharedBundleBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -22858,12 +24193,15 @@ impl super::core::DataContainerTrait for SharedBundleBaseAsset {
 
 pub static SHAREDBUNDLEBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedBundleBaseAsset",
+    name_hash: 2765718365,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(SharedBundleBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SharedBundleBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<SharedBundleBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -22893,6 +24231,7 @@ impl TypeObject for SharedBundleBaseAsset {
 
 pub static SHAREDBUNDLEBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SharedBundleBaseAsset-Array",
+    name_hash: 3124117353,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SharedBundleBaseAsset"),
@@ -22901,7 +24240,8 @@ pub static SHAREDBUNDLEBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScanlineVolumeShapeData {
     pub _glacier_base: VolumeVectorShapeData,
     pub x_step: f32,
@@ -22949,10 +24289,10 @@ impl VolumeVectorShapeDataTrait for ScanlineVolumeShapeData {
 }
 
 impl VectorShapeDataTrait for ScanlineVolumeShapeData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -23007,28 +24347,34 @@ impl super::core::DataContainerTrait for ScanlineVolumeShapeData {
 
 pub static SCANLINEVOLUMESHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScanlineVolumeShapeData",
+    name_hash: 2742032899,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VOLUMEVECTORSHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ScanlineVolumeShapeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScanlineVolumeShapeData as Default>::default())),
+            create_boxed: || Box::new(<ScanlineVolumeShapeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "xStep",
+                name_hash: 197632495,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ScanlineVolumeShapeData, x_step),
             },
             FieldInfoData {
                 name: "yStep",
+                name_hash: 196516142,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ScanlineVolumeShapeData, y_step),
             },
             FieldInfoData {
                 name: "zStep",
+                name_hash: 204464749,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ScanlineVolumeShapeData, z_step),
@@ -23060,6 +24406,7 @@ impl TypeObject for ScanlineVolumeShapeData {
 
 pub static SCANLINEVOLUMESHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScanlineVolumeShapeData-Array",
+    name_hash: 2621279415,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ScanlineVolumeShapeData"),
@@ -23068,7 +24415,8 @@ pub static SCANLINEVOLUMESHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ZoneVectorShapeData {
     pub _glacier_base: VectorShapeData,
 }
@@ -23080,10 +24428,10 @@ impl ZoneVectorShapeDataTrait for ZoneVectorShapeData {
 }
 
 impl VectorShapeDataTrait for ZoneVectorShapeData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -23138,12 +24486,15 @@ impl super::core::DataContainerTrait for ZoneVectorShapeData {
 
 pub static ZONEVECTORSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneVectorShapeData",
+    name_hash: 2593120701,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VECTORSHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ZoneVectorShapeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ZoneVectorShapeData as Default>::default())),
+            create_boxed: || Box::new(<ZoneVectorShapeData as Default>::default()),
         },
         fields: &[
         ],
@@ -23173,6 +24524,7 @@ impl TypeObject for ZoneVectorShapeData {
 
 pub static ZONEVECTORSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ZoneVectorShapeData-Array",
+    name_hash: 4122615305,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ZoneVectorShapeData"),
@@ -23181,7 +24533,8 @@ pub static ZONEVECTORSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VolumeVectorShapeData {
     pub _glacier_base: VectorShapeData,
     pub height: f32,
@@ -23202,10 +24555,10 @@ impl VolumeVectorShapeDataTrait for VolumeVectorShapeData {
 }
 
 impl VectorShapeDataTrait for VolumeVectorShapeData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -23260,16 +24613,20 @@ impl super::core::DataContainerTrait for VolumeVectorShapeData {
 
 pub static VOLUMEVECTORSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VolumeVectorShapeData",
+    name_hash: 1116470603,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VECTORSHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VolumeVectorShapeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VolumeVectorShapeData as Default>::default())),
+            create_boxed: || Box::new(<VolumeVectorShapeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Height",
+                name_hash: 3054065626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VolumeVectorShapeData, height),
@@ -23301,6 +24658,7 @@ impl TypeObject for VolumeVectorShapeData {
 
 pub static VOLUMEVECTORSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VolumeVectorShapeData-Array",
+    name_hash: 1060502655,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("VolumeVectorShapeData"),
@@ -23309,7 +24667,8 @@ pub static VOLUMEVECTORSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CustomSplineData {
     pub _glacier_base: VectorShapeData,
 }
@@ -23321,10 +24680,10 @@ impl CustomSplineDataTrait for CustomSplineData {
 }
 
 impl VectorShapeDataTrait for CustomSplineData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points()
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         self._glacier_base.points_mut()
     }
     fn tension(&self) -> &f32 {
@@ -23379,12 +24738,15 @@ impl super::core::DataContainerTrait for CustomSplineData {
 
 pub static CUSTOMSPLINEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomSplineData",
+    name_hash: 1526103595,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(VECTORSHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CustomSplineData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CustomSplineData as Default>::default())),
+            create_boxed: || Box::new(<CustomSplineData as Default>::default()),
         },
         fields: &[
         ],
@@ -23414,6 +24776,7 @@ impl TypeObject for CustomSplineData {
 
 pub static CUSTOMSPLINEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomSplineData-Array",
+    name_hash: 2385124767,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CustomSplineData"),
@@ -23422,10 +24785,11 @@ pub static CUSTOMSPLINEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VectorShapeData {
     pub _glacier_base: BaseShapeData,
-    pub points: Vec<super::core::Vec3>,
+    pub points: Vec<BoxedTypeObject /* super::core::Vec3 */>,
     pub tension: f32,
     pub is_closed: bool,
     pub allow_roll: bool,
@@ -23433,8 +24797,8 @@ pub struct VectorShapeData {
 }
 
 pub trait VectorShapeDataTrait: BaseShapeDataTrait {
-    fn points(&self) -> &Vec<super::core::Vec3>;
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3>;
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */>;
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */>;
     fn tension(&self) -> &f32;
     fn tension_mut(&mut self) -> &mut f32;
     fn is_closed(&self) -> &bool;
@@ -23446,10 +24810,10 @@ pub trait VectorShapeDataTrait: BaseShapeDataTrait {
 }
 
 impl VectorShapeDataTrait for VectorShapeData {
-    fn points(&self) -> &Vec<super::core::Vec3> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &self.points
     }
-    fn points_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &mut self.points
     }
     fn tension(&self) -> &f32 {
@@ -23504,40 +24868,48 @@ impl super::core::DataContainerTrait for VectorShapeData {
 
 pub static VECTORSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorShapeData",
+    name_hash: 2801840259,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BASESHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VectorShapeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VectorShapeData as Default>::default())),
+            create_boxed: || Box::new(<VectorShapeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Points",
+                name_hash: 3383606106,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec3-Array",
                 rust_offset: offset_of!(VectorShapeData, points),
             },
             FieldInfoData {
                 name: "Tension",
+                name_hash: 3196074177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VectorShapeData, tension),
             },
             FieldInfoData {
                 name: "IsClosed",
+                name_hash: 1070153421,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VectorShapeData, is_closed),
             },
             FieldInfoData {
                 name: "AllowRoll",
+                name_hash: 2314066145,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VectorShapeData, allow_roll),
             },
             FieldInfoData {
                 name: "AllowYawPitch",
+                name_hash: 2582964181,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(VectorShapeData, allow_yaw_pitch),
@@ -23569,6 +24941,7 @@ impl TypeObject for VectorShapeData {
 
 pub static VECTORSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorShapeData-Array",
+    name_hash: 679805751,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("VectorShapeData"),
@@ -23577,7 +24950,8 @@ pub static VECTORSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OBBData {
     pub _glacier_base: BaseShapeData,
     pub transform: super::core::LinearTransform,
@@ -23632,22 +25006,27 @@ impl super::core::DataContainerTrait for OBBData {
 
 pub static OBBDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OBBData",
+    name_hash: 1330470682,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BASESHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(OBBData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OBBData as Default>::default())),
+            create_boxed: || Box::new(<OBBData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(OBBData, transform),
             },
             FieldInfoData {
                 name: "HalfExtents",
+                name_hash: 905253763,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(OBBData, half_extents),
@@ -23679,6 +25058,7 @@ impl TypeObject for OBBData {
 
 pub static OBBDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OBBData-Array",
+    name_hash: 3254100526,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("OBBData"),
@@ -23687,7 +25067,8 @@ pub static OBBDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AABBData {
     pub _glacier_base: BaseShapeData,
     pub position: super::core::Vec3,
@@ -23742,22 +25123,27 @@ impl super::core::DataContainerTrait for AABBData {
 
 pub static AABBDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AABBData",
+    name_hash: 417516117,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BASESHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AABBData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AABBData as Default>::default())),
+            create_boxed: || Box::new(<AABBData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Position",
+                name_hash: 3402582524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AABBData, position),
             },
             FieldInfoData {
                 name: "HalfExtents",
+                name_hash: 905253763,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AABBData, half_extents),
@@ -23789,6 +25175,7 @@ impl TypeObject for AABBData {
 
 pub static AABBDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AABBData-Array",
+    name_hash: 1968794209,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AABBData"),
@@ -23797,7 +25184,8 @@ pub static AABBDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SphereData {
     pub _glacier_base: BaseShapeData,
     pub position: super::core::Vec3,
@@ -23852,22 +25240,27 @@ impl super::core::DataContainerTrait for SphereData {
 
 pub static SPHEREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereData",
+    name_hash: 3703503660,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BASESHAPEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SphereData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SphereData as Default>::default())),
+            create_boxed: || Box::new(<SphereData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Position",
+                name_hash: 3402582524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(SphereData, position),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SphereData, radius),
@@ -23899,6 +25292,7 @@ impl TypeObject for SphereData {
 
 pub static SPHEREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereData-Array",
+    name_hash: 667699864,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SphereData"),
@@ -23907,7 +25301,8 @@ pub static SPHEREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BaseShapeData {
     pub _glacier_base: BaseShapeDataBase,
 }
@@ -23941,12 +25336,15 @@ impl super::core::DataContainerTrait for BaseShapeData {
 
 pub static BASESHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseShapeData",
+    name_hash: 941592943,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(BASESHAPEDATABASE_TYPE_INFO),
+        super_class_offset: offset_of!(BaseShapeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BaseShapeData as Default>::default())),
+            create_boxed: || Box::new(<BaseShapeData as Default>::default()),
         },
         fields: &[
         ],
@@ -23976,6 +25374,7 @@ impl TypeObject for BaseShapeData {
 
 pub static BASESHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseShapeData-Array",
+    name_hash: 3777515355,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BaseShapeData"),
@@ -23984,7 +25383,8 @@ pub static BASESHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectVec4EntityData {
     pub _glacier_base: SelectPropertyEntityData,
 }
@@ -24039,12 +25439,15 @@ impl super::core::DataContainerTrait for SelectVec4EntityData {
 
 pub static SELECTVEC4ENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec4EntityData",
+    name_hash: 1720156226,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SELECTPROPERTYENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectVec4EntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectVec4EntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectVec4EntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -24074,6 +25477,7 @@ impl TypeObject for SelectVec4EntityData {
 
 pub static SELECTVEC4ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec4EntityData-Array",
+    name_hash: 1414647798,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectVec4EntityData"),
@@ -24082,7 +25486,8 @@ pub static SELECTVEC4ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectVec3EntityData {
     pub _glacier_base: SelectPropertyEntityData,
 }
@@ -24137,12 +25542,15 @@ impl super::core::DataContainerTrait for SelectVec3EntityData {
 
 pub static SELECTVEC3ENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec3EntityData",
+    name_hash: 1291340293,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SELECTPROPERTYENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectVec3EntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectVec3EntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectVec3EntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -24172,6 +25580,7 @@ impl TypeObject for SelectVec3EntityData {
 
 pub static SELECTVEC3ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec3EntityData-Array",
+    name_hash: 3190878641,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectVec3EntityData"),
@@ -24180,7 +25589,8 @@ pub static SELECTVEC3ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectVec2EntityData {
     pub _glacier_base: SelectPropertyEntityData,
 }
@@ -24235,12 +25645,15 @@ impl super::core::DataContainerTrait for SelectVec2EntityData {
 
 pub static SELECTVEC2ENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec2EntityData",
+    name_hash: 4153632324,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SELECTPROPERTYENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectVec2EntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectVec2EntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectVec2EntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -24270,6 +25683,7 @@ impl TypeObject for SelectVec2EntityData {
 
 pub static SELECTVEC2ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec2EntityData-Array",
+    name_hash: 2604231408,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectVec2EntityData"),
@@ -24278,7 +25692,8 @@ pub static SELECTVEC2ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectTransformEntityData {
     pub _glacier_base: SelectPropertyEntityData,
 }
@@ -24333,12 +25748,15 @@ impl super::core::DataContainerTrait for SelectTransformEntityData {
 
 pub static SELECTTRANSFORMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectTransformEntityData",
+    name_hash: 817404522,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SELECTPROPERTYENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectTransformEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectTransformEntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectTransformEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -24368,6 +25786,7 @@ impl TypeObject for SelectTransformEntityData {
 
 pub static SELECTTRANSFORMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectTransformEntityData-Array",
+    name_hash: 3967346014,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectTransformEntityData"),
@@ -24376,7 +25795,8 @@ pub static SELECTTRANSFORMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectBoolEntityData {
     pub _glacier_base: SelectPropertyEntityData,
 }
@@ -24431,12 +25851,15 @@ impl super::core::DataContainerTrait for SelectBoolEntityData {
 
 pub static SELECTBOOLENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectBoolEntityData",
+    name_hash: 90048264,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SELECTPROPERTYENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectBoolEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectBoolEntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectBoolEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -24466,6 +25889,7 @@ impl TypeObject for SelectBoolEntityData {
 
 pub static SELECTBOOLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectBoolEntityData-Array",
+    name_hash: 2460305724,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectBoolEntityData"),
@@ -24474,7 +25898,8 @@ pub static SELECTBOOLENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectStringEntityData {
     pub _glacier_base: SelectPropertyEntityData,
 }
@@ -24529,12 +25954,15 @@ impl super::core::DataContainerTrait for SelectStringEntityData {
 
 pub static SELECTSTRINGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectStringEntityData",
+    name_hash: 207396435,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SELECTPROPERTYENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectStringEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectStringEntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectStringEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -24564,6 +25992,7 @@ impl TypeObject for SelectStringEntityData {
 
 pub static SELECTSTRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectStringEntityData-Array",
+    name_hash: 307153255,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectStringEntityData"),
@@ -24572,7 +26001,8 @@ pub static SELECTSTRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectInt64EntityData {
     pub _glacier_base: SelectPropertyEntityData,
 }
@@ -24627,12 +26057,15 @@ impl super::core::DataContainerTrait for SelectInt64EntityData {
 
 pub static SELECTINT64ENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectInt64EntityData",
+    name_hash: 3294087607,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SELECTPROPERTYENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectInt64EntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectInt64EntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectInt64EntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -24662,6 +26095,7 @@ impl TypeObject for SelectInt64EntityData {
 
 pub static SELECTINT64ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectInt64EntityData-Array",
+    name_hash: 931734275,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectInt64EntityData"),
@@ -24670,7 +26104,8 @@ pub static SELECTINT64ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectIntEntityData {
     pub _glacier_base: SelectPropertyEntityData,
 }
@@ -24725,12 +26160,15 @@ impl super::core::DataContainerTrait for SelectIntEntityData {
 
 pub static SELECTINTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectIntEntityData",
+    name_hash: 202088181,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SELECTPROPERTYENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectIntEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectIntEntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectIntEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -24760,6 +26198,7 @@ impl TypeObject for SelectIntEntityData {
 
 pub static SELECTINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectIntEntityData-Array",
+    name_hash: 464498625,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectIntEntityData"),
@@ -24768,7 +26207,8 @@ pub static SELECTINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectFloatEntityData {
     pub _glacier_base: SelectPropertyEntityData,
 }
@@ -24823,12 +26263,15 @@ impl super::core::DataContainerTrait for SelectFloatEntityData {
 
 pub static SELECTFLOATENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectFloatEntityData",
+    name_hash: 2024708438,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SELECTPROPERTYENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectFloatEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectFloatEntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectFloatEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -24858,6 +26301,7 @@ impl TypeObject for SelectFloatEntityData {
 
 pub static SELECTFLOATENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectFloatEntityData-Array",
+    name_hash: 2289704674,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectFloatEntityData"),
@@ -24866,7 +26310,8 @@ pub static SELECTFLOATENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectPropertyEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -24927,28 +26372,34 @@ impl super::core::DataContainerTrait for SelectPropertyEntityData {
 
 pub static SELECTPROPERTYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectPropertyEntityData",
+    name_hash: 1351701153,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectPropertyEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectPropertyEntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectPropertyEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(SelectPropertyEntityData, realm),
             },
             FieldInfoData {
                 name: "Inputs",
+                name_hash: 2784267136,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(SelectPropertyEntityData, inputs),
             },
             FieldInfoData {
                 name: "InputSelect",
+                name_hash: 858290427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SelectPropertyEntityData, input_select),
@@ -24980,6 +26431,7 @@ impl TypeObject for SelectPropertyEntityData {
 
 pub static SELECTPROPERTYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectPropertyEntityData-Array",
+    name_hash: 2851765525,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectPropertyEntityData"),
@@ -24988,7 +26440,8 @@ pub static SELECTPROPERTYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PathfindingObjectCategoryAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -25013,12 +26466,15 @@ impl super::core::DataContainerTrait for PathfindingObjectCategoryAsset {
 
 pub static PATHFINDINGOBJECTCATEGORYASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingObjectCategoryAsset",
+    name_hash: 4255129208,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(PathfindingObjectCategoryAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PathfindingObjectCategoryAsset as Default>::default())),
+            create_boxed: || Box::new(<PathfindingObjectCategoryAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -25048,6 +26504,7 @@ impl TypeObject for PathfindingObjectCategoryAsset {
 
 pub static PATHFINDINGOBJECTCATEGORYASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PathfindingObjectCategoryAsset-Array",
+    name_hash: 3352950860,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PathfindingObjectCategoryAsset"),
@@ -25056,7 +26513,8 @@ pub static PATHFINDINGOBJECTCATEGORYASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectAreaTriggerEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -25108,22 +26566,27 @@ impl super::core::DataContainerTrait for ObjectAreaTriggerEntityData {
 
 pub static OBJECTAREATRIGGERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectAreaTriggerEntityData",
+    name_hash: 2134682196,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectAreaTriggerEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectAreaTriggerEntityData as Default>::default())),
+            create_boxed: || Box::new(<ObjectAreaTriggerEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(ObjectAreaTriggerEntityData, realm),
             },
             FieldInfoData {
                 name: "TimeOut",
+                name_hash: 3344659518,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ObjectAreaTriggerEntityData, time_out),
@@ -25155,6 +26618,7 @@ impl TypeObject for ObjectAreaTriggerEntityData {
 
 pub static OBJECTAREATRIGGERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectAreaTriggerEntityData-Array",
+    name_hash: 3310909152,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectAreaTriggerEntityData"),
@@ -25163,7 +26627,8 @@ pub static OBJECTAREATRIGGERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectVariationToIntEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -25206,16 +26671,20 @@ impl super::core::DataContainerTrait for ObjectVariationToIntEntityData {
 
 pub static OBJECTVARIATIONTOINTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationToIntEntityData",
+    name_hash: 1563875970,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectVariationToIntEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectVariationToIntEntityData as Default>::default())),
+            create_boxed: || Box::new(<ObjectVariationToIntEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(ObjectVariationToIntEntityData, realm),
@@ -25247,6 +26716,7 @@ impl TypeObject for ObjectVariationToIntEntityData {
 
 pub static OBJECTVARIATIONTOINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationToIntEntityData-Array",
+    name_hash: 2161875382,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectVariationToIntEntityData"),
@@ -25255,7 +26725,8 @@ pub static OBJECTVARIATIONTOINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformSpaceEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -25298,16 +26769,20 @@ impl super::core::DataContainerTrait for TransformSpaceEntityData {
 
 pub static TRANSFORMSPACEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSpaceEntityData",
+    name_hash: 2627011014,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformSpaceEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformSpaceEntityData as Default>::default())),
+            create_boxed: || Box::new(<TransformSpaceEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TransformSpaceEntityData, realm),
@@ -25339,6 +26814,7 @@ impl TypeObject for TransformSpaceEntityData {
 
 pub static TRANSFORMSPACEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSpaceEntityData-Array",
+    name_hash: 3608813426,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformSpaceEntityData"),
@@ -25347,7 +26823,8 @@ pub static TRANSFORMSPACEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BalancedDilationEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -25435,46 +26912,55 @@ impl super::core::DataContainerTrait for BalancedDilationEntityData {
 
 pub static BALANCEDDILATIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BalancedDilationEntityData",
+    name_hash: 2383975152,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BalancedDilationEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BalancedDilationEntityData as Default>::default())),
+            create_boxed: || Box::new(<BalancedDilationEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(BalancedDilationEntityData, realm),
             },
             FieldInfoData {
                 name: "DilationValue",
+                name_hash: 1503263346,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BalancedDilationEntityData, dilation_value),
             },
             FieldInfoData {
                 name: "RealTimeDuration",
+                name_hash: 1481232916,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BalancedDilationEntityData, real_time_duration),
             },
             FieldInfoData {
                 name: "RecoveryTime",
+                name_hash: 359615635,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(BalancedDilationEntityData, recovery_time),
             },
             FieldInfoData {
                 name: "DilationShape",
+                name_hash: 1499605238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimeShape",
                 rust_offset: offset_of!(BalancedDilationEntityData, dilation_shape),
             },
             FieldInfoData {
                 name: "RecoveryShape",
+                name_hash: 3274079049,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimeShape",
                 rust_offset: offset_of!(BalancedDilationEntityData, recovery_shape),
@@ -25506,6 +26992,7 @@ impl TypeObject for BalancedDilationEntityData {
 
 pub static BALANCEDDILATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BalancedDilationEntityData-Array",
+    name_hash: 1886941380,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BalancedDilationEntityData"),
@@ -25514,7 +27001,8 @@ pub static BALANCEDDILATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DilationEntityData {
     pub _glacier_base: EntityData,
     pub fade_in_time: f32,
@@ -25602,46 +27090,55 @@ impl super::core::DataContainerTrait for DilationEntityData {
 
 pub static DILATIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DilationEntityData",
+    name_hash: 119860786,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DilationEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DilationEntityData as Default>::default())),
+            create_boxed: || Box::new(<DilationEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FadeInTime",
+                name_hash: 1781703921,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DilationEntityData, fade_in_time),
             },
             FieldInfoData {
                 name: "FadeOutTime",
+                name_hash: 1285109176,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DilationEntityData, fade_out_time),
             },
             FieldInfoData {
                 name: "RealTimeDuration",
+                name_hash: 1481232916,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DilationEntityData, real_time_duration),
             },
             FieldInfoData {
                 name: "Priority",
+                name_hash: 3062102871,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DilationPriority",
                 rust_offset: offset_of!(DilationEntityData, priority),
             },
             FieldInfoData {
                 name: "DilationValue",
+                name_hash: 1503263346,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DilationEntityData, dilation_value),
             },
             FieldInfoData {
                 name: "TimeDeltaType",
+                name_hash: 1100516816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimeDeltaType",
                 rust_offset: offset_of!(DilationEntityData, time_delta_type),
@@ -25673,6 +27170,7 @@ impl TypeObject for DilationEntityData {
 
 pub static DILATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DilationEntityData-Array",
+    name_hash: 1470674054,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DilationEntityData"),
@@ -25681,7 +27179,8 @@ pub static DILATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatSelectEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -25751,34 +27250,41 @@ impl super::core::DataContainerTrait for FloatSelectEntityData {
 
 pub static FLOATSELECTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatSelectEntityData",
+    name_hash: 2149687126,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FloatSelectEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatSelectEntityData as Default>::default())),
+            create_boxed: || Box::new(<FloatSelectEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(FloatSelectEntityData, realm),
             },
             FieldInfoData {
                 name: "InPosOrZero",
+                name_hash: 747943761,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatSelectEntityData, in_pos_or_zero),
             },
             FieldInfoData {
                 name: "InNeg",
+                name_hash: 214487662,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatSelectEntityData, in_neg),
             },
             FieldInfoData {
                 name: "Select",
+                name_hash: 3338028653,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatSelectEntityData, select),
@@ -25810,6 +27316,7 @@ impl TypeObject for FloatSelectEntityData {
 
 pub static FLOATSELECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatSelectEntityData-Array",
+    name_hash: 4154041570,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatSelectEntityData"),
@@ -25818,13 +27325,14 @@ pub static FLOATSELECTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatCurveEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
     pub r#in: f32,
     pub output_integral: bool,
-    pub curve: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
+    pub curve: Option<LockedTypeObject /* super::core::FloatCurve */>,
 }
 
 pub trait FloatCurveEntityDataTrait: EntityDataTrait {
@@ -25834,8 +27342,8 @@ pub trait FloatCurveEntityDataTrait: EntityDataTrait {
     fn r#in_mut(&mut self) -> &mut f32;
     fn output_integral(&self) -> &bool;
     fn output_integral_mut(&mut self) -> &mut bool;
-    fn curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
 }
 
 impl FloatCurveEntityDataTrait for FloatCurveEntityData {
@@ -25857,10 +27365,10 @@ impl FloatCurveEntityDataTrait for FloatCurveEntityData {
     fn output_integral_mut(&mut self) -> &mut bool {
         &mut self.output_integral
     }
-    fn curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.curve
     }
-    fn curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.curve
     }
 }
@@ -25888,34 +27396,41 @@ impl super::core::DataContainerTrait for FloatCurveEntityData {
 
 pub static FLOATCURVEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurveEntityData",
+    name_hash: 2229841833,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FloatCurveEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatCurveEntityData as Default>::default())),
+            create_boxed: || Box::new(<FloatCurveEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(FloatCurveEntityData, realm),
             },
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatCurveEntityData, r#in),
             },
             FieldInfoData {
                 name: "OutputIntegral",
+                name_hash: 3008701940,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(FloatCurveEntityData, output_integral),
             },
             FieldInfoData {
                 name: "Curve",
+                name_hash: 212866962,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(FloatCurveEntityData, curve),
@@ -25947,6 +27462,7 @@ impl TypeObject for FloatCurveEntityData {
 
 pub static FLOATCURVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurveEntityData-Array",
+    name_hash: 2921526813,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatCurveEntityData"),
@@ -25955,7 +27471,8 @@ pub static FLOATCURVEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocalPlayerGateEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -25998,16 +27515,20 @@ impl super::core::DataContainerTrait for LocalPlayerGateEntityData {
 
 pub static LOCALPLAYERGATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerGateEntityData",
+    name_hash: 3677842215,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LocalPlayerGateEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocalPlayerGateEntityData as Default>::default())),
+            create_boxed: || Box::new(<LocalPlayerGateEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(LocalPlayerGateEntityData, realm),
@@ -26039,6 +27560,7 @@ impl TypeObject for LocalPlayerGateEntityData {
 
 pub static LOCALPLAYERGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerGateEntityData-Array",
+    name_hash: 3345554579,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LocalPlayerGateEntityData"),
@@ -26047,7 +27569,8 @@ pub static LOCALPLAYERGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformSelectorEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -26117,34 +27640,41 @@ impl super::core::DataContainerTrait for TransformSelectorEntityData {
 
 pub static TRANSFORMSELECTORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSelectorEntityData",
+    name_hash: 209817303,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformSelectorEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformSelectorEntityData as Default>::default())),
+            create_boxed: || Box::new(<TransformSelectorEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TransformSelectorEntityData, realm),
             },
             FieldInfoData {
                 name: "In1",
+                name_hash: 193450867,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(TransformSelectorEntityData, in1),
             },
             FieldInfoData {
                 name: "In2",
+                name_hash: 193450864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(TransformSelectorEntityData, in2),
             },
             FieldInfoData {
                 name: "Selection",
+                name_hash: 299217285,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransformSelectorEntityData, selection),
@@ -26176,6 +27706,7 @@ impl TypeObject for TransformSelectorEntityData {
 
 pub static TRANSFORMSELECTORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSelectorEntityData-Array",
+    name_hash: 3569731555,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformSelectorEntityData"),
@@ -26184,7 +27715,8 @@ pub static TRANSFORMSELECTORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SettingEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -26263,40 +27795,48 @@ impl super::core::DataContainerTrait for SettingEntityData {
 
 pub static SETTINGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SettingEntityData",
+    name_hash: 902383416,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SettingEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SettingEntityData as Default>::default())),
+            create_boxed: || Box::new(<SettingEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(SettingEntityData, realm),
             },
             FieldInfoData {
                 name: "BoolSettingName",
+                name_hash: 2857256474,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(SettingEntityData, bool_setting_name),
             },
             FieldInfoData {
                 name: "IntSettingName",
+                name_hash: 2665330183,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(SettingEntityData, int_setting_name),
             },
             FieldInfoData {
                 name: "FloatSettingName",
+                name_hash: 3117588292,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(SettingEntityData, float_setting_name),
             },
             FieldInfoData {
                 name: "UintSettingName",
+                name_hash: 904839698,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(SettingEntityData, uint_setting_name),
@@ -26328,6 +27868,7 @@ impl TypeObject for SettingEntityData {
 
 pub static SETTINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SettingEntityData-Array",
+    name_hash: 2561847436,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SettingEntityData"),
@@ -26336,7 +27877,8 @@ pub static SETTINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntegratorOrDifferentiatorEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -26424,46 +27966,55 @@ impl super::core::DataContainerTrait for IntegratorOrDifferentiatorEntityData {
 
 pub static INTEGRATORORDIFFERENTIATORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntegratorOrDifferentiatorEntityData",
+    name_hash: 983041532,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(IntegratorOrDifferentiatorEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntegratorOrDifferentiatorEntityData as Default>::default())),
+            create_boxed: || Box::new(<IntegratorOrDifferentiatorEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(IntegratorOrDifferentiatorEntityData, realm),
             },
             FieldInfoData {
                 name: "StartValue",
+                name_hash: 2748522638,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(IntegratorOrDifferentiatorEntityData, start_value),
             },
             FieldInfoData {
                 name: "Input",
+                name_hash: 214522259,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(IntegratorOrDifferentiatorEntityData, input),
             },
             FieldInfoData {
                 name: "Bounded",
+                name_hash: 2541140406,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(IntegratorOrDifferentiatorEntityData, bounded),
             },
             FieldInfoData {
                 name: "MaxValue",
+                name_hash: 408516922,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(IntegratorOrDifferentiatorEntityData, max_value),
             },
             FieldInfoData {
                 name: "MinValue",
+                name_hash: 3371854436,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(IntegratorOrDifferentiatorEntityData, min_value),
@@ -26495,6 +28046,7 @@ impl TypeObject for IntegratorOrDifferentiatorEntityData {
 
 pub static INTEGRATORORDIFFERENTIATORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntegratorOrDifferentiatorEntityData-Array",
+    name_hash: 222375368,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("IntegratorOrDifferentiatorEntityData"),
@@ -26503,7 +28055,8 @@ pub static INTEGRATORORDIFFERENTIATORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProfileEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -26555,22 +28108,27 @@ impl super::core::DataContainerTrait for ProfileEntityData {
 
 pub static PROFILEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProfileEntityData",
+    name_hash: 4191813829,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ProfileEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProfileEntityData as Default>::default())),
+            create_boxed: || Box::new(<ProfileEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(ProfileEntityData, realm),
             },
             FieldInfoData {
                 name: "ProfileName",
+                name_hash: 1665193641,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ProfileEntityData, profile_name),
@@ -26602,6 +28160,7 @@ impl TypeObject for ProfileEntityData {
 
 pub static PROFILEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProfileEntityData-Array",
+    name_hash: 1777121521,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ProfileEntityData"),
@@ -26610,7 +28169,8 @@ pub static PROFILEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -26698,46 +28258,55 @@ impl super::core::DataContainerTrait for CompareEntityData {
 
 pub static COMPAREENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareEntityData",
+    name_hash: 3678807465,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CompareEntityData, realm),
             },
             FieldInfoData {
                 name: "Operator",
+                name_hash: 2153507813,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CompareOp",
                 rust_offset: offset_of!(CompareEntityData, operator),
             },
             FieldInfoData {
                 name: "FloatIn0",
+                name_hash: 1718513826,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CompareEntityData, float_in0),
             },
             FieldInfoData {
                 name: "FloatIn1",
+                name_hash: 1718513827,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CompareEntityData, float_in1),
             },
             FieldInfoData {
                 name: "IntIn0",
+                name_hash: 2784473121,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CompareEntityData, int_in0),
             },
             FieldInfoData {
                 name: "IntIn1",
+                name_hash: 2784473120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CompareEntityData, int_in1),
@@ -26769,6 +28338,7 @@ impl TypeObject for CompareEntityData {
 
 pub static COMPAREENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareEntityData-Array",
+    name_hash: 3997232157,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareEntityData"),
@@ -26792,6 +28362,7 @@ pub enum CompareOp {
 
 pub static COMPAREOP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareOp",
+    name_hash: 1922066461,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -26820,6 +28391,7 @@ impl TypeObject for CompareOp {
 
 pub static COMPAREOP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareOp-Array",
+    name_hash: 452572073,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareOp"),
@@ -26828,7 +28400,8 @@ pub static COMPAREOP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RunningAverageEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -26889,28 +28462,34 @@ impl super::core::DataContainerTrait for RunningAverageEntityData {
 
 pub static RUNNINGAVERAGEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RunningAverageEntityData",
+    name_hash: 295177610,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RunningAverageEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RunningAverageEntityData as Default>::default())),
+            create_boxed: || Box::new(<RunningAverageEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(RunningAverageEntityData, realm),
             },
             FieldInfoData {
                 name: "NumberOfValues",
+                name_hash: 3705372087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RunningAverageEntityData, number_of_values),
             },
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RunningAverageEntityData, r#in),
@@ -26942,6 +28521,7 @@ impl TypeObject for RunningAverageEntityData {
 
 pub static RUNNINGAVERAGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RunningAverageEntityData-Array",
+    name_hash: 1452697790,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RunningAverageEntityData"),
@@ -26950,7 +28530,8 @@ pub static RUNNINGAVERAGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AbsEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -27002,22 +28583,27 @@ impl super::core::DataContainerTrait for AbsEntityData {
 
 pub static ABSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AbsEntityData",
+    name_hash: 3621308766,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AbsEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AbsEntityData as Default>::default())),
+            create_boxed: || Box::new(<AbsEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(AbsEntityData, realm),
             },
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AbsEntityData, r#in),
@@ -27049,6 +28635,7 @@ impl TypeObject for AbsEntityData {
 
 pub static ABSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AbsEntityData-Array",
+    name_hash: 1292348138,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AbsEntityData"),
@@ -27057,7 +28644,8 @@ pub static ABSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VectorMathOpEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -27109,22 +28697,27 @@ impl super::core::DataContainerTrait for VectorMathOpEntityData {
 
 pub static VECTORMATHOPENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorMathOpEntityData",
+    name_hash: 699369496,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VectorMathOpEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VectorMathOpEntityData as Default>::default())),
+            create_boxed: || Box::new(<VectorMathOpEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(VectorMathOpEntityData, realm),
             },
             FieldInfoData {
                 name: "MathOperator",
+                name_hash: 2452100597,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VectorMathOp",
                 rust_offset: offset_of!(VectorMathOpEntityData, math_operator),
@@ -27156,6 +28749,7 @@ impl TypeObject for VectorMathOpEntityData {
 
 pub static VECTORMATHOPENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorMathOpEntityData-Array",
+    name_hash: 3622195756,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("VectorMathOpEntityData"),
@@ -27180,6 +28774,7 @@ pub enum VectorMathOp {
 
 pub static VECTORMATHOP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorMathOp",
+    name_hash: 2487987571,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -27208,6 +28803,7 @@ impl TypeObject for VectorMathOp {
 
 pub static VECTORMATHOP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorMathOp-Array",
+    name_hash: 2026711367,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("VectorMathOp"),
@@ -27216,7 +28812,8 @@ pub static VECTORMATHOP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MathOpEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -27268,22 +28865,27 @@ impl super::core::DataContainerTrait for MathOpEntityData {
 
 pub static MATHOPENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathOpEntityData",
+    name_hash: 296443553,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MathOpEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MathOpEntityData as Default>::default())),
+            create_boxed: || Box::new(<MathOpEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(MathOpEntityData, realm),
             },
             FieldInfoData {
                 name: "Operators",
+                name_hash: 2346281206,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MathOp-Array",
                 rust_offset: offset_of!(MathOpEntityData, operators),
@@ -27315,6 +28917,7 @@ impl TypeObject for MathOpEntityData {
 
 pub static MATHOPENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathOpEntityData-Array",
+    name_hash: 292391189,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MathOpEntityData"),
@@ -27340,6 +28943,7 @@ pub enum MathOp {
 
 pub static MATHOP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathOp",
+    name_hash: 2643222858,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -27368,6 +28972,7 @@ impl TypeObject for MathOp {
 
 pub static MATHOP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathOp-Array",
+    name_hash: 4030385406,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MathOp"),
@@ -27376,7 +28981,8 @@ pub static MATHOP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyCastEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -27473,52 +29079,62 @@ impl super::core::DataContainerTrait for PropertyCastEntityData {
 
 pub static PROPERTYCASTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyCastEntityData",
+    name_hash: 3731952108,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PropertyCastEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyCastEntityData as Default>::default())),
+            create_boxed: || Box::new(<PropertyCastEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PropertyCastEntityData, realm),
             },
             FieldInfoData {
                 name: "Precision",
+                name_hash: 107147283,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyCastEntityData, precision),
             },
             FieldInfoData {
                 name: "BoolValue",
+                name_hash: 176040160,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PropertyCastEntityData, bool_value),
             },
             FieldInfoData {
                 name: "FloatValue",
+                name_hash: 3123792190,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropertyCastEntityData, float_value),
             },
             FieldInfoData {
                 name: "IntValue",
+                name_hash: 5685821,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyCastEntityData, int_value),
             },
             FieldInfoData {
                 name: "UintValue",
+                name_hash: 4018260200,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PropertyCastEntityData, uint_value),
             },
             FieldInfoData {
                 name: "StringValue",
+                name_hash: 1269878171,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(PropertyCastEntityData, string_value),
@@ -27550,6 +29166,7 @@ impl TypeObject for PropertyCastEntityData {
 
 pub static PROPERTYCASTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyCastEntityData-Array",
+    name_hash: 1528852952,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PropertyCastEntityData"),
@@ -27558,7 +29175,8 @@ pub static PROPERTYCASTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolToEventEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -27619,28 +29237,34 @@ impl super::core::DataContainerTrait for BoolToEventEntityData {
 
 pub static BOOLTOEVENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolToEventEntityData",
+    name_hash: 1289509079,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BoolToEventEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolToEventEntityData as Default>::default())),
+            create_boxed: || Box::new(<BoolToEventEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(BoolToEventEntityData, realm),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoolToEventEntityData, value),
             },
             FieldInfoData {
                 name: "InitalEvent",
+                name_hash: 3855319582,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BoolToEventEntityData, inital_event),
@@ -27672,6 +29296,7 @@ impl TypeObject for BoolToEventEntityData {
 
 pub static BOOLTOEVENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolToEventEntityData-Array",
+    name_hash: 3834647011,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BoolToEventEntityData"),
@@ -27680,7 +29305,8 @@ pub static BOOLTOEVENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SwitchPropertyStringEntityData {
     pub _glacier_base: EntityData,
     pub string_properties: Vec<String>,
@@ -27732,22 +29358,27 @@ impl super::core::DataContainerTrait for SwitchPropertyStringEntityData {
 
 pub static SWITCHPROPERTYSTRINGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SwitchPropertyStringEntityData",
+    name_hash: 3264337230,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SwitchPropertyStringEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SwitchPropertyStringEntityData as Default>::default())),
+            create_boxed: || Box::new(<SwitchPropertyStringEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StringProperties",
+                name_hash: 1548227025,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(SwitchPropertyStringEntityData, string_properties),
             },
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(SwitchPropertyStringEntityData, realm),
@@ -27779,6 +29410,7 @@ impl TypeObject for SwitchPropertyStringEntityData {
 
 pub static SWITCHPROPERTYSTRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SwitchPropertyStringEntityData-Array",
+    name_hash: 2311515898,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SwitchPropertyStringEntityData"),
@@ -27787,7 +29419,8 @@ pub static SWITCHPROPERTYSTRINGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyGateEntityData {
     pub _glacier_base: EntityData,
     pub default: bool,
@@ -27902,64 +29535,76 @@ impl super::core::DataContainerTrait for PropertyGateEntityData {
 
 pub static PROPERTYGATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyGateEntityData",
+    name_hash: 2378943582,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PropertyGateEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyGateEntityData as Default>::default())),
+            create_boxed: || Box::new(<PropertyGateEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Default",
+                name_hash: 3998752238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PropertyGateEntityData, default),
             },
             FieldInfoData {
                 name: "WritePropertyOnOpenGate",
+                name_hash: 3761162877,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PropertyGateEntityData, write_property_on_open_gate),
             },
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(PropertyGateEntityData, realm),
             },
             FieldInfoData {
                 name: "BoolIn",
+                name_hash: 2679383756,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PropertyGateEntityData, bool_in),
             },
             FieldInfoData {
                 name: "IntIn",
+                name_hash: 214528497,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyGateEntityData, int_in),
             },
             FieldInfoData {
                 name: "FloatIn",
+                name_hash: 2134484562,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PropertyGateEntityData, float_in),
             },
             FieldInfoData {
                 name: "Vec3In",
+                name_hash: 3146686209,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PropertyGateEntityData, vec3_in),
             },
             FieldInfoData {
                 name: "Vec4In",
+                name_hash: 3146684934,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(PropertyGateEntityData, vec4_in),
             },
             FieldInfoData {
                 name: "TransformIn",
+                name_hash: 2771982766,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(PropertyGateEntityData, transform_in),
@@ -27991,6 +29636,7 @@ impl TypeObject for PropertyGateEntityData {
 
 pub static PROPERTYGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyGateEntityData-Array",
+    name_hash: 1542516202,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PropertyGateEntityData"),
@@ -27999,7 +29645,8 @@ pub static PROPERTYGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventGateEntityData {
     pub _glacier_base: EntityData,
     pub default: bool,
@@ -28051,22 +29698,27 @@ impl super::core::DataContainerTrait for EventGateEntityData {
 
 pub static EVENTGATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventGateEntityData",
+    name_hash: 26719573,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EventGateEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventGateEntityData as Default>::default())),
+            create_boxed: || Box::new(<EventGateEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Default",
+                name_hash: 3998752238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EventGateEntityData, default),
             },
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(EventGateEntityData, realm),
@@ -28098,6 +29750,7 @@ impl TypeObject for EventGateEntityData {
 
 pub static EVENTGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventGateEntityData-Array",
+    name_hash: 3402798433,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventGateEntityData"),
@@ -28106,7 +29759,8 @@ pub static EVENTGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StopWatchEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -28185,40 +29839,48 @@ impl super::core::DataContainerTrait for StopWatchEntityData {
 
 pub static STOPWATCHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StopWatchEntityData",
+    name_hash: 4127089151,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StopWatchEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StopWatchEntityData as Default>::default())),
+            create_boxed: || Box::new(<StopWatchEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(StopWatchEntityData, realm),
             },
             FieldInfoData {
                 name: "UpdatePass",
+                name_hash: 2270785669,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UpdatePass",
                 rust_offset: offset_of!(StopWatchEntityData, update_pass),
             },
             FieldInfoData {
                 name: "Multiplier",
+                name_hash: 2037512782,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StopWatchEntityData, multiplier),
             },
             FieldInfoData {
                 name: "TriggerOnTime",
+                name_hash: 2068878889,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StopWatchEntityData, trigger_on_time),
             },
             FieldInfoData {
                 name: "UseRealDeltaTime",
+                name_hash: 1976456113,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(StopWatchEntityData, use_real_delta_time),
@@ -28250,6 +29912,7 @@ impl TypeObject for StopWatchEntityData {
 
 pub static STOPWATCHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StopWatchEntityData-Array",
+    name_hash: 2878621643,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("StopWatchEntityData"),
@@ -28258,7 +29921,8 @@ pub static STOPWATCHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformToRotationEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -28319,28 +29983,34 @@ impl super::core::DataContainerTrait for TransformToRotationEntityData {
 
 pub static TRANSFORMTOROTATIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformToRotationEntityData",
+    name_hash: 3836313517,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformToRotationEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformToRotationEntityData as Default>::default())),
+            create_boxed: || Box::new(<TransformToRotationEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TransformToRotationEntityData, realm),
             },
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(TransformToRotationEntityData, r#in),
             },
             FieldInfoData {
                 name: "Degrees",
+                name_hash: 3998015778,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransformToRotationEntityData, degrees),
@@ -28372,6 +30042,7 @@ impl TypeObject for TransformToRotationEntityData {
 
 pub static TRANSFORMTOROTATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformToRotationEntityData-Array",
+    name_hash: 1350530073,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformToRotationEntityData"),
@@ -28380,7 +30051,8 @@ pub static TRANSFORMTOROTATIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformModifierEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -28504,70 +30176,83 @@ impl super::core::DataContainerTrait for TransformModifierEntityData {
 
 pub static TRANSFORMMODIFIERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformModifierEntityData",
+    name_hash: 2103929461,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformModifierEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformModifierEntityData as Default>::default())),
+            create_boxed: || Box::new(<TransformModifierEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TransformModifierEntityData, realm),
             },
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(TransformModifierEntityData, r#in),
             },
             FieldInfoData {
                 name: "Left",
+                name_hash: 2089021886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ModifierAxis",
                 rust_offset: offset_of!(TransformModifierEntityData, left),
             },
             FieldInfoData {
                 name: "Up",
+                name_hash: 5862272,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ModifierAxis",
                 rust_offset: offset_of!(TransformModifierEntityData, up),
             },
             FieldInfoData {
                 name: "Forward",
+                name_hash: 1986470206,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ModifierAxis",
                 rust_offset: offset_of!(TransformModifierEntityData, forward),
             },
             FieldInfoData {
                 name: "InvertFullTransform",
+                name_hash: 3821268456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransformModifierEntityData, invert_full_transform),
             },
             FieldInfoData {
                 name: "InvertLeft",
+                name_hash: 3753810092,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransformModifierEntityData, invert_left),
             },
             FieldInfoData {
                 name: "InvertUp",
+                name_hash: 58661394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransformModifierEntityData, invert_up),
             },
             FieldInfoData {
                 name: "InvertForward",
+                name_hash: 3827158252,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransformModifierEntityData, invert_forward),
             },
             FieldInfoData {
                 name: "InvertTranslation",
+                name_hash: 2875527196,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransformModifierEntityData, invert_translation),
@@ -28599,6 +30284,7 @@ impl TypeObject for TransformModifierEntityData {
 
 pub static TRANSFORMMODIFIERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformModifierEntityData-Array",
+    name_hash: 3499498305,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformModifierEntityData"),
@@ -28619,6 +30305,7 @@ pub enum ModifierAxis {
 
 pub static MODIFIERAXIS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ModifierAxis",
+    name_hash: 2116120913,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -28647,6 +30334,7 @@ impl TypeObject for ModifierAxis {
 
 pub static MODIFIERAXIS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ModifierAxis-Array",
+    name_hash: 1836688229,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ModifierAxis"),
@@ -28655,7 +30343,8 @@ pub static MODIFIERAXIS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RotationTransformBuilderEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -28707,22 +30396,27 @@ impl super::core::DataContainerTrait for RotationTransformBuilderEntityData {
 
 pub static ROTATIONTRANSFORMBUILDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotationTransformBuilderEntityData",
+    name_hash: 3705661111,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RotationTransformBuilderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RotationTransformBuilderEntityData as Default>::default())),
+            create_boxed: || Box::new(<RotationTransformBuilderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(RotationTransformBuilderEntityData, realm),
             },
             FieldInfoData {
                 name: "Rotation",
+                name_hash: 48673745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(RotationTransformBuilderEntityData, rotation),
@@ -28754,6 +30448,7 @@ impl TypeObject for RotationTransformBuilderEntityData {
 
 pub static ROTATIONTRANSFORMBUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotationTransformBuilderEntityData-Array",
+    name_hash: 4008902659,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RotationTransformBuilderEntityData"),
@@ -28762,7 +30457,8 @@ pub static ROTATIONTRANSFORMBUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScaleTransformBuilderEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -28814,22 +30510,27 @@ impl super::core::DataContainerTrait for ScaleTransformBuilderEntityData {
 
 pub static SCALETRANSFORMBUILDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScaleTransformBuilderEntityData",
+    name_hash: 1097626235,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ScaleTransformBuilderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScaleTransformBuilderEntityData as Default>::default())),
+            create_boxed: || Box::new(<ScaleTransformBuilderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(ScaleTransformBuilderEntityData, realm),
             },
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(ScaleTransformBuilderEntityData, scale),
@@ -28861,6 +30562,7 @@ impl TypeObject for ScaleTransformBuilderEntityData {
 
 pub static SCALETRANSFORMBUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScaleTransformBuilderEntityData-Array",
+    name_hash: 1361906255,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ScaleTransformBuilderEntityData"),
@@ -28869,7 +30571,8 @@ pub static SCALETRANSFORMBUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformBuilderEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -28966,52 +30669,62 @@ impl super::core::DataContainerTrait for TransformBuilderEntityData {
 
 pub static TRANSFORMBUILDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformBuilderEntityData",
+    name_hash: 3544914659,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformBuilderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformBuilderEntityData as Default>::default())),
+            create_boxed: || Box::new(<TransformBuilderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TransformBuilderEntityData, realm),
             },
             FieldInfoData {
                 name: "OrthoNormalMode",
+                name_hash: 4024835899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "OrthoNormalMode",
                 rust_offset: offset_of!(TransformBuilderEntityData, ortho_normal_mode),
             },
             FieldInfoData {
                 name: "Left",
+                name_hash: 2089021886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TransformBuilderEntityData, left),
             },
             FieldInfoData {
                 name: "Up",
+                name_hash: 5862272,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TransformBuilderEntityData, up),
             },
             FieldInfoData {
                 name: "Forward",
+                name_hash: 1986470206,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TransformBuilderEntityData, forward),
             },
             FieldInfoData {
                 name: "Trans",
+                name_hash: 227190399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TransformBuilderEntityData, trans),
             },
             FieldInfoData {
                 name: "IsWorldSpace",
+                name_hash: 2732047897,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TransformBuilderEntityData, is_world_space),
@@ -29043,6 +30756,7 @@ impl TypeObject for TransformBuilderEntityData {
 
 pub static TRANSFORMBUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformBuilderEntityData-Array",
+    name_hash: 4101369559,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformBuilderEntityData"),
@@ -29063,6 +30777,7 @@ pub enum OrthoNormalMode {
 
 pub static ORTHONORMALMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OrthoNormalMode",
+    name_hash: 4024835899,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -29091,6 +30806,7 @@ impl TypeObject for OrthoNormalMode {
 
 pub static ORTHONORMALMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OrthoNormalMode-Array",
+    name_hash: 169952911,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("OrthoNormalMode"),
@@ -29099,7 +30815,8 @@ pub static ORTHONORMALMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VecBuilderEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -29178,40 +30895,48 @@ impl super::core::DataContainerTrait for VecBuilderEntityData {
 
 pub static VECBUILDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VecBuilderEntityData",
+    name_hash: 3530996639,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VecBuilderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VecBuilderEntityData as Default>::default())),
+            create_boxed: || Box::new(<VecBuilderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(VecBuilderEntityData, realm),
             },
             FieldInfoData {
                 name: "X",
+                name_hash: 177661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VecBuilderEntityData, x),
             },
             FieldInfoData {
                 name: "Y",
+                name_hash: 177660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VecBuilderEntityData, y),
             },
             FieldInfoData {
                 name: "Z",
+                name_hash: 177663,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VecBuilderEntityData, z),
             },
             FieldInfoData {
                 name: "W",
+                name_hash: 177650,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(VecBuilderEntityData, w),
@@ -29243,6 +30968,7 @@ impl TypeObject for VecBuilderEntityData {
 
 pub static VECBUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VecBuilderEntityData-Array",
+    name_hash: 2288590891,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("VecBuilderEntityData"),
@@ -29251,7 +30977,8 @@ pub static VECBUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4BuilderEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -29294,16 +31021,20 @@ impl super::core::DataContainerTrait for Vec4BuilderEntityData {
 
 pub static VEC4BUILDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4BuilderEntityData",
+    name_hash: 727769995,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec4BuilderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4BuilderEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec4BuilderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec4BuilderEntityData, realm),
@@ -29335,6 +31066,7 @@ impl TypeObject for Vec4BuilderEntityData {
 
 pub static VEC4BUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4BuilderEntityData-Array",
+    name_hash: 2441007679,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec4BuilderEntityData"),
@@ -29343,7 +31075,8 @@ pub static VEC4BUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3BuilderEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -29386,16 +31119,20 @@ impl super::core::DataContainerTrait for Vec3BuilderEntityData {
 
 pub static VEC3BUILDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3BuilderEntityData",
+    name_hash: 3178036076,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec3BuilderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3BuilderEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec3BuilderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec3BuilderEntityData, realm),
@@ -29427,6 +31164,7 @@ impl TypeObject for Vec3BuilderEntityData {
 
 pub static VEC3BUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3BuilderEntityData-Array",
+    name_hash: 2294643544,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec3BuilderEntityData"),
@@ -29435,7 +31173,8 @@ pub static VEC3BUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec2BuilderEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -29478,16 +31217,20 @@ impl super::core::DataContainerTrait for Vec2BuilderEntityData {
 
 pub static VEC2BUILDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2BuilderEntityData",
+    name_hash: 1097069005,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec2BuilderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec2BuilderEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec2BuilderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec2BuilderEntityData, realm),
@@ -29519,6 +31262,7 @@ impl TypeObject for Vec2BuilderEntityData {
 
 pub static VEC2BUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2BuilderEntityData-Array",
+    name_hash: 1239860729,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec2BuilderEntityData"),
@@ -29527,7 +31271,8 @@ pub static VEC2BUILDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VecSplitterEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -29597,34 +31342,41 @@ impl super::core::DataContainerTrait for VecSplitterEntityData {
 
 pub static VECSPLITTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VecSplitterEntityData",
+    name_hash: 1960204111,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(VecSplitterEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VecSplitterEntityData as Default>::default())),
+            create_boxed: || Box::new(<VecSplitterEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(VecSplitterEntityData, realm),
             },
             FieldInfoData {
                 name: "Vec2",
+                name_hash: 2089241863,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(VecSplitterEntityData, vec2),
             },
             FieldInfoData {
                 name: "Vec3",
+                name_hash: 2089241862,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(VecSplitterEntityData, vec3),
             },
             FieldInfoData {
                 name: "Vec4",
+                name_hash: 2089241857,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(VecSplitterEntityData, vec4),
@@ -29656,6 +31408,7 @@ impl TypeObject for VecSplitterEntityData {
 
 pub static VECSPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VecSplitterEntityData-Array",
+    name_hash: 2610660475,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("VecSplitterEntityData"),
@@ -29664,7 +31417,8 @@ pub static VECSPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4SplitterEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -29707,16 +31461,20 @@ impl super::core::DataContainerTrait for Vec4SplitterEntityData {
 
 pub static VEC4SPLITTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4SplitterEntityData",
+    name_hash: 3871666395,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec4SplitterEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4SplitterEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec4SplitterEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec4SplitterEntityData, realm),
@@ -29748,6 +31506,7 @@ impl TypeObject for Vec4SplitterEntityData {
 
 pub static VEC4SPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4SplitterEntityData-Array",
+    name_hash: 30037999,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec4SplitterEntityData"),
@@ -29756,7 +31515,8 @@ pub static VEC4SPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3SplitterEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -29799,16 +31559,20 @@ impl super::core::DataContainerTrait for Vec3SplitterEntityData {
 
 pub static VEC3SPLITTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3SplitterEntityData",
+    name_hash: 2454167900,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec3SplitterEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3SplitterEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec3SplitterEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec3SplitterEntityData, realm),
@@ -29840,6 +31604,7 @@ impl TypeObject for Vec3SplitterEntityData {
 
 pub static VEC3SPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3SplitterEntityData-Array",
+    name_hash: 721422824,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec3SplitterEntityData"),
@@ -29848,7 +31613,8 @@ pub static VEC3SPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec2SplitterEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -29891,16 +31657,20 @@ impl super::core::DataContainerTrait for Vec2SplitterEntityData {
 
 pub static VEC2SPLITTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2SplitterEntityData",
+    name_hash: 526976093,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec2SplitterEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec2SplitterEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec2SplitterEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec2SplitterEntityData, realm),
@@ -29932,6 +31702,7 @@ impl TypeObject for Vec2SplitterEntityData {
 
 pub static VEC2SPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2SplitterEntityData-Array",
+    name_hash: 3164766313,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec2SplitterEntityData"),
@@ -29940,7 +31711,8 @@ pub static VEC2SPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EulerTransformEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -30010,34 +31782,41 @@ impl super::core::DataContainerTrait for EulerTransformEntityData {
 
 pub static EULERTRANSFORMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EulerTransformEntityData",
+    name_hash: 2128715977,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EulerTransformEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EulerTransformEntityData as Default>::default())),
+            create_boxed: || Box::new(<EulerTransformEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(EulerTransformEntityData, realm),
             },
             FieldInfoData {
                 name: "Rotation",
+                name_hash: 48673745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EulerTransformEntityData, rotation),
             },
             FieldInfoData {
                 name: "Trans",
+                name_hash: 227190399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EulerTransformEntityData, trans),
             },
             FieldInfoData {
                 name: "Euler",
+                name_hash: 201462510,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ModifierEuler",
                 rust_offset: offset_of!(EulerTransformEntityData, euler),
@@ -30069,6 +31848,7 @@ impl TypeObject for EulerTransformEntityData {
 
 pub static EULERTRANSFORMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EulerTransformEntityData-Array",
+    name_hash: 3748398845,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EulerTransformEntityData"),
@@ -30090,6 +31870,7 @@ pub enum ModifierEuler {
 
 pub static MODIFIEREULER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ModifierEuler",
+    name_hash: 1116601081,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -30118,6 +31899,7 @@ impl TypeObject for ModifierEuler {
 
 pub static MODIFIEREULER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ModifierEuler-Array",
+    name_hash: 3133585869,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ModifierEuler"),
@@ -30126,7 +31908,8 @@ pub static MODIFIEREULER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EulerTransformSplitterEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -30178,22 +31961,27 @@ impl super::core::DataContainerTrait for EulerTransformSplitterEntityData {
 
 pub static EULERTRANSFORMSPLITTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EulerTransformSplitterEntityData",
+    name_hash: 3135852152,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EulerTransformSplitterEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EulerTransformSplitterEntityData as Default>::default())),
+            create_boxed: || Box::new(<EulerTransformSplitterEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(EulerTransformSplitterEntityData, realm),
             },
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(EulerTransformSplitterEntityData, transform),
@@ -30225,6 +32013,7 @@ impl TypeObject for EulerTransformSplitterEntityData {
 
 pub static EULERTRANSFORMSPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EulerTransformSplitterEntityData-Array",
+    name_hash: 2202478668,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EulerTransformSplitterEntityData"),
@@ -30233,7 +32022,8 @@ pub static EULERTRANSFORMSPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformSplitterEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -30285,22 +32075,27 @@ impl super::core::DataContainerTrait for TransformSplitterEntityData {
 
 pub static TRANSFORMSPLITTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSplitterEntityData",
+    name_hash: 2530243187,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformSplitterEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformSplitterEntityData as Default>::default())),
+            create_boxed: || Box::new(<TransformSplitterEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TransformSplitterEntityData, realm),
             },
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(TransformSplitterEntityData, transform),
@@ -30332,6 +32127,7 @@ impl TypeObject for TransformSplitterEntityData {
 
 pub static TRANSFORMSPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSplitterEntityData-Array",
+    name_hash: 3742477895,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformSplitterEntityData"),
@@ -30340,7 +32136,8 @@ pub static TRANSFORMSPLITTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformBlendEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -30419,40 +32216,48 @@ impl super::core::DataContainerTrait for TransformBlendEntityData {
 
 pub static TRANSFORMBLENDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformBlendEntityData",
+    name_hash: 3481727075,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformBlendEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformBlendEntityData as Default>::default())),
+            create_boxed: || Box::new(<TransformBlendEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TransformBlendEntityData, realm),
             },
             FieldInfoData {
                 name: "BlendValue",
+                name_hash: 236872047,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TransformBlendEntityData, blend_value),
             },
             FieldInfoData {
                 name: "BlendValue2",
+                name_hash: 3521810301,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TransformBlendEntityData, blend_value2),
             },
             FieldInfoData {
                 name: "In1",
+                name_hash: 193450867,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(TransformBlendEntityData, in1),
             },
             FieldInfoData {
                 name: "In2",
+                name_hash: 193450864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(TransformBlendEntityData, in2),
@@ -30484,6 +32289,7 @@ impl TypeObject for TransformBlendEntityData {
 
 pub static TRANSFORMBLENDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformBlendEntityData-Array",
+    name_hash: 2728125527,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformBlendEntityData"),
@@ -30492,7 +32298,8 @@ pub static TRANSFORMBLENDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformMultiplierEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -30553,28 +32360,34 @@ impl super::core::DataContainerTrait for TransformMultiplierEntityData {
 
 pub static TRANSFORMMULTIPLIERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformMultiplierEntityData",
+    name_hash: 2549661257,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformMultiplierEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformMultiplierEntityData as Default>::default())),
+            create_boxed: || Box::new(<TransformMultiplierEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TransformMultiplierEntityData, realm),
             },
             FieldInfoData {
                 name: "In1",
+                name_hash: 193450867,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(TransformMultiplierEntityData, in1),
             },
             FieldInfoData {
                 name: "In2",
+                name_hash: 193450864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(TransformMultiplierEntityData, in2),
@@ -30606,6 +32419,7 @@ impl TypeObject for TransformMultiplierEntityData {
 
 pub static TRANSFORMMULTIPLIERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformMultiplierEntityData-Array",
+    name_hash: 63128701,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformMultiplierEntityData"),
@@ -30614,7 +32428,8 @@ pub static TRANSFORMMULTIPLIERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformHubEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -30684,34 +32499,41 @@ impl super::core::DataContainerTrait for TransformHubEntityData {
 
 pub static TRANSFORMHUBENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformHubEntityData",
+    name_hash: 2259450845,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TransformHubEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformHubEntityData as Default>::default())),
+            create_boxed: || Box::new(<TransformHubEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(TransformHubEntityData, realm),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TransformHubEntityData, input_count),
             },
             FieldInfoData {
                 name: "InputSelect",
+                name_hash: 858290427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TransformHubEntityData, input_select),
             },
             FieldInfoData {
                 name: "HashedInput",
+                name_hash: 1165807872,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(TransformHubEntityData, hashed_input),
@@ -30743,6 +32565,7 @@ impl TypeObject for TransformHubEntityData {
 
 pub static TRANSFORMHUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformHubEntityData-Array",
+    name_hash: 427923433,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformHubEntityData"),
@@ -30751,7 +32574,8 @@ pub static TRANSFORMHUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StringHubEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -30821,34 +32645,41 @@ impl super::core::DataContainerTrait for StringHubEntityData {
 
 pub static STRINGHUBENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringHubEntityData",
+    name_hash: 161877252,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StringHubEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StringHubEntityData as Default>::default())),
+            create_boxed: || Box::new(<StringHubEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(StringHubEntityData, realm),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(StringHubEntityData, input_count),
             },
             FieldInfoData {
                 name: "InputSelect",
+                name_hash: 858290427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(StringHubEntityData, input_select),
             },
             FieldInfoData {
                 name: "HashedInput",
+                name_hash: 1165807872,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(StringHubEntityData, hashed_input),
@@ -30880,6 +32711,7 @@ impl TypeObject for StringHubEntityData {
 
 pub static STRINGHUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringHubEntityData-Array",
+    name_hash: 1763320112,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("StringHubEntityData"),
@@ -30888,7 +32720,8 @@ pub static STRINGHUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4HubEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -30958,34 +32791,41 @@ impl super::core::DataContainerTrait for Vec4HubEntityData {
 
 pub static VEC4HUBENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4HubEntityData",
+    name_hash: 579667829,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec4HubEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4HubEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec4HubEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec4HubEntityData, realm),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(Vec4HubEntityData, input_count),
             },
             FieldInfoData {
                 name: "InputSelect",
+                name_hash: 858290427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(Vec4HubEntityData, input_select),
             },
             FieldInfoData {
                 name: "HashedInput",
+                name_hash: 1165807872,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(Vec4HubEntityData, hashed_input),
@@ -31017,6 +32857,7 @@ impl TypeObject for Vec4HubEntityData {
 
 pub static VEC4HUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4HubEntityData-Array",
+    name_hash: 1958574145,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec4HubEntityData"),
@@ -31025,7 +32866,8 @@ pub static VEC4HUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3HubEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -31095,34 +32937,41 @@ impl super::core::DataContainerTrait for Vec3HubEntityData {
 
 pub static VEC3HUBENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3HubEntityData",
+    name_hash: 1640605842,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec3HubEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3HubEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec3HubEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec3HubEntityData, realm),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(Vec3HubEntityData, input_count),
             },
             FieldInfoData {
                 name: "InputSelect",
+                name_hash: 858290427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(Vec3HubEntityData, input_select),
             },
             FieldInfoData {
                 name: "HashedInput",
+                name_hash: 1165807872,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(Vec3HubEntityData, hashed_input),
@@ -31154,6 +33003,7 @@ impl TypeObject for Vec3HubEntityData {
 
 pub static VEC3HUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3HubEntityData-Array",
+    name_hash: 1466150822,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec3HubEntityData"),
@@ -31162,7 +33012,8 @@ pub static VEC3HUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec2HubEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -31232,34 +33083,41 @@ impl super::core::DataContainerTrait for Vec2HubEntityData {
 
 pub static VEC2HUBENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2HubEntityData",
+    name_hash: 1241778867,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Vec2HubEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec2HubEntityData as Default>::default())),
+            create_boxed: || Box::new(<Vec2HubEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Vec2HubEntityData, realm),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(Vec2HubEntityData, input_count),
             },
             FieldInfoData {
                 name: "InputSelect",
+                name_hash: 858290427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(Vec2HubEntityData, input_select),
             },
             FieldInfoData {
                 name: "HashedInput",
+                name_hash: 1165807872,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(Vec2HubEntityData, hashed_input),
@@ -31291,6 +33149,7 @@ impl TypeObject for Vec2HubEntityData {
 
 pub static VEC2HUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2HubEntityData-Array",
+    name_hash: 3059906055,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec2HubEntityData"),
@@ -31299,7 +33158,8 @@ pub static VEC2HUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatHubEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -31369,34 +33229,41 @@ impl super::core::DataContainerTrait for FloatHubEntityData {
 
 pub static FLOATHUBENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatHubEntityData",
+    name_hash: 2082597025,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FloatHubEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatHubEntityData as Default>::default())),
+            create_boxed: || Box::new(<FloatHubEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(FloatHubEntityData, realm),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(FloatHubEntityData, input_count),
             },
             FieldInfoData {
                 name: "InputSelect",
+                name_hash: 858290427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(FloatHubEntityData, input_select),
             },
             FieldInfoData {
                 name: "HashedInput",
+                name_hash: 1165807872,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(FloatHubEntityData, hashed_input),
@@ -31428,6 +33295,7 @@ impl TypeObject for FloatHubEntityData {
 
 pub static FLOATHUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatHubEntityData-Array",
+    name_hash: 3777205013,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatHubEntityData"),
@@ -31436,7 +33304,8 @@ pub static FLOATHUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Int64HubEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -31506,34 +33375,41 @@ impl super::core::DataContainerTrait for Int64HubEntityData {
 
 pub static INT64HUBENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Int64HubEntityData",
+    name_hash: 3158042912,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Int64HubEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Int64HubEntityData as Default>::default())),
+            create_boxed: || Box::new(<Int64HubEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Int64HubEntityData, realm),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(Int64HubEntityData, input_count),
             },
             FieldInfoData {
                 name: "InputSelect",
+                name_hash: 858290427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(Int64HubEntityData, input_select),
             },
             FieldInfoData {
                 name: "HashedInput",
+                name_hash: 1165807872,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(Int64HubEntityData, hashed_input),
@@ -31565,6 +33441,7 @@ impl TypeObject for Int64HubEntityData {
 
 pub static INT64HUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Int64HubEntityData-Array",
+    name_hash: 4110724756,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Int64HubEntityData"),
@@ -31573,7 +33450,8 @@ pub static INT64HUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntHubEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -31643,34 +33521,41 @@ impl super::core::DataContainerTrait for IntHubEntityData {
 
 pub static INTHUBENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntHubEntityData",
+    name_hash: 3631395746,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(IntHubEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntHubEntityData as Default>::default())),
+            create_boxed: || Box::new(<IntHubEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(IntHubEntityData, realm),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IntHubEntityData, input_count),
             },
             FieldInfoData {
                 name: "InputSelect",
+                name_hash: 858290427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IntHubEntityData, input_select),
             },
             FieldInfoData {
                 name: "HashedInput",
+                name_hash: 1165807872,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(IntHubEntityData, hashed_input),
@@ -31702,6 +33587,7 @@ impl TypeObject for IntHubEntityData {
 
 pub static INTHUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntHubEntityData-Array",
+    name_hash: 1828835862,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("IntHubEntityData"),
@@ -31710,7 +33596,8 @@ pub static INTHUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolHubEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -31771,28 +33658,34 @@ impl super::core::DataContainerTrait for BoolHubEntityData {
 
 pub static BOOLHUBENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolHubEntityData",
+    name_hash: 2841572735,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BoolHubEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolHubEntityData as Default>::default())),
+            create_boxed: || Box::new(<BoolHubEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(BoolHubEntityData, realm),
             },
             FieldInfoData {
                 name: "InputSelect",
+                name_hash: 858290427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(BoolHubEntityData, input_select),
             },
             FieldInfoData {
                 name: "HashedInput",
+                name_hash: 1165807872,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(BoolHubEntityData, hashed_input),
@@ -31824,6 +33717,7 @@ impl TypeObject for BoolHubEntityData {
 
 pub static BOOLHUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolHubEntityData-Array",
+    name_hash: 2499115851,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BoolHubEntityData"),
@@ -31832,7 +33726,8 @@ pub static BOOLHUBENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SimpleDofParamConverterEntityData {
     pub _glacier_base: EntityData,
     pub focus_distance: f32,
@@ -31911,40 +33806,48 @@ impl super::core::DataContainerTrait for SimpleDofParamConverterEntityData {
 
 pub static SIMPLEDOFPARAMCONVERTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimpleDofParamConverterEntityData",
+    name_hash: 2693745250,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SimpleDofParamConverterEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SimpleDofParamConverterEntityData as Default>::default())),
+            create_boxed: || Box::new(<SimpleDofParamConverterEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FocusDistance",
+                name_hash: 1402926186,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SimpleDofParamConverterEntityData, focus_distance),
             },
             FieldInfoData {
                 name: "BlurFilterDeviation",
+                name_hash: 2875622063,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SimpleDofParamConverterEntityData, blur_filter_deviation),
             },
             FieldInfoData {
                 name: "NearDistanceScale",
+                name_hash: 4096748582,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SimpleDofParamConverterEntityData, near_distance_scale),
             },
             FieldInfoData {
                 name: "FarDistanceScale",
+                name_hash: 4048208907,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SimpleDofParamConverterEntityData, far_distance_scale),
             },
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SimpleDofParamConverterEntityData, scale),
@@ -31976,6 +33879,7 @@ impl TypeObject for SimpleDofParamConverterEntityData {
 
 pub static SIMPLEDOFPARAMCONVERTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimpleDofParamConverterEntityData-Array",
+    name_hash: 739522902,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SimpleDofParamConverterEntityData"),
@@ -31984,7 +33888,8 @@ pub static SIMPLEDOFPARAMCONVERTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpriteDofParamConverterEntityData {
     pub _glacier_base: EntityData,
     pub sprite_dof_out_focus_start: f32,
@@ -32045,28 +33950,34 @@ impl super::core::DataContainerTrait for SpriteDofParamConverterEntityData {
 
 pub static SPRITEDOFPARAMCONVERTERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpriteDofParamConverterEntityData",
+    name_hash: 620809125,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpriteDofParamConverterEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpriteDofParamConverterEntityData as Default>::default())),
+            create_boxed: || Box::new(<SpriteDofParamConverterEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SpriteDofOutFocusStart",
+                name_hash: 3519671075,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpriteDofParamConverterEntityData, sprite_dof_out_focus_start),
             },
             FieldInfoData {
                 name: "SpriteDofOutFocusEnd",
+                name_hash: 334517932,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpriteDofParamConverterEntityData, sprite_dof_out_focus_end),
             },
             FieldInfoData {
                 name: "SpriteDofMaxBlurFactor",
+                name_hash: 1216601297,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpriteDofParamConverterEntityData, sprite_dof_max_blur_factor),
@@ -32098,6 +34009,7 @@ impl TypeObject for SpriteDofParamConverterEntityData {
 
 pub static SPRITEDOFPARAMCONVERTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpriteDofParamConverterEntityData-Array",
+    name_hash: 1033921553,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SpriteDofParamConverterEntityData"),
@@ -32106,17 +34018,18 @@ pub static SPRITEDOFPARAMCONVERTERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectVariationMultiSwitchEntityData {
     pub _glacier_base: EntityData,
-    pub variations: Vec<Option<Arc<Mutex<dyn ObjectVariationTrait>>>>,
+    pub variations: Vec<Option<LockedTypeObject /* ObjectVariation */>>,
     pub current_index: i32,
     pub set_on_init: bool,
 }
 
 pub trait ObjectVariationMultiSwitchEntityDataTrait: EntityDataTrait {
-    fn variations(&self) -> &Vec<Option<Arc<Mutex<dyn ObjectVariationTrait>>>>;
-    fn variations_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ObjectVariationTrait>>>>;
+    fn variations(&self) -> &Vec<Option<LockedTypeObject /* ObjectVariation */>>;
+    fn variations_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ObjectVariation */>>;
     fn current_index(&self) -> &i32;
     fn current_index_mut(&mut self) -> &mut i32;
     fn set_on_init(&self) -> &bool;
@@ -32124,10 +34037,10 @@ pub trait ObjectVariationMultiSwitchEntityDataTrait: EntityDataTrait {
 }
 
 impl ObjectVariationMultiSwitchEntityDataTrait for ObjectVariationMultiSwitchEntityData {
-    fn variations(&self) -> &Vec<Option<Arc<Mutex<dyn ObjectVariationTrait>>>> {
+    fn variations(&self) -> &Vec<Option<LockedTypeObject /* ObjectVariation */>> {
         &self.variations
     }
-    fn variations_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ObjectVariationTrait>>>> {
+    fn variations_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ObjectVariation */>> {
         &mut self.variations
     }
     fn current_index(&self) -> &i32 {
@@ -32167,28 +34080,34 @@ impl super::core::DataContainerTrait for ObjectVariationMultiSwitchEntityData {
 
 pub static OBJECTVARIATIONMULTISWITCHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationMultiSwitchEntityData",
+    name_hash: 1034134385,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectVariationMultiSwitchEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectVariationMultiSwitchEntityData as Default>::default())),
+            create_boxed: || Box::new(<ObjectVariationMultiSwitchEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Variations",
+                name_hash: 2728063271,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ObjectVariation-Array",
                 rust_offset: offset_of!(ObjectVariationMultiSwitchEntityData, variations),
             },
             FieldInfoData {
                 name: "CurrentIndex",
+                name_hash: 1121794034,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ObjectVariationMultiSwitchEntityData, current_index),
             },
             FieldInfoData {
                 name: "SetOnInit",
+                name_hash: 621813820,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ObjectVariationMultiSwitchEntityData, set_on_init),
@@ -32220,6 +34139,7 @@ impl TypeObject for ObjectVariationMultiSwitchEntityData {
 
 pub static OBJECTVARIATIONMULTISWITCHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationMultiSwitchEntityData-Array",
+    name_hash: 1679386181,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectVariationMultiSwitchEntityData"),
@@ -32228,31 +34148,32 @@ pub static OBJECTVARIATIONMULTISWITCHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectVariationSwitchEntityData {
     pub _glacier_base: EntityData,
-    pub variation1: Option<Arc<Mutex<dyn ObjectVariationTrait>>>,
-    pub variation2: Option<Arc<Mutex<dyn ObjectVariationTrait>>>,
+    pub variation1: Option<LockedTypeObject /* ObjectVariation */>,
+    pub variation2: Option<LockedTypeObject /* ObjectVariation */>,
 }
 
 pub trait ObjectVariationSwitchEntityDataTrait: EntityDataTrait {
-    fn variation1(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>>;
-    fn variation1_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>>;
-    fn variation2(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>>;
-    fn variation2_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>>;
+    fn variation1(&self) -> &Option<LockedTypeObject /* ObjectVariation */>;
+    fn variation1_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */>;
+    fn variation2(&self) -> &Option<LockedTypeObject /* ObjectVariation */>;
+    fn variation2_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */>;
 }
 
 impl ObjectVariationSwitchEntityDataTrait for ObjectVariationSwitchEntityData {
-    fn variation1(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn variation1(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         &self.variation1
     }
-    fn variation1_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn variation1_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         &mut self.variation1
     }
-    fn variation2(&self) -> &Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn variation2(&self) -> &Option<LockedTypeObject /* ObjectVariation */> {
         &self.variation2
     }
-    fn variation2_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ObjectVariationTrait>>> {
+    fn variation2_mut(&mut self) -> &mut Option<LockedTypeObject /* ObjectVariation */> {
         &mut self.variation2
     }
 }
@@ -32280,22 +34201,27 @@ impl super::core::DataContainerTrait for ObjectVariationSwitchEntityData {
 
 pub static OBJECTVARIATIONSWITCHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationSwitchEntityData",
+    name_hash: 1155757048,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectVariationSwitchEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectVariationSwitchEntityData as Default>::default())),
+            create_boxed: || Box::new(<ObjectVariationSwitchEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Variation1",
+                name_hash: 2728063333,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ObjectVariation",
                 rust_offset: offset_of!(ObjectVariationSwitchEntityData, variation1),
             },
             FieldInfoData {
                 name: "Variation2",
+                name_hash: 2728063334,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ObjectVariation",
                 rust_offset: offset_of!(ObjectVariationSwitchEntityData, variation2),
@@ -32327,6 +34253,7 @@ impl TypeObject for ObjectVariationSwitchEntityData {
 
 pub static OBJECTVARIATIONSWITCHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationSwitchEntityData-Array",
+    name_hash: 3366415820,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectVariationSwitchEntityData"),
@@ -32335,7 +34262,8 @@ pub static OBJECTVARIATIONSWITCHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomDelayEntityData {
     pub _glacier_base: EntityData,
     pub min_delay: f32,
@@ -32432,52 +34360,62 @@ impl super::core::DataContainerTrait for RandomDelayEntityData {
 
 pub static RANDOMDELAYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomDelayEntityData",
+    name_hash: 930163488,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RandomDelayEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomDelayEntityData as Default>::default())),
+            create_boxed: || Box::new(<RandomDelayEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MinDelay",
+                name_hash: 3350783098,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomDelayEntityData, min_delay),
             },
             FieldInfoData {
                 name: "MaxDelay",
+                name_hash: 420379940,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomDelayEntityData, max_delay),
             },
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(RandomDelayEntityData, realm),
             },
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomDelayEntityData, auto_start),
             },
             FieldInfoData {
                 name: "RunOnce",
+                name_hash: 709901739,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomDelayEntityData, run_once),
             },
             FieldInfoData {
                 name: "TrueRandom",
+                name_hash: 856584456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomDelayEntityData, true_random),
             },
             FieldInfoData {
                 name: "TimeDeltaType",
+                name_hash: 1100516816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimeDeltaType",
                 rust_offset: offset_of!(RandomDelayEntityData, time_delta_type),
@@ -32509,6 +34447,7 @@ impl TypeObject for RandomDelayEntityData {
 
 pub static RANDOMDELAYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomDelayEntityData-Array",
+    name_hash: 3349377172,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RandomDelayEntityData"),
@@ -32517,7 +34456,8 @@ pub static RANDOMDELAYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DelayEntityData {
     pub _glacier_base: EntityData,
     pub delay: f32,
@@ -32605,46 +34545,55 @@ impl super::core::DataContainerTrait for DelayEntityData {
 
 pub static DELAYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DelayEntityData",
+    name_hash: 502994651,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DelayEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DelayEntityData as Default>::default())),
+            create_boxed: || Box::new(<DelayEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Delay",
+                name_hash: 208768368,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DelayEntityData, delay),
             },
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(DelayEntityData, realm),
             },
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DelayEntityData, auto_start),
             },
             FieldInfoData {
                 name: "RunOnce",
+                name_hash: 709901739,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DelayEntityData, run_once),
             },
             FieldInfoData {
                 name: "RemoveDuplicateEvents",
+                name_hash: 2871488843,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DelayEntityData, remove_duplicate_events),
             },
             FieldInfoData {
                 name: "TimeDeltaType",
+                name_hash: 1100516816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TimeDeltaType",
                 rust_offset: offset_of!(DelayEntityData, time_delta_type),
@@ -32676,6 +34625,7 @@ impl TypeObject for DelayEntityData {
 
 pub static DELAYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DelayEntityData-Array",
+    name_hash: 1854209519,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DelayEntityData"),
@@ -32684,7 +34634,8 @@ pub static DELAYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventOrderGateEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -32772,46 +34723,55 @@ impl super::core::DataContainerTrait for EventOrderGateEntityData {
 
 pub static EVENTORDERGATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventOrderGateEntityData",
+    name_hash: 3181884123,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EventOrderGateEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventOrderGateEntityData as Default>::default())),
+            create_boxed: || Box::new(<EventOrderGateEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(EventOrderGateEntityData, realm),
             },
             FieldInfoData {
                 name: "EventCount",
+                name_hash: 3235225642,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EventOrderGateEntityData, event_count),
             },
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EventOrderGateEntityData, enabled),
             },
             FieldInfoData {
                 name: "DisableOnOpen",
+                name_hash: 1924245956,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EventOrderGateEntityData, disable_on_open),
             },
             FieldInfoData {
                 name: "EventCountdowns",
+                name_hash: 582521963,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(EventOrderGateEntityData, event_countdowns),
             },
             FieldInfoData {
                 name: "SourceHashes",
+                name_hash: 4123925244,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(EventOrderGateEntityData, source_hashes),
@@ -32843,6 +34803,7 @@ impl TypeObject for EventOrderGateEntityData {
 
 pub static EVENTORDERGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventOrderGateEntityData-Array",
+    name_hash: 2620824047,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventOrderGateEntityData"),
@@ -32851,7 +34812,8 @@ pub static EVENTORDERGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventAndGateEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -32903,22 +34865,27 @@ impl super::core::DataContainerTrait for EventAndGateEntityData {
 
 pub static EVENTANDGATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventAndGateEntityData",
+    name_hash: 4151913342,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EventAndGateEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventAndGateEntityData as Default>::default())),
+            create_boxed: || Box::new(<EventAndGateEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(EventAndGateEntityData, realm),
             },
             FieldInfoData {
                 name: "EventCount",
+                name_hash: 3235225642,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EventAndGateEntityData, event_count),
@@ -32950,6 +34917,7 @@ impl TypeObject for EventAndGateEntityData {
 
 pub static EVENTANDGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventAndGateEntityData-Array",
+    name_hash: 1886694474,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventAndGateEntityData"),
@@ -32958,7 +34926,8 @@ pub static EVENTANDGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectEventEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -33019,28 +34988,34 @@ impl super::core::DataContainerTrait for SelectEventEntityData {
 
 pub static SELECTEVENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectEventEntityData",
+    name_hash: 2349330666,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SelectEventEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectEventEntityData as Default>::default())),
+            create_boxed: || Box::new(<SelectEventEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(SelectEventEntityData, realm),
             },
             FieldInfoData {
                 name: "Selected",
+                name_hash: 1570873612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(SelectEventEntityData, selected),
             },
             FieldInfoData {
                 name: "Events",
+                name_hash: 2352146554,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(SelectEventEntityData, events),
@@ -33072,6 +35047,7 @@ impl TypeObject for SelectEventEntityData {
 
 pub static SELECTEVENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectEventEntityData-Array",
+    name_hash: 3566148574,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectEventEntityData"),
@@ -33080,7 +35056,8 @@ pub static SELECTEVENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventSwitchEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -33141,28 +35118,34 @@ impl super::core::DataContainerTrait for EventSwitchEntityData {
 
 pub static EVENTSWITCHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventSwitchEntityData",
+    name_hash: 2726115664,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EventSwitchEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventSwitchEntityData as Default>::default())),
+            create_boxed: || Box::new(<EventSwitchEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(EventSwitchEntityData, realm),
             },
             FieldInfoData {
                 name: "OutEvents",
+                name_hash: 2083855540,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EventSwitchEntityData, out_events),
             },
             FieldInfoData {
                 name: "AutoIncrement",
+                name_hash: 1262167147,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EventSwitchEntityData, auto_increment),
@@ -33194,6 +35177,7 @@ impl TypeObject for EventSwitchEntityData {
 
 pub static EVENTSWITCHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventSwitchEntityData-Array",
+    name_hash: 4282947556,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventSwitchEntityData"),
@@ -33202,7 +35186,8 @@ pub static EVENTSWITCHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UniqueIdEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -33245,16 +35230,20 @@ impl super::core::DataContainerTrait for UniqueIdEntityData {
 
 pub static UNIQUEIDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UniqueIdEntityData",
+    name_hash: 2698123120,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UniqueIdEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UniqueIdEntityData as Default>::default())),
+            create_boxed: || Box::new(<UniqueIdEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(UniqueIdEntityData, realm),
@@ -33286,6 +35275,7 @@ impl TypeObject for UniqueIdEntityData {
 
 pub static UNIQUEIDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UniqueIdEntityData-Array",
+    name_hash: 1852003652,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("UniqueIdEntityData"),
@@ -33294,7 +35284,8 @@ pub static UNIQUEIDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomIntEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -33364,34 +35355,41 @@ impl super::core::DataContainerTrait for RandomIntEntityData {
 
 pub static RANDOMINTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomIntEntityData",
+    name_hash: 2356555110,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RandomIntEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomIntEntityData as Default>::default())),
+            create_boxed: || Box::new(<RandomIntEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(RandomIntEntityData, realm),
             },
             FieldInfoData {
                 name: "Start",
+                name_hash: 230748069,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RandomIntEntityData, start),
             },
             FieldInfoData {
                 name: "Count",
+                name_hash: 212413894,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RandomIntEntityData, count),
             },
             FieldInfoData {
                 name: "TrueRandom",
+                name_hash: 856584456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomIntEntityData, true_random),
@@ -33423,6 +35421,7 @@ impl TypeObject for RandomIntEntityData {
 
 pub static RANDOMINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomIntEntityData-Array",
+    name_hash: 4053338706,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RandomIntEntityData"),
@@ -33431,7 +35430,8 @@ pub static RANDOMINTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomFloatEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -33501,34 +35501,41 @@ impl super::core::DataContainerTrait for RandomFloatEntityData {
 
 pub static RANDOMFLOATENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomFloatEntityData",
+    name_hash: 4134766853,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RandomFloatEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomFloatEntityData as Default>::default())),
+            create_boxed: || Box::new(<RandomFloatEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(RandomFloatEntityData, realm),
             },
             FieldInfoData {
                 name: "Min",
+                name_hash: 193446607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomFloatEntityData, min),
             },
             FieldInfoData {
                 name: "Max",
+                name_hash: 193446865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomFloatEntityData, max),
             },
             FieldInfoData {
                 name: "TrueRandom",
+                name_hash: 856584456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomFloatEntityData, true_random),
@@ -33560,6 +35567,7 @@ impl TypeObject for RandomFloatEntityData {
 
 pub static RANDOMFLOATENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomFloatEntityData-Array",
+    name_hash: 3974066353,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RandomFloatEntityData"),
@@ -33568,7 +35576,8 @@ pub static RANDOMFLOATENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomMultiEventEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -33656,46 +35665,55 @@ impl super::core::DataContainerTrait for RandomMultiEventEntityData {
 
 pub static RANDOMMULTIEVENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomMultiEventEntityData",
+    name_hash: 3195699440,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RandomMultiEventEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomMultiEventEntityData as Default>::default())),
+            create_boxed: || Box::new(<RandomMultiEventEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(RandomMultiEventEntityData, realm),
             },
             FieldInfoData {
                 name: "UniformDistribution",
+                name_hash: 3070004891,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomMultiEventEntityData, uniform_distribution),
             },
             FieldInfoData {
                 name: "DisableOutputOnTrigger",
+                name_hash: 1250184567,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomMultiEventEntityData, disable_output_on_trigger),
             },
             FieldInfoData {
                 name: "ResetOutputsWhenAllHasTriggered",
+                name_hash: 386838442,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomMultiEventEntityData, reset_outputs_when_all_has_triggered),
             },
             FieldInfoData {
                 name: "RandomEventWeight",
+                name_hash: 2700434098,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Float32-Array",
                 rust_offset: offset_of!(RandomMultiEventEntityData, random_event_weight),
             },
             FieldInfoData {
                 name: "TrueRandom",
+                name_hash: 856584456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomMultiEventEntityData, true_random),
@@ -33727,6 +35745,7 @@ impl TypeObject for RandomMultiEventEntityData {
 
 pub static RANDOMMULTIEVENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomMultiEventEntityData-Array",
+    name_hash: 1242881732,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RandomMultiEventEntityData"),
@@ -33735,7 +35754,8 @@ pub static RANDOMMULTIEVENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomEventEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -33805,34 +35825,41 @@ impl super::core::DataContainerTrait for RandomEventEntityData {
 
 pub static RANDOMEVENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomEventEntityData",
+    name_hash: 3660772473,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RandomEventEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomEventEntityData as Default>::default())),
+            create_boxed: || Box::new(<RandomEventEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(RandomEventEntityData, realm),
             },
             FieldInfoData {
                 name: "Probability",
+                name_hash: 35957416,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RandomEventEntityData, probability),
             },
             FieldInfoData {
                 name: "RandomizeFirstOnly",
+                name_hash: 882338790,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomEventEntityData, randomize_first_only),
             },
             FieldInfoData {
                 name: "AutoStart",
+                name_hash: 792615882,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomEventEntityData, auto_start),
@@ -33864,6 +35891,7 @@ impl TypeObject for RandomEventEntityData {
 
 pub static RANDOMEVENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomEventEntityData-Array",
+    name_hash: 1604375373,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RandomEventEntityData"),
@@ -33872,7 +35900,8 @@ pub static RANDOMEVENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocatorEntityData {
     pub _glacier_base: SpatialEntityData,
     pub realm: super::core::Realm,
@@ -33924,16 +35953,20 @@ impl super::core::DataContainerTrait for LocatorEntityData {
 
 pub static LOCATORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocatorEntityData",
+    name_hash: 2361973798,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LocatorEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocatorEntityData as Default>::default())),
+            create_boxed: || Box::new(<LocatorEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(LocatorEntityData, realm),
@@ -33965,6 +35998,7 @@ impl TypeObject for LocatorEntityData {
 
 pub static LOCATORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocatorEntityData-Array",
+    name_hash: 1102317714,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LocatorEntityData"),
@@ -33973,7 +36007,8 @@ pub static LOCATORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CountDownEntityData {
     pub _glacier_base: EntityData,
     pub start_value: i32,
@@ -34034,28 +36069,34 @@ impl super::core::DataContainerTrait for CountDownEntityData {
 
 pub static COUNTDOWNENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CountDownEntityData",
+    name_hash: 3093780031,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CountDownEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CountDownEntityData as Default>::default())),
+            create_boxed: || Box::new(<CountDownEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "StartValue",
+                name_hash: 2748522638,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CountDownEntityData, start_value),
             },
             FieldInfoData {
                 name: "RunOnce",
+                name_hash: 709901739,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CountDownEntityData, run_once),
             },
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CountDownEntityData, realm),
@@ -34087,6 +36128,7 @@ impl TypeObject for CountDownEntityData {
 
 pub static COUNTDOWNENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CountDownEntityData-Array",
+    name_hash: 1404005259,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CountDownEntityData"),
@@ -34095,7 +36137,8 @@ pub static COUNTDOWNENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MathEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -34156,28 +36199,34 @@ impl super::core::DataContainerTrait for MathEntityData {
 
 pub static MATHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntityData",
+    name_hash: 3445723838,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MathEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MathEntityData as Default>::default())),
+            create_boxed: || Box::new(<MathEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(MathEntityData, realm),
             },
             FieldInfoData {
                 name: "EvaluateOnEvent",
+                name_hash: 3873438067,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MathEntityData, evaluate_on_event),
             },
             FieldInfoData {
                 name: "Assembly",
+                name_hash: 1932338331,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MathEntityAssembly",
                 rust_offset: offset_of!(MathEntityData, assembly),
@@ -34209,6 +36258,7 @@ impl TypeObject for MathEntityData {
 
 pub static MATHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntityData-Array",
+    name_hash: 179159818,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MathEntityData"),
@@ -34217,51 +36267,56 @@ pub static MATHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MathEntityAssembly {
-    pub function_calls: Vec<MathEntityFunctionCall>,
-    pub instructions: Vec<MathEntityInstruction>,
+    pub function_calls: Vec<BoxedTypeObject /* MathEntityFunctionCall */>,
+    pub instructions: Vec<BoxedTypeObject /* MathEntityInstruction */>,
 }
 
 pub trait MathEntityAssemblyTrait: TypeObject {
-    fn function_calls(&self) -> &Vec<MathEntityFunctionCall>;
-    fn function_calls_mut(&mut self) -> &mut Vec<MathEntityFunctionCall>;
-    fn instructions(&self) -> &Vec<MathEntityInstruction>;
-    fn instructions_mut(&mut self) -> &mut Vec<MathEntityInstruction>;
+    fn function_calls(&self) -> &Vec<BoxedTypeObject /* MathEntityFunctionCall */>;
+    fn function_calls_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MathEntityFunctionCall */>;
+    fn instructions(&self) -> &Vec<BoxedTypeObject /* MathEntityInstruction */>;
+    fn instructions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MathEntityInstruction */>;
 }
 
 impl MathEntityAssemblyTrait for MathEntityAssembly {
-    fn function_calls(&self) -> &Vec<MathEntityFunctionCall> {
+    fn function_calls(&self) -> &Vec<BoxedTypeObject /* MathEntityFunctionCall */> {
         &self.function_calls
     }
-    fn function_calls_mut(&mut self) -> &mut Vec<MathEntityFunctionCall> {
+    fn function_calls_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MathEntityFunctionCall */> {
         &mut self.function_calls
     }
-    fn instructions(&self) -> &Vec<MathEntityInstruction> {
+    fn instructions(&self) -> &Vec<BoxedTypeObject /* MathEntityInstruction */> {
         &self.instructions
     }
-    fn instructions_mut(&mut self) -> &mut Vec<MathEntityInstruction> {
+    fn instructions_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MathEntityInstruction */> {
         &mut self.instructions
     }
 }
 
 pub static MATHENTITYASSEMBLY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntityAssembly",
+    name_hash: 2722303504,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MathEntityAssembly as Default>::default())),
+            create_boxed: || Box::new(<MathEntityAssembly as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FunctionCalls",
+                name_hash: 2744929814,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MathEntityFunctionCall-Array",
                 rust_offset: offset_of!(MathEntityAssembly, function_calls),
             },
             FieldInfoData {
                 name: "Instructions",
+                name_hash: 1315118574,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MathEntityInstruction-Array",
                 rust_offset: offset_of!(MathEntityAssembly, instructions),
@@ -34293,6 +36348,7 @@ impl TypeObject for MathEntityAssembly {
 
 pub static MATHENTITYASSEMBLY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntityAssembly-Array",
+    name_hash: 3959880740,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MathEntityAssembly"),
@@ -34317,6 +36373,7 @@ pub enum MathEntityType {
 
 pub static MATHENTITYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntityType",
+    name_hash: 3446272566,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -34345,6 +36402,7 @@ impl TypeObject for MathEntityType {
 
 pub static MATHENTITYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntityType-Array",
+    name_hash: 132146818,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MathEntityType"),
@@ -34353,7 +36411,8 @@ pub static MATHENTITYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MathEntityFunctionCall {
     pub parameters: Vec<u32>,
 }
@@ -34374,15 +36433,18 @@ impl MathEntityFunctionCallTrait for MathEntityFunctionCall {
 
 pub static MATHENTITYFUNCTIONCALL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntityFunctionCall",
+    name_hash: 2165835214,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MathEntityFunctionCall as Default>::default())),
+            create_boxed: || Box::new(<MathEntityFunctionCall as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Parameters",
+                name_hash: 3325515039,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint32-Array",
                 rust_offset: offset_of!(MathEntityFunctionCall, parameters),
@@ -34414,6 +36476,7 @@ impl TypeObject for MathEntityFunctionCall {
 
 pub static MATHENTITYFUNCTIONCALL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntityFunctionCall-Array",
+    name_hash: 4249845626,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MathEntityFunctionCall"),
@@ -34422,7 +36485,8 @@ pub static MATHENTITYFUNCTIONCALL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MathEntityInstruction {
     pub code: MathOpCode,
     pub result: i32,
@@ -34470,33 +36534,39 @@ impl MathEntityInstructionTrait for MathEntityInstruction {
 
 pub static MATHENTITYINSTRUCTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntityInstruction",
+    name_hash: 83805718,
     flags: MemberInfoFlags::new(36937),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MathEntityInstruction as Default>::default())),
+            create_boxed: || Box::new(<MathEntityInstruction as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Code",
+                name_hash: 2088844616,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MathOpCode",
                 rust_offset: offset_of!(MathEntityInstruction, code),
             },
             FieldInfoData {
                 name: "Result",
+                name_hash: 3293273164,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(MathEntityInstruction, result),
             },
             FieldInfoData {
                 name: "Param1",
+                name_hash: 3371566619,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(MathEntityInstruction, param1),
             },
             FieldInfoData {
                 name: "Param2",
+                name_hash: 3371566616,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(MathEntityInstruction, param2),
@@ -34528,6 +36598,7 @@ impl TypeObject for MathEntityInstruction {
 
 pub static MATHENTITYINSTRUCTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntityInstruction-Array",
+    name_hash: 3315112738,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MathEntityInstruction"),
@@ -34614,6 +36685,7 @@ pub enum MathOpCode {
 
 pub static MATHOPCODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathOpCode",
+    name_hash: 1680922631,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -34642,6 +36714,7 @@ impl TypeObject for MathOpCode {
 
 pub static MATHOPCODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathOpCode-Array",
+    name_hash: 3344201907,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MathOpCode"),
@@ -34650,7 +36723,8 @@ pub static MATHOPCODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Or4EntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -34729,40 +36803,48 @@ impl super::core::DataContainerTrait for Or4EntityData {
 
 pub static OR4ENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Or4EntityData",
+    name_hash: 2872104391,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Or4EntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Or4EntityData as Default>::default())),
+            create_boxed: || Box::new(<Or4EntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(Or4EntityData, realm),
             },
             FieldInfoData {
                 name: "In1",
+                name_hash: 193450867,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(Or4EntityData, in1),
             },
             FieldInfoData {
                 name: "In2",
+                name_hash: 193450864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(Or4EntityData, in2),
             },
             FieldInfoData {
                 name: "In3",
+                name_hash: 193450865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(Or4EntityData, in3),
             },
             FieldInfoData {
                 name: "In4",
+                name_hash: 193450870,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(Or4EntityData, in4),
@@ -34794,6 +36876,7 @@ impl TypeObject for Or4EntityData {
 
 pub static OR4ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Or4EntityData-Array",
+    name_hash: 301696755,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Or4EntityData"),
@@ -34802,7 +36885,8 @@ pub static OR4ENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct XorEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -34863,28 +36947,34 @@ impl super::core::DataContainerTrait for XorEntityData {
 
 pub static XORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "XorEntityData",
+    name_hash: 987676075,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(XorEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<XorEntityData as Default>::default())),
+            create_boxed: || Box::new(<XorEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(XorEntityData, realm),
             },
             FieldInfoData {
                 name: "In1",
+                name_hash: 193450867,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(XorEntityData, in1),
             },
             FieldInfoData {
                 name: "In2",
+                name_hash: 193450864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(XorEntityData, in2),
@@ -34916,6 +37006,7 @@ impl TypeObject for XorEntityData {
 
 pub static XORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "XorEntityData-Array",
+    name_hash: 3458465055,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("XorEntityData"),
@@ -34924,7 +37015,8 @@ pub static XORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OrEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -34976,22 +37068,27 @@ impl super::core::DataContainerTrait for OrEntityData {
 
 pub static ORENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OrEntityData",
+    name_hash: 3239991987,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(OrEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OrEntityData as Default>::default())),
+            create_boxed: || Box::new(<OrEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(OrEntityData, realm),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(OrEntityData, input_count),
@@ -35023,6 +37120,7 @@ impl TypeObject for OrEntityData {
 
 pub static ORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OrEntityData-Array",
+    name_hash: 3422078471,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("OrEntityData"),
@@ -35031,7 +37129,8 @@ pub static ORENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BitwiseAndEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -35110,40 +37209,48 @@ impl super::core::DataContainerTrait for BitwiseAndEntityData {
 
 pub static BITWISEANDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BitwiseAndEntityData",
+    name_hash: 1050346034,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BitwiseAndEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BitwiseAndEntityData as Default>::default())),
+            create_boxed: || Box::new(<BitwiseAndEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(BitwiseAndEntityData, realm),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(BitwiseAndEntityData, value),
             },
             FieldInfoData {
                 name: "BitShiftValue",
+                name_hash: 4035582033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BitwiseAndEntityData, bit_shift_value),
             },
             FieldInfoData {
                 name: "AndValue",
+                name_hash: 1255941413,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(BitwiseAndEntityData, and_value),
             },
             FieldInfoData {
                 name: "BitShiftAndValue",
+                name_hash: 657097082,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BitwiseAndEntityData, bit_shift_and_value),
@@ -35175,6 +37282,7 @@ impl TypeObject for BitwiseAndEntityData {
 
 pub static BITWISEANDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BitwiseAndEntityData-Array",
+    name_hash: 1549650054,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BitwiseAndEntityData"),
@@ -35183,7 +37291,8 @@ pub static BITWISEANDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AndEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -35235,22 +37344,27 @@ impl super::core::DataContainerTrait for AndEntityData {
 
 pub static ANDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AndEntityData",
+    name_hash: 3199877509,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AndEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AndEntityData as Default>::default())),
+            create_boxed: || Box::new(<AndEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(AndEntityData, realm),
             },
             FieldInfoData {
                 name: "InputCount",
+                name_hash: 1607263120,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(AndEntityData, input_count),
@@ -35282,6 +37396,7 @@ impl TypeObject for AndEntityData {
 
 pub static ANDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AndEntityData-Array",
+    name_hash: 2859370801,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AndEntityData"),
@@ -35290,7 +37405,8 @@ pub static ANDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NotEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -35342,22 +37458,27 @@ impl super::core::DataContainerTrait for NotEntityData {
 
 pub static NOTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NotEntityData",
+    name_hash: 1364427067,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(NotEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NotEntityData as Default>::default())),
+            create_boxed: || Box::new(<NotEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(NotEntityData, realm),
             },
             FieldInfoData {
                 name: "In",
+                name_hash: 5862146,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(NotEntityData, r#in),
@@ -35389,6 +37510,7 @@ impl TypeObject for NotEntityData {
 
 pub static NOTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NotEntityData-Array",
+    name_hash: 3566217359,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("NotEntityData"),
@@ -35397,18 +37519,19 @@ pub static NOTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CreateSchematicsInstanceEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
-    pub asset: Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>>,
+    pub asset: Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */>,
 }
 
 pub trait CreateSchematicsInstanceEntityDataTrait: EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>>;
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>>;
+    fn asset(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */>;
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */>;
 }
 
 impl CreateSchematicsInstanceEntityDataTrait for CreateSchematicsInstanceEntityData {
@@ -35418,10 +37541,10 @@ impl CreateSchematicsInstanceEntityDataTrait for CreateSchematicsInstanceEntityD
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         &mut self.realm
     }
-    fn asset(&self) -> &Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         &self.asset
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::schematics::SchematicsBaseAssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::schematics::SchematicsBaseAsset */> {
         &mut self.asset
     }
 }
@@ -35449,22 +37572,27 @@ impl super::core::DataContainerTrait for CreateSchematicsInstanceEntityData {
 
 pub static CREATESCHEMATICSINSTANCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreateSchematicsInstanceEntityData",
+    name_hash: 384705151,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CreateSchematicsInstanceEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CreateSchematicsInstanceEntityData as Default>::default())),
+            create_boxed: || Box::new(<CreateSchematicsInstanceEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CreateSchematicsInstanceEntityData, realm),
             },
             FieldInfoData {
                 name: "Asset",
+                name_hash: 205976053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SchematicsBaseAsset",
                 rust_offset: offset_of!(CreateSchematicsInstanceEntityData, asset),
@@ -35496,6 +37624,7 @@ impl TypeObject for CreateSchematicsInstanceEntityData {
 
 pub static CREATESCHEMATICSINSTANCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CreateSchematicsInstanceEntityData-Array",
+    name_hash: 2926733387,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CreateSchematicsInstanceEntityData"),
@@ -35504,7 +37633,8 @@ pub static CREATESCHEMATICSINSTANCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GetEntityBusEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -35547,16 +37677,20 @@ impl super::core::DataContainerTrait for GetEntityBusEntityData {
 
 pub static GETENTITYBUSENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetEntityBusEntityData",
+    name_hash: 1995467079,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GetEntityBusEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GetEntityBusEntityData as Default>::default())),
+            create_boxed: || Box::new(<GetEntityBusEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(GetEntityBusEntityData, realm),
@@ -35588,6 +37722,7 @@ impl TypeObject for GetEntityBusEntityData {
 
 pub static GETENTITYBUSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetEntityBusEntityData-Array",
+    name_hash: 2667297395,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("GetEntityBusEntityData"),
@@ -35596,7 +37731,8 @@ pub static GETENTITYBUSENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GetEntityEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -35648,22 +37784,27 @@ impl super::core::DataContainerTrait for GetEntityEntityData {
 
 pub static GETENTITYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetEntityEntityData",
+    name_hash: 3698497315,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GetEntityEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GetEntityEntityData as Default>::default())),
+            create_boxed: || Box::new(<GetEntityEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(GetEntityEntityData, realm),
             },
             FieldInfoData {
                 name: "RuntimeType",
+                name_hash: 3219168833,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeRef",
                 rust_offset: offset_of!(GetEntityEntityData, runtime_type),
@@ -35695,6 +37836,7 @@ impl TypeObject for GetEntityEntityData {
 
 pub static GETENTITYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetEntityEntityData-Array",
+    name_hash: 1779800727,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("GetEntityEntityData"),
@@ -35703,7 +37845,8 @@ pub static GETENTITYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CallFunctionEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -35755,22 +37898,27 @@ impl super::core::DataContainerTrait for CallFunctionEntityData {
 
 pub static CALLFUNCTIONENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CallFunctionEntityData",
+    name_hash: 3565403502,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CallFunctionEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CallFunctionEntityData as Default>::default())),
+            create_boxed: || Box::new(<CallFunctionEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(CallFunctionEntityData, realm),
             },
             FieldInfoData {
                 name: "FunctionType",
+                name_hash: 3597846399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeRef",
                 rust_offset: offset_of!(CallFunctionEntityData, function_type),
@@ -35802,6 +37950,7 @@ impl TypeObject for CallFunctionEntityData {
 
 pub static CALLFUNCTIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CallFunctionEntityData-Array",
+    name_hash: 1410463322,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CallFunctionEntityData"),
@@ -35810,7 +37959,8 @@ pub static CALLFUNCTIONENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityOwnerUid {
     pub id: u32,
 }
@@ -35831,15 +37981,18 @@ impl EntityOwnerUidTrait for EntityOwnerUid {
 
 pub static ENTITYOWNERUID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityOwnerUid",
+    name_hash: 4286675911,
     flags: MemberInfoFlags::new(36937),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityOwnerUid as Default>::default())),
+            create_boxed: || Box::new(<EntityOwnerUid as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntityOwnerUid, id),
@@ -35871,6 +38024,7 @@ impl TypeObject for EntityOwnerUid {
 
 pub static ENTITYOWNERUID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityOwnerUid-Array",
+    name_hash: 2779819251,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EntityOwnerUid"),
@@ -35879,7 +38033,8 @@ pub static ENTITYOWNERUID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityUid {
     pub id: u32,
 }
@@ -35900,15 +38055,18 @@ impl EntityUidTrait for EntityUid {
 
 pub static ENTITYUID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityUid",
+    name_hash: 572031270,
     flags: MemberInfoFlags::new(36937),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityUid as Default>::default())),
+            create_boxed: || Box::new(<EntityUid as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntityUid, id),
@@ -35940,6 +38098,7 @@ impl TypeObject for EntityUid {
 
 pub static ENTITYUID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityUid-Array",
+    name_hash: 2674617746,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EntityUid"),
@@ -35951,6 +38110,7 @@ pub static ENTITYUID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static SETTRANSFORMSPACELOCALTRANSFORM_ENTITYTRANSFORMSPACE_LINEARTRANSFORM__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetTransformSpaceLocalTransform(EntityTransformSpace,LinearTransform)",
+    name_hash: 2141132385,
     flags: MemberInfoFlags::new(793),
     module: "Entity",
     data: TypeInfoData::Unknown,
@@ -35962,6 +38122,7 @@ pub static SETTRANSFORMSPACELOCALTRANSFORM_ENTITYTRANSFORMSPACE_LINEARTRANSFORM_
 
 pub static GETTRANSFORMSPACE_ENTITYTRANSFORMSPACE_ENTITY__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetTransformSpace(EntityTransformSpace,Entity)",
+    name_hash: 2671631038,
     flags: MemberInfoFlags::new(793),
     module: "Entity",
     data: TypeInfoData::Unknown,
@@ -35983,6 +38144,7 @@ pub enum TransformSpaceChildControlSetting {
 
 pub static TRANSFORMSPACECHILDCONTROLSETTING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSpaceChildControlSetting",
+    name_hash: 2062613078,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -36011,6 +38173,7 @@ impl TypeObject for TransformSpaceChildControlSetting {
 
 pub static TRANSFORMSPACECHILDCONTROLSETTING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSpaceChildControlSetting-Array",
+    name_hash: 2235645922,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformSpaceChildControlSetting"),
@@ -36030,6 +38193,7 @@ pub enum TransformSpaceSimulationSetting {
 
 pub static TRANSFORMSPACESIMULATIONSETTING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSpaceSimulationSetting",
+    name_hash: 101247112,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -36058,6 +38222,7 @@ impl TypeObject for TransformSpaceSimulationSetting {
 
 pub static TRANSFORMSPACESIMULATIONSETTING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSpaceSimulationSetting-Array",
+    name_hash: 1465076412,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformSpaceSimulationSetting"),
@@ -36066,7 +38231,8 @@ pub static TRANSFORMSPACESIMULATIONSETTING_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntitySettings {
     pub _glacier_base: super::core::SystemSettings,
     pub editor_game_view_enable: bool,
@@ -36163,58 +38329,69 @@ impl super::core::DataContainerTrait for EntitySettings {
 
 pub static ENTITYSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntitySettings",
+    name_hash: 584462875,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(EntitySettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntitySettings as Default>::default())),
+            create_boxed: || Box::new(<EntitySettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EditorGameViewEnable",
+                name_hash: 1497073094,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EntitySettings, editor_game_view_enable),
             },
             FieldInfoData {
                 name: "SpawnSubLevelsFromLogic",
+                name_hash: 1806867047,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EntitySettings, spawn_sub_levels_from_logic),
             },
             FieldInfoData {
                 name: "ExecutionMode",
+                name_hash: 3634549556,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ExecutionModeType",
                 rust_offset: offset_of!(EntitySettings, execution_mode),
             },
             FieldInfoData {
                 name: "OutOfEntityBusNetworkIdThreshold",
+                name_hash: 2379599769,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EntitySettings, out_of_entity_bus_network_id_threshold),
             },
             FieldInfoData {
                 name: "WorldLimit",
+                name_hash: 624920306,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EntitySettings, world_limit),
             },
             FieldInfoData {
                 name: "DestroyQueuedEntitiesTime",
+                name_hash: 691928986,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EntitySettings, destroy_queued_entities_time),
             },
             FieldInfoData {
                 name: "SubLevelManagerCreateSublevelsTime",
+                name_hash: 2274244788,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EntitySettings, sub_level_manager_create_sublevels_time),
             },
             FieldInfoData {
                 name: "SubLevelManagerDestroySublevelsTime",
+                name_hash: 4086484690,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EntitySettings, sub_level_manager_destroy_sublevels_time),
@@ -36246,6 +38423,7 @@ impl TypeObject for EntitySettings {
 
 pub static ENTITYSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntitySettings-Array",
+    name_hash: 401066159,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EntitySettings"),
@@ -36267,6 +38445,7 @@ pub enum ExecutionModeType {
 
 pub static EXECUTIONMODETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExecutionModeType",
+    name_hash: 1201160588,
     flags: MemberInfoFlags::new(49429),
     module: "Entity",
     data: TypeInfoData::Enum,
@@ -36295,6 +38474,7 @@ impl TypeObject for ExecutionModeType {
 
 pub static EXECUTIONMODETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExecutionModeType-Array",
+    name_hash: 1753289144,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ExecutionModeType"),
@@ -36303,7 +38483,8 @@ pub static EXECUTIONMODETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SwitchEnumEntity {
     pub _glacier_base: EnumLogicEntityWithSingleInput,
 }
@@ -36325,12 +38506,15 @@ impl EntityBusPeerTrait for SwitchEnumEntity {
 
 pub static SWITCHENUMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SwitchEnumEntity",
+    name_hash: 2635896511,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENUMLOGICENTITYWITHSINGLEINPUT_TYPE_INFO),
+        super_class_offset: offset_of!(SwitchEnumEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SwitchEnumEntity as Default>::default())),
+            create_boxed: || Box::new(<SwitchEnumEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -36360,6 +38544,7 @@ impl TypeObject for SwitchEnumEntity {
 
 pub static SWITCHENUMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SwitchEnumEntity-Array",
+    name_hash: 947063819,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SwitchEnumEntity"),
@@ -36368,7 +38553,8 @@ pub static SWITCHENUMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SetEnumEntity {
     pub _glacier_base: EnumLogicEntityWithSingleInput,
 }
@@ -36390,12 +38576,15 @@ impl EntityBusPeerTrait for SetEnumEntity {
 
 pub static SETENUMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetEnumEntity",
+    name_hash: 2023729007,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENUMLOGICENTITYWITHSINGLEINPUT_TYPE_INFO),
+        super_class_offset: offset_of!(SetEnumEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SetEnumEntity as Default>::default())),
+            create_boxed: || Box::new(<SetEnumEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -36425,6 +38614,7 @@ impl TypeObject for SetEnumEntity {
 
 pub static SETENUMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetEnumEntity-Array",
+    name_hash: 48293211,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SetEnumEntity"),
@@ -36433,7 +38623,8 @@ pub static SETENUMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntToEnumEntity {
     pub _glacier_base: Entity,
 }
@@ -36452,12 +38643,15 @@ impl EntityBusPeerTrait for IntToEnumEntity {
 
 pub static INTTOENUMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntToEnumEntity",
+    name_hash: 3477368229,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(IntToEnumEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntToEnumEntity as Default>::default())),
+            create_boxed: || Box::new(<IntToEnumEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -36487,6 +38681,7 @@ impl TypeObject for IntToEnumEntity {
 
 pub static INTTOENUMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntToEnumEntity-Array",
+    name_hash: 2828371473,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("IntToEnumEntity"),
@@ -36495,7 +38690,8 @@ pub static INTTOENUMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumToStringEntity {
     pub _glacier_base: EnumLogicEntityWithSingleInput,
 }
@@ -36517,12 +38713,15 @@ impl EntityBusPeerTrait for EnumToStringEntity {
 
 pub static ENUMTOSTRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumToStringEntity",
+    name_hash: 2056685059,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENUMLOGICENTITYWITHSINGLEINPUT_TYPE_INFO),
+        super_class_offset: offset_of!(EnumToStringEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumToStringEntity as Default>::default())),
+            create_boxed: || Box::new(<EnumToStringEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -36552,6 +38751,7 @@ impl TypeObject for EnumToStringEntity {
 
 pub static ENUMTOSTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumToStringEntity-Array",
+    name_hash: 1233451191,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumToStringEntity"),
@@ -36560,7 +38760,8 @@ pub static ENUMTOSTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumToIntEntity {
     pub _glacier_base: EnumLogicEntityWithSingleInput,
 }
@@ -36582,12 +38783,15 @@ impl EntityBusPeerTrait for EnumToIntEntity {
 
 pub static ENUMTOINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumToIntEntity",
+    name_hash: 2740852773,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENUMLOGICENTITYWITHSINGLEINPUT_TYPE_INFO),
+        super_class_offset: offset_of!(EnumToIntEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumToIntEntity as Default>::default())),
+            create_boxed: || Box::new(<EnumToIntEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -36617,6 +38821,7 @@ impl TypeObject for EnumToIntEntity {
 
 pub static ENUMTOINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumToIntEntity-Array",
+    name_hash: 350556305,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumToIntEntity"),
@@ -36625,7 +38830,8 @@ pub static ENUMTOINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumPropertyGateEntity {
     pub _glacier_base: EnumLogicEntityWithSingleInput,
 }
@@ -36647,12 +38853,15 @@ impl EntityBusPeerTrait for EnumPropertyGateEntity {
 
 pub static ENUMPROPERTYGATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumPropertyGateEntity",
+    name_hash: 2987584861,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENUMLOGICENTITYWITHSINGLEINPUT_TYPE_INFO),
+        super_class_offset: offset_of!(EnumPropertyGateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumPropertyGateEntity as Default>::default())),
+            create_boxed: || Box::new(<EnumPropertyGateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -36682,6 +38891,7 @@ impl TypeObject for EnumPropertyGateEntity {
 
 pub static ENUMPROPERTYGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumPropertyGateEntity-Array",
+    name_hash: 2874616169,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumPropertyGateEntity"),
@@ -36690,7 +38900,8 @@ pub static ENUMPROPERTYGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumLogicEntityWithSingleInput {
     pub _glacier_base: Entity,
 }
@@ -36709,12 +38920,15 @@ impl EntityBusPeerTrait for EnumLogicEntityWithSingleInput {
 
 pub static ENUMLOGICENTITYWITHSINGLEINPUT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumLogicEntityWithSingleInput",
+    name_hash: 3743472557,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(EnumLogicEntityWithSingleInput, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumLogicEntityWithSingleInput as Default>::default())),
+            create_boxed: || Box::new(<EnumLogicEntityWithSingleInput as Default>::default()),
         },
         fields: &[
         ],
@@ -36744,6 +38958,7 @@ impl TypeObject for EnumLogicEntityWithSingleInput {
 
 pub static ENUMLOGICENTITYWITHSINGLEINPUT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumLogicEntityWithSingleInput-Array",
+    name_hash: 4127969305,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumLogicEntityWithSingleInput"),
@@ -36752,7 +38967,8 @@ pub static ENUMLOGICENTITYWITHSINGLEINPUT_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumIntSourceEntity {
     pub _glacier_base: Entity,
 }
@@ -36771,12 +38987,15 @@ impl EntityBusPeerTrait for EnumIntSourceEntity {
 
 pub static ENUMINTSOURCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumIntSourceEntity",
+    name_hash: 3628216739,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(EnumIntSourceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumIntSourceEntity as Default>::default())),
+            create_boxed: || Box::new(<EnumIntSourceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -36806,6 +39025,7 @@ impl TypeObject for EnumIntSourceEntity {
 
 pub static ENUMINTSOURCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumIntSourceEntity-Array",
+    name_hash: 3402568983,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumIntSourceEntity"),
@@ -36814,7 +39034,8 @@ pub static ENUMINTSOURCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareEnumEntity {
     pub _glacier_base: Entity,
 }
@@ -36833,12 +39054,15 @@ impl EntityBusPeerTrait for CompareEnumEntity {
 
 pub static COMPAREENUMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareEnumEntity",
+    name_hash: 2738657578,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareEnumEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareEnumEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareEnumEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -36868,6 +39092,7 @@ impl TypeObject for CompareEnumEntity {
 
 pub static COMPAREENUMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareEnumEntity-Array",
+    name_hash: 42021790,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareEnumEntity"),
@@ -36876,7 +39101,8 @@ pub static COMPAREENUMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityBusPeer {
 }
 
@@ -36888,12 +39114,15 @@ impl EntityBusPeerTrait for EntityBusPeer {
 
 pub static ENTITYBUSPEER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityBusPeer",
+    name_hash: 1583088120,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityBusPeer as Default>::default())),
+            create_boxed: || Box::new(<EntityBusPeer as Default>::default()),
         },
         fields: &[
         ],
@@ -36923,6 +39152,7 @@ impl TypeObject for EntityBusPeer {
 
 pub static ENTITYBUSPEER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityBusPeer-Array",
+    name_hash: 3922885580,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EntityBusPeer"),
@@ -36931,7 +39161,8 @@ pub static ENTITYBUSPEER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityEvent {
 }
 
@@ -36943,12 +39174,15 @@ impl EntityEventTrait for EntityEvent {
 
 pub static ENTITYEVENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityEvent",
+    name_hash: 190648850,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityEvent as Default>::default())),
+            create_boxed: || Box::new(<EntityEvent as Default>::default()),
         },
         fields: &[
         ],
@@ -36978,6 +39212,7 @@ impl TypeObject for EntityEvent {
 
 pub static ENTITYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityEvent-Array",
+    name_hash: 3275766054,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EntityEvent"),
@@ -36986,7 +39221,8 @@ pub static ENTITYEVENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EntityBus {
 }
 
@@ -36998,12 +39234,15 @@ impl EntityBusTrait for EntityBus {
 
 pub static ENTITYBUS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityBus",
+    name_hash: 572055930,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EntityBus as Default>::default())),
+            create_boxed: || Box::new(<EntityBus as Default>::default()),
         },
         fields: &[
         ],
@@ -37033,6 +39272,7 @@ impl TypeObject for EntityBus {
 
 pub static ENTITYBUS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EntityBus-Array",
+    name_hash: 2621781070,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EntityBus"),
@@ -37041,7 +39281,8 @@ pub static ENTITYBUS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DataSourceQueryEntity {
     pub _glacier_base: Entity,
 }
@@ -37060,12 +39301,15 @@ impl EntityBusPeerTrait for DataSourceQueryEntity {
 
 pub static DATASOURCEQUERYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataSourceQueryEntity",
+    name_hash: 2558048217,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(DataSourceQueryEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DataSourceQueryEntity as Default>::default())),
+            create_boxed: || Box::new(<DataSourceQueryEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -37095,6 +39339,7 @@ impl TypeObject for DataSourceQueryEntity {
 
 pub static DATASOURCEQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataSourceQueryEntity-Array",
+    name_hash: 3645580781,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DataSourceQueryEntity"),
@@ -37103,7 +39348,8 @@ pub static DATASOURCEQUERYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumToStringData {
     pub _glacier_base: ImpliedEnumTypeLogicEntityData,
 }
@@ -37155,12 +39401,15 @@ impl super::core::DataContainerTrait for EnumToStringData {
 
 pub static ENUMTOSTRINGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumToStringData",
+    name_hash: 2108008360,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IMPLIEDENUMTYPELOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EnumToStringData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumToStringData as Default>::default())),
+            create_boxed: || Box::new(<EnumToStringData as Default>::default()),
         },
         fields: &[
         ],
@@ -37190,6 +39439,7 @@ impl TypeObject for EnumToStringData {
 
 pub static ENUMTOSTRINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumToStringData-Array",
+    name_hash: 3655510300,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumToStringData"),
@@ -37198,7 +39448,8 @@ pub static ENUMTOSTRINGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumToIntData {
     pub _glacier_base: ImpliedEnumTypeLogicEntityData,
 }
@@ -37250,12 +39501,15 @@ impl super::core::DataContainerTrait for EnumToIntData {
 
 pub static ENUMTOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumToIntData",
+    name_hash: 3051238094,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IMPLIEDENUMTYPELOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EnumToIntData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumToIntData as Default>::default())),
+            create_boxed: || Box::new(<EnumToIntData as Default>::default()),
         },
         fields: &[
         ],
@@ -37285,6 +39539,7 @@ impl TypeObject for EnumToIntData {
 
 pub static ENUMTOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumToIntData-Array",
+    name_hash: 725838970,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumToIntData"),
@@ -37293,7 +39548,8 @@ pub static ENUMTOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumPropertyGateEntityData {
     pub _glacier_base: ImpliedEnumTypeLogicEntityData,
     pub default: bool,
@@ -37363,22 +39619,27 @@ impl super::core::DataContainerTrait for EnumPropertyGateEntityData {
 
 pub static ENUMPROPERTYGATEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumPropertyGateEntityData",
+    name_hash: 841908269,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IMPLIEDENUMTYPELOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EnumPropertyGateEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumPropertyGateEntityData as Default>::default())),
+            create_boxed: || Box::new(<EnumPropertyGateEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Default",
+                name_hash: 3998752238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EnumPropertyGateEntityData, default),
             },
             FieldInfoData {
                 name: "WritePropertyOnOpenGate",
+                name_hash: 3761162877,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EnumPropertyGateEntityData, write_property_on_open_gate),
@@ -37410,6 +39671,7 @@ impl TypeObject for EnumPropertyGateEntityData {
 
 pub static ENUMPROPERTYGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumPropertyGateEntityData-Array",
+    name_hash: 1793250457,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumPropertyGateEntityData"),
@@ -37418,7 +39680,8 @@ pub static ENUMPROPERTYGATEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumDebugEntityData {
     pub _glacier_base: ImpliedEnumTypeLogicEntityData,
     pub text_color: super::core::Vec3,
@@ -37551,64 +39814,76 @@ impl super::core::DataContainerTrait for EnumDebugEntityData {
 
 pub static ENUMDEBUGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumDebugEntityData",
+    name_hash: 4014315660,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IMPLIEDENUMTYPELOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EnumDebugEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumDebugEntityData as Default>::default())),
+            create_boxed: || Box::new(<EnumDebugEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TextColor",
+                name_hash: 2527550245,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EnumDebugEntityData, text_color),
             },
             FieldInfoData {
                 name: "ScreenPosition",
+                name_hash: 2288910864,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(EnumDebugEntityData, screen_position),
             },
             FieldInfoData {
                 name: "WorldPosition",
+                name_hash: 2133906686,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EnumDebugEntityData, world_position),
             },
             FieldInfoData {
                 name: "ValuePrefix",
+                name_hash: 1051050718,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EnumDebugEntityData, value_prefix),
             },
             FieldInfoData {
                 name: "Multiline",
+                name_hash: 1101961090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EnumDebugEntityData, multiline),
             },
             FieldInfoData {
                 name: "ShowTransformInWorld",
+                name_hash: 813393455,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EnumDebugEntityData, show_transform_in_world),
             },
             FieldInfoData {
                 name: "ShowTransformCoordinates",
+                name_hash: 3087196475,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EnumDebugEntityData, show_transform_coordinates),
             },
             FieldInfoData {
                 name: "DefaultVisible",
+                name_hash: 3341302816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EnumDebugEntityData, default_visible),
             },
             FieldInfoData {
                 name: "TextScale",
+                name_hash: 2508713728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EnumDebugEntityData, text_scale),
@@ -37640,6 +39915,7 @@ impl TypeObject for EnumDebugEntityData {
 
 pub static ENUMDEBUGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumDebugEntityData-Array",
+    name_hash: 1754507448,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumDebugEntityData"),
@@ -37648,7 +39924,8 @@ pub static ENUMDEBUGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ImpliedEnumTypeLogicEntityData {
     pub _glacier_base: EnumLogicEntityBaseData,
 }
@@ -37697,12 +39974,15 @@ impl super::core::DataContainerTrait for ImpliedEnumTypeLogicEntityData {
 
 pub static IMPLIEDENUMTYPELOGICENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ImpliedEnumTypeLogicEntityData",
+    name_hash: 1181247707,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENUMLOGICENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ImpliedEnumTypeLogicEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ImpliedEnumTypeLogicEntityData as Default>::default())),
+            create_boxed: || Box::new(<ImpliedEnumTypeLogicEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -37732,6 +40012,7 @@ impl TypeObject for ImpliedEnumTypeLogicEntityData {
 
 pub static IMPLIEDENUMTYPELOGICENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ImpliedEnumTypeLogicEntityData-Array",
+    name_hash: 2619854831,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ImpliedEnumTypeLogicEntityData"),
@@ -37740,7 +40021,8 @@ pub static IMPLIEDENUMTYPELOGICENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ExplicitEnumTypeLogicEntityData {
     pub _glacier_base: EnumLogicEntityBaseData,
 }
@@ -37789,12 +40071,15 @@ impl super::core::DataContainerTrait for ExplicitEnumTypeLogicEntityData {
 
 pub static EXPLICITENUMTYPELOGICENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExplicitEnumTypeLogicEntityData",
+    name_hash: 3536586557,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENUMLOGICENTITYBASEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ExplicitEnumTypeLogicEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ExplicitEnumTypeLogicEntityData as Default>::default())),
+            create_boxed: || Box::new(<ExplicitEnumTypeLogicEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -37824,6 +40109,7 @@ impl TypeObject for ExplicitEnumTypeLogicEntityData {
 
 pub static EXPLICITENUMTYPELOGICENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ExplicitEnumTypeLogicEntityData-Array",
+    name_hash: 316433289,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ExplicitEnumTypeLogicEntityData"),
@@ -37832,7 +40118,8 @@ pub static EXPLICITENUMTYPELOGICENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumLogicEntityBaseData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
@@ -37884,22 +40171,27 @@ impl super::core::DataContainerTrait for EnumLogicEntityBaseData {
 
 pub static ENUMLOGICENTITYBASEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumLogicEntityBaseData",
+    name_hash: 3323427206,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EnumLogicEntityBaseData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumLogicEntityBaseData as Default>::default())),
+            create_boxed: || Box::new(<EnumLogicEntityBaseData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(EnumLogicEntityBaseData, realm),
             },
             FieldInfoData {
                 name: "TypeNameHash",
+                name_hash: 148584552,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EnumLogicEntityBaseData, type_name_hash),
@@ -37931,6 +40223,7 @@ impl TypeObject for EnumLogicEntityBaseData {
 
 pub static ENUMLOGICENTITYBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumLogicEntityBaseData-Array",
+    name_hash: 2662803122,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumLogicEntityBaseData"),
@@ -37939,22 +40232,23 @@ pub static ENUMLOGICENTITYBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumIntSourceEntityData {
     pub _glacier_base: ExplicitEnumTypeLogicEntityData,
-    pub enum_int_output_properties: Vec<EnumIntSourceProperty>,
+    pub enum_int_output_properties: Vec<BoxedTypeObject /* EnumIntSourceProperty */>,
 }
 
 pub trait EnumIntSourceEntityDataTrait: ExplicitEnumTypeLogicEntityDataTrait {
-    fn enum_int_output_properties(&self) -> &Vec<EnumIntSourceProperty>;
-    fn enum_int_output_properties_mut(&mut self) -> &mut Vec<EnumIntSourceProperty>;
+    fn enum_int_output_properties(&self) -> &Vec<BoxedTypeObject /* EnumIntSourceProperty */>;
+    fn enum_int_output_properties_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EnumIntSourceProperty */>;
 }
 
 impl EnumIntSourceEntityDataTrait for EnumIntSourceEntityData {
-    fn enum_int_output_properties(&self) -> &Vec<EnumIntSourceProperty> {
+    fn enum_int_output_properties(&self) -> &Vec<BoxedTypeObject /* EnumIntSourceProperty */> {
         &self.enum_int_output_properties
     }
-    fn enum_int_output_properties_mut(&mut self) -> &mut Vec<EnumIntSourceProperty> {
+    fn enum_int_output_properties_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EnumIntSourceProperty */> {
         &mut self.enum_int_output_properties
     }
 }
@@ -38000,16 +40294,20 @@ impl super::core::DataContainerTrait for EnumIntSourceEntityData {
 
 pub static ENUMINTSOURCEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumIntSourceEntityData",
+    name_hash: 2879268563,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EXPLICITENUMTYPELOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EnumIntSourceEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumIntSourceEntityData as Default>::default())),
+            create_boxed: || Box::new(<EnumIntSourceEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EnumIntOutputProperties",
+                name_hash: 3643105371,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EnumIntSourceProperty-Array",
                 rust_offset: offset_of!(EnumIntSourceEntityData, enum_int_output_properties),
@@ -38041,6 +40339,7 @@ impl TypeObject for EnumIntSourceEntityData {
 
 pub static ENUMINTSOURCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumIntSourceEntityData-Array",
+    name_hash: 3417616871,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumIntSourceEntityData"),
@@ -38049,7 +40348,8 @@ pub static ENUMINTSOURCEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumIntSourceProperty {
     pub enum_value: i32,
     pub output_property_hash: u32,
@@ -38079,21 +40379,25 @@ impl EnumIntSourcePropertyTrait for EnumIntSourceProperty {
 
 pub static ENUMINTSOURCEPROPERTY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumIntSourceProperty",
+    name_hash: 1379679519,
     flags: MemberInfoFlags::new(36937),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumIntSourceProperty as Default>::default())),
+            create_boxed: || Box::new(<EnumIntSourceProperty as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EnumValue",
+                name_hash: 1043067517,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EnumIntSourceProperty, enum_value),
             },
             FieldInfoData {
                 name: "OutputPropertyHash",
+                name_hash: 4205522447,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EnumIntSourceProperty, output_property_hash),
@@ -38125,6 +40429,7 @@ impl TypeObject for EnumIntSourceProperty {
 
 pub static ENUMINTSOURCEPROPERTY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumIntSourceProperty-Array",
+    name_hash: 2645148075,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EnumIntSourceProperty"),
@@ -38133,7 +40438,8 @@ pub static ENUMINTSOURCEPROPERTY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareEnumEntityData {
     pub _glacier_base: ImpliedEnumTypeLogicEntityData,
     pub trigger_on_property_change: bool,
@@ -38221,34 +40527,41 @@ impl super::core::DataContainerTrait for CompareEnumEntityData {
 
 pub static COMPAREENUMENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareEnumEntityData",
+    name_hash: 3031865370,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IMPLIEDENUMTYPELOGICENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CompareEnumEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareEnumEntityData as Default>::default())),
+            create_boxed: || Box::new(<CompareEnumEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TriggerOnPropertyChange",
+                name_hash: 3134109917,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CompareEnumEntityData, trigger_on_property_change),
             },
             FieldInfoData {
                 name: "TriggerOnStart",
+                name_hash: 3859836348,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CompareEnumEntityData, trigger_on_start),
             },
             FieldInfoData {
                 name: "AlwaysSend",
+                name_hash: 579845256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CompareEnumEntityData, always_send),
             },
             FieldInfoData {
                 name: "EnumDefaultValue",
+                name_hash: 2903438422,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CompareEnumEntityData, enum_default_value),
@@ -38280,6 +40593,7 @@ impl TypeObject for CompareEnumEntityData {
 
 pub static COMPAREENUMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareEnumEntityData-Array",
+    name_hash: 2309331758,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareEnumEntityData"),
@@ -38288,19 +40602,20 @@ pub static COMPAREENUMENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DataSourceQueryEntityData {
     pub _glacier_base: EntityData,
     pub realm: super::core::Realm,
-    pub in_data: Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>,
+    pub in_data: Option<LockedTypeObject /* super::core::DataContainer */>,
     pub array_index: i32,
 }
 
 pub trait DataSourceQueryEntityDataTrait: EntityDataTrait {
     fn realm(&self) -> &super::core::Realm;
     fn realm_mut(&mut self) -> &mut super::core::Realm;
-    fn in_data(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
-    fn in_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>>;
+    fn in_data(&self) -> &Option<LockedTypeObject /* super::core::DataContainer */>;
+    fn in_data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DataContainer */>;
     fn array_index(&self) -> &i32;
     fn array_index_mut(&mut self) -> &mut i32;
 }
@@ -38312,10 +40627,10 @@ impl DataSourceQueryEntityDataTrait for DataSourceQueryEntityData {
     fn realm_mut(&mut self) -> &mut super::core::Realm {
         &mut self.realm
     }
-    fn in_data(&self) -> &Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
+    fn in_data(&self) -> &Option<LockedTypeObject /* super::core::DataContainer */> {
         &self.in_data
     }
-    fn in_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::DataContainerTrait>>> {
+    fn in_data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::DataContainer */> {
         &mut self.in_data
     }
     fn array_index(&self) -> &i32 {
@@ -38349,28 +40664,34 @@ impl super::core::DataContainerTrait for DataSourceQueryEntityData {
 
 pub static DATASOURCEQUERYENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataSourceQueryEntityData",
+    name_hash: 322013865,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DataSourceQueryEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DataSourceQueryEntityData as Default>::default())),
+            create_boxed: || Box::new(<DataSourceQueryEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Realm",
+                name_hash: 229961746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Realm",
                 rust_offset: offset_of!(DataSourceQueryEntityData, realm),
             },
             FieldInfoData {
                 name: "InData",
+                name_hash: 2782775090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(DataSourceQueryEntityData, in_data),
             },
             FieldInfoData {
                 name: "ArrayIndex",
+                name_hash: 3612301602,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(DataSourceQueryEntityData, array_index),
@@ -38402,6 +40723,7 @@ impl TypeObject for DataSourceQueryEntityData {
 
 pub static DATASOURCEQUERYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataSourceQueryEntityData-Array",
+    name_hash: 3831763229,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DataSourceQueryEntityData"),
@@ -38410,7 +40732,8 @@ pub static DATASOURCEQUERYENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DataSourceQueryFieldDefinition {
     pub name: String,
     pub type_name_hash: u32,
@@ -38458,33 +40781,39 @@ impl DataSourceQueryFieldDefinitionTrait for DataSourceQueryFieldDefinition {
 
 pub static DATASOURCEQUERYFIELDDEFINITION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataSourceQueryFieldDefinition",
+    name_hash: 2256796981,
     flags: MemberInfoFlags::new(73),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DataSourceQueryFieldDefinition as Default>::default())),
+            create_boxed: || Box::new(<DataSourceQueryFieldDefinition as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(DataSourceQueryFieldDefinition, name),
             },
             FieldInfoData {
                 name: "TypeNameHash",
+                name_hash: 148584552,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DataSourceQueryFieldDefinition, type_name_hash),
             },
             FieldInfoData {
                 name: "IsArray",
+                name_hash: 2763287494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DataSourceQueryFieldDefinition, is_array),
             },
             FieldInfoData {
                 name: "EditorPropertyType",
+                name_hash: 2582409307,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(DataSourceQueryFieldDefinition, editor_property_type),
@@ -38516,6 +40845,7 @@ impl TypeObject for DataSourceQueryFieldDefinition {
 
 pub static DATASOURCEQUERYFIELDDEFINITION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataSourceQueryFieldDefinition-Array",
+    name_hash: 2813689217,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DataSourceQueryFieldDefinition"),
@@ -38524,7 +40854,8 @@ pub static DATASOURCEQUERYFIELDDEFINITION_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyWrapper {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -38540,12 +40871,15 @@ impl super::core::DataContainerTrait for PropertyWrapper {
 
 pub static PROPERTYWRAPPER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyWrapper",
+    name_hash: 4259064785,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(PropertyWrapper, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyWrapper as Default>::default())),
+            create_boxed: || Box::new(<PropertyWrapper as Default>::default()),
         },
         fields: &[
         ],
@@ -38575,6 +40909,7 @@ impl TypeObject for PropertyWrapper {
 
 pub static PROPERTYWRAPPER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyWrapper-Array",
+    name_hash: 2650160613,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PropertyWrapper"),
@@ -38583,7 +40918,8 @@ pub static PROPERTYWRAPPER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BundleManagerBundleUnloadMessage {
 }
 
@@ -38595,11 +40931,13 @@ impl BundleManagerBundleUnloadMessageTrait for BundleManagerBundleUnloadMessage 
 
 pub static BUNDLEMANAGERBUNDLEUNLOADMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleManagerBundleUnloadMessage",
+    name_hash: 1895756256,
     flags: MemberInfoFlags::new(36937),
     module: "Entity",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BundleManagerBundleUnloadMessage as Default>::default())),
+            create_boxed: || Box::new(<BundleManagerBundleUnloadMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -38626,7 +40964,8 @@ impl TypeObject for BundleManagerBundleUnloadMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WriteArrayElementEntity {
     pub _glacier_base: Entity,
 }
@@ -38645,12 +40984,15 @@ impl EntityBusPeerTrait for WriteArrayElementEntity {
 
 pub static WRITEARRAYELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriteArrayElementEntity",
+    name_hash: 1719773316,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(WriteArrayElementEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WriteArrayElementEntity as Default>::default())),
+            create_boxed: || Box::new(<WriteArrayElementEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -38680,6 +41022,7 @@ impl TypeObject for WriteArrayElementEntity {
 
 pub static WRITEARRAYELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriteArrayElementEntity-Array",
+    name_hash: 3189529776,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WriteArrayElementEntity"),
@@ -38688,7 +41031,8 @@ pub static WRITEARRAYELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReadArraySizeEntity {
     pub _glacier_base: Entity,
 }
@@ -38707,12 +41051,15 @@ impl EntityBusPeerTrait for ReadArraySizeEntity {
 
 pub static READARRAYSIZEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadArraySizeEntity",
+    name_hash: 921159888,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ReadArraySizeEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReadArraySizeEntity as Default>::default())),
+            create_boxed: || Box::new(<ReadArraySizeEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -38742,6 +41089,7 @@ impl TypeObject for ReadArraySizeEntity {
 
 pub static READARRAYSIZEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadArraySizeEntity-Array",
+    name_hash: 4245348,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ReadArraySizeEntity"),
@@ -38750,7 +41098,8 @@ pub static READARRAYSIZEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReadArrayElementEntity {
     pub _glacier_base: Entity,
 }
@@ -38769,12 +41118,15 @@ impl EntityBusPeerTrait for ReadArrayElementEntity {
 
 pub static READARRAYELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadArrayElementEntity",
+    name_hash: 4227197227,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ReadArrayElementEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReadArrayElementEntity as Default>::default())),
+            create_boxed: || Box::new(<ReadArrayElementEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -38804,6 +41156,7 @@ impl TypeObject for ReadArrayElementEntity {
 
 pub static READARRAYELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadArrayElementEntity-Array",
+    name_hash: 1238223007,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ReadArrayElementEntity"),
@@ -38812,7 +41165,8 @@ pub static READARRAYELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ForEachVariableEntity {
     pub _glacier_base: Entity,
 }
@@ -38831,12 +41185,15 @@ impl EntityBusPeerTrait for ForEachVariableEntity {
 
 pub static FOREACHVARIABLEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForEachVariableEntity",
+    name_hash: 3476737900,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ForEachVariableEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ForEachVariableEntity as Default>::default())),
+            create_boxed: || Box::new(<ForEachVariableEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -38866,6 +41223,7 @@ impl TypeObject for ForEachVariableEntity {
 
 pub static FOREACHVARIABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ForEachVariableEntity-Array",
+    name_hash: 983715672,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ForEachVariableEntity"),
@@ -38874,7 +41232,8 @@ pub static FOREACHVARIABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClearArrayVariableEntity {
     pub _glacier_base: Entity,
 }
@@ -38893,12 +41252,15 @@ impl EntityBusPeerTrait for ClearArrayVariableEntity {
 
 pub static CLEARARRAYVARIABLEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClearArrayVariableEntity",
+    name_hash: 3712697400,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClearArrayVariableEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClearArrayVariableEntity as Default>::default())),
+            create_boxed: || Box::new(<ClearArrayVariableEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -38928,6 +41290,7 @@ impl TypeObject for ClearArrayVariableEntity {
 
 pub static CLEARARRAYVARIABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClearArrayVariableEntity-Array",
+    name_hash: 1795059084,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ClearArrayVariableEntity"),
@@ -38936,7 +41299,8 @@ pub static CLEARARRAYVARIABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AddToArrayVariableEntity {
     pub _glacier_base: Entity,
 }
@@ -38955,12 +41319,15 @@ impl EntityBusPeerTrait for AddToArrayVariableEntity {
 
 pub static ADDTOARRAYVARIABLEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AddToArrayVariableEntity",
+    name_hash: 3873977755,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(AddToArrayVariableEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AddToArrayVariableEntity as Default>::default())),
+            create_boxed: || Box::new(<AddToArrayVariableEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -38990,6 +41357,7 @@ impl TypeObject for AddToArrayVariableEntity {
 
 pub static ADDTOARRAYVARIABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AddToArrayVariableEntity-Array",
+    name_hash: 2370726959,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AddToArrayVariableEntity"),
@@ -38998,7 +41366,8 @@ pub static ADDTOARRAYVARIABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WriteVariableEntity {
     pub _glacier_base: Entity,
 }
@@ -39017,12 +41386,15 @@ impl EntityBusPeerTrait for WriteVariableEntity {
 
 pub static WRITEVARIABLEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriteVariableEntity",
+    name_hash: 2034890149,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(WriteVariableEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WriteVariableEntity as Default>::default())),
+            create_boxed: || Box::new(<WriteVariableEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39052,6 +41424,7 @@ impl TypeObject for WriteVariableEntity {
 
 pub static WRITEVARIABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriteVariableEntity-Array",
+    name_hash: 4070641169,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("WriteVariableEntity"),
@@ -39060,7 +41433,8 @@ pub static WRITEVARIABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReadVariableEntity {
     pub _glacier_base: Entity,
 }
@@ -39079,12 +41453,15 @@ impl EntityBusPeerTrait for ReadVariableEntity {
 
 pub static READVARIABLEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadVariableEntity",
+    name_hash: 3998041354,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ReadVariableEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReadVariableEntity as Default>::default())),
+            create_boxed: || Box::new(<ReadVariableEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39114,6 +41491,7 @@ impl TypeObject for ReadVariableEntity {
 
 pub static READVARIABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReadVariableEntity-Array",
+    name_hash: 1731674174,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ReadVariableEntity"),
@@ -39122,7 +41500,8 @@ pub static READVARIABLEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct HighlightEntity {
     pub _glacier_base: Entity,
 }
@@ -39141,12 +41520,15 @@ impl EntityBusPeerTrait for HighlightEntity {
 
 pub static HIGHLIGHTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HighlightEntity",
+    name_hash: 1281090030,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(HighlightEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<HighlightEntity as Default>::default())),
+            create_boxed: || Box::new(<HighlightEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39176,6 +41558,7 @@ impl TypeObject for HighlightEntity {
 
 pub static HIGHLIGHTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HighlightEntity-Array",
+    name_hash: 4220746458,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("HighlightEntity"),
@@ -39184,7 +41567,8 @@ pub static HIGHLIGHTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TextSequenceEntity {
     pub _glacier_base: Entity,
 }
@@ -39203,12 +41587,15 @@ impl EntityBusPeerTrait for TextSequenceEntity {
 
 pub static TEXTSEQUENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextSequenceEntity",
+    name_hash: 3340415388,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TextSequenceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TextSequenceEntity as Default>::default())),
+            create_boxed: || Box::new(<TextSequenceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39238,6 +41625,7 @@ impl TypeObject for TextSequenceEntity {
 
 pub static TEXTSEQUENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextSequenceEntity-Array",
+    name_hash: 1269451176,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TextSequenceEntity"),
@@ -39246,7 +41634,8 @@ pub static TEXTSEQUENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SubLevelEntity {
     pub _glacier_base: Entity,
 }
@@ -39265,12 +41654,15 @@ impl EntityBusPeerTrait for SubLevelEntity {
 
 pub static SUBLEVELENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubLevelEntity",
+    name_hash: 126806252,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SubLevelEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SubLevelEntity as Default>::default())),
+            create_boxed: || Box::new(<SubLevelEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39300,6 +41692,7 @@ impl TypeObject for SubLevelEntity {
 
 pub static SUBLEVELENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SubLevelEntity-Array",
+    name_hash: 1325631704,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SubLevelEntity"),
@@ -39308,7 +41701,8 @@ pub static SUBLEVELENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReportInstallationProgressEntity {
     pub _glacier_base: Entity,
 }
@@ -39327,12 +41721,15 @@ impl EntityBusPeerTrait for ReportInstallationProgressEntity {
 
 pub static REPORTINSTALLATIONPROGRESSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReportInstallationProgressEntity",
+    name_hash: 3368960625,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ReportInstallationProgressEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReportInstallationProgressEntity as Default>::default())),
+            create_boxed: || Box::new(<ReportInstallationProgressEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39362,6 +41759,7 @@ impl TypeObject for ReportInstallationProgressEntity {
 
 pub static REPORTINSTALLATIONPROGRESSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReportInstallationProgressEntity-Array",
+    name_hash: 2457814341,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ReportInstallationProgressEntity"),
@@ -39370,7 +41768,8 @@ pub static REPORTINSTALLATIONPROGRESSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocalPlayerIdEntity {
     pub _glacier_base: Entity,
 }
@@ -39389,12 +41788,15 @@ impl EntityBusPeerTrait for LocalPlayerIdEntity {
 
 pub static LOCALPLAYERIDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerIdEntity",
+    name_hash: 822719757,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(LocalPlayerIdEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocalPlayerIdEntity as Default>::default())),
+            create_boxed: || Box::new(<LocalPlayerIdEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39424,6 +41826,7 @@ impl TypeObject for LocalPlayerIdEntity {
 
 pub static LOCALPLAYERIDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerIdEntity-Array",
+    name_hash: 2229663929,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LocalPlayerIdEntity"),
@@ -39432,7 +41835,8 @@ pub static LOCALPLAYERIDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatCacheEntity {
     pub _glacier_base: Entity,
 }
@@ -39451,12 +41855,15 @@ impl EntityBusPeerTrait for FloatCacheEntity {
 
 pub static FLOATCACHEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCacheEntity",
+    name_hash: 2590078722,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(FloatCacheEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatCacheEntity as Default>::default())),
+            create_boxed: || Box::new(<FloatCacheEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39486,6 +41893,7 @@ impl TypeObject for FloatCacheEntity {
 
 pub static FLOATCACHEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCacheEntity-Array",
+    name_hash: 1873385014,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatCacheEntity"),
@@ -39494,7 +41902,8 @@ pub static FLOATCACHEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MultilineStringEntity {
     pub _glacier_base: Entity,
 }
@@ -39513,12 +41922,15 @@ impl EntityBusPeerTrait for MultilineStringEntity {
 
 pub static MULTILINESTRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultilineStringEntity",
+    name_hash: 3095458508,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(MultilineStringEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MultilineStringEntity as Default>::default())),
+            create_boxed: || Box::new(<MultilineStringEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39548,6 +41960,7 @@ impl TypeObject for MultilineStringEntity {
 
 pub static MULTILINESTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultilineStringEntity-Array",
+    name_hash: 851293048,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MultilineStringEntity"),
@@ -39556,7 +41969,8 @@ pub static MULTILINESTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StringEntity {
     pub _glacier_base: Entity,
 }
@@ -39575,12 +41989,15 @@ impl EntityBusPeerTrait for StringEntity {
 
 pub static STRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringEntity",
+    name_hash: 3917304523,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(StringEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StringEntity as Default>::default())),
+            create_boxed: || Box::new(<StringEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39610,6 +42027,7 @@ impl TypeObject for StringEntity {
 
 pub static STRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringEntity-Array",
+    name_hash: 707883519,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("StringEntity"),
@@ -39618,7 +42036,8 @@ pub static STRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AxisAlignedBoxEntity {
     pub _glacier_base: Entity,
 }
@@ -39637,12 +42056,15 @@ impl EntityBusPeerTrait for AxisAlignedBoxEntity {
 
 pub static AXISALIGNEDBOXENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AxisAlignedBoxEntity",
+    name_hash: 1500173636,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(AxisAlignedBoxEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AxisAlignedBoxEntity as Default>::default())),
+            create_boxed: || Box::new(<AxisAlignedBoxEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39672,6 +42094,7 @@ impl TypeObject for AxisAlignedBoxEntity {
 
 pub static AXISALIGNEDBOXENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AxisAlignedBoxEntity-Array",
+    name_hash: 1118312944,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AxisAlignedBoxEntity"),
@@ -39680,7 +42103,8 @@ pub static AXISALIGNEDBOXENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vector4Entity {
     pub _glacier_base: Entity,
 }
@@ -39699,12 +42123,15 @@ impl EntityBusPeerTrait for Vector4Entity {
 
 pub static VECTOR4ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vector4Entity",
+    name_hash: 1312387987,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vector4Entity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vector4Entity as Default>::default())),
+            create_boxed: || Box::new(<Vector4Entity as Default>::default()),
         },
         fields: &[
         ],
@@ -39734,6 +42161,7 @@ impl TypeObject for Vector4Entity {
 
 pub static VECTOR4ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vector4Entity-Array",
+    name_hash: 3314994727,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vector4Entity"),
@@ -39742,7 +42170,8 @@ pub static VECTOR4ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vector3Entity {
     pub _glacier_base: Entity,
 }
@@ -39761,12 +42190,15 @@ impl EntityBusPeerTrait for Vector3Entity {
 
 pub static VECTOR3ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vector3Entity",
+    name_hash: 668372884,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vector3Entity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vector3Entity as Default>::default())),
+            create_boxed: || Box::new(<Vector3Entity as Default>::default()),
         },
         fields: &[
         ],
@@ -39796,6 +42228,7 @@ impl TypeObject for Vector3Entity {
 
 pub static VECTOR3ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vector3Entity-Array",
+    name_hash: 3402976160,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vector3Entity"),
@@ -39804,7 +42237,8 @@ pub static VECTOR3ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformEntity {
     pub _glacier_base: Entity,
 }
@@ -39823,12 +42257,15 @@ impl EntityBusPeerTrait for TransformEntity {
 
 pub static TRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformEntity",
+    name_hash: 2223757106,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransformEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformEntity as Default>::default())),
+            create_boxed: || Box::new(<TransformEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39858,6 +42295,7 @@ impl TypeObject for TransformEntity {
 
 pub static TRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformEntity-Array",
+    name_hash: 2329566598,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformEntity"),
@@ -39866,7 +42304,8 @@ pub static TRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatEntity {
     pub _glacier_base: Entity,
 }
@@ -39885,12 +42324,15 @@ impl EntityBusPeerTrait for FloatEntity {
 
 pub static FLOATENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatEntity",
+    name_hash: 457638350,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(FloatEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatEntity as Default>::default())),
+            create_boxed: || Box::new(<FloatEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39920,6 +42362,7 @@ impl TypeObject for FloatEntity {
 
 pub static FLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatEntity-Array",
+    name_hash: 1439398778,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatEntity"),
@@ -39928,7 +42371,8 @@ pub static FLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIntEntity {
     pub _glacier_base: Entity,
 }
@@ -39947,12 +42391,15 @@ impl EntityBusPeerTrait for UIntEntity {
 
 pub static UINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIntEntity",
+    name_hash: 1195911608,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(UIntEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIntEntity as Default>::default())),
+            create_boxed: || Box::new(<UIntEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -39982,6 +42429,7 @@ impl TypeObject for UIntEntity {
 
 pub static UINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIntEntity-Array",
+    name_hash: 3077665548,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("UIntEntity"),
@@ -39990,7 +42438,8 @@ pub static UINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntEntity {
     pub _glacier_base: Entity,
 }
@@ -40009,12 +42458,15 @@ impl EntityBusPeerTrait for IntEntity {
 
 pub static INTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntEntity",
+    name_hash: 1023573101,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(IntEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntEntity as Default>::default())),
+            create_boxed: || Box::new(<IntEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -40044,6 +42496,7 @@ impl TypeObject for IntEntity {
 
 pub static INTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntEntity-Array",
+    name_hash: 2745385305,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("IntEntity"),
@@ -40052,7 +42505,8 @@ pub static INTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolEntity {
     pub _glacier_base: Entity,
 }
@@ -40071,12 +42525,15 @@ impl EntityBusPeerTrait for BoolEntity {
 
 pub static BOOLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolEntity",
+    name_hash: 839406416,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BoolEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolEntity as Default>::default())),
+            create_boxed: || Box::new(<BoolEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -40106,6 +42563,7 @@ impl TypeObject for BoolEntity {
 
 pub static BOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolEntity-Array",
+    name_hash: 893333988,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BoolEntity"),
@@ -40114,7 +42572,8 @@ pub static BOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpatialEntity {
     pub _glacier_base: Entity,
 }
@@ -40133,12 +42592,15 @@ impl EntityBusPeerTrait for SpatialEntity {
 
 pub static SPATIALENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialEntity",
+    name_hash: 452546764,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SpatialEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpatialEntity as Default>::default())),
+            create_boxed: || Box::new(<SpatialEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -40168,6 +42630,7 @@ impl TypeObject for SpatialEntity {
 
 pub static SPATIALENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpatialEntity-Array",
+    name_hash: 1904513400,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SpatialEntity"),
@@ -40176,7 +42639,8 @@ pub static SPATIALENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectVec4Entity {
     pub _glacier_base: Entity,
 }
@@ -40195,12 +42659,15 @@ impl EntityBusPeerTrait for SelectVec4Entity {
 
 pub static SELECTVEC4ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec4Entity",
+    name_hash: 2093694834,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SelectVec4Entity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectVec4Entity as Default>::default())),
+            create_boxed: || Box::new(<SelectVec4Entity as Default>::default()),
         },
         fields: &[
         ],
@@ -40230,6 +42697,7 @@ impl TypeObject for SelectVec4Entity {
 
 pub static SELECTVEC4ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec4Entity-Array",
+    name_hash: 1413920326,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectVec4Entity"),
@@ -40238,7 +42706,8 @@ pub static SELECTVEC4ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectVec3Entity {
     pub _glacier_base: Entity,
 }
@@ -40257,12 +42726,15 @@ impl EntityBusPeerTrait for SelectVec3Entity {
 
 pub static SELECTVEC3ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec3Entity",
+    name_hash: 4028007157,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SelectVec3Entity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectVec3Entity as Default>::default())),
+            create_boxed: || Box::new(<SelectVec3Entity as Default>::default()),
         },
         fields: &[
         ],
@@ -40292,6 +42764,7 @@ impl TypeObject for SelectVec3Entity {
 
 pub static SELECTVEC3ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec3Entity-Array",
+    name_hash: 1029018561,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectVec3Entity"),
@@ -40300,7 +42773,8 @@ pub static SELECTVEC3ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectVec2Entity {
     pub _glacier_base: Entity,
 }
@@ -40319,12 +42793,15 @@ impl EntityBusPeerTrait for SelectVec2Entity {
 
 pub static SELECTVEC2ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec2Entity",
+    name_hash: 1653708660,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SelectVec2Entity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectVec2Entity as Default>::default())),
+            create_boxed: || Box::new(<SelectVec2Entity as Default>::default()),
         },
         fields: &[
         ],
@@ -40354,6 +42831,7 @@ impl TypeObject for SelectVec2Entity {
 
 pub static SELECTVEC2ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectVec2Entity-Array",
+    name_hash: 2197979968,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectVec2Entity"),
@@ -40362,7 +42840,8 @@ pub static SELECTVEC2ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectTransformEntity {
     pub _glacier_base: Entity,
 }
@@ -40381,12 +42860,15 @@ impl EntityBusPeerTrait for SelectTransformEntity {
 
 pub static SELECTTRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectTransformEntity",
+    name_hash: 2855181658,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SelectTransformEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectTransformEntity as Default>::default())),
+            create_boxed: || Box::new(<SelectTransformEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -40416,6 +42898,7 @@ impl TypeObject for SelectTransformEntity {
 
 pub static SELECTTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectTransformEntity-Array",
+    name_hash: 3828142318,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectTransformEntity"),
@@ -40424,7 +42907,8 @@ pub static SELECTTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectBoolEntity {
     pub _glacier_base: Entity,
 }
@@ -40443,12 +42927,15 @@ impl EntityBusPeerTrait for SelectBoolEntity {
 
 pub static SELECTBOOLENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectBoolEntity",
+    name_hash: 1558901816,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SelectBoolEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectBoolEntity as Default>::default())),
+            create_boxed: || Box::new(<SelectBoolEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -40478,6 +42965,7 @@ impl TypeObject for SelectBoolEntity {
 
 pub static SELECTBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectBoolEntity-Array",
+    name_hash: 4020379020,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectBoolEntity"),
@@ -40486,7 +42974,8 @@ pub static SELECTBOOLENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectStringEntity {
     pub _glacier_base: Entity,
 }
@@ -40505,12 +42994,15 @@ impl EntityBusPeerTrait for SelectStringEntity {
 
 pub static SELECTSTRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectStringEntity",
+    name_hash: 1500571939,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SelectStringEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectStringEntity as Default>::default())),
+            create_boxed: || Box::new(<SelectStringEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -40540,6 +43032,7 @@ impl TypeObject for SelectStringEntity {
 
 pub static SELECTSTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectStringEntity-Array",
+    name_hash: 1426680983,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectStringEntity"),
@@ -40548,7 +43041,8 @@ pub static SELECTSTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectInt64Entity {
     pub _glacier_base: Entity,
 }
@@ -40567,12 +43061,15 @@ impl EntityBusPeerTrait for SelectInt64Entity {
 
 pub static SELECTINT64ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectInt64Entity",
+    name_hash: 3522686407,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SelectInt64Entity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectInt64Entity as Default>::default())),
+            create_boxed: || Box::new(<SelectInt64Entity as Default>::default()),
         },
         fields: &[
         ],
@@ -40602,6 +43099,7 @@ impl TypeObject for SelectInt64Entity {
 
 pub static SELECTINT64ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectInt64Entity-Array",
+    name_hash: 1739890419,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectInt64Entity"),
@@ -40610,7 +43108,8 @@ pub static SELECTINT64ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectIntEntity {
     pub _glacier_base: Entity,
 }
@@ -40629,12 +43128,15 @@ impl EntityBusPeerTrait for SelectIntEntity {
 
 pub static SELECTINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectIntEntity",
+    name_hash: 573387525,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SelectIntEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectIntEntity as Default>::default())),
+            create_boxed: || Box::new(<SelectIntEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -40664,6 +43166,7 @@ impl TypeObject for SelectIntEntity {
 
 pub static SELECTINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectIntEntity-Array",
+    name_hash: 1806736049,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectIntEntity"),
@@ -40672,7 +43175,8 @@ pub static SELECTINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectFloatEntity {
     pub _glacier_base: Entity,
 }
@@ -40691,12 +43195,15 @@ impl EntityBusPeerTrait for SelectFloatEntity {
 
 pub static SELECTFLOATENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectFloatEntity",
+    name_hash: 336157798,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SelectFloatEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectFloatEntity as Default>::default())),
+            create_boxed: || Box::new(<SelectFloatEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -40726,6 +43233,7 @@ impl TypeObject for SelectFloatEntity {
 
 pub static SELECTFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectFloatEntity-Array",
+    name_hash: 2358475090,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectFloatEntity"),
@@ -40734,7 +43242,8 @@ pub static SELECTFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScriptEntity {
     pub _glacier_base: Entity,
 }
@@ -40753,12 +43262,15 @@ impl EntityBusPeerTrait for ScriptEntity {
 
 pub static SCRIPTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScriptEntity",
+    name_hash: 2302866961,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ScriptEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScriptEntity as Default>::default())),
+            create_boxed: || Box::new(<ScriptEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -40788,6 +43300,7 @@ impl TypeObject for ScriptEntity {
 
 pub static SCRIPTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScriptEntity-Array",
+    name_hash: 1495250853,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ScriptEntity"),
@@ -40796,7 +43309,8 @@ pub static SCRIPTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SchematicChannelEntity {
     pub _glacier_base: Entity,
 }
@@ -40815,12 +43329,15 @@ impl EntityBusPeerTrait for SchematicChannelEntity {
 
 pub static SCHEMATICCHANNELENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SchematicChannelEntity",
+    name_hash: 2010930130,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SchematicChannelEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SchematicChannelEntity as Default>::default())),
+            create_boxed: || Box::new(<SchematicChannelEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -40850,6 +43367,7 @@ impl TypeObject for SchematicChannelEntity {
 
 pub static SCHEMATICCHANNELENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SchematicChannelEntity-Array",
+    name_hash: 1934627686,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SchematicChannelEntity"),
@@ -40858,7 +43376,8 @@ pub static SCHEMATICCHANNELENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Part {
     pub _glacier_base: Component,
 }
@@ -40877,12 +43396,15 @@ impl EntityBusPeerTrait for Part {
 
 pub static PART_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Part",
+    name_hash: 2089448370,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(Part, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Part as Default>::default())),
+            create_boxed: || Box::new(<Part as Default>::default()),
         },
         fields: &[
         ],
@@ -40912,6 +43434,7 @@ impl TypeObject for Part {
 
 pub static PART_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Part-Array",
+    name_hash: 58481158,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Part"),
@@ -40920,7 +43443,8 @@ pub static PART_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectAreaTriggerEntity {
     pub _glacier_base: Entity,
 }
@@ -40939,12 +43463,15 @@ impl EntityBusPeerTrait for ObjectAreaTriggerEntity {
 
 pub static OBJECTAREATRIGGERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectAreaTriggerEntity",
+    name_hash: 3845676900,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectAreaTriggerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectAreaTriggerEntity as Default>::default())),
+            create_boxed: || Box::new(<ObjectAreaTriggerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -40974,6 +43501,7 @@ impl TypeObject for ObjectAreaTriggerEntity {
 
 pub static OBJECTAREATRIGGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectAreaTriggerEntity-Array",
+    name_hash: 2584511312,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectAreaTriggerEntity"),
@@ -40982,7 +43510,8 @@ pub static OBJECTAREATRIGGERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectVariationToIntEntity {
     pub _glacier_base: Entity,
 }
@@ -41001,12 +43530,15 @@ impl EntityBusPeerTrait for ObjectVariationToIntEntity {
 
 pub static OBJECTVARIATIONTOINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationToIntEntity",
+    name_hash: 516873138,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectVariationToIntEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectVariationToIntEntity as Default>::default())),
+            create_boxed: || Box::new(<ObjectVariationToIntEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41036,6 +43568,7 @@ impl TypeObject for ObjectVariationToIntEntity {
 
 pub static OBJECTVARIATIONTOINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationToIntEntity-Array",
+    name_hash: 4050567686,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectVariationToIntEntity"),
@@ -41044,7 +43577,8 @@ pub static OBJECTVARIATIONTOINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformSpaceEntity {
     pub _glacier_base: Entity,
 }
@@ -41063,12 +43597,15 @@ impl EntityBusPeerTrait for TransformSpaceEntity {
 
 pub static TRANSFORMSPACEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSpaceEntity",
+    name_hash: 2198864118,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransformSpaceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformSpaceEntity as Default>::default())),
+            create_boxed: || Box::new(<TransformSpaceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41098,6 +43635,7 @@ impl TypeObject for TransformSpaceEntity {
 
 pub static TRANSFORMSPACEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSpaceEntity-Array",
+    name_hash: 1136018882,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformSpaceEntity"),
@@ -41106,7 +43644,8 @@ pub static TRANSFORMSPACEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatSelectEntity {
     pub _glacier_base: Entity,
 }
@@ -41125,12 +43664,15 @@ impl EntityBusPeerTrait for FloatSelectEntity {
 
 pub static FLOATSELECTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatSelectEntity",
+    name_hash: 1055482470,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(FloatSelectEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatSelectEntity as Default>::default())),
+            create_boxed: || Box::new(<FloatSelectEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41160,6 +43702,7 @@ impl TypeObject for FloatSelectEntity {
 
 pub static FLOATSELECTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatSelectEntity-Array",
+    name_hash: 1021312850,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatSelectEntity"),
@@ -41168,7 +43711,8 @@ pub static FLOATSELECTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatCurveEntity {
     pub _glacier_base: Entity,
 }
@@ -41187,12 +43731,15 @@ impl EntityBusPeerTrait for FloatCurveEntity {
 
 pub static FLOATCURVEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurveEntity",
+    name_hash: 1248156889,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(FloatCurveEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatCurveEntity as Default>::default())),
+            create_boxed: || Box::new(<FloatCurveEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41222,6 +43769,7 @@ impl TypeObject for FloatCurveEntity {
 
 pub static FLOATCURVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurveEntity-Array",
+    name_hash: 2506066669,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatCurveEntity"),
@@ -41230,7 +43778,8 @@ pub static FLOATCURVEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SettingEntity {
     pub _glacier_base: Entity,
 }
@@ -41249,12 +43798,15 @@ impl EntityBusPeerTrait for SettingEntity {
 
 pub static SETTINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SettingEntity",
+    name_hash: 1093910536,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SettingEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SettingEntity as Default>::default())),
+            create_boxed: || Box::new(<SettingEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41284,6 +43836,7 @@ impl TypeObject for SettingEntity {
 
 pub static SETTINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SettingEntity-Array",
+    name_hash: 1881260604,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SettingEntity"),
@@ -41292,7 +43845,8 @@ pub static SETTINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntegratorOrDifferentiatorEntity {
     pub _glacier_base: Entity,
 }
@@ -41311,12 +43865,15 @@ impl EntityBusPeerTrait for IntegratorOrDifferentiatorEntity {
 
 pub static INTEGRATORORDIFFERENTIATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntegratorOrDifferentiatorEntity",
+    name_hash: 3603537356,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(IntegratorOrDifferentiatorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntegratorOrDifferentiatorEntity as Default>::default())),
+            create_boxed: || Box::new(<IntegratorOrDifferentiatorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41346,6 +43903,7 @@ impl TypeObject for IntegratorOrDifferentiatorEntity {
 
 pub static INTEGRATORORDIFFERENTIATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntegratorOrDifferentiatorEntity-Array",
+    name_hash: 228236920,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("IntegratorOrDifferentiatorEntity"),
@@ -41354,7 +43912,8 @@ pub static INTEGRATORORDIFFERENTIATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProfileEntity {
     pub _glacier_base: Entity,
 }
@@ -41373,12 +43932,15 @@ impl EntityBusPeerTrait for ProfileEntity {
 
 pub static PROFILEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProfileEntity",
+    name_hash: 1415510453,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ProfileEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProfileEntity as Default>::default())),
+            create_boxed: || Box::new(<ProfileEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41408,6 +43970,7 @@ impl TypeObject for ProfileEntity {
 
 pub static PROFILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProfileEntity-Array",
+    name_hash: 3254508033,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ProfileEntity"),
@@ -41416,7 +43979,8 @@ pub static PROFILEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CompareEntity {
     pub _glacier_base: Entity,
 }
@@ -41435,12 +43999,15 @@ impl EntityBusPeerTrait for CompareEntity {
 
 pub static COMPAREENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareEntity",
+    name_hash: 2423771865,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CompareEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CompareEntity as Default>::default())),
+            create_boxed: || Box::new(<CompareEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41470,6 +44037,7 @@ impl TypeObject for CompareEntity {
 
 pub static COMPAREENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CompareEntity-Array",
+    name_hash: 4176642285,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CompareEntity"),
@@ -41478,7 +44046,8 @@ pub static COMPAREENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RunningAverageEntity {
     pub _glacier_base: Entity,
 }
@@ -41497,12 +44066,15 @@ impl EntityBusPeerTrait for RunningAverageEntity {
 
 pub static RUNNINGAVERAGEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RunningAverageEntity",
+    name_hash: 4122987194,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RunningAverageEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RunningAverageEntity as Default>::default())),
+            create_boxed: || Box::new(<RunningAverageEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41532,6 +44104,7 @@ impl TypeObject for RunningAverageEntity {
 
 pub static RUNNINGAVERAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RunningAverageEntity-Array",
+    name_hash: 496389390,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RunningAverageEntity"),
@@ -41540,7 +44113,8 @@ pub static RUNNINGAVERAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AbsEntity {
     pub _glacier_base: Entity,
 }
@@ -41559,12 +44133,15 @@ impl EntityBusPeerTrait for AbsEntity {
 
 pub static ABSENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AbsEntity",
+    name_hash: 650954862,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(AbsEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AbsEntity as Default>::default())),
+            create_boxed: || Box::new(<AbsEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41594,6 +44171,7 @@ impl TypeObject for AbsEntity {
 
 pub static ABSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AbsEntity-Array",
+    name_hash: 968311130,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AbsEntity"),
@@ -41602,7 +44180,8 @@ pub static ABSENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VectorMathOpEntity {
     pub _glacier_base: Entity,
 }
@@ -41621,12 +44200,15 @@ impl EntityBusPeerTrait for VectorMathOpEntity {
 
 pub static VECTORMATHOPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorMathOpEntity",
+    name_hash: 2141419816,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(VectorMathOpEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VectorMathOpEntity as Default>::default())),
+            create_boxed: || Box::new(<VectorMathOpEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41656,6 +44238,7 @@ impl TypeObject for VectorMathOpEntity {
 
 pub static VECTORMATHOPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorMathOpEntity-Array",
+    name_hash: 1851234972,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("VectorMathOpEntity"),
@@ -41664,7 +44247,8 @@ pub static VECTORMATHOPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MathOpEntity {
     pub _glacier_base: Entity,
 }
@@ -41683,12 +44267,15 @@ impl EntityBusPeerTrait for MathOpEntity {
 
 pub static MATHOPENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathOpEntity",
+    name_hash: 1240944593,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(MathOpEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MathOpEntity as Default>::default())),
+            create_boxed: || Box::new(<MathOpEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41718,6 +44305,7 @@ impl TypeObject for MathOpEntity {
 
 pub static MATHOPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathOpEntity-Array",
+    name_hash: 2195481061,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MathOpEntity"),
@@ -41726,7 +44314,8 @@ pub static MATHOPENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyCastEntity {
     pub _glacier_base: Entity,
 }
@@ -41745,12 +44334,15 @@ impl EntityBusPeerTrait for PropertyCastEntity {
 
 pub static PROPERTYCASTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyCastEntity",
+    name_hash: 4210894300,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PropertyCastEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyCastEntity as Default>::default())),
+            create_boxed: || Box::new(<PropertyCastEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41780,6 +44372,7 @@ impl TypeObject for PropertyCastEntity {
 
 pub static PROPERTYCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyCastEntity-Array",
+    name_hash: 199683688,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PropertyCastEntity"),
@@ -41788,7 +44381,8 @@ pub static PROPERTYCASTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolToEventEntity {
     pub _glacier_base: Entity,
 }
@@ -41807,12 +44401,15 @@ impl EntityBusPeerTrait for BoolToEventEntity {
 
 pub static BOOLTOEVENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolToEventEntity",
+    name_hash: 2146657191,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BoolToEventEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolToEventEntity as Default>::default())),
+            create_boxed: || Box::new(<BoolToEventEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41842,6 +44439,7 @@ impl TypeObject for BoolToEventEntity {
 
 pub static BOOLTOEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolToEventEntity-Array",
+    name_hash: 3026023699,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BoolToEventEntity"),
@@ -41850,7 +44448,8 @@ pub static BOOLTOEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SwitchPropertyStringEntity {
     pub _glacier_base: Entity,
 }
@@ -41869,12 +44468,15 @@ impl EntityBusPeerTrait for SwitchPropertyStringEntity {
 
 pub static SWITCHPROPERTYSTRINGENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SwitchPropertyStringEntity",
+    name_hash: 568348798,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SwitchPropertyStringEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SwitchPropertyStringEntity as Default>::default())),
+            create_boxed: || Box::new(<SwitchPropertyStringEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41904,6 +44506,7 @@ impl TypeObject for SwitchPropertyStringEntity {
 
 pub static SWITCHPROPERTYSTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SwitchPropertyStringEntity-Array",
+    name_hash: 3068367178,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SwitchPropertyStringEntity"),
@@ -41912,7 +44515,8 @@ pub static SWITCHPROPERTYSTRINGENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyGateEntity {
     pub _glacier_base: Entity,
 }
@@ -41931,12 +44535,15 @@ impl EntityBusPeerTrait for PropertyGateEntity {
 
 pub static PROPERTYGATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyGateEntity",
+    name_hash: 1303792494,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(PropertyGateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyGateEntity as Default>::default())),
+            create_boxed: || Box::new(<PropertyGateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -41966,6 +44573,7 @@ impl TypeObject for PropertyGateEntity {
 
 pub static PROPERTYGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyGateEntity-Array",
+    name_hash: 947323994,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("PropertyGateEntity"),
@@ -41974,7 +44582,8 @@ pub static PROPERTYGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventGateEntity {
     pub _glacier_base: Entity,
 }
@@ -41993,12 +44602,15 @@ impl EntityBusPeerTrait for EventGateEntity {
 
 pub static EVENTGATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventGateEntity",
+    name_hash: 829813285,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(EventGateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventGateEntity as Default>::default())),
+            create_boxed: || Box::new(<EventGateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42028,6 +44640,7 @@ impl TypeObject for EventGateEntity {
 
 pub static EVENTGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventGateEntity-Array",
+    name_hash: 2952293009,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventGateEntity"),
@@ -42036,7 +44649,8 @@ pub static EVENTGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StopWatchEntity {
     pub _glacier_base: Entity,
 }
@@ -42055,12 +44669,15 @@ impl EntityBusPeerTrait for StopWatchEntity {
 
 pub static STOPWATCHENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StopWatchEntity",
+    name_hash: 988422415,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(StopWatchEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StopWatchEntity as Default>::default())),
+            create_boxed: || Box::new(<StopWatchEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42090,6 +44707,7 @@ impl TypeObject for StopWatchEntity {
 
 pub static STOPWATCHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StopWatchEntity-Array",
+    name_hash: 2728385979,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("StopWatchEntity"),
@@ -42098,7 +44716,8 @@ pub static STOPWATCHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformToRotationEntity {
     pub _glacier_base: Entity,
 }
@@ -42117,12 +44736,15 @@ impl EntityBusPeerTrait for TransformToRotationEntity {
 
 pub static TRANSFORMTOROTATIONENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformToRotationEntity",
+    name_hash: 1274686685,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransformToRotationEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformToRotationEntity as Default>::default())),
+            create_boxed: || Box::new(<TransformToRotationEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42152,6 +44774,7 @@ impl TypeObject for TransformToRotationEntity {
 
 pub static TRANSFORMTOROTATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformToRotationEntity-Array",
+    name_hash: 3901753577,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformToRotationEntity"),
@@ -42160,7 +44783,8 @@ pub static TRANSFORMTOROTATIONENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformModifierEntity {
     pub _glacier_base: Entity,
 }
@@ -42179,12 +44803,15 @@ impl EntityBusPeerTrait for TransformModifierEntity {
 
 pub static TRANSFORMMODIFIERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformModifierEntity",
+    name_hash: 1919893125,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransformModifierEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformModifierEntity as Default>::default())),
+            create_boxed: || Box::new(<TransformModifierEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42214,6 +44841,7 @@ impl TypeObject for TransformModifierEntity {
 
 pub static TRANSFORMMODIFIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformModifierEntity-Array",
+    name_hash: 2737653297,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformModifierEntity"),
@@ -42222,7 +44850,8 @@ pub static TRANSFORMMODIFIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RotationTransformBuilderEntity {
     pub _glacier_base: Entity,
 }
@@ -42241,12 +44870,15 @@ impl EntityBusPeerTrait for RotationTransformBuilderEntity {
 
 pub static ROTATIONTRANSFORMBUILDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotationTransformBuilderEntity",
+    name_hash: 955878087,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RotationTransformBuilderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RotationTransformBuilderEntity as Default>::default())),
+            create_boxed: || Box::new(<RotationTransformBuilderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42276,6 +44908,7 @@ impl TypeObject for RotationTransformBuilderEntity {
 
 pub static ROTATIONTRANSFORMBUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotationTransformBuilderEntity-Array",
+    name_hash: 3266837491,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RotationTransformBuilderEntity"),
@@ -42284,7 +44917,8 @@ pub static ROTATIONTRANSFORMBUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScaleTransformBuilderEntity {
     pub _glacier_base: Entity,
 }
@@ -42303,12 +44937,15 @@ impl EntityBusPeerTrait for ScaleTransformBuilderEntity {
 
 pub static SCALETRANSFORMBUILDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScaleTransformBuilderEntity",
+    name_hash: 4079481227,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ScaleTransformBuilderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScaleTransformBuilderEntity as Default>::default())),
+            create_boxed: || Box::new(<ScaleTransformBuilderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42338,6 +44975,7 @@ impl TypeObject for ScaleTransformBuilderEntity {
 
 pub static SCALETRANSFORMBUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScaleTransformBuilderEntity-Array",
+    name_hash: 2178441279,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ScaleTransformBuilderEntity"),
@@ -42346,7 +44984,8 @@ pub static SCALETRANSFORMBUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformBuilderEntity {
     pub _glacier_base: Entity,
 }
@@ -42365,12 +45004,15 @@ impl EntityBusPeerTrait for TransformBuilderEntity {
 
 pub static TRANSFORMBUILDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformBuilderEntity",
+    name_hash: 2362808851,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransformBuilderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformBuilderEntity as Default>::default())),
+            create_boxed: || Box::new(<TransformBuilderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42400,6 +45042,7 @@ impl TypeObject for TransformBuilderEntity {
 
 pub static TRANSFORMBUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformBuilderEntity-Array",
+    name_hash: 727045287,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformBuilderEntity"),
@@ -42408,7 +45051,8 @@ pub static TRANSFORMBUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VecBuilderEntity {
     pub _glacier_base: Entity,
 }
@@ -42427,12 +45071,15 @@ impl EntityBusPeerTrait for VecBuilderEntity {
 
 pub static VECBUILDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VecBuilderEntity",
+    name_hash: 3370321007,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(VecBuilderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VecBuilderEntity as Default>::default())),
+            create_boxed: || Box::new(<VecBuilderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42462,6 +45109,7 @@ impl TypeObject for VecBuilderEntity {
 
 pub static VECBUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VecBuilderEntity-Array",
+    name_hash: 561381979,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("VecBuilderEntity"),
@@ -42470,7 +45118,8 @@ pub static VECBUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4BuilderEntity {
     pub _glacier_base: Entity,
 }
@@ -42489,12 +45138,15 @@ impl EntityBusPeerTrait for Vec4BuilderEntity {
 
 pub static VEC4BUILDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4BuilderEntity",
+    name_hash: 1815980155,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec4BuilderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4BuilderEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec4BuilderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42524,6 +45176,7 @@ impl TypeObject for Vec4BuilderEntity {
 
 pub static VEC4BUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4BuilderEntity-Array",
+    name_hash: 1569636431,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec4BuilderEntity"),
@@ -42532,7 +45185,8 @@ pub static VEC4BUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3BuilderEntity {
     pub _glacier_base: Entity,
 }
@@ -42551,12 +45205,15 @@ impl EntityBusPeerTrait for Vec3BuilderEntity {
 
 pub static VEC3BUILDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3BuilderEntity",
+    name_hash: 1635798876,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec3BuilderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3BuilderEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec3BuilderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42586,6 +45243,7 @@ impl TypeObject for Vec3BuilderEntity {
 
 pub static VEC3BUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3BuilderEntity-Array",
+    name_hash: 2575513576,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec3BuilderEntity"),
@@ -42594,7 +45252,8 @@ pub static VEC3BUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec2BuilderEntity {
     pub _glacier_base: Entity,
 }
@@ -42613,12 +45272,15 @@ impl EntityBusPeerTrait for Vec2BuilderEntity {
 
 pub static VEC2BUILDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2BuilderEntity",
+    name_hash: 3150554813,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec2BuilderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec2BuilderEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec2BuilderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42648,6 +45310,7 @@ impl TypeObject for Vec2BuilderEntity {
 
 pub static VEC2BUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2BuilderEntity-Array",
+    name_hash: 4000555785,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec2BuilderEntity"),
@@ -42656,7 +45319,8 @@ pub static VEC2BUILDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VecSplitterEntity {
     pub _glacier_base: Entity,
 }
@@ -42675,12 +45339,15 @@ impl EntityBusPeerTrait for VecSplitterEntity {
 
 pub static VECSPLITTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VecSplitterEntity",
+    name_hash: 3454261823,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(VecSplitterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VecSplitterEntity as Default>::default())),
+            create_boxed: || Box::new(<VecSplitterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42710,6 +45377,7 @@ impl TypeObject for VecSplitterEntity {
 
 pub static VECSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VecSplitterEntity-Array",
+    name_hash: 2642341771,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("VecSplitterEntity"),
@@ -42718,7 +45386,8 @@ pub static VECSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4SplitterEntity {
     pub _glacier_base: Entity,
 }
@@ -42737,12 +45406,15 @@ impl EntityBusPeerTrait for Vec4SplitterEntity {
 
 pub static VEC4SPLITTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4SplitterEntity",
+    name_hash: 482686891,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec4SplitterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4SplitterEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec4SplitterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42772,6 +45444,7 @@ impl TypeObject for Vec4SplitterEntity {
 
 pub static VEC4SPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4SplitterEntity-Array",
+    name_hash: 1165883167,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec4SplitterEntity"),
@@ -42780,7 +45453,8 @@ pub static VEC4SPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3SplitterEntity {
     pub _glacier_base: Entity,
 }
@@ -42799,12 +45473,15 @@ impl EntityBusPeerTrait for Vec3SplitterEntity {
 
 pub static VEC3SPLITTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3SplitterEntity",
+    name_hash: 1687229036,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec3SplitterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3SplitterEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec3SplitterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42834,6 +45511,7 @@ impl TypeObject for Vec3SplitterEntity {
 
 pub static VEC3SPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3SplitterEntity-Array",
+    name_hash: 1985925720,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec3SplitterEntity"),
@@ -42842,7 +45520,8 @@ pub static VEC3SPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec2SplitterEntity {
     pub _glacier_base: Entity,
 }
@@ -42861,12 +45540,15 @@ impl EntityBusPeerTrait for Vec2SplitterEntity {
 
 pub static VEC2SPLITTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2SplitterEntity",
+    name_hash: 1713962285,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec2SplitterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec2SplitterEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec2SplitterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42896,6 +45578,7 @@ impl TypeObject for Vec2SplitterEntity {
 
 pub static VEC2SPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2SplitterEntity-Array",
+    name_hash: 1644630425,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec2SplitterEntity"),
@@ -42904,7 +45587,8 @@ pub static VEC2SPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EulerTransformEntity {
     pub _glacier_base: Entity,
 }
@@ -42923,12 +45607,15 @@ impl EntityBusPeerTrait for EulerTransformEntity {
 
 pub static EULERTRANSFORMENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EulerTransformEntity",
+    name_hash: 1443616185,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(EulerTransformEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EulerTransformEntity as Default>::default())),
+            create_boxed: || Box::new(<EulerTransformEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -42958,6 +45645,7 @@ impl TypeObject for EulerTransformEntity {
 
 pub static EULERTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EulerTransformEntity-Array",
+    name_hash: 2182964237,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EulerTransformEntity"),
@@ -42966,7 +45654,8 @@ pub static EULERTRANSFORMENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EulerTransformSplitterEntity {
     pub _glacier_base: Entity,
 }
@@ -42985,12 +45674,15 @@ impl EntityBusPeerTrait for EulerTransformSplitterEntity {
 
 pub static EULERTRANSFORMSPLITTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EulerTransformSplitterEntity",
+    name_hash: 588162632,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(EulerTransformSplitterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EulerTransformSplitterEntity as Default>::default())),
+            create_boxed: || Box::new(<EulerTransformSplitterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43020,6 +45712,7 @@ impl TypeObject for EulerTransformSplitterEntity {
 
 pub static EULERTRANSFORMSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EulerTransformSplitterEntity-Array",
+    name_hash: 3882113276,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EulerTransformSplitterEntity"),
@@ -43028,7 +45721,8 @@ pub static EULERTRANSFORMSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformSplitterEntity {
     pub _glacier_base: Entity,
 }
@@ -43047,12 +45741,15 @@ impl EntityBusPeerTrait for TransformSplitterEntity {
 
 pub static TRANSFORMSPLITTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSplitterEntity",
+    name_hash: 2774185347,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransformSplitterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformSplitterEntity as Default>::default())),
+            create_boxed: || Box::new(<TransformSplitterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43082,6 +45779,7 @@ impl TypeObject for TransformSplitterEntity {
 
 pub static TRANSFORMSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSplitterEntity-Array",
+    name_hash: 3851339831,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformSplitterEntity"),
@@ -43090,7 +45788,8 @@ pub static TRANSFORMSPLITTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformSelectorEntity {
     pub _glacier_base: Entity,
 }
@@ -43109,12 +45808,15 @@ impl EntityBusPeerTrait for TransformSelectorEntity {
 
 pub static TRANSFORMSELECTORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSelectorEntity",
+    name_hash: 1097701799,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransformSelectorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformSelectorEntity as Default>::default())),
+            create_boxed: || Box::new(<TransformSelectorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43144,6 +45846,7 @@ impl TypeObject for TransformSelectorEntity {
 
 pub static TRANSFORMSELECTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSelectorEntity-Array",
+    name_hash: 4062718739,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformSelectorEntity"),
@@ -43152,7 +45855,8 @@ pub static TRANSFORMSELECTORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformBlendEntity {
     pub _glacier_base: Entity,
 }
@@ -43171,12 +45875,15 @@ impl EntityBusPeerTrait for TransformBlendEntity {
 
 pub static TRANSFORMBLENDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformBlendEntity",
+    name_hash: 1971498899,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransformBlendEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformBlendEntity as Default>::default())),
+            create_boxed: || Box::new(<TransformBlendEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43206,6 +45913,7 @@ impl TypeObject for TransformBlendEntity {
 
 pub static TRANSFORMBLENDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformBlendEntity-Array",
+    name_hash: 635243047,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformBlendEntity"),
@@ -43214,7 +45922,8 @@ pub static TRANSFORMBLENDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SimpleDofParamConverterEntity {
     pub _glacier_base: Entity,
 }
@@ -43233,12 +45942,15 @@ impl EntityBusPeerTrait for SimpleDofParamConverterEntity {
 
 pub static SIMPLEDOFPARAMCONVERTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimpleDofParamConverterEntity",
+    name_hash: 1224479058,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SimpleDofParamConverterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SimpleDofParamConverterEntity as Default>::default())),
+            create_boxed: || Box::new(<SimpleDofParamConverterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43268,6 +45980,7 @@ impl TypeObject for SimpleDofParamConverterEntity {
 
 pub static SIMPLEDOFPARAMCONVERTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SimpleDofParamConverterEntity-Array",
+    name_hash: 3384928486,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SimpleDofParamConverterEntity"),
@@ -43276,7 +45989,8 @@ pub static SIMPLEDOFPARAMCONVERTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpriteDofParamConverterEntity {
     pub _glacier_base: Entity,
 }
@@ -43295,12 +46009,15 @@ impl EntityBusPeerTrait for SpriteDofParamConverterEntity {
 
 pub static SPRITEDOFPARAMCONVERTERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpriteDofParamConverterEntity",
+    name_hash: 3143253205,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SpriteDofParamConverterEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpriteDofParamConverterEntity as Default>::default())),
+            create_boxed: || Box::new(<SpriteDofParamConverterEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43330,6 +46047,7 @@ impl TypeObject for SpriteDofParamConverterEntity {
 
 pub static SPRITEDOFPARAMCONVERTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpriteDofParamConverterEntity-Array",
+    name_hash: 3241983201,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SpriteDofParamConverterEntity"),
@@ -43338,7 +46056,8 @@ pub static SPRITEDOFPARAMCONVERTERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformMultiplierEntity {
     pub _glacier_base: Entity,
 }
@@ -43357,12 +46076,15 @@ impl EntityBusPeerTrait for TransformMultiplierEntity {
 
 pub static TRANSFORMMULTIPLIERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformMultiplierEntity",
+    name_hash: 3778032441,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransformMultiplierEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformMultiplierEntity as Default>::default())),
+            create_boxed: || Box::new(<TransformMultiplierEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43392,6 +46114,7 @@ impl TypeObject for TransformMultiplierEntity {
 
 pub static TRANSFORMMULTIPLIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformMultiplierEntity-Array",
+    name_hash: 1030873485,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformMultiplierEntity"),
@@ -43400,7 +46123,8 @@ pub static TRANSFORMMULTIPLIERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformHubEntity {
     pub _glacier_base: Entity,
 }
@@ -43419,12 +46143,15 @@ impl EntityBusPeerTrait for TransformHubEntity {
 
 pub static TRANSFORMHUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformHubEntity",
+    name_hash: 1935455405,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(TransformHubEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformHubEntity as Default>::default())),
+            create_boxed: || Box::new(<TransformHubEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43454,6 +46181,7 @@ impl TypeObject for TransformHubEntity {
 
 pub static TRANSFORMHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformHubEntity-Array",
+    name_hash: 2818992409,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("TransformHubEntity"),
@@ -43462,7 +46190,8 @@ pub static TRANSFORMHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StringHubEntity {
     pub _glacier_base: Entity,
 }
@@ -43481,12 +46210,15 @@ impl EntityBusPeerTrait for StringHubEntity {
 
 pub static STRINGHUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringHubEntity",
+    name_hash: 1386921524,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(StringHubEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StringHubEntity as Default>::default())),
+            create_boxed: || Box::new(<StringHubEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43516,6 +46248,7 @@ impl TypeObject for StringHubEntity {
 
 pub static STRINGHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StringHubEntity-Array",
+    name_hash: 1263647104,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("StringHubEntity"),
@@ -43524,7 +46257,8 @@ pub static STRINGHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4HubEntity {
     pub _glacier_base: Entity,
 }
@@ -43543,12 +46277,15 @@ impl EntityBusPeerTrait for Vec4HubEntity {
 
 pub static VEC4HUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4HubEntity",
+    name_hash: 3008256901,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec4HubEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4HubEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec4HubEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43578,6 +46315,7 @@ impl TypeObject for Vec4HubEntity {
 
 pub static VEC4HUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4HubEntity-Array",
+    name_hash: 674112305,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec4HubEntity"),
@@ -43586,7 +46324,8 @@ pub static VEC4HUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3HubEntity {
     pub _glacier_base: Entity,
 }
@@ -43605,12 +46344,15 @@ impl EntityBusPeerTrait for Vec3HubEntity {
 
 pub static VEC3HUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3HubEntity",
+    name_hash: 2737450402,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec3HubEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3HubEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec3HubEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43640,6 +46382,7 @@ impl TypeObject for Vec3HubEntity {
 
 pub static VEC3HUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3HubEntity-Array",
+    name_hash: 1710017558,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec3HubEntity"),
@@ -43648,7 +46391,8 @@ pub static VEC3HUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec2HubEntity {
     pub _glacier_base: Entity,
 }
@@ -43667,12 +46411,15 @@ impl EntityBusPeerTrait for Vec2HubEntity {
 
 pub static VEC2HUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2HubEntity",
+    name_hash: 2414849731,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Vec2HubEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec2HubEntity as Default>::default())),
+            create_boxed: || Box::new(<Vec2HubEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43702,6 +46449,7 @@ impl TypeObject for Vec2HubEntity {
 
 pub static VEC2HUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2HubEntity-Array",
+    name_hash: 158953975,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Vec2HubEntity"),
@@ -43710,7 +46458,8 @@ pub static VEC2HUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatHubEntity {
     pub _glacier_base: Entity,
 }
@@ -43729,12 +46478,15 @@ impl EntityBusPeerTrait for FloatHubEntity {
 
 pub static FLOATHUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatHubEntity",
+    name_hash: 2058934737,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(FloatHubEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatHubEntity as Default>::default())),
+            create_boxed: || Box::new(<FloatHubEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43764,6 +46516,7 @@ impl TypeObject for FloatHubEntity {
 
 pub static FLOATHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatHubEntity-Array",
+    name_hash: 1696426981,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("FloatHubEntity"),
@@ -43772,7 +46525,8 @@ pub static FLOATHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Int64HubEntity {
     pub _glacier_base: Entity,
 }
@@ -43791,12 +46545,15 @@ impl EntityBusPeerTrait for Int64HubEntity {
 
 pub static INT64HUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Int64HubEntity",
+    name_hash: 2910102032,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Int64HubEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Int64HubEntity as Default>::default())),
+            create_boxed: || Box::new(<Int64HubEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43826,6 +46583,7 @@ impl TypeObject for Int64HubEntity {
 
 pub static INT64HUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Int64HubEntity-Array",
+    name_hash: 2199359524,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Int64HubEntity"),
@@ -43834,7 +46592,8 @@ pub static INT64HUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IntHubEntity {
     pub _glacier_base: Entity,
 }
@@ -43853,12 +46612,15 @@ impl EntityBusPeerTrait for IntHubEntity {
 
 pub static INTHUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntHubEntity",
+    name_hash: 57449362,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(IntHubEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IntHubEntity as Default>::default())),
+            create_boxed: || Box::new(<IntHubEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43888,6 +46650,7 @@ impl TypeObject for IntHubEntity {
 
 pub static INTHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IntHubEntity-Array",
+    name_hash: 2989548198,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("IntHubEntity"),
@@ -43896,7 +46659,8 @@ pub static INTHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoolHubEntity {
     pub _glacier_base: Entity,
 }
@@ -43915,12 +46679,15 @@ impl EntityBusPeerTrait for BoolHubEntity {
 
 pub static BOOLHUBENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolHubEntity",
+    name_hash: 973927567,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BoolHubEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoolHubEntity as Default>::default())),
+            create_boxed: || Box::new(<BoolHubEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -43950,6 +46717,7 @@ impl TypeObject for BoolHubEntity {
 
 pub static BOOLHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolHubEntity-Array",
+    name_hash: 2960347451,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BoolHubEntity"),
@@ -43958,7 +46726,8 @@ pub static BOOLHUBENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectVariationSwitchEntity {
     pub _glacier_base: Entity,
 }
@@ -43977,12 +46746,15 @@ impl EntityBusPeerTrait for ObjectVariationSwitchEntity {
 
 pub static OBJECTVARIATIONSWITCHENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationSwitchEntity",
+    name_hash: 1456606152,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectVariationSwitchEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectVariationSwitchEntity as Default>::default())),
+            create_boxed: || Box::new(<ObjectVariationSwitchEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44012,6 +46784,7 @@ impl TypeObject for ObjectVariationSwitchEntity {
 
 pub static OBJECTVARIATIONSWITCHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationSwitchEntity-Array",
+    name_hash: 3632127612,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectVariationSwitchEntity"),
@@ -44020,7 +46793,8 @@ pub static OBJECTVARIATIONSWITCHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ObjectVariationMultiSwitchEntity {
     pub _glacier_base: Entity,
 }
@@ -44039,12 +46813,15 @@ impl EntityBusPeerTrait for ObjectVariationMultiSwitchEntity {
 
 pub static OBJECTVARIATIONMULTISWITCHENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationMultiSwitchEntity",
+    name_hash: 1908078465,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ObjectVariationMultiSwitchEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ObjectVariationMultiSwitchEntity as Default>::default())),
+            create_boxed: || Box::new(<ObjectVariationMultiSwitchEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44074,6 +46851,7 @@ impl TypeObject for ObjectVariationMultiSwitchEntity {
 
 pub static OBJECTVARIATIONMULTISWITCHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ObjectVariationMultiSwitchEntity-Array",
+    name_hash: 1667240245,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("ObjectVariationMultiSwitchEntity"),
@@ -44082,7 +46860,8 @@ pub static OBJECTVARIATIONMULTISWITCHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomDelayEntity {
     pub _glacier_base: Entity,
 }
@@ -44101,12 +46880,15 @@ impl EntityBusPeerTrait for RandomDelayEntity {
 
 pub static RANDOMDELAYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomDelayEntity",
+    name_hash: 2891506704,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RandomDelayEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomDelayEntity as Default>::default())),
+            create_boxed: || Box::new(<RandomDelayEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44136,6 +46918,7 @@ impl TypeObject for RandomDelayEntity {
 
 pub static RANDOMDELAYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomDelayEntity-Array",
+    name_hash: 2695189028,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RandomDelayEntity"),
@@ -44144,7 +46927,8 @@ pub static RANDOMDELAYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DelayEntity {
     pub _glacier_base: Entity,
 }
@@ -44163,12 +46947,15 @@ impl EntityBusPeerTrait for DelayEntity {
 
 pub static DELAYENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DelayEntity",
+    name_hash: 3537395115,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(DelayEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DelayEntity as Default>::default())),
+            create_boxed: || Box::new(<DelayEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44198,6 +46985,7 @@ impl TypeObject for DelayEntity {
 
 pub static DELAYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DelayEntity-Array",
+    name_hash: 584424735,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("DelayEntity"),
@@ -44206,7 +46994,8 @@ pub static DELAYENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SelectEventEntity {
     pub _glacier_base: Entity,
 }
@@ -44225,12 +47014,15 @@ impl EntityBusPeerTrait for SelectEventEntity {
 
 pub static SELECTEVENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectEventEntity",
+    name_hash: 2589373402,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(SelectEventEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SelectEventEntity as Default>::default())),
+            create_boxed: || Box::new(<SelectEventEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44260,6 +47052,7 @@ impl TypeObject for SelectEventEntity {
 
 pub static SELECTEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SelectEventEntity-Array",
+    name_hash: 1353434990,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("SelectEventEntity"),
@@ -44268,7 +47061,8 @@ pub static SELECTEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventOrderGateEntity {
     pub _glacier_base: Entity,
 }
@@ -44287,12 +47081,15 @@ impl EntityBusPeerTrait for EventOrderGateEntity {
 
 pub static EVENTORDERGATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventOrderGateEntity",
+    name_hash: 3164010923,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(EventOrderGateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventOrderGateEntity as Default>::default())),
+            create_boxed: || Box::new(<EventOrderGateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44322,6 +47119,7 @@ impl TypeObject for EventOrderGateEntity {
 
 pub static EVENTORDERGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventOrderGateEntity-Array",
+    name_hash: 1612265759,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventOrderGateEntity"),
@@ -44330,7 +47128,8 @@ pub static EVENTORDERGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventAndGateEntity {
     pub _glacier_base: Entity,
 }
@@ -44349,12 +47148,15 @@ impl EntityBusPeerTrait for EventAndGateEntity {
 
 pub static EVENTANDGATEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventAndGateEntity",
+    name_hash: 1946825294,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(EventAndGateEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventAndGateEntity as Default>::default())),
+            create_boxed: || Box::new(<EventAndGateEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44384,6 +47186,7 @@ impl TypeObject for EventAndGateEntity {
 
 pub static EVENTANDGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventAndGateEntity-Array",
+    name_hash: 1565592570,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventAndGateEntity"),
@@ -44392,7 +47195,8 @@ pub static EVENTANDGATEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventSwitchEntity {
     pub _glacier_base: Entity,
 }
@@ -44411,12 +47215,15 @@ impl EntityBusPeerTrait for EventSwitchEntity {
 
 pub static EVENTSWITCHENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventSwitchEntity",
+    name_hash: 919432800,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(EventSwitchEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventSwitchEntity as Default>::default())),
+            create_boxed: || Box::new(<EventSwitchEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44446,6 +47253,7 @@ impl TypeObject for EventSwitchEntity {
 
 pub static EVENTSWITCHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventSwitchEntity-Array",
+    name_hash: 2410751060,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("EventSwitchEntity"),
@@ -44454,7 +47262,8 @@ pub static EVENTSWITCHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UniqueIdEntity {
     pub _glacier_base: Entity,
 }
@@ -44473,12 +47282,15 @@ impl EntityBusPeerTrait for UniqueIdEntity {
 
 pub static UNIQUEIDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UniqueIdEntity",
+    name_hash: 3100226368,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(UniqueIdEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UniqueIdEntity as Default>::default())),
+            create_boxed: || Box::new(<UniqueIdEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44508,6 +47320,7 @@ impl TypeObject for UniqueIdEntity {
 
 pub static UNIQUEIDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UniqueIdEntity-Array",
+    name_hash: 267766260,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("UniqueIdEntity"),
@@ -44516,7 +47329,8 @@ pub static UNIQUEIDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomIntEntity {
     pub _glacier_base: Entity,
 }
@@ -44535,12 +47349,15 @@ impl EntityBusPeerTrait for RandomIntEntity {
 
 pub static RANDOMINTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomIntEntity",
+    name_hash: 2292544598,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RandomIntEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomIntEntity as Default>::default())),
+            create_boxed: || Box::new(<RandomIntEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44570,6 +47387,7 @@ impl TypeObject for RandomIntEntity {
 
 pub static RANDOMINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomIntEntity-Array",
+    name_hash: 1256798690,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RandomIntEntity"),
@@ -44578,7 +47396,8 @@ pub static RANDOMINTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomFloatEntity {
     pub _glacier_base: Entity,
 }
@@ -44597,12 +47416,15 @@ impl EntityBusPeerTrait for RandomFloatEntity {
 
 pub static RANDOMFLOATENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomFloatEntity",
+    name_hash: 2009743861,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RandomFloatEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomFloatEntity as Default>::default())),
+            create_boxed: || Box::new(<RandomFloatEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44632,6 +47454,7 @@ impl TypeObject for RandomFloatEntity {
 
 pub static RANDOMFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomFloatEntity-Array",
+    name_hash: 849121985,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RandomFloatEntity"),
@@ -44640,7 +47463,8 @@ pub static RANDOMFLOATENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomMultiEventEntity {
     pub _glacier_base: Entity,
 }
@@ -44659,12 +47483,15 @@ impl EntityBusPeerTrait for RandomMultiEventEntity {
 
 pub static RANDOMMULTIEVENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomMultiEventEntity",
+    name_hash: 4223229120,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RandomMultiEventEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomMultiEventEntity as Default>::default())),
+            create_boxed: || Box::new(<RandomMultiEventEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44694,6 +47521,7 @@ impl TypeObject for RandomMultiEventEntity {
 
 pub static RANDOMMULTIEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomMultiEventEntity-Array",
+    name_hash: 962499444,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RandomMultiEventEntity"),
@@ -44702,7 +47530,8 @@ pub static RANDOMMULTIEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomEventEntity {
     pub _glacier_base: Entity,
 }
@@ -44721,12 +47550,15 @@ impl EntityBusPeerTrait for RandomEventEntity {
 
 pub static RANDOMEVENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomEventEntity",
+    name_hash: 3262841993,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RandomEventEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomEventEntity as Default>::default())),
+            create_boxed: || Box::new(<RandomEventEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44756,6 +47588,7 @@ impl TypeObject for RandomEventEntity {
 
 pub static RANDOMEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomEventEntity-Array",
+    name_hash: 1001732669,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("RandomEventEntity"),
@@ -44764,7 +47597,8 @@ pub static RANDOMEVENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocatorEntity {
     pub _glacier_base: SpatialEntity,
 }
@@ -44786,12 +47620,15 @@ impl EntityBusPeerTrait for LocatorEntity {
 
 pub static LOCATORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocatorEntity",
+    name_hash: 2277409814,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPATIALENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(LocatorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocatorEntity as Default>::default())),
+            create_boxed: || Box::new(<LocatorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44821,6 +47658,7 @@ impl TypeObject for LocatorEntity {
 
 pub static LOCATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocatorEntity-Array",
+    name_hash: 3568228642,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("LocatorEntity"),
@@ -44829,7 +47667,8 @@ pub static LOCATORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CountDownEntity {
     pub _glacier_base: Entity,
 }
@@ -44848,12 +47687,15 @@ impl EntityBusPeerTrait for CountDownEntity {
 
 pub static COUNTDOWNENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CountDownEntity",
+    name_hash: 2556851791,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(CountDownEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CountDownEntity as Default>::default())),
+            create_boxed: || Box::new(<CountDownEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44883,6 +47725,7 @@ impl TypeObject for CountDownEntity {
 
 pub static COUNTDOWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CountDownEntity-Array",
+    name_hash: 2022105979,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("CountDownEntity"),
@@ -44891,7 +47734,8 @@ pub static COUNTDOWNENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MathEntity {
     pub _glacier_base: Entity,
 }
@@ -44910,12 +47754,15 @@ impl EntityBusPeerTrait for MathEntity {
 
 pub static MATHENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntity",
+    name_hash: 1169209998,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(MathEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MathEntity as Default>::default())),
+            create_boxed: || Box::new(<MathEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -44945,6 +47792,7 @@ impl TypeObject for MathEntity {
 
 pub static MATHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MathEntity-Array",
+    name_hash: 2029814714,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("MathEntity"),
@@ -44953,7 +47801,8 @@ pub static MATHENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Or4Entity {
     pub _glacier_base: Entity,
 }
@@ -44972,12 +47821,15 @@ impl EntityBusPeerTrait for Or4Entity {
 
 pub static OR4ENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Or4Entity",
+    name_hash: 814865591,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(Or4Entity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Or4Entity as Default>::default())),
+            create_boxed: || Box::new(<Or4Entity as Default>::default()),
         },
         fields: &[
         ],
@@ -45007,6 +47859,7 @@ impl TypeObject for Or4Entity {
 
 pub static OR4ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Or4Entity-Array",
+    name_hash: 4190467587,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("Or4Entity"),
@@ -45015,7 +47868,8 @@ pub static OR4ENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct XorEntity {
     pub _glacier_base: Entity,
 }
@@ -45034,12 +47888,15 @@ impl EntityBusPeerTrait for XorEntity {
 
 pub static XORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "XorEntity",
+    name_hash: 496671195,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(XorEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<XorEntity as Default>::default())),
+            create_boxed: || Box::new(<XorEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -45069,6 +47926,7 @@ impl TypeObject for XorEntity {
 
 pub static XORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "XorEntity-Array",
+    name_hash: 1987756271,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("XorEntity"),
@@ -45077,7 +47935,8 @@ pub static XORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OrEntity {
     pub _glacier_base: Entity,
 }
@@ -45096,12 +47955,15 @@ impl EntityBusPeerTrait for OrEntity {
 
 pub static ORENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OrEntity",
+    name_hash: 1986133699,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(OrEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OrEntity as Default>::default())),
+            create_boxed: || Box::new(<OrEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -45131,6 +47993,7 @@ impl TypeObject for OrEntity {
 
 pub static ORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OrEntity-Array",
+    name_hash: 2959589879,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("OrEntity"),
@@ -45139,7 +48002,8 @@ pub static ORENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BitwiseAndEntity {
     pub _glacier_base: Entity,
 }
@@ -45158,12 +48022,15 @@ impl EntityBusPeerTrait for BitwiseAndEntity {
 
 pub static BITWISEANDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BitwiseAndEntity",
+    name_hash: 2377199106,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(BitwiseAndEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BitwiseAndEntity as Default>::default())),
+            create_boxed: || Box::new(<BitwiseAndEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -45193,6 +48060,7 @@ impl TypeObject for BitwiseAndEntity {
 
 pub static BITWISEANDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BitwiseAndEntity-Array",
+    name_hash: 1134988598,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("BitwiseAndEntity"),
@@ -45201,7 +48069,8 @@ pub static BITWISEANDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AndEntity {
     pub _glacier_base: Entity,
 }
@@ -45220,12 +48089,15 @@ impl EntityBusPeerTrait for AndEntity {
 
 pub static ANDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AndEntity",
+    name_hash: 2357770869,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(AndEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AndEntity as Default>::default())),
+            create_boxed: || Box::new(<AndEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -45255,6 +48127,7 @@ impl TypeObject for AndEntity {
 
 pub static ANDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AndEntity-Array",
+    name_hash: 661875521,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("AndEntity"),
@@ -45263,7 +48136,8 @@ pub static ANDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NotEntity {
     pub _glacier_base: Entity,
 }
@@ -45282,12 +48156,15 @@ impl EntityBusPeerTrait for NotEntity {
 
 pub static NOTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NotEntity",
+    name_hash: 2184782155,
     flags: MemberInfoFlags::new(101),
     module: "Entity",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(NotEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NotEntity as Default>::default())),
+            create_boxed: || Box::new(<NotEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -45317,6 +48194,7 @@ impl TypeObject for NotEntity {
 
 pub static NOTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NotEntity-Array",
+    name_hash: 4247658623,
     flags: MemberInfoFlags::new(145),
     module: "Entity",
     data: TypeInfoData::Array("NotEntity"),

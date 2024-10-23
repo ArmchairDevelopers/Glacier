@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -45,25 +46,26 @@ pub(crate) fn register_morph_sim_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTSTATICMORPHBLENDENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StaticMorphEntityData {
     pub _glacier_base: super::entity::SpatialEntityData,
-    pub targets: Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>>,
+    pub targets: Option<LockedTypeObject /* super::morph_base::MorphTargets */>,
     pub model_pose: super::core::SparseTransformArray,
 }
 
 pub trait StaticMorphEntityDataTrait: super::entity::SpatialEntityDataTrait {
-    fn targets(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>>;
-    fn targets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>>;
+    fn targets(&self) -> &Option<LockedTypeObject /* super::morph_base::MorphTargets */>;
+    fn targets_mut(&mut self) -> &mut Option<LockedTypeObject /* super::morph_base::MorphTargets */>;
     fn model_pose(&self) -> &super::core::SparseTransformArray;
     fn model_pose_mut(&mut self) -> &mut super::core::SparseTransformArray;
 }
 
 impl StaticMorphEntityDataTrait for StaticMorphEntityData {
-    fn targets(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>> {
+    fn targets(&self) -> &Option<LockedTypeObject /* super::morph_base::MorphTargets */> {
         &self.targets
     }
-    fn targets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>> {
+    fn targets_mut(&mut self) -> &mut Option<LockedTypeObject /* super::morph_base::MorphTargets */> {
         &mut self.targets
     }
     fn model_pose(&self) -> &super::core::SparseTransformArray {
@@ -106,22 +108,27 @@ impl super::core::DataContainerTrait for StaticMorphEntityData {
 
 pub static STATICMORPHENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphEntityData",
+    name_hash: 1257304574,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StaticMorphEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StaticMorphEntityData as Default>::default())),
+            create_boxed: || Box::new(<StaticMorphEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Targets",
+                name_hash: 3016537383,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MorphTargets",
                 rust_offset: offset_of!(StaticMorphEntityData, targets),
             },
             FieldInfoData {
                 name: "ModelPose",
+                name_hash: 4243999587,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SparseTransformArray",
                 rust_offset: offset_of!(StaticMorphEntityData, model_pose),
@@ -153,6 +160,7 @@ impl TypeObject for StaticMorphEntityData {
 
 pub static STATICMORPHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphEntityData-Array",
+    name_hash: 1229411018,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("StaticMorphEntityData"),
@@ -161,7 +169,8 @@ pub static STATICMORPHENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StaticMorphSaveGameStorageEntityData {
     pub _glacier_base: StaticMorphStorageEntityData,
 }
@@ -198,12 +207,15 @@ impl super::core::DataContainerTrait for StaticMorphSaveGameStorageEntityData {
 
 pub static STATICMORPHSAVEGAMESTORAGEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphSaveGameStorageEntityData",
+    name_hash: 1242618280,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(STATICMORPHSTORAGEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StaticMorphSaveGameStorageEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StaticMorphSaveGameStorageEntityData as Default>::default())),
+            create_boxed: || Box::new(<StaticMorphSaveGameStorageEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -233,6 +245,7 @@ impl TypeObject for StaticMorphSaveGameStorageEntityData {
 
 pub static STATICMORPHSAVEGAMESTORAGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphSaveGameStorageEntityData-Array",
+    name_hash: 3932904220,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("StaticMorphSaveGameStorageEntityData"),
@@ -241,7 +254,8 @@ pub static STATICMORPHSAVEGAMESTORAGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StaticMorphStorageEntityData {
     pub _glacier_base: super::entity::EntityData,
 }
@@ -275,12 +289,15 @@ impl super::core::DataContainerTrait for StaticMorphStorageEntityData {
 
 pub static STATICMORPHSTORAGEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphStorageEntityData",
+    name_hash: 308659943,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StaticMorphStorageEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StaticMorphStorageEntityData as Default>::default())),
+            create_boxed: || Box::new(<StaticMorphStorageEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -310,6 +327,7 @@ impl TypeObject for StaticMorphStorageEntityData {
 
 pub static STATICMORPHSTORAGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphStorageEntityData-Array",
+    name_hash: 3777054931,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("StaticMorphStorageEntityData"),
@@ -318,31 +336,32 @@ pub static STATICMORPHSTORAGEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StaticMorphBlendEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub presets: Vec<super::morph_base::MorphTargetsInterfaceInfo>,
-    pub blends: Vec<super::morph_base::MorphTargetsInterfaceInfo>,
+    pub presets: Vec<BoxedTypeObject /* super::morph_base::MorphTargetsInterfaceInfo */>,
+    pub blends: Vec<BoxedTypeObject /* super::morph_base::MorphTargetsInterfaceInfo */>,
 }
 
 pub trait StaticMorphBlendEntityDataTrait: super::entity::EntityDataTrait {
-    fn presets(&self) -> &Vec<super::morph_base::MorphTargetsInterfaceInfo>;
-    fn presets_mut(&mut self) -> &mut Vec<super::morph_base::MorphTargetsInterfaceInfo>;
-    fn blends(&self) -> &Vec<super::morph_base::MorphTargetsInterfaceInfo>;
-    fn blends_mut(&mut self) -> &mut Vec<super::morph_base::MorphTargetsInterfaceInfo>;
+    fn presets(&self) -> &Vec<BoxedTypeObject /* super::morph_base::MorphTargetsInterfaceInfo */>;
+    fn presets_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::morph_base::MorphTargetsInterfaceInfo */>;
+    fn blends(&self) -> &Vec<BoxedTypeObject /* super::morph_base::MorphTargetsInterfaceInfo */>;
+    fn blends_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::morph_base::MorphTargetsInterfaceInfo */>;
 }
 
 impl StaticMorphBlendEntityDataTrait for StaticMorphBlendEntityData {
-    fn presets(&self) -> &Vec<super::morph_base::MorphTargetsInterfaceInfo> {
+    fn presets(&self) -> &Vec<BoxedTypeObject /* super::morph_base::MorphTargetsInterfaceInfo */> {
         &self.presets
     }
-    fn presets_mut(&mut self) -> &mut Vec<super::morph_base::MorphTargetsInterfaceInfo> {
+    fn presets_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::morph_base::MorphTargetsInterfaceInfo */> {
         &mut self.presets
     }
-    fn blends(&self) -> &Vec<super::morph_base::MorphTargetsInterfaceInfo> {
+    fn blends(&self) -> &Vec<BoxedTypeObject /* super::morph_base::MorphTargetsInterfaceInfo */> {
         &self.blends
     }
-    fn blends_mut(&mut self) -> &mut Vec<super::morph_base::MorphTargetsInterfaceInfo> {
+    fn blends_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::morph_base::MorphTargetsInterfaceInfo */> {
         &mut self.blends
     }
 }
@@ -370,22 +389,27 @@ impl super::core::DataContainerTrait for StaticMorphBlendEntityData {
 
 pub static STATICMORPHBLENDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphBlendEntityData",
+    name_hash: 559656799,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StaticMorphBlendEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StaticMorphBlendEntityData as Default>::default())),
+            create_boxed: || Box::new(<StaticMorphBlendEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Presets",
+                name_hash: 3463460435,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MorphTargetsInterfaceInfo-Array",
                 rust_offset: offset_of!(StaticMorphBlendEntityData, presets),
             },
             FieldInfoData {
                 name: "Blends",
+                name_hash: 2685362903,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MorphTargetsInterfaceInfo-Array",
                 rust_offset: offset_of!(StaticMorphBlendEntityData, blends),
@@ -417,6 +441,7 @@ impl TypeObject for StaticMorphBlendEntityData {
 
 pub static STATICMORPHBLENDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphBlendEntityData-Array",
+    name_hash: 2891293803,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("StaticMorphBlendEntityData"),
@@ -425,18 +450,19 @@ pub static STATICMORPHBLENDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StoredStaticMorphComponentData {
     pub _glacier_base: StoredStaticMorphBaseComponentData,
     pub targets_id: glacier_util::guid::Guid,
-    pub presets: Vec<StoredStaticMorphPreset>,
+    pub presets: Vec<BoxedTypeObject /* StoredStaticMorphPreset */>,
 }
 
 pub trait StoredStaticMorphComponentDataTrait: StoredStaticMorphBaseComponentDataTrait {
     fn targets_id(&self) -> &glacier_util::guid::Guid;
     fn targets_id_mut(&mut self) -> &mut glacier_util::guid::Guid;
-    fn presets(&self) -> &Vec<StoredStaticMorphPreset>;
-    fn presets_mut(&mut self) -> &mut Vec<StoredStaticMorphPreset>;
+    fn presets(&self) -> &Vec<BoxedTypeObject /* StoredStaticMorphPreset */>;
+    fn presets_mut(&mut self) -> &mut Vec<BoxedTypeObject /* StoredStaticMorphPreset */>;
 }
 
 impl StoredStaticMorphComponentDataTrait for StoredStaticMorphComponentData {
@@ -446,10 +472,10 @@ impl StoredStaticMorphComponentDataTrait for StoredStaticMorphComponentData {
     fn targets_id_mut(&mut self) -> &mut glacier_util::guid::Guid {
         &mut self.targets_id
     }
-    fn presets(&self) -> &Vec<StoredStaticMorphPreset> {
+    fn presets(&self) -> &Vec<BoxedTypeObject /* StoredStaticMorphPreset */> {
         &self.presets
     }
-    fn presets_mut(&mut self) -> &mut Vec<StoredStaticMorphPreset> {
+    fn presets_mut(&mut self) -> &mut Vec<BoxedTypeObject /* StoredStaticMorphPreset */> {
         &mut self.presets
     }
 }
@@ -467,10 +493,10 @@ impl super::entity::ComponentDataTrait for StoredStaticMorphComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -513,22 +539,27 @@ impl super::core::DataContainerTrait for StoredStaticMorphComponentData {
 
 pub static STOREDSTATICMORPHCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StoredStaticMorphComponentData",
+    name_hash: 180759793,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(STOREDSTATICMORPHBASECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StoredStaticMorphComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StoredStaticMorphComponentData as Default>::default())),
+            create_boxed: || Box::new(<StoredStaticMorphComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TargetsId",
+                name_hash: 3654198378,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(StoredStaticMorphComponentData, targets_id),
             },
             FieldInfoData {
                 name: "Presets",
+                name_hash: 3463460435,
                 flags: MemberInfoFlags::new(144),
                 field_type: "StoredStaticMorphPreset-Array",
                 rust_offset: offset_of!(StoredStaticMorphComponentData, presets),
@@ -560,6 +591,7 @@ impl TypeObject for StoredStaticMorphComponentData {
 
 pub static STOREDSTATICMORPHCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StoredStaticMorphComponentData-Array",
+    name_hash: 1784483781,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("StoredStaticMorphComponentData"),
@@ -568,17 +600,18 @@ pub static STOREDSTATICMORPHCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StoredStaticMorphPreset {
     pub preset_id: glacier_util::guid::Guid,
-    pub preset_mesh: Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>,
+    pub preset_mesh: Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>,
 }
 
 pub trait StoredStaticMorphPresetTrait: TypeObject {
     fn preset_id(&self) -> &glacier_util::guid::Guid;
     fn preset_id_mut(&mut self) -> &mut glacier_util::guid::Guid;
-    fn preset_mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
-    fn preset_mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>>;
+    fn preset_mesh(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>;
+    fn preset_mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */>;
 }
 
 impl StoredStaticMorphPresetTrait for StoredStaticMorphPreset {
@@ -588,31 +621,35 @@ impl StoredStaticMorphPresetTrait for StoredStaticMorphPreset {
     fn preset_id_mut(&mut self) -> &mut glacier_util::guid::Guid {
         &mut self.preset_id
     }
-    fn preset_mesh(&self) -> &Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn preset_mesh(&self) -> &Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         &self.preset_mesh
     }
-    fn preset_mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::MeshBaseAssetTrait>>> {
+    fn preset_mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::MeshBaseAsset */> {
         &mut self.preset_mesh
     }
 }
 
 pub static STOREDSTATICMORPHPRESET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StoredStaticMorphPreset",
+    name_hash: 372096203,
     flags: MemberInfoFlags::new(73),
     module: "MorphSim",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StoredStaticMorphPreset as Default>::default())),
+            create_boxed: || Box::new(<StoredStaticMorphPreset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PresetId",
+                name_hash: 2625045485,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(StoredStaticMorphPreset, preset_id),
             },
             FieldInfoData {
                 name: "PresetMesh",
+                name_hash: 2521412627,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MeshBaseAsset",
                 rust_offset: offset_of!(StoredStaticMorphPreset, preset_mesh),
@@ -644,6 +681,7 @@ impl TypeObject for StoredStaticMorphPreset {
 
 pub static STOREDSTATICMORPHPRESET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StoredStaticMorphPreset-Array",
+    name_hash: 3087621119,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("StoredStaticMorphPreset"),
@@ -652,7 +690,8 @@ pub static STOREDSTATICMORPHPRESET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StoredStaticMorphBaseComponentData {
     pub _glacier_base: super::entity::GameComponentData,
 }
@@ -673,10 +712,10 @@ impl super::entity::ComponentDataTrait for StoredStaticMorphBaseComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -719,12 +758,15 @@ impl super::core::DataContainerTrait for StoredStaticMorphBaseComponentData {
 
 pub static STOREDSTATICMORPHBASECOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StoredStaticMorphBaseComponentData",
+    name_hash: 2263396036,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StoredStaticMorphBaseComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StoredStaticMorphBaseComponentData as Default>::default())),
+            create_boxed: || Box::new(<StoredStaticMorphBaseComponentData as Default>::default()),
         },
         fields: &[
         ],
@@ -754,6 +796,7 @@ impl TypeObject for StoredStaticMorphBaseComponentData {
 
 pub static STOREDSTATICMORPHBASECOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StoredStaticMorphBaseComponentData-Array",
+    name_hash: 1954747248,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("StoredStaticMorphBaseComponentData"),
@@ -762,22 +805,23 @@ pub static STOREDSTATICMORPHBASECOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StaticMorphGeneratorComponentData {
     pub _glacier_base: super::entity::GameComponentData,
-    pub targets: Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>>,
+    pub targets: Option<LockedTypeObject /* super::morph_base::MorphTargets */>,
 }
 
 pub trait StaticMorphGeneratorComponentDataTrait: super::entity::GameComponentDataTrait {
-    fn targets(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>>;
-    fn targets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>>;
+    fn targets(&self) -> &Option<LockedTypeObject /* super::morph_base::MorphTargets */>;
+    fn targets_mut(&mut self) -> &mut Option<LockedTypeObject /* super::morph_base::MorphTargets */>;
 }
 
 impl StaticMorphGeneratorComponentDataTrait for StaticMorphGeneratorComponentData {
-    fn targets(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>> {
+    fn targets(&self) -> &Option<LockedTypeObject /* super::morph_base::MorphTargets */> {
         &self.targets
     }
-    fn targets_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphTargetsTrait>>> {
+    fn targets_mut(&mut self) -> &mut Option<LockedTypeObject /* super::morph_base::MorphTargets */> {
         &mut self.targets
     }
 }
@@ -792,10 +836,10 @@ impl super::entity::ComponentDataTrait for StaticMorphGeneratorComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -838,16 +882,20 @@ impl super::core::DataContainerTrait for StaticMorphGeneratorComponentData {
 
 pub static STATICMORPHGENERATORCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphGeneratorComponentData",
+    name_hash: 508803769,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StaticMorphGeneratorComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StaticMorphGeneratorComponentData as Default>::default())),
+            create_boxed: || Box::new(<StaticMorphGeneratorComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Targets",
+                name_hash: 3016537383,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MorphTargets",
                 rust_offset: offset_of!(StaticMorphGeneratorComponentData, targets),
@@ -879,6 +927,7 @@ impl TypeObject for StaticMorphGeneratorComponentData {
 
 pub static STATICMORPHGENERATORCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphGeneratorComponentData-Array",
+    name_hash: 4227664141,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("StaticMorphGeneratorComponentData"),
@@ -887,22 +936,23 @@ pub static STATICMORPHGENERATORCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StaticMorphComponentData {
     pub _glacier_base: super::entity::GameComponentData,
-    pub morph: Option<Arc<Mutex<dyn super::morph_base::MorphStaticTrait>>>,
+    pub morph: Option<LockedTypeObject /* super::morph_base::MorphStatic */>,
 }
 
 pub trait StaticMorphComponentDataTrait: super::entity::GameComponentDataTrait {
-    fn morph(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphStaticTrait>>>;
-    fn morph_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphStaticTrait>>>;
+    fn morph(&self) -> &Option<LockedTypeObject /* super::morph_base::MorphStatic */>;
+    fn morph_mut(&mut self) -> &mut Option<LockedTypeObject /* super::morph_base::MorphStatic */>;
 }
 
 impl StaticMorphComponentDataTrait for StaticMorphComponentData {
-    fn morph(&self) -> &Option<Arc<Mutex<dyn super::morph_base::MorphStaticTrait>>> {
+    fn morph(&self) -> &Option<LockedTypeObject /* super::morph_base::MorphStatic */> {
         &self.morph
     }
-    fn morph_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::morph_base::MorphStaticTrait>>> {
+    fn morph_mut(&mut self) -> &mut Option<LockedTypeObject /* super::morph_base::MorphStatic */> {
         &mut self.morph
     }
 }
@@ -917,10 +967,10 @@ impl super::entity::ComponentDataTrait for StaticMorphComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -963,16 +1013,20 @@ impl super::core::DataContainerTrait for StaticMorphComponentData {
 
 pub static STATICMORPHCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphComponentData",
+    name_hash: 1464191850,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(StaticMorphComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StaticMorphComponentData as Default>::default())),
+            create_boxed: || Box::new(<StaticMorphComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Morph",
+                name_hash: 210034189,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MorphStatic",
                 rust_offset: offset_of!(StaticMorphComponentData, morph),
@@ -1004,6 +1058,7 @@ impl TypeObject for StaticMorphComponentData {
 
 pub static STATICMORPHCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StaticMorphComponentData-Array",
+    name_hash: 3999716958,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("StaticMorphComponentData"),
@@ -1012,7 +1067,8 @@ pub static STATICMORPHCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerStaticMorphSaveGameStorageEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1031,12 +1087,15 @@ impl super::entity::EntityBusPeerTrait for ServerStaticMorphSaveGameStorageEntit
 
 pub static SERVERSTATICMORPHSAVEGAMESTORAGEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerStaticMorphSaveGameStorageEntity",
+    name_hash: 3936986237,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerStaticMorphSaveGameStorageEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerStaticMorphSaveGameStorageEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerStaticMorphSaveGameStorageEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1066,6 +1125,7 @@ impl TypeObject for ServerStaticMorphSaveGameStorageEntity {
 
 pub static SERVERSTATICMORPHSAVEGAMESTORAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerStaticMorphSaveGameStorageEntity-Array",
+    name_hash: 2610639177,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("ServerStaticMorphSaveGameStorageEntity"),
@@ -1074,7 +1134,8 @@ pub static SERVERSTATICMORPHSAVEGAMESTORAGEENTITY_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStoredStaticMorphComponent {
     pub _glacier_base: ClientStoredStaticMorphBaseComponent,
 }
@@ -1102,12 +1163,15 @@ impl super::entity::EntityBusPeerTrait for ClientStoredStaticMorphComponent {
 
 pub static CLIENTSTOREDSTATICMORPHCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStoredStaticMorphComponent",
+    name_hash: 1277303096,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTSTOREDSTATICMORPHBASECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientStoredStaticMorphComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStoredStaticMorphComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientStoredStaticMorphComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1137,6 +1201,7 @@ impl TypeObject for ClientStoredStaticMorphComponent {
 
 pub static CLIENTSTOREDSTATICMORPHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStoredStaticMorphComponent-Array",
+    name_hash: 1457586828,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("ClientStoredStaticMorphComponent"),
@@ -1145,7 +1210,8 @@ pub static CLIENTSTOREDSTATICMORPHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStoredStaticMorphBaseComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -1170,12 +1236,15 @@ impl super::entity::EntityBusPeerTrait for ClientStoredStaticMorphBaseComponent 
 
 pub static CLIENTSTOREDSTATICMORPHBASECOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStoredStaticMorphBaseComponent",
+    name_hash: 3308012365,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientStoredStaticMorphBaseComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStoredStaticMorphBaseComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientStoredStaticMorphBaseComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1205,6 +1274,7 @@ impl TypeObject for ClientStoredStaticMorphBaseComponent {
 
 pub static CLIENTSTOREDSTATICMORPHBASECOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStoredStaticMorphBaseComponent-Array",
+    name_hash: 772159353,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("ClientStoredStaticMorphBaseComponent"),
@@ -1213,7 +1283,8 @@ pub static CLIENTSTOREDSTATICMORPHBASECOMPONENT_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStaticMorphStorageEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1232,12 +1303,15 @@ impl super::entity::EntityBusPeerTrait for ClientStaticMorphStorageEntity {
 
 pub static CLIENTSTATICMORPHSTORAGEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStaticMorphStorageEntity",
+    name_hash: 3318932782,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientStaticMorphStorageEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStaticMorphStorageEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientStaticMorphStorageEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1267,6 +1341,7 @@ impl TypeObject for ClientStaticMorphStorageEntity {
 
 pub static CLIENTSTATICMORPHSTORAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStaticMorphStorageEntity-Array",
+    name_hash: 2833264026,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("ClientStaticMorphStorageEntity"),
@@ -1275,7 +1350,8 @@ pub static CLIENTSTATICMORPHSTORAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStaticMorphSaveGameStorageEntity {
     pub _glacier_base: ClientStaticMorphStorageEntity,
 }
@@ -1297,12 +1373,15 @@ impl super::entity::EntityBusPeerTrait for ClientStaticMorphSaveGameStorageEntit
 
 pub static CLIENTSTATICMORPHSAVEGAMESTORAGEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStaticMorphSaveGameStorageEntity",
+    name_hash: 1106209313,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTSTATICMORPHSTORAGEENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientStaticMorphSaveGameStorageEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStaticMorphSaveGameStorageEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientStaticMorphSaveGameStorageEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1332,6 +1411,7 @@ impl TypeObject for ClientStaticMorphSaveGameStorageEntity {
 
 pub static CLIENTSTATICMORPHSAVEGAMESTORAGEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStaticMorphSaveGameStorageEntity-Array",
+    name_hash: 2725000341,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("ClientStaticMorphSaveGameStorageEntity"),
@@ -1340,7 +1420,8 @@ pub static CLIENTSTATICMORPHSAVEGAMESTORAGEENTITY_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStaticMorphGeneratorComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -1365,12 +1446,15 @@ impl super::entity::EntityBusPeerTrait for ClientStaticMorphGeneratorComponent {
 
 pub static CLIENTSTATICMORPHGENERATORCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStaticMorphGeneratorComponent",
+    name_hash: 3151020496,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientStaticMorphGeneratorComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStaticMorphGeneratorComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientStaticMorphGeneratorComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1400,6 +1484,7 @@ impl TypeObject for ClientStaticMorphGeneratorComponent {
 
 pub static CLIENTSTATICMORPHGENERATORCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStaticMorphGeneratorComponent-Array",
+    name_hash: 4164976740,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("ClientStaticMorphGeneratorComponent"),
@@ -1408,7 +1493,8 @@ pub static CLIENTSTATICMORPHGENERATORCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStaticMorphComponent {
     pub _glacier_base: super::gameplay_client_server::ClientGameComponent,
 }
@@ -1433,12 +1519,15 @@ impl super::entity::EntityBusPeerTrait for ClientStaticMorphComponent {
 
 pub static CLIENTSTATICMORPHCOMPONENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStaticMorphComponent",
+    name_hash: 3339726371,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::gameplay_client_server::CLIENTGAMECOMPONENT_TYPE_INFO),
+        super_class_offset: offset_of!(ClientStaticMorphComponent, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStaticMorphComponent as Default>::default())),
+            create_boxed: || Box::new(<ClientStaticMorphComponent as Default>::default()),
         },
         fields: &[
         ],
@@ -1468,6 +1557,7 @@ impl TypeObject for ClientStaticMorphComponent {
 
 pub static CLIENTSTATICMORPHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStaticMorphComponent-Array",
+    name_hash: 2957537687,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("ClientStaticMorphComponent"),
@@ -1476,7 +1566,8 @@ pub static CLIENTSTATICMORPHCOMPONENT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientStaticMorphBlendEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1495,12 +1586,15 @@ impl super::entity::EntityBusPeerTrait for ClientStaticMorphBlendEntity {
 
 pub static CLIENTSTATICMORPHBLENDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStaticMorphBlendEntity",
+    name_hash: 2112276758,
     flags: MemberInfoFlags::new(101),
     module: "MorphSim",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientStaticMorphBlendEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientStaticMorphBlendEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientStaticMorphBlendEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1530,6 +1624,7 @@ impl TypeObject for ClientStaticMorphBlendEntity {
 
 pub static CLIENTSTATICMORPHBLENDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientStaticMorphBlendEntity-Array",
+    name_hash: 993451554,
     flags: MemberInfoFlags::new(145),
     module: "MorphSim",
     data: TypeInfoData::Array("ClientStaticMorphBlendEntity"),

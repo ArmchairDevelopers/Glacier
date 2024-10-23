@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -25,7 +26,8 @@ pub(crate) fn register_state_stream_types(registry: &mut TypeRegistry) {
     registry.register_type(SKELETONHANDLE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ReplaySettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enable: bool,
@@ -230,130 +232,153 @@ impl super::core::DataContainerTrait for ReplaySettings {
 
 pub static REPLAYSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReplaySettings",
+    name_hash: 4222882067,
     flags: MemberInfoFlags::new(101),
     module: "StateStream",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(ReplaySettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ReplaySettings as Default>::default())),
+            create_boxed: || Box::new(<ReplaySettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ReplaySettings, enable),
             },
             FieldInfoData {
                 name: "HeapCoreSizeInMB",
+                name_hash: 3644408303,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, heap_core_size_in_m_b),
             },
             FieldInfoData {
                 name: "HeapReserveSizeInMB",
+                name_hash: 3605175380,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, heap_reserve_size_in_m_b),
             },
             FieldInfoData {
                 name: "HeapAllowGrow",
+                name_hash: 2346338029,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ReplaySettings, heap_allow_grow),
             },
             FieldInfoData {
                 name: "ClipMaxSizeInKB",
+                name_hash: 3104249612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, clip_max_size_in_k_b),
             },
             FieldInfoData {
                 name: "ClipSBASizeInKB",
+                name_hash: 3779348456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, clip_s_b_a_size_in_k_b),
             },
             FieldInfoData {
                 name: "ClipMaxSizeCompressedInKB",
+                name_hash: 2707575915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, clip_max_size_compressed_in_k_b),
             },
             FieldInfoData {
                 name: "FramesPerClip",
+                name_hash: 315278938,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, frames_per_clip),
             },
             FieldInfoData {
                 name: "PrefetchClips",
+                name_hash: 297601627,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ReplaySettings, prefetch_clips),
             },
             FieldInfoData {
                 name: "UncompressedFrameCount",
+                name_hash: 3153540903,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, uncompressed_frame_count),
             },
             FieldInfoData {
                 name: "UncompressedFrameCountReadOnly",
+                name_hash: 3305476961,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, uncompressed_frame_count_read_only),
             },
             FieldInfoData {
                 name: "TocEntries",
+                name_hash: 700864207,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, toc_entries),
             },
             FieldInfoData {
                 name: "TocPinnedEntriesPercentage",
+                name_hash: 4255737327,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, toc_pinned_entries_percentage),
             },
             FieldInfoData {
                 name: "VFSMountPoint",
+                name_hash: 1833011271,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ReplaySettings, v_f_s_mount_point),
             },
             FieldInfoData {
                 name: "BufferSizeInMB",
+                name_hash: 524375912,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, buffer_size_in_m_b),
             },
             FieldInfoData {
                 name: "CachePageSizeInKB",
+                name_hash: 3072960689,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, cache_page_size_in_k_b),
             },
             FieldInfoData {
                 name: "CacheSizeInMB",
+                name_hash: 2187541860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, cache_size_in_m_b),
             },
             FieldInfoData {
                 name: "LZ4SoftwareCompressionBlockSizeInKB",
+                name_hash: 1543978212,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, l_z4_software_compression_block_size_in_k_b),
             },
             FieldInfoData {
                 name: "ZLibHardwareCompressionBlockSizeInKB",
+                name_hash: 78462634,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ReplaySettings, z_lib_hardware_compression_block_size_in_k_b),
             },
             FieldInfoData {
                 name: "CompressEndClips",
+                name_hash: 3021990697,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ReplaySettings, compress_end_clips),
@@ -385,6 +410,7 @@ impl TypeObject for ReplaySettings {
 
 pub static REPLAYSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReplaySettings-Array",
+    name_hash: 452037543,
     flags: MemberInfoFlags::new(145),
     module: "StateStream",
     data: TypeInfoData::Array("ReplaySettings"),
@@ -393,7 +419,8 @@ pub static REPLAYSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmptyDynamicState {
 }
 
@@ -405,11 +432,13 @@ impl EmptyDynamicStateTrait for EmptyDynamicState {
 
 pub static EMPTYDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmptyDynamicState",
+    name_hash: 4115241490,
     flags: MemberInfoFlags::new(36937),
     module: "StateStream",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmptyDynamicState as Default>::default())),
+            create_boxed: || Box::new(<EmptyDynamicState as Default>::default()),
         },
         fields: &[
         ],
@@ -439,6 +468,7 @@ impl TypeObject for EmptyDynamicState {
 
 pub static EMPTYDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmptyDynamicState-Array",
+    name_hash: 1584578854,
     flags: MemberInfoFlags::new(145),
     module: "StateStream",
     data: TypeInfoData::Array("EmptyDynamicState"),
@@ -447,7 +477,8 @@ pub static EMPTYDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmptyStaticState {
 }
 
@@ -459,11 +490,13 @@ impl EmptyStaticStateTrait for EmptyStaticState {
 
 pub static EMPTYSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmptyStaticState",
+    name_hash: 3176453087,
     flags: MemberInfoFlags::new(36937),
     module: "StateStream",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmptyStaticState as Default>::default())),
+            create_boxed: || Box::new(<EmptyStaticState as Default>::default()),
         },
         fields: &[
         ],
@@ -493,6 +526,7 @@ impl TypeObject for EmptyStaticState {
 
 pub static EMPTYSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmptyStaticState-Array",
+    name_hash: 1287137515,
     flags: MemberInfoFlags::new(145),
     module: "StateStream",
     data: TypeInfoData::Array("EmptyStaticState"),
@@ -501,7 +535,8 @@ pub static EMPTYSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BundleDynamicState {
     pub is_loaded: bool,
     pub field_flag_changed0: u8,
@@ -531,21 +566,25 @@ impl BundleDynamicStateTrait for BundleDynamicState {
 
 pub static BUNDLEDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleDynamicState",
+    name_hash: 3424609267,
     flags: MemberInfoFlags::new(36937),
     module: "StateStream",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BundleDynamicState as Default>::default())),
+            create_boxed: || Box::new(<BundleDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IsLoaded",
+                name_hash: 815881976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(BundleDynamicState, is_loaded),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(BundleDynamicState, field_flag_changed0),
@@ -577,6 +616,7 @@ impl TypeObject for BundleDynamicState {
 
 pub static BUNDLEDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleDynamicState-Array",
+    name_hash: 1731182535,
     flags: MemberInfoFlags::new(145),
     module: "StateStream",
     data: TypeInfoData::Array("BundleDynamicState"),
@@ -585,7 +625,8 @@ pub static BUNDLEDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BundleStaticState {
     pub name: String,
     pub compartment: i32,
@@ -642,39 +683,46 @@ impl BundleStaticStateTrait for BundleStaticState {
 
 pub static BUNDLESTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleStaticState",
+    name_hash: 2612350302,
     flags: MemberInfoFlags::new(73),
     module: "StateStream",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BundleStaticState as Default>::default())),
+            create_boxed: || Box::new(<BundleStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(BundleStaticState, name),
             },
             FieldInfoData {
                 name: "Compartment",
+                name_hash: 1500500641,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(BundleStaticState, compartment),
             },
             FieldInfoData {
                 name: "CompartmentHash",
+                name_hash: 1548486771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(BundleStaticState, compartment_hash),
             },
             FieldInfoData {
                 name: "BundleId",
+                name_hash: 1372919612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(BundleStaticState, bundle_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(BundleStaticState, field_flag_changed0),
@@ -706,6 +754,7 @@ impl TypeObject for BundleStaticState {
 
 pub static BUNDLESTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BundleStaticState-Array",
+    name_hash: 2369203946,
     flags: MemberInfoFlags::new(145),
     module: "StateStream",
     data: TypeInfoData::Array("BundleStaticState"),
@@ -714,7 +763,8 @@ pub static BUNDLESTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TransformSpaceHandle {
 }
 
@@ -726,11 +776,13 @@ impl TransformSpaceHandleTrait for TransformSpaceHandle {
 
 pub static TRANSFORMSPACEHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSpaceHandle",
+    name_hash: 2004014599,
     flags: MemberInfoFlags::new(73),
     module: "StateStream",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TransformSpaceHandle as Default>::default())),
+            create_boxed: || Box::new(<TransformSpaceHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -760,6 +812,7 @@ impl TypeObject for TransformSpaceHandle {
 
 pub static TRANSFORMSPACEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TransformSpaceHandle-Array",
+    name_hash: 3483170483,
     flags: MemberInfoFlags::new(145),
     module: "StateStream",
     data: TypeInfoData::Array("TransformSpaceHandle"),
@@ -768,7 +821,8 @@ pub static TRANSFORMSPACEHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SkeletonHandle {
 }
 
@@ -780,11 +834,13 @@ impl SkeletonHandleTrait for SkeletonHandle {
 
 pub static SKELETONHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SkeletonHandle",
+    name_hash: 1121975246,
     flags: MemberInfoFlags::new(73),
     module: "StateStream",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SkeletonHandle as Default>::default())),
+            create_boxed: || Box::new(<SkeletonHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -814,6 +870,7 @@ impl TypeObject for SkeletonHandle {
 
 pub static SKELETONHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SkeletonHandle-Array",
+    name_hash: 783807866,
     flags: MemberInfoFlags::new(145),
     module: "StateStream",
     data: TypeInfoData::Array("SkeletonHandle"),

@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -72,7 +73,8 @@ pub(crate) fn register_rvm_dx11_pc_types(registry: &mut TypeRegistry) {
     registry.register_type(DX11RVMBACKENDFACTORY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmDx11Settings {
     pub _glacier_base: super::rvm_common::RvmCommonSettings,
     pub enabled: bool,
@@ -115,22 +117,27 @@ impl super::core::DataContainerTrait for RvmDx11Settings {
 
 pub static RVMDX11SETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmDx11Settings",
+    name_hash: 1309186741,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMCOMMONSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(RvmDx11Settings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmDx11Settings as Default>::default())),
+            create_boxed: || Box::new(<RvmDx11Settings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RvmDx11Settings, enabled),
             },
             FieldInfoData {
                 name: "MergedOffsettedBuffersSize",
+                name_hash: 337163607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RvmDx11Settings, merged_offsetted_buffers_size),
@@ -162,6 +169,7 @@ impl TypeObject for RvmDx11Settings {
 
 pub static RVMDX11SETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmDx11Settings-Array",
+    name_hash: 4137302785,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("RvmDx11Settings"),
@@ -170,7 +178,8 @@ pub static RVMDX11SETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmBackendConfig {
     pub _glacier_base: super::rvm_common::RvmBackendConfig,
 }
@@ -198,12 +207,15 @@ impl super::core::DataContainerTrait for Dx11RvmBackendConfig {
 
 pub static DX11RVMBACKENDCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmBackendConfig",
+    name_hash: 740426206,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMBACKENDCONFIG_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmBackendConfig, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmBackendConfig as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmBackendConfig as Default>::default()),
         },
         fields: &[
         ],
@@ -233,6 +245,7 @@ impl TypeObject for Dx11RvmBackendConfig {
 
 pub static DX11RVMBACKENDCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmBackendConfig-Array",
+    name_hash: 779699050,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmBackendConfig"),
@@ -241,7 +254,8 @@ pub static DX11RVMBACKENDCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11ShaderDispatchDrawInstructionFactory {
     pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
@@ -257,12 +271,15 @@ impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11ShaderDispatchDra
 
 pub static DX11SHADERDISPATCHDRAWINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11ShaderDispatchDrawInstructionFactory",
+    name_hash: 1500733100,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11ShaderDispatchDrawInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11ShaderDispatchDrawInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<Dx11ShaderDispatchDrawInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -292,6 +309,7 @@ impl TypeObject for Dx11ShaderDispatchDrawInstructionFactory {
 
 pub static DX11SHADERDISPATCHDRAWINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11ShaderDispatchDrawInstructionFactory-Array",
+    name_hash: 2652720664,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11ShaderDispatchDrawInstructionFactory"),
@@ -300,7 +318,8 @@ pub static DX11SHADERDISPATCHDRAWINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11ShaderDispatchDrawInstructionData {
 }
 
@@ -312,11 +331,13 @@ impl RvmSerializedDbnsDx11ShaderDispatchDrawInstructionDataTrait for RvmSerializ
 
 pub static RVMSERIALIZEDDB_NS_DX11SHADERDISPATCHDRAWINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ShaderDispatchDrawInstructionData",
+    name_hash: 1223651016,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11ShaderDispatchDrawInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11ShaderDispatchDrawInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -343,7 +364,8 @@ impl TypeObject for RvmSerializedDbnsDx11ShaderDispatchDrawInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmLegacyVertexBufferConversionInstructionFactory {
     pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
@@ -359,12 +381,15 @@ impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11RvmLegacyVertexBu
 
 pub static DX11RVMLEGACYVERTEXBUFFERCONVERSIONINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmLegacyVertexBufferConversionInstructionFactory",
+    name_hash: 4231540825,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmLegacyVertexBufferConversionInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmLegacyVertexBufferConversionInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmLegacyVertexBufferConversionInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -394,6 +419,7 @@ impl TypeObject for Dx11RvmLegacyVertexBufferConversionInstructionFactory {
 
 pub static DX11RVMLEGACYVERTEXBUFFERCONVERSIONINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmLegacyVertexBufferConversionInstructionFactory-Array",
+    name_hash: 2581790317,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmLegacyVertexBufferConversionInstructionFactory"),
@@ -402,7 +428,8 @@ pub static DX11RVMLEGACYVERTEXBUFFERCONVERSIONINSTRUCTIONFACTORY_ARRAY_TYPE_INFO
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11LegacyVertexBufferConversionInstructionData {
 }
 
@@ -414,11 +441,13 @@ impl RvmSerializedDbnsDx11LegacyVertexBufferConversionInstructionDataTrait for R
 
 pub static RVMSERIALIZEDDB_NS_DX11LEGACYVERTEXBUFFERCONVERSIONINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11LegacyVertexBufferConversionInstructionData",
+    name_hash: 649220628,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11LegacyVertexBufferConversionInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11LegacyVertexBufferConversionInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -445,7 +474,8 @@ impl TypeObject for RvmSerializedDbnsDx11LegacyVertexBufferConversionInstruction
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmViewStateInstructionFactory {
     pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
@@ -461,12 +491,15 @@ impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11RvmViewStateInstr
 
 pub static DX11RVMVIEWSTATEINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmViewStateInstructionFactory",
+    name_hash: 3021236326,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmViewStateInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmViewStateInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmViewStateInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -496,6 +529,7 @@ impl TypeObject for Dx11RvmViewStateInstructionFactory {
 
 pub static DX11RVMVIEWSTATEINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmViewStateInstructionFactory-Array",
+    name_hash: 2209842514,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmViewStateInstructionFactory"),
@@ -504,7 +538,8 @@ pub static DX11RVMVIEWSTATEINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11ViewStateInstructionData {
 }
 
@@ -516,11 +551,13 @@ impl RvmSerializedDbnsDx11ViewStateInstructionDataTrait for RvmSerializedDbnsDx1
 
 pub static RVMSERIALIZEDDB_NS_DX11VIEWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ViewStateInstructionData",
+    name_hash: 821999083,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11ViewStateInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11ViewStateInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -547,7 +584,8 @@ impl TypeObject for RvmSerializedDbnsDx11ViewStateInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct D3D11CONSERVATIVERASTERIZATIONMODE {
 }
 
@@ -559,11 +597,13 @@ impl D3D11CONSERVATIVERASTERIZATIONMODETrait for D3D11CONSERVATIVERASTERIZATIONM
 
 pub static D3D11_CONSERVATIVE_RASTERIZATION_MODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D11_CONSERVATIVE_RASTERIZATION_MODE",
+    name_hash: 3086503832,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<D3D11CONSERVATIVERASTERIZATIONMODE as Default>::default())),
+            create_boxed: || Box::new(<D3D11CONSERVATIVERASTERIZATIONMODE as Default>::default()),
         },
         fields: &[
         ],
@@ -590,7 +630,8 @@ impl TypeObject for D3D11CONSERVATIVERASTERIZATIONMODE {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmViewports {
 }
 
@@ -602,11 +643,13 @@ impl Dx11RvmViewportsTrait for Dx11RvmViewports {
 
 pub static DX11RVMVIEWPORTS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmViewports",
+    name_hash: 500174423,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmViewports as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmViewports as Default>::default()),
         },
         fields: &[
         ],
@@ -633,7 +676,8 @@ impl TypeObject for Dx11RvmViewports {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmScissorRects {
 }
 
@@ -645,11 +689,13 @@ impl Dx11RvmScissorRectsTrait for Dx11RvmScissorRects {
 
 pub static DX11RVMSCISSORRECTS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmScissorRects",
+    name_hash: 2504118567,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmScissorRects as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmScissorRects as Default>::default()),
         },
         fields: &[
         ],
@@ -676,7 +722,8 @@ impl TypeObject for Dx11RvmScissorRects {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmDepthStencilState {
 }
 
@@ -688,11 +735,13 @@ impl Dx11RvmDepthStencilStateTrait for Dx11RvmDepthStencilState {
 
 pub static DX11RVMDEPTHSTENCILSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmDepthStencilState",
+    name_hash: 1970084192,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmDepthStencilState as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmDepthStencilState as Default>::default()),
         },
         fields: &[
         ],
@@ -719,7 +768,8 @@ impl TypeObject for Dx11RvmDepthStencilState {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmBlendState {
 }
 
@@ -731,11 +781,13 @@ impl Dx11RvmBlendStateTrait for Dx11RvmBlendState {
 
 pub static DX11RVMBLENDSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmBlendState",
+    name_hash: 853652486,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmBlendState as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmBlendState as Default>::default()),
         },
         fields: &[
         ],
@@ -762,7 +814,8 @@ impl TypeObject for Dx11RvmBlendState {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct D3D11CULLMODE {
 }
 
@@ -774,11 +827,13 @@ impl D3D11CULLMODETrait for D3D11CULLMODE {
 
 pub static D3D11_CULL_MODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D11_CULL_MODE",
+    name_hash: 1073485283,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<D3D11CULLMODE as Default>::default())),
+            create_boxed: || Box::new(<D3D11CULLMODE as Default>::default()),
         },
         fields: &[
         ],
@@ -805,7 +860,8 @@ impl TypeObject for D3D11CULLMODE {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct D3D11FILLMODE {
 }
 
@@ -817,11 +873,13 @@ impl D3D11FILLMODETrait for D3D11FILLMODE {
 
 pub static D3D11_FILL_MODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D11_FILL_MODE",
+    name_hash: 1523658874,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<D3D11FILLMODE as Default>::default())),
+            create_boxed: || Box::new(<D3D11FILLMODE as Default>::default()),
         },
         fields: &[
         ],
@@ -848,7 +906,8 @@ impl TypeObject for D3D11FILLMODE {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmSampler {
 }
 
@@ -860,11 +919,13 @@ impl Dx11RvmSamplerTrait for Dx11RvmSampler {
 
 pub static DX11RVMSAMPLER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmSampler",
+    name_hash: 408403620,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmSampler as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmSampler as Default>::default()),
         },
         fields: &[
         ],
@@ -891,7 +952,8 @@ impl TypeObject for Dx11RvmSampler {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmVsShader {
 }
 
@@ -903,11 +965,13 @@ impl Dx11RvmVsShaderTrait for Dx11RvmVsShader {
 
 pub static DX11RVMVSSHADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmVsShader",
+    name_hash: 4281940764,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmVsShader as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmVsShader as Default>::default()),
         },
         fields: &[
         ],
@@ -934,7 +998,8 @@ impl TypeObject for Dx11RvmVsShader {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmPsShader {
 }
 
@@ -946,11 +1011,13 @@ impl Dx11RvmPsShaderTrait for Dx11RvmPsShader {
 
 pub static DX11RVMPSSHADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmPsShader",
+    name_hash: 741240666,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmPsShader as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmPsShader as Default>::default()),
         },
         fields: &[
         ],
@@ -977,7 +1044,8 @@ impl TypeObject for Dx11RvmPsShader {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmHsShader {
 }
 
@@ -989,11 +1057,13 @@ impl Dx11RvmHsShaderTrait for Dx11RvmHsShader {
 
 pub static DX11RVMHSSHADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmHsShader",
+    name_hash: 4237711426,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmHsShader as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmHsShader as Default>::default()),
         },
         fields: &[
         ],
@@ -1020,7 +1090,8 @@ impl TypeObject for Dx11RvmHsShader {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmDsShader {
 }
 
@@ -1032,11 +1103,13 @@ impl Dx11RvmDsShaderTrait for Dx11RvmDsShader {
 
 pub static DX11RVMDSSHADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmDsShader",
+    name_hash: 1286630350,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmDsShader as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmDsShader as Default>::default()),
         },
         fields: &[
         ],
@@ -1063,7 +1136,8 @@ impl TypeObject for Dx11RvmDsShader {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11ByteCodeElement {
 }
 
@@ -1075,11 +1149,13 @@ impl RvmSerializedDbnsDx11ByteCodeElementTrait for RvmSerializedDbnsDx11ByteCode
 
 pub static RVMSERIALIZEDDB_NS_DX11BYTECODEELEMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ByteCodeElement",
+    name_hash: 1613377952,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11ByteCodeElement as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11ByteCodeElement as Default>::default()),
         },
         fields: &[
         ],
@@ -1106,7 +1182,8 @@ impl TypeObject for RvmSerializedDbnsDx11ByteCodeElement {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11DsShader {
 }
 
@@ -1118,11 +1195,13 @@ impl RvmSerializedDbnsDx11DsShaderTrait for RvmSerializedDbnsDx11DsShader {
 
 pub static RVMSERIALIZEDDB_NS_DX11DSSHADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11DsShader",
+    name_hash: 1888608455,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11DsShader as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11DsShader as Default>::default()),
         },
         fields: &[
         ],
@@ -1149,7 +1228,8 @@ impl TypeObject for RvmSerializedDbnsDx11DsShader {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11HsShader {
 }
 
@@ -1161,11 +1241,13 @@ impl RvmSerializedDbnsDx11HsShaderTrait for RvmSerializedDbnsDx11HsShader {
 
 pub static RVMSERIALIZEDDB_NS_DX11HSSHADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11HsShader",
+    name_hash: 1587384139,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11HsShader as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11HsShader as Default>::default()),
         },
         fields: &[
         ],
@@ -1192,7 +1274,8 @@ impl TypeObject for RvmSerializedDbnsDx11HsShader {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11PsShader {
 }
 
@@ -1204,11 +1287,13 @@ impl RvmSerializedDbnsDx11PsShaderTrait for RvmSerializedDbnsDx11PsShader {
 
 pub static RVMSERIALIZEDDB_NS_DX11PSSHADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11PsShader",
+    name_hash: 1343218771,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11PsShader as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11PsShader as Default>::default()),
         },
         fields: &[
         ],
@@ -1235,7 +1320,8 @@ impl TypeObject for RvmSerializedDbnsDx11PsShader {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11VsShader {
 }
 
@@ -1247,11 +1333,13 @@ impl RvmSerializedDbnsDx11VsShaderTrait for RvmSerializedDbnsDx11VsShader {
 
 pub static RVMSERIALIZEDDB_NS_DX11VSSHADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11VsShader",
+    name_hash: 588672789,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11VsShader as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11VsShader as Default>::default()),
         },
         fields: &[
         ],
@@ -1278,7 +1366,8 @@ impl TypeObject for RvmSerializedDbnsDx11VsShader {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11InputElement {
 }
 
@@ -1290,11 +1379,13 @@ impl RvmSerializedDbnsDx11InputElementTrait for RvmSerializedDbnsDx11InputElemen
 
 pub static RVMSERIALIZEDDB_NS_DX11INPUTELEMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11InputElement",
+    name_hash: 3026650353,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11InputElement as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11InputElement as Default>::default()),
         },
         fields: &[
         ],
@@ -1321,7 +1412,8 @@ impl TypeObject for RvmSerializedDbnsDx11InputElement {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11Sampler {
 }
 
@@ -1333,11 +1425,13 @@ impl RvmSerializedDbnsDx11SamplerTrait for RvmSerializedDbnsDx11Sampler {
 
 pub static RVMSERIALIZEDDB_NS_DX11SAMPLER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11Sampler",
+    name_hash: 3322792717,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11Sampler as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11Sampler as Default>::default()),
         },
         fields: &[
         ],
@@ -1364,7 +1458,8 @@ impl TypeObject for RvmSerializedDbnsDx11Sampler {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11BlendStateData {
 }
 
@@ -1376,11 +1471,13 @@ impl RvmSerializedDbnsDx11BlendStateDataTrait for RvmSerializedDbnsDx11BlendStat
 
 pub static RVMSERIALIZEDDB_NS_DX11BLENDSTATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11BlendStateData",
+    name_hash: 1753068863,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11BlendStateData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11BlendStateData as Default>::default()),
         },
         fields: &[
         ],
@@ -1407,7 +1504,8 @@ impl TypeObject for RvmSerializedDbnsDx11BlendStateData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11SerializedBlendState {
 }
 
@@ -1419,11 +1517,13 @@ impl RvmSerializedDbnsDx11SerializedBlendStateTrait for RvmSerializedDbnsDx11Ser
 
 pub static RVMSERIALIZEDDB_NS_DX11SERIALIZEDBLENDSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11SerializedBlendState",
+    name_hash: 82365053,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11SerializedBlendState as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11SerializedBlendState as Default>::default()),
         },
         fields: &[
         ],
@@ -1450,7 +1550,8 @@ impl TypeObject for RvmSerializedDbnsDx11SerializedBlendState {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11TextureConversionInstructionData {
 }
 
@@ -1462,11 +1563,13 @@ impl RvmSerializedDbnsDx11TextureConversionInstructionDataTrait for RvmSerialize
 
 pub static RVMSERIALIZEDDB_NS_DX11TEXTURECONVERSIONINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11TextureConversionInstructionData",
+    name_hash: 1874735414,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11TextureConversionInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11TextureConversionInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1493,7 +1596,8 @@ impl TypeObject for RvmSerializedDbnsDx11TextureConversionInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11BufferConversionInstructionData {
 }
 
@@ -1505,11 +1609,13 @@ impl RvmSerializedDbnsDx11BufferConversionInstructionDataTrait for RvmSerialized
 
 pub static RVMSERIALIZEDDB_NS_DX11BUFFERCONVERSIONINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11BufferConversionInstructionData",
+    name_hash: 3589929481,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11BufferConversionInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11BufferConversionInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1536,7 +1642,8 @@ impl TypeObject for RvmSerializedDbnsDx11BufferConversionInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11LegacyDrawStateBuilderData {
 }
 
@@ -1548,11 +1655,13 @@ impl RvmSerializedDbnsDx11LegacyDrawStateBuilderDataTrait for RvmSerializedDbnsD
 
 pub static RVMSERIALIZEDDB_NS_DX11LEGACYDRAWSTATEBUILDERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11LegacyDrawStateBuilderData",
+    name_hash: 3418713034,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11LegacyDrawStateBuilderData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11LegacyDrawStateBuilderData as Default>::default()),
         },
         fields: &[
         ],
@@ -1579,7 +1688,8 @@ impl TypeObject for RvmSerializedDbnsDx11LegacyDrawStateBuilderData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11ShaderDispatchLegacyDrawInstructionData {
 }
 
@@ -1591,11 +1701,13 @@ impl RvmSerializedDbnsDx11ShaderDispatchLegacyDrawInstructionDataTrait for RvmSe
 
 pub static RVMSERIALIZEDDB_NS_DX11SHADERDISPATCHLEGACYDRAWINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ShaderDispatchLegacyDrawInstructionData",
+    name_hash: 4219307037,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11ShaderDispatchLegacyDrawInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11ShaderDispatchLegacyDrawInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1622,7 +1734,8 @@ impl TypeObject for RvmSerializedDbnsDx11ShaderDispatchLegacyDrawInstructionData
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11ApplyParametersInstructionData {
 }
 
@@ -1634,11 +1747,13 @@ impl RvmSerializedDbnsDx11ApplyParametersInstructionDataTrait for RvmSerializedD
 
 pub static RVMSERIALIZEDDB_NS_DX11APPLYPARAMETERSINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ApplyParametersInstructionData",
+    name_hash: 3464091295,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11ApplyParametersInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11ApplyParametersInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1665,7 +1780,8 @@ impl TypeObject for RvmSerializedDbnsDx11ApplyParametersInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11ApplyParametersBlock {
 }
 
@@ -1677,11 +1793,13 @@ impl RvmSerializedDbnsDx11ApplyParametersBlockTrait for RvmSerializedDbnsDx11App
 
 pub static RVMSERIALIZEDDB_NS_DX11APPLYPARAMETERSBLOCK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ApplyParametersBlock",
+    name_hash: 91989278,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11ApplyParametersBlock as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11ApplyParametersBlock as Default>::default()),
         },
         fields: &[
         ],
@@ -1708,7 +1826,8 @@ impl TypeObject for RvmSerializedDbnsDx11ApplyParametersBlock {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDx11DispatchInstructionData {
 }
 
@@ -1720,11 +1839,13 @@ impl RvmSerializedDbnsDx11DispatchInstructionDataTrait for RvmSerializedDbnsDx11
 
 pub static RVMSERIALIZEDDB_NS_DX11DISPATCHINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11DispatchInstructionData",
+    name_hash: 3749487137,
     flags: MemberInfoFlags::new(53321),
     module: "RvmDx11Pc",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDx11DispatchInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDx11DispatchInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1751,7 +1872,8 @@ impl TypeObject for RvmSerializedDbnsDx11DispatchInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmLegacyDrawStateBuilderInstructionFactory {
     pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
@@ -1767,12 +1889,15 @@ impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11RvmLegacyDrawStat
 
 pub static DX11RVMLEGACYDRAWSTATEBUILDERINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmLegacyDrawStateBuilderInstructionFactory",
+    name_hash: 3820207519,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmLegacyDrawStateBuilderInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmLegacyDrawStateBuilderInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmLegacyDrawStateBuilderInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -1802,6 +1927,7 @@ impl TypeObject for Dx11RvmLegacyDrawStateBuilderInstructionFactory {
 
 pub static DX11RVMLEGACYDRAWSTATEBUILDERINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmLegacyDrawStateBuilderInstructionFactory-Array",
+    name_hash: 3353322027,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmLegacyDrawStateBuilderInstructionFactory"),
@@ -1810,7 +1936,8 @@ pub static DX11RVMLEGACYDRAWSTATEBUILDERINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'st
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmTextureConversionInstructionFactory {
     pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
@@ -1826,12 +1953,15 @@ impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11RvmTextureConvers
 
 pub static DX11RVMTEXTURECONVERSIONINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmTextureConversionInstructionFactory",
+    name_hash: 2006153243,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmTextureConversionInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmTextureConversionInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmTextureConversionInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -1861,6 +1991,7 @@ impl TypeObject for Dx11RvmTextureConversionInstructionFactory {
 
 pub static DX11RVMTEXTURECONVERSIONINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmTextureConversionInstructionFactory-Array",
+    name_hash: 3003223727,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmTextureConversionInstructionFactory"),
@@ -1869,7 +2000,8 @@ pub static DX11RVMTEXTURECONVERSIONINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmBufferConversionInstructionFactory {
     pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
@@ -1885,12 +2017,15 @@ impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11RvmBufferConversi
 
 pub static DX11RVMBUFFERCONVERSIONINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmBufferConversionInstructionFactory",
+    name_hash: 1235893796,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmBufferConversionInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmBufferConversionInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmBufferConversionInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -1920,6 +2055,7 @@ impl TypeObject for Dx11RvmBufferConversionInstructionFactory {
 
 pub static DX11RVMBUFFERCONVERSIONINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmBufferConversionInstructionFactory-Array",
+    name_hash: 2489217424,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmBufferConversionInstructionFactory"),
@@ -1928,7 +2064,8 @@ pub static DX11RVMBUFFERCONVERSIONINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmInstanceBufferWriterInstructionFactory {
     pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
@@ -1944,12 +2081,15 @@ impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11RvmInstanceBuffer
 
 pub static DX11RVMINSTANCEBUFFERWRITERINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmInstanceBufferWriterInstructionFactory",
+    name_hash: 4267009722,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmInstanceBufferWriterInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmInstanceBufferWriterInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmInstanceBufferWriterInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -1979,6 +2119,7 @@ impl TypeObject for Dx11RvmInstanceBufferWriterInstructionFactory {
 
 pub static DX11RVMINSTANCEBUFFERWRITERINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmInstanceBufferWriterInstructionFactory-Array",
+    name_hash: 4277201166,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmInstanceBufferWriterInstructionFactory"),
@@ -1987,7 +2128,8 @@ pub static DX11RVMINSTANCEBUFFERWRITERINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'stat
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmConstantBufferWriterInstructionFactory {
     pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
@@ -2003,12 +2145,15 @@ impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11RvmConstantBuffer
 
 pub static DX11RVMCONSTANTBUFFERWRITERINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmConstantBufferWriterInstructionFactory",
+    name_hash: 2035174733,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmConstantBufferWriterInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmConstantBufferWriterInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmConstantBufferWriterInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -2038,6 +2183,7 @@ impl TypeObject for Dx11RvmConstantBufferWriterInstructionFactory {
 
 pub static DX11RVMCONSTANTBUFFERWRITERINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmConstantBufferWriterInstructionFactory-Array",
+    name_hash: 3121070457,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmConstantBufferWriterInstructionFactory"),
@@ -2046,7 +2192,8 @@ pub static DX11RVMCONSTANTBUFFERWRITERINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'stat
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmApplyStateInstructionFactory {
     pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
@@ -2062,12 +2209,15 @@ impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11RvmApplyStateInst
 
 pub static DX11RVMAPPLYSTATEINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmApplyStateInstructionFactory",
+    name_hash: 4288984159,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmApplyStateInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmApplyStateInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmApplyStateInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -2097,6 +2247,7 @@ impl TypeObject for Dx11RvmApplyStateInstructionFactory {
 
 pub static DX11RVMAPPLYSTATEINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmApplyStateInstructionFactory-Array",
+    name_hash: 1083074923,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmApplyStateInstructionFactory"),
@@ -2105,7 +2256,8 @@ pub static DX11RVMAPPLYSTATEINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmDispatchInstructionFactory {
     pub _glacier_base: super::rvm_common::RvmInstructionFactoryBase,
 }
@@ -2121,12 +2273,15 @@ impl super::rvm_common::RvmInstructionFactoryBaseTrait for Dx11RvmDispatchInstru
 
 pub static DX11RVMDISPATCHINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmDispatchInstructionFactory",
+    name_hash: 3058613452,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmDispatchInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmDispatchInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmDispatchInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -2156,6 +2311,7 @@ impl TypeObject for Dx11RvmDispatchInstructionFactory {
 
 pub static DX11RVMDISPATCHINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmDispatchInstructionFactory-Array",
+    name_hash: 171638136,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmDispatchInstructionFactory"),
@@ -2164,7 +2320,8 @@ pub static DX11RVMDISPATCHINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmDatabase {
     pub _glacier_base: super::rvm_common::BaseRvmDatabase,
 }
@@ -2189,12 +2346,15 @@ impl super::core::IResourceObjectTrait for Dx11RvmDatabase {
 
 pub static DX11RVMDATABASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmDatabase",
+    name_hash: 200117429,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::BASERVMDATABASE_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmDatabase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmDatabase as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmDatabase as Default>::default()),
         },
         fields: &[
         ],
@@ -2224,6 +2384,7 @@ impl TypeObject for Dx11RvmDatabase {
 
 pub static DX11RVMDATABASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmDatabase-Array",
+    name_hash: 485272833,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmDatabase"),
@@ -2232,7 +2393,8 @@ pub static DX11RVMDATABASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmBackend {
     pub _glacier_base: super::rvm_common::CommonRvmBackend,
 }
@@ -2251,12 +2413,15 @@ impl super::render::RvmBackendTrait for Dx11RvmBackend {
 
 pub static DX11RVMBACKEND_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmBackend",
+    name_hash: 1023695156,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::rvm_common::COMMONRVMBACKEND_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmBackend, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmBackend as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmBackend as Default>::default()),
         },
         fields: &[
         ],
@@ -2286,6 +2451,7 @@ impl TypeObject for Dx11RvmBackend {
 
 pub static DX11RVMBACKEND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmBackend-Array",
+    name_hash: 1462998144,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmBackend"),
@@ -2294,7 +2460,8 @@ pub static DX11RVMBACKEND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Dx11RvmBackendFactory {
     pub _glacier_base: super::render::RvmBackendFactory,
 }
@@ -2310,12 +2477,15 @@ impl super::render::RvmBackendFactoryTrait for Dx11RvmBackendFactory {
 
 pub static DX11RVMBACKENDFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmBackendFactory",
+    name_hash: 3295656832,
     flags: MemberInfoFlags::new(101),
     module: "RvmDx11Pc",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::render::RVMBACKENDFACTORY_TYPE_INFO),
+        super_class_offset: offset_of!(Dx11RvmBackendFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Dx11RvmBackendFactory as Default>::default())),
+            create_boxed: || Box::new(<Dx11RvmBackendFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -2345,6 +2515,7 @@ impl TypeObject for Dx11RvmBackendFactory {
 
 pub static DX11RVMBACKENDFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmBackendFactory-Array",
+    name_hash: 3352101300,
     flags: MemberInfoFlags::new(145),
     module: "RvmDx11Pc",
     data: TypeInfoData::Array("Dx11RvmBackendFactory"),

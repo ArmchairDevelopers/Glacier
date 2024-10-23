@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -128,22 +129,23 @@ pub(crate) fn register_rvm_common_types(registry: &mut TypeRegistry) {
     registry.register_type(BASERVMDATABASE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmBuildSettings {
     pub _glacier_base: super::core::SystemSettings,
-    pub built_backends: Vec<Option<Arc<Mutex<dyn RvmBackendConfigTrait>>>>,
+    pub built_backends: Vec<Option<LockedTypeObject /* RvmBackendConfig */>>,
 }
 
 pub trait RvmBuildSettingsTrait: super::core::SystemSettingsTrait {
-    fn built_backends(&self) -> &Vec<Option<Arc<Mutex<dyn RvmBackendConfigTrait>>>>;
-    fn built_backends_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn RvmBackendConfigTrait>>>>;
+    fn built_backends(&self) -> &Vec<Option<LockedTypeObject /* RvmBackendConfig */>>;
+    fn built_backends_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* RvmBackendConfig */>>;
 }
 
 impl RvmBuildSettingsTrait for RvmBuildSettings {
-    fn built_backends(&self) -> &Vec<Option<Arc<Mutex<dyn RvmBackendConfigTrait>>>> {
+    fn built_backends(&self) -> &Vec<Option<LockedTypeObject /* RvmBackendConfig */>> {
         &self.built_backends
     }
-    fn built_backends_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn RvmBackendConfigTrait>>>> {
+    fn built_backends_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* RvmBackendConfig */>> {
         &mut self.built_backends
     }
 }
@@ -162,16 +164,20 @@ impl super::core::DataContainerTrait for RvmBuildSettings {
 
 pub static RVMBUILDSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmBuildSettings",
+    name_hash: 903137503,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(RvmBuildSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmBuildSettings as Default>::default())),
+            create_boxed: || Box::new(<RvmBuildSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BuiltBackends",
+                name_hash: 2943848116,
                 flags: MemberInfoFlags::new(144),
                 field_type: "RvmBackendConfig-Array",
                 rust_offset: offset_of!(RvmBuildSettings, built_backends),
@@ -203,6 +209,7 @@ impl TypeObject for RvmBuildSettings {
 
 pub static RVMBUILDSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmBuildSettings-Array",
+    name_hash: 1687936491,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("RvmBuildSettings"),
@@ -211,7 +218,8 @@ pub static RVMBUILDSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmBackendConfig {
     pub _glacier_base: super::core::Asset,
 }
@@ -236,12 +244,15 @@ impl super::core::DataContainerTrait for RvmBackendConfig {
 
 pub static RVMBACKENDCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmBackendConfig",
+    name_hash: 2529929538,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(RvmBackendConfig, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmBackendConfig as Default>::default())),
+            create_boxed: || Box::new(<RvmBackendConfig as Default>::default()),
         },
         fields: &[
         ],
@@ -271,6 +282,7 @@ impl TypeObject for RvmBackendConfig {
 
 pub static RVMBACKENDCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmBackendConfig-Array",
+    name_hash: 3142629622,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("RvmBackendConfig"),
@@ -279,7 +291,8 @@ pub static RVMBACKENDCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LodFadeInstructionFactory {
     pub _glacier_base: RvmInstructionFactoryBase,
 }
@@ -295,12 +308,15 @@ impl RvmInstructionFactoryBaseTrait for LodFadeInstructionFactory {
 
 pub static LODFADEINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LodFadeInstructionFactory",
+    name_hash: 2145371720,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(LodFadeInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LodFadeInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<LodFadeInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -330,6 +346,7 @@ impl TypeObject for LodFadeInstructionFactory {
 
 pub static LODFADEINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LodFadeInstructionFactory-Array",
+    name_hash: 613251324,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("LodFadeInstructionFactory"),
@@ -338,7 +355,8 @@ pub static LODFADEINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsLodFadeInstructionData {
 }
 
@@ -350,11 +368,13 @@ impl RvmSerializedDbnsLodFadeInstructionDataTrait for RvmSerializedDbnsLodFadeIn
 
 pub static RVMSERIALIZEDDB_NS_LODFADEINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_LodFadeInstructionData",
+    name_hash: 1073714028,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsLodFadeInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsLodFadeInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -381,7 +401,8 @@ impl TypeObject for RvmSerializedDbnsLodFadeInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PackLightMapWeightIntoInstanceInstructionFactory {
     pub _glacier_base: RvmInstructionFactoryBase,
 }
@@ -397,12 +418,15 @@ impl RvmInstructionFactoryBaseTrait for PackLightMapWeightIntoInstanceInstructio
 
 pub static PACKLIGHTMAPWEIGHTINTOINSTANCEINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PackLightMapWeightIntoInstanceInstructionFactory",
+    name_hash: 396424615,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(PackLightMapWeightIntoInstanceInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PackLightMapWeightIntoInstanceInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<PackLightMapWeightIntoInstanceInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -432,6 +456,7 @@ impl TypeObject for PackLightMapWeightIntoInstanceInstructionFactory {
 
 pub static PACKLIGHTMAPWEIGHTINTOINSTANCEINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PackLightMapWeightIntoInstanceInstructionFactory-Array",
+    name_hash: 1349551891,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("PackLightMapWeightIntoInstanceInstructionFactory"),
@@ -440,7 +465,8 @@ pub static PACKLIGHTMAPWEIGHTINTOINSTANCEINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'s
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SliceCountInstructionFactory {
     pub _glacier_base: RvmInstructionFactoryBase,
 }
@@ -456,12 +482,15 @@ impl RvmInstructionFactoryBaseTrait for SliceCountInstructionFactory {
 
 pub static SLICECOUNTINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SliceCountInstructionFactory",
+    name_hash: 3325153594,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(SliceCountInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SliceCountInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<SliceCountInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -491,6 +520,7 @@ impl TypeObject for SliceCountInstructionFactory {
 
 pub static SLICECOUNTINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SliceCountInstructionFactory-Array",
+    name_hash: 1444098958,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("SliceCountInstructionFactory"),
@@ -499,7 +529,8 @@ pub static SLICECOUNTINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TessellationParametersInstructionFactory {
     pub _glacier_base: RvmInstructionFactoryBase,
 }
@@ -515,12 +546,15 @@ impl RvmInstructionFactoryBaseTrait for TessellationParametersInstructionFactory
 
 pub static TESSELLATIONPARAMETERSINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TessellationParametersInstructionFactory",
+    name_hash: 1377894650,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(TessellationParametersInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TessellationParametersInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<TessellationParametersInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -550,6 +584,7 @@ impl TypeObject for TessellationParametersInstructionFactory {
 
 pub static TESSELLATIONPARAMETERSINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TessellationParametersInstructionFactory-Array",
+    name_hash: 2093413326,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("TessellationParametersInstructionFactory"),
@@ -558,7 +593,8 @@ pub static TESSELLATIONPARAMETERSINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VectorSubtractInstructionFactory {
     pub _glacier_base: RvmInstructionFactoryBase,
 }
@@ -574,12 +610,15 @@ impl RvmInstructionFactoryBaseTrait for VectorSubtractInstructionFactory {
 
 pub static VECTORSUBTRACTINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorSubtractInstructionFactory",
+    name_hash: 3429030180,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(VectorSubtractInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VectorSubtractInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<VectorSubtractInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -609,6 +648,7 @@ impl TypeObject for VectorSubtractInstructionFactory {
 
 pub static VECTORSUBTRACTINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VectorSubtractInstructionFactory-Array",
+    name_hash: 3286191248,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("VectorSubtractInstructionFactory"),
@@ -617,7 +657,8 @@ pub static VECTORSUBTRACTINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct OffsetTranslationInMatrixInstructionFactory {
     pub _glacier_base: RvmInstructionFactoryBase,
 }
@@ -633,12 +674,15 @@ impl RvmInstructionFactoryBaseTrait for OffsetTranslationInMatrixInstructionFact
 
 pub static OFFSETTRANSLATIONINMATRIXINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OffsetTranslationInMatrixInstructionFactory",
+    name_hash: 2899805971,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(OffsetTranslationInMatrixInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<OffsetTranslationInMatrixInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<OffsetTranslationInMatrixInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -668,6 +712,7 @@ impl TypeObject for OffsetTranslationInMatrixInstructionFactory {
 
 pub static OFFSETTRANSLATIONINMATRIXINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OffsetTranslationInMatrixInstructionFactory-Array",
+    name_hash: 844464551,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("OffsetTranslationInMatrixInstructionFactory"),
@@ -676,7 +721,8 @@ pub static OFFSETTRANSLATIONINMATRIXINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CpuToGpuMatrixInstructionFactory {
     pub _glacier_base: RvmInstructionFactoryBase,
 }
@@ -692,12 +738,15 @@ impl RvmInstructionFactoryBaseTrait for CpuToGpuMatrixInstructionFactory {
 
 pub static CPUTOGPUMATRIXINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CpuToGpuMatrixInstructionFactory",
+    name_hash: 3737046989,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(CpuToGpuMatrixInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CpuToGpuMatrixInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<CpuToGpuMatrixInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -727,6 +776,7 @@ impl TypeObject for CpuToGpuMatrixInstructionFactory {
 
 pub static CPUTOGPUMATRIXINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CpuToGpuMatrixInstructionFactory-Array",
+    name_hash: 57680889,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("CpuToGpuMatrixInstructionFactory"),
@@ -735,7 +785,8 @@ pub static CPUTOGPUMATRIXINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatToVecInstructionFactory {
     pub _glacier_base: RvmInstructionFactoryBase,
 }
@@ -751,12 +802,15 @@ impl RvmInstructionFactoryBaseTrait for FloatToVecInstructionFactory {
 
 pub static FLOATTOVECINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatToVecInstructionFactory",
+    name_hash: 785938866,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(FloatToVecInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatToVecInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<FloatToVecInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -786,6 +840,7 @@ impl TypeObject for FloatToVecInstructionFactory {
 
 pub static FLOATTOVECINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatToVecInstructionFactory-Array",
+    name_hash: 2511790086,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("FloatToVecInstructionFactory"),
@@ -794,7 +849,8 @@ pub static FLOATTOVECINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsPackLightMapWeightIntoInstanceInstructionData {
 }
 
@@ -806,11 +862,13 @@ impl RvmSerializedDbnsPackLightMapWeightIntoInstanceInstructionDataTrait for Rvm
 
 pub static RVMSERIALIZEDDB_NS_PACKLIGHTMAPWEIGHTINTOINSTANCEINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_PackLightMapWeightIntoInstanceInstructionData",
+    name_hash: 38537891,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsPackLightMapWeightIntoInstanceInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsPackLightMapWeightIntoInstanceInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -837,7 +895,8 @@ impl TypeObject for RvmSerializedDbnsPackLightMapWeightIntoInstanceInstructionDa
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsSliceCountInstructionData {
 }
 
@@ -849,11 +908,13 @@ impl RvmSerializedDbnsSliceCountInstructionDataTrait for RvmSerializedDbnsSliceC
 
 pub static RVMSERIALIZEDDB_NS_SLICECOUNTINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SliceCountInstructionData",
+    name_hash: 4280082206,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsSliceCountInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsSliceCountInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -880,7 +941,8 @@ impl TypeObject for RvmSerializedDbnsSliceCountInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsTessellationParametersInstructionData {
 }
 
@@ -892,11 +954,13 @@ impl RvmSerializedDbnsTessellationParametersInstructionDataTrait for RvmSerializ
 
 pub static RVMSERIALIZEDDB_NS_TESSELLATIONPARAMETERSINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_TessellationParametersInstructionData",
+    name_hash: 2949991774,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsTessellationParametersInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsTessellationParametersInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -923,7 +987,8 @@ impl TypeObject for RvmSerializedDbnsTessellationParametersInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsVectorSubtractInstructionData {
 }
 
@@ -935,11 +1000,13 @@ impl RvmSerializedDbnsVectorSubtractInstructionDataTrait for RvmSerializedDbnsVe
 
 pub static RVMSERIALIZEDDB_NS_VECTORSUBTRACTINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_VectorSubtractInstructionData",
+    name_hash: 2413226688,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsVectorSubtractInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsVectorSubtractInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -966,7 +1033,8 @@ impl TypeObject for RvmSerializedDbnsVectorSubtractInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsOffsetTranslationInMatrixInstructionData {
 }
 
@@ -978,11 +1046,13 @@ impl RvmSerializedDbnsOffsetTranslationInMatrixInstructionDataTrait for RvmSeria
 
 pub static RVMSERIALIZEDDB_NS_OFFSETTRANSLATIONINMATRIXINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_OffsetTranslationInMatrixInstructionData",
+    name_hash: 1684473495,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsOffsetTranslationInMatrixInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsOffsetTranslationInMatrixInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1009,7 +1079,8 @@ impl TypeObject for RvmSerializedDbnsOffsetTranslationInMatrixInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsCpuToGpuMatrixInstructionData {
 }
 
@@ -1021,11 +1092,13 @@ impl RvmSerializedDbnsCpuToGpuMatrixInstructionDataTrait for RvmSerializedDbnsCp
 
 pub static RVMSERIALIZEDDB_NS_CPUTOGPUMATRIXINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_CpuToGpuMatrixInstructionData",
+    name_hash: 1053422793,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsCpuToGpuMatrixInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsCpuToGpuMatrixInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1052,7 +1125,8 @@ impl TypeObject for RvmSerializedDbnsCpuToGpuMatrixInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsFloatToVecInstructionData {
 }
 
@@ -1064,11 +1138,13 @@ impl RvmSerializedDbnsFloatToVecInstructionDataTrait for RvmSerializedDbnsFloatT
 
 pub static RVMSERIALIZEDDB_NS_FLOATTOVECINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_FloatToVecInstructionData",
+    name_hash: 1420046038,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsFloatToVecInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsFloatToVecInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1095,7 +1171,8 @@ impl TypeObject for RvmSerializedDbnsFloatToVecInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsLegacyVertexBufferConversionInstructionData {
 }
 
@@ -1107,11 +1184,13 @@ impl RvmSerializedDbnsLegacyVertexBufferConversionInstructionDataTrait for RvmSe
 
 pub static RVMSERIALIZEDDB_NS_LEGACYVERTEXBUFFERCONVERSIONINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_LegacyVertexBufferConversionInstructionData",
+    name_hash: 1431728200,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsLegacyVertexBufferConversionInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsLegacyVertexBufferConversionInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1138,7 +1217,8 @@ impl TypeObject for RvmSerializedDbnsLegacyVertexBufferConversionInstructionData
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsVertexStreamProcessInstructionData {
 }
 
@@ -1150,11 +1230,13 @@ impl RvmSerializedDbnsVertexStreamProcessInstructionDataTrait for RvmSerializedD
 
 pub static RVMSERIALIZEDDB_NS_VERTEXSTREAMPROCESSINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_VertexStreamProcessInstructionData",
+    name_hash: 683452498,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsVertexStreamProcessInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsVertexStreamProcessInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1181,7 +1263,8 @@ impl TypeObject for RvmSerializedDbnsVertexStreamProcessInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsViewStateInstructionData {
 }
 
@@ -1193,11 +1276,13 @@ impl RvmSerializedDbnsViewStateInstructionDataTrait for RvmSerializedDbnsViewSta
 
 pub static RVMSERIALIZEDDB_NS_VIEWSTATEINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ViewStateInstructionData",
+    name_hash: 3562000695,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsViewStateInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsViewStateInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1224,7 +1309,8 @@ impl TypeObject for RvmSerializedDbnsViewStateInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmCommonSettings {
     pub _glacier_base: super::core::DataContainer,
     pub on_demand_building_enable: bool,
@@ -1249,16 +1335,20 @@ impl super::core::DataContainerTrait for RvmCommonSettings {
 
 pub static RVMCOMMONSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmCommonSettings",
+    name_hash: 1325672804,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(RvmCommonSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmCommonSettings as Default>::default())),
+            create_boxed: || Box::new(<RvmCommonSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "OnDemandBuildingEnable",
+                name_hash: 3142983540,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RvmCommonSettings, on_demand_building_enable),
@@ -1290,6 +1380,7 @@ impl TypeObject for RvmCommonSettings {
 
 pub static RVMCOMMONSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmCommonSettings-Array",
+    name_hash: 1678232912,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("RvmCommonSettings"),
@@ -1298,7 +1389,8 @@ pub static RVMCOMMONSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmPointer {
 }
 
@@ -1310,11 +1402,13 @@ impl RvmPointerTrait for RvmPointer {
 
 pub static RVMPOINTER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmPointer",
+    name_hash: 2689611191,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmPointer as Default>::default())),
+            create_boxed: || Box::new(<RvmPointer as Default>::default()),
         },
         fields: &[
         ],
@@ -1341,7 +1435,8 @@ impl TypeObject for RvmPointer {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GpuMat4x3 {
 }
 
@@ -1353,11 +1448,13 @@ impl GpuMat4x3Trait for GpuMat4x3 {
 
 pub static GPUMAT4X3_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GpuMat4x3",
+    name_hash: 4277515296,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GpuMat4x3 as Default>::default())),
+            create_boxed: || Box::new(<GpuMat4x3 as Default>::default()),
         },
         fields: &[
         ],
@@ -1384,7 +1481,8 @@ impl TypeObject for GpuMat4x3 {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IVec4 {
     pub x: i32,
     pub y: i32,
@@ -1432,33 +1530,39 @@ impl IVec4Trait for IVec4 {
 
 pub static IVEC4_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IVec4",
+    name_hash: 216453416,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IVec4 as Default>::default())),
+            create_boxed: || Box::new(<IVec4 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IVec4, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IVec4, y),
             },
             FieldInfoData {
                 name: "z",
+                name_hash: 177631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IVec4, z),
             },
             FieldInfoData {
                 name: "w",
+                name_hash: 177618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IVec4, w),
@@ -1487,7 +1591,8 @@ impl TypeObject for IVec4 {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IVec3 {
     pub x: i32,
     pub y: i32,
@@ -1526,27 +1631,32 @@ impl IVec3Trait for IVec3 {
 
 pub static IVEC3_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IVec3",
+    name_hash: 216453423,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IVec3 as Default>::default())),
+            create_boxed: || Box::new(<IVec3 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IVec3, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IVec3, y),
             },
             FieldInfoData {
                 name: "z",
+                name_hash: 177631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IVec3, z),
@@ -1575,7 +1685,8 @@ impl TypeObject for IVec3 {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IVec2 {
     pub x: i32,
     pub y: i32,
@@ -1605,21 +1716,25 @@ impl IVec2Trait for IVec2 {
 
 pub static IVEC2_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IVec2",
+    name_hash: 216453422,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IVec2 as Default>::default())),
+            create_boxed: || Box::new(<IVec2 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IVec2, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(IVec2, y),
@@ -1648,7 +1763,8 @@ impl TypeObject for IVec2 {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Half4 {
     pub x: Half,
     pub y: Half,
@@ -1696,33 +1812,39 @@ impl Half4Trait for Half4 {
 
 pub static HALF4_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Half4",
+    name_hash: 222838290,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Half4 as Default>::default())),
+            create_boxed: || Box::new(<Half4 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Half",
                 rust_offset: offset_of!(Half4, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Half",
                 rust_offset: offset_of!(Half4, y),
             },
             FieldInfoData {
                 name: "z",
+                name_hash: 177631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Half",
                 rust_offset: offset_of!(Half4, z),
             },
             FieldInfoData {
                 name: "w",
+                name_hash: 177618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Half",
                 rust_offset: offset_of!(Half4, w),
@@ -1751,7 +1873,8 @@ impl TypeObject for Half4 {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Half3 {
     pub x: Half,
     pub y: Half,
@@ -1790,27 +1913,32 @@ impl Half3Trait for Half3 {
 
 pub static HALF3_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Half3",
+    name_hash: 222838293,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Half3 as Default>::default())),
+            create_boxed: || Box::new(<Half3 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Half",
                 rust_offset: offset_of!(Half3, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Half",
                 rust_offset: offset_of!(Half3, y),
             },
             FieldInfoData {
                 name: "z",
+                name_hash: 177631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Half",
                 rust_offset: offset_of!(Half3, z),
@@ -1839,7 +1967,8 @@ impl TypeObject for Half3 {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Half2 {
     pub x: Half,
     pub y: Half,
@@ -1869,21 +1998,25 @@ impl Half2Trait for Half2 {
 
 pub static HALF2_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Half2",
+    name_hash: 222838292,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Half2 as Default>::default())),
+            create_boxed: || Box::new(<Half2 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Half",
                 rust_offset: offset_of!(Half2, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Half",
                 rust_offset: offset_of!(Half2, y),
@@ -1912,7 +2045,8 @@ impl TypeObject for Half2 {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Half {
 }
 
@@ -1924,11 +2058,13 @@ impl HalfTrait for Half {
 
 pub static HALF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Half",
+    name_hash: 2089161062,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Half as Default>::default())),
+            create_boxed: || Box::new(<Half as Default>::default()),
         },
         fields: &[
         ],
@@ -1955,7 +2091,8 @@ impl TypeObject for Half {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmLegacyInstructionsnsLegacyInstructionData {
 }
 
@@ -1967,11 +2104,13 @@ impl RvmLegacyInstructionsnsLegacyInstructionDataTrait for RvmLegacyInstructions
 
 pub static RVMLEGACYINSTRUCTIONS_NS_LEGACYINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmLegacyInstructions_ns_LegacyInstructionData",
+    name_hash: 926900402,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmLegacyInstructionsnsLegacyInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmLegacyInstructionsnsLegacyInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -1998,7 +2137,8 @@ impl TypeObject for RvmLegacyInstructionsnsLegacyInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmLegacyInstructionFactory {
     pub _glacier_base: RvmInstructionFactoryBase,
 }
@@ -2014,12 +2154,15 @@ impl RvmInstructionFactoryBaseTrait for RvmLegacyInstructionFactory {
 
 pub static RVMLEGACYINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmLegacyInstructionFactory",
+    name_hash: 1782503029,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(RvmLegacyInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmLegacyInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<RvmLegacyInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -2049,6 +2192,7 @@ impl TypeObject for RvmLegacyInstructionFactory {
 
 pub static RVMLEGACYINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmLegacyInstructionFactory-Array",
+    name_hash: 1414432577,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("RvmLegacyInstructionFactory"),
@@ -2057,7 +2201,8 @@ pub static RVMLEGACYINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmInstructionFactoryBase {
 }
 
@@ -2069,12 +2214,15 @@ impl RvmInstructionFactoryBaseTrait for RvmInstructionFactoryBase {
 
 pub static RVMINSTRUCTIONFACTORYBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmInstructionFactoryBase",
+    name_hash: 2216690581,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmInstructionFactoryBase as Default>::default())),
+            create_boxed: || Box::new(<RvmInstructionFactoryBase as Default>::default()),
         },
         fields: &[
         ],
@@ -2104,6 +2252,7 @@ impl TypeObject for RvmInstructionFactoryBase {
 
 pub static RVMINSTRUCTIONFACTORYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmInstructionFactoryBase-Array",
+    name_hash: 2570097441,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("RvmInstructionFactoryBase"),
@@ -2112,7 +2261,8 @@ pub static RVMINSTRUCTIONFACTORYBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsInstanceTableAssemblyInstructionBatchData {
 }
 
@@ -2124,11 +2274,13 @@ impl RvmSerializedDbnsInstanceTableAssemblyInstructionBatchDataTrait for RvmSeri
 
 pub static RVMSERIALIZEDDB_NS_INSTANCETABLEASSEMBLYINSTRUCTIONBATCHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_InstanceTableAssemblyInstructionBatchData",
+    name_hash: 385722968,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsInstanceTableAssemblyInstructionBatchData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsInstanceTableAssemblyInstructionBatchData as Default>::default()),
         },
         fields: &[
         ],
@@ -2155,7 +2307,8 @@ impl TypeObject for RvmSerializedDbnsInstanceTableAssemblyInstructionBatchData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsInstanceTableAssemblyData {
 }
 
@@ -2167,11 +2320,13 @@ impl RvmSerializedDbnsInstanceTableAssemblyDataTrait for RvmSerializedDbnsInstan
 
 pub static RVMSERIALIZEDDB_NS_INSTANCETABLEASSEMBLYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_InstanceTableAssemblyData",
+    name_hash: 1816312604,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsInstanceTableAssemblyData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsInstanceTableAssemblyData as Default>::default()),
         },
         fields: &[
         ],
@@ -2198,7 +2353,8 @@ impl TypeObject for RvmSerializedDbnsInstanceTableAssemblyData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDepthBiasGroupData {
 }
 
@@ -2210,11 +2366,13 @@ impl RvmSerializedDbnsDepthBiasGroupDataTrait for RvmSerializedDbnsDepthBiasGrou
 
 pub static RVMSERIALIZEDDB_NS_DEPTHBIASGROUPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DepthBiasGroupData",
+    name_hash: 3645281054,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDepthBiasGroupData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDepthBiasGroupData as Default>::default()),
         },
         fields: &[
         ],
@@ -2241,7 +2399,8 @@ impl TypeObject for RvmSerializedDbnsDepthBiasGroupData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsTableAssemblyInstructionBatchData {
 }
 
@@ -2253,11 +2412,13 @@ impl RvmSerializedDbnsTableAssemblyInstructionBatchDataTrait for RvmSerializedDb
 
 pub static RVMSERIALIZEDDB_NS_TABLEASSEMBLYINSTRUCTIONBATCHDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_TableAssemblyInstructionBatchData",
+    name_hash: 4223020689,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsTableAssemblyInstructionBatchData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsTableAssemblyInstructionBatchData as Default>::default()),
         },
         fields: &[
         ],
@@ -2284,7 +2445,8 @@ impl TypeObject for RvmSerializedDbnsTableAssemblyInstructionBatchData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsTableAssemblyData {
 }
 
@@ -2296,11 +2458,13 @@ impl RvmSerializedDbnsTableAssemblyDataTrait for RvmSerializedDbnsTableAssemblyD
 
 pub static RVMSERIALIZEDDB_NS_TABLEASSEMBLYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_TableAssemblyData",
+    name_hash: 3624816661,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsTableAssemblyData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsTableAssemblyData as Default>::default()),
         },
         fields: &[
         ],
@@ -2327,7 +2491,8 @@ impl TypeObject for RvmSerializedDbnsTableAssemblyData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsWriteOpGroup {
 }
 
@@ -2339,11 +2504,13 @@ impl RvmSerializedDbnsWriteOpGroupTrait for RvmSerializedDbnsWriteOpGroup {
 
 pub static RVMSERIALIZEDDB_NS_WRITEOPGROUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_WriteOpGroup",
+    name_hash: 1750895384,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsWriteOpGroup as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsWriteOpGroup as Default>::default()),
         },
         fields: &[
         ],
@@ -2370,7 +2537,8 @@ impl TypeObject for RvmSerializedDbnsWriteOpGroup {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsWriteOp {
 }
 
@@ -2382,11 +2550,13 @@ impl RvmSerializedDbnsWriteOpTrait for RvmSerializedDbnsWriteOp {
 
 pub static RVMSERIALIZEDDB_NS_WRITEOP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_WriteOp",
+    name_hash: 942972679,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsWriteOp as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsWriteOp as Default>::default()),
         },
         fields: &[
         ],
@@ -2413,7 +2583,8 @@ impl TypeObject for RvmSerializedDbnsWriteOp {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDrawStateBuilderInstructionData {
 }
 
@@ -2425,11 +2596,13 @@ impl RvmSerializedDbnsDrawStateBuilderInstructionDataTrait for RvmSerializedDbns
 
 pub static RVMSERIALIZEDDB_NS_DRAWSTATEBUILDERINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DrawStateBuilderInstructionData",
+    name_hash: 2460957275,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDrawStateBuilderInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDrawStateBuilderInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -2456,7 +2629,8 @@ impl TypeObject for RvmSerializedDbnsDrawStateBuilderInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDispatchInstructionData {
 }
 
@@ -2468,11 +2642,13 @@ impl RvmSerializedDbnsDispatchInstructionDataTrait for RvmSerializedDbnsDispatch
 
 pub static RVMSERIALIZEDDB_NS_DISPATCHINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DispatchInstructionData",
+    name_hash: 2326572157,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDispatchInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDispatchInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -2499,7 +2675,8 @@ impl TypeObject for RvmSerializedDbnsDispatchInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDirectInputInstructionData {
 }
 
@@ -2511,11 +2688,13 @@ impl RvmSerializedDbnsDirectInputInstructionDataTrait for RvmSerializedDbnsDirec
 
 pub static RVMSERIALIZEDDB_NS_DIRECTINPUTINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DirectInputInstructionData",
+    name_hash: 1832125366,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDirectInputInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDirectInputInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -2542,7 +2721,8 @@ impl TypeObject for RvmSerializedDbnsDirectInputInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsConstantValueInstructionData {
 }
 
@@ -2554,11 +2734,13 @@ impl RvmSerializedDbnsConstantValueInstructionDataTrait for RvmSerializedDbnsCon
 
 pub static RVMSERIALIZEDDB_NS_CONSTANTVALUEINSTRUCTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ConstantValueInstructionData",
+    name_hash: 913289400,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsConstantValueInstructionData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsConstantValueInstructionData as Default>::default()),
         },
         fields: &[
         ],
@@ -2585,7 +2767,8 @@ impl TypeObject for RvmSerializedDbnsConstantValueInstructionData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct char {
 }
 
@@ -2597,11 +2780,13 @@ impl charTrait for char {
 
 pub static CHAR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "char",
+    name_hash: 2087773917,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<char as Default>::default())),
+            create_boxed: || Box::new(<char as Default>::default()),
         },
         fields: &[
         ],
@@ -2628,7 +2813,8 @@ impl TypeObject for char {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ParamDbHash {
 }
 
@@ -2640,11 +2826,13 @@ impl ParamDbHashTrait for ParamDbHash {
 
 pub static PARAMDBHASH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ParamDbHash",
+    name_hash: 3560589918,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ParamDbHash as Default>::default())),
+            create_boxed: || Box::new(<ParamDbHash as Default>::default()),
         },
         fields: &[
         ],
@@ -2671,7 +2859,8 @@ impl TypeObject for ParamDbHash {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmEncodedTableEntry {
 }
 
@@ -2683,11 +2872,13 @@ impl RvmEncodedTableEntryTrait for RvmEncodedTableEntry {
 
 pub static RVMENCODEDTABLEENTRY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmEncodedTableEntry",
+    name_hash: 3711184388,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmEncodedTableEntry as Default>::default())),
+            create_boxed: || Box::new(<RvmEncodedTableEntry as Default>::default()),
         },
         fields: &[
         ],
@@ -2714,7 +2905,8 @@ impl TypeObject for RvmEncodedTableEntry {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmContextSortKeyInfo {
 }
 
@@ -2726,11 +2918,13 @@ impl RvmContextSortKeyInfoTrait for RvmContextSortKeyInfo {
 
 pub static RVMCONTEXTSORTKEYINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmContextSortKeyInfo",
+    name_hash: 1614081232,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmContextSortKeyInfo as Default>::default())),
+            create_boxed: || Box::new(<RvmContextSortKeyInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -2757,7 +2951,8 @@ impl TypeObject for RvmContextSortKeyInfo {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsPreparedVertexElement {
 }
 
@@ -2769,11 +2964,13 @@ impl RvmSerializedDbnsPreparedVertexElementTrait for RvmSerializedDbnsPreparedVe
 
 pub static RVMSERIALIZEDDB_NS_PREPAREDVERTEXELEMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_PreparedVertexElement",
+    name_hash: 3866961878,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsPreparedVertexElement as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsPreparedVertexElement as Default>::default()),
         },
         fields: &[
         ],
@@ -2800,7 +2997,8 @@ impl TypeObject for RvmSerializedDbnsPreparedVertexElement {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsPreparedVertexStream {
 }
 
@@ -2812,11 +3010,13 @@ impl RvmSerializedDbnsPreparedVertexStreamTrait for RvmSerializedDbnsPreparedVer
 
 pub static RVMSERIALIZEDDB_NS_PREPAREDVERTEXSTREAM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_PreparedVertexStream",
+    name_hash: 1467945364,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsPreparedVertexStream as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsPreparedVertexStream as Default>::default()),
         },
         fields: &[
         ],
@@ -2843,7 +3043,8 @@ impl TypeObject for RvmSerializedDbnsPreparedVertexStream {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsSerializedParamDbKey {
 }
 
@@ -2855,11 +3056,13 @@ impl RvmSerializedDbnsSerializedParamDbKeyTrait for RvmSerializedDbnsSerializedP
 
 pub static RVMSERIALIZEDDB_NS_SERIALIZEDPARAMDBKEY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SerializedParamDbKey",
+    name_hash: 788411241,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsSerializedParamDbKey as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsSerializedParamDbKey as Default>::default()),
         },
         fields: &[
         ],
@@ -2886,7 +3089,8 @@ impl TypeObject for RvmSerializedDbnsSerializedParamDbKey {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsBaseShaderState {
 }
 
@@ -2898,11 +3102,13 @@ impl RvmSerializedDbnsBaseShaderStateTrait for RvmSerializedDbnsBaseShaderState 
 
 pub static RVMSERIALIZEDDB_NS_BASESHADERSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_BaseShaderState",
+    name_hash: 2450159502,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsBaseShaderState as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsBaseShaderState as Default>::default()),
         },
         fields: &[
         ],
@@ -2929,7 +3135,8 @@ impl TypeObject for RvmSerializedDbnsBaseShaderState {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRuntimeInstantiatedType {
 }
 
@@ -2941,11 +3148,13 @@ impl RvmSerializedDbnsRuntimeInstantiatedTypeTrait for RvmSerializedDbnsRuntimeI
 
 pub static RVMSERIALIZEDDB_NS_RUNTIMEINSTANTIATEDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RuntimeInstantiatedType",
+    name_hash: 2581277799,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRuntimeInstantiatedType as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRuntimeInstantiatedType as Default>::default()),
         },
         fields: &[
         ],
@@ -2972,7 +3181,8 @@ impl TypeObject for RvmSerializedDbnsRuntimeInstantiatedType {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsParamDbSerializedMultiHashView {
 }
 
@@ -2984,11 +3194,13 @@ impl RvmSerializedDbnsParamDbSerializedMultiHashViewTrait for RvmSerializedDbnsP
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDMULTIHASHVIEW_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbSerializedMultiHashView",
+    name_hash: 2759261608,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsParamDbSerializedMultiHashView as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsParamDbSerializedMultiHashView as Default>::default()),
         },
         fields: &[
         ],
@@ -3015,7 +3227,8 @@ impl TypeObject for RvmSerializedDbnsParamDbSerializedMultiHashView {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsParamDbSerializedReadView {
 }
 
@@ -3027,11 +3240,13 @@ impl RvmSerializedDbnsParamDbSerializedReadViewTrait for RvmSerializedDbnsParamD
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDREADVIEW_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbSerializedReadView",
+    name_hash: 3358556289,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsParamDbSerializedReadView as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsParamDbSerializedReadView as Default>::default()),
         },
         fields: &[
         ],
@@ -3058,7 +3273,8 @@ impl TypeObject for RvmSerializedDbnsParamDbSerializedReadView {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsParamDbSerializedHashViewRef {
 }
 
@@ -3070,11 +3286,13 @@ impl RvmSerializedDbnsParamDbSerializedHashViewRefTrait for RvmSerializedDbnsPar
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDHASHVIEWREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbSerializedHashViewRef",
+    name_hash: 2500837264,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsParamDbSerializedHashViewRef as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsParamDbSerializedHashViewRef as Default>::default()),
         },
         fields: &[
         ],
@@ -3101,7 +3319,8 @@ impl TypeObject for RvmSerializedDbnsParamDbSerializedHashViewRef {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsParamDbSerializedHashView {
 }
 
@@ -3113,11 +3332,13 @@ impl RvmSerializedDbnsParamDbSerializedHashViewTrait for RvmSerializedDbnsParamD
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDHASHVIEW_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbSerializedHashView",
+    name_hash: 2413292161,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsParamDbSerializedHashView as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsParamDbSerializedHashView as Default>::default()),
         },
         fields: &[
         ],
@@ -3144,7 +3365,8 @@ impl TypeObject for RvmSerializedDbnsParamDbSerializedHashView {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsParamDbSerializedFilterView {
 }
 
@@ -3156,11 +3378,13 @@ impl RvmSerializedDbnsParamDbSerializedFilterViewTrait for RvmSerializedDbnsPara
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDFILTERVIEW_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbSerializedFilterView",
+    name_hash: 2571168915,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsParamDbSerializedFilterView as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsParamDbSerializedFilterView as Default>::default()),
         },
         fields: &[
         ],
@@ -3187,7 +3411,8 @@ impl TypeObject for RvmSerializedDbnsParamDbSerializedFilterView {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsCombinedSerializedParameterBlock {
 }
 
@@ -3199,11 +3424,13 @@ impl RvmSerializedDbnsCombinedSerializedParameterBlockTrait for RvmSerializedDbn
 
 pub static RVMSERIALIZEDDB_NS_COMBINEDSERIALIZEDPARAMETERBLOCK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_CombinedSerializedParameterBlock",
+    name_hash: 3292859314,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsCombinedSerializedParameterBlock as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsCombinedSerializedParameterBlock as Default>::default()),
         },
         fields: &[
         ],
@@ -3230,7 +3457,8 @@ impl TypeObject for RvmSerializedDbnsCombinedSerializedParameterBlock {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsSerializedParameterBlockRef {
 }
 
@@ -3242,11 +3470,13 @@ impl RvmSerializedDbnsSerializedParameterBlockRefTrait for RvmSerializedDbnsSeri
 
 pub static RVMSERIALIZEDDB_NS_SERIALIZEDPARAMETERBLOCKREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SerializedParameterBlockRef",
+    name_hash: 1620971014,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsSerializedParameterBlockRef as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsSerializedParameterBlockRef as Default>::default()),
         },
         fields: &[
         ],
@@ -3273,7 +3503,8 @@ impl TypeObject for RvmSerializedDbnsSerializedParameterBlockRef {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsSerializedParameterBlock {
 }
 
@@ -3285,11 +3516,13 @@ impl RvmSerializedDbnsSerializedParameterBlockTrait for RvmSerializedDbnsSeriali
 
 pub static RVMSERIALIZEDDB_NS_SERIALIZEDPARAMETERBLOCK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SerializedParameterBlock",
+    name_hash: 709478999,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsSerializedParameterBlock as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsSerializedParameterBlock as Default>::default()),
         },
         fields: &[
         ],
@@ -3316,7 +3549,8 @@ impl TypeObject for RvmSerializedDbnsSerializedParameterBlock {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsShaderStreamableExternalTextureRef {
 }
 
@@ -3328,11 +3562,13 @@ impl RvmSerializedDbnsShaderStreamableExternalTextureRefTrait for RvmSerializedD
 
 pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLEEXTERNALTEXTUREREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ShaderStreamableExternalTextureRef",
+    name_hash: 3710142121,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsShaderStreamableExternalTextureRef as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsShaderStreamableExternalTextureRef as Default>::default()),
         },
         fields: &[
         ],
@@ -3359,7 +3595,8 @@ impl TypeObject for RvmSerializedDbnsShaderStreamableExternalTextureRef {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsShaderStreamableTextureRef {
 }
 
@@ -3371,11 +3608,13 @@ impl RvmSerializedDbnsShaderStreamableTextureRefTrait for RvmSerializedDbnsShade
 
 pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLETEXTUREREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ShaderStreamableTextureRef",
+    name_hash: 2223500116,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsShaderStreamableTextureRef as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsShaderStreamableTextureRef as Default>::default()),
         },
         fields: &[
         ],
@@ -3402,7 +3641,8 @@ impl TypeObject for RvmSerializedDbnsShaderStreamableTextureRef {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsSurfaceShaderDebugInfo {
 }
 
@@ -3414,11 +3654,13 @@ impl RvmSerializedDbnsSurfaceShaderDebugInfoTrait for RvmSerializedDbnsSurfaceSh
 
 pub static RVMSERIALIZEDDB_NS_SURFACESHADERDEBUGINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SurfaceShaderDebugInfo",
+    name_hash: 3056045798,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsSurfaceShaderDebugInfo as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsSurfaceShaderDebugInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -3445,7 +3687,8 @@ impl TypeObject for RvmSerializedDbnsSurfaceShaderDebugInfo {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsSurfaceShader {
 }
 
@@ -3457,11 +3700,13 @@ impl RvmSerializedDbnsSurfaceShaderTrait for RvmSerializedDbnsSurfaceShader {
 
 pub static RVMSERIALIZEDDB_NS_SURFACESHADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SurfaceShader",
+    name_hash: 538222361,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsSurfaceShader as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsSurfaceShader as Default>::default()),
         },
         fields: &[
         ],
@@ -3488,7 +3733,8 @@ impl TypeObject for RvmSerializedDbnsSurfaceShader {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsShaderStreamableTexture {
 }
 
@@ -3500,11 +3746,13 @@ impl RvmSerializedDbnsShaderStreamableTextureTrait for RvmSerializedDbnsShaderSt
 
 pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLETEXTURE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ShaderStreamableTexture",
+    name_hash: 1368255813,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsShaderStreamableTexture as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsShaderStreamableTexture as Default>::default()),
         },
         fields: &[
         ],
@@ -3531,7 +3779,8 @@ impl TypeObject for RvmSerializedDbnsShaderStreamableTexture {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsShaderStreamableExternalTexture {
 }
 
@@ -3543,11 +3792,13 @@ impl RvmSerializedDbnsShaderStreamableExternalTextureTrait for RvmSerializedDbns
 
 pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLEEXTERNALTEXTURE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ShaderStreamableExternalTexture",
+    name_hash: 509590552,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsShaderStreamableExternalTexture as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsShaderStreamableExternalTexture as Default>::default()),
         },
         fields: &[
         ],
@@ -3574,7 +3825,8 @@ impl TypeObject for RvmSerializedDbnsShaderStreamableExternalTexture {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmFunctionInstanceRef {
 }
 
@@ -3586,11 +3838,13 @@ impl RvmSerializedDbnsRvmFunctionInstanceRefTrait for RvmSerializedDbnsRvmFuncti
 
 pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONINSTANCEREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmFunctionInstanceRef",
+    name_hash: 3527922742,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmFunctionInstanceRef as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmFunctionInstanceRef as Default>::default()),
         },
         fields: &[
         ],
@@ -3617,7 +3871,8 @@ impl TypeObject for RvmSerializedDbnsRvmFunctionInstanceRef {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmFunctionInstance {
 }
 
@@ -3629,11 +3884,13 @@ impl RvmSerializedDbnsRvmFunctionInstanceTrait for RvmSerializedDbnsRvmFunctionI
 
 pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONINSTANCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmFunctionInstance",
+    name_hash: 2474392295,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmFunctionInstance as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmFunctionInstance as Default>::default()),
         },
         fields: &[
         ],
@@ -3660,7 +3917,8 @@ impl TypeObject for RvmSerializedDbnsRvmFunctionInstance {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsSettings {
 }
 
@@ -3672,11 +3930,13 @@ impl RvmSerializedDbnsSettingsTrait for RvmSerializedDbnsSettings {
 
 pub static RVMSERIALIZEDDB_NS_SETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Settings",
+    name_hash: 3672624224,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsSettings as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -3703,7 +3963,8 @@ impl TypeObject for RvmSerializedDbnsSettings {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmPermutationSet {
 }
 
@@ -3715,11 +3976,13 @@ impl RvmSerializedDbnsRvmPermutationSetTrait for RvmSerializedDbnsRvmPermutation
 
 pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmPermutationSet",
+    name_hash: 2063989016,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmPermutationSet as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmPermutationSet as Default>::default()),
         },
         fields: &[
         ],
@@ -3746,7 +4009,8 @@ impl TypeObject for RvmSerializedDbnsRvmPermutationSet {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmPermutationLookupTable {
 }
 
@@ -3758,11 +4022,13 @@ impl RvmSerializedDbnsRvmPermutationLookupTableTrait for RvmSerializedDbnsRvmPer
 
 pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONLOOKUPTABLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmPermutationLookupTable",
+    name_hash: 4260537446,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmPermutationLookupTable as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmPermutationLookupTable as Default>::default()),
         },
         fields: &[
         ],
@@ -3789,7 +4055,8 @@ impl TypeObject for RvmSerializedDbnsRvmPermutationLookupTable {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmPermutationTree {
 }
 
@@ -3801,11 +4068,13 @@ impl RvmSerializedDbnsRvmPermutationTreeTrait for RvmSerializedDbnsRvmPermutatio
 
 pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONTREE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmPermutationTree",
+    name_hash: 3687251644,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmPermutationTree as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmPermutationTree as Default>::default()),
         },
         fields: &[
         ],
@@ -3832,7 +4101,8 @@ impl TypeObject for RvmSerializedDbnsRvmPermutationTree {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmPermutationRef {
 }
 
@@ -3844,11 +4114,13 @@ impl RvmSerializedDbnsRvmPermutationRefTrait for RvmSerializedDbnsRvmPermutation
 
 pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmPermutationRef",
+    name_hash: 2063981771,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmPermutationRef as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmPermutationRef as Default>::default()),
         },
         fields: &[
         ],
@@ -3875,7 +4147,8 @@ impl TypeObject for RvmSerializedDbnsRvmPermutationRef {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmPermutation {
 }
 
@@ -3887,11 +4160,13 @@ impl RvmSerializedDbnsRvmPermutationTrait for RvmSerializedDbnsRvmPermutation {
 
 pub static RVMSERIALIZEDDB_NS_RVMPERMUTATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmPermutation",
+    name_hash: 122081018,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmPermutation as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmPermutation as Default>::default()),
         },
         fields: &[
         ],
@@ -3918,7 +4193,8 @@ impl TypeObject for RvmSerializedDbnsRvmPermutation {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmFunctionInputTableIndices {
 }
 
@@ -3930,11 +4206,13 @@ impl RvmSerializedDbnsRvmFunctionInputTableIndicesTrait for RvmSerializedDbnsRvm
 
 pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONINPUTTABLEINDICES_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmFunctionInputTableIndices",
+    name_hash: 910996953,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmFunctionInputTableIndices as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmFunctionInputTableIndices as Default>::default()),
         },
         fields: &[
         ],
@@ -3961,7 +4239,8 @@ impl TypeObject for RvmSerializedDbnsRvmFunctionInputTableIndices {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmDispatchDebugInfo {
 }
 
@@ -3973,11 +4252,13 @@ impl RvmSerializedDbnsRvmDispatchDebugInfoTrait for RvmSerializedDbnsRvmDispatch
 
 pub static RVMSERIALIZEDDB_NS_RVMDISPATCHDEBUGINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmDispatchDebugInfo",
+    name_hash: 3866358275,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmDispatchDebugInfo as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmDispatchDebugInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -4004,7 +4285,8 @@ impl TypeObject for RvmSerializedDbnsRvmDispatchDebugInfo {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmFunctionDebugInfo {
 }
 
@@ -4016,11 +4298,13 @@ impl RvmSerializedDbnsRvmFunctionDebugInfoTrait for RvmSerializedDbnsRvmFunction
 
 pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONDEBUGINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmFunctionDebugInfo",
+    name_hash: 4247402385,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmFunctionDebugInfo as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmFunctionDebugInfo as Default>::default()),
         },
         fields: &[
         ],
@@ -4047,7 +4331,8 @@ impl TypeObject for RvmSerializedDbnsRvmFunctionDebugInfo {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmDispatch {
 }
 
@@ -4059,11 +4344,13 @@ impl RvmSerializedDbnsRvmDispatchTrait for RvmSerializedDbnsRvmDispatch {
 
 pub static RVMSERIALIZEDDB_NS_RVMDISPATCH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmDispatch",
+    name_hash: 2416284060,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmDispatch as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmDispatch as Default>::default()),
         },
         fields: &[
         ],
@@ -4090,7 +4377,8 @@ impl TypeObject for RvmSerializedDbnsRvmDispatch {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRvmFunction {
 }
 
@@ -4102,11 +4390,13 @@ impl RvmSerializedDbnsRvmFunctionTrait for RvmSerializedDbnsRvmFunction {
 
 pub static RVMSERIALIZEDDB_NS_RVMFUNCTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmFunction",
+    name_hash: 336264270,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRvmFunction as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRvmFunction as Default>::default()),
         },
         fields: &[
         ],
@@ -4133,7 +4423,8 @@ impl TypeObject for RvmSerializedDbnsRvmFunction {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsInstructionBatch {
 }
 
@@ -4145,11 +4436,13 @@ impl RvmSerializedDbnsInstructionBatchTrait for RvmSerializedDbnsInstructionBatc
 
 pub static RVMSERIALIZEDDB_NS_INSTRUCTIONBATCH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_InstructionBatch",
+    name_hash: 228272417,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsInstructionBatch as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsInstructionBatch as Default>::default()),
         },
         fields: &[
         ],
@@ -4176,7 +4469,8 @@ impl TypeObject for RvmSerializedDbnsInstructionBatch {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsRttiType {
 }
 
@@ -4188,11 +4482,13 @@ impl RvmSerializedDbnsRttiTypeTrait for RvmSerializedDbnsRttiType {
 
 pub static RVMSERIALIZEDDB_NS_RTTITYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RttiType",
+    name_hash: 4051377062,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsRttiType as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsRttiType as Default>::default()),
         },
         fields: &[
         ],
@@ -4219,7 +4515,8 @@ impl TypeObject for RvmSerializedDbnsRttiType {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDefaultValueRef {
 }
 
@@ -4231,11 +4528,13 @@ impl RvmSerializedDbnsDefaultValueRefTrait for RvmSerializedDbnsDefaultValueRef 
 
 pub static RVMSERIALIZEDDB_NS_DEFAULTVALUEREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DefaultValueRef",
+    name_hash: 32262548,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDefaultValueRef as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDefaultValueRef as Default>::default()),
         },
         fields: &[
         ],
@@ -4262,7 +4561,8 @@ impl TypeObject for RvmSerializedDbnsDefaultValueRef {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsValueRef {
 }
 
@@ -4274,11 +4574,13 @@ impl RvmSerializedDbnsValueRefTrait for RvmSerializedDbnsValueRef {
 
 pub static RVMSERIALIZEDDB_NS_VALUEREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ValueRef",
+    name_hash: 2009813119,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsValueRef as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsValueRef as Default>::default()),
         },
         fields: &[
         ],
@@ -4305,7 +4607,8 @@ impl TypeObject for RvmSerializedDbnsValueRef {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDefaultValueZeroMem {
 }
 
@@ -4317,11 +4620,13 @@ impl RvmSerializedDbnsDefaultValueZeroMemTrait for RvmSerializedDbnsDefaultValue
 
 pub static RVMSERIALIZEDDB_NS_DEFAULTVALUEZEROMEM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DefaultValueZeroMem",
+    name_hash: 2985951458,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDefaultValueZeroMem as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDefaultValueZeroMem as Default>::default()),
         },
         fields: &[
         ],
@@ -4348,7 +4653,8 @@ impl TypeObject for RvmSerializedDbnsDefaultValueZeroMem {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDefaultValueStructLegacyData {
 }
 
@@ -4360,11 +4666,13 @@ impl RvmSerializedDbnsDefaultValueStructLegacyDataTrait for RvmSerializedDbnsDef
 
 pub static RVMSERIALIZEDDB_NS_DEFAULTVALUESTRUCTLEGACYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DefaultValueStructLegacyData",
+    name_hash: 1525777655,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDefaultValueStructLegacyData as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDefaultValueStructLegacyData as Default>::default()),
         },
         fields: &[
         ],
@@ -4391,7 +4699,8 @@ impl TypeObject for RvmSerializedDbnsDefaultValueStructLegacyData {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDefaultValueSimpleTexture {
 }
 
@@ -4403,11 +4712,13 @@ impl RvmSerializedDbnsDefaultValueSimpleTextureTrait for RvmSerializedDbnsDefaul
 
 pub static RVMSERIALIZEDDB_NS_DEFAULTVALUESIMPLETEXTURE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DefaultValueSimpleTexture",
+    name_hash: 1288146548,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDefaultValueSimpleTexture as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDefaultValueSimpleTexture as Default>::default()),
         },
         fields: &[
         ],
@@ -4434,7 +4745,8 @@ impl TypeObject for RvmSerializedDbnsDefaultValueSimpleTexture {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsDefaultValueSimpleBuffer {
 }
 
@@ -4446,11 +4758,13 @@ impl RvmSerializedDbnsDefaultValueSimpleBufferTrait for RvmSerializedDbnsDefault
 
 pub static RVMSERIALIZEDDB_NS_DEFAULTVALUESIMPLEBUFFER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DefaultValueSimpleBuffer",
+    name_hash: 3784209643,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsDefaultValueSimpleBuffer as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsDefaultValueSimpleBuffer as Default>::default()),
         },
         fields: &[
         ],
@@ -4477,7 +4791,8 @@ impl TypeObject for RvmSerializedDbnsDefaultValueSimpleBuffer {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsInstructionBatchRef {
 }
 
@@ -4489,11 +4804,13 @@ impl RvmSerializedDbnsInstructionBatchRefTrait for RvmSerializedDbnsInstructionB
 
 pub static RVMSERIALIZEDDB_NS_INSTRUCTIONBATCHREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_InstructionBatchRef",
+    name_hash: 38261168,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsInstructionBatchRef as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsInstructionBatchRef as Default>::default()),
         },
         fields: &[
         ],
@@ -4520,7 +4837,8 @@ impl TypeObject for RvmSerializedDbnsInstructionBatchRef {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsParamDbKeyRef {
 }
 
@@ -4532,11 +4850,13 @@ impl RvmSerializedDbnsParamDbKeyRefTrait for RvmSerializedDbnsParamDbKeyRef {
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBKEYREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbKeyRef",
+    name_hash: 3752331210,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsParamDbKeyRef as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsParamDbKeyRef as Default>::default()),
         },
         fields: &[
         ],
@@ -4563,7 +4883,8 @@ impl TypeObject for RvmSerializedDbnsParamDbKeyRef {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmSerializedDbnsParamDbKeyDesc {
 }
 
@@ -4575,11 +4896,13 @@ impl RvmSerializedDbnsParamDbKeyDescTrait for RvmSerializedDbnsParamDbKeyDesc {
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBKEYDESC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbKeyDesc",
+    name_hash: 3568766346,
     flags: MemberInfoFlags::new(53321),
     module: "RvmCommon",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmSerializedDbnsParamDbKeyDesc as Default>::default())),
+            create_boxed: || Box::new(<RvmSerializedDbnsParamDbKeyDesc as Default>::default()),
         },
         fields: &[
         ],
@@ -4606,7 +4929,8 @@ impl TypeObject for RvmSerializedDbnsParamDbKeyDesc {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmDirectInputInstructionFactory {
     pub _glacier_base: RvmInstructionFactoryBase,
 }
@@ -4622,12 +4946,15 @@ impl RvmInstructionFactoryBaseTrait for RvmDirectInputInstructionFactory {
 
 pub static RVMDIRECTINPUTINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmDirectInputInstructionFactory",
+    name_hash: 69259163,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(RvmDirectInputInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmDirectInputInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<RvmDirectInputInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -4657,6 +4984,7 @@ impl TypeObject for RvmDirectInputInstructionFactory {
 
 pub static RVMDIRECTINPUTINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmDirectInputInstructionFactory-Array",
+    name_hash: 1024624175,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("RvmDirectInputInstructionFactory"),
@@ -4665,7 +4993,8 @@ pub static RVMDIRECTINPUTINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmConstantValueInstructionFactory {
     pub _glacier_base: RvmInstructionFactoryBase,
 }
@@ -4681,12 +5010,15 @@ impl RvmInstructionFactoryBaseTrait for RvmConstantValueInstructionFactory {
 
 pub static RVMCONSTANTVALUEINSTRUCTIONFACTORY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmConstantValueInstructionFactory",
+    name_hash: 2563153877,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMINSTRUCTIONFACTORYBASE_TYPE_INFO),
+        super_class_offset: offset_of!(RvmConstantValueInstructionFactory, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmConstantValueInstructionFactory as Default>::default())),
+            create_boxed: || Box::new(<RvmConstantValueInstructionFactory as Default>::default()),
         },
         fields: &[
         ],
@@ -4716,6 +5048,7 @@ impl TypeObject for RvmConstantValueInstructionFactory {
 
 pub static RVMCONSTANTVALUEINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmConstantValueInstructionFactory-Array",
+    name_hash: 3307692001,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("RvmConstantValueInstructionFactory"),
@@ -4724,7 +5057,8 @@ pub static RVMCONSTANTVALUEINSTRUCTIONFACTORY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmCommonDatabaseLoaderImpl {
     pub _glacier_base: RvmCommonDatabaseLoader,
 }
@@ -4743,12 +5077,15 @@ impl super::render::RvmDatabaseLoaderTrait for RvmCommonDatabaseLoaderImpl {
 
 pub static RVMCOMMONDATABASELOADERIMPL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmCommonDatabaseLoaderImpl",
+    name_hash: 3513237389,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(RVMCOMMONDATABASELOADER_TYPE_INFO),
+        super_class_offset: offset_of!(RvmCommonDatabaseLoaderImpl, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmCommonDatabaseLoaderImpl as Default>::default())),
+            create_boxed: || Box::new(<RvmCommonDatabaseLoaderImpl as Default>::default()),
         },
         fields: &[
         ],
@@ -4778,6 +5115,7 @@ impl TypeObject for RvmCommonDatabaseLoaderImpl {
 
 pub static RVMCOMMONDATABASELOADERIMPL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmCommonDatabaseLoaderImpl-Array",
+    name_hash: 3074548537,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("RvmCommonDatabaseLoaderImpl"),
@@ -4786,7 +5124,8 @@ pub static RVMCOMMONDATABASELOADERIMPL_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RvmCommonDatabaseLoader {
     pub _glacier_base: super::render::RvmDatabaseLoader,
 }
@@ -4802,12 +5141,15 @@ impl super::render::RvmDatabaseLoaderTrait for RvmCommonDatabaseLoader {
 
 pub static RVMCOMMONDATABASELOADER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmCommonDatabaseLoader",
+    name_hash: 3632845717,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::render::RVMDATABASELOADER_TYPE_INFO),
+        super_class_offset: offset_of!(RvmCommonDatabaseLoader, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RvmCommonDatabaseLoader as Default>::default())),
+            create_boxed: || Box::new(<RvmCommonDatabaseLoader as Default>::default()),
         },
         fields: &[
         ],
@@ -4837,6 +5179,7 @@ impl TypeObject for RvmCommonDatabaseLoader {
 
 pub static RVMCOMMONDATABASELOADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmCommonDatabaseLoader-Array",
+    name_hash: 3975504673,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("RvmCommonDatabaseLoader"),
@@ -4845,7 +5188,8 @@ pub static RVMCOMMONDATABASELOADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CommonRvmBackend {
     pub _glacier_base: super::render::RvmBackend,
 }
@@ -4861,12 +5205,15 @@ impl super::render::RvmBackendTrait for CommonRvmBackend {
 
 pub static COMMONRVMBACKEND_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CommonRvmBackend",
+    name_hash: 2366860517,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::render::RVMBACKEND_TYPE_INFO),
+        super_class_offset: offset_of!(CommonRvmBackend, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CommonRvmBackend as Default>::default())),
+            create_boxed: || Box::new(<CommonRvmBackend as Default>::default()),
         },
         fields: &[
         ],
@@ -4896,6 +5243,7 @@ impl TypeObject for CommonRvmBackend {
 
 pub static COMMONRVMBACKEND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CommonRvmBackend-Array",
+    name_hash: 2470917585,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("CommonRvmBackend"),
@@ -4904,7 +5252,8 @@ pub static COMMONRVMBACKEND_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BaseRvmDatabase {
     pub _glacier_base: super::render::RvmLegacyDatabase,
 }
@@ -4926,12 +5275,15 @@ impl super::core::IResourceObjectTrait for BaseRvmDatabase {
 
 pub static BASERVMDATABASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseRvmDatabase",
+    name_hash: 3826806812,
     flags: MemberInfoFlags::new(101),
     module: "RvmCommon",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::render::RVMLEGACYDATABASE_TYPE_INFO),
+        super_class_offset: offset_of!(BaseRvmDatabase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BaseRvmDatabase as Default>::default())),
+            create_boxed: || Box::new(<BaseRvmDatabase as Default>::default()),
         },
         fields: &[
         ],
@@ -4961,6 +5313,7 @@ impl TypeObject for BaseRvmDatabase {
 
 pub static BASERVMDATABASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseRvmDatabase-Array",
+    name_hash: 2828855336,
     flags: MemberInfoFlags::new(145),
     module: "RvmCommon",
     data: TypeInfoData::Array("BaseRvmDatabase"),

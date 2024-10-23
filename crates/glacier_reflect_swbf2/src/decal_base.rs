@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -19,7 +20,8 @@ pub(crate) fn register_decal_base_types(registry: &mut TypeRegistry) {
     registry.register_type(DECALSETTINGS_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DecalVolumeEntityData {
     pub _glacier_base: super::world_sim::RenderVolumeEntityData,
 }
@@ -89,12 +91,15 @@ impl super::core::DataContainerTrait for DecalVolumeEntityData {
 
 pub static DECALVOLUMEENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalVolumeEntityData",
+    name_hash: 978151817,
     flags: MemberInfoFlags::new(101),
     module: "DecalBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::world_sim::RENDERVOLUMEENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DecalVolumeEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DecalVolumeEntityData as Default>::default())),
+            create_boxed: || Box::new(<DecalVolumeEntityData as Default>::default()),
         },
         fields: &[
         ],
@@ -124,6 +129,7 @@ impl TypeObject for DecalVolumeEntityData {
 
 pub static DECALVOLUMEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalVolumeEntityData-Array",
+    name_hash: 2197774141,
     flags: MemberInfoFlags::new(145),
     module: "DecalBase",
     data: TypeInfoData::Array("DecalVolumeEntityData"),
@@ -132,7 +138,8 @@ pub static DECALVOLUMEENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DecalEntityData {
     pub _glacier_base: super::entity::SpatialEntityData,
     pub decal_type: super::render_base::DecalType,
@@ -229,46 +236,55 @@ impl super::core::DataContainerTrait for DecalEntityData {
 
 pub static DECALENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalEntityData",
+    name_hash: 817991169,
     flags: MemberInfoFlags::new(101),
     module: "DecalBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::SPATIALENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DecalEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DecalEntityData as Default>::default())),
+            create_boxed: || Box::new(<DecalEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DecalType",
+                name_hash: 3246067474,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DecalType",
                 rust_offset: offset_of!(DecalEntityData, decal_type),
             },
             FieldInfoData {
                 name: "ClipAngle",
+                name_hash: 1632648850,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalEntityData, clip_angle),
             },
             FieldInfoData {
                 name: "SortingPriority",
+                name_hash: 3523655821,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(DecalEntityData, sorting_priority),
             },
             FieldInfoData {
                 name: "AtlasTile",
+                name_hash: 3027817338,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DecalAtlasTile",
                 rust_offset: offset_of!(DecalEntityData, atlas_tile),
             },
             FieldInfoData {
                 name: "Shader",
+                name_hash: 3352909900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderInstanceDataStruct",
                 rust_offset: offset_of!(DecalEntityData, shader),
             },
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalEntityData, enabled),
@@ -300,6 +316,7 @@ impl TypeObject for DecalEntityData {
 
 pub static DECALENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalEntityData-Array",
+    name_hash: 3952969653,
     flags: MemberInfoFlags::new(145),
     module: "DecalBase",
     data: TypeInfoData::Array("DecalEntityData"),
@@ -308,7 +325,8 @@ pub static DECALENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DecalTemplateAsset {
     pub _glacier_base: super::render_base::DecalTemplateBaseAsset,
     pub size: f32,
@@ -462,94 +480,111 @@ impl super::core::DataContainerTrait for DecalTemplateAsset {
 
 pub static DECALTEMPLATEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalTemplateAsset",
+    name_hash: 1238023850,
     flags: MemberInfoFlags::new(101),
     module: "DecalBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::render_base::DECALTEMPLATEBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(DecalTemplateAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DecalTemplateAsset as Default>::default())),
+            create_boxed: || Box::new(<DecalTemplateAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Size",
+                name_hash: 2089429248,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalTemplateAsset, size),
             },
             FieldInfoData {
                 name: "RandomSize",
+                name_hash: 3548218523,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalTemplateAsset, random_size),
             },
             FieldInfoData {
                 name: "Rotation",
+                name_hash: 48673745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalTemplateAsset, rotation),
             },
             FieldInfoData {
                 name: "RandomRotation",
+                name_hash: 4221673930,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalTemplateAsset, random_rotation),
             },
             FieldInfoData {
                 name: "ClipAngle",
+                name_hash: 1632648850,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalTemplateAsset, clip_angle),
             },
             FieldInfoData {
                 name: "ProximityRadiusFactor",
+                name_hash: 4036214629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalTemplateAsset, proximity_radius_factor),
             },
             FieldInfoData {
                 name: "NormalOffset",
+                name_hash: 393006331,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalTemplateAsset, normal_offset),
             },
             FieldInfoData {
                 name: "SortingPriority",
+                name_hash: 3523655821,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(DecalTemplateAsset, sorting_priority),
             },
             FieldInfoData {
                 name: "AtlasTile",
+                name_hash: 3027817338,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DecalAtlasTile",
                 rust_offset: offset_of!(DecalTemplateAsset, atlas_tile),
             },
             FieldInfoData {
                 name: "Shader",
+                name_hash: 3352909900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderInstanceDataStruct",
                 rust_offset: offset_of!(DecalTemplateAsset, shader),
             },
             FieldInfoData {
                 name: "DecalType",
+                name_hash: 3246067474,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DecalType",
                 rust_offset: offset_of!(DecalTemplateAsset, decal_type),
             },
             FieldInfoData {
                 name: "ProjectMultiple",
+                name_hash: 4168918560,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalTemplateAsset, project_multiple),
             },
             FieldInfoData {
                 name: "MeshUVIndex",
+                name_hash: 114817035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(DecalTemplateAsset, mesh_u_v_index),
             },
             FieldInfoData {
                 name: "IgnoreSetupJobDistanceCulling",
+                name_hash: 551741352,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalTemplateAsset, ignore_setup_job_distance_culling),
@@ -581,6 +616,7 @@ impl TypeObject for DecalTemplateAsset {
 
 pub static DECALTEMPLATEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalTemplateAsset-Array",
+    name_hash: 2205514014,
     flags: MemberInfoFlags::new(145),
     module: "DecalBase",
     data: TypeInfoData::Array("DecalTemplateAsset"),
@@ -589,7 +625,8 @@ pub static DECALTEMPLATEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DecalSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enable: bool,
@@ -830,154 +867,181 @@ impl super::core::DataContainerTrait for DecalSettings {
 
 pub static DECALSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalSettings",
+    name_hash: 1733412079,
     flags: MemberInfoFlags::new(101),
     module: "DecalBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(DecalSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DecalSettings as Default>::default())),
+            create_boxed: || Box::new(<DecalSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalSettings, enable),
             },
             FieldInfoData {
                 name: "DrawEnable",
+                name_hash: 1347356004,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalSettings, draw_enable),
             },
             FieldInfoData {
                 name: "RingBufferSizeInVerts",
+                name_hash: 2513445491,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DecalSettings, ring_buffer_size_in_verts),
             },
             FieldInfoData {
                 name: "RingBufferRecreateSizeInVerts",
+                name_hash: 1462915808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DecalSettings, ring_buffer_recreate_size_in_verts),
             },
             FieldInfoData {
                 name: "ProjectedDecalsTrianglesPerJob",
+                name_hash: 2687160400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DecalSettings, projected_decals_triangles_per_job),
             },
             FieldInfoData {
                 name: "DecalRecreateDistanceInMeters",
+                name_hash: 2976932869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalSettings, decal_recreate_distance_in_meters),
             },
             FieldInfoData {
                 name: "DebugDrawEntityHandles",
+                name_hash: 1658780438,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalSettings, debug_draw_entity_handles),
             },
             FieldInfoData {
                 name: "CullEnable",
+                name_hash: 4089010994,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalSettings, cull_enable),
             },
             FieldInfoData {
                 name: "DistanceCullEnable",
+                name_hash: 130648241,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalSettings, distance_cull_enable),
             },
             FieldInfoData {
                 name: "FrustumCullEnable",
+                name_hash: 2176884108,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalSettings, frustum_cull_enable),
             },
             FieldInfoData {
                 name: "OcclusionCullEnable",
+                name_hash: 2058141375,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalSettings, occlusion_cull_enable),
             },
             FieldInfoData {
                 name: "DistanceCullFalloff",
+                name_hash: 122571384,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalSettings, distance_cull_falloff),
             },
             FieldInfoData {
                 name: "MinOcclusionTestDistance",
+                name_hash: 1538423831,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalSettings, min_occlusion_test_distance),
             },
             FieldInfoData {
                 name: "MinOcclusionScreenArea",
+                name_hash: 3772538969,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalSettings, min_occlusion_screen_area),
             },
             FieldInfoData {
                 name: "DebugOcclusionCullEnable",
+                name_hash: 2449547886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalSettings, debug_occlusion_cull_enable),
             },
             FieldInfoData {
                 name: "DebugBatches",
+                name_hash: 1035877342,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalSettings, debug_batches),
             },
             FieldInfoData {
                 name: "DebugPerEntityBatches",
+                name_hash: 318620898,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(DecalSettings, debug_per_entity_batches),
             },
             FieldInfoData {
                 name: "WireframeEnable",
+                name_hash: 1610721584,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DecalSettings, wireframe_enable),
             },
             FieldInfoData {
                 name: "DebugRingbuffer",
+                name_hash: 683628902,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(DecalSettings, debug_ringbuffer),
             },
             FieldInfoData {
                 name: "DisplacementBias",
+                name_hash: 3303605963,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalSettings, displacement_bias),
             },
             FieldInfoData {
                 name: "DisplacementScale",
+                name_hash: 1624443178,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalSettings, displacement_scale),
             },
             FieldInfoData {
                 name: "MaxDecalObjectPrims",
+                name_hash: 686281246,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DecalSettings, max_decal_object_prims),
             },
             FieldInfoData {
                 name: "MaxTotalDecalObjectPrims",
+                name_hash: 3297560700,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DecalSettings, max_total_decal_object_prims),
             },
             FieldInfoData {
                 name: "DecalMaxDistance",
+                name_hash: 2380052509,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DecalSettings, decal_max_distance),
@@ -1009,6 +1073,7 @@ impl TypeObject for DecalSettings {
 
 pub static DECALSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DecalSettings-Array",
+    name_hash: 2232623835,
     flags: MemberInfoFlags::new(145),
     module: "DecalBase",
     data: TypeInfoData::Array("DecalSettings"),

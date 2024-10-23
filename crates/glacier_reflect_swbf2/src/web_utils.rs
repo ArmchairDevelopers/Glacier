@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -15,7 +16,8 @@ pub(crate) fn register_web_utils_types(registry: &mut TypeRegistry) {
     registry.register_type(WEBUTILSENVIRONMENT_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct URLConfigData {
     pub _glacier_base: super::core::DataContainer,
     pub name: String,
@@ -67,34 +69,41 @@ impl super::core::DataContainerTrait for URLConfigData {
 
 pub static URLCONFIGDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "URLConfigData",
+    name_hash: 931746420,
     flags: MemberInfoFlags::new(101),
     module: "WebUtils",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(URLConfigData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<URLConfigData as Default>::default())),
+            create_boxed: || Box::new(<URLConfigData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(URLConfigData, name),
             },
             FieldInfoData {
                 name: "BaseUrl",
+                name_hash: 2308759387,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(URLConfigData, base_url),
             },
             FieldInfoData {
                 name: "Url",
+                name_hash: 193455022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(URLConfigData, url),
             },
             FieldInfoData {
                 name: "Environment",
+                name_hash: 2480382480,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WebUtilsEnvironment",
                 rust_offset: offset_of!(URLConfigData, environment),
@@ -126,6 +135,7 @@ impl TypeObject for URLConfigData {
 
 pub static URLCONFIGDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "URLConfigData-Array",
+    name_hash: 3214573120,
     flags: MemberInfoFlags::new(145),
     module: "WebUtils",
     data: TypeInfoData::Array("URLConfigData"),
@@ -150,6 +160,7 @@ pub enum WebUtilsEnvironment {
 
 pub static WEBUTILSENVIRONMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WebUtilsEnvironment",
+    name_hash: 2108023703,
     flags: MemberInfoFlags::new(49429),
     module: "WebUtils",
     data: TypeInfoData::Enum,
@@ -178,6 +189,7 @@ impl TypeObject for WebUtilsEnvironment {
 
 pub static WEBUTILSENVIRONMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WebUtilsEnvironment-Array",
+    name_hash: 1909910563,
     flags: MemberInfoFlags::new(145),
     module: "WebUtils",
     data: TypeInfoData::Array("WebUtilsEnvironment"),

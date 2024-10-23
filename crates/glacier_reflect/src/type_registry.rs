@@ -15,7 +15,7 @@ impl TypeRegistry {
     pub fn register_type(&mut self, type_info: &'static TypeInfo) {
         self.types_by_name.insert(type_info.name, type_info);
         self.types_by_name_hash
-            .insert(hash_quick_str(&type_info.name), type_info);
+            .insert(type_info.name_hash, type_info);
     }
 
     pub fn type_by_name(&self, name: &str) -> Option<&'static TypeInfo> {

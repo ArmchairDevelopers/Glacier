@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -512,6 +513,7 @@ pub(crate) fn register_core_types(registry: &mut TypeRegistry) {
 
 pub static RVMSERIALIZEDDB_NS_DX12PCCOMPUTEPSOINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcComputePsoInstructionData-Array",
+    name_hash: 2648306668,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcComputePsoInstructionData"),
@@ -523,6 +525,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCOMPUTEPSOINSTRUCTIONDATA_ARRAY_TYPE_INFO: &
 
 pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGDISPATCHINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcCsSkinningDispatchInstructionData-Array",
+    name_hash: 1151252516,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcCsSkinningDispatchInstructionData"),
@@ -534,6 +537,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGDISPATCHINSTRUCTIONDATA_ARRAY_TYPE
 
 pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGBUFFERINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcCsSkinningBufferInstructionData-Array",
+    name_hash: 323541940,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcCsSkinningBufferInstructionData"),
@@ -545,6 +549,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGBUFFERINSTRUCTIONDATA_ARRAY_TYPE_I
 
 pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGPARAMSINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcCsSkinningParamsInstructionData-Array",
+    name_hash: 2706013992,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcCsSkinningParamsInstructionData"),
@@ -556,6 +561,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCCSSKINNINGPARAMSINSTRUCTIONDATA_ARRAY_TYPE_I
 
 pub static RVMSERIALIZEDDB_NS_DX12PCVERTEXBUFFERINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcVertexBufferInstructionData-Array",
+    name_hash: 3100728573,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcVertexBufferInstructionData"),
@@ -567,6 +573,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCVERTEXBUFFERINSTRUCTIONDATA_ARRAY_TYPE_INFO:
 
 pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLERPOINTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcSamplerPointer-Array",
+    name_hash: 2089383730,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcSamplerPointer"),
@@ -578,6 +585,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLERPOINTER_ARRAY_TYPE_INFO: &'static Typ
 
 pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLERTABLEWRITERINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcSamplerTableWriterInstructionData-Array",
+    name_hash: 1065783728,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcSamplerTableWriterInstructionData"),
@@ -589,6 +597,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLERTABLEWRITERINSTRUCTIONDATA_ARRAY_TYPE
 
 pub static RVMSERIALIZEDDB_NS_DX12PCRVMDESCRIPTORTABLEASSEMBLYINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcRvmDescriptorTableAssemblyInstructionData-Array",
+    name_hash: 2154525487,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcRvmDescriptorTableAssemblyInstructionData"),
@@ -600,6 +609,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCRVMDESCRIPTORTABLEASSEMBLYINSTRUCTIONDATA_AR
 
 pub static RVMSERIALIZEDDB_NS_DX12PCSHADERDISPATCHDRAWINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcShaderDispatchDrawInstructionData-Array",
+    name_hash: 3737147916,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcShaderDispatchDrawInstructionData"),
@@ -611,6 +621,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSHADERDISPATCHDRAWINSTRUCTIONDATA_ARRAY_TYPE
 
 pub static RVMSERIALIZEDDB_NS_DX12PCDISPATCHINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcDispatchInstructionData-Array",
+    name_hash: 131210917,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcDispatchInstructionData"),
@@ -622,6 +633,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCDISPATCHINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'s
 
 pub static RVMSERIALIZEDDB_NS_DX12PCPSOPRELOADOP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcPSOPreloadOp-Array",
+    name_hash: 146041647,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcPSOPreloadOp"),
@@ -633,6 +645,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCPSOPRELOADOP_ARRAY_TYPE_INFO: &'static TypeI
 
 pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcSampler-Array",
+    name_hash: 1209302601,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcSampler"),
@@ -644,6 +657,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCSAMPLER_ARRAY_TYPE_INFO: &'static TypeInfo =
 
 pub static RVMSERIALIZEDDB_NS_DX12PCROOTSIGNATURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12PcRootSignature-Array",
+    name_hash: 2254539583,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12PcRootSignature"),
@@ -655,6 +669,7 @@ pub static RVMSERIALIZEDDB_NS_DX12PCROOTSIGNATURE_ARRAY_TYPE_INFO: &'static Type
 
 pub static RVMSERIALIZEDDB_NS_DX12VERTEXBUFFERVIEWINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12VertexBufferViewInstructionData-Array",
+    name_hash: 1425794819,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12VertexBufferViewInstructionData"),
@@ -666,6 +681,7 @@ pub static RVMSERIALIZEDDB_NS_DX12VERTEXBUFFERVIEWINSTRUCTIONDATA_ARRAY_TYPE_INF
 
 pub static RVMSERIALIZEDDB_NS_DX12VIEWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12ViewStateInstructionData-Array",
+    name_hash: 1224866076,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12ViewStateInstructionData"),
@@ -677,6 +693,7 @@ pub static RVMSERIALIZEDDB_NS_DX12VIEWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'st
 
 pub static D3D12_GPU_DESCRIPTOR_HANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D12_GPU_DESCRIPTOR_HANDLE-Array",
+    name_hash: 2619108485,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("D3D12_GPU_DESCRIPTOR_HANDLE"),
@@ -688,6 +705,7 @@ pub static D3D12_GPU_DESCRIPTOR_HANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 
 pub static D3D12_VERTEX_BUFFER_VIEW_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D12_VERTEX_BUFFER_VIEW-Array",
+    name_hash: 706748123,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("D3D12_VERTEX_BUFFER_VIEW"),
@@ -699,6 +717,7 @@ pub static D3D12_VERTEX_BUFFER_VIEW_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 
 pub static DX12RVMINPUTELEMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx12RvmInputElement-Array",
+    name_hash: 4110538479,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx12RvmInputElement"),
@@ -710,6 +729,7 @@ pub static DX12RVMINPUTELEMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DX12RVMSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx12RvmShader-Array",
+    name_hash: 1210346926,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx12RvmShader"),
@@ -721,6 +741,7 @@ pub static DX12RVMSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DX12RVMROOTSIGNATURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx12RvmRootSignature-Array",
+    name_hash: 2080483941,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx12RvmRootSignature"),
@@ -732,6 +753,7 @@ pub static DX12RVMROOTSIGNATURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static D3D12_VIEWPORT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D12_VIEWPORT-Array",
+    name_hash: 695137770,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("D3D12_VIEWPORT"),
@@ -743,6 +765,7 @@ pub static D3D12_VIEWPORT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static D3D12_PIPELINE_STATE_FLAGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D12_PIPELINE_STATE_FLAGS-Array",
+    name_hash: 2116967284,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("D3D12_PIPELINE_STATE_FLAGS"),
@@ -754,6 +777,7 @@ pub static D3D12_PIPELINE_STATE_FLAGS_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 
 pub static D3D12_CACHED_PIPELINE_STATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D12_CACHED_PIPELINE_STATE-Array",
+    name_hash: 689138435,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("D3D12_CACHED_PIPELINE_STATE"),
@@ -765,6 +789,7 @@ pub static D3D12_CACHED_PIPELINE_STATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 
 pub static DXGI_SAMPLE_DESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DXGI_SAMPLE_DESC-Array",
+    name_hash: 762048020,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DXGI_SAMPLE_DESC"),
@@ -776,6 +801,7 @@ pub static DXGI_SAMPLE_DESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static D3D12_INDEX_BUFFER_STRIP_CUT_VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D12_INDEX_BUFFER_STRIP_CUT_VALUE-Array",
+    name_hash: 4072153509,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("D3D12_INDEX_BUFFER_STRIP_CUT_VALUE"),
@@ -787,6 +813,7 @@ pub static D3D12_INDEX_BUFFER_STRIP_CUT_VALUE_ARRAY_TYPE_INFO: &'static TypeInfo
 
 pub static DXGI_FORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DXGI_FORMAT-Array",
+    name_hash: 59435807,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DXGI_FORMAT"),
@@ -798,6 +825,7 @@ pub static DXGI_FORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static D3D12_PRIMITIVE_TOPOLOGY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D12_PRIMITIVE_TOPOLOGY-Array",
+    name_hash: 938740921,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("D3D12_PRIMITIVE_TOPOLOGY"),
@@ -809,6 +837,7 @@ pub static D3D12_PRIMITIVE_TOPOLOGY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 
 pub static D3D12_PRIMITIVE_TOPOLOGY_TYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D12_PRIMITIVE_TOPOLOGY_TYPE-Array",
+    name_hash: 1007518238,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("D3D12_PRIMITIVE_TOPOLOGY_TYPE"),
@@ -820,6 +849,7 @@ pub static D3D12_PRIMITIVE_TOPOLOGY_TYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 
 pub static DX12RVMSODECLARATIONENTRY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx12RvmSoDeclarationEntry-Array",
+    name_hash: 2421225327,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx12RvmSoDeclarationEntry"),
@@ -831,6 +861,7 @@ pub static DX12RVMSODECLARATIONENTRY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 
 pub static DX12RVMDEPTHSTENCILDESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx12RvmDepthStencilDesc-Array",
+    name_hash: 4128548753,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx12RvmDepthStencilDesc"),
@@ -842,6 +873,7 @@ pub static DX12RVMDEPTHSTENCILDESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 
 pub static DX12RVMRASTERIZERDESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx12RvmRasterizerDesc-Array",
+    name_hash: 2057370321,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx12RvmRasterizerDesc"),
@@ -853,6 +885,7 @@ pub static DX12RVMRASTERIZERDESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 
 pub static DX12RVMBLENDDESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx12RvmBlendDesc-Array",
+    name_hash: 906295255,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx12RvmBlendDesc"),
@@ -864,6 +897,7 @@ pub static DX12RVMBLENDDESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static RVMSERIALIZEDDB_NS_DX12ROOTDESCRIPTORTABLEASSEMBLYDEBUGINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RootDescriptorTableAssemblyDebugInfo-Array",
+    name_hash: 1230639812,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RootDescriptorTableAssemblyDebugInfo"),
@@ -875,6 +909,7 @@ pub static RVMSERIALIZEDDB_NS_DX12ROOTDESCRIPTORTABLEASSEMBLYDEBUGINFO_ARRAY_TYP
 
 pub static RVMSERIALIZEDDB_NS_DX12BLENDSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12BlendStateData-Array",
+    name_hash: 1707407176,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12BlendStateData"),
@@ -886,6 +921,7 @@ pub static RVMSERIALIZEDDB_NS_DX12BLENDSTATEDATA_ARRAY_TYPE_INFO: &'static TypeI
 
 pub static RVMSERIALIZEDDB_NS_DX12ROOTDESCRIPTORTABLEASSEMBLYINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RootDescriptorTableAssemblyInstructionData-Array",
+    name_hash: 294310579,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RootDescriptorTableAssemblyInstructionData"),
@@ -897,6 +933,7 @@ pub static RVMSERIALIZEDDB_NS_DX12ROOTDESCRIPTORTABLEASSEMBLYINSTRUCTIONDATA_ARR
 
 pub static RVMSERIALIZEDDB_NS_DX12ROOTWRITEOP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RootWriteOp-Array",
+    name_hash: 3205643210,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RootWriteOp"),
@@ -908,6 +945,7 @@ pub static RVMSERIALIZEDDB_NS_DX12ROOTWRITEOP_ARRAY_TYPE_INFO: &'static TypeInfo
 
 pub static RVMSERIALIZEDDB_NS_DX12LEGACYDRAWSTATEBUILDERINSTRUCTIONBATCHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12LegacyDrawStateBuilderInstructionBatchData-Array",
+    name_hash: 794019065,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12LegacyDrawStateBuilderInstructionBatchData"),
@@ -919,6 +957,7 @@ pub static RVMSERIALIZEDDB_NS_DX12LEGACYDRAWSTATEBUILDERINSTRUCTIONBATCHDATA_ARR
 
 pub static RVMSERIALIZEDDB_NS_DX12LEGACYDRAWSTATEBUILDERINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12LegacyDrawStateBuilderInstructionData-Array",
+    name_hash: 1301437125,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12LegacyDrawStateBuilderInstructionData"),
@@ -930,6 +969,7 @@ pub static RVMSERIALIZEDDB_NS_DX12LEGACYDRAWSTATEBUILDERINSTRUCTIONDATA_ARRAY_TY
 
 pub static RVMSERIALIZEDDB_NS_DX12SHADERDISPATCHDRAWINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12ShaderDispatchDrawInstructionData-Array",
+    name_hash: 1303219999,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12ShaderDispatchDrawInstructionData"),
@@ -941,6 +981,7 @@ pub static RVMSERIALIZEDDB_NS_DX12SHADERDISPATCHDRAWINSTRUCTIONDATA_ARRAY_TYPE_I
 
 pub static RVMSERIALIZEDDB_NS_DX12ROOTSIGNATUREDEBUGINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RootSignatureDebugInfo-Array",
+    name_hash: 3014091379,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RootSignatureDebugInfo"),
@@ -952,6 +993,7 @@ pub static RVMSERIALIZEDDB_NS_DX12ROOTSIGNATUREDEBUGINFO_ARRAY_TYPE_INFO: &'stat
 
 pub static RVMSERIALIZEDDB_NS_DX12TABLEDEBUGINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12TableDebugInfo-Array",
+    name_hash: 268283503,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12TableDebugInfo"),
@@ -963,6 +1005,7 @@ pub static RVMSERIALIZEDDB_NS_DX12TABLEDEBUGINFO_ARRAY_TYPE_INFO: &'static TypeI
 
 pub static RVMSERIALIZEDDB_NS_DX12TABLEDEBUGENTRY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12TableDebugEntry-Array",
+    name_hash: 2585461717,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12TableDebugEntry"),
@@ -974,6 +1017,7 @@ pub static RVMSERIALIZEDDB_NS_DX12TABLEDEBUGENTRY_ARRAY_TYPE_INFO: &'static Type
 
 pub static RVMSERIALIZEDDB_NS_DX12INPUTELEMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12InputElement-Array",
+    name_hash: 3477658118,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12InputElement"),
@@ -985,6 +1029,7 @@ pub static RVMSERIALIZEDDB_NS_DX12INPUTELEMENT_ARRAY_TYPE_INFO: &'static TypeInf
 
 pub static RVMSERIALIZEDDB_NS_DX12SHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12Shader-Array",
+    name_hash: 3670147527,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12Shader"),
@@ -996,6 +1041,7 @@ pub static RVMSERIALIZEDDB_NS_DX12SHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 
 pub static RVMSERIALIZEDDB_NS_DX12BINARYBLOB_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12BinaryBlob-Array",
+    name_hash: 1622697378,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12BinaryBlob"),
@@ -1007,6 +1053,7 @@ pub static RVMSERIALIZEDDB_NS_DX12BINARYBLOB_ARRAY_TYPE_INFO: &'static TypeInfo 
 
 pub static RVMSERIALIZEDDB_NS_DX12SHADERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12ShaderState-Array",
+    name_hash: 1842938160,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12ShaderState"),
@@ -1018,6 +1065,7 @@ pub static RVMSERIALIZEDDB_NS_DX12SHADERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo
 
 pub static RVMSERIALIZEDDB_NS_DX11SHADERDISPATCHDRAWINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ShaderDispatchDrawInstructionData-Array",
+    name_hash: 4057563516,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11ShaderDispatchDrawInstructionData"),
@@ -1029,6 +1077,7 @@ pub static RVMSERIALIZEDDB_NS_DX11SHADERDISPATCHDRAWINSTRUCTIONDATA_ARRAY_TYPE_I
 
 pub static RVMSERIALIZEDDB_NS_DX11LEGACYVERTEXBUFFERCONVERSIONINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11LegacyVertexBufferConversionInstructionData-Array",
+    name_hash: 1629023776,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11LegacyVertexBufferConversionInstructionData"),
@@ -1040,6 +1089,7 @@ pub static RVMSERIALIZEDDB_NS_DX11LEGACYVERTEXBUFFERCONVERSIONINSTRUCTIONDATA_AR
 
 pub static RVMSERIALIZEDDB_NS_DX11VIEWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ViewStateInstructionData-Array",
+    name_hash: 1370564063,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11ViewStateInstructionData"),
@@ -1051,6 +1101,7 @@ pub static RVMSERIALIZEDDB_NS_DX11VIEWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'st
 
 pub static D3D11_CONSERVATIVE_RASTERIZATION_MODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D11_CONSERVATIVE_RASTERIZATION_MODE-Array",
+    name_hash: 4270242220,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("D3D11_CONSERVATIVE_RASTERIZATION_MODE"),
@@ -1062,6 +1113,7 @@ pub static D3D11_CONSERVATIVE_RASTERIZATION_MODE_ARRAY_TYPE_INFO: &'static TypeI
 
 pub static DX11RVMVIEWPORTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmViewports-Array",
+    name_hash: 3386238819,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx11RvmViewports"),
@@ -1073,6 +1125,7 @@ pub static DX11RVMVIEWPORTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DX11RVMSCISSORRECTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmScissorRects-Array",
+    name_hash: 354943635,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx11RvmScissorRects"),
@@ -1084,6 +1137,7 @@ pub static DX11RVMSCISSORRECTS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DX11RVMDEPTHSTENCILSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmDepthStencilState-Array",
+    name_hash: 807735124,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx11RvmDepthStencilState"),
@@ -1095,6 +1149,7 @@ pub static DX11RVMDEPTHSTENCILSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 
 pub static DX11RVMBLENDSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmBlendState-Array",
+    name_hash: 702759218,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx11RvmBlendState"),
@@ -1106,6 +1161,7 @@ pub static DX11RVMBLENDSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static D3D11_CULL_MODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D11_CULL_MODE-Array",
+    name_hash: 2125933015,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("D3D11_CULL_MODE"),
@@ -1117,6 +1173,7 @@ pub static D3D11_CULL_MODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static D3D11_FILL_MODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "D3D11_FILL_MODE-Array",
+    name_hash: 3082601294,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("D3D11_FILL_MODE"),
@@ -1128,6 +1185,7 @@ pub static D3D11_FILL_MODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DX11RVMSAMPLER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmSampler-Array",
+    name_hash: 2353680912,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx11RvmSampler"),
@@ -1139,6 +1197,7 @@ pub static DX11RVMSAMPLER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DX11RVMVSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmVsShader-Array",
+    name_hash: 166327080,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx11RvmVsShader"),
@@ -1150,6 +1209,7 @@ pub static DX11RVMVSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DX11RVMPSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmPsShader-Array",
+    name_hash: 4014088942,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx11RvmPsShader"),
@@ -1161,6 +1221,7 @@ pub static DX11RVMPSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DX11RVMHSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmHsShader-Array",
+    name_hash: 3760367606,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx11RvmHsShader"),
@@ -1172,6 +1233,7 @@ pub static DX11RVMHSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DX11RVMDSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx11RvmDsShader-Array",
+    name_hash: 3474744698,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx11RvmDsShader"),
@@ -1183,6 +1245,7 @@ pub static DX11RVMDSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static RVMSERIALIZEDDB_NS_DX11BYTECODEELEMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ByteCodeElement-Array",
+    name_hash: 833050388,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11ByteCodeElement"),
@@ -1194,6 +1257,7 @@ pub static RVMSERIALIZEDDB_NS_DX11BYTECODEELEMENT_ARRAY_TYPE_INFO: &'static Type
 
 pub static RVMSERIALIZEDDB_NS_DX11DSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11DsShader-Array",
+    name_hash: 1555616243,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11DsShader"),
@@ -1205,6 +1269,7 @@ pub static RVMSERIALIZEDDB_NS_DX11DSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = 
 
 pub static RVMSERIALIZEDDB_NS_DX11HSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11HsShader-Array",
+    name_hash: 447549055,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11HsShader"),
@@ -1216,6 +1281,7 @@ pub static RVMSERIALIZEDDB_NS_DX11HSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = 
 
 pub static RVMSERIALIZEDDB_NS_DX11PSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11PsShader-Array",
+    name_hash: 2094960487,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11PsShader"),
@@ -1227,6 +1293,7 @@ pub static RVMSERIALIZEDDB_NS_DX11PSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = 
 
 pub static RVMSERIALIZEDDB_NS_DX11VSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11VsShader-Array",
+    name_hash: 757702305,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11VsShader"),
@@ -1238,6 +1305,7 @@ pub static RVMSERIALIZEDDB_NS_DX11VSSHADER_ARRAY_TYPE_INFO: &'static TypeInfo = 
 
 pub static RVMSERIALIZEDDB_NS_DX11INPUTELEMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11InputElement-Array",
+    name_hash: 4013942725,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11InputElement"),
@@ -1249,6 +1317,7 @@ pub static RVMSERIALIZEDDB_NS_DX11INPUTELEMENT_ARRAY_TYPE_INFO: &'static TypeInf
 
 pub static RVMSERIALIZEDDB_NS_DX11SAMPLER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11Sampler-Array",
+    name_hash: 1310887609,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11Sampler"),
@@ -1260,6 +1329,7 @@ pub static RVMSERIALIZEDDB_NS_DX11SAMPLER_ARRAY_TYPE_INFO: &'static TypeInfo = &
 
 pub static RVMSERIALIZEDDB_NS_DX11BLENDSTATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11BlendStateData-Array",
+    name_hash: 416352907,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11BlendStateData"),
@@ -1271,6 +1341,7 @@ pub static RVMSERIALIZEDDB_NS_DX11BLENDSTATEDATA_ARRAY_TYPE_INFO: &'static TypeI
 
 pub static RVMSERIALIZEDDB_NS_DX11SERIALIZEDBLENDSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11SerializedBlendState-Array",
+    name_hash: 1310644041,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11SerializedBlendState"),
@@ -1282,6 +1353,7 @@ pub static RVMSERIALIZEDDB_NS_DX11SERIALIZEDBLENDSTATE_ARRAY_TYPE_INFO: &'static
 
 pub static RVMSERIALIZEDDB_NS_DX11TEXTURECONVERSIONINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11TextureConversionInstructionData-Array",
+    name_hash: 2921850242,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11TextureConversionInstructionData"),
@@ -1293,6 +1365,7 @@ pub static RVMSERIALIZEDDB_NS_DX11TEXTURECONVERSIONINSTRUCTIONDATA_ARRAY_TYPE_IN
 
 pub static RVMSERIALIZEDDB_NS_DX11BUFFERCONVERSIONINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11BufferConversionInstructionData-Array",
+    name_hash: 1861636029,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11BufferConversionInstructionData"),
@@ -1304,6 +1377,7 @@ pub static RVMSERIALIZEDDB_NS_DX11BUFFERCONVERSIONINSTRUCTIONDATA_ARRAY_TYPE_INF
 
 pub static RVMSERIALIZEDDB_NS_DX11LEGACYDRAWSTATEBUILDERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11LegacyDrawStateBuilderData-Array",
+    name_hash: 1756477310,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11LegacyDrawStateBuilderData"),
@@ -1315,6 +1389,7 @@ pub static RVMSERIALIZEDDB_NS_DX11LEGACYDRAWSTATEBUILDERDATA_ARRAY_TYPE_INFO: &'
 
 pub static RVMSERIALIZEDDB_NS_DX11SHADERDISPATCHLEGACYDRAWINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ShaderDispatchLegacyDrawInstructionData-Array",
+    name_hash: 1078710185,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11ShaderDispatchLegacyDrawInstructionData"),
@@ -1326,6 +1401,7 @@ pub static RVMSERIALIZEDDB_NS_DX11SHADERDISPATCHLEGACYDRAWINSTRUCTIONDATA_ARRAY_
 
 pub static RVMSERIALIZEDDB_NS_DX11APPLYPARAMETERSINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ApplyParametersInstructionData-Array",
+    name_hash: 2668919595,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11ApplyParametersInstructionData"),
@@ -1337,6 +1413,7 @@ pub static RVMSERIALIZEDDB_NS_DX11APPLYPARAMETERSINSTRUCTIONDATA_ARRAY_TYPE_INFO
 
 pub static RVMSERIALIZEDDB_NS_DX11APPLYPARAMETERSBLOCK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11ApplyParametersBlock-Array",
+    name_hash: 1887442474,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11ApplyParametersBlock"),
@@ -1348,6 +1425,7 @@ pub static RVMSERIALIZEDDB_NS_DX11APPLYPARAMETERSBLOCK_ARRAY_TYPE_INFO: &'static
 
 pub static RVMSERIALIZEDDB_NS_DX11DISPATCHINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11DispatchInstructionData-Array",
+    name_hash: 855862421,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11DispatchInstructionData"),
@@ -1359,6 +1437,7 @@ pub static RVMSERIALIZEDDB_NS_DX11DISPATCHINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'sta
 
 pub static RVMSERIALIZEDDB_NS_LODFADEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_LodFadeInstructionData-Array",
+    name_hash: 3303674712,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_LodFadeInstructionData"),
@@ -1370,6 +1449,7 @@ pub static RVMSERIALIZEDDB_NS_LODFADEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static T
 
 pub static RVMSERIALIZEDDB_NS_PACKLIGHTMAPWEIGHTINTOINSTANCEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_PackLightMapWeightIntoInstanceInstructionData-Array",
+    name_hash: 3038227991,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_PackLightMapWeightIntoInstanceInstructionData"),
@@ -1381,6 +1461,7 @@ pub static RVMSERIALIZEDDB_NS_PACKLIGHTMAPWEIGHTINTOINSTANCEINSTRUCTIONDATA_ARRA
 
 pub static RVMSERIALIZEDDB_NS_SLICECOUNTINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SliceCountInstructionData-Array",
+    name_hash: 279236650,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_SliceCountInstructionData"),
@@ -1392,6 +1473,7 @@ pub static RVMSERIALIZEDDB_NS_SLICECOUNTINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'stati
 
 pub static RVMSERIALIZEDDB_NS_TESSELLATIONPARAMETERSINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_TessellationParametersInstructionData-Array",
+    name_hash: 962014954,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_TessellationParametersInstructionData"),
@@ -1403,6 +1485,7 @@ pub static RVMSERIALIZEDDB_NS_TESSELLATIONPARAMETERSINSTRUCTIONDATA_ARRAY_TYPE_I
 
 pub static RVMSERIALIZEDDB_NS_VECTORSUBTRACTINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_VectorSubtractInstructionData-Array",
+    name_hash: 2096013684,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_VectorSubtractInstructionData"),
@@ -1414,6 +1497,7 @@ pub static RVMSERIALIZEDDB_NS_VECTORSUBTRACTINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'s
 
 pub static RVMSERIALIZEDDB_NS_OFFSETTRANSLATIONINMATRIXINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_OffsetTranslationInMatrixInstructionData-Array",
+    name_hash: 3685109539,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_OffsetTranslationInMatrixInstructionData"),
@@ -1425,6 +1509,7 @@ pub static RVMSERIALIZEDDB_NS_OFFSETTRANSLATIONINMATRIXINSTRUCTIONDATA_ARRAY_TYP
 
 pub static RVMSERIALIZEDDB_NS_CPUTOGPUMATRIXINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_CpuToGpuMatrixInstructionData-Array",
+    name_hash: 155409149,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_CpuToGpuMatrixInstructionData"),
@@ -1436,6 +1521,7 @@ pub static RVMSERIALIZEDDB_NS_CPUTOGPUMATRIXINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'s
 
 pub static RVMSERIALIZEDDB_NS_FLOATTOVECINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_FloatToVecInstructionData-Array",
+    name_hash: 3936998498,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_FloatToVecInstructionData"),
@@ -1447,6 +1533,7 @@ pub static RVMSERIALIZEDDB_NS_FLOATTOVECINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'stati
 
 pub static RVMSERIALIZEDDB_NS_LEGACYVERTEXBUFFERCONVERSIONINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_LegacyVertexBufferConversionInstructionData-Array",
+    name_hash: 3873153788,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_LegacyVertexBufferConversionInstructionData"),
@@ -1458,6 +1545,7 @@ pub static RVMSERIALIZEDDB_NS_LEGACYVERTEXBUFFERCONVERSIONINSTRUCTIONDATA_ARRAY_
 
 pub static RVMSERIALIZEDDB_NS_VERTEXSTREAMPROCESSINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_VertexStreamProcessInstructionData-Array",
+    name_hash: 324517862,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_VertexStreamProcessInstructionData"),
@@ -1469,6 +1557,7 @@ pub static RVMSERIALIZEDDB_NS_VERTEXSTREAMPROCESSINSTRUCTIONDATA_ARRAY_TYPE_INFO
 
 pub static RVMSERIALIZEDDB_NS_VIEWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ViewStateInstructionData-Array",
+    name_hash: 3058223747,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ViewStateInstructionData"),
@@ -1480,6 +1569,7 @@ pub static RVMSERIALIZEDDB_NS_VIEWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static
 
 pub static RVMPOINTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmPointer-Array",
+    name_hash: 3206713091,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmPointer"),
@@ -1491,6 +1581,7 @@ pub static RVMPOINTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static GPUMAT4X3_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GpuMat4x3-Array",
+    name_hash: 212515220,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("GpuMat4x3"),
@@ -1502,6 +1593,7 @@ pub static GPUMAT4X3_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static IVEC4_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IVec4-Array",
+    name_hash: 2797400732,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("IVec4"),
@@ -1513,6 +1605,7 @@ pub static IVEC4_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static IVEC3_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IVec3-Array",
+    name_hash: 923557531,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("IVec3"),
@@ -1524,6 +1617,7 @@ pub static IVEC3_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static IVEC2_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IVec2-Array",
+    name_hash: 1647647130,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("IVec2"),
@@ -1535,6 +1629,7 @@ pub static IVEC2_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static HALF4_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Half4-Array",
+    name_hash: 1272735014,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Half4"),
@@ -1546,6 +1641,7 @@ pub static HALF4_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static HALF3_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Half3-Array",
+    name_hash: 2402987425,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Half3"),
@@ -1557,6 +1653,7 @@ pub static HALF3_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static HALF2_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Half2-Array",
+    name_hash: 3547322912,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Half2"),
@@ -1568,6 +1665,7 @@ pub static HALF2_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static HALF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Half-Array",
+    name_hash: 1325657682,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Half"),
@@ -1579,6 +1677,7 @@ pub static HALF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static RVMLEGACYINSTRUCTIONS_NS_LEGACYINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmLegacyInstructions_ns_LegacyInstructionData-Array",
+    name_hash: 2674853638,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmLegacyInstructions_ns_LegacyInstructionData"),
@@ -1590,6 +1689,7 @@ pub static RVMLEGACYINSTRUCTIONS_NS_LEGACYINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'sta
 
 pub static RVMSERIALIZEDDB_NS_INSTANCETABLEASSEMBLYINSTRUCTIONBATCHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_InstanceTableAssemblyInstructionBatchData-Array",
+    name_hash: 2333680876,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_InstanceTableAssemblyInstructionBatchData"),
@@ -1601,6 +1701,7 @@ pub static RVMSERIALIZEDDB_NS_INSTANCETABLEASSEMBLYINSTRUCTIONBATCHDATA_ARRAY_TY
 
 pub static RVMSERIALIZEDDB_NS_INSTANCETABLEASSEMBLYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_InstanceTableAssemblyData-Array",
+    name_hash: 2014540584,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_InstanceTableAssemblyData"),
@@ -1612,6 +1713,7 @@ pub static RVMSERIALIZEDDB_NS_INSTANCETABLEASSEMBLYDATA_ARRAY_TYPE_INFO: &'stati
 
 pub static RVMSERIALIZEDDB_NS_DEPTHBIASGROUPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DepthBiasGroupData-Array",
+    name_hash: 407209002,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_DepthBiasGroupData"),
@@ -1623,6 +1725,7 @@ pub static RVMSERIALIZEDDB_NS_DEPTHBIASGROUPDATA_ARRAY_TYPE_INFO: &'static TypeI
 
 pub static RVMSERIALIZEDDB_NS_TABLEASSEMBLYINSTRUCTIONBATCHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_TableAssemblyInstructionBatchData-Array",
+    name_hash: 3493548069,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_TableAssemblyInstructionBatchData"),
@@ -1634,6 +1737,7 @@ pub static RVMSERIALIZEDDB_NS_TABLEASSEMBLYINSTRUCTIONBATCHDATA_ARRAY_TYPE_INFO:
 
 pub static RVMSERIALIZEDDB_NS_TABLEASSEMBLYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_TableAssemblyData-Array",
+    name_hash: 1858486177,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_TableAssemblyData"),
@@ -1645,6 +1749,7 @@ pub static RVMSERIALIZEDDB_NS_TABLEASSEMBLYDATA_ARRAY_TYPE_INFO: &'static TypeIn
 
 pub static RVMSERIALIZEDDB_NS_WRITEOPGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_WriteOpGroup-Array",
+    name_hash: 2466878764,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_WriteOpGroup"),
@@ -1656,6 +1761,7 @@ pub static RVMSERIALIZEDDB_NS_WRITEOPGROUP_ARRAY_TYPE_INFO: &'static TypeInfo = 
 
 pub static RVMSERIALIZEDDB_NS_WRITEOP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_WriteOp-Array",
+    name_hash: 3604053939,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_WriteOp"),
@@ -1667,6 +1773,7 @@ pub static RVMSERIALIZEDDB_NS_WRITEOP_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 
 pub static RVMSERIALIZEDDB_NS_DRAWSTATEBUILDERINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DrawStateBuilderInstructionData-Array",
+    name_hash: 1302708591,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_DrawStateBuilderInstructionData"),
@@ -1678,6 +1785,7 @@ pub static RVMSERIALIZEDDB_NS_DRAWSTATEBUILDERINSTRUCTIONDATA_ARRAY_TYPE_INFO: &
 
 pub static RVMSERIALIZEDDB_NS_DISPATCHINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DispatchInstructionData-Array",
+    name_hash: 3284416841,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_DispatchInstructionData"),
@@ -1689,6 +1797,7 @@ pub static RVMSERIALIZEDDB_NS_DISPATCHINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static 
 
 pub static RVMSERIALIZEDDB_NS_DIRECTINPUTINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DirectInputInstructionData-Array",
+    name_hash: 4065433602,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_DirectInputInstructionData"),
@@ -1700,6 +1809,7 @@ pub static RVMSERIALIZEDDB_NS_DIRECTINPUTINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'stat
 
 pub static RVMSERIALIZEDDB_NS_CONSTANTVALUEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ConstantValueInstructionData-Array",
+    name_hash: 501365260,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ConstantValueInstructionData"),
@@ -1711,6 +1821,7 @@ pub static RVMSERIALIZEDDB_NS_CONSTANTVALUEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'st
 
 pub static CHAR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "char-Array",
+    name_hash: 3920249577,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("char"),
@@ -1722,6 +1833,7 @@ pub static CHAR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static PARAMDBHASH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ParamDbHash-Array",
+    name_hash: 1724247018,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ParamDbHash"),
@@ -1733,6 +1845,7 @@ pub static PARAMDBHASH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static RVMENCODEDTABLEENTRY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmEncodedTableEntry-Array",
+    name_hash: 1895629360,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmEncodedTableEntry"),
@@ -1744,6 +1857,7 @@ pub static RVMENCODEDTABLEENTRY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static RVMCONTEXTSORTKEYINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmContextSortKeyInfo-Array",
+    name_hash: 1608051556,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmContextSortKeyInfo"),
@@ -1755,6 +1869,7 @@ pub static RVMCONTEXTSORTKEYINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 
 pub static RVMSERIALIZEDDB_NS_PREPAREDVERTEXELEMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_PreparedVertexElement-Array",
+    name_hash: 3818491234,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_PreparedVertexElement"),
@@ -1766,6 +1881,7 @@ pub static RVMSERIALIZEDDB_NS_PREPAREDVERTEXELEMENT_ARRAY_TYPE_INFO: &'static Ty
 
 pub static RVMSERIALIZEDDB_NS_PREPAREDVERTEXSTREAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_PreparedVertexStream-Array",
+    name_hash: 727141792,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_PreparedVertexStream"),
@@ -1777,6 +1893,7 @@ pub static RVMSERIALIZEDDB_NS_PREPAREDVERTEXSTREAM_ARRAY_TYPE_INFO: &'static Typ
 
 pub static RVMSERIALIZEDDB_NS_SERIALIZEDPARAMDBKEY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SerializedParamDbKey-Array",
+    name_hash: 2785839709,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_SerializedParamDbKey"),
@@ -1788,6 +1905,7 @@ pub static RVMSERIALIZEDDB_NS_SERIALIZEDPARAMDBKEY_ARRAY_TYPE_INFO: &'static Typ
 
 pub static RVMSERIALIZEDDB_NS_BASESHADERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_BaseShaderState-Array",
+    name_hash: 2733637818,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_BaseShaderState"),
@@ -1799,6 +1917,7 @@ pub static RVMSERIALIZEDDB_NS_BASESHADERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo
 
 pub static RVMSERIALIZEDDB_NS_RUNTIMEINSTANTIATEDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RuntimeInstantiatedType-Array",
+    name_hash: 2741816915,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RuntimeInstantiatedType"),
@@ -1810,6 +1929,7 @@ pub static RVMSERIALIZEDDB_NS_RUNTIMEINSTANTIATEDTYPE_ARRAY_TYPE_INFO: &'static 
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDMULTIHASHVIEW_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbSerializedMultiHashView-Array",
+    name_hash: 702316316,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ParamDbSerializedMultiHashView"),
@@ -1821,6 +1941,7 @@ pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDMULTIHASHVIEW_ARRAY_TYPE_INFO: &'
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDREADVIEW_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbSerializedReadView-Array",
+    name_hash: 2874628661,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ParamDbSerializedReadView"),
@@ -1832,6 +1953,7 @@ pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDREADVIEW_ARRAY_TYPE_INFO: &'stati
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDHASHVIEWREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbSerializedHashViewRef-Array",
+    name_hash: 1223871908,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ParamDbSerializedHashViewRef"),
@@ -1843,6 +1965,7 @@ pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDHASHVIEWREF_ARRAY_TYPE_INFO: &'st
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDHASHVIEW_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbSerializedHashView-Array",
+    name_hash: 774325301,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ParamDbSerializedHashView"),
@@ -1854,6 +1977,7 @@ pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDHASHVIEW_ARRAY_TYPE_INFO: &'stati
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDFILTERVIEW_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbSerializedFilterView-Array",
+    name_hash: 1083508519,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ParamDbSerializedFilterView"),
@@ -1865,6 +1989,7 @@ pub static RVMSERIALIZEDDB_NS_PARAMDBSERIALIZEDFILTERVIEW_ARRAY_TYPE_INFO: &'sta
 
 pub static RVMSERIALIZEDDB_NS_COMBINEDSERIALIZEDPARAMETERBLOCK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_CombinedSerializedParameterBlock-Array",
+    name_hash: 1120465414,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_CombinedSerializedParameterBlock"),
@@ -1876,6 +2001,7 @@ pub static RVMSERIALIZEDDB_NS_COMBINEDSERIALIZEDPARAMETERBLOCK_ARRAY_TYPE_INFO: 
 
 pub static RVMSERIALIZEDDB_NS_SERIALIZEDPARAMETERBLOCKREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SerializedParameterBlockRef-Array",
+    name_hash: 2918914866,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_SerializedParameterBlockRef"),
@@ -1887,6 +2013,7 @@ pub static RVMSERIALIZEDDB_NS_SERIALIZEDPARAMETERBLOCKREF_ARRAY_TYPE_INFO: &'sta
 
 pub static RVMSERIALIZEDDB_NS_SERIALIZEDPARAMETERBLOCK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SerializedParameterBlock-Array",
+    name_hash: 1370268515,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_SerializedParameterBlock"),
@@ -1898,6 +2025,7 @@ pub static RVMSERIALIZEDDB_NS_SERIALIZEDPARAMETERBLOCK_ARRAY_TYPE_INFO: &'static
 
 pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLEEXTERNALTEXTUREREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ShaderStreamableExternalTextureRef-Array",
+    name_hash: 2691943709,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ShaderStreamableExternalTextureRef"),
@@ -1909,6 +2037,7 @@ pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLEEXTERNALTEXTUREREF_ARRAY_TYPE_INFO
 
 pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLETEXTUREREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ShaderStreamableTextureRef-Array",
+    name_hash: 3763369952,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ShaderStreamableTextureRef"),
@@ -1920,6 +2049,7 @@ pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLETEXTUREREF_ARRAY_TYPE_INFO: &'stat
 
 pub static RVMSERIALIZEDDB_NS_SURFACESHADERDEBUGINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SurfaceShaderDebugInfo-Array",
+    name_hash: 707627986,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_SurfaceShaderDebugInfo"),
@@ -1931,6 +2061,7 @@ pub static RVMSERIALIZEDDB_NS_SURFACESHADERDEBUGINFO_ARRAY_TYPE_INFO: &'static T
 
 pub static RVMSERIALIZEDDB_NS_SURFACESHADER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_SurfaceShader-Array",
+    name_hash: 2102099117,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_SurfaceShader"),
@@ -1942,6 +2073,7 @@ pub static RVMSERIALIZEDDB_NS_SURFACESHADER_ARRAY_TYPE_INFO: &'static TypeInfo =
 
 pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLETEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ShaderStreamableTexture-Array",
+    name_hash: 2835350897,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ShaderStreamableTexture"),
@@ -1953,6 +2085,7 @@ pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLETEXTURE_ARRAY_TYPE_INFO: &'static 
 
 pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLEEXTERNALTEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ShaderStreamableExternalTexture-Array",
+    name_hash: 1693287980,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ShaderStreamableExternalTexture"),
@@ -1964,6 +2097,7 @@ pub static RVMSERIALIZEDDB_NS_SHADERSTREAMABLEEXTERNALTEXTURE_ARRAY_TYPE_INFO: &
 
 pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONINSTANCEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmFunctionInstanceRef-Array",
+    name_hash: 1746913410,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmFunctionInstanceRef"),
@@ -1975,6 +2109,7 @@ pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONINSTANCEREF_ARRAY_TYPE_INFO: &'static T
 
 pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONINSTANCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmFunctionInstance-Array",
+    name_hash: 3191782611,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmFunctionInstance"),
@@ -1986,6 +2121,7 @@ pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONINSTANCE_ARRAY_TYPE_INFO: &'static Type
 
 pub static RVMSERIALIZEDDB_NS_SETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Settings-Array",
+    name_hash: 1100612180,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Settings"),
@@ -1997,6 +2133,7 @@ pub static RVMSERIALIZEDDB_NS_SETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 
 pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmPermutationSet-Array",
+    name_hash: 3331162924,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmPermutationSet"),
@@ -2008,6 +2145,7 @@ pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONSET_ARRAY_TYPE_INFO: &'static TypeIn
 
 pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONLOOKUPTABLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmPermutationLookupTable-Array",
+    name_hash: 3797074258,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmPermutationLookupTable"),
@@ -2019,6 +2157,7 @@ pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONLOOKUPTABLE_ARRAY_TYPE_INFO: &'stati
 
 pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONTREE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmPermutationTree-Array",
+    name_hash: 2285614600,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmPermutationTree"),
@@ -2030,6 +2169,7 @@ pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONTREE_ARRAY_TYPE_INFO: &'static TypeI
 
 pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmPermutationRef-Array",
+    name_hash: 2792979455,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmPermutationRef"),
@@ -2041,6 +2181,7 @@ pub static RVMSERIALIZEDDB_NS_RVMPERMUTATIONREF_ARRAY_TYPE_INFO: &'static TypeIn
 
 pub static RVMSERIALIZEDDB_NS_RVMPERMUTATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmPermutation-Array",
+    name_hash: 378487246,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmPermutation"),
@@ -2052,6 +2193,7 @@ pub static RVMSERIALIZEDDB_NS_RVMPERMUTATION_ARRAY_TYPE_INFO: &'static TypeInfo 
 
 pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONINPUTTABLEINDICES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmFunctionInputTableIndices-Array",
+    name_hash: 2443551725,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmFunctionInputTableIndices"),
@@ -2063,6 +2205,7 @@ pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONINPUTTABLEINDICES_ARRAY_TYPE_INFO: &'st
 
 pub static RVMSERIALIZEDDB_NS_RVMDISPATCHDEBUGINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmDispatchDebugInfo-Array",
+    name_hash: 4173554871,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmDispatchDebugInfo"),
@@ -2074,6 +2217,7 @@ pub static RVMSERIALIZEDDB_NS_RVMDISPATCHDEBUGINFO_ARRAY_TYPE_INFO: &'static Typ
 
 pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONDEBUGINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmFunctionDebugInfo-Array",
+    name_hash: 3838974245,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmFunctionDebugInfo"),
@@ -2085,6 +2229,7 @@ pub static RVMSERIALIZEDDB_NS_RVMFUNCTIONDEBUGINFO_ARRAY_TYPE_INFO: &'static Typ
 
 pub static RVMSERIALIZEDDB_NS_RVMDISPATCH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmDispatch-Array",
+    name_hash: 2436704680,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmDispatch"),
@@ -2096,6 +2241,7 @@ pub static RVMSERIALIZEDDB_NS_RVMDISPATCH_ARRAY_TYPE_INFO: &'static TypeInfo = &
 
 pub static RVMSERIALIZEDDB_NS_RVMFUNCTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RvmFunction-Array",
+    name_hash: 1900107258,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RvmFunction"),
@@ -2107,6 +2253,7 @@ pub static RVMSERIALIZEDDB_NS_RVMFUNCTION_ARRAY_TYPE_INFO: &'static TypeInfo = &
 
 pub static RVMSERIALIZEDDB_NS_INSTRUCTIONBATCH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_InstructionBatch-Array",
+    name_hash: 4121637781,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_InstructionBatch"),
@@ -2118,6 +2265,7 @@ pub static RVMSERIALIZEDDB_NS_INSTRUCTIONBATCH_ARRAY_TYPE_INFO: &'static TypeInf
 
 pub static RVMSERIALIZEDDB_NS_RTTITYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_RttiType-Array",
+    name_hash: 4126664722,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_RttiType"),
@@ -2129,6 +2277,7 @@ pub static RVMSERIALIZEDDB_NS_RTTITYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 
 pub static RVMSERIALIZEDDB_NS_DEFAULTVALUEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DefaultValueRef-Array",
+    name_hash: 4040066464,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_DefaultValueRef"),
@@ -2140,6 +2289,7 @@ pub static RVMSERIALIZEDDB_NS_DEFAULTVALUEREF_ARRAY_TYPE_INFO: &'static TypeInfo
 
 pub static RVMSERIALIZEDDB_NS_VALUEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ValueRef-Array",
+    name_hash: 2012878411,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ValueRef"),
@@ -2151,6 +2301,7 @@ pub static RVMSERIALIZEDDB_NS_VALUEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 
 pub static RVMSERIALIZEDDB_NS_DEFAULTVALUEZEROMEM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DefaultValueZeroMem-Array",
+    name_hash: 2303578070,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_DefaultValueZeroMem"),
@@ -2162,6 +2313,7 @@ pub static RVMSERIALIZEDDB_NS_DEFAULTVALUEZEROMEM_ARRAY_TYPE_INFO: &'static Type
 
 pub static RVMSERIALIZEDDB_NS_DEFAULTVALUESTRUCTLEGACYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DefaultValueStructLegacyData-Array",
+    name_hash: 2929086147,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_DefaultValueStructLegacyData"),
@@ -2173,6 +2325,7 @@ pub static RVMSERIALIZEDDB_NS_DEFAULTVALUESTRUCTLEGACYDATA_ARRAY_TYPE_INFO: &'st
 
 pub static RVMSERIALIZEDDB_NS_DEFAULTVALUESIMPLETEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DefaultValueSimpleTexture-Array",
+    name_hash: 4053121600,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_DefaultValueSimpleTexture"),
@@ -2184,6 +2337,7 @@ pub static RVMSERIALIZEDDB_NS_DEFAULTVALUESIMPLETEXTURE_ARRAY_TYPE_INFO: &'stati
 
 pub static RVMSERIALIZEDDB_NS_DEFAULTVALUESIMPLEBUFFER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_DefaultValueSimpleBuffer-Array",
+    name_hash: 2765366495,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_DefaultValueSimpleBuffer"),
@@ -2195,6 +2349,7 @@ pub static RVMSERIALIZEDDB_NS_DEFAULTVALUESIMPLEBUFFER_ARRAY_TYPE_INFO: &'static
 
 pub static RVMSERIALIZEDDB_NS_INSTRUCTIONBATCHREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_InstructionBatchRef-Array",
+    name_hash: 1796194052,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_InstructionBatchRef"),
@@ -2206,6 +2361,7 @@ pub static RVMSERIALIZEDDB_NS_INSTRUCTIONBATCHREF_ARRAY_TYPE_INFO: &'static Type
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBKEYREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbKeyRef-Array",
+    name_hash: 3675870078,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ParamDbKeyRef"),
@@ -2217,6 +2373,7 @@ pub static RVMSERIALIZEDDB_NS_PARAMDBKEYREF_ARRAY_TYPE_INFO: &'static TypeInfo =
 
 pub static RVMSERIALIZEDDB_NS_PARAMDBKEYDESC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_ParamDbKeyDesc-Array",
+    name_hash: 3035982014,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_ParamDbKeyDesc"),
@@ -2228,6 +2385,7 @@ pub static RVMSERIALIZEDDB_NS_PARAMDBKEYDESC_ARRAY_TYPE_INFO: &'static TypeInfo 
 
 pub static RVMSERIALIZEDDB_NS_DX12RTTLASNULLDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtTlasNullData-Array",
+    name_hash: 2362981417,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtTlasNullData"),
@@ -2239,6 +2397,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTTLASNULLDATA_ARRAY_TYPE_INFO: &'static TypeI
 
 pub static RVMSERIALIZEDDB_NS_DX12RTTLASDYNAMICDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtTlasDynamicData-Array",
+    name_hash: 182961639,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtTlasDynamicData"),
@@ -2250,6 +2409,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTTLASDYNAMICDATA_ARRAY_TYPE_INFO: &'static Ty
 
 pub static RVMSERIALIZEDDB_NS_DX12RTTLASSTATICDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtTlasStaticData-Array",
+    name_hash: 4018024522,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtTlasStaticData"),
@@ -2261,6 +2421,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTTLASSTATICDATA_ARRAY_TYPE_INFO: &'static Typ
 
 pub static RVMSERIALIZEDDB_NS_DX12RTTLASBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtTlasBaseData-Array",
+    name_hash: 1292595591,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtTlasBaseData"),
@@ -2272,6 +2433,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTTLASBASEDATA_ARRAY_TYPE_INFO: &'static TypeI
 
 pub static RVMSERIALIZEDDB_NS_DX12RTSHADERTABLERECORDWRITERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtShaderTableRecordWriterData-Array",
+    name_hash: 2658628941,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtShaderTableRecordWriterData"),
@@ -2283,6 +2445,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTSHADERTABLERECORDWRITERDATA_ARRAY_TYPE_INFO:
 
 pub static RVMSERIALIZEDDB_NS_DX12RTNULLHITSHADERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtNullHitShaderData-Array",
+    name_hash: 788921855,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtNullHitShaderData"),
@@ -2294,6 +2457,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTNULLHITSHADERDATA_ARRAY_TYPE_INFO: &'static 
 
 pub static RVMSERIALIZEDDB_NS_DX12RTHITCOLLECTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtHitCollectionData-Array",
+    name_hash: 2382758715,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtHitCollectionData"),
@@ -2305,6 +2469,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTHITCOLLECTIONDATA_ARRAY_TYPE_INFO: &'static 
 
 pub static RVMSERIALIZEDDB_NS_DX12RTSTATICBLASBUILDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtStaticBlasBuildData-Array",
+    name_hash: 2132700202,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtStaticBlasBuildData"),
@@ -2316,6 +2481,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTSTATICBLASBUILDDATA_ARRAY_TYPE_INFO: &'stati
 
 pub static RVMSERIALIZEDDB_NS_DX12RTDYNAMICBLASBUILDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtDynamicBlasBuildData-Array",
+    name_hash: 1575953447,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtDynamicBlasBuildData"),
@@ -2327,6 +2493,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTDYNAMICBLASBUILDDATA_ARRAY_TYPE_INFO: &'stat
 
 pub static RVMSERIALIZEDDB_NS_DX12RTBLASBASEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtBlasBaseData-Array",
+    name_hash: 3333393233,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtBlasBaseData"),
@@ -2338,6 +2505,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTBLASBASEDATA_ARRAY_TYPE_INFO: &'static TypeI
 
 pub static RVMSERIALIZEDDB_NS_DX12RTHITSHADERCONSTANTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtHitShaderConstantData-Array",
+    name_hash: 1653923130,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtHitShaderConstantData"),
@@ -2349,6 +2517,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTHITSHADERCONSTANTDATA_ARRAY_TYPE_INFO: &'sta
 
 pub static RVMSERIALIZEDDB_NS_DX12RTINDEXBUFFERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtIndexBufferData-Array",
+    name_hash: 2367695398,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtIndexBufferData"),
@@ -2360,6 +2529,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTINDEXBUFFERDATA_ARRAY_TYPE_INFO: &'static Ty
 
 pub static RVMSERIALIZEDDB_NS_DX12RTSORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtSortData-Array",
+    name_hash: 1516598146,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtSortData"),
@@ -2371,6 +2541,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTSORTDATA_ARRAY_TYPE_INFO: &'static TypeInfo 
 
 pub static RVMSERIALIZEDDB_NS_DX12RTDISPATCHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtDispatchData-Array",
+    name_hash: 1341272648,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtDispatchData"),
@@ -2382,6 +2553,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTDISPATCHDATA_ARRAY_TYPE_INFO: &'static TypeI
 
 pub static RVMSERIALIZEDDB_NS_DX12RTCOLLECTIONPRELOADOP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12RtCollectionPreloadOp-Array",
+    name_hash: 2017918336,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12RtCollectionPreloadOp"),
@@ -2393,6 +2565,7 @@ pub static RVMSERIALIZEDDB_NS_DX12RTCOLLECTIONPRELOADOP_ARRAY_TYPE_INFO: &'stati
 
 pub static RVMLEGACYLIGHTMAPINSTANCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmLegacyLightMapInstance-Array",
+    name_hash: 2296388742,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmLegacyLightMapInstance"),
@@ -2404,6 +2577,7 @@ pub static RVMLEGACYLIGHTMAPINSTANCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 
 pub static RVMLEGACYLIGHTPROBES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmLegacyLightProbes-Array",
+    name_hash: 3215410250,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmLegacyLightProbes"),
@@ -2415,6 +2589,7 @@ pub static RVMLEGACYLIGHTPROBES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static RVMLEGACYPERMUTATIONDEBUGINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmLegacyPermutationDebugInfo-Array",
+    name_hash: 4185369924,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmLegacyPermutationDebugInfo"),
@@ -2426,6 +2601,7 @@ pub static RVMLEGACYPERMUTATIONDEBUGINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 
 pub static RVMLEGACYFORWARDLIGHTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmLegacyForwardLightState-Array",
+    name_hash: 1258533439,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmLegacyForwardLightState"),
@@ -2437,6 +2613,7 @@ pub static RVMLEGACYFORWARDLIGHTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 
 pub static FRUSTUMSOA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FrustumSoA-Array",
+    name_hash: 3230565810,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("FrustumSoA"),
@@ -2448,6 +2625,7 @@ pub static FRUSTUMSOA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static LODVIEWSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LodViewState-Array",
+    name_hash: 2995987404,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("LodViewState"),
@@ -2459,6 +2637,7 @@ pub static LODVIEWSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static TESSELLATIONVIEWSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TessellationViewState-Array",
+    name_hash: 2468496386,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TessellationViewState"),
@@ -2470,6 +2649,7 @@ pub static TESSELLATIONVIEWSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 
 pub static STENCILSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StencilState-Array",
+    name_hash: 467696652,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("StencilState"),
@@ -2481,6 +2661,7 @@ pub static STENCILSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static REFLECTIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ReflectionState-Array",
+    name_hash: 3255179393,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ReflectionState"),
@@ -2492,6 +2673,7 @@ pub static REFLECTIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static FOGSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FogState-Array",
+    name_hash: 3307693896,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("FogState"),
@@ -2503,6 +2685,7 @@ pub static FOGSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static PROJECTIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProjectionState-Array",
+    name_hash: 1602905979,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ProjectionState"),
@@ -2514,6 +2697,7 @@ pub static PROJECTIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static VIEWSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ViewState-Array",
+    name_hash: 2666841067,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ViewState"),
@@ -2525,6 +2709,7 @@ pub static VIEWSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static OUTDOORLIGHTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "OutdoorLightState-Array",
+    name_hash: 2642892320,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("OutdoorLightState"),
@@ -2536,6 +2721,7 @@ pub static OUTDOORLIGHTSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DX12NVRVMROOTSIGNATURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Dx12NvRvmRootSignature-Array",
+    name_hash: 4206626909,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Dx12NvRvmRootSignature"),
@@ -2547,6 +2733,7 @@ pub static DX12NVRVMROOTSIGNATURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 
 pub static RVMSERIALIZEDDB_NS_DX12NVDESCRIPTORTABLEASSEMBLYINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12NvDescriptorTableAssemblyInstructionData-Array",
+    name_hash: 1238883149,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12NvDescriptorTableAssemblyInstructionData"),
@@ -2558,6 +2745,7 @@ pub static RVMSERIALIZEDDB_NS_DX12NVDESCRIPTORTABLEASSEMBLYINSTRUCTIONDATA_ARRAY
 
 pub static RVMSERIALIZEDDB_NS_DX12NVLEGACYDRAWSTATEBUILDERINSTRUCTIONBATCHDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12NvLegacyDrawStateBuilderInstructionBatchData-Array",
+    name_hash: 2981559681,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12NvLegacyDrawStateBuilderInstructionBatchData"),
@@ -2569,6 +2757,7 @@ pub static RVMSERIALIZEDDB_NS_DX12NVLEGACYDRAWSTATEBUILDERINSTRUCTIONBATCHDATA_A
 
 pub static RVMSERIALIZEDDB_NS_DX12NVLEGACYDRAWSTATEBUILDERINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12NvLegacyDrawStateBuilderInstructionData-Array",
+    name_hash: 2812518269,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12NvLegacyDrawStateBuilderInstructionData"),
@@ -2580,6 +2769,7 @@ pub static RVMSERIALIZEDDB_NS_DX12NVLEGACYDRAWSTATEBUILDERINSTRUCTIONDATA_ARRAY_
 
 pub static RVMSERIALIZEDDB_NS_DX12NVCONSTANTBUFFERASSEMBLYINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12NvConstantBufferAssemblyInstructionData-Array",
+    name_hash: 1698528798,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12NvConstantBufferAssemblyInstructionData"),
@@ -2591,6 +2781,7 @@ pub static RVMSERIALIZEDDB_NS_DX12NVCONSTANTBUFFERASSEMBLYINSTRUCTIONDATA_ARRAY_
 
 pub static RVMSERIALIZEDDB_NS_DX12NVDESCRIPTORTABLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12NvDescriptorTable-Array",
+    name_hash: 3185479771,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12NvDescriptorTable"),
@@ -2602,6 +2793,7 @@ pub static RVMSERIALIZEDDB_NS_DX12NVDESCRIPTORTABLE_ARRAY_TYPE_INFO: &'static Ty
 
 pub static RVMSERIALIZEDDB_NS_DX12NVRVMROOTSIGNATURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx12NvRvmRootSignature-Array",
+    name_hash: 910734589,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx12NvRvmRootSignature"),
@@ -2613,6 +2805,7 @@ pub static RVMSERIALIZEDDB_NS_DX12NVRVMROOTSIGNATURE_ARRAY_TYPE_INFO: &'static T
 
 pub static RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEDEPTHINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionData-Array",
+    name_hash: 3886566602,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11NvViewStateDepthInstructionData"),
@@ -2624,6 +2817,7 @@ pub static RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEDEPTHINSTRUCTIONDATA_ARRAY_TYPE_INF
 
 pub static RVMSERIALIZEDDB_NS_DX11NVDRAWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11NvDrawStateInstructionData-Array",
+    name_hash: 3762818730,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11NvDrawStateInstructionData"),
@@ -2635,6 +2829,7 @@ pub static RVMSERIALIZEDDB_NS_DX11NVDRAWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'
 
 pub static RVMSERIALIZEDDB_NS_DX11NVVIEWSTATEINSTRUCTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RvmSerializedDb_ns_Dx11NvViewStateInstructionData-Array",
+    name_hash: 1080772583,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RvmSerializedDb_ns_Dx11NvViewStateInstructionData"),
@@ -2658,6 +2853,7 @@ pub enum RadiosityTypeOverride {
 
 pub static RADIOSITYTYPEOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RadiosityTypeOverride",
+    name_hash: 1603143183,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -2686,6 +2882,7 @@ impl TypeObject for RadiosityTypeOverride {
 
 pub static RADIOSITYTYPEOVERRIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RadiosityTypeOverride-Array",
+    name_hash: 1306231483,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RadiosityTypeOverride"),
@@ -2714,6 +2911,7 @@ pub enum LocalPlayerId {
 
 pub static LOCALPLAYERID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerId",
+    name_hash: 1029133718,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -2742,6 +2940,7 @@ impl TypeObject for LocalPlayerId {
 
 pub static LOCALPLAYERID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalPlayerId-Array",
+    name_hash: 620677794,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("LocalPlayerId"),
@@ -2750,7 +2949,8 @@ pub static LOCALPLAYERID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NodeGraph {
     pub _glacier_base: Asset,
 }
@@ -2775,12 +2975,15 @@ impl DataContainerTrait for NodeGraph {
 
 pub static NODEGRAPH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NodeGraph",
+    name_hash: 4122580041,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(NodeGraph, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NodeGraph as Default>::default())),
+            create_boxed: || Box::new(<NodeGraph as Default>::default()),
         },
         fields: &[
         ],
@@ -2810,6 +3013,7 @@ impl TypeObject for NodeGraph {
 
 pub static NODEGRAPH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NodeGraph-Array",
+    name_hash: 3763116669,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("NodeGraph"),
@@ -2818,7 +3022,8 @@ pub static NODEGRAPH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Node {
     pub _glacier_base: DataContainer,
 }
@@ -2834,12 +3039,15 @@ impl DataContainerTrait for Node {
 
 pub static NODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Node",
+    name_hash: 2088947621,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(Node, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Node as Default>::default())),
+            create_boxed: || Box::new(<Node as Default>::default()),
         },
         fields: &[
         ],
@@ -2869,6 +3077,7 @@ impl TypeObject for Node {
 
 pub static NODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Node-Array",
+    name_hash: 2543151121,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Node"),
@@ -2896,6 +3105,7 @@ pub enum GamePlatform {
 
 pub static GAMEPLATFORM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GamePlatform",
+    name_hash: 3998479156,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -2924,6 +3134,7 @@ impl TypeObject for GamePlatform {
 
 pub static GAMEPLATFORM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GamePlatform-Array",
+    name_hash: 273591936,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("GamePlatform"),
@@ -2944,6 +3155,7 @@ pub enum DesignerEnumerationSortType {
 
 pub static DESIGNERENUMERATIONSORTTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DesignerEnumerationSortType",
+    name_hash: 4023029371,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -2972,6 +3184,7 @@ impl TypeObject for DesignerEnumerationSortType {
 
 pub static DESIGNERENUMERATIONSORTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DesignerEnumerationSortType-Array",
+    name_hash: 749741647,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DesignerEnumerationSortType"),
@@ -2980,7 +3193,8 @@ pub static DESIGNERENUMERATIONSORTTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoreSettings {
     pub live_editing_enable: bool,
     pub disable_safe_state_for_refresh: bool,
@@ -3361,255 +3575,298 @@ impl CoreSettingsTrait for CoreSettings {
 
 pub static CORESETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreSettings",
+    name_hash: 3087180827,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoreSettings as Default>::default())),
+            create_boxed: || Box::new(<CoreSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LiveEditingEnable",
+                name_hash: 3660493806,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, live_editing_enable),
             },
             FieldInfoData {
                 name: "DisableSafeStateForRefresh",
+                name_hash: 2983743153,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, disable_safe_state_for_refresh),
             },
             FieldInfoData {
                 name: "Host",
+                name_hash: 2089155077,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CoreSettings, host),
             },
             FieldInfoData {
                 name: "HostUser",
+                name_hash: 3816077620,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CoreSettings, host_user),
             },
             FieldInfoData {
                 name: "HostUserDomain",
+                name_hash: 2838452564,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CoreSettings, host_user_domain),
             },
             FieldInfoData {
                 name: "InitSeed",
+                name_hash: 4105745672,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CoreSettings, init_seed),
             },
             FieldInfoData {
                 name: "TraceHost",
+                name_hash: 1744445764,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CoreSettings, trace_host),
             },
             FieldInfoData {
                 name: "ForwardTrace",
+                name_hash: 327696351,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, forward_trace),
             },
             FieldInfoData {
                 name: "ForwardTraceHost",
+                name_hash: 460409695,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CoreSettings, forward_trace_host),
             },
             FieldInfoData {
                 name: "ForwardTracePort",
+                name_hash: 460105830,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CoreSettings, forward_trace_port),
             },
             FieldInfoData {
                 name: "PerfTrackEnabled",
+                name_hash: 560195790,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, perf_track_enabled),
             },
             FieldInfoData {
                 name: "LogLevel",
+                name_hash: 1867701815,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoreLogLevel",
                 rust_offset: offset_of!(CoreSettings, log_level),
             },
             FieldInfoData {
                 name: "DialogLevel",
+                name_hash: 3297009691,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoreLogLevel",
                 rust_offset: offset_of!(CoreSettings, dialog_level),
             },
             FieldInfoData {
                 name: "UserLogEnabled",
+                name_hash: 999413301,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, user_log_enabled),
             },
             FieldInfoData {
                 name: "LogSettings",
+                name_hash: 1204791236,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LogSettings",
                 rust_offset: offset_of!(CoreSettings, log_settings),
             },
             FieldInfoData {
                 name: "AllowAssignVarsFromLua",
+                name_hash: 1741206117,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, allow_assign_vars_from_lua),
             },
             FieldInfoData {
                 name: "DisplayAsserts",
+                name_hash: 1371733582,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, display_asserts),
             },
             FieldInfoData {
                 name: "DebugOutputMode",
+                name_hash: 2365706184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CoreSettings, debug_output_mode),
             },
             FieldInfoData {
                 name: "CrashOnFatalErrors",
+                name_hash: 3503810106,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, crash_on_fatal_errors),
             },
             FieldInfoData {
                 name: "EnableMemorySnapshots",
+                name_hash: 1830691450,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, enable_memory_snapshots),
             },
             FieldInfoData {
                 name: "BreakpadMode",
+                name_hash: 1741582860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CoreSettings, breakpad_mode),
             },
             FieldInfoData {
                 name: "RandomTimeSeed",
+                name_hash: 1358958012,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CoreSettings, random_time_seed),
             },
             FieldInfoData {
                 name: "RandomTickSeed",
+                name_hash: 671402876,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CoreSettings, random_tick_seed),
             },
             FieldInfoData {
                 name: "RandomSessionId",
+                name_hash: 95247661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(CoreSettings, random_session_id),
             },
             FieldInfoData {
                 name: "LocalPlayerIdToCommand",
+                name_hash: 425545418,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocalPlayerId",
                 rust_offset: offset_of!(CoreSettings, local_player_id_to_command),
             },
             FieldInfoData {
                 name: "GameConfigurationName",
+                name_hash: 2876236092,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CoreSettings, game_configuration_name),
             },
             FieldInfoData {
                 name: "UseStorageServer",
+                name_hash: 3367165722,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, use_storage_server),
             },
             FieldInfoData {
                 name: "HardwareProfile",
+                name_hash: 1651739824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "HardwareProfile",
                 rust_offset: offset_of!(CoreSettings, hardware_profile),
             },
             FieldInfoData {
                 name: "HardwareCpuBias",
+                name_hash: 1750607332,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CoreSettings, hardware_cpu_bias),
             },
             FieldInfoData {
                 name: "HardwareGpuBias",
+                name_hash: 2612024544,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CoreSettings, hardware_gpu_bias),
             },
             FieldInfoData {
                 name: "ProfileDirectoryName",
+                name_hash: 615982176,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CoreSettings, profile_directory_name),
             },
             FieldInfoData {
                 name: "ResourceAutoJobThread",
+                name_hash: 2182021673,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, resource_auto_job_thread),
             },
             FieldInfoData {
                 name: "ResourceAutoJobThreadAffinityMask",
+                name_hash: 3712905759,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(CoreSettings, resource_auto_job_thread_affinity_mask),
             },
             FieldInfoData {
                 name: "EnableLocalization",
+                name_hash: 984529671,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, enable_localization),
             },
             FieldInfoData {
                 name: "AvailableLanguages",
+                name_hash: 788680445,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(CoreSettings, available_languages),
             },
             FieldInfoData {
                 name: "EnableSpikePacketBuffering",
+                name_hash: 183801544,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, enable_spike_packet_buffering),
             },
             FieldInfoData {
                 name: "WorldSize",
+                name_hash: 2492064770,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CoreSettings, world_size),
             },
             FieldInfoData {
                 name: "StreamInstallAllowPlayFromBluray",
+                name_hash: 963139010,
                 flags: MemberInfoFlags::new(0),
                 field_type: "StreamInstallFromBlurayType",
                 rust_offset: offset_of!(CoreSettings, stream_install_allow_play_from_bluray),
             },
             FieldInfoData {
                 name: "StreamInstallEnableDelayedSuperbundleMount",
+                name_hash: 2200849781,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, stream_install_enable_delayed_superbundle_mount),
             },
             FieldInfoData {
                 name: "StreamInstallAllLanguages",
+                name_hash: 1116256248,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(CoreSettings, stream_install_all_languages),
             },
             FieldInfoData {
                 name: "OperationalContextDataKeys",
+                name_hash: 4004052726,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(CoreSettings, operational_context_data_keys),
@@ -3641,6 +3898,7 @@ impl TypeObject for CoreSettings {
 
 pub static CORESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreSettings-Array",
+    name_hash: 1294056111,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("CoreSettings"),
@@ -3649,51 +3907,56 @@ pub static CORESETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LogSettings {
-    pub channels: Vec<ChannelSettings>,
-    pub writers: Vec<WriterSettings>,
+    pub channels: Vec<BoxedTypeObject /* ChannelSettings */>,
+    pub writers: Vec<BoxedTypeObject /* WriterSettings */>,
 }
 
 pub trait LogSettingsTrait: TypeObject {
-    fn channels(&self) -> &Vec<ChannelSettings>;
-    fn channels_mut(&mut self) -> &mut Vec<ChannelSettings>;
-    fn writers(&self) -> &Vec<WriterSettings>;
-    fn writers_mut(&mut self) -> &mut Vec<WriterSettings>;
+    fn channels(&self) -> &Vec<BoxedTypeObject /* ChannelSettings */>;
+    fn channels_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ChannelSettings */>;
+    fn writers(&self) -> &Vec<BoxedTypeObject /* WriterSettings */>;
+    fn writers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* WriterSettings */>;
 }
 
 impl LogSettingsTrait for LogSettings {
-    fn channels(&self) -> &Vec<ChannelSettings> {
+    fn channels(&self) -> &Vec<BoxedTypeObject /* ChannelSettings */> {
         &self.channels
     }
-    fn channels_mut(&mut self) -> &mut Vec<ChannelSettings> {
+    fn channels_mut(&mut self) -> &mut Vec<BoxedTypeObject /* ChannelSettings */> {
         &mut self.channels
     }
-    fn writers(&self) -> &Vec<WriterSettings> {
+    fn writers(&self) -> &Vec<BoxedTypeObject /* WriterSettings */> {
         &self.writers
     }
-    fn writers_mut(&mut self) -> &mut Vec<WriterSettings> {
+    fn writers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* WriterSettings */> {
         &mut self.writers
     }
 }
 
 pub static LOGSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogSettings",
+    name_hash: 1204791236,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LogSettings as Default>::default())),
+            create_boxed: || Box::new(<LogSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Channels",
+                name_hash: 1585412981,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ChannelSettings-Array",
                 rust_offset: offset_of!(LogSettings, channels),
             },
             FieldInfoData {
                 name: "Writers",
+                name_hash: 1241823609,
                 flags: MemberInfoFlags::new(144),
                 field_type: "WriterSettings-Array",
                 rust_offset: offset_of!(LogSettings, writers),
@@ -3725,6 +3988,7 @@ impl TypeObject for LogSettings {
 
 pub static LOGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogSettings-Array",
+    name_hash: 788581488,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("LogSettings"),
@@ -3733,7 +3997,8 @@ pub static LOGSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WriterSettings {
     pub id: String,
     pub class: String,
@@ -3772,27 +4037,32 @@ impl WriterSettingsTrait for WriterSettings {
 
 pub static WRITERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriterSettings",
+    name_hash: 3362836047,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WriterSettings as Default>::default())),
+            create_boxed: || Box::new(<WriterSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(WriterSettings, id),
             },
             FieldInfoData {
                 name: "Class",
+                name_hash: 212635851,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(WriterSettings, class),
             },
             FieldInfoData {
                 name: "Params",
+                name_hash: 3371566681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(WriterSettings, params),
@@ -3824,6 +4094,7 @@ impl TypeObject for WriterSettings {
 
 pub static WRITERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WriterSettings-Array",
+    name_hash: 217267067,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("WriterSettings"),
@@ -3832,7 +4103,8 @@ pub static WRITERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ChannelSettings {
     pub id: String,
     pub inherits_level: bool,
@@ -3889,39 +4161,46 @@ impl ChannelSettingsTrait for ChannelSettings {
 
 pub static CHANNELSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ChannelSettings",
+    name_hash: 2890218179,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ChannelSettings as Default>::default())),
+            create_boxed: || Box::new(<ChannelSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ChannelSettings, id),
             },
             FieldInfoData {
                 name: "InheritsLevel",
+                name_hash: 4271479909,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ChannelSettings, inherits_level),
             },
             FieldInfoData {
                 name: "InheritsWriters",
+                name_hash: 2474988527,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ChannelSettings, inherits_writers),
             },
             FieldInfoData {
                 name: "Level",
+                name_hash: 218262515,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CoreLogLevel",
                 rust_offset: offset_of!(ChannelSettings, level),
             },
             FieldInfoData {
                 name: "Writers",
+                name_hash: 1241823609,
                 flags: MemberInfoFlags::new(144),
                 field_type: "CString-Array",
                 rust_offset: offset_of!(ChannelSettings, writers),
@@ -3953,6 +4232,7 @@ impl TypeObject for ChannelSettings {
 
 pub static CHANNELSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ChannelSettings-Array",
+    name_hash: 717749751,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ChannelSettings"),
@@ -3973,6 +4253,7 @@ pub enum StreamInstallFromBlurayType {
 
 pub static STREAMINSTALLFROMBLURAYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamInstallFromBlurayType",
+    name_hash: 3964114759,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -4001,6 +4282,7 @@ impl TypeObject for StreamInstallFromBlurayType {
 
 pub static STREAMINSTALLFROMBLURAYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamInstallFromBlurayType-Array",
+    name_hash: 1887266931,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("StreamInstallFromBlurayType"),
@@ -4023,6 +4305,7 @@ pub enum HardwareProfile {
 
 pub static HARDWAREPROFILE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HardwareProfile",
+    name_hash: 1651739824,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -4051,6 +4334,7 @@ impl TypeObject for HardwareProfile {
 
 pub static HARDWAREPROFILE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "HardwareProfile-Array",
+    name_hash: 3386620420,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("HardwareProfile"),
@@ -4079,6 +4363,7 @@ pub enum CoreLogLevel {
 
 pub static CORELOGLEVEL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreLogLevel",
+    name_hash: 2867831724,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -4107,6 +4392,7 @@ impl TypeObject for CoreLogLevel {
 
 pub static CORELOGLEVEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreLogLevel-Array",
+    name_hash: 2398704408,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("CoreLogLevel"),
@@ -4115,12 +4401,13 @@ pub static CORELOGLEVEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ContentPreset {
     pub _glacier_base: DataContainer,
     pub content_name: String,
     pub content_type: String,
-    pub content_parameters: Option<Arc<Mutex<dyn DataContainerTrait>>>,
+    pub content_parameters: Option<LockedTypeObject /* DataContainer */>,
 }
 
 pub trait ContentPresetTrait: DataContainerTrait {
@@ -4128,8 +4415,8 @@ pub trait ContentPresetTrait: DataContainerTrait {
     fn content_name_mut(&mut self) -> &mut String;
     fn content_type(&self) -> &String;
     fn content_type_mut(&mut self) -> &mut String;
-    fn content_parameters(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn content_parameters_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn content_parameters(&self) -> &Option<LockedTypeObject /* DataContainer */>;
+    fn content_parameters_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */>;
 }
 
 impl ContentPresetTrait for ContentPreset {
@@ -4145,10 +4432,10 @@ impl ContentPresetTrait for ContentPreset {
     fn content_type_mut(&mut self) -> &mut String {
         &mut self.content_type
     }
-    fn content_parameters(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn content_parameters(&self) -> &Option<LockedTypeObject /* DataContainer */> {
         &self.content_parameters
     }
-    fn content_parameters_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn content_parameters_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */> {
         &mut self.content_parameters
     }
 }
@@ -4158,28 +4445,34 @@ impl DataContainerTrait for ContentPreset {
 
 pub static CONTENTPRESET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ContentPreset",
+    name_hash: 2096307881,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(ContentPreset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ContentPreset as Default>::default())),
+            create_boxed: || Box::new(<ContentPreset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ContentName",
+                name_hash: 4236678091,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ContentPreset, content_name),
             },
             FieldInfoData {
                 name: "ContentType",
+                name_hash: 4237582196,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ContentPreset, content_type),
             },
             FieldInfoData {
                 name: "ContentParameters",
+                name_hash: 1952600534,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(ContentPreset, content_parameters),
@@ -4211,6 +4504,7 @@ impl TypeObject for ContentPreset {
 
 pub static CONTENTPRESET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ContentPreset-Array",
+    name_hash: 2248451357,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ContentPreset"),
@@ -4219,22 +4513,23 @@ pub static CONTENTPRESET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ContentPresetContainer {
     pub _glacier_base: Asset,
-    pub presets: Vec<Option<Arc<Mutex<dyn ContentPresetTrait>>>>,
+    pub presets: Vec<Option<LockedTypeObject /* ContentPreset */>>,
 }
 
 pub trait ContentPresetContainerTrait: AssetTrait {
-    fn presets(&self) -> &Vec<Option<Arc<Mutex<dyn ContentPresetTrait>>>>;
-    fn presets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ContentPresetTrait>>>>;
+    fn presets(&self) -> &Vec<Option<LockedTypeObject /* ContentPreset */>>;
+    fn presets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ContentPreset */>>;
 }
 
 impl ContentPresetContainerTrait for ContentPresetContainer {
-    fn presets(&self) -> &Vec<Option<Arc<Mutex<dyn ContentPresetTrait>>>> {
+    fn presets(&self) -> &Vec<Option<LockedTypeObject /* ContentPreset */>> {
         &self.presets
     }
-    fn presets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn ContentPresetTrait>>>> {
+    fn presets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* ContentPreset */>> {
         &mut self.presets
     }
 }
@@ -4253,16 +4548,20 @@ impl DataContainerTrait for ContentPresetContainer {
 
 pub static CONTENTPRESETCONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ContentPresetContainer",
+    name_hash: 281552686,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(ContentPresetContainer, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ContentPresetContainer as Default>::default())),
+            create_boxed: || Box::new(<ContentPresetContainer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Presets",
+                name_hash: 3463460435,
                 flags: MemberInfoFlags::new(144),
                 field_type: "ContentPreset-Array",
                 rust_offset: offset_of!(ContentPresetContainer, presets),
@@ -4294,6 +4593,7 @@ impl TypeObject for ContentPresetContainer {
 
 pub static CONTENTPRESETCONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ContentPresetContainer-Array",
+    name_hash: 457109402,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ContentPresetContainer"),
@@ -4302,7 +4602,8 @@ pub static CONTENTPRESETCONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimeSpan {
     pub internal: i64,
 }
@@ -4323,15 +4624,18 @@ impl TimeSpanTrait for TimeSpan {
 
 pub static TIMESPAN_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimeSpan",
+    name_hash: 2998612924,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimeSpan as Default>::default())),
+            create_boxed: || Box::new(<TimeSpan as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Internal",
+                name_hash: 4280094690,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TimeSpan, internal),
@@ -4363,6 +4667,7 @@ impl TypeObject for TimeSpan {
 
 pub static TIMESPAN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimeSpan-Array",
+    name_hash: 2495851272,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TimeSpan"),
@@ -4371,7 +4676,8 @@ pub static TIMESPAN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ThreadSettings {
     pub _glacier_base: DataContainer,
     pub processor_count: i32,
@@ -4423,34 +4729,41 @@ impl DataContainerTrait for ThreadSettings {
 
 pub static THREADSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ThreadSettings",
+    name_hash: 2011850126,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(ThreadSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ThreadSettings as Default>::default())),
+            create_boxed: || Box::new(<ThreadSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ProcessorCount",
+                name_hash: 391539216,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Int32",
                 rust_offset: offset_of!(ThreadSettings, processor_count),
             },
             FieldInfoData {
                 name: "MaxLiveEditProcessorCount",
+                name_hash: 1778801038,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ThreadSettings, max_live_edit_processor_count),
             },
             FieldInfoData {
                 name: "JobThreadPriority",
+                name_hash: 4057060638,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Int32",
                 rust_offset: offset_of!(ThreadSettings, job_thread_priority),
             },
             FieldInfoData {
                 name: "FreeProcessorCount",
+                name_hash: 2871723972,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ThreadSettings, free_processor_count),
@@ -4482,6 +4795,7 @@ impl TypeObject for ThreadSettings {
 
 pub static THREADSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ThreadSettings-Array",
+    name_hash: 3632950970,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ThreadSettings"),
@@ -4490,22 +4804,23 @@ pub static THREADSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TemplateDescriptorRegistryAsset {
     pub _glacier_base: Asset,
-    pub descriptors: Vec<Option<Arc<Mutex<dyn TemplateDescriptorDataTrait>>>>,
+    pub descriptors: Vec<Option<LockedTypeObject /* TemplateDescriptorData */>>,
 }
 
 pub trait TemplateDescriptorRegistryAssetTrait: AssetTrait {
-    fn descriptors(&self) -> &Vec<Option<Arc<Mutex<dyn TemplateDescriptorDataTrait>>>>;
-    fn descriptors_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TemplateDescriptorDataTrait>>>>;
+    fn descriptors(&self) -> &Vec<Option<LockedTypeObject /* TemplateDescriptorData */>>;
+    fn descriptors_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TemplateDescriptorData */>>;
 }
 
 impl TemplateDescriptorRegistryAssetTrait for TemplateDescriptorRegistryAsset {
-    fn descriptors(&self) -> &Vec<Option<Arc<Mutex<dyn TemplateDescriptorDataTrait>>>> {
+    fn descriptors(&self) -> &Vec<Option<LockedTypeObject /* TemplateDescriptorData */>> {
         &self.descriptors
     }
-    fn descriptors_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TemplateDescriptorDataTrait>>>> {
+    fn descriptors_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TemplateDescriptorData */>> {
         &mut self.descriptors
     }
 }
@@ -4524,16 +4839,20 @@ impl DataContainerTrait for TemplateDescriptorRegistryAsset {
 
 pub static TEMPLATEDESCRIPTORREGISTRYASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplateDescriptorRegistryAsset",
+    name_hash: 3962082979,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TemplateDescriptorRegistryAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TemplateDescriptorRegistryAsset as Default>::default())),
+            create_boxed: || Box::new(<TemplateDescriptorRegistryAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Descriptors",
+                name_hash: 1636671237,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TemplateDescriptorData-Array",
                 rust_offset: offset_of!(TemplateDescriptorRegistryAsset, descriptors),
@@ -4565,6 +4884,7 @@ impl TypeObject for TemplateDescriptorRegistryAsset {
 
 pub static TEMPLATEDESCRIPTORREGISTRYASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplateDescriptorRegistryAsset-Array",
+    name_hash: 1831680535,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TemplateDescriptorRegistryAsset"),
@@ -4573,31 +4893,32 @@ pub static TEMPLATEDESCRIPTORREGISTRYASSET_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TemplateDescriptorData {
     pub _glacier_base: DataContainer,
-    pub target_asset: Option<Arc<Mutex<dyn AssetTrait>>>,
-    pub exposed_objects: Vec<TemplateExposedObject>,
+    pub target_asset: Option<LockedTypeObject /* Asset */>,
+    pub exposed_objects: Vec<BoxedTypeObject /* TemplateExposedObject */>,
 }
 
 pub trait TemplateDescriptorDataTrait: DataContainerTrait {
-    fn target_asset(&self) -> &Option<Arc<Mutex<dyn AssetTrait>>>;
-    fn target_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AssetTrait>>>;
-    fn exposed_objects(&self) -> &Vec<TemplateExposedObject>;
-    fn exposed_objects_mut(&mut self) -> &mut Vec<TemplateExposedObject>;
+    fn target_asset(&self) -> &Option<LockedTypeObject /* Asset */>;
+    fn target_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* Asset */>;
+    fn exposed_objects(&self) -> &Vec<BoxedTypeObject /* TemplateExposedObject */>;
+    fn exposed_objects_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TemplateExposedObject */>;
 }
 
 impl TemplateDescriptorDataTrait for TemplateDescriptorData {
-    fn target_asset(&self) -> &Option<Arc<Mutex<dyn AssetTrait>>> {
+    fn target_asset(&self) -> &Option<LockedTypeObject /* Asset */> {
         &self.target_asset
     }
-    fn target_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn AssetTrait>>> {
+    fn target_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* Asset */> {
         &mut self.target_asset
     }
-    fn exposed_objects(&self) -> &Vec<TemplateExposedObject> {
+    fn exposed_objects(&self) -> &Vec<BoxedTypeObject /* TemplateExposedObject */> {
         &self.exposed_objects
     }
-    fn exposed_objects_mut(&mut self) -> &mut Vec<TemplateExposedObject> {
+    fn exposed_objects_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TemplateExposedObject */> {
         &mut self.exposed_objects
     }
 }
@@ -4607,22 +4928,27 @@ impl DataContainerTrait for TemplateDescriptorData {
 
 pub static TEMPLATEDESCRIPTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplateDescriptorData",
+    name_hash: 1165915222,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TemplateDescriptorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TemplateDescriptorData as Default>::default())),
+            create_boxed: || Box::new(<TemplateDescriptorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TargetAsset",
+                name_hash: 2259053956,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Asset",
                 rust_offset: offset_of!(TemplateDescriptorData, target_asset),
             },
             FieldInfoData {
                 name: "ExposedObjects",
+                name_hash: 72905843,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TemplateExposedObject-Array",
                 rust_offset: offset_of!(TemplateDescriptorData, exposed_objects),
@@ -4654,6 +4980,7 @@ impl TypeObject for TemplateDescriptorData {
 
 pub static TEMPLATEDESCRIPTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplateDescriptorData-Array",
+    name_hash: 2256681442,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TemplateDescriptorData"),
@@ -4662,24 +4989,25 @@ pub static TEMPLATEDESCRIPTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TemplateExposedObject {
-    pub object: Option<Arc<Mutex<dyn DataContainerTrait>>>,
+    pub object: Option<LockedTypeObject /* DataContainer */>,
     pub object_ref: glacier_util::guid::Guid,
 }
 
 pub trait TemplateExposedObjectTrait: TypeObject {
-    fn object(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn object(&self) -> &Option<LockedTypeObject /* DataContainer */>;
+    fn object_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */>;
     fn object_ref(&self) -> &glacier_util::guid::Guid;
     fn object_ref_mut(&mut self) -> &mut glacier_util::guid::Guid;
 }
 
 impl TemplateExposedObjectTrait for TemplateExposedObject {
-    fn object(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn object(&self) -> &Option<LockedTypeObject /* DataContainer */> {
         &self.object
     }
-    fn object_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn object_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */> {
         &mut self.object
     }
     fn object_ref(&self) -> &glacier_util::guid::Guid {
@@ -4692,21 +5020,25 @@ impl TemplateExposedObjectTrait for TemplateExposedObject {
 
 pub static TEMPLATEEXPOSEDOBJECT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplateExposedObject",
+    name_hash: 1374653008,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TemplateExposedObject as Default>::default())),
+            create_boxed: || Box::new(<TemplateExposedObject as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Object",
+                name_hash: 2866508144,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(TemplateExposedObject, object),
             },
             FieldInfoData {
                 name: "ObjectRef",
+                name_hash: 3207455617,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(TemplateExposedObject, object_ref),
@@ -4738,6 +5070,7 @@ impl TypeObject for TemplateExposedObject {
 
 pub static TEMPLATEEXPOSEDOBJECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplateExposedObject-Array",
+    name_hash: 695445732,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TemplateExposedObject"),
@@ -4746,22 +5079,23 @@ pub static TEMPLATEEXPOSEDOBJECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TemplateAsset {
     pub _glacier_base: Asset,
-    pub objects: Vec<TemplateTarget>,
+    pub objects: Vec<BoxedTypeObject /* TemplateTarget */>,
 }
 
 pub trait TemplateAssetTrait: AssetTrait {
-    fn objects(&self) -> &Vec<TemplateTarget>;
-    fn objects_mut(&mut self) -> &mut Vec<TemplateTarget>;
+    fn objects(&self) -> &Vec<BoxedTypeObject /* TemplateTarget */>;
+    fn objects_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TemplateTarget */>;
 }
 
 impl TemplateAssetTrait for TemplateAsset {
-    fn objects(&self) -> &Vec<TemplateTarget> {
+    fn objects(&self) -> &Vec<BoxedTypeObject /* TemplateTarget */> {
         &self.objects
     }
-    fn objects_mut(&mut self) -> &mut Vec<TemplateTarget> {
+    fn objects_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TemplateTarget */> {
         &mut self.objects
     }
 }
@@ -4780,16 +5114,20 @@ impl DataContainerTrait for TemplateAsset {
 
 pub static TEMPLATEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplateAsset",
+    name_hash: 764778533,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TemplateAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TemplateAsset as Default>::default())),
+            create_boxed: || Box::new(<TemplateAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Objects",
+                name_hash: 105488131,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TemplateTarget-Array",
                 rust_offset: offset_of!(TemplateAsset, objects),
@@ -4821,6 +5159,7 @@ impl TypeObject for TemplateAsset {
 
 pub static TEMPLATEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplateAsset-Array",
+    name_hash: 1253871761,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TemplateAsset"),
@@ -4829,17 +5168,18 @@ pub static TEMPLATEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TemplateTarget {
     pub target_ref: glacier_util::guid::Guid,
-    pub template: Option<Arc<Mutex<dyn TemplateTrait>>>,
+    pub template: Option<LockedTypeObject /* Template */>,
 }
 
 pub trait TemplateTargetTrait: TypeObject {
     fn target_ref(&self) -> &glacier_util::guid::Guid;
     fn target_ref_mut(&mut self) -> &mut glacier_util::guid::Guid;
-    fn template(&self) -> &Option<Arc<Mutex<dyn TemplateTrait>>>;
-    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TemplateTrait>>>;
+    fn template(&self) -> &Option<LockedTypeObject /* Template */>;
+    fn template_mut(&mut self) -> &mut Option<LockedTypeObject /* Template */>;
 }
 
 impl TemplateTargetTrait for TemplateTarget {
@@ -4849,31 +5189,35 @@ impl TemplateTargetTrait for TemplateTarget {
     fn target_ref_mut(&mut self) -> &mut glacier_util::guid::Guid {
         &mut self.target_ref
     }
-    fn template(&self) -> &Option<Arc<Mutex<dyn TemplateTrait>>> {
+    fn template(&self) -> &Option<LockedTypeObject /* Template */> {
         &self.template
     }
-    fn template_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TemplateTrait>>> {
+    fn template_mut(&mut self) -> &mut Option<LockedTypeObject /* Template */> {
         &mut self.template
     }
 }
 
 pub static TEMPLATETARGET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplateTarget",
+    name_hash: 2957944708,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TemplateTarget as Default>::default())),
+            create_boxed: || Box::new(<TemplateTarget as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TargetRef",
+                name_hash: 3654158949,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(TemplateTarget, target_ref),
             },
             FieldInfoData {
                 name: "Template",
+                name_hash: 2427043285,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Template",
                 rust_offset: offset_of!(TemplateTarget, template),
@@ -4905,6 +5249,7 @@ impl TypeObject for TemplateTarget {
 
 pub static TEMPLATETARGET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TemplateTarget-Array",
+    name_hash: 1936497584,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TemplateTarget"),
@@ -4913,7 +5258,8 @@ pub static TEMPLATETARGET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Template {
     pub _glacier_base: DataContainer,
 }
@@ -4929,12 +5275,15 @@ impl DataContainerTrait for Template {
 
 pub static TEMPLATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Template",
+    name_hash: 2427043285,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(Template, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Template as Default>::default())),
+            create_boxed: || Box::new(<Template as Default>::default()),
         },
         fields: &[
         ],
@@ -4964,6 +5313,7 @@ impl TypeObject for Template {
 
 pub static TEMPLATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Template-Array",
+    name_hash: 778632673,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Template"),
@@ -4972,7 +5322,8 @@ pub static TEMPLATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SuperbundleLayoutSettings {
     pub _glacier_base: SystemSettings,
 }
@@ -4997,12 +5348,15 @@ impl DataContainerTrait for SuperbundleLayoutSettings {
 
 pub static SUPERBUNDLELAYOUTSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SuperbundleLayoutSettings",
+    name_hash: 3897452687,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(SuperbundleLayoutSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SuperbundleLayoutSettings as Default>::default())),
+            create_boxed: || Box::new(<SuperbundleLayoutSettings as Default>::default()),
         },
         fields: &[
         ],
@@ -5032,6 +5386,7 @@ impl TypeObject for SuperbundleLayoutSettings {
 
 pub static SUPERBUNDLELAYOUTSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SuperbundleLayoutSettings-Array",
+    name_hash: 2935735611,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("SuperbundleLayoutSettings"),
@@ -5052,6 +5407,7 @@ pub enum InstallPackageLayerType {
 
 pub static INSTALLPACKAGELAYERTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InstallPackageLayerType",
+    name_hash: 336125989,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -5080,6 +5436,7 @@ impl TypeObject for InstallPackageLayerType {
 
 pub static INSTALLPACKAGELAYERTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InstallPackageLayerType-Array",
+    name_hash: 1552275601,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("InstallPackageLayerType"),
@@ -5102,6 +5459,7 @@ pub enum InstallPackageType {
 
 pub static INSTALLPACKAGETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InstallPackageType",
+    name_hash: 1141667238,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -5130,6 +5488,7 @@ impl TypeObject for InstallPackageType {
 
 pub static INSTALLPACKAGETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InstallPackageType-Array",
+    name_hash: 715440658,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("InstallPackageType"),
@@ -5138,7 +5497,8 @@ pub static INSTALLPACKAGETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlatformScalableBool {
     pub default: bool,
     pub xenon: bool,
@@ -5231,63 +5591,74 @@ impl PlatformScalableBoolTrait for PlatformScalableBool {
 
 pub static PLATFORMSCALABLEBOOL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlatformScalableBool",
+    name_hash: 201139331,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlatformScalableBool as Default>::default())),
+            create_boxed: || Box::new(<PlatformScalableBool as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Default",
+                name_hash: 3998752238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlatformScalableBool, default),
             },
             FieldInfoData {
                 name: "Xenon",
+                name_hash: 241675831,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlatformScalableBool, xenon),
             },
             FieldInfoData {
                 name: "Ps3",
+                name_hash: 193466773,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlatformScalableBool, ps3),
             },
             FieldInfoData {
                 name: "Gen4a",
+                name_hash: 207859612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlatformScalableBool, gen4a),
             },
             FieldInfoData {
                 name: "Gen4b",
+                name_hash: 207859615,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlatformScalableBool, gen4b),
             },
             FieldInfoData {
                 name: "Android",
+                name_hash: 557715870,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlatformScalableBool, android),
             },
             FieldInfoData {
                 name: "iOS",
+                name_hash: 193417008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlatformScalableBool, i_o_s),
             },
             FieldInfoData {
                 name: "OSX",
+                name_hash: 193454785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlatformScalableBool, o_s_x),
             },
             FieldInfoData {
                 name: "Linux",
+                name_hash: 217831523,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlatformScalableBool, linux),
@@ -5319,6 +5690,7 @@ impl TypeObject for PlatformScalableBool {
 
 pub static PLATFORMSCALABLEBOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlatformScalableBool-Array",
+    name_hash: 3188225847,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("PlatformScalableBool"),
@@ -5327,7 +5699,8 @@ pub static PLATFORMSCALABLEBOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlatformScalableFloat {
     pub default: f32,
     pub xenon: f32,
@@ -5420,63 +5793,74 @@ impl PlatformScalableFloatTrait for PlatformScalableFloat {
 
 pub static PLATFORMSCALABLEFLOAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlatformScalableFloat",
+    name_hash: 2338341277,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlatformScalableFloat as Default>::default())),
+            create_boxed: || Box::new(<PlatformScalableFloat as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Default",
+                name_hash: 3998752238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PlatformScalableFloat, default),
             },
             FieldInfoData {
                 name: "Xenon",
+                name_hash: 241675831,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PlatformScalableFloat, xenon),
             },
             FieldInfoData {
                 name: "Ps3",
+                name_hash: 193466773,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PlatformScalableFloat, ps3),
             },
             FieldInfoData {
                 name: "Gen4a",
+                name_hash: 207859612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PlatformScalableFloat, gen4a),
             },
             FieldInfoData {
                 name: "Gen4b",
+                name_hash: 207859615,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PlatformScalableFloat, gen4b),
             },
             FieldInfoData {
                 name: "Android",
+                name_hash: 557715870,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PlatformScalableFloat, android),
             },
             FieldInfoData {
                 name: "iOS",
+                name_hash: 193417008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PlatformScalableFloat, i_o_s),
             },
             FieldInfoData {
                 name: "OSX",
+                name_hash: 193454785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PlatformScalableFloat, o_s_x),
             },
             FieldInfoData {
                 name: "Linux",
+                name_hash: 217831523,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PlatformScalableFloat, linux),
@@ -5508,6 +5892,7 @@ impl TypeObject for PlatformScalableFloat {
 
 pub static PLATFORMSCALABLEFLOAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlatformScalableFloat-Array",
+    name_hash: 3987123497,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("PlatformScalableFloat"),
@@ -5516,7 +5901,8 @@ pub static PLATFORMSCALABLEFLOAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlatformScalableInt {
     pub default: i32,
     pub xenon: i32,
@@ -5609,63 +5995,74 @@ impl PlatformScalableIntTrait for PlatformScalableInt {
 
 pub static PLATFORMSCALABLEINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlatformScalableInt",
+    name_hash: 526684030,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlatformScalableInt as Default>::default())),
+            create_boxed: || Box::new(<PlatformScalableInt as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Default",
+                name_hash: 3998752238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PlatformScalableInt, default),
             },
             FieldInfoData {
                 name: "Xenon",
+                name_hash: 241675831,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PlatformScalableInt, xenon),
             },
             FieldInfoData {
                 name: "Ps3",
+                name_hash: 193466773,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PlatformScalableInt, ps3),
             },
             FieldInfoData {
                 name: "Gen4a",
+                name_hash: 207859612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PlatformScalableInt, gen4a),
             },
             FieldInfoData {
                 name: "Gen4b",
+                name_hash: 207859615,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PlatformScalableInt, gen4b),
             },
             FieldInfoData {
                 name: "Android",
+                name_hash: 557715870,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PlatformScalableInt, android),
             },
             FieldInfoData {
                 name: "iOS",
+                name_hash: 193417008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PlatformScalableInt, i_o_s),
             },
             FieldInfoData {
                 name: "OSX",
+                name_hash: 193454785,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PlatformScalableInt, o_s_x),
             },
             FieldInfoData {
                 name: "Linux",
+                name_hash: 217831523,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PlatformScalableInt, linux),
@@ -5697,6 +6094,7 @@ impl TypeObject for PlatformScalableInt {
 
 pub static PLATFORMSCALABLEINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlatformScalableInt-Array",
+    name_hash: 1549471818,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("PlatformScalableInt"),
@@ -5720,6 +6118,7 @@ pub enum QualityScalableEnabled {
 
 pub static QUALITYSCALABLEENABLED_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QualityScalableEnabled",
+    name_hash: 164574298,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -5748,6 +6147,7 @@ impl TypeObject for QualityScalableEnabled {
 
 pub static QUALITYSCALABLEENABLED_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QualityScalableEnabled-Array",
+    name_hash: 362981358,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("QualityScalableEnabled"),
@@ -5756,7 +6156,8 @@ pub static QUALITYSCALABLEENABLED_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QualityScalableBool {
     pub low: bool,
     pub medium: bool,
@@ -5813,39 +6214,46 @@ impl QualityScalableBoolTrait for QualityScalableBool {
 
 pub static QUALITYSCALABLEBOOL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QualityScalableBool",
+    name_hash: 2708592209,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QualityScalableBool as Default>::default())),
+            create_boxed: || Box::new(<QualityScalableBool as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Low",
+                name_hash: 193454161,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Boolean",
                 rust_offset: offset_of!(QualityScalableBool, low),
             },
             FieldInfoData {
                 name: "Medium",
+                name_hash: 2647104632,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Boolean",
                 rust_offset: offset_of!(QualityScalableBool, medium),
             },
             FieldInfoData {
                 name: "High",
+                name_hash: 2089152523,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Boolean",
                 rust_offset: offset_of!(QualityScalableBool, high),
             },
             FieldInfoData {
                 name: "Ultra",
+                name_hash: 220157755,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Boolean",
                 rust_offset: offset_of!(QualityScalableBool, ultra),
             },
             FieldInfoData {
                 name: "Cinematic",
+                name_hash: 4097794678,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Boolean",
                 rust_offset: offset_of!(QualityScalableBool, cinematic),
@@ -5877,6 +6285,7 @@ impl TypeObject for QualityScalableBool {
 
 pub static QUALITYSCALABLEBOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QualityScalableBool-Array",
+    name_hash: 2260846693,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("QualityScalableBool"),
@@ -5885,7 +6294,8 @@ pub static QUALITYSCALABLEBOOL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QualityScalableFloat {
     pub low: f32,
     pub medium: f32,
@@ -5942,39 +6352,46 @@ impl QualityScalableFloatTrait for QualityScalableFloat {
 
 pub static QUALITYSCALABLEFLOAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QualityScalableFloat",
+    name_hash: 3479764111,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QualityScalableFloat as Default>::default())),
+            create_boxed: || Box::new(<QualityScalableFloat as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Low",
+                name_hash: 193454161,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Float32",
                 rust_offset: offset_of!(QualityScalableFloat, low),
             },
             FieldInfoData {
                 name: "Medium",
+                name_hash: 2647104632,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Float32",
                 rust_offset: offset_of!(QualityScalableFloat, medium),
             },
             FieldInfoData {
                 name: "High",
+                name_hash: 2089152523,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Float32",
                 rust_offset: offset_of!(QualityScalableFloat, high),
             },
             FieldInfoData {
                 name: "Ultra",
+                name_hash: 220157755,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Float32",
                 rust_offset: offset_of!(QualityScalableFloat, ultra),
             },
             FieldInfoData {
                 name: "Cinematic",
+                name_hash: 4097794678,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Float32",
                 rust_offset: offset_of!(QualityScalableFloat, cinematic),
@@ -6006,6 +6423,7 @@ impl TypeObject for QualityScalableFloat {
 
 pub static QUALITYSCALABLEFLOAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QualityScalableFloat-Array",
+    name_hash: 2897566011,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("QualityScalableFloat"),
@@ -6014,7 +6432,8 @@ pub static QUALITYSCALABLEFLOAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct QualityScalableInt {
     pub low: i32,
     pub medium: i32,
@@ -6071,39 +6490,46 @@ impl QualityScalableIntTrait for QualityScalableInt {
 
 pub static QUALITYSCALABLEINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QualityScalableInt",
+    name_hash: 2034327276,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<QualityScalableInt as Default>::default())),
+            create_boxed: || Box::new(<QualityScalableInt as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Low",
+                name_hash: 193454161,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Int32",
                 rust_offset: offset_of!(QualityScalableInt, low),
             },
             FieldInfoData {
                 name: "Medium",
+                name_hash: 2647104632,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Int32",
                 rust_offset: offset_of!(QualityScalableInt, medium),
             },
             FieldInfoData {
                 name: "High",
+                name_hash: 2089152523,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Int32",
                 rust_offset: offset_of!(QualityScalableInt, high),
             },
             FieldInfoData {
                 name: "Ultra",
+                name_hash: 220157755,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Int32",
                 rust_offset: offset_of!(QualityScalableInt, ultra),
             },
             FieldInfoData {
                 name: "Cinematic",
+                name_hash: 4097794678,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Int32",
                 rust_offset: offset_of!(QualityScalableInt, cinematic),
@@ -6135,6 +6561,7 @@ impl TypeObject for QualityScalableInt {
 
 pub static QUALITYSCALABLEINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QualityScalableInt-Array",
+    name_hash: 372670168,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("QualityScalableInt"),
@@ -6159,6 +6586,7 @@ pub enum QualityLevel {
 
 pub static QUALITYLEVEL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QualityLevel",
+    name_hash: 4026849054,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -6187,6 +6615,7 @@ impl TypeObject for QualityLevel {
 
 pub static QUALITYLEVEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "QualityLevel-Array",
+    name_hash: 1034340394,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("QualityLevel"),
@@ -6195,7 +6624,8 @@ pub static QUALITYLEVEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ResourceManagerSettings {
     pub _glacier_base: SystemSettings,
     pub cas_bundle_read_buffer_size_kb: i32,
@@ -6256,34 +6686,41 @@ impl DataContainerTrait for ResourceManagerSettings {
 
 pub static RESOURCEMANAGERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ResourceManagerSettings",
+    name_hash: 1846520025,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(ResourceManagerSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ResourceManagerSettings as Default>::default())),
+            create_boxed: || Box::new(<ResourceManagerSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CasBundleReadBufferSizeKb",
+                name_hash: 1627350526,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ResourceManagerSettings, cas_bundle_read_buffer_size_kb),
             },
             FieldInfoData {
                 name: "CasBundleDecompressBufferSizeKb",
+                name_hash: 4137626923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ResourceManagerSettings, cas_bundle_decompress_buffer_size_kb),
             },
             FieldInfoData {
                 name: "CasBundleDecompressBufferCount",
+                name_hash: 2318797924,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(ResourceManagerSettings, cas_bundle_decompress_buffer_count),
             },
             FieldInfoData {
                 name: "BundleProfilingEnable",
+                name_hash: 2207788158,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ResourceManagerSettings, bundle_profiling_enable),
@@ -6315,6 +6752,7 @@ impl TypeObject for ResourceManagerSettings {
 
 pub static RESOURCEMANAGERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ResourceManagerSettings-Array",
+    name_hash: 2593314541,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ResourceManagerSettings"),
@@ -6323,7 +6761,8 @@ pub static RESOURCEMANAGERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RenderingOverrides {
     pub shadow_enable: BoolOverride,
     pub sun_shadow_enable: BoolOverride,
@@ -6443,81 +6882,95 @@ impl RenderingOverridesTrait for RenderingOverrides {
 
 pub static RENDERINGOVERRIDES_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderingOverrides",
+    name_hash: 4053255464,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RenderingOverrides as Default>::default())),
+            create_boxed: || Box::new(<RenderingOverrides as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ShadowEnable",
+                name_hash: 1716915298,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoolOverride",
                 rust_offset: offset_of!(RenderingOverrides, shadow_enable),
             },
             FieldInfoData {
                 name: "SunShadowEnable",
+                name_hash: 1710228394,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoolOverride",
                 rust_offset: offset_of!(RenderingOverrides, sun_shadow_enable),
             },
             FieldInfoData {
                 name: "LocalShadowEnable",
+                name_hash: 3483637135,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoolOverride",
                 rust_offset: offset_of!(RenderingOverrides, local_shadow_enable),
             },
             FieldInfoData {
                 name: "DynamicReflectionEnable",
+                name_hash: 3781264470,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoolOverride",
                 rust_offset: offset_of!(RenderingOverrides, dynamic_reflection_enable),
             },
             FieldInfoData {
                 name: "StaticReflectionEnable",
+                name_hash: 2113718235,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoolOverride",
                 rust_offset: offset_of!(RenderingOverrides, static_reflection_enable),
             },
             FieldInfoData {
                 name: "PlanarShadowEnable",
+                name_hash: 309077186,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoolOverride",
                 rust_offset: offset_of!(RenderingOverrides, planar_shadow_enable),
             },
             FieldInfoData {
                 name: "HologramEnable",
+                name_hash: 2433847705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoolOverride",
                 rust_offset: offset_of!(RenderingOverrides, hologram_enable),
             },
             FieldInfoData {
                 name: "HologramProjectorIndex",
+                name_hash: 3471155086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RenderingOverrides, hologram_projector_index),
             },
             FieldInfoData {
                 name: "DistantShadowCacheEnable",
+                name_hash: 740536415,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoolOverride",
                 rust_offset: offset_of!(RenderingOverrides, distant_shadow_cache_enable),
             },
             FieldInfoData {
                 name: "DynamicDistantShadowCacheEnable",
+                name_hash: 3783922698,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoolOverride",
                 rust_offset: offset_of!(RenderingOverrides, dynamic_distant_shadow_cache_enable),
             },
             FieldInfoData {
                 name: "LocalShadowCacheEnable",
+                name_hash: 873357667,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoolOverride",
                 rust_offset: offset_of!(RenderingOverrides, local_shadow_cache_enable),
             },
             FieldInfoData {
                 name: "RootShaderEffect",
+                name_hash: 125334397,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoolOverride",
                 rust_offset: offset_of!(RenderingOverrides, root_shader_effect),
@@ -6549,6 +7002,7 @@ impl TypeObject for RenderingOverrides {
 
 pub static RENDERINGOVERRIDES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RenderingOverrides-Array",
+    name_hash: 3512002204,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RenderingOverrides"),
@@ -6557,7 +7011,8 @@ pub static RENDERINGOVERRIDES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ChunkOnlyResourceType {
 }
 
@@ -6569,12 +7024,15 @@ impl ChunkOnlyResourceTypeTrait for ChunkOnlyResourceType {
 
 pub static CHUNKONLYRESOURCETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ChunkOnlyResourceType",
+    name_hash: 4235960280,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ChunkOnlyResourceType as Default>::default())),
+            create_boxed: || Box::new(<ChunkOnlyResourceType as Default>::default()),
         },
         fields: &[
         ],
@@ -6604,6 +7062,7 @@ impl TypeObject for ChunkOnlyResourceType {
 
 pub static CHUNKONLYRESOURCETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ChunkOnlyResourceType-Array",
+    name_hash: 3550034540,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ChunkOnlyResourceType"),
@@ -6612,7 +7071,8 @@ pub static CHUNKONLYRESOURCETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IResourceObject {
 }
 
@@ -6624,12 +7084,15 @@ impl IResourceObjectTrait for IResourceObject {
 
 pub static IRESOURCEOBJECT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IResourceObject",
+    name_hash: 3948500627,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IResourceObject as Default>::default())),
+            create_boxed: || Box::new(<IResourceObject as Default>::default()),
         },
         fields: &[
         ],
@@ -6659,6 +7122,7 @@ impl TypeObject for IResourceObject {
 
 pub static IRESOURCEOBJECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IResourceObject-Array",
+    name_hash: 1641345319,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("IResourceObject"),
@@ -6667,7 +7131,8 @@ pub static IRESOURCEOBJECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProxyResourceObject {
 }
 
@@ -6679,12 +7144,15 @@ impl ProxyResourceObjectTrait for ProxyResourceObject {
 
 pub static PROXYRESOURCEOBJECT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProxyResourceObject",
+    name_hash: 2655600150,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProxyResourceObject as Default>::default())),
+            create_boxed: || Box::new(<ProxyResourceObject as Default>::default()),
         },
         fields: &[
         ],
@@ -6714,6 +7182,7 @@ impl TypeObject for ProxyResourceObject {
 
 pub static PROXYRESOURCEOBJECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProxyResourceObject-Array",
+    name_hash: 4208792354,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ProxyResourceObject"),
@@ -6734,6 +7203,7 @@ pub enum BoolOverride {
 
 pub static BOOLOVERRIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolOverride",
+    name_hash: 1765115455,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -6762,6 +7232,7 @@ impl TypeObject for BoolOverride {
 
 pub static BOOLOVERRIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoolOverride-Array",
+    name_hash: 3529612171,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("BoolOverride"),
@@ -6770,22 +7241,23 @@ pub static BOOLOVERRIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DataContainerPolicyPipelineResultBase {
     pub _glacier_base: SetDataResultListener,
-    pub secondary_result: Option<Arc<Mutex<dyn DataContainerTrait>>>,
+    pub secondary_result: Option<LockedTypeObject /* DataContainer */>,
 }
 
 pub trait DataContainerPolicyPipelineResultBaseTrait: SetDataResultListenerTrait {
-    fn secondary_result(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn secondary_result_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn secondary_result(&self) -> &Option<LockedTypeObject /* DataContainer */>;
+    fn secondary_result_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */>;
 }
 
 impl DataContainerPolicyPipelineResultBaseTrait for DataContainerPolicyPipelineResultBase {
-    fn secondary_result(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn secondary_result(&self) -> &Option<LockedTypeObject /* DataContainer */> {
         &self.secondary_result
     }
-    fn secondary_result_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn secondary_result_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */> {
         &mut self.secondary_result
     }
 }
@@ -6798,16 +7270,20 @@ impl DataContainerTrait for DataContainerPolicyPipelineResultBase {
 
 pub static DATACONTAINERPOLICYPIPELINERESULTBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataContainerPolicyPipelineResultBase",
+    name_hash: 3071586828,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SETDATARESULTLISTENER_TYPE_INFO),
+        super_class_offset: offset_of!(DataContainerPolicyPipelineResultBase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DataContainerPolicyPipelineResultBase as Default>::default())),
+            create_boxed: || Box::new(<DataContainerPolicyPipelineResultBase as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SecondaryResult",
+                name_hash: 31966518,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(DataContainerPolicyPipelineResultBase, secondary_result),
@@ -6839,6 +7315,7 @@ impl TypeObject for DataContainerPolicyPipelineResultBase {
 
 pub static DATACONTAINERPOLICYPIPELINERESULTBASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataContainerPolicyPipelineResultBase-Array",
+    name_hash: 2091901496,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DataContainerPolicyPipelineResultBase"),
@@ -6847,7 +7324,8 @@ pub static DATACONTAINERPOLICYPIPELINERESULTBASE_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SetDataResultListener {
     pub _glacier_base: DataContainer,
 }
@@ -6863,12 +7341,15 @@ impl DataContainerTrait for SetDataResultListener {
 
 pub static SETDATARESULTLISTENER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetDataResultListener",
+    name_hash: 375126112,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(SetDataResultListener, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SetDataResultListener as Default>::default())),
+            create_boxed: || Box::new(<SetDataResultListener as Default>::default()),
         },
         fields: &[
         ],
@@ -6898,6 +7379,7 @@ impl TypeObject for SetDataResultListener {
 
 pub static SETDATARESULTLISTENER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SetDataResultListener-Array",
+    name_hash: 1182740052,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("SetDataResultListener"),
@@ -6906,24 +7388,25 @@ pub static SETDATARESULTLISTENER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DataBusData {
     pub _glacier_base: Asset,
     pub flags: u16,
-    pub property_connections: Vec<PropertyConnection>,
-    pub link_connections: Vec<LinkConnection>,
-    pub interface: Option<Arc<Mutex<dyn DynamicDataContainerTrait>>>,
+    pub property_connections: Vec<BoxedTypeObject /* PropertyConnection */>,
+    pub link_connections: Vec<BoxedTypeObject /* LinkConnection */>,
+    pub interface: Option<LockedTypeObject /* DynamicDataContainer */>,
 }
 
 pub trait DataBusDataTrait: AssetTrait {
     fn flags(&self) -> &u16;
     fn flags_mut(&mut self) -> &mut u16;
-    fn property_connections(&self) -> &Vec<PropertyConnection>;
-    fn property_connections_mut(&mut self) -> &mut Vec<PropertyConnection>;
-    fn link_connections(&self) -> &Vec<LinkConnection>;
-    fn link_connections_mut(&mut self) -> &mut Vec<LinkConnection>;
-    fn interface(&self) -> &Option<Arc<Mutex<dyn DynamicDataContainerTrait>>>;
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DynamicDataContainerTrait>>>;
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* PropertyConnection */>;
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PropertyConnection */>;
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* LinkConnection */>;
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LinkConnection */>;
+    fn interface(&self) -> &Option<LockedTypeObject /* DynamicDataContainer */>;
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* DynamicDataContainer */>;
 }
 
 impl DataBusDataTrait for DataBusData {
@@ -6933,22 +7416,22 @@ impl DataBusDataTrait for DataBusData {
     fn flags_mut(&mut self) -> &mut u16 {
         &mut self.flags
     }
-    fn property_connections(&self) -> &Vec<PropertyConnection> {
+    fn property_connections(&self) -> &Vec<BoxedTypeObject /* PropertyConnection */> {
         &self.property_connections
     }
-    fn property_connections_mut(&mut self) -> &mut Vec<PropertyConnection> {
+    fn property_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PropertyConnection */> {
         &mut self.property_connections
     }
-    fn link_connections(&self) -> &Vec<LinkConnection> {
+    fn link_connections(&self) -> &Vec<BoxedTypeObject /* LinkConnection */> {
         &self.link_connections
     }
-    fn link_connections_mut(&mut self) -> &mut Vec<LinkConnection> {
+    fn link_connections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LinkConnection */> {
         &mut self.link_connections
     }
-    fn interface(&self) -> &Option<Arc<Mutex<dyn DynamicDataContainerTrait>>> {
+    fn interface(&self) -> &Option<LockedTypeObject /* DynamicDataContainer */> {
         &self.interface
     }
-    fn interface_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DynamicDataContainerTrait>>> {
+    fn interface_mut(&mut self) -> &mut Option<LockedTypeObject /* DynamicDataContainer */> {
         &mut self.interface
     }
 }
@@ -6967,34 +7450,41 @@ impl DataContainerTrait for DataBusData {
 
 pub static DATABUSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataBusData",
+    name_hash: 2537093761,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(DataBusData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DataBusData as Default>::default())),
+            create_boxed: || Box::new(<DataBusData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Flags",
+                name_hash: 207064858,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(DataBusData, flags),
             },
             FieldInfoData {
                 name: "PropertyConnections",
+                name_hash: 1023567943,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PropertyConnection-Array",
                 rust_offset: offset_of!(DataBusData, property_connections),
             },
             FieldInfoData {
                 name: "LinkConnections",
+                name_hash: 1859919712,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinkConnection-Array",
                 rust_offset: offset_of!(DataBusData, link_connections),
             },
             FieldInfoData {
                 name: "Interface",
+                name_hash: 3803884256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DynamicDataContainer",
                 rust_offset: offset_of!(DataBusData, interface),
@@ -7026,6 +7516,7 @@ impl TypeObject for DataBusData {
 
 pub static DATABUSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataBusData-Array",
+    name_hash: 504648757,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DataBusData"),
@@ -7034,22 +7525,23 @@ pub static DATABUSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DynamicDataContainer {
     pub _glacier_base: DataContainer,
-    pub fields: Vec<DataField>,
+    pub fields: Vec<BoxedTypeObject /* DataField */>,
 }
 
 pub trait DynamicDataContainerTrait: DataContainerTrait {
-    fn fields(&self) -> &Vec<DataField>;
-    fn fields_mut(&mut self) -> &mut Vec<DataField>;
+    fn fields(&self) -> &Vec<BoxedTypeObject /* DataField */>;
+    fn fields_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DataField */>;
 }
 
 impl DynamicDataContainerTrait for DynamicDataContainer {
-    fn fields(&self) -> &Vec<DataField> {
+    fn fields(&self) -> &Vec<BoxedTypeObject /* DataField */> {
         &self.fields
     }
-    fn fields_mut(&mut self) -> &mut Vec<DataField> {
+    fn fields_mut(&mut self) -> &mut Vec<BoxedTypeObject /* DataField */> {
         &mut self.fields
     }
 }
@@ -7059,16 +7551,20 @@ impl DataContainerTrait for DynamicDataContainer {
 
 pub static DYNAMICDATACONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DynamicDataContainer",
+    name_hash: 1420547975,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(DynamicDataContainer, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DynamicDataContainer as Default>::default())),
+            create_boxed: || Box::new(<DynamicDataContainer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Fields",
+                name_hash: 2525411604,
                 flags: MemberInfoFlags::new(144),
                 field_type: "DataField-Array",
                 rust_offset: offset_of!(DynamicDataContainer, fields),
@@ -7100,6 +7596,7 @@ impl TypeObject for DynamicDataContainer {
 
 pub static DYNAMICDATACONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DynamicDataContainer-Array",
+    name_hash: 1794185267,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DynamicDataContainer"),
@@ -7108,10 +7605,11 @@ pub static DYNAMICDATACONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DataField {
     pub value: String,
-    pub value_ref: Option<Arc<Mutex<dyn DataContainerTrait>>>,
+    pub value_ref: Option<LockedTypeObject /* DataContainer */>,
     pub id: i32,
     pub access_type: FieldAccessType,
 }
@@ -7119,8 +7617,8 @@ pub struct DataField {
 pub trait DataFieldTrait: TypeObject {
     fn value(&self) -> &String;
     fn value_mut(&mut self) -> &mut String;
-    fn value_ref(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn value_ref_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn value_ref(&self) -> &Option<LockedTypeObject /* DataContainer */>;
+    fn value_ref_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */>;
     fn id(&self) -> &i32;
     fn id_mut(&mut self) -> &mut i32;
     fn access_type(&self) -> &FieldAccessType;
@@ -7134,10 +7632,10 @@ impl DataFieldTrait for DataField {
     fn value_mut(&mut self) -> &mut String {
         &mut self.value
     }
-    fn value_ref(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn value_ref(&self) -> &Option<LockedTypeObject /* DataContainer */> {
         &self.value_ref
     }
-    fn value_ref_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn value_ref_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */> {
         &mut self.value_ref
     }
     fn id(&self) -> &i32 {
@@ -7156,33 +7654,39 @@ impl DataFieldTrait for DataField {
 
 pub static DATAFIELD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataField",
+    name_hash: 4163394679,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DataField as Default>::default())),
+            create_boxed: || Box::new(<DataField as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(DataField, value),
             },
             FieldInfoData {
                 name: "ValueRef",
+                name_hash: 3291194335,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(DataField, value_ref),
             },
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(DataField, id),
             },
             FieldInfoData {
                 name: "AccessType",
+                name_hash: 2232606137,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FieldAccessType",
                 rust_offset: offset_of!(DataField, access_type),
@@ -7214,6 +7718,7 @@ impl TypeObject for DataField {
 
 pub static DATAFIELD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataField-Array",
+    name_hash: 2188428867,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DataField"),
@@ -7234,6 +7739,7 @@ pub enum FieldAccessType {
 
 pub static FIELDACCESSTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FieldAccessType",
+    name_hash: 2804496955,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -7262,6 +7768,7 @@ impl TypeObject for FieldAccessType {
 
 pub static FIELDACCESSTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FieldAccessType-Array",
+    name_hash: 1275896207,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("FieldAccessType"),
@@ -7270,19 +7777,20 @@ pub static FIELDACCESSTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinkConnection {
-    pub source: Option<Arc<Mutex<dyn DataContainerTrait>>>,
-    pub target: Option<Arc<Mutex<dyn DataContainerTrait>>>,
+    pub source: Option<LockedTypeObject /* DataContainer */>,
+    pub target: Option<LockedTypeObject /* DataContainer */>,
     pub source_field_id: i32,
     pub target_field_id: i32,
 }
 
 pub trait LinkConnectionTrait: TypeObject {
-    fn source(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn target(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn source(&self) -> &Option<LockedTypeObject /* DataContainer */>;
+    fn source_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */>;
+    fn target(&self) -> &Option<LockedTypeObject /* DataContainer */>;
+    fn target_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */>;
     fn source_field_id(&self) -> &i32;
     fn source_field_id_mut(&mut self) -> &mut i32;
     fn target_field_id(&self) -> &i32;
@@ -7290,16 +7798,16 @@ pub trait LinkConnectionTrait: TypeObject {
 }
 
 impl LinkConnectionTrait for LinkConnection {
-    fn source(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn source(&self) -> &Option<LockedTypeObject /* DataContainer */> {
         &self.source
     }
-    fn source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn source_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */> {
         &mut self.source
     }
-    fn target(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn target(&self) -> &Option<LockedTypeObject /* DataContainer */> {
         &self.target
     }
-    fn target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn target_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */> {
         &mut self.target
     }
     fn source_field_id(&self) -> &i32 {
@@ -7318,33 +7826,39 @@ impl LinkConnectionTrait for LinkConnection {
 
 pub static LINKCONNECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkConnection",
+    name_hash: 2138769587,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinkConnection as Default>::default())),
+            create_boxed: || Box::new(<LinkConnection as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Source",
+                name_hash: 3339738264,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(LinkConnection, source),
             },
             FieldInfoData {
                 name: "Target",
+                name_hash: 3215022804,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(LinkConnection, target),
             },
             FieldInfoData {
                 name: "SourceFieldId",
+                name_hash: 4259496439,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinkConnection, source_field_id),
             },
             FieldInfoData {
                 name: "TargetFieldId",
+                name_hash: 2227058747,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinkConnection, target_field_id),
@@ -7376,6 +7890,7 @@ impl TypeObject for LinkConnection {
 
 pub static LINKCONNECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinkConnection-Array",
+    name_hash: 4104123399,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("LinkConnection"),
@@ -7384,20 +7899,21 @@ pub static LINKCONNECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyConnection {
-    pub source: Option<Arc<Mutex<dyn DataContainerTrait>>>,
-    pub target: Option<Arc<Mutex<dyn DataContainerTrait>>>,
+    pub source: Option<LockedTypeObject /* DataContainer */>,
+    pub target: Option<LockedTypeObject /* DataContainer */>,
     pub source_field_id: i32,
     pub target_field_id: i32,
     pub flags: u32,
 }
 
 pub trait PropertyConnectionTrait: TypeObject {
-    fn source(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn target(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn source(&self) -> &Option<LockedTypeObject /* DataContainer */>;
+    fn source_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */>;
+    fn target(&self) -> &Option<LockedTypeObject /* DataContainer */>;
+    fn target_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */>;
     fn source_field_id(&self) -> &i32;
     fn source_field_id_mut(&mut self) -> &mut i32;
     fn target_field_id(&self) -> &i32;
@@ -7407,16 +7923,16 @@ pub trait PropertyConnectionTrait: TypeObject {
 }
 
 impl PropertyConnectionTrait for PropertyConnection {
-    fn source(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn source(&self) -> &Option<LockedTypeObject /* DataContainer */> {
         &self.source
     }
-    fn source_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn source_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */> {
         &mut self.source
     }
-    fn target(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn target(&self) -> &Option<LockedTypeObject /* DataContainer */> {
         &self.target
     }
-    fn target_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn target_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */> {
         &mut self.target
     }
     fn source_field_id(&self) -> &i32 {
@@ -7441,39 +7957,46 @@ impl PropertyConnectionTrait for PropertyConnection {
 
 pub static PROPERTYCONNECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyConnection",
+    name_hash: 2373726644,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyConnection as Default>::default())),
+            create_boxed: || Box::new(<PropertyConnection as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Source",
+                name_hash: 3339738264,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(PropertyConnection, source),
             },
             FieldInfoData {
                 name: "Target",
+                name_hash: 3215022804,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(PropertyConnection, target),
             },
             FieldInfoData {
                 name: "SourceFieldId",
+                name_hash: 4259496439,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyConnection, source_field_id),
             },
             FieldInfoData {
                 name: "TargetFieldId",
+                name_hash: 2227058747,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyConnection, target_field_id),
             },
             FieldInfoData {
                 name: "Flags",
+                name_hash: 207064858,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(PropertyConnection, flags),
@@ -7505,6 +8028,7 @@ impl TypeObject for PropertyConnection {
 
 pub static PROPERTYCONNECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyConnection-Array",
+    name_hash: 2236337408,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("PropertyConnection"),
@@ -7526,6 +8050,7 @@ pub enum InputPropertyType {
 
 pub static INPUTPROPERTYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputPropertyType",
+    name_hash: 607813900,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -7554,6 +8079,7 @@ impl TypeObject for InputPropertyType {
 
 pub static INPUTPROPERTYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputPropertyType-Array",
+    name_hash: 3367301432,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("InputPropertyType"),
@@ -7577,6 +8103,7 @@ pub enum PropertyConnectionTargetType {
 
 pub static PROPERTYCONNECTIONTARGETTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyConnectionTargetType",
+    name_hash: 1346397661,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -7605,6 +8132,7 @@ impl TypeObject for PropertyConnectionTargetType {
 
 pub static PROPERTYCONNECTIONTARGETTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyConnectionTargetType-Array",
+    name_hash: 1088225769,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("PropertyConnectionTargetType"),
@@ -7613,18 +8141,19 @@ pub static PROPERTYCONNECTIONTARGETTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SettingsBundleAsset {
     pub _glacier_base: Asset,
     pub is_dedicated_server_bundle: bool,
-    pub settings: Vec<Option<Arc<Mutex<dyn SystemSettingsTrait>>>>,
+    pub settings: Vec<Option<LockedTypeObject /* SystemSettings */>>,
 }
 
 pub trait SettingsBundleAssetTrait: AssetTrait {
     fn is_dedicated_server_bundle(&self) -> &bool;
     fn is_dedicated_server_bundle_mut(&mut self) -> &mut bool;
-    fn settings(&self) -> &Vec<Option<Arc<Mutex<dyn SystemSettingsTrait>>>>;
-    fn settings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SystemSettingsTrait>>>>;
+    fn settings(&self) -> &Vec<Option<LockedTypeObject /* SystemSettings */>>;
+    fn settings_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SystemSettings */>>;
 }
 
 impl SettingsBundleAssetTrait for SettingsBundleAsset {
@@ -7634,10 +8163,10 @@ impl SettingsBundleAssetTrait for SettingsBundleAsset {
     fn is_dedicated_server_bundle_mut(&mut self) -> &mut bool {
         &mut self.is_dedicated_server_bundle
     }
-    fn settings(&self) -> &Vec<Option<Arc<Mutex<dyn SystemSettingsTrait>>>> {
+    fn settings(&self) -> &Vec<Option<LockedTypeObject /* SystemSettings */>> {
         &self.settings
     }
-    fn settings_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SystemSettingsTrait>>>> {
+    fn settings_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SystemSettings */>> {
         &mut self.settings
     }
 }
@@ -7656,22 +8185,27 @@ impl DataContainerTrait for SettingsBundleAsset {
 
 pub static SETTINGSBUNDLEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SettingsBundleAsset",
+    name_hash: 2592508388,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(SettingsBundleAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SettingsBundleAsset as Default>::default())),
+            create_boxed: || Box::new(<SettingsBundleAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "IsDedicatedServerBundle",
+                name_hash: 3755269045,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SettingsBundleAsset, is_dedicated_server_bundle),
             },
             FieldInfoData {
                 name: "Settings",
+                name_hash: 649772672,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SystemSettings-Array",
                 rust_offset: offset_of!(SettingsBundleAsset, settings),
@@ -7703,6 +8237,7 @@ impl TypeObject for SettingsBundleAsset {
 
 pub static SETTINGSBUNDLEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SettingsBundleAsset-Array",
+    name_hash: 485526992,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("SettingsBundleAsset"),
@@ -7711,7 +8246,8 @@ pub static SETTINGSBUNDLEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SystemSettings {
     pub _glacier_base: DataContainer,
     pub platform: GamePlatform,
@@ -7736,16 +8272,20 @@ impl DataContainerTrait for SystemSettings {
 
 pub static SYSTEMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SystemSettings",
+    name_hash: 3778658821,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(SystemSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SystemSettings as Default>::default())),
+            create_boxed: || Box::new(<SystemSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Platform",
+                name_hash: 942751002,
                 flags: MemberInfoFlags::new(0),
                 field_type: "GamePlatform",
                 rust_offset: offset_of!(SystemSettings, platform),
@@ -7777,6 +8317,7 @@ impl TypeObject for SystemSettings {
 
 pub static SYSTEMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SystemSettings-Array",
+    name_hash: 195848625,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("SystemSettings"),
@@ -7785,7 +8326,8 @@ pub static SYSTEMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DataBusPeer {
     pub _glacier_base: GameDataContainer,
     pub flags: u32,
@@ -7813,16 +8355,20 @@ impl DataContainerTrait for DataBusPeer {
 
 pub static DATABUSPEER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataBusPeer",
+    name_hash: 2536380147,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(GAMEDATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(DataBusPeer, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DataBusPeer as Default>::default())),
+            create_boxed: || Box::new(<DataBusPeer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Flags",
+                name_hash: 207064858,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DataBusPeer, flags),
@@ -7854,6 +8400,7 @@ impl TypeObject for DataBusPeer {
 
 pub static DATABUSPEER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataBusPeer-Array",
+    name_hash: 3174609607,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DataBusPeer"),
@@ -7862,7 +8409,8 @@ pub static DATABUSPEER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GameDataContainer {
     pub _glacier_base: DataContainer,
 }
@@ -7878,12 +8426,15 @@ impl DataContainerTrait for GameDataContainer {
 
 pub static GAMEDATACONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameDataContainer",
+    name_hash: 1216294748,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(GameDataContainer, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GameDataContainer as Default>::default())),
+            create_boxed: || Box::new(<GameDataContainer as Default>::default()),
         },
         fields: &[
         ],
@@ -7913,6 +8464,7 @@ impl TypeObject for GameDataContainer {
 
 pub static GAMEDATACONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GameDataContainer-Array",
+    name_hash: 1009391592,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("GameDataContainer"),
@@ -7935,6 +8487,7 @@ pub enum Realm {
 
 pub static REALM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Realm",
+    name_hash: 229961746,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -7963,6 +8516,7 @@ impl TypeObject for Realm {
 
 pub static REALM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Realm-Array",
+    name_hash: 3951466278,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Realm"),
@@ -8004,6 +8558,7 @@ pub enum LanguageFormat {
 
 pub static LANGUAGEFORMAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LanguageFormat",
+    name_hash: 253983220,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -8032,6 +8587,7 @@ impl TypeObject for LanguageFormat {
 
 pub static LANGUAGEFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LanguageFormat-Array",
+    name_hash: 4279518656,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("LanguageFormat"),
@@ -8040,7 +8596,8 @@ pub static LANGUAGEFORMAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DataContainerPolicyAsset {
     pub _glacier_base: Asset,
 }
@@ -8065,12 +8622,15 @@ impl DataContainerTrait for DataContainerPolicyAsset {
 
 pub static DATACONTAINERPOLICYASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataContainerPolicyAsset",
+    name_hash: 2526688738,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(DataContainerPolicyAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DataContainerPolicyAsset as Default>::default())),
+            create_boxed: || Box::new(<DataContainerPolicyAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -8100,6 +8660,7 @@ impl TypeObject for DataContainerPolicyAsset {
 
 pub static DATACONTAINERPOLICYASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataContainerPolicyAsset-Array",
+    name_hash: 880919766,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DataContainerPolicyAsset"),
@@ -8108,7 +8669,8 @@ pub static DATACONTAINERPOLICYASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Asset {
     pub _glacier_base: DataContainer,
     pub name: String,
@@ -8133,16 +8695,20 @@ impl DataContainerTrait for Asset {
 
 pub static ASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Asset",
+    name_hash: 205976053,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(Asset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Asset as Default>::default())),
+            create_boxed: || Box::new(<Asset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(Asset, name),
@@ -8174,6 +8740,7 @@ impl TypeObject for Asset {
 
 pub static ASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Asset-Array",
+    name_hash: 1037910721,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Asset"),
@@ -8182,7 +8749,8 @@ pub static ASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct NativeFunctionTypeInfoAsset {
     pub _glacier_base: FunctionTypeInfoAsset,
     pub function: glacier_reflect::builtin::TypeRef,
@@ -8203,16 +8771,16 @@ impl NativeFunctionTypeInfoAssetTrait for NativeFunctionTypeInfoAsset {
 }
 
 impl FunctionTypeInfoAssetTrait for NativeFunctionTypeInfoAsset {
-    fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>> {
+    fn parameters(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoParameterDataContainer */>> {
         self._glacier_base.parameters()
     }
-    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>> {
+    fn parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoParameterDataContainer */>> {
         self._glacier_base.parameters_mut()
     }
-    fn owner(&self) -> &Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
+    fn owner(&self) -> &Option<LockedTypeObject /* ClassInfoAsset */> {
         self._glacier_base.owner()
     }
-    fn owner_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
+    fn owner_mut(&mut self) -> &mut Option<LockedTypeObject /* ClassInfoAsset */> {
         self._glacier_base.owner_mut()
     }
 }
@@ -8236,10 +8804,10 @@ impl TypeInfoAssetTrait for NativeFunctionTypeInfoAsset {
     fn is_meta_mut(&mut self) -> &mut bool {
         self._glacier_base.is_meta_mut()
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes()
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes_mut()
     }
     fn is_native(&self) -> &bool {
@@ -8264,16 +8832,20 @@ impl DataContainerTrait for NativeFunctionTypeInfoAsset {
 
 pub static NATIVEFUNCTIONTYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NativeFunctionTypeInfoAsset",
+    name_hash: 1507313024,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(FUNCTIONTYPEINFOASSET_TYPE_INFO),
+        super_class_offset: offset_of!(NativeFunctionTypeInfoAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<NativeFunctionTypeInfoAsset as Default>::default())),
+            create_boxed: || Box::new(<NativeFunctionTypeInfoAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Function",
+                name_hash: 4136871687,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeRef",
                 rust_offset: offset_of!(NativeFunctionTypeInfoAsset, function),
@@ -8305,6 +8877,7 @@ impl TypeObject for NativeFunctionTypeInfoAsset {
 
 pub static NATIVEFUNCTIONTYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "NativeFunctionTypeInfoAsset-Array",
+    name_hash: 2442431412,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("NativeFunctionTypeInfoAsset"),
@@ -8313,7 +8886,8 @@ pub static NATIVEFUNCTIONTYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldStructValue {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: glacier_reflect::builtin::BoxedValueRef,
@@ -8347,16 +8921,20 @@ impl DataContainerTrait for TypeInfoFieldStructValue {
 
 pub static TYPEINFOFIELDSTRUCTVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldStructValue",
+    name_hash: 3725132493,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldStructValue, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldStructValue as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldStructValue as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BoxedValueRef",
                 rust_offset: offset_of!(TypeInfoFieldStructValue, value),
@@ -8388,6 +8966,7 @@ impl TypeObject for TypeInfoFieldStructValue {
 
 pub static TYPEINFOFIELDSTRUCTVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldStructValue-Array",
+    name_hash: 2891224825,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldStructValue"),
@@ -8396,22 +8975,23 @@ pub static TYPEINFOFIELDSTRUCTVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldRefValue {
     pub _glacier_base: TypeInfoFieldValue,
-    pub value: Option<Arc<Mutex<dyn DataContainerTrait>>>,
+    pub value: Option<LockedTypeObject /* DataContainer */>,
 }
 
 pub trait TypeInfoFieldRefValueTrait: TypeInfoFieldValueTrait {
-    fn value(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn value(&self) -> &Option<LockedTypeObject /* DataContainer */>;
+    fn value_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */>;
 }
 
 impl TypeInfoFieldRefValueTrait for TypeInfoFieldRefValue {
-    fn value(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn value(&self) -> &Option<LockedTypeObject /* DataContainer */> {
         &self.value
     }
-    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn value_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */> {
         &mut self.value
     }
 }
@@ -8430,16 +9010,20 @@ impl DataContainerTrait for TypeInfoFieldRefValue {
 
 pub static TYPEINFOFIELDREFVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldRefValue",
+    name_hash: 3239583083,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldRefValue, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldRefValue as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldRefValue as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(TypeInfoFieldRefValue, value),
@@ -8471,6 +9055,7 @@ impl TypeObject for TypeInfoFieldRefValue {
 
 pub static TYPEINFOFIELDREFVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldRefValue-Array",
+    name_hash: 4229573983,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldRefValue"),
@@ -8479,7 +9064,8 @@ pub static TYPEINFOFIELDREFVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldTypeRefValue {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: glacier_reflect::builtin::TypeRef,
@@ -8513,16 +9099,20 @@ impl DataContainerTrait for TypeInfoFieldTypeRefValue {
 
 pub static TYPEINFOFIELDTYPEREFVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldTypeRefValue",
+    name_hash: 311054483,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldTypeRefValue, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldTypeRefValue as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldTypeRefValue as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeRef",
                 rust_offset: offset_of!(TypeInfoFieldTypeRefValue, value),
@@ -8554,6 +9144,7 @@ impl TypeObject for TypeInfoFieldTypeRefValue {
 
 pub static TYPEINFOFIELDTYPEREFVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldTypeRefValue-Array",
+    name_hash: 2354670375,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldTypeRefValue"),
@@ -8562,7 +9153,8 @@ pub static TYPEINFOFIELDTYPEREFVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldSHA1Value {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: glacier_reflect::builtin::SHA1,
@@ -8596,16 +9188,20 @@ impl DataContainerTrait for TypeInfoFieldSHA1Value {
 
 pub static TYPEINFOFIELDSHA1VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldSHA1Value",
+    name_hash: 561881169,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldSHA1Value, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldSHA1Value as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldSHA1Value as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SHA1",
                 rust_offset: offset_of!(TypeInfoFieldSHA1Value, value),
@@ -8637,6 +9233,7 @@ impl TypeObject for TypeInfoFieldSHA1Value {
 
 pub static TYPEINFOFIELDSHA1VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldSHA1Value-Array",
+    name_hash: 385684069,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldSHA1Value"),
@@ -8645,7 +9242,8 @@ pub static TYPEINFOFIELDSHA1VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldGuidValue {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: glacier_util::guid::Guid,
@@ -8679,16 +9277,20 @@ impl DataContainerTrait for TypeInfoFieldGuidValue {
 
 pub static TYPEINFOFIELDGUIDVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldGuidValue",
+    name_hash: 1075237957,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldGuidValue, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldGuidValue as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldGuidValue as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(TypeInfoFieldGuidValue, value),
@@ -8720,6 +9322,7 @@ impl TypeObject for TypeInfoFieldGuidValue {
 
 pub static TYPEINFOFIELDGUIDVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldGuidValue-Array",
+    name_hash: 710552689,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldGuidValue"),
@@ -8728,7 +9331,8 @@ pub static TYPEINFOFIELDGUIDVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldEnumValue {
     pub _glacier_base: TypeInfoFieldValue,
     pub enum_info: glacier_reflect::builtin::TypeRef,
@@ -8771,22 +9375,27 @@ impl DataContainerTrait for TypeInfoFieldEnumValue {
 
 pub static TYPEINFOFIELDENUMVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldEnumValue",
+    name_hash: 3141004105,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldEnumValue, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldEnumValue as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldEnumValue as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EnumInfo",
+                name_hash: 553375480,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeRef",
                 rust_offset: offset_of!(TypeInfoFieldEnumValue, enum_info),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TypeInfoFieldEnumValue, value),
@@ -8818,6 +9427,7 @@ impl TypeObject for TypeInfoFieldEnumValue {
 
 pub static TYPEINFOFIELDENUMVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldEnumValue-Array",
+    name_hash: 1458581885,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldEnumValue"),
@@ -8826,7 +9436,8 @@ pub static TYPEINFOFIELDENUMVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldStringValue {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: String,
@@ -8860,16 +9471,20 @@ impl DataContainerTrait for TypeInfoFieldStringValue {
 
 pub static TYPEINFOFIELDSTRINGVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldStringValue",
+    name_hash: 1740017135,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldStringValue, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldStringValue as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldStringValue as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TypeInfoFieldStringValue, value),
@@ -8901,6 +9516,7 @@ impl TypeObject for TypeInfoFieldStringValue {
 
 pub static TYPEINFOFIELDSTRINGVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldStringValue-Array",
+    name_hash: 3123358683,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldStringValue"),
@@ -8909,7 +9525,8 @@ pub static TYPEINFOFIELDSTRINGVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldFloat64Value {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: f64,
@@ -8943,16 +9560,20 @@ impl DataContainerTrait for TypeInfoFieldFloat64Value {
 
 pub static TYPEINFOFIELDFLOAT64VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldFloat64Value",
+    name_hash: 4224787912,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldFloat64Value, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldFloat64Value as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldFloat64Value as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float64",
                 rust_offset: offset_of!(TypeInfoFieldFloat64Value, value),
@@ -8984,6 +9605,7 @@ impl TypeObject for TypeInfoFieldFloat64Value {
 
 pub static TYPEINFOFIELDFLOAT64VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldFloat64Value-Array",
+    name_hash: 1793620092,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldFloat64Value"),
@@ -8992,7 +9614,8 @@ pub static TYPEINFOFIELDFLOAT64VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldFloat32Value {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: f32,
@@ -9026,16 +9649,20 @@ impl DataContainerTrait for TypeInfoFieldFloat32Value {
 
 pub static TYPEINFOFIELDFLOAT32VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldFloat32Value",
+    name_hash: 3786307851,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldFloat32Value, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldFloat32Value as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldFloat32Value as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TypeInfoFieldFloat32Value, value),
@@ -9067,6 +9694,7 @@ impl TypeObject for TypeInfoFieldFloat32Value {
 
 pub static TYPEINFOFIELDFLOAT32VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldFloat32Value-Array",
+    name_hash: 805734335,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldFloat32Value"),
@@ -9075,7 +9703,8 @@ pub static TYPEINFOFIELDFLOAT32VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldUint64Value {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: u64,
@@ -9109,16 +9738,20 @@ impl DataContainerTrait for TypeInfoFieldUint64Value {
 
 pub static TYPEINFOFIELDUINT64VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldUint64Value",
+    name_hash: 930437342,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldUint64Value, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldUint64Value as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldUint64Value as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(TypeInfoFieldUint64Value, value),
@@ -9150,6 +9783,7 @@ impl TypeObject for TypeInfoFieldUint64Value {
 
 pub static TYPEINFOFIELDUINT64VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldUint64Value-Array",
+    name_hash: 917625450,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldUint64Value"),
@@ -9158,7 +9792,8 @@ pub static TYPEINFOFIELDUINT64VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldUint32Value {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: u32,
@@ -9192,16 +9827,20 @@ impl DataContainerTrait for TypeInfoFieldUint32Value {
 
 pub static TYPEINFOFIELDUINT32VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldUint32Value",
+    name_hash: 2067737501,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldUint32Value, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldUint32Value as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldUint32Value as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TypeInfoFieldUint32Value, value),
@@ -9233,6 +9872,7 @@ impl TypeObject for TypeInfoFieldUint32Value {
 
 pub static TYPEINFOFIELDUINT32VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldUint32Value-Array",
+    name_hash: 2274170665,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldUint32Value"),
@@ -9241,7 +9881,8 @@ pub static TYPEINFOFIELDUINT32VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldUint16Value {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: u16,
@@ -9275,16 +9916,20 @@ impl DataContainerTrait for TypeInfoFieldUint16Value {
 
 pub static TYPEINFOFIELDUINT16VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldUint16Value",
+    name_hash: 52241435,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldUint16Value, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldUint16Value as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldUint16Value as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(TypeInfoFieldUint16Value, value),
@@ -9316,6 +9961,7 @@ impl TypeObject for TypeInfoFieldUint16Value {
 
 pub static TYPEINFOFIELDUINT16VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldUint16Value-Array",
+    name_hash: 572275375,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldUint16Value"),
@@ -9324,7 +9970,8 @@ pub static TYPEINFOFIELDUINT16VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldUint8Value {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: u8,
@@ -9358,16 +10005,20 @@ impl DataContainerTrait for TypeInfoFieldUint8Value {
 
 pub static TYPEINFOFIELDUINT8VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldUint8Value",
+    name_hash: 1768455620,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldUint8Value, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldUint8Value as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldUint8Value as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(TypeInfoFieldUint8Value, value),
@@ -9399,6 +10050,7 @@ impl TypeObject for TypeInfoFieldUint8Value {
 
 pub static TYPEINFOFIELDUINT8VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldUint8Value-Array",
+    name_hash: 1365385840,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldUint8Value"),
@@ -9407,7 +10059,8 @@ pub static TYPEINFOFIELDUINT8VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldInt64Value {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: i64,
@@ -9441,16 +10094,20 @@ impl DataContainerTrait for TypeInfoFieldInt64Value {
 
 pub static TYPEINFOFIELDINT64VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldInt64Value",
+    name_hash: 1651489227,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldInt64Value, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldInt64Value as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldInt64Value as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int64",
                 rust_offset: offset_of!(TypeInfoFieldInt64Value, value),
@@ -9482,6 +10139,7 @@ impl TypeObject for TypeInfoFieldInt64Value {
 
 pub static TYPEINFOFIELDINT64VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldInt64Value-Array",
+    name_hash: 3205830911,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldInt64Value"),
@@ -9490,7 +10148,8 @@ pub static TYPEINFOFIELDINT64VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldInt32Value {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: i32,
@@ -9524,16 +10183,20 @@ impl DataContainerTrait for TypeInfoFieldInt32Value {
 
 pub static TYPEINFOFIELDINT32VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldInt32Value",
+    name_hash: 357647240,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldInt32Value, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldInt32Value as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldInt32Value as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TypeInfoFieldInt32Value, value),
@@ -9565,6 +10228,7 @@ impl TypeObject for TypeInfoFieldInt32Value {
 
 pub static TYPEINFOFIELDINT32VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldInt32Value-Array",
+    name_hash: 2956191164,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldInt32Value"),
@@ -9573,7 +10237,8 @@ pub static TYPEINFOFIELDINT32VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldInt16Value {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: i16,
@@ -9607,16 +10272,20 @@ impl DataContainerTrait for TypeInfoFieldInt16Value {
 
 pub static TYPEINFOFIELDINT16VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldInt16Value",
+    name_hash: 2931243790,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldInt16Value, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldInt16Value as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldInt16Value as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int16",
                 rust_offset: offset_of!(TypeInfoFieldInt16Value, value),
@@ -9648,6 +10317,7 @@ impl TypeObject for TypeInfoFieldInt16Value {
 
 pub static TYPEINFOFIELDINT16VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldInt16Value-Array",
+    name_hash: 2852217914,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldInt16Value"),
@@ -9656,7 +10326,8 @@ pub static TYPEINFOFIELDINT16VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldInt8Value {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: i8,
@@ -9690,16 +10361,20 @@ impl DataContainerTrait for TypeInfoFieldInt8Value {
 
 pub static TYPEINFOFIELDINT8VALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldInt8Value",
+    name_hash: 3245360177,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldInt8Value, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldInt8Value as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldInt8Value as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int8",
                 rust_offset: offset_of!(TypeInfoFieldInt8Value, value),
@@ -9731,6 +10406,7 @@ impl TypeObject for TypeInfoFieldInt8Value {
 
 pub static TYPEINFOFIELDINT8VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldInt8Value-Array",
+    name_hash: 2839238277,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldInt8Value"),
@@ -9739,7 +10415,8 @@ pub static TYPEINFOFIELDINT8VALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldBooleanValue {
     pub _glacier_base: TypeInfoFieldValue,
     pub value: bool,
@@ -9773,16 +10450,20 @@ impl DataContainerTrait for TypeInfoFieldBooleanValue {
 
 pub static TYPEINFOFIELDBOOLEANVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldBooleanValue",
+    name_hash: 848872766,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOFIELDVALUE_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldBooleanValue, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldBooleanValue as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldBooleanValue as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TypeInfoFieldBooleanValue, value),
@@ -9814,6 +10495,7 @@ impl TypeObject for TypeInfoFieldBooleanValue {
 
 pub static TYPEINFOFIELDBOOLEANVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldBooleanValue-Array",
+    name_hash: 2585843082,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldBooleanValue"),
@@ -9822,7 +10504,8 @@ pub static TYPEINFOFIELDBOOLEANVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PrimitiveTypeInfoAsset {
     pub _glacier_base: TypeInfoAsset,
 }
@@ -9852,10 +10535,10 @@ impl TypeInfoAssetTrait for PrimitiveTypeInfoAsset {
     fn is_meta_mut(&mut self) -> &mut bool {
         self._glacier_base.is_meta_mut()
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes()
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes_mut()
     }
     fn is_native(&self) -> &bool {
@@ -9880,12 +10563,15 @@ impl DataContainerTrait for PrimitiveTypeInfoAsset {
 
 pub static PRIMITIVETYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PrimitiveTypeInfoAsset",
+    name_hash: 1221897698,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOASSET_TYPE_INFO),
+        super_class_offset: offset_of!(PrimitiveTypeInfoAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PrimitiveTypeInfoAsset as Default>::default())),
+            create_boxed: || Box::new(<PrimitiveTypeInfoAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -9915,6 +10601,7 @@ impl TypeObject for PrimitiveTypeInfoAsset {
 
 pub static PRIMITIVETYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PrimitiveTypeInfoAsset-Array",
+    name_hash: 1991654614,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("PrimitiveTypeInfoAsset"),
@@ -9923,22 +10610,23 @@ pub static PRIMITIVETYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumTypeInfoAsset {
     pub _glacier_base: TypeInfoAsset,
-    pub enumerators: Vec<EnumTypeEnumeratorData>,
+    pub enumerators: Vec<BoxedTypeObject /* EnumTypeEnumeratorData */>,
 }
 
 pub trait EnumTypeInfoAssetTrait: TypeInfoAssetTrait {
-    fn enumerators(&self) -> &Vec<EnumTypeEnumeratorData>;
-    fn enumerators_mut(&mut self) -> &mut Vec<EnumTypeEnumeratorData>;
+    fn enumerators(&self) -> &Vec<BoxedTypeObject /* EnumTypeEnumeratorData */>;
+    fn enumerators_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EnumTypeEnumeratorData */>;
 }
 
 impl EnumTypeInfoAssetTrait for EnumTypeInfoAsset {
-    fn enumerators(&self) -> &Vec<EnumTypeEnumeratorData> {
+    fn enumerators(&self) -> &Vec<BoxedTypeObject /* EnumTypeEnumeratorData */> {
         &self.enumerators
     }
-    fn enumerators_mut(&mut self) -> &mut Vec<EnumTypeEnumeratorData> {
+    fn enumerators_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EnumTypeEnumeratorData */> {
         &mut self.enumerators
     }
 }
@@ -9962,10 +10650,10 @@ impl TypeInfoAssetTrait for EnumTypeInfoAsset {
     fn is_meta_mut(&mut self) -> &mut bool {
         self._glacier_base.is_meta_mut()
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes()
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes_mut()
     }
     fn is_native(&self) -> &bool {
@@ -9990,16 +10678,20 @@ impl DataContainerTrait for EnumTypeInfoAsset {
 
 pub static ENUMTYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumTypeInfoAsset",
+    name_hash: 128961360,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EnumTypeInfoAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumTypeInfoAsset as Default>::default())),
+            create_boxed: || Box::new(<EnumTypeInfoAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enumerators",
+                name_hash: 2230533850,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EnumTypeEnumeratorData-Array",
                 rust_offset: offset_of!(EnumTypeInfoAsset, enumerators),
@@ -10031,6 +10723,7 @@ impl TypeObject for EnumTypeInfoAsset {
 
 pub static ENUMTYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumTypeInfoAsset-Array",
+    name_hash: 3097536996,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("EnumTypeInfoAsset"),
@@ -10039,11 +10732,12 @@ pub static ENUMTYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EnumTypeEnumeratorData {
     pub name: String,
     pub value: i32,
-    pub attributes: Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>,
+    pub attributes: Vec<Option<LockedTypeObject /* TypeInfoAttribute */>>,
 }
 
 pub trait EnumTypeEnumeratorDataTrait: TypeObject {
@@ -10051,8 +10745,8 @@ pub trait EnumTypeEnumeratorDataTrait: TypeObject {
     fn name_mut(&mut self) -> &mut String;
     fn value(&self) -> &i32;
     fn value_mut(&mut self) -> &mut i32;
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>>;
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>>;
 }
 
 impl EnumTypeEnumeratorDataTrait for EnumTypeEnumeratorData {
@@ -10068,37 +10762,42 @@ impl EnumTypeEnumeratorDataTrait for EnumTypeEnumeratorData {
     fn value_mut(&mut self) -> &mut i32 {
         &mut self.value
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         &self.attributes
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         &mut self.attributes
     }
 }
 
 pub static ENUMTYPEENUMERATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumTypeEnumeratorData",
+    name_hash: 584985074,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EnumTypeEnumeratorData as Default>::default())),
+            create_boxed: || Box::new(<EnumTypeEnumeratorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EnumTypeEnumeratorData, name),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EnumTypeEnumeratorData, value),
             },
             FieldInfoData {
                 name: "Attributes",
+                name_hash: 3723762538,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TypeInfoAttribute-Array",
                 rust_offset: offset_of!(EnumTypeEnumeratorData, attributes),
@@ -10130,6 +10829,7 @@ impl TypeObject for EnumTypeEnumeratorData {
 
 pub static ENUMTYPEENUMERATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EnumTypeEnumeratorData-Array",
+    name_hash: 4169105606,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("EnumTypeEnumeratorData"),
@@ -10138,31 +10838,32 @@ pub static ENUMTYPEENUMERATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FunctionTypeInfoAsset {
     pub _glacier_base: TypeInfoAsset,
-    pub parameters: Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>>,
-    pub owner: Option<Arc<Mutex<dyn ClassInfoAssetTrait>>>,
+    pub parameters: Vec<Option<LockedTypeObject /* TypeInfoParameterDataContainer */>>,
+    pub owner: Option<LockedTypeObject /* ClassInfoAsset */>,
 }
 
 pub trait FunctionTypeInfoAssetTrait: TypeInfoAssetTrait {
-    fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>>;
-    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>>;
-    fn owner(&self) -> &Option<Arc<Mutex<dyn ClassInfoAssetTrait>>>;
-    fn owner_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ClassInfoAssetTrait>>>;
+    fn parameters(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoParameterDataContainer */>>;
+    fn parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoParameterDataContainer */>>;
+    fn owner(&self) -> &Option<LockedTypeObject /* ClassInfoAsset */>;
+    fn owner_mut(&mut self) -> &mut Option<LockedTypeObject /* ClassInfoAsset */>;
 }
 
 impl FunctionTypeInfoAssetTrait for FunctionTypeInfoAsset {
-    fn parameters(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>> {
+    fn parameters(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoParameterDataContainer */>> {
         &self.parameters
     }
-    fn parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoParameterDataContainerTrait>>>> {
+    fn parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoParameterDataContainer */>> {
         &mut self.parameters
     }
-    fn owner(&self) -> &Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
+    fn owner(&self) -> &Option<LockedTypeObject /* ClassInfoAsset */> {
         &self.owner
     }
-    fn owner_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
+    fn owner_mut(&mut self) -> &mut Option<LockedTypeObject /* ClassInfoAsset */> {
         &mut self.owner
     }
 }
@@ -10186,10 +10887,10 @@ impl TypeInfoAssetTrait for FunctionTypeInfoAsset {
     fn is_meta_mut(&mut self) -> &mut bool {
         self._glacier_base.is_meta_mut()
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes()
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes_mut()
     }
     fn is_native(&self) -> &bool {
@@ -10214,22 +10915,27 @@ impl DataContainerTrait for FunctionTypeInfoAsset {
 
 pub static FUNCTIONTYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FunctionTypeInfoAsset",
+    name_hash: 3131820609,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOASSET_TYPE_INFO),
+        super_class_offset: offset_of!(FunctionTypeInfoAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FunctionTypeInfoAsset as Default>::default())),
+            create_boxed: || Box::new(<FunctionTypeInfoAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Parameters",
+                name_hash: 3325515039,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TypeInfoParameterDataContainer-Array",
                 rust_offset: offset_of!(FunctionTypeInfoAsset, parameters),
             },
             FieldInfoData {
                 name: "Owner",
+                name_hash: 217695012,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ClassInfoAsset",
                 rust_offset: offset_of!(FunctionTypeInfoAsset, owner),
@@ -10261,6 +10967,7 @@ impl TypeObject for FunctionTypeInfoAsset {
 
 pub static FUNCTIONTYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FunctionTypeInfoAsset-Array",
+    name_hash: 2567959669,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("FunctionTypeInfoAsset"),
@@ -10269,14 +10976,15 @@ pub static FUNCTIONTYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoParameterDataContainer {
     pub _glacier_base: DataContainer,
     pub name: String,
     pub type_ref: TypeInfoRef,
     pub is_array: bool,
     pub qualifier: TypeInfoParameterQualifier,
-    pub default_value: Option<Arc<Mutex<dyn DataContainerTrait>>>,
+    pub default_value: Option<LockedTypeObject /* DataContainer */>,
 }
 
 pub trait TypeInfoParameterDataContainerTrait: DataContainerTrait {
@@ -10288,8 +10996,8 @@ pub trait TypeInfoParameterDataContainerTrait: DataContainerTrait {
     fn is_array_mut(&mut self) -> &mut bool;
     fn qualifier(&self) -> &TypeInfoParameterQualifier;
     fn qualifier_mut(&mut self) -> &mut TypeInfoParameterQualifier;
-    fn default_value(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>>;
-    fn default_value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>>;
+    fn default_value(&self) -> &Option<LockedTypeObject /* DataContainer */>;
+    fn default_value_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */>;
 }
 
 impl TypeInfoParameterDataContainerTrait for TypeInfoParameterDataContainer {
@@ -10317,10 +11025,10 @@ impl TypeInfoParameterDataContainerTrait for TypeInfoParameterDataContainer {
     fn qualifier_mut(&mut self) -> &mut TypeInfoParameterQualifier {
         &mut self.qualifier
     }
-    fn default_value(&self) -> &Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn default_value(&self) -> &Option<LockedTypeObject /* DataContainer */> {
         &self.default_value
     }
-    fn default_value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn DataContainerTrait>>> {
+    fn default_value_mut(&mut self) -> &mut Option<LockedTypeObject /* DataContainer */> {
         &mut self.default_value
     }
 }
@@ -10330,40 +11038,48 @@ impl DataContainerTrait for TypeInfoParameterDataContainer {
 
 pub static TYPEINFOPARAMETERDATACONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoParameterDataContainer",
+    name_hash: 3019381005,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoParameterDataContainer, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoParameterDataContainer as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoParameterDataContainer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TypeInfoParameterDataContainer, name),
             },
             FieldInfoData {
                 name: "TypeRef",
+                name_hash: 2743797740,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeInfoRef",
                 rust_offset: offset_of!(TypeInfoParameterDataContainer, type_ref),
             },
             FieldInfoData {
                 name: "IsArray",
+                name_hash: 2763287494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TypeInfoParameterDataContainer, is_array),
             },
             FieldInfoData {
                 name: "Qualifier",
+                name_hash: 3894681981,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeInfoParameterQualifier",
                 rust_offset: offset_of!(TypeInfoParameterDataContainer, qualifier),
             },
             FieldInfoData {
                 name: "DefaultValue",
+                name_hash: 2066049125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DataContainer",
                 rust_offset: offset_of!(TypeInfoParameterDataContainer, default_value),
@@ -10395,6 +11111,7 @@ impl TypeObject for TypeInfoParameterDataContainer {
 
 pub static TYPEINFOPARAMETERDATACONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoParameterDataContainer-Array",
+    name_hash: 3255786681,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoParameterDataContainer"),
@@ -10416,6 +11133,7 @@ pub enum TypeInfoParameterQualifier {
 
 pub static TYPEINFOPARAMETERQUALIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoParameterQualifier",
+    name_hash: 2731866882,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -10444,6 +11162,7 @@ impl TypeObject for TypeInfoParameterQualifier {
 
 pub static TYPEINFOPARAMETERQUALIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoParameterQualifier-Array",
+    name_hash: 3383761462,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoParameterQualifier"),
@@ -10452,24 +11171,25 @@ pub static TYPEINFOPARAMETERQUALIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FunctionTypeInfoRef {
-    pub asset: Option<Arc<Mutex<dyn FunctionTypeInfoAssetTrait>>>,
+    pub asset: Option<LockedTypeObject /* FunctionTypeInfoAsset */>,
     pub type_info: glacier_reflect::builtin::TypeRef,
 }
 
 pub trait FunctionTypeInfoRefTrait: TypeObject {
-    fn asset(&self) -> &Option<Arc<Mutex<dyn FunctionTypeInfoAssetTrait>>>;
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FunctionTypeInfoAssetTrait>>>;
+    fn asset(&self) -> &Option<LockedTypeObject /* FunctionTypeInfoAsset */>;
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* FunctionTypeInfoAsset */>;
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef;
     fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl FunctionTypeInfoRefTrait for FunctionTypeInfoRef {
-    fn asset(&self) -> &Option<Arc<Mutex<dyn FunctionTypeInfoAssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* FunctionTypeInfoAsset */> {
         &self.asset
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn FunctionTypeInfoAssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* FunctionTypeInfoAsset */> {
         &mut self.asset
     }
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef {
@@ -10482,21 +11202,25 @@ impl FunctionTypeInfoRefTrait for FunctionTypeInfoRef {
 
 pub static FUNCTIONTYPEINFOREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FunctionTypeInfoRef",
+    name_hash: 215837920,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FunctionTypeInfoRef as Default>::default())),
+            create_boxed: || Box::new(<FunctionTypeInfoRef as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Asset",
+                name_hash: 205976053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FunctionTypeInfoAsset",
                 rust_offset: offset_of!(FunctionTypeInfoRef, asset),
             },
             FieldInfoData {
                 name: "TypeInfo",
+                name_hash: 351127923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeRef",
                 rust_offset: offset_of!(FunctionTypeInfoRef, type_info),
@@ -10528,6 +11252,7 @@ impl TypeObject for FunctionTypeInfoRef {
 
 pub static FUNCTIONTYPEINFOREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FunctionTypeInfoRef-Array",
+    name_hash: 979763924,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("FunctionTypeInfoRef"),
@@ -10536,7 +11261,8 @@ pub static FUNCTIONTYPEINFOREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ValueTypeInfoAsset {
     pub _glacier_base: ComplexTypeInfoAsset,
 }
@@ -10548,10 +11274,10 @@ impl ValueTypeInfoAssetTrait for ValueTypeInfoAsset {
 }
 
 impl ComplexTypeInfoAssetTrait for ValueTypeInfoAsset {
-    fn field_collections(&self) -> &Vec<TypeInfoFieldCollectionRef> {
+    fn field_collections(&self) -> &Vec<BoxedTypeObject /* TypeInfoFieldCollectionRef */> {
         self._glacier_base.field_collections()
     }
-    fn field_collections_mut(&mut self) -> &mut Vec<TypeInfoFieldCollectionRef> {
+    fn field_collections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TypeInfoFieldCollectionRef */> {
         self._glacier_base.field_collections_mut()
     }
     fn alignment(&self) -> &u32 {
@@ -10581,10 +11307,10 @@ impl TypeInfoAssetTrait for ValueTypeInfoAsset {
     fn is_meta_mut(&mut self) -> &mut bool {
         self._glacier_base.is_meta_mut()
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes()
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes_mut()
     }
     fn is_native(&self) -> &bool {
@@ -10609,12 +11335,15 @@ impl DataContainerTrait for ValueTypeInfoAsset {
 
 pub static VALUETYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ValueTypeInfoAsset",
+    name_hash: 519591112,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPLEXTYPEINFOASSET_TYPE_INFO),
+        super_class_offset: offset_of!(ValueTypeInfoAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ValueTypeInfoAsset as Default>::default())),
+            create_boxed: || Box::new(<ValueTypeInfoAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -10644,6 +11373,7 @@ impl TypeObject for ValueTypeInfoAsset {
 
 pub static VALUETYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ValueTypeInfoAsset-Array",
+    name_hash: 7792508,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ValueTypeInfoAsset"),
@@ -10652,7 +11382,8 @@ pub static VALUETYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClassInfoAsset {
     pub _glacier_base: ComplexTypeInfoAsset,
     pub super_class_ref: ClassInfoRef,
@@ -10691,10 +11422,10 @@ impl ClassInfoAssetTrait for ClassInfoAsset {
 }
 
 impl ComplexTypeInfoAssetTrait for ClassInfoAsset {
-    fn field_collections(&self) -> &Vec<TypeInfoFieldCollectionRef> {
+    fn field_collections(&self) -> &Vec<BoxedTypeObject /* TypeInfoFieldCollectionRef */> {
         self._glacier_base.field_collections()
     }
-    fn field_collections_mut(&mut self) -> &mut Vec<TypeInfoFieldCollectionRef> {
+    fn field_collections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TypeInfoFieldCollectionRef */> {
         self._glacier_base.field_collections_mut()
     }
     fn alignment(&self) -> &u32 {
@@ -10724,10 +11455,10 @@ impl TypeInfoAssetTrait for ClassInfoAsset {
     fn is_meta_mut(&mut self) -> &mut bool {
         self._glacier_base.is_meta_mut()
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes()
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes_mut()
     }
     fn is_native(&self) -> &bool {
@@ -10752,28 +11483,34 @@ impl DataContainerTrait for ClassInfoAsset {
 
 pub static CLASSINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClassInfoAsset",
+    name_hash: 3710628341,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(COMPLEXTYPEINFOASSET_TYPE_INFO),
+        super_class_offset: offset_of!(ClassInfoAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClassInfoAsset as Default>::default())),
+            create_boxed: || Box::new(<ClassInfoAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SuperClassRef",
+                name_hash: 2257450427,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ClassInfoRef",
                 rust_offset: offset_of!(ClassInfoAsset, super_class_ref),
             },
             FieldInfoData {
                 name: "IsAbstract",
+                name_hash: 2534040223,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClassInfoAsset, is_abstract),
             },
             FieldInfoData {
                 name: "IsSealed",
+                name_hash: 451801797,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ClassInfoAsset, is_sealed),
@@ -10805,6 +11542,7 @@ impl TypeObject for ClassInfoAsset {
 
 pub static CLASSINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClassInfoAsset-Array",
+    name_hash: 3612476097,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ClassInfoAsset"),
@@ -10813,24 +11551,25 @@ pub static CLASSINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClassInfoRef {
-    pub asset: Option<Arc<Mutex<dyn ClassInfoAssetTrait>>>,
+    pub asset: Option<LockedTypeObject /* ClassInfoAsset */>,
     pub type_info: glacier_reflect::builtin::TypeRef,
 }
 
 pub trait ClassInfoRefTrait: TypeObject {
-    fn asset(&self) -> &Option<Arc<Mutex<dyn ClassInfoAssetTrait>>>;
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ClassInfoAssetTrait>>>;
+    fn asset(&self) -> &Option<LockedTypeObject /* ClassInfoAsset */>;
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* ClassInfoAsset */>;
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef;
     fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl ClassInfoRefTrait for ClassInfoRef {
-    fn asset(&self) -> &Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* ClassInfoAsset */> {
         &self.asset
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ClassInfoAssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* ClassInfoAsset */> {
         &mut self.asset
     }
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef {
@@ -10843,21 +11582,25 @@ impl ClassInfoRefTrait for ClassInfoRef {
 
 pub static CLASSINFOREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClassInfoRef",
+    name_hash: 3694971540,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClassInfoRef as Default>::default())),
+            create_boxed: || Box::new(<ClassInfoRef as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Asset",
+                name_hash: 205976053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ClassInfoAsset",
                 rust_offset: offset_of!(ClassInfoRef, asset),
             },
             FieldInfoData {
                 name: "TypeInfo",
+                name_hash: 351127923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeRef",
                 rust_offset: offset_of!(ClassInfoRef, type_info),
@@ -10889,6 +11632,7 @@ impl TypeObject for ClassInfoRef {
 
 pub static CLASSINFOREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClassInfoRef-Array",
+    name_hash: 1606141600,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ClassInfoRef"),
@@ -10897,25 +11641,26 @@ pub static CLASSINFOREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ComplexTypeInfoAsset {
     pub _glacier_base: TypeInfoAsset,
-    pub field_collections: Vec<TypeInfoFieldCollectionRef>,
+    pub field_collections: Vec<BoxedTypeObject /* TypeInfoFieldCollectionRef */>,
     pub alignment: u32,
 }
 
 pub trait ComplexTypeInfoAssetTrait: TypeInfoAssetTrait {
-    fn field_collections(&self) -> &Vec<TypeInfoFieldCollectionRef>;
-    fn field_collections_mut(&mut self) -> &mut Vec<TypeInfoFieldCollectionRef>;
+    fn field_collections(&self) -> &Vec<BoxedTypeObject /* TypeInfoFieldCollectionRef */>;
+    fn field_collections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TypeInfoFieldCollectionRef */>;
     fn alignment(&self) -> &u32;
     fn alignment_mut(&mut self) -> &mut u32;
 }
 
 impl ComplexTypeInfoAssetTrait for ComplexTypeInfoAsset {
-    fn field_collections(&self) -> &Vec<TypeInfoFieldCollectionRef> {
+    fn field_collections(&self) -> &Vec<BoxedTypeObject /* TypeInfoFieldCollectionRef */> {
         &self.field_collections
     }
-    fn field_collections_mut(&mut self) -> &mut Vec<TypeInfoFieldCollectionRef> {
+    fn field_collections_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TypeInfoFieldCollectionRef */> {
         &mut self.field_collections
     }
     fn alignment(&self) -> &u32 {
@@ -10945,10 +11690,10 @@ impl TypeInfoAssetTrait for ComplexTypeInfoAsset {
     fn is_meta_mut(&mut self) -> &mut bool {
         self._glacier_base.is_meta_mut()
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes()
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         self._glacier_base.attributes_mut()
     }
     fn is_native(&self) -> &bool {
@@ -10973,22 +11718,27 @@ impl DataContainerTrait for ComplexTypeInfoAsset {
 
 pub static COMPLEXTYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComplexTypeInfoAsset",
+    name_hash: 1039248227,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(TYPEINFOASSET_TYPE_INFO),
+        super_class_offset: offset_of!(ComplexTypeInfoAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ComplexTypeInfoAsset as Default>::default())),
+            create_boxed: || Box::new(<ComplexTypeInfoAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FieldCollections",
+                name_hash: 3056002242,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TypeInfoFieldCollectionRef-Array",
                 rust_offset: offset_of!(ComplexTypeInfoAsset, field_collections),
             },
             FieldInfoData {
                 name: "Alignment",
+                name_hash: 1711241338,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(ComplexTypeInfoAsset, alignment),
@@ -11020,6 +11770,7 @@ impl TypeObject for ComplexTypeInfoAsset {
 
 pub static COMPLEXTYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ComplexTypeInfoAsset-Array",
+    name_hash: 2196168535,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ComplexTypeInfoAsset"),
@@ -11028,36 +11779,40 @@ pub static COMPLEXTYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldCollectionRef {
-    pub collection: Option<Arc<Mutex<dyn TypeInfoFieldCollectionTrait>>>,
+    pub collection: Option<LockedTypeObject /* TypeInfoFieldCollection */>,
 }
 
 pub trait TypeInfoFieldCollectionRefTrait: TypeObject {
-    fn collection(&self) -> &Option<Arc<Mutex<dyn TypeInfoFieldCollectionTrait>>>;
-    fn collection_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TypeInfoFieldCollectionTrait>>>;
+    fn collection(&self) -> &Option<LockedTypeObject /* TypeInfoFieldCollection */>;
+    fn collection_mut(&mut self) -> &mut Option<LockedTypeObject /* TypeInfoFieldCollection */>;
 }
 
 impl TypeInfoFieldCollectionRefTrait for TypeInfoFieldCollectionRef {
-    fn collection(&self) -> &Option<Arc<Mutex<dyn TypeInfoFieldCollectionTrait>>> {
+    fn collection(&self) -> &Option<LockedTypeObject /* TypeInfoFieldCollection */> {
         &self.collection
     }
-    fn collection_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TypeInfoFieldCollectionTrait>>> {
+    fn collection_mut(&mut self) -> &mut Option<LockedTypeObject /* TypeInfoFieldCollection */> {
         &mut self.collection
     }
 }
 
 pub static TYPEINFOFIELDCOLLECTIONREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldCollectionRef",
+    name_hash: 1482443958,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldCollectionRef as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldCollectionRef as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Collection",
+                name_hash: 3772761619,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeInfoFieldCollection",
                 rust_offset: offset_of!(TypeInfoFieldCollectionRef, collection),
@@ -11089,6 +11844,7 @@ impl TypeObject for TypeInfoFieldCollectionRef {
 
 pub static TYPEINFOFIELDCOLLECTIONREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldCollectionRef-Array",
+    name_hash: 4140605698,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldCollectionRef"),
@@ -11097,31 +11853,32 @@ pub static TYPEINFOFIELDCOLLECTIONREF_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldCollection {
     pub _glacier_base: DataContainer,
-    pub fields: Vec<Option<Arc<Mutex<dyn TypeInfoFieldDataTrait>>>>,
-    pub default_values: Vec<Option<Arc<Mutex<dyn TypeInfoFieldValueTrait>>>>,
+    pub fields: Vec<Option<LockedTypeObject /* TypeInfoFieldData */>>,
+    pub default_values: Vec<Option<LockedTypeObject /* TypeInfoFieldValue */>>,
 }
 
 pub trait TypeInfoFieldCollectionTrait: DataContainerTrait {
-    fn fields(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoFieldDataTrait>>>>;
-    fn fields_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoFieldDataTrait>>>>;
-    fn default_values(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoFieldValueTrait>>>>;
-    fn default_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoFieldValueTrait>>>>;
+    fn fields(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoFieldData */>>;
+    fn fields_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoFieldData */>>;
+    fn default_values(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoFieldValue */>>;
+    fn default_values_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoFieldValue */>>;
 }
 
 impl TypeInfoFieldCollectionTrait for TypeInfoFieldCollection {
-    fn fields(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoFieldDataTrait>>>> {
+    fn fields(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoFieldData */>> {
         &self.fields
     }
-    fn fields_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoFieldDataTrait>>>> {
+    fn fields_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoFieldData */>> {
         &mut self.fields
     }
-    fn default_values(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoFieldValueTrait>>>> {
+    fn default_values(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoFieldValue */>> {
         &self.default_values
     }
-    fn default_values_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoFieldValueTrait>>>> {
+    fn default_values_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoFieldValue */>> {
         &mut self.default_values
     }
 }
@@ -11131,22 +11888,27 @@ impl DataContainerTrait for TypeInfoFieldCollection {
 
 pub static TYPEINFOFIELDCOLLECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldCollection",
+    name_hash: 1521451879,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldCollection, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldCollection as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldCollection as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Fields",
+                name_hash: 2525411604,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TypeInfoFieldData-Array",
                 rust_offset: offset_of!(TypeInfoFieldCollection, fields),
             },
             FieldInfoData {
                 name: "DefaultValues",
+                name_hash: 3755111798,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TypeInfoFieldValue-Array",
                 rust_offset: offset_of!(TypeInfoFieldCollection, default_values),
@@ -11178,6 +11940,7 @@ impl TypeObject for TypeInfoFieldCollection {
 
 pub static TYPEINFOFIELDCOLLECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldCollection-Array",
+    name_hash: 3185993043,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldCollection"),
@@ -11186,7 +11949,8 @@ pub static TYPEINFOFIELDCOLLECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldValue {
     pub _glacier_base: DataContainer,
     pub field: String,
@@ -11211,16 +11975,20 @@ impl DataContainerTrait for TypeInfoFieldValue {
 
 pub static TYPEINFOFIELDVALUE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldValue",
+    name_hash: 3740099226,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldValue, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldValue as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldValue as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Field",
+                name_hash: 206678151,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TypeInfoFieldValue, field),
@@ -11252,6 +12020,7 @@ impl TypeObject for TypeInfoFieldValue {
 
 pub static TYPEINFOFIELDVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldValue-Array",
+    name_hash: 4117382574,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldValue"),
@@ -11260,7 +12029,8 @@ pub static TYPEINFOFIELDVALUE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoFieldData {
     pub _glacier_base: DataContainer,
     pub name: String,
@@ -11272,7 +12042,7 @@ pub struct TypeInfoFieldData {
     pub is_exposed: bool,
     pub access_type: AccessType,
     pub always_persist: bool,
-    pub attributes: Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>,
+    pub attributes: Vec<Option<LockedTypeObject /* TypeInfoAttribute */>>,
 }
 
 pub trait TypeInfoFieldDataTrait: DataContainerTrait {
@@ -11294,8 +12064,8 @@ pub trait TypeInfoFieldDataTrait: DataContainerTrait {
     fn access_type_mut(&mut self) -> &mut AccessType;
     fn always_persist(&self) -> &bool;
     fn always_persist_mut(&mut self) -> &mut bool;
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>>;
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>>;
 }
 
 impl TypeInfoFieldDataTrait for TypeInfoFieldData {
@@ -11353,10 +12123,10 @@ impl TypeInfoFieldDataTrait for TypeInfoFieldData {
     fn always_persist_mut(&mut self) -> &mut bool {
         &mut self.always_persist
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         &self.attributes
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         &mut self.attributes
     }
 }
@@ -11366,70 +12136,83 @@ impl DataContainerTrait for TypeInfoFieldData {
 
 pub static TYPEINFOFIELDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldData",
+    name_hash: 4148644417,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoFieldData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoFieldData as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoFieldData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TypeInfoFieldData, name),
             },
             FieldInfoData {
                 name: "TypeRef",
+                name_hash: 2743797740,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeInfoRef",
                 rust_offset: offset_of!(TypeInfoFieldData, type_ref),
             },
             FieldInfoData {
                 name: "IsArray",
+                name_hash: 2763287494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TypeInfoFieldData, is_array),
             },
             FieldInfoData {
                 name: "ProtectionLevel",
+                name_hash: 1432881680,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProtectionLevel",
                 rust_offset: offset_of!(TypeInfoFieldData, protection_level),
             },
             FieldInfoData {
                 name: "MemorySortIndex",
+                name_hash: 745243264,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TypeInfoFieldData, memory_sort_index),
             },
             FieldInfoData {
                 name: "IsMeta",
+                name_hash: 2816483074,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TypeInfoFieldData, is_meta),
             },
             FieldInfoData {
                 name: "IsExposed",
+                name_hash: 1478860463,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TypeInfoFieldData, is_exposed),
             },
             FieldInfoData {
                 name: "AccessType",
+                name_hash: 2232606137,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AccessType",
                 rust_offset: offset_of!(TypeInfoFieldData, access_type),
             },
             FieldInfoData {
                 name: "AlwaysPersist",
+                name_hash: 870738286,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TypeInfoFieldData, always_persist),
             },
             FieldInfoData {
                 name: "Attributes",
+                name_hash: 3723762538,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TypeInfoAttribute-Array",
                 rust_offset: offset_of!(TypeInfoFieldData, attributes),
@@ -11461,6 +12244,7 @@ impl TypeObject for TypeInfoFieldData {
 
 pub static TYPEINFOFIELDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoFieldData-Array",
+    name_hash: 3159061621,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoFieldData"),
@@ -11480,6 +12264,7 @@ pub enum AccessType {
 
 pub static ACCESSTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AccessType",
+    name_hash: 2232606137,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -11508,6 +12293,7 @@ impl TypeObject for AccessType {
 
 pub static ACCESSTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AccessType-Array",
+    name_hash: 1816816653,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("AccessType"),
@@ -11528,6 +12314,7 @@ pub enum ProtectionLevel {
 
 pub static PROTECTIONLEVEL_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProtectionLevel",
+    name_hash: 1432881680,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -11556,6 +12343,7 @@ impl TypeObject for ProtectionLevel {
 
 pub static PROTECTIONLEVEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProtectionLevel-Array",
+    name_hash: 3187210276,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ProtectionLevel"),
@@ -11564,24 +12352,25 @@ pub static PROTECTIONLEVEL_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoRef {
-    pub asset: Option<Arc<Mutex<dyn TypeInfoAssetTrait>>>,
+    pub asset: Option<LockedTypeObject /* TypeInfoAsset */>,
     pub type_info: glacier_reflect::builtin::TypeRef,
 }
 
 pub trait TypeInfoRefTrait: TypeObject {
-    fn asset(&self) -> &Option<Arc<Mutex<dyn TypeInfoAssetTrait>>>;
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TypeInfoAssetTrait>>>;
+    fn asset(&self) -> &Option<LockedTypeObject /* TypeInfoAsset */>;
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* TypeInfoAsset */>;
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef;
     fn type_info_mut(&mut self) -> &mut glacier_reflect::builtin::TypeRef;
 }
 
 impl TypeInfoRefTrait for TypeInfoRef {
-    fn asset(&self) -> &Option<Arc<Mutex<dyn TypeInfoAssetTrait>>> {
+    fn asset(&self) -> &Option<LockedTypeObject /* TypeInfoAsset */> {
         &self.asset
     }
-    fn asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn TypeInfoAssetTrait>>> {
+    fn asset_mut(&mut self) -> &mut Option<LockedTypeObject /* TypeInfoAsset */> {
         &mut self.asset
     }
     fn type_info(&self) -> &glacier_reflect::builtin::TypeRef {
@@ -11594,21 +12383,25 @@ impl TypeInfoRefTrait for TypeInfoRef {
 
 pub static TYPEINFOREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoRef",
+    name_hash: 4165132322,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoRef as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoRef as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Asset",
+                name_hash: 205976053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeInfoAsset",
                 rust_offset: offset_of!(TypeInfoRef, asset),
             },
             FieldInfoData {
                 name: "TypeInfo",
+                name_hash: 351127923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeRef",
                 rust_offset: offset_of!(TypeInfoRef, type_info),
@@ -11640,6 +12433,7 @@ impl TypeObject for TypeInfoRef {
 
 pub static TYPEINFOREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoRef-Array",
+    name_hash: 2824953494,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoRef"),
@@ -11648,13 +12442,14 @@ pub static TYPEINFOREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoAsset {
     pub _glacier_base: Asset,
     pub module_name: String,
     pub type_name: String,
     pub is_meta: bool,
-    pub attributes: Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>,
+    pub attributes: Vec<Option<LockedTypeObject /* TypeInfoAttribute */>>,
     pub is_native: bool,
 }
 
@@ -11665,8 +12460,8 @@ pub trait TypeInfoAssetTrait: AssetTrait {
     fn type_name_mut(&mut self) -> &mut String;
     fn is_meta(&self) -> &bool;
     fn is_meta_mut(&mut self) -> &mut bool;
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>>;
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>>;
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>>;
     fn is_native(&self) -> &bool;
     fn is_native_mut(&mut self) -> &mut bool;
 }
@@ -11690,10 +12485,10 @@ impl TypeInfoAssetTrait for TypeInfoAsset {
     fn is_meta_mut(&mut self) -> &mut bool {
         &mut self.is_meta
     }
-    fn attributes(&self) -> &Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes(&self) -> &Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         &self.attributes
     }
-    fn attributes_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn TypeInfoAttributeTrait>>>> {
+    fn attributes_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* TypeInfoAttribute */>> {
         &mut self.attributes
     }
     fn is_native(&self) -> &bool {
@@ -11718,40 +12513,48 @@ impl DataContainerTrait for TypeInfoAsset {
 
 pub static TYPEINFOASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoAsset",
+    name_hash: 360793603,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoAsset as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ModuleName",
+                name_hash: 1751459736,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TypeInfoAsset, module_name),
             },
             FieldInfoData {
                 name: "TypeName",
+                name_hash: 351160634,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TypeInfoAsset, type_name),
             },
             FieldInfoData {
                 name: "IsMeta",
+                name_hash: 2816483074,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TypeInfoAsset, is_meta),
             },
             FieldInfoData {
                 name: "Attributes",
+                name_hash: 3723762538,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TypeInfoAttribute-Array",
                 rust_offset: offset_of!(TypeInfoAsset, attributes),
             },
             FieldInfoData {
                 name: "IsNative",
+                name_hash: 578033790,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TypeInfoAsset, is_native),
@@ -11783,6 +12586,7 @@ impl TypeObject for TypeInfoAsset {
 
 pub static TYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoAsset-Array",
+    name_hash: 2575284407,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoAsset"),
@@ -11791,19 +12595,20 @@ pub static TYPEINFOASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoAttribute {
     pub _glacier_base: DataContainer,
     pub name: String,
-    pub arguments: Vec<TypeInfoAttributeArgument>,
+    pub arguments: Vec<BoxedTypeObject /* TypeInfoAttributeArgument */>,
     pub is_native: bool,
 }
 
 pub trait TypeInfoAttributeTrait: DataContainerTrait {
     fn name(&self) -> &String;
     fn name_mut(&mut self) -> &mut String;
-    fn arguments(&self) -> &Vec<TypeInfoAttributeArgument>;
-    fn arguments_mut(&mut self) -> &mut Vec<TypeInfoAttributeArgument>;
+    fn arguments(&self) -> &Vec<BoxedTypeObject /* TypeInfoAttributeArgument */>;
+    fn arguments_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TypeInfoAttributeArgument */>;
     fn is_native(&self) -> &bool;
     fn is_native_mut(&mut self) -> &mut bool;
 }
@@ -11815,10 +12620,10 @@ impl TypeInfoAttributeTrait for TypeInfoAttribute {
     fn name_mut(&mut self) -> &mut String {
         &mut self.name
     }
-    fn arguments(&self) -> &Vec<TypeInfoAttributeArgument> {
+    fn arguments(&self) -> &Vec<BoxedTypeObject /* TypeInfoAttributeArgument */> {
         &self.arguments
     }
-    fn arguments_mut(&mut self) -> &mut Vec<TypeInfoAttributeArgument> {
+    fn arguments_mut(&mut self) -> &mut Vec<BoxedTypeObject /* TypeInfoAttributeArgument */> {
         &mut self.arguments
     }
     fn is_native(&self) -> &bool {
@@ -11834,28 +12639,34 @@ impl DataContainerTrait for TypeInfoAttribute {
 
 pub static TYPEINFOATTRIBUTE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoAttribute",
+    name_hash: 692651663,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TypeInfoAttribute, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoAttribute as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoAttribute as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TypeInfoAttribute, name),
             },
             FieldInfoData {
                 name: "Arguments",
+                name_hash: 435589477,
                 flags: MemberInfoFlags::new(144),
                 field_type: "TypeInfoAttributeArgument-Array",
                 rust_offset: offset_of!(TypeInfoAttribute, arguments),
             },
             FieldInfoData {
                 name: "IsNative",
+                name_hash: 578033790,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TypeInfoAttribute, is_native),
@@ -11887,6 +12698,7 @@ impl TypeObject for TypeInfoAttribute {
 
 pub static TYPEINFOATTRIBUTE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoAttribute-Array",
+    name_hash: 3035947835,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoAttribute"),
@@ -11895,7 +12707,8 @@ pub static TYPEINFOATTRIBUTE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TypeInfoAttributeArgument {
     pub name: String,
     pub value: String,
@@ -11925,21 +12738,25 @@ impl TypeInfoAttributeArgumentTrait for TypeInfoAttributeArgument {
 
 pub static TYPEINFOATTRIBUTEARGUMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoAttributeArgument",
+    name_hash: 2479041500,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TypeInfoAttributeArgument as Default>::default())),
+            create_boxed: || Box::new(<TypeInfoAttributeArgument as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TypeInfoAttributeArgument, name),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TypeInfoAttributeArgument, value),
@@ -11971,6 +12788,7 @@ impl TypeObject for TypeInfoAttributeArgument {
 
 pub static TYPEINFOATTRIBUTEARGUMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeInfoAttributeArgument-Array",
+    name_hash: 2123986024,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeInfoAttributeArgument"),
@@ -11979,7 +12797,8 @@ pub static TYPEINFOATTRIBUTEARGUMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FunctionDelegateRef {
     pub type_info: glacier_reflect::builtin::TypeRef,
 }
@@ -12000,15 +12819,18 @@ impl FunctionDelegateRefTrait for FunctionDelegateRef {
 
 pub static FUNCTIONDELEGATEREF_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FunctionDelegateRef",
+    name_hash: 901571689,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FunctionDelegateRef as Default>::default())),
+            create_boxed: || Box::new(<FunctionDelegateRef as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TypeInfo",
+                name_hash: 351127923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TypeRef",
                 rust_offset: offset_of!(FunctionDelegateRef, type_info),
@@ -12040,6 +12862,7 @@ impl TypeObject for FunctionDelegateRef {
 
 pub static FUNCTIONDELEGATEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FunctionDelegateRef-Array",
+    name_hash: 1196161885,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("FunctionDelegateRef"),
@@ -12048,7 +12871,8 @@ pub static FUNCTIONDELEGATEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventDelay {
 }
 
@@ -12060,11 +12884,13 @@ impl EventDelayTrait for EventDelay {
 
 pub static EVENTDELAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventDelay",
+    name_hash: 3231866844,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventDelay as Default>::default())),
+            create_boxed: || Box::new(<EventDelay as Default>::default()),
         },
         fields: &[
         ],
@@ -12094,6 +12920,7 @@ impl TypeObject for EventDelay {
 
 pub static EVENTDELAY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventDelay-Array",
+    name_hash: 1796188264,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("EventDelay"),
@@ -12102,7 +12929,8 @@ pub static EVENTDELAY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TimingViewSettings {
     pub _glacier_base: DataContainer,
     pub enable: bool,
@@ -12424,214 +13252,251 @@ impl DataContainerTrait for TimingViewSettings {
 
 pub static TIMINGVIEWSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimingViewSettings",
+    name_hash: 279163933,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(TimingViewSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TimingViewSettings as Default>::default())),
+            create_boxed: || Box::new(<TimingViewSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, enable),
             },
             FieldInfoData {
                 name: "FrameCount",
+                name_hash: 741182715,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TimingViewSettings, frame_count),
             },
             FieldInfoData {
                 name: "FrameDelayCount",
+                name_hash: 4056595598,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TimingViewSettings, frame_delay_count),
             },
             FieldInfoData {
                 name: "FrameCountToReport",
+                name_hash: 2403515438,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TimingViewSettings, frame_count_to_report),
             },
             FieldInfoData {
                 name: "TimeRange",
+                name_hash: 170778575,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TimingViewSettings, time_range),
             },
             FieldInfoData {
                 name: "TimeOffset",
+                name_hash: 2388918461,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TimingViewSettings, time_offset),
             },
             FieldInfoData {
                 name: "LogThreshold",
+                name_hash: 267133270,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TimingViewSettings, log_threshold),
             },
             FieldInfoData {
                 name: "AutolockThreshold",
+                name_hash: 2834654070,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TimingViewSettings, autolock_threshold),
             },
             FieldInfoData {
                 name: "AutolockNameFilter",
+                name_hash: 700307558,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TimingViewSettings, autolock_name_filter),
             },
             FieldInfoData {
                 name: "LegendScreenOffset",
+                name_hash: 2099355397,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TimingViewSettings, legend_screen_offset),
             },
             FieldInfoData {
                 name: "LegendColumnWidth",
+                name_hash: 4015483860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TimingViewSettings, legend_column_width),
             },
             FieldInfoData {
                 name: "LegendDisplayMode",
+                name_hash: 3524433245,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TimingViewSettings, legend_display_mode),
             },
             FieldInfoData {
                 name: "AverageFrameCount",
+                name_hash: 4155437432,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TimingViewSettings, average_frame_count),
             },
             FieldInfoData {
                 name: "DrawEnable",
+                name_hash: 1347356004,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, draw_enable),
             },
             FieldInfoData {
                 name: "DrawBarsEnable",
+                name_hash: 3694545030,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, draw_bars_enable),
             },
             FieldInfoData {
                 name: "DrawLegendEnable",
+                name_hash: 1644114661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, draw_legend_enable),
             },
             FieldInfoData {
                 name: "DrawCpuLegendEnable",
+                name_hash: 450915267,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, draw_cpu_legend_enable),
             },
             FieldInfoData {
                 name: "DrawGpuLegendEnable",
+                name_hash: 591363015,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, draw_gpu_legend_enable),
             },
             FieldInfoData {
                 name: "DrawSpuLegendEnable",
+                name_hash: 3543221203,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, draw_spu_legend_enable),
             },
             FieldInfoData {
                 name: "SnoopEnable",
+                name_hash: 332594601,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, snoop_enable),
             },
             FieldInfoData {
                 name: "SnoopOnly",
+                name_hash: 477460828,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, snoop_only),
             },
             FieldInfoData {
                 name: "SnoopEventName",
+                name_hash: 570566851,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TimingViewSettings, snoop_event_name),
             },
             FieldInfoData {
                 name: "SortByTime",
+                name_hash: 1839336369,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, sort_by_time),
             },
             FieldInfoData {
                 name: "FilterEnable",
+                name_hash: 3231420132,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, filter_enable),
             },
             FieldInfoData {
                 name: "FilterEventName",
+                name_hash: 1452602030,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(TimingViewSettings, filter_event_name),
             },
             FieldInfoData {
                 name: "BarMinTime",
+                name_hash: 1638553323,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float64",
                 rust_offset: offset_of!(TimingViewSettings, bar_min_time),
             },
             FieldInfoData {
                 name: "BarHeight",
+                name_hash: 2196900171,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TimingViewSettings, bar_height),
             },
             FieldInfoData {
                 name: "BarPad",
+                name_hash: 2672961185,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TimingViewSettings, bar_pad),
             },
             FieldInfoData {
                 name: "BarSyncProcessor",
+                name_hash: 2518052805,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TimingViewSettings, bar_sync_processor),
             },
             FieldInfoData {
                 name: "MaxCpuLegendColumnCount",
+                name_hash: 3144102947,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TimingViewSettings, max_cpu_legend_column_count),
             },
             FieldInfoData {
                 name: "MaxGpuLegendColumnCount",
+                name_hash: 1835173031,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TimingViewSettings, max_gpu_legend_column_count),
             },
             FieldInfoData {
                 name: "MaxSpuLegendColumnCount",
+                name_hash: 3652642355,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TimingViewSettings, max_spu_legend_column_count),
             },
             FieldInfoData {
                 name: "MaxFrameEventCount",
+                name_hash: 3847876579,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(TimingViewSettings, max_frame_event_count),
             },
             FieldInfoData {
                 name: "CollectionEnable",
+                name_hash: 2029381618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(TimingViewSettings, collection_enable),
@@ -12663,6 +13528,7 @@ impl TypeObject for TimingViewSettings {
 
 pub static TIMINGVIEWSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TimingViewSettings-Array",
+    name_hash: 89522089,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TimingViewSettings"),
@@ -12671,7 +13537,8 @@ pub static TIMINGVIEWSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PerfJournalSettings {
     pub _glacier_base: DataContainer,
     pub enable: bool,
@@ -12804,88 +13671,104 @@ impl DataContainerTrait for PerfJournalSettings {
 
 pub static PERFJOURNALSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerfJournalSettings",
+    name_hash: 2895838304,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(PerfJournalSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PerfJournalSettings as Default>::default())),
+            create_boxed: || Box::new(<PerfJournalSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfJournalSettings, enable),
             },
             FieldInfoData {
                 name: "JournalExpensiveStats",
+                name_hash: 1674963338,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfJournalSettings, journal_expensive_stats),
             },
             FieldInfoData {
                 name: "JournalAllSPU",
+                name_hash: 3815279827,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfJournalSettings, journal_all_s_p_u),
             },
             FieldInfoData {
                 name: "JournalSampleInterval",
+                name_hash: 3738154557,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PerfJournalSettings, journal_sample_interval),
             },
             FieldInfoData {
                 name: "JournalReportAverage",
+                name_hash: 943410281,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfJournalSettings, journal_report_average),
             },
             FieldInfoData {
                 name: "JournalFrameCount",
+                name_hash: 1200953114,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PerfJournalSettings, journal_frame_count),
             },
             FieldInfoData {
                 name: "AutoJournalEnable",
+                name_hash: 2365091754,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfJournalSettings, auto_journal_enable),
             },
             FieldInfoData {
                 name: "AutoJournalScreenshot",
+                name_hash: 2032220711,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfJournalSettings, auto_journal_screenshot),
             },
             FieldInfoData {
                 name: "AutoJournalThresholdMs",
+                name_hash: 4146079490,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PerfJournalSettings, auto_journal_threshold_ms),
             },
             FieldInfoData {
                 name: "AutoJournalMinFrames",
+                name_hash: 1480205103,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PerfJournalSettings, auto_journal_min_frames),
             },
             FieldInfoData {
                 name: "TraceEnable",
+                name_hash: 848654053,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfJournalSettings, trace_enable),
             },
             FieldInfoData {
                 name: "AutoJournalContinuousCapture",
+                name_hash: 4039757442,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfJournalSettings, auto_journal_continuous_capture),
             },
             FieldInfoData {
                 name: "FloatsAlwaysHaveDecimal",
+                name_hash: 4073052774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfJournalSettings, floats_always_have_decimal),
@@ -12917,6 +13800,7 @@ impl TypeObject for PerfJournalSettings {
 
 pub static PERFJOURNALSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerfJournalSettings-Array",
+    name_hash: 955331156,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("PerfJournalSettings"),
@@ -12925,7 +13809,8 @@ pub static PERFJOURNALSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PerfHudSettings {
     pub _glacier_base: DataContainer,
     pub enable: bool,
@@ -13058,88 +13943,104 @@ impl DataContainerTrait for PerfHudSettings {
 
 pub static PERFHUDSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerfHudSettings",
+    name_hash: 88833368,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(PerfHudSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PerfHudSettings as Default>::default())),
+            create_boxed: || Box::new(<PerfHudSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfHudSettings, enable),
             },
             FieldInfoData {
                 name: "DrawCpuEnable",
+                name_hash: 1628031874,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfHudSettings, draw_cpu_enable),
             },
             FieldInfoData {
                 name: "DrawGpuEnable",
+                name_hash: 3838929798,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfHudSettings, draw_gpu_enable),
             },
             FieldInfoData {
                 name: "DrawSpuEnable",
+                name_hash: 3218986898,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfHudSettings, draw_spu_enable),
             },
             FieldInfoData {
                 name: "SimpleSummaryMode",
+                name_hash: 200277124,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfHudSettings, simple_summary_mode),
             },
             FieldInfoData {
                 name: "TimerCategorySetName",
+                name_hash: 4001058103,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(PerfHudSettings, timer_category_set_name),
             },
             FieldInfoData {
                 name: "TimerCategorySetsEnable",
+                name_hash: 1575667170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfHudSettings, timer_category_sets_enable),
             },
             FieldInfoData {
                 name: "DrawUngroupedTimings",
+                name_hash: 935600323,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfHudSettings, draw_ungrouped_timings),
             },
             FieldInfoData {
                 name: "DrawConfigFile",
+                name_hash: 1611334409,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfHudSettings, draw_config_file),
             },
             FieldInfoData {
                 name: "HudRightMargin",
+                name_hash: 3509999682,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PerfHudSettings, hud_right_margin),
             },
             FieldInfoData {
                 name: "HudTopMargin",
+                name_hash: 354091593,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PerfHudSettings, hud_top_margin),
             },
             FieldInfoData {
                 name: "HudAlpha",
+                name_hash: 1217473736,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(PerfHudSettings, hud_alpha),
             },
             FieldInfoData {
                 name: "HudCompact",
+                name_hash: 1823758555,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PerfHudSettings, hud_compact),
@@ -13171,6 +14072,7 @@ impl TypeObject for PerfHudSettings {
 
 pub static PERFHUDSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerfHudSettings-Array",
+    name_hash: 2134456300,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("PerfHudSettings"),
@@ -13179,7 +14081,8 @@ pub static PERFHUDSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoreLogUpdateSettingsMessage {
 }
 
@@ -13191,11 +14094,13 @@ impl CoreLogUpdateSettingsMessageTrait for CoreLogUpdateSettingsMessage {
 
 pub static CORELOGUPDATESETTINGSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreLogUpdateSettingsMessage",
+    name_hash: 577721221,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoreLogUpdateSettingsMessage as Default>::default())),
+            create_boxed: || Box::new(<CoreLogUpdateSettingsMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13222,7 +14127,8 @@ impl TypeObject for CoreLogUpdateSettingsMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SplitScreenSetPrimaryLocalPlayerIdMessage {
 }
 
@@ -13234,11 +14140,13 @@ impl SplitScreenSetPrimaryLocalPlayerIdMessageTrait for SplitScreenSetPrimaryLoc
 
 pub static SPLITSCREENSETPRIMARYLOCALPLAYERIDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SplitScreenSetPrimaryLocalPlayerIdMessage",
+    name_hash: 3491929933,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SplitScreenSetPrimaryLocalPlayerIdMessage as Default>::default())),
+            create_boxed: || Box::new(<SplitScreenSetPrimaryLocalPlayerIdMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13265,7 +14173,8 @@ impl TypeObject for SplitScreenSetPrimaryLocalPlayerIdMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamInstallRequestResumeMessage {
 }
 
@@ -13277,11 +14186,13 @@ impl StreamInstallRequestResumeMessageTrait for StreamInstallRequestResumeMessag
 
 pub static STREAMINSTALLREQUESTRESUMEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamInstallRequestResumeMessage",
+    name_hash: 3533591931,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamInstallRequestResumeMessage as Default>::default())),
+            create_boxed: || Box::new(<StreamInstallRequestResumeMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13308,7 +14219,8 @@ impl TypeObject for StreamInstallRequestResumeMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamInstallRequestSuspendMessage {
 }
 
@@ -13320,11 +14232,13 @@ impl StreamInstallRequestSuspendMessageTrait for StreamInstallRequestSuspendMess
 
 pub static STREAMINSTALLREQUESTSUSPENDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamInstallRequestSuspendMessage",
+    name_hash: 2306105512,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamInstallRequestSuspendMessage as Default>::default())),
+            create_boxed: || Box::new(<StreamInstallRequestSuspendMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13351,7 +14265,8 @@ impl TypeObject for StreamInstallRequestSuspendMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamInstallGroupInstallationProgressMessage {
 }
 
@@ -13363,11 +14278,13 @@ impl StreamInstallGroupInstallationProgressMessageTrait for StreamInstallGroupIn
 
 pub static STREAMINSTALLGROUPINSTALLATIONPROGRESSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamInstallGroupInstallationProgressMessage",
+    name_hash: 3222622413,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamInstallGroupInstallationProgressMessage as Default>::default())),
+            create_boxed: || Box::new(<StreamInstallGroupInstallationProgressMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13394,7 +14311,8 @@ impl TypeObject for StreamInstallGroupInstallationProgressMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamInstallGroupInstalledMessage {
 }
 
@@ -13406,11 +14324,13 @@ impl StreamInstallGroupInstalledMessageTrait for StreamInstallGroupInstalledMess
 
 pub static STREAMINSTALLGROUPINSTALLEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamInstallGroupInstalledMessage",
+    name_hash: 4236237356,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamInstallGroupInstalledMessage as Default>::default())),
+            create_boxed: || Box::new(<StreamInstallGroupInstalledMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13437,7 +14357,8 @@ impl TypeObject for StreamInstallGroupInstalledMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamInstallInstallationProgressMessage {
 }
 
@@ -13449,11 +14370,13 @@ impl StreamInstallInstallationProgressMessageTrait for StreamInstallInstallation
 
 pub static STREAMINSTALLINSTALLATIONPROGRESSMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamInstallInstallationProgressMessage",
+    name_hash: 1057555858,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamInstallInstallationProgressMessage as Default>::default())),
+            create_boxed: || Box::new(<StreamInstallInstallationProgressMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13480,7 +14403,8 @@ impl TypeObject for StreamInstallInstallationProgressMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamInstallInstallationFailedMessage {
 }
 
@@ -13492,11 +14416,13 @@ impl StreamInstallInstallationFailedMessageTrait for StreamInstallInstallationFa
 
 pub static STREAMINSTALLINSTALLATIONFAILEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamInstallInstallationFailedMessage",
+    name_hash: 3289399500,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamInstallInstallationFailedMessage as Default>::default())),
+            create_boxed: || Box::new(<StreamInstallInstallationFailedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13523,7 +14449,8 @@ impl TypeObject for StreamInstallInstallationFailedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StreamInstallInstallationCompletedMessage {
 }
 
@@ -13535,11 +14462,13 @@ impl StreamInstallInstallationCompletedMessageTrait for StreamInstallInstallatio
 
 pub static STREAMINSTALLINSTALLATIONCOMPLETEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StreamInstallInstallationCompletedMessage",
+    name_hash: 101241602,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StreamInstallInstallationCompletedMessage as Default>::default())),
+            create_boxed: || Box::new(<StreamInstallInstallationCompletedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13566,7 +14495,8 @@ impl TypeObject for StreamInstallInstallationCompletedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoreApplicationActivationMessage {
 }
 
@@ -13578,11 +14508,13 @@ impl CoreApplicationActivationMessageTrait for CoreApplicationActivationMessage 
 
 pub static COREAPPLICATIONACTIVATIONMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreApplicationActivationMessage",
+    name_hash: 2815310683,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoreApplicationActivationMessage as Default>::default())),
+            create_boxed: || Box::new(<CoreApplicationActivationMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13622,6 +14554,7 @@ pub enum ApplicationActivationState {
 
 pub static APPLICATIONACTIVATIONSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ApplicationActivationState",
+    name_hash: 317771708,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -13650,6 +14583,7 @@ impl TypeObject for ApplicationActivationState {
 
 pub static APPLICATIONACTIVATIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ApplicationActivationState-Array",
+    name_hash: 96356104,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ApplicationActivationState"),
@@ -13658,7 +14592,8 @@ pub static APPLICATIONACTIVATIONSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoreCleanupMessage {
 }
 
@@ -13670,11 +14605,13 @@ impl CoreCleanupMessageTrait for CoreCleanupMessage {
 
 pub static CORECLEANUPMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreCleanupMessage",
+    name_hash: 2831461877,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoreCleanupMessage as Default>::default())),
+            create_boxed: || Box::new(<CoreCleanupMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13701,7 +14638,8 @@ impl TypeObject for CoreCleanupMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoreSublevelStartStreamOutMessage {
 }
 
@@ -13713,11 +14651,13 @@ impl CoreSublevelStartStreamOutMessageTrait for CoreSublevelStartStreamOutMessag
 
 pub static CORESUBLEVELSTARTSTREAMOUTMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreSublevelStartStreamOutMessage",
+    name_hash: 1419526837,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoreSublevelStartStreamOutMessage as Default>::default())),
+            create_boxed: || Box::new(<CoreSublevelStartStreamOutMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13744,7 +14684,8 @@ impl TypeObject for CoreSublevelStartStreamOutMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CorePanicMessage {
 }
 
@@ -13756,11 +14697,13 @@ impl CorePanicMessageTrait for CorePanicMessage {
 
 pub static COREPANICMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CorePanicMessage",
+    name_hash: 2116451264,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CorePanicMessage as Default>::default())),
+            create_boxed: || Box::new(<CorePanicMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13787,7 +14730,8 @@ impl TypeObject for CorePanicMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoreQuitMessage {
 }
 
@@ -13799,11 +14743,13 @@ impl CoreQuitMessageTrait for CoreQuitMessage {
 
 pub static COREQUITMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreQuitMessage",
+    name_hash: 3910396076,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoreQuitMessage as Default>::default())),
+            create_boxed: || Box::new(<CoreQuitMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13830,7 +14776,8 @@ impl TypeObject for CoreQuitMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoreUpdateClipboardMessage {
 }
 
@@ -13842,11 +14789,13 @@ impl CoreUpdateClipboardMessageTrait for CoreUpdateClipboardMessage {
 
 pub static COREUPDATECLIPBOARDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreUpdateClipboardMessage",
+    name_hash: 3654911496,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoreUpdateClipboardMessage as Default>::default())),
+            create_boxed: || Box::new(<CoreUpdateClipboardMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13873,7 +14822,8 @@ impl TypeObject for CoreUpdateClipboardMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoreMainThreadInitMessage {
 }
 
@@ -13885,11 +14835,13 @@ impl CoreMainThreadInitMessageTrait for CoreMainThreadInitMessage {
 
 pub static COREMAINTHREADINITMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreMainThreadInitMessage",
+    name_hash: 3728023242,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoreMainThreadInitMessage as Default>::default())),
+            create_boxed: || Box::new(<CoreMainThreadInitMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13916,7 +14868,8 @@ impl TypeObject for CoreMainThreadInitMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoreHibernateMessage {
 }
 
@@ -13928,11 +14881,13 @@ impl CoreHibernateMessageTrait for CoreHibernateMessage {
 
 pub static COREHIBERNATEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreHibernateMessage",
+    name_hash: 4193118591,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoreHibernateMessage as Default>::default())),
+            create_boxed: || Box::new(<CoreHibernateMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -13959,7 +14914,8 @@ impl TypeObject for CoreHibernateMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CoreQuittingInitiatedMessage {
 }
 
@@ -13971,11 +14927,13 @@ impl CoreQuittingInitiatedMessageTrait for CoreQuittingInitiatedMessage {
 
 pub static COREQUITTINGINITIATEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CoreQuittingInitiatedMessage",
+    name_hash: 3242141247,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CoreQuittingInitiatedMessage as Default>::default())),
+            create_boxed: || Box::new(<CoreQuittingInitiatedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -14002,18 +14960,19 @@ impl TypeObject for CoreQuittingInitiatedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SparseTransformArray {
     pub indices: Vec<u16>,
-    pub transforms: Vec<LinearTransform>,
+    pub transforms: Vec<BoxedTypeObject /* LinearTransform */>,
     pub count: u32,
 }
 
 pub trait SparseTransformArrayTrait: TypeObject {
     fn indices(&self) -> &Vec<u16>;
     fn indices_mut(&mut self) -> &mut Vec<u16>;
-    fn transforms(&self) -> &Vec<LinearTransform>;
-    fn transforms_mut(&mut self) -> &mut Vec<LinearTransform>;
+    fn transforms(&self) -> &Vec<BoxedTypeObject /* LinearTransform */>;
+    fn transforms_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LinearTransform */>;
     fn count(&self) -> &u32;
     fn count_mut(&mut self) -> &mut u32;
 }
@@ -14025,10 +14984,10 @@ impl SparseTransformArrayTrait for SparseTransformArray {
     fn indices_mut(&mut self) -> &mut Vec<u16> {
         &mut self.indices
     }
-    fn transforms(&self) -> &Vec<LinearTransform> {
+    fn transforms(&self) -> &Vec<BoxedTypeObject /* LinearTransform */> {
         &self.transforms
     }
-    fn transforms_mut(&mut self) -> &mut Vec<LinearTransform> {
+    fn transforms_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LinearTransform */> {
         &mut self.transforms
     }
     fn count(&self) -> &u32 {
@@ -14041,27 +15000,32 @@ impl SparseTransformArrayTrait for SparseTransformArray {
 
 pub static SPARSETRANSFORMARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SparseTransformArray",
+    name_hash: 2155854710,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SparseTransformArray as Default>::default())),
+            create_boxed: || Box::new(<SparseTransformArray as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Indices",
+                name_hash: 1672980602,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint16-Array",
                 rust_offset: offset_of!(SparseTransformArray, indices),
             },
             FieldInfoData {
                 name: "Transforms",
+                name_hash: 1906106874,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinearTransform-Array",
                 rust_offset: offset_of!(SparseTransformArray, transforms),
             },
             FieldInfoData {
                 name: "Count",
+                name_hash: 212413894,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(SparseTransformArray, count),
@@ -14093,6 +15057,7 @@ impl TypeObject for SparseTransformArray {
 
 pub static SPARSETRANSFORMARRAY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SparseTransformArray-Array",
+    name_hash: 2779242562,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("SparseTransformArray"),
@@ -14101,7 +15066,8 @@ pub static SPARSETRANSFORMARRAY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SplineCurve {
     pub x_values0: Vec4,
     pub x_values1: Vec4,
@@ -14239,93 +15205,109 @@ impl SplineCurveTrait for SplineCurve {
 
 pub static SPLINECURVE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SplineCurve",
+    name_hash: 2881532991,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SplineCurve as Default>::default())),
+            create_boxed: || Box::new(<SplineCurve as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "XValues0",
+                name_hash: 3593824309,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, x_values0),
             },
             FieldInfoData {
                 name: "XValues1",
+                name_hash: 3593824308,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, x_values1),
             },
             FieldInfoData {
                 name: "XValues2",
+                name_hash: 3593824311,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, x_values2),
             },
             FieldInfoData {
                 name: "YValues0",
+                name_hash: 957382996,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, y_values0),
             },
             FieldInfoData {
                 name: "YValues1",
+                name_hash: 957382997,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, y_values1),
             },
             FieldInfoData {
                 name: "YValues2",
+                name_hash: 957382998,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, y_values2),
             },
             FieldInfoData {
                 name: "YValues3",
+                name_hash: 957382999,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, y_values3),
             },
             FieldInfoData {
                 name: "GValues0",
+                name_hash: 2487331978,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, g_values0),
             },
             FieldInfoData {
                 name: "GValues1",
+                name_hash: 2487331979,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, g_values1),
             },
             FieldInfoData {
                 name: "GValues2",
+                name_hash: 2487331976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, g_values2),
             },
             FieldInfoData {
                 name: "GValues3",
+                name_hash: 2487331977,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, g_values3),
             },
             FieldInfoData {
                 name: "GValues4",
+                name_hash: 2487331982,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, g_values4),
             },
             FieldInfoData {
                 name: "GValues5",
+                name_hash: 2487331983,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(SplineCurve, g_values5),
             },
             FieldInfoData {
                 name: "SplineType",
+                name_hash: 3992327344,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SplineType",
                 rust_offset: offset_of!(SplineCurve, spline_type),
@@ -14357,6 +15339,7 @@ impl TypeObject for SplineCurve {
 
 pub static SPLINECURVE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SplineCurve-Array",
+    name_hash: 2283227531,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("SplineCurve"),
@@ -14377,6 +15360,7 @@ pub enum SplineType {
 
 pub static SPLINETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SplineType",
+    name_hash: 3992327344,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -14405,6 +15389,7 @@ impl TypeObject for SplineType {
 
 pub static SPLINETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SplineType-Array",
+    name_hash: 1596211716,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("SplineType"),
@@ -14416,6 +15401,7 @@ pub static SPLINETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static EVALUATEFLOATCURVE_FLOAT32_FLOAT32_FLOATCURVE__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EvaluateFloatCurve(Float32,Float32,FloatCurve)",
+    name_hash: 13200063,
     flags: MemberInfoFlags::new(793),
     module: "Core",
     data: TypeInfoData::Unknown,
@@ -14427,6 +15413,7 @@ pub static EVALUATEFLOATCURVE_FLOAT32_FLOAT32_FLOATCURVE__TYPE_INFO: &'static Ty
 
 pub static EVALUATEAUDIOCURVE_FLOAT32_FLOAT32_AUDIOCURVE__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EvaluateAudioCurve(Float32,Float32,AudioCurve)",
+    name_hash: 2308503487,
     flags: MemberInfoFlags::new(793),
     module: "Core",
     data: TypeInfoData::Unknown,
@@ -14435,22 +15422,23 @@ pub static EVALUATEAUDIOCURVE_FLOAT32_FLOAT32_AUDIOCURVE__TYPE_INFO: &'static Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatCurveCollectionAsset {
     pub _glacier_base: Asset,
-    pub curves: Vec<Option<Arc<Mutex<dyn FloatCurveTrait>>>>,
+    pub curves: Vec<Option<LockedTypeObject /* FloatCurve */>>,
 }
 
 pub trait FloatCurveCollectionAssetTrait: AssetTrait {
-    fn curves(&self) -> &Vec<Option<Arc<Mutex<dyn FloatCurveTrait>>>>;
-    fn curves_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FloatCurveTrait>>>>;
+    fn curves(&self) -> &Vec<Option<LockedTypeObject /* FloatCurve */>>;
+    fn curves_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* FloatCurve */>>;
 }
 
 impl FloatCurveCollectionAssetTrait for FloatCurveCollectionAsset {
-    fn curves(&self) -> &Vec<Option<Arc<Mutex<dyn FloatCurveTrait>>>> {
+    fn curves(&self) -> &Vec<Option<LockedTypeObject /* FloatCurve */>> {
         &self.curves
     }
-    fn curves_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn FloatCurveTrait>>>> {
+    fn curves_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* FloatCurve */>> {
         &mut self.curves
     }
 }
@@ -14469,16 +15457,20 @@ impl DataContainerTrait for FloatCurveCollectionAsset {
 
 pub static FLOATCURVECOLLECTIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurveCollectionAsset",
+    name_hash: 617697028,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(FloatCurveCollectionAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatCurveCollectionAsset as Default>::default())),
+            create_boxed: || Box::new(<FloatCurveCollectionAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Curves",
+                name_hash: 2729642401,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FloatCurve-Array",
                 rust_offset: offset_of!(FloatCurveCollectionAsset, curves),
@@ -14510,6 +15502,7 @@ impl TypeObject for FloatCurveCollectionAsset {
 
 pub static FLOATCURVECOLLECTIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurveCollectionAsset-Array",
+    name_hash: 2083447600,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("FloatCurveCollectionAsset"),
@@ -14518,17 +15511,18 @@ pub static FLOATCURVECOLLECTIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatCurve {
     pub _glacier_base: DataContainer,
-    pub points: Vec<FloatCurvePoint>,
+    pub points: Vec<BoxedTypeObject /* FloatCurvePoint */>,
     pub min_x: f32,
     pub max_x: f32,
 }
 
 pub trait FloatCurveTrait: DataContainerTrait {
-    fn points(&self) -> &Vec<FloatCurvePoint>;
-    fn points_mut(&mut self) -> &mut Vec<FloatCurvePoint>;
+    fn points(&self) -> &Vec<BoxedTypeObject /* FloatCurvePoint */>;
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FloatCurvePoint */>;
     fn min_x(&self) -> &f32;
     fn min_x_mut(&mut self) -> &mut f32;
     fn max_x(&self) -> &f32;
@@ -14536,10 +15530,10 @@ pub trait FloatCurveTrait: DataContainerTrait {
 }
 
 impl FloatCurveTrait for FloatCurve {
-    fn points(&self) -> &Vec<FloatCurvePoint> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* FloatCurvePoint */> {
         &self.points
     }
-    fn points_mut(&mut self) -> &mut Vec<FloatCurvePoint> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* FloatCurvePoint */> {
         &mut self.points
     }
     fn min_x(&self) -> &f32 {
@@ -14561,28 +15555,34 @@ impl DataContainerTrait for FloatCurve {
 
 pub static FLOATCURVE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurve",
+    name_hash: 3138637890,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(FloatCurve, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatCurve as Default>::default())),
+            create_boxed: || Box::new(<FloatCurve as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Points",
+                name_hash: 3383606106,
                 flags: MemberInfoFlags::new(144),
                 field_type: "FloatCurvePoint-Array",
                 rust_offset: offset_of!(FloatCurve, points),
             },
             FieldInfoData {
                 name: "MinX",
+                name_hash: 2088770807,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatCurve, min_x),
             },
             FieldInfoData {
                 name: "MaxX",
+                name_hash: 2088779177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatCurve, max_x),
@@ -14614,6 +15614,7 @@ impl TypeObject for FloatCurve {
 
 pub static FLOATCURVE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurve-Array",
+    name_hash: 349839350,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("FloatCurve"),
@@ -14635,6 +15636,7 @@ pub enum FloatCurveType {
 
 pub static FLOATCURVETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurveType",
+    name_hash: 3310725626,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -14663,6 +15665,7 @@ impl TypeObject for FloatCurveType {
 
 pub static FLOATCURVETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurveType-Array",
+    name_hash: 3105250510,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("FloatCurveType"),
@@ -14671,7 +15674,8 @@ pub static FLOATCURVETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FloatCurvePoint {
     pub x: f32,
     pub y: f32,
@@ -14746,51 +15750,60 @@ impl FloatCurvePointTrait for FloatCurvePoint {
 
 pub static FLOATCURVEPOINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurvePoint",
+    name_hash: 1875772590,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FloatCurvePoint as Default>::default())),
+            create_boxed: || Box::new(<FloatCurvePoint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "X",
+                name_hash: 177661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatCurvePoint, x),
             },
             FieldInfoData {
                 name: "Y",
+                name_hash: 177660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatCurvePoint, y),
             },
             FieldInfoData {
                 name: "InTangentOffsetX",
+                name_hash: 2987401972,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatCurvePoint, in_tangent_offset_x),
             },
             FieldInfoData {
                 name: "InTangentOffsetY",
+                name_hash: 2987401973,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatCurvePoint, in_tangent_offset_y),
             },
             FieldInfoData {
                 name: "OutTangentOffsetX",
+                name_hash: 3383076733,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatCurvePoint, out_tangent_offset_x),
             },
             FieldInfoData {
                 name: "OutTangentOffsetY",
+                name_hash: 3383076732,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FloatCurvePoint, out_tangent_offset_y),
             },
             FieldInfoData {
                 name: "CurveType",
+                name_hash: 2399916074,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurveType",
                 rust_offset: offset_of!(FloatCurvePoint, curve_type),
@@ -14822,6 +15835,7 @@ impl TypeObject for FloatCurvePoint {
 
 pub static FLOATCURVEPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FloatCurvePoint-Array",
+    name_hash: 1838476570,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("FloatCurvePoint"),
@@ -14830,7 +15844,8 @@ pub static FLOATCURVEPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectCurvePoint {
     pub x: f32,
     pub y: f32,
@@ -14869,27 +15884,32 @@ impl EffectCurvePointTrait for EffectCurvePoint {
 
 pub static EFFECTCURVEPOINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectCurvePoint",
+    name_hash: 1422990217,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectCurvePoint as Default>::default())),
+            create_boxed: || Box::new(<EffectCurvePoint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "X",
+                name_hash: 177661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EffectCurvePoint, x),
             },
             FieldInfoData {
                 name: "Y",
+                name_hash: 177660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EffectCurvePoint, y),
             },
             FieldInfoData {
                 name: "K",
+                name_hash: 177646,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EffectCurvePoint, k),
@@ -14921,6 +15941,7 @@ impl TypeObject for EffectCurvePoint {
 
 pub static EFFECTCURVEPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectCurvePoint-Array",
+    name_hash: 838897981,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("EffectCurvePoint"),
@@ -14929,24 +15950,25 @@ pub static EFFECTCURVEPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioCurve {
-    pub points: Vec<AudioCurvePoint>,
+    pub points: Vec<BoxedTypeObject /* AudioCurvePoint */>,
     pub curve_type: AudioCurveType,
 }
 
 pub trait AudioCurveTrait: TypeObject {
-    fn points(&self) -> &Vec<AudioCurvePoint>;
-    fn points_mut(&mut self) -> &mut Vec<AudioCurvePoint>;
+    fn points(&self) -> &Vec<BoxedTypeObject /* AudioCurvePoint */>;
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* AudioCurvePoint */>;
     fn curve_type(&self) -> &AudioCurveType;
     fn curve_type_mut(&mut self) -> &mut AudioCurveType;
 }
 
 impl AudioCurveTrait for AudioCurve {
-    fn points(&self) -> &Vec<AudioCurvePoint> {
+    fn points(&self) -> &Vec<BoxedTypeObject /* AudioCurvePoint */> {
         &self.points
     }
-    fn points_mut(&mut self) -> &mut Vec<AudioCurvePoint> {
+    fn points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* AudioCurvePoint */> {
         &mut self.points
     }
     fn curve_type(&self) -> &AudioCurveType {
@@ -14959,21 +15981,25 @@ impl AudioCurveTrait for AudioCurve {
 
 pub static AUDIOCURVE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioCurve",
+    name_hash: 2895553188,
     flags: MemberInfoFlags::new(73),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioCurve as Default>::default())),
+            create_boxed: || Box::new(<AudioCurve as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Points",
+                name_hash: 3383606106,
                 flags: MemberInfoFlags::new(144),
                 field_type: "AudioCurvePoint-Array",
                 rust_offset: offset_of!(AudioCurve, points),
             },
             FieldInfoData {
                 name: "CurveType",
+                name_hash: 2399916074,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AudioCurveType",
                 rust_offset: offset_of!(AudioCurve, curve_type),
@@ -15005,6 +16031,7 @@ impl TypeObject for AudioCurve {
 
 pub static AUDIOCURVE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioCurve-Array",
+    name_hash: 3039049232,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("AudioCurve"),
@@ -15026,6 +16053,7 @@ pub enum AudioCurveType {
 
 pub static AUDIOCURVETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioCurveType",
+    name_hash: 2262257948,
     flags: MemberInfoFlags::new(49429),
     module: "Core",
     data: TypeInfoData::Enum,
@@ -15054,6 +16082,7 @@ impl TypeObject for AudioCurveType {
 
 pub static AUDIOCURVETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioCurveType-Array",
+    name_hash: 3510667560,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("AudioCurveType"),
@@ -15062,7 +16091,8 @@ pub static AUDIOCURVETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AudioCurvePoint {
     pub x: f32,
     pub y: f32,
@@ -15101,27 +16131,32 @@ impl AudioCurvePointTrait for AudioCurvePoint {
 
 pub static AUDIOCURVEPOINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioCurvePoint",
+    name_hash: 1645150792,
     flags: MemberInfoFlags::new(36937),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AudioCurvePoint as Default>::default())),
+            create_boxed: || Box::new(<AudioCurvePoint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "X",
+                name_hash: 177661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioCurvePoint, x),
             },
             FieldInfoData {
                 name: "Y",
+                name_hash: 177660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioCurvePoint, y),
             },
             FieldInfoData {
                 name: "K",
+                name_hash: 177646,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AudioCurvePoint, k),
@@ -15153,6 +16188,7 @@ impl TypeObject for AudioCurvePoint {
 
 pub static AUDIOCURVEPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AudioCurvePoint-Array",
+    name_hash: 1413068028,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("AudioCurvePoint"),
@@ -15164,6 +16200,7 @@ pub static AUDIOCURVEPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static FBASSERT_BOOLEAN__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FbAssert(Boolean)",
+    name_hash: 3953984294,
     flags: MemberInfoFlags::new(793),
     module: "Core",
     data: TypeInfoData::Unknown,
@@ -15172,7 +16209,8 @@ pub static FBASSERT_BOOLEAN__TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DebugRenderSettings {
     pub _glacier_base: DataContainer,
     pub enable: bool,
@@ -15278,70 +16316,83 @@ impl DataContainerTrait for DebugRenderSettings {
 
 pub static DEBUGRENDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DebugRenderSettings",
+    name_hash: 2700858171,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(DebugRenderSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DebugRenderSettings as Default>::default())),
+            create_boxed: || Box::new(<DebugRenderSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DebugRenderSettings, enable),
             },
             FieldInfoData {
                 name: "DrawStatsEnable",
+                name_hash: 711726149,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DebugRenderSettings, draw_stats_enable),
             },
             FieldInfoData {
                 name: "TextViewDistance",
+                name_hash: 853125686,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DebugRenderSettings, text_view_distance),
             },
             FieldInfoData {
                 name: "TextQueueMaxLineCount",
+                name_hash: 1799437200,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DebugRenderSettings, text_queue_max_line_count),
             },
             FieldInfoData {
                 name: "TextQueueTimeVisible",
+                name_hash: 1402582002,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DebugRenderSettings, text_queue_time_visible),
             },
             FieldInfoData {
                 name: "TextQueueLocationTop",
+                name_hash: 607168255,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DebugRenderSettings, text_queue_location_top),
             },
             FieldInfoData {
                 name: "ProcessJobCount",
+                name_hash: 3110006474,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(DebugRenderSettings, process_job_count),
             },
             FieldInfoData {
                 name: "DxMaxVertexCount",
+                name_hash: 981947110,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(DebugRenderSettings, dx_max_vertex_count),
             },
             FieldInfoData {
                 name: "DxLine2dAntialiasingEnable",
+                name_hash: 944294596,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DebugRenderSettings, dx_line2d_antialiasing_enable),
             },
             FieldInfoData {
                 name: "DxLine3dAntialiasingEnable",
+                name_hash: 542123237,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DebugRenderSettings, dx_line3d_antialiasing_enable),
@@ -15373,6 +16424,7 @@ impl TypeObject for DebugRenderSettings {
 
 pub static DEBUGRENDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DebugRenderSettings-Array",
+    name_hash: 1773009551,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DebugRenderSettings"),
@@ -15384,6 +16436,7 @@ pub static DEBUGRENDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static GETSCREENHEIGHT_UINT32__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetScreenHeight(Uint32)",
+    name_hash: 718026086,
     flags: MemberInfoFlags::new(793),
     module: "Core",
     data: TypeInfoData::Unknown,
@@ -15395,6 +16448,7 @@ pub static GETSCREENHEIGHT_UINT32__TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static GETSCREENWIDTH_UINT32__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetScreenWidth(Uint32)",
+    name_hash: 3732009535,
     flags: MemberInfoFlags::new(793),
     module: "Core",
     data: TypeInfoData::Unknown,
@@ -15406,6 +16460,7 @@ pub static GETSCREENWIDTH_UINT32__TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DRAWTEXT2D_INT32_INT32_FLOAT32_CSTRING__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DrawText2d(Int32,Int32,Float32,CString)",
+    name_hash: 3864832740,
     flags: MemberInfoFlags::new(793),
     module: "Core",
     data: TypeInfoData::Unknown,
@@ -15414,7 +16469,8 @@ pub static DRAWTEXT2D_INT32_INT32_FLOAT32_CSTRING__TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RuntimeModule {
 }
 
@@ -15426,12 +16482,15 @@ impl RuntimeModuleTrait for RuntimeModule {
 
 pub static RUNTIMEMODULE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RuntimeModule",
+    name_hash: 1332162147,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RuntimeModule as Default>::default())),
+            create_boxed: || Box::new(<RuntimeModule as Default>::default()),
         },
         fields: &[
         ],
@@ -15461,6 +16520,7 @@ impl TypeObject for RuntimeModule {
 
 pub static RUNTIMEMODULE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RuntimeModule-Array",
+    name_hash: 624075351,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("RuntimeModule"),
@@ -15472,6 +16532,7 @@ pub static RUNTIMEMODULE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static BOXEDVALUEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoxedValueRef-Array",
+    name_hash: 3734579679,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("BoxedValueRef"),
@@ -15483,6 +16544,7 @@ pub static BOXEDVALUEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static TYPEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TypeRef-Array",
+    name_hash: 1163585496,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("TypeRef"),
@@ -15494,6 +16556,7 @@ pub static TYPEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DBOBJECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DbObject-Array",
+    name_hash: 575128482,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DbObject"),
@@ -15505,6 +16568,7 @@ pub static DBOBJECT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static DBOBJECT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DbObject",
+    name_hash: 3650719382,
     flags: MemberInfoFlags::new(45),
     module: "Core",
     data: TypeInfoData::Unknown,
@@ -15516,6 +16580,7 @@ pub static DBOBJECT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static FILEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FileRef-Array",
+    name_hash: 4115558342,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("FileRef"),
@@ -15527,6 +16592,7 @@ pub static FILEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static STRING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "String-Array",
+    name_hash: 3719579620,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("String"),
@@ -15538,6 +16604,7 @@ pub static STRING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static STRING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "String",
+    name_hash: 3320113488,
     flags: MemberInfoFlags::new(16589),
     module: "Core",
     data: TypeInfoData::Unknown,
@@ -15549,6 +16616,7 @@ pub static STRING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static CSTRING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CString-Array",
+    name_hash: 2327192135,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("CString"),
@@ -15560,6 +16628,7 @@ pub static CSTRING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static VOID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Void-Array",
+    name_hash: 3452188581,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Void"),
@@ -15571,6 +16640,7 @@ pub static VOID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static VOID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Void",
+    name_hash: 2089252369,
     flags: MemberInfoFlags::new(13),
     module: "Core",
     data: TypeInfoData::Unknown,
@@ -15582,6 +16652,7 @@ pub static VOID_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static RESOURCEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ResourceRef-Array",
+    name_hash: 2012889066,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("ResourceRef"),
@@ -15593,6 +16664,7 @@ pub static RESOURCEREF_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static SHA1_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SHA1-Array",
+    name_hash: 1448381914,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("SHA1"),
@@ -15604,6 +16676,7 @@ pub static SHA1_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static GUID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Guid-Array",
+    name_hash: 2607922254,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Guid"),
@@ -15615,6 +16688,7 @@ pub static GUID_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static FLOAT64_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Float64-Array",
+    name_hash: 789532579,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Float64"),
@@ -15626,6 +16700,7 @@ pub static FLOAT64_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static FLOAT32_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Float32-Array",
+    name_hash: 1758053120,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Float32"),
@@ -15637,6 +16712,7 @@ pub static FLOAT32_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static INT64_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Int64-Array",
+    name_hash: 1330920896,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Int64"),
@@ -15648,6 +16724,7 @@ pub static INT64_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static UINT64_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Uint64-Array",
+    name_hash: 2441156149,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Uint64"),
@@ -15659,6 +16736,7 @@ pub static UINT64_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static INT32_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Int32-Array",
+    name_hash: 256527203,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Int32"),
@@ -15670,6 +16748,7 @@ pub static INT32_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static UINT32_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Uint32-Array",
+    name_hash: 91208342,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Uint32"),
@@ -15681,6 +16760,7 @@ pub static UINT32_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static INT16_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Int16-Array",
+    name_hash: 2612106277,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Int16"),
@@ -15692,6 +16772,7 @@ pub static INT16_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static UINT16_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Uint16-Array",
+    name_hash: 3259113552,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Uint16"),
@@ -15703,6 +16784,7 @@ pub static UINT16_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static INT8_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Int8-Array",
+    name_hash: 881898362,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Int8"),
@@ -15714,6 +16796,7 @@ pub static INT8_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static UINT8_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Uint8-Array",
+    name_hash: 2653196463,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Uint8"),
@@ -15725,6 +16808,7 @@ pub static UINT8_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 
 pub static BOOLEAN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Boolean-Array",
+    name_hash: 2861268117,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Boolean"),
@@ -15733,7 +16817,8 @@ pub static BOOLEAN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AxisAlignedBox {
     pub min: Vec3,
     pub max: Vec3,
@@ -15763,21 +16848,25 @@ impl AxisAlignedBoxTrait for AxisAlignedBox {
 
 pub static AXISALIGNEDBOX_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AxisAlignedBox",
+    name_hash: 3329912543,
     flags: MemberInfoFlags::new(53321),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AxisAlignedBox as Default>::default())),
+            create_boxed: || Box::new(<AxisAlignedBox as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "min",
+                name_hash: 193413807,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AxisAlignedBox, min),
             },
             FieldInfoData {
                 name: "max",
+                name_hash: 193414065,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(AxisAlignedBox, max),
@@ -15809,6 +16898,7 @@ impl TypeObject for AxisAlignedBox {
 
 pub static AXISALIGNEDBOX_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AxisAlignedBox-Array",
+    name_hash: 1617298411,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("AxisAlignedBox"),
@@ -15817,7 +16907,8 @@ pub static AXISALIGNEDBOX_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Mat4 {
     pub m11: f32,
     pub m12: f32,
@@ -15973,105 +17064,123 @@ impl Mat4Trait for Mat4 {
 
 pub static MAT4_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Mat4",
+    name_hash: 2088779593,
     flags: MemberInfoFlags::new(53321),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Mat4 as Default>::default())),
+            create_boxed: || Box::new(<Mat4 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "m11",
+                name_hash: 193416744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m11),
             },
             FieldInfoData {
                 name: "m12",
+                name_hash: 193416747,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m12),
             },
             FieldInfoData {
                 name: "m13",
+                name_hash: 193416746,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m13),
             },
             FieldInfoData {
                 name: "m14",
+                name_hash: 193416749,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m14),
             },
             FieldInfoData {
                 name: "m21",
+                name_hash: 193416715,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m21),
             },
             FieldInfoData {
                 name: "m22",
+                name_hash: 193416712,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m22),
             },
             FieldInfoData {
                 name: "m23",
+                name_hash: 193416713,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m23),
             },
             FieldInfoData {
                 name: "m24",
+                name_hash: 193416718,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m24),
             },
             FieldInfoData {
                 name: "m31",
+                name_hash: 193416810,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m31),
             },
             FieldInfoData {
                 name: "m32",
+                name_hash: 193416809,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m32),
             },
             FieldInfoData {
                 name: "m33",
+                name_hash: 193416808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m33),
             },
             FieldInfoData {
                 name: "m34",
+                name_hash: 193416815,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m34),
             },
             FieldInfoData {
                 name: "m41",
+                name_hash: 193416781,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m41),
             },
             FieldInfoData {
                 name: "m42",
+                name_hash: 193416782,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m42),
             },
             FieldInfoData {
                 name: "m43",
+                name_hash: 193416783,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m43),
             },
             FieldInfoData {
                 name: "m44",
+                name_hash: 193416776,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Mat4, m44),
@@ -16103,6 +17212,7 @@ impl TypeObject for Mat4 {
 
 pub static MAT4_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Mat4-Array",
+    name_hash: 170362237,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Mat4"),
@@ -16111,7 +17221,8 @@ pub static MAT4_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearTransform {
     pub right: Vec3,
     pub up: Vec3,
@@ -16159,33 +17270,39 @@ impl LinearTransformTrait for LinearTransform {
 
 pub static LINEARTRANSFORM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearTransform",
+    name_hash: 3812491028,
     flags: MemberInfoFlags::new(53321),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearTransform as Default>::default())),
+            create_boxed: || Box::new(<LinearTransform as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "right",
+                name_hash: 194951909,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LinearTransform, right),
             },
             FieldInfoData {
                 name: "up",
+                name_hash: 5861280,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LinearTransform, up),
             },
             FieldInfoData {
                 name: "forward",
+                name_hash: 1735999518,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LinearTransform, forward),
             },
             FieldInfoData {
                 name: "trans",
+                name_hash: 182273375,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LinearTransform, trans),
@@ -16217,6 +17334,7 @@ impl TypeObject for LinearTransform {
 
 pub static LINEARTRANSFORM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearTransform-Array",
+    name_hash: 888298272,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("LinearTransform"),
@@ -16225,7 +17343,8 @@ pub static LINEARTRANSFORM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Plane {
     pub x: f32,
     pub y: f32,
@@ -16273,33 +17392,39 @@ impl PlaneTrait for Plane {
 
 pub static PLANE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Plane",
+    name_hash: 232719795,
     flags: MemberInfoFlags::new(53321),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Plane as Default>::default())),
+            create_boxed: || Box::new(<Plane as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Plane, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Plane, y),
             },
             FieldInfoData {
                 name: "z",
+                name_hash: 177631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Plane, z),
             },
             FieldInfoData {
                 name: "w",
+                name_hash: 177618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Plane, w),
@@ -16331,6 +17456,7 @@ impl TypeObject for Plane {
 
 pub static PLANE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Plane-Array",
+    name_hash: 3477975303,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Plane"),
@@ -16339,7 +17465,8 @@ pub static PLANE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Quat {
     pub x: f32,
     pub y: f32,
@@ -16387,33 +17514,39 @@ impl QuatTrait for Quat {
 
 pub static QUAT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Quat",
+    name_hash: 2089188404,
     flags: MemberInfoFlags::new(53321),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Quat as Default>::default())),
+            create_boxed: || Box::new(<Quat as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Quat, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Quat, y),
             },
             FieldInfoData {
                 name: "z",
+                name_hash: 177631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Quat, z),
             },
             FieldInfoData {
                 name: "w",
+                name_hash: 177618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Quat, w),
@@ -16445,6 +17578,7 @@ impl TypeObject for Quat {
 
 pub static QUAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Quat-Array",
+    name_hash: 3867408256,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Quat"),
@@ -16453,7 +17587,8 @@ pub static QUAT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec4 {
     pub x: f32,
     pub y: f32,
@@ -16501,33 +17636,39 @@ impl Vec4Trait for Vec4 {
 
 pub static VEC4_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4",
+    name_hash: 2089241857,
     flags: MemberInfoFlags::new(53321),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec4 as Default>::default())),
+            create_boxed: || Box::new(<Vec4 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Vec4, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Vec4, y),
             },
             FieldInfoData {
                 name: "z",
+                name_hash: 177631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Vec4, z),
             },
             FieldInfoData {
                 name: "w",
+                name_hash: 177618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Vec4, w),
@@ -16559,6 +17700,7 @@ impl TypeObject for Vec4 {
 
 pub static VEC4_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec4-Array",
+    name_hash: 3933636277,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Vec4"),
@@ -16567,7 +17709,8 @@ pub static VEC4_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec3 {
     pub x: f32,
     pub y: f32,
@@ -16606,27 +17749,32 @@ impl Vec3Trait for Vec3 {
 
 pub static VEC3_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3",
+    name_hash: 2089241862,
     flags: MemberInfoFlags::new(53321),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec3 as Default>::default())),
+            create_boxed: || Box::new(<Vec3 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Vec3, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Vec3, y),
             },
             FieldInfoData {
                 name: "z",
+                name_hash: 177631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Vec3, z),
@@ -16658,6 +17806,7 @@ impl TypeObject for Vec3 {
 
 pub static VEC3_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec3-Array",
+    name_hash: 3919026738,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Vec3"),
@@ -16666,7 +17815,8 @@ pub static VEC3_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Vec2 {
     pub x: f32,
     pub y: f32,
@@ -16696,21 +17846,25 @@ impl Vec2Trait for Vec2 {
 
 pub static VEC2_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2",
+    name_hash: 2089241863,
     flags: MemberInfoFlags::new(53321),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Vec2 as Default>::default())),
+            create_boxed: || Box::new(<Vec2 as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Vec2, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(Vec2, y),
@@ -16742,6 +17896,7 @@ impl TypeObject for Vec2 {
 
 pub static VEC2_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec2-Array",
+    name_hash: 2783882675,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Vec2"),
@@ -16750,7 +17905,8 @@ pub static VEC2_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FbVec {
     pub x: f32,
     pub y: f32,
@@ -16798,33 +17954,39 @@ impl FbVecTrait for FbVec {
 
 pub static VEC_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec",
+    name_hash: 193460885,
     flags: MemberInfoFlags::new(53321),
     module: "Core",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FbVec as Default>::default())),
+            create_boxed: || Box::new(<FbVec as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "x",
+                name_hash: 177629,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FbVec, x),
             },
             FieldInfoData {
                 name: "y",
+                name_hash: 177628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FbVec, y),
             },
             FieldInfoData {
                 name: "z",
+                name_hash: 177631,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FbVec, z),
             },
             FieldInfoData {
                 name: "w",
+                name_hash: 177618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FbVec, w),
@@ -16856,6 +18018,7 @@ impl TypeObject for FbVec {
 
 pub static VEC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Vec-Array",
+    name_hash: 1115015713,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("Vec"),
@@ -16864,7 +18027,8 @@ pub static VEC_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EventDispatcher {
 }
 
@@ -16876,12 +18040,15 @@ impl EventDispatcherTrait for EventDispatcher {
 
 pub static EVENTDISPATCHER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventDispatcher",
+    name_hash: 4222524174,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EventDispatcher as Default>::default())),
+            create_boxed: || Box::new(<EventDispatcher as Default>::default()),
         },
         fields: &[
         ],
@@ -16911,6 +18078,7 @@ impl TypeObject for EventDispatcher {
 
 pub static EVENTDISPATCHER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EventDispatcher-Array",
+    name_hash: 1795212346,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("EventDispatcher"),
@@ -16919,7 +18087,8 @@ pub static EVENTDISPATCHER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DataContainer {
     pub _glacier_dc_core: glacier_reflect::data_container::DataContainerCore,
 }
@@ -16932,12 +18101,15 @@ impl DataContainerTrait for DataContainer {
 
 pub static DATACONTAINER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataContainer",
+    name_hash: 3833490546,
     flags: MemberInfoFlags::new(101),
     module: "Core",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DataContainer as Default>::default())),
+            create_boxed: || Box::new(<DataContainer as Default>::default()),
         },
         fields: &[
         ],
@@ -16967,6 +18139,7 @@ impl TypeObject for DataContainer {
 
 pub static DATACONTAINER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DataContainer-Array",
+    name_hash: 1927783238,
     flags: MemberInfoFlags::new(145),
     module: "Core",
     data: TypeInfoData::Array("DataContainer"),

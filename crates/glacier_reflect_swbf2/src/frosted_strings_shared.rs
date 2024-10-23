@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -16,7 +17,8 @@ pub(crate) fn register_frosted_strings_shared_types(registry: &mut TypeRegistry)
     registry.register_type(FSLOCALIZATIONASSET_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocalizationLanguageChangedMessage {
 }
 
@@ -28,11 +30,13 @@ impl LocalizationLanguageChangedMessageTrait for LocalizationLanguageChangedMess
 
 pub static LOCALIZATIONLANGUAGECHANGEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalizationLanguageChangedMessage",
+    name_hash: 3241718365,
     flags: MemberInfoFlags::new(36937),
     module: "FrostedStringsShared",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocalizationLanguageChangedMessage as Default>::default())),
+            create_boxed: || Box::new(<LocalizationLanguageChangedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -59,7 +63,8 @@ impl TypeObject for LocalizationLanguageChangedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FsUITextDatabase {
     pub _glacier_base: super::u_i::UITextDatabase,
 }
@@ -117,12 +122,15 @@ impl super::core::DataContainerTrait for FsUITextDatabase {
 
 pub static FSUITEXTDATABASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FsUITextDatabase",
+    name_hash: 284284404,
     flags: MemberInfoFlags::new(101),
     module: "FrostedStringsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::u_i::UITEXTDATABASE_TYPE_INFO),
+        super_class_offset: offset_of!(FsUITextDatabase, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FsUITextDatabase as Default>::default())),
+            create_boxed: || Box::new(<FsUITextDatabase as Default>::default()),
         },
         fields: &[
         ],
@@ -152,6 +160,7 @@ impl TypeObject for FsUITextDatabase {
 
 pub static FSUITEXTDATABASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FsUITextDatabase-Array",
+    name_hash: 2436342208,
     flags: MemberInfoFlags::new(145),
     module: "FrostedStringsShared",
     data: TypeInfoData::Array("FsUITextDatabase"),
@@ -160,7 +169,8 @@ pub static FSUITEXTDATABASE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FsLocalizationAsset {
     pub _glacier_base: super::u_i::LocalizationAsset,
 }
@@ -172,10 +182,10 @@ impl FsLocalizationAssetTrait for FsLocalizationAsset {
 }
 
 impl super::u_i::LocalizationAssetTrait for FsLocalizationAsset {
-    fn localized_texts(&self) -> &Vec<Option<Arc<Mutex<dyn super::u_i::UITextDatabaseTrait>>>> {
+    fn localized_texts(&self) -> &Vec<Option<LockedTypeObject /* super::u_i::UITextDatabase */>> {
         self._glacier_base.localized_texts()
     }
-    fn localized_texts_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::u_i::UITextDatabaseTrait>>>> {
+    fn localized_texts_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::u_i::UITextDatabase */>> {
         self._glacier_base.localized_texts_mut()
     }
 }
@@ -194,12 +204,15 @@ impl super::core::DataContainerTrait for FsLocalizationAsset {
 
 pub static FSLOCALIZATIONASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FsLocalizationAsset",
+    name_hash: 3081425763,
     flags: MemberInfoFlags::new(101),
     module: "FrostedStringsShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::u_i::LOCALIZATIONASSET_TYPE_INFO),
+        super_class_offset: offset_of!(FsLocalizationAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FsLocalizationAsset as Default>::default())),
+            create_boxed: || Box::new(<FsLocalizationAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -229,6 +242,7 @@ impl TypeObject for FsLocalizationAsset {
 
 pub static FSLOCALIZATIONASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FsLocalizationAsset-Array",
+    name_hash: 3168667479,
     flags: MemberInfoFlags::new(145),
     module: "FrostedStringsShared",
     data: TypeInfoData::Array("FsLocalizationAsset"),

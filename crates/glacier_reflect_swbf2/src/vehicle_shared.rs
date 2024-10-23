@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -15,7 +16,8 @@ pub(crate) fn register_vehicle_shared_types(registry: &mut TypeRegistry) {
     registry.register_type(WINGCOMPONENTDATA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FlapComponentData {
     pub _glacier_base: super::entity::BoneComponentData,
     pub rotation_axis: super::game_shared::RotationAxisEnum,
@@ -57,10 +59,10 @@ impl super::entity::ComponentDataTrait for FlapComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -103,22 +105,27 @@ impl super::core::DataContainerTrait for FlapComponentData {
 
 pub static FLAPCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FlapComponentData",
+    name_hash: 3845266625,
     flags: MemberInfoFlags::new(101),
     module: "VehicleShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::BONECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(FlapComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FlapComponentData as Default>::default())),
+            create_boxed: || Box::new(<FlapComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RotationAxis",
+                name_hash: 3148542130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RotationAxisEnum",
                 rust_offset: offset_of!(FlapComponentData, rotation_axis),
             },
             FieldInfoData {
                 name: "RotationScale",
+                name_hash: 801800009,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(FlapComponentData, rotation_scale),
@@ -150,6 +157,7 @@ impl TypeObject for FlapComponentData {
 
 pub static FLAPCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FlapComponentData-Array",
+    name_hash: 3031049973,
     flags: MemberInfoFlags::new(145),
     module: "VehicleShared",
     data: TypeInfoData::Array("FlapComponentData"),
@@ -158,22 +166,23 @@ pub static FLAPCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WingComponentData {
     pub _glacier_base: super::entity::BoneComponentData,
-    pub config: Option<Arc<Mutex<dyn super::physics::WingPhysicsDataTrait>>>,
+    pub config: Option<LockedTypeObject /* super::physics::WingPhysicsData */>,
 }
 
 pub trait WingComponentDataTrait: super::entity::BoneComponentDataTrait {
-    fn config(&self) -> &Option<Arc<Mutex<dyn super::physics::WingPhysicsDataTrait>>>;
-    fn config_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::physics::WingPhysicsDataTrait>>>;
+    fn config(&self) -> &Option<LockedTypeObject /* super::physics::WingPhysicsData */>;
+    fn config_mut(&mut self) -> &mut Option<LockedTypeObject /* super::physics::WingPhysicsData */>;
 }
 
 impl WingComponentDataTrait for WingComponentData {
-    fn config(&self) -> &Option<Arc<Mutex<dyn super::physics::WingPhysicsDataTrait>>> {
+    fn config(&self) -> &Option<LockedTypeObject /* super::physics::WingPhysicsData */> {
         &self.config
     }
-    fn config_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::physics::WingPhysicsDataTrait>>> {
+    fn config_mut(&mut self) -> &mut Option<LockedTypeObject /* super::physics::WingPhysicsData */> {
         &mut self.config
     }
 }
@@ -191,10 +200,10 @@ impl super::entity::ComponentDataTrait for WingComponentData {
     fn transform_mut(&mut self) -> &mut super::core::LinearTransform {
         self._glacier_base.transform_mut()
     }
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
     fn client_index(&self) -> &u8 {
@@ -237,16 +246,20 @@ impl super::core::DataContainerTrait for WingComponentData {
 
 pub static WINGCOMPONENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WingComponentData",
+    name_hash: 4269082765,
     flags: MemberInfoFlags::new(101),
     module: "VehicleShared",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::BONECOMPONENTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WingComponentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WingComponentData as Default>::default())),
+            create_boxed: || Box::new(<WingComponentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Config",
+                name_hash: 2713732399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "WingPhysicsData",
                 rust_offset: offset_of!(WingComponentData, config),
@@ -278,6 +291,7 @@ impl TypeObject for WingComponentData {
 
 pub static WINGCOMPONENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WingComponentData-Array",
+    name_hash: 358739001,
     flags: MemberInfoFlags::new(145),
     module: "VehicleShared",
     data: TypeInfoData::Array("WingComponentData"),

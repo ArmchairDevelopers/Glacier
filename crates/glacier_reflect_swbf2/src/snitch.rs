@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -30,13 +31,14 @@ pub(crate) fn register_snitch_types(registry: &mut TypeRegistry) {
     registry.register_type(SNITCHSETTINGSUPDATEDMESSAGE_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SnitchSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enabled: bool,
     pub url: String,
     pub s_s_l: bool,
-    pub data_providers: Vec<Option<Arc<Mutex<dyn super::web_utils::URLConfigDataTrait>>>>,
+    pub data_providers: Vec<Option<LockedTypeObject /* super::web_utils::URLConfigData */>>,
     pub editorial_config_enabled: bool,
 }
 
@@ -47,8 +49,8 @@ pub trait SnitchSettingsTrait: super::core::SystemSettingsTrait {
     fn url_mut(&mut self) -> &mut String;
     fn s_s_l(&self) -> &bool;
     fn s_s_l_mut(&mut self) -> &mut bool;
-    fn data_providers(&self) -> &Vec<Option<Arc<Mutex<dyn super::web_utils::URLConfigDataTrait>>>>;
-    fn data_providers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::web_utils::URLConfigDataTrait>>>>;
+    fn data_providers(&self) -> &Vec<Option<LockedTypeObject /* super::web_utils::URLConfigData */>>;
+    fn data_providers_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::web_utils::URLConfigData */>>;
     fn editorial_config_enabled(&self) -> &bool;
     fn editorial_config_enabled_mut(&mut self) -> &mut bool;
 }
@@ -72,10 +74,10 @@ impl SnitchSettingsTrait for SnitchSettings {
     fn s_s_l_mut(&mut self) -> &mut bool {
         &mut self.s_s_l
     }
-    fn data_providers(&self) -> &Vec<Option<Arc<Mutex<dyn super::web_utils::URLConfigDataTrait>>>> {
+    fn data_providers(&self) -> &Vec<Option<LockedTypeObject /* super::web_utils::URLConfigData */>> {
         &self.data_providers
     }
-    fn data_providers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::web_utils::URLConfigDataTrait>>>> {
+    fn data_providers_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::web_utils::URLConfigData */>> {
         &mut self.data_providers
     }
     fn editorial_config_enabled(&self) -> &bool {
@@ -100,40 +102,48 @@ impl super::core::DataContainerTrait for SnitchSettings {
 
 pub static SNITCHSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SnitchSettings",
+    name_hash: 4017417227,
     flags: MemberInfoFlags::new(101),
     module: "Snitch",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(SnitchSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SnitchSettings as Default>::default())),
+            create_boxed: || Box::new(<SnitchSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SnitchSettings, enabled),
             },
             FieldInfoData {
                 name: "Url",
+                name_hash: 193455022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(SnitchSettings, url),
             },
             FieldInfoData {
                 name: "SSL",
+                name_hash: 193466825,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SnitchSettings, s_s_l),
             },
             FieldInfoData {
                 name: "DataProviders",
+                name_hash: 921056391,
                 flags: MemberInfoFlags::new(144),
                 field_type: "URLConfigData-Array",
                 rust_offset: offset_of!(SnitchSettings, data_providers),
             },
             FieldInfoData {
                 name: "EditorialConfigEnabled",
+                name_hash: 74584079,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SnitchSettings, editorial_config_enabled),
@@ -165,6 +175,7 @@ impl TypeObject for SnitchSettings {
 
 pub static SNITCHSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SnitchSettings-Array",
+    name_hash: 1670855359,
     flags: MemberInfoFlags::new(145),
     module: "Snitch",
     data: TypeInfoData::Array("SnitchSettings"),
@@ -173,7 +184,8 @@ pub static SNITCHSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LiveScoreboardProviderSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enabled: bool,
@@ -252,46 +264,55 @@ impl super::core::DataContainerTrait for LiveScoreboardProviderSettings {
 
 pub static LIVESCOREBOARDPROVIDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LiveScoreboardProviderSettings",
+    name_hash: 4086159301,
     flags: MemberInfoFlags::new(101),
     module: "Snitch",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(LiveScoreboardProviderSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LiveScoreboardProviderSettings as Default>::default())),
+            create_boxed: || Box::new(<LiveScoreboardProviderSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LiveScoreboardProviderSettings, enabled),
             },
             FieldInfoData {
                 name: "Url",
+                name_hash: 193455022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(LiveScoreboardProviderSettings, url),
             },
             FieldInfoData {
                 name: "SSL",
+                name_hash: 193466825,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LiveScoreboardProviderSettings, s_s_l),
             },
             FieldInfoData {
                 name: "SnapshotRefreshFrequency",
+                name_hash: 2006399024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LiveScoreboardProviderSettings, snapshot_refresh_frequency),
             },
             FieldInfoData {
                 name: "GzipCompression",
+                name_hash: 3094795343,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LiveScoreboardProviderSettings, gzip_compression),
             },
             FieldInfoData {
                 name: "RolloutModulo",
+                name_hash: 3531225382,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LiveScoreboardProviderSettings, rollout_modulo),
@@ -323,6 +344,7 @@ impl TypeObject for LiveScoreboardProviderSettings {
 
 pub static LIVESCOREBOARDPROVIDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LiveScoreboardProviderSettings-Array",
+    name_hash: 3336949745,
     flags: MemberInfoFlags::new(145),
     module: "Snitch",
     data: TypeInfoData::Array("LiveScoreboardProviderSettings"),
@@ -331,7 +353,8 @@ pub static LIVESCOREBOARDPROVIDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DistroProviderSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enabled: bool,
@@ -401,40 +424,48 @@ impl super::core::DataContainerTrait for DistroProviderSettings {
 
 pub static DISTROPROVIDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistroProviderSettings",
+    name_hash: 959312022,
     flags: MemberInfoFlags::new(101),
     module: "Snitch",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(DistroProviderSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DistroProviderSettings as Default>::default())),
+            create_boxed: || Box::new(<DistroProviderSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DistroProviderSettings, enabled),
             },
             FieldInfoData {
                 name: "Url",
+                name_hash: 193455022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(DistroProviderSettings, url),
             },
             FieldInfoData {
                 name: "SSL",
+                name_hash: 193466825,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DistroProviderSettings, s_s_l),
             },
             FieldInfoData {
                 name: "SnapshotRefreshFrequency",
+                name_hash: 2006399024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(DistroProviderSettings, snapshot_refresh_frequency),
             },
             FieldInfoData {
                 name: "GzipCompression",
+                name_hash: 3094795343,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(DistroProviderSettings, gzip_compression),
@@ -466,6 +497,7 @@ impl TypeObject for DistroProviderSettings {
 
 pub static DISTROPROVIDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DistroProviderSettings-Array",
+    name_hash: 2887624098,
     flags: MemberInfoFlags::new(145),
     module: "Snitch",
     data: TypeInfoData::Array("DistroProviderSettings"),
@@ -474,7 +506,8 @@ pub static DISTROPROVIDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct StatsDProviderSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enabled: bool,
@@ -526,28 +559,34 @@ impl super::core::DataContainerTrait for StatsDProviderSettings {
 
 pub static STATSDPROVIDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StatsDProviderSettings",
+    name_hash: 2483070436,
     flags: MemberInfoFlags::new(101),
     module: "Snitch",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(StatsDProviderSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<StatsDProviderSettings as Default>::default())),
+            create_boxed: || Box::new(<StatsDProviderSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(StatsDProviderSettings, enabled),
             },
             FieldInfoData {
                 name: "Url",
+                name_hash: 193455022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(StatsDProviderSettings, url),
             },
             FieldInfoData {
                 name: "SnapshotRefreshFrequency",
+                name_hash: 2006399024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(StatsDProviderSettings, snapshot_refresh_frequency),
@@ -579,6 +618,7 @@ impl TypeObject for StatsDProviderSettings {
 
 pub static STATSDPROVIDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "StatsDProviderSettings-Array",
+    name_hash: 680503760,
     flags: MemberInfoFlags::new(145),
     module: "Snitch",
     data: TypeInfoData::Array("StatsDProviderSettings"),
@@ -587,7 +627,8 @@ pub static STATSDPROVIDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ContactProviderSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enabled: bool,
@@ -657,40 +698,48 @@ impl super::core::DataContainerTrait for ContactProviderSettings {
 
 pub static CONTACTPROVIDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ContactProviderSettings",
+    name_hash: 4086857185,
     flags: MemberInfoFlags::new(101),
     module: "Snitch",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(ContactProviderSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ContactProviderSettings as Default>::default())),
+            create_boxed: || Box::new(<ContactProviderSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ContactProviderSettings, enabled),
             },
             FieldInfoData {
                 name: "Url",
+                name_hash: 193455022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(ContactProviderSettings, url),
             },
             FieldInfoData {
                 name: "SSL",
+                name_hash: 193466825,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ContactProviderSettings, s_s_l),
             },
             FieldInfoData {
                 name: "SnapshotRefreshFrequency",
+                name_hash: 2006399024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ContactProviderSettings, snapshot_refresh_frequency),
             },
             FieldInfoData {
                 name: "GzipCompression",
+                name_hash: 3094795343,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ContactProviderSettings, gzip_compression),
@@ -722,6 +771,7 @@ impl TypeObject for ContactProviderSettings {
 
 pub static CONTACTPROVIDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ContactProviderSettings-Array",
+    name_hash: 2253740245,
     flags: MemberInfoFlags::new(145),
     module: "Snitch",
     data: TypeInfoData::Array("ContactProviderSettings"),
@@ -730,7 +780,8 @@ pub static CONTACTPROVIDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LogTransmitterProviderSettings {
     pub _glacier_base: super::core::SystemSettings,
     pub enabled: bool,
@@ -782,28 +833,34 @@ impl super::core::DataContainerTrait for LogTransmitterProviderSettings {
 
 pub static LOGTRANSMITTERPROVIDERSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogTransmitterProviderSettings",
+    name_hash: 959631404,
     flags: MemberInfoFlags::new(101),
     module: "Snitch",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::SYSTEMSETTINGS_TYPE_INFO),
+        super_class_offset: offset_of!(LogTransmitterProviderSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LogTransmitterProviderSettings as Default>::default())),
+            create_boxed: || Box::new(<LogTransmitterProviderSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LogTransmitterProviderSettings, enabled),
             },
             FieldInfoData {
                 name: "Url",
+                name_hash: 193455022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(LogTransmitterProviderSettings, url),
             },
             FieldInfoData {
                 name: "SSL",
+                name_hash: 193466825,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LogTransmitterProviderSettings, s_s_l),
@@ -835,6 +892,7 @@ impl TypeObject for LogTransmitterProviderSettings {
 
 pub static LOGTRANSMITTERPROVIDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LogTransmitterProviderSettings-Array",
+    name_hash: 51109784,
     flags: MemberInfoFlags::new(145),
     module: "Snitch",
     data: TypeInfoData::Array("LogTransmitterProviderSettings"),
@@ -843,7 +901,8 @@ pub static LOGTRANSMITTERPROVIDERSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LiveScoreboardProviderDisableMessage {
 }
 
@@ -855,11 +914,13 @@ impl LiveScoreboardProviderDisableMessageTrait for LiveScoreboardProviderDisable
 
 pub static LIVESCOREBOARDPROVIDERDISABLEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LiveScoreboardProviderDisableMessage",
+    name_hash: 3593231615,
     flags: MemberInfoFlags::new(36937),
     module: "Snitch",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LiveScoreboardProviderDisableMessage as Default>::default())),
+            create_boxed: || Box::new(<LiveScoreboardProviderDisableMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -886,7 +947,8 @@ impl TypeObject for LiveScoreboardProviderDisableMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LiveScoreboardProviderEnableMessage {
 }
 
@@ -898,11 +960,13 @@ impl LiveScoreboardProviderEnableMessageTrait for LiveScoreboardProviderEnableMe
 
 pub static LIVESCOREBOARDPROVIDERENABLEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LiveScoreboardProviderEnableMessage",
+    name_hash: 4224387690,
     flags: MemberInfoFlags::new(36937),
     module: "Snitch",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LiveScoreboardProviderEnableMessage as Default>::default())),
+            create_boxed: || Box::new(<LiveScoreboardProviderEnableMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -929,7 +993,8 @@ impl TypeObject for LiveScoreboardProviderEnableMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MetricsProviderStringMetricMessage {
 }
 
@@ -941,11 +1006,13 @@ impl MetricsProviderStringMetricMessageTrait for MetricsProviderStringMetricMess
 
 pub static METRICSPROVIDERSTRINGMETRICMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MetricsProviderStringMetricMessage",
+    name_hash: 3127480873,
     flags: MemberInfoFlags::new(73),
     module: "Snitch",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MetricsProviderStringMetricMessage as Default>::default())),
+            create_boxed: || Box::new(<MetricsProviderStringMetricMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -972,7 +1039,8 @@ impl TypeObject for MetricsProviderStringMetricMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MetricsProviderCounterMetricMessage {
 }
 
@@ -984,11 +1052,13 @@ impl MetricsProviderCounterMetricMessageTrait for MetricsProviderCounterMetricMe
 
 pub static METRICSPROVIDERCOUNTERMETRICMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MetricsProviderCounterMetricMessage",
+    name_hash: 701303784,
     flags: MemberInfoFlags::new(73),
     module: "Snitch",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MetricsProviderCounterMetricMessage as Default>::default())),
+            create_boxed: || Box::new(<MetricsProviderCounterMetricMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1015,7 +1085,8 @@ impl TypeObject for MetricsProviderCounterMetricMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MetricsProviderGaugeMetricMessage {
 }
 
@@ -1027,11 +1098,13 @@ impl MetricsProviderGaugeMetricMessageTrait for MetricsProviderGaugeMetricMessag
 
 pub static METRICSPROVIDERGAUGEMETRICMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MetricsProviderGaugeMetricMessage",
+    name_hash: 3339746317,
     flags: MemberInfoFlags::new(73),
     module: "Snitch",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MetricsProviderGaugeMetricMessage as Default>::default())),
+            create_boxed: || Box::new(<MetricsProviderGaugeMetricMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1058,7 +1131,8 @@ impl TypeObject for MetricsProviderGaugeMetricMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MetricsProviderTagMetricMessage {
 }
 
@@ -1070,11 +1144,13 @@ impl MetricsProviderTagMetricMessageTrait for MetricsProviderTagMetricMessage {
 
 pub static METRICSPROVIDERTAGMETRICMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MetricsProviderTagMetricMessage",
+    name_hash: 3315688142,
     flags: MemberInfoFlags::new(73),
     module: "Snitch",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MetricsProviderTagMetricMessage as Default>::default())),
+            create_boxed: || Box::new(<MetricsProviderTagMetricMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1101,7 +1177,8 @@ impl TypeObject for MetricsProviderTagMetricMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SnitchSettingsUpdatedMessage {
 }
 
@@ -1113,11 +1190,13 @@ impl SnitchSettingsUpdatedMessageTrait for SnitchSettingsUpdatedMessage {
 
 pub static SNITCHSETTINGSUPDATEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SnitchSettingsUpdatedMessage",
+    name_hash: 2672332693,
     flags: MemberInfoFlags::new(36937),
     module: "Snitch",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SnitchSettingsUpdatedMessage as Default>::default())),
+            create_boxed: || Box::new(<SnitchSettingsUpdatedMessage as Default>::default()),
         },
         fields: &[
         ],

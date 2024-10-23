@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -146,7 +147,8 @@ pub(crate) fn register_game_client_u_i_types(registry: &mut TypeRegistry) {
     registry.register_type(UITTFFONTFILE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIScreenRenderTargetEntity {
     pub _glacier_base: ClientUIScreenRenderEntity,
 }
@@ -168,12 +170,15 @@ impl super::entity::EntityBusPeerTrait for UIScreenRenderTargetEntity {
 
 pub static UISCREENRENDERTARGETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIScreenRenderTargetEntity",
+    name_hash: 291549013,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(CLIENTUISCREENRENDERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(UIScreenRenderTargetEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIScreenRenderTargetEntity as Default>::default())),
+            create_boxed: || Box::new(<UIScreenRenderTargetEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -203,6 +208,7 @@ impl TypeObject for UIScreenRenderTargetEntity {
 
 pub static UISCREENRENDERTARGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIScreenRenderTargetEntity-Array",
+    name_hash: 4025421665,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIScreenRenderTargetEntity"),
@@ -211,7 +217,8 @@ pub static UISCREENRENDERTARGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientUIScreenRenderEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -230,12 +237,15 @@ impl super::entity::EntityBusPeerTrait for ClientUIScreenRenderEntity {
 
 pub static CLIENTUISCREENRENDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientUIScreenRenderEntity",
+    name_hash: 3070875901,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientUIScreenRenderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientUIScreenRenderEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientUIScreenRenderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -265,6 +275,7 @@ impl TypeObject for ClientUIScreenRenderEntity {
 
 pub static CLIENTUISCREENRENDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientUIScreenRenderEntity-Array",
+    name_hash: 2171651529,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("ClientUIScreenRenderEntity"),
@@ -273,7 +284,8 @@ pub static CLIENTUISCREENRENDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIWidgetEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -292,12 +304,15 @@ impl super::entity::EntityBusPeerTrait for UIWidgetEntity {
 
 pub static UIWIDGETENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIWidgetEntity",
+    name_hash: 2012980622,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(UIWidgetEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIWidgetEntity as Default>::default())),
+            create_boxed: || Box::new(<UIWidgetEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -327,6 +342,7 @@ impl TypeObject for UIWidgetEntity {
 
 pub static UIWIDGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIWidgetEntity-Array",
+    name_hash: 1888202426,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIWidgetEntity"),
@@ -335,7 +351,8 @@ pub static UIWIDGETENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIElementLayerEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -354,12 +371,15 @@ impl super::entity::EntityBusPeerTrait for UIElementLayerEntity {
 
 pub static UIELEMENTLAYERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementLayerEntity",
+    name_hash: 1782251999,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(UIElementLayerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIElementLayerEntity as Default>::default())),
+            create_boxed: || Box::new(<UIElementLayerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -389,6 +409,7 @@ impl TypeObject for UIElementLayerEntity {
 
 pub static UIELEMENTLAYERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementLayerEntity-Array",
+    name_hash: 2231949035,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIElementLayerEntity"),
@@ -397,7 +418,8 @@ pub static UIELEMENTLAYERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIElementWidgetReferenceEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -416,12 +438,15 @@ impl super::entity::EntityBusPeerTrait for UIElementWidgetReferenceEntity {
 
 pub static UIELEMENTWIDGETREFERENCEENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementWidgetReferenceEntity",
+    name_hash: 2172756859,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(UIElementWidgetReferenceEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIElementWidgetReferenceEntity as Default>::default())),
+            create_boxed: || Box::new(<UIElementWidgetReferenceEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -451,6 +476,7 @@ impl TypeObject for UIElementWidgetReferenceEntity {
 
 pub static UIELEMENTWIDGETREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementWidgetReferenceEntity-Array",
+    name_hash: 1923283791,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIElementWidgetReferenceEntity"),
@@ -459,7 +485,8 @@ pub static UIELEMENTWIDGETREFERENCEENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIMaskingContainerEntity {
     pub _glacier_base: UIContainerEntity,
 }
@@ -484,12 +511,15 @@ impl super::entity::EntityBusPeerTrait for UIMaskingContainerEntity {
 
 pub static UIMASKINGCONTAINERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMaskingContainerEntity",
+    name_hash: 2309274705,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(UICONTAINERENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(UIMaskingContainerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIMaskingContainerEntity as Default>::default())),
+            create_boxed: || Box::new(<UIMaskingContainerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -519,6 +549,7 @@ impl TypeObject for UIMaskingContainerEntity {
 
 pub static UIMASKINGCONTAINERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMaskingContainerEntity-Array",
+    name_hash: 520695397,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIMaskingContainerEntity"),
@@ -527,7 +558,8 @@ pub static UIMASKINGCONTAINERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIContainerEntity {
     pub _glacier_base: UIElementEntity,
 }
@@ -549,12 +581,15 @@ impl super::entity::EntityBusPeerTrait for UIContainerEntity {
 
 pub static UICONTAINERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIContainerEntity",
+    name_hash: 161916261,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(UIELEMENTENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(UIContainerEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIContainerEntity as Default>::default())),
+            create_boxed: || Box::new(<UIContainerEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -584,6 +619,7 @@ impl TypeObject for UIContainerEntity {
 
 pub static UICONTAINERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIContainerEntity-Array",
+    name_hash: 746770001,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIContainerEntity"),
@@ -592,7 +628,8 @@ pub static UICONTAINERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIElementEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -611,12 +648,15 @@ impl super::entity::EntityBusPeerTrait for UIElementEntity {
 
 pub static UIELEMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementEntity",
+    name_hash: 2478653372,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(UIElementEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIElementEntity as Default>::default())),
+            create_boxed: || Box::new(<UIElementEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -646,6 +686,7 @@ impl TypeObject for UIElementEntity {
 
 pub static UIELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIElementEntity-Array",
+    name_hash: 1780397832,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIElementEntity"),
@@ -654,7 +695,8 @@ pub static UIELEMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UICppScreen {
 }
 
@@ -666,12 +708,15 @@ impl UICppScreenTrait for UICppScreen {
 
 pub static UICPPSCREEN_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UICppScreen",
+    name_hash: 1606491574,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UICppScreen as Default>::default())),
+            create_boxed: || Box::new(<UICppScreen as Default>::default()),
         },
         fields: &[
         ],
@@ -701,6 +746,7 @@ impl TypeObject for UICppScreen {
 
 pub static UICPPSCREEN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UICppScreen-Array",
+    name_hash: 1154101762,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UICppScreen"),
@@ -709,7 +755,8 @@ pub static UICPPSCREEN_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UISystemPostInitCompleteMessage {
 }
 
@@ -721,11 +768,13 @@ impl UISystemPostInitCompleteMessageTrait for UISystemPostInitCompleteMessage {
 
 pub static UISYSTEMPOSTINITCOMPLETEMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UISystemPostInitCompleteMessage",
+    name_hash: 1640858876,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UISystemPostInitCompleteMessage as Default>::default())),
+            create_boxed: || Box::new(<UISystemPostInitCompleteMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -752,10 +801,11 @@ impl TypeObject for UISystemPostInitCompleteMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PlayVideoEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub movie: Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>,
+    pub movie: Option<LockedTypeObject /* super::movie_base::MovieTextureBaseAsset */>,
     pub network_streaming_url: String,
     pub r#loop: bool,
     pub keep_black_screen: bool,
@@ -767,8 +817,8 @@ pub struct PlayVideoEntityData {
 }
 
 pub trait PlayVideoEntityDataTrait: super::entity::EntityDataTrait {
-    fn movie(&self) -> &Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>;
-    fn movie_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>>;
+    fn movie(&self) -> &Option<LockedTypeObject /* super::movie_base::MovieTextureBaseAsset */>;
+    fn movie_mut(&mut self) -> &mut Option<LockedTypeObject /* super::movie_base::MovieTextureBaseAsset */>;
     fn network_streaming_url(&self) -> &String;
     fn network_streaming_url_mut(&mut self) -> &mut String;
     fn r#loop(&self) -> &bool;
@@ -788,10 +838,10 @@ pub trait PlayVideoEntityDataTrait: super::entity::EntityDataTrait {
 }
 
 impl PlayVideoEntityDataTrait for PlayVideoEntityData {
-    fn movie(&self) -> &Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>> {
+    fn movie(&self) -> &Option<LockedTypeObject /* super::movie_base::MovieTextureBaseAsset */> {
         &self.movie
     }
-    fn movie_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::movie_base::MovieTextureBaseAssetTrait>>> {
+    fn movie_mut(&mut self) -> &mut Option<LockedTypeObject /* super::movie_base::MovieTextureBaseAsset */> {
         &mut self.movie
     }
     fn network_streaming_url(&self) -> &String {
@@ -867,64 +917,76 @@ impl super::core::DataContainerTrait for PlayVideoEntityData {
 
 pub static PLAYVIDEOENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayVideoEntityData",
+    name_hash: 180842075,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PlayVideoEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PlayVideoEntityData as Default>::default())),
+            create_boxed: || Box::new(<PlayVideoEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Movie",
+                name_hash: 210030653,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MovieTextureBaseAsset",
                 rust_offset: offset_of!(PlayVideoEntityData, movie),
             },
             FieldInfoData {
                 name: "NetworkStreamingUrl",
+                name_hash: 2986373484,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(PlayVideoEntityData, network_streaming_url),
             },
             FieldInfoData {
                 name: "Loop",
+                name_hash: 2089019673,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlayVideoEntityData, r#loop),
             },
             FieldInfoData {
                 name: "KeepBlackScreen",
+                name_hash: 1584450997,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlayVideoEntityData, keep_black_screen),
             },
             FieldInfoData {
                 name: "AllowSkip",
+                name_hash: 2314030141,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlayVideoEntityData, allow_skip),
             },
             FieldInfoData {
                 name: "DrawInWidget",
+                name_hash: 1459089774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlayVideoEntityData, draw_in_widget),
             },
             FieldInfoData {
                 name: "RenderWorld",
+                name_hash: 2775225741,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlayVideoEntityData, render_world),
             },
             FieldInfoData {
                 name: "UseSimTime",
+                name_hash: 2478855716,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PlayVideoEntityData, use_sim_time),
             },
             FieldInfoData {
                 name: "VideoIdentifier",
+                name_hash: 379302519,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(PlayVideoEntityData, video_identifier),
@@ -956,6 +1018,7 @@ impl TypeObject for PlayVideoEntityData {
 
 pub static PLAYVIDEOENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PlayVideoEntityData-Array",
+    name_hash: 1276441967,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("PlayVideoEntityData"),
@@ -964,7 +1027,8 @@ pub static PLAYVIDEOENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MovieDebugEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub language_override: super::core::LanguageFormat,
@@ -1016,22 +1080,27 @@ impl super::core::DataContainerTrait for MovieDebugEntityData {
 
 pub static MOVIEDEBUGENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieDebugEntityData",
+    name_hash: 3351352551,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MovieDebugEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MovieDebugEntityData as Default>::default())),
+            create_boxed: || Box::new(<MovieDebugEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LanguageOverride",
+                name_hash: 3061006915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LanguageFormat",
                 rust_offset: offset_of!(MovieDebugEntityData, language_override),
             },
             FieldInfoData {
                 name: "StopFrame",
+                name_hash: 382959072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(MovieDebugEntityData, stop_frame),
@@ -1063,6 +1132,7 @@ impl TypeObject for MovieDebugEntityData {
 
 pub static MOVIEDEBUGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MovieDebugEntityData-Array",
+    name_hash: 1268750035,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("MovieDebugEntityData"),
@@ -1071,7 +1141,8 @@ pub static MOVIEDEBUGENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIHitZoneCommandDynamicState {
     pub rect: super::core::Vec4,
     pub transform: super::core::Mat4,
@@ -1119,33 +1190,39 @@ impl UIHitZoneCommandDynamicStateTrait for UIHitZoneCommandDynamicState {
 
 pub static UIHITZONECOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIHitZoneCommandDynamicState",
+    name_hash: 1634451671,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIHitZoneCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIHitZoneCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Rect",
+                name_hash: 2089376965,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIHitZoneCommandDynamicState, rect),
             },
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Mat4",
                 rust_offset: offset_of!(UIHitZoneCommandDynamicState, transform),
             },
             FieldInfoData {
                 name: "ViewProjection",
+                name_hash: 4212036245,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Mat4",
                 rust_offset: offset_of!(UIHitZoneCommandDynamicState, view_projection),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIHitZoneCommandDynamicState, field_flag_changed0),
@@ -1177,6 +1254,7 @@ impl TypeObject for UIHitZoneCommandDynamicState {
 
 pub static UIHITZONECOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIHitZoneCommandDynamicState-Array",
+    name_hash: 2433579491,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIHitZoneCommandDynamicState"),
@@ -1185,7 +1263,8 @@ pub static UIHITZONECOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIHitZoneCommandStaticState {
     pub measure_handle: super::game_base::UIImReverseHandle,
     pub field_flag_changed0: u8,
@@ -1215,21 +1294,25 @@ impl UIHitZoneCommandStaticStateTrait for UIHitZoneCommandStaticState {
 
 pub static UIHITZONECOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIHitZoneCommandStaticState",
+    name_hash: 1316487162,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIHitZoneCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIHitZoneCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MeasureHandle",
+                name_hash: 2384192279,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIImReverseHandle",
                 rust_offset: offset_of!(UIHitZoneCommandStaticState, measure_handle),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIHitZoneCommandStaticState, field_flag_changed0),
@@ -1261,6 +1344,7 @@ impl TypeObject for UIHitZoneCommandStaticState {
 
 pub static UIHITZONECOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIHitZoneCommandStaticState-Array",
+    name_hash: 606155470,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIHitZoneCommandStaticState"),
@@ -1269,7 +1353,8 @@ pub static UIHITZONECOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIScreenProjectionCommandDynamicState {
     pub input: super::core::Vec2,
     pub plane: super::core::Vec4,
@@ -1317,33 +1402,39 @@ impl UIScreenProjectionCommandDynamicStateTrait for UIScreenProjectionCommandDyn
 
 pub static UISCREENPROJECTIONCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIScreenProjectionCommandDynamicState",
+    name_hash: 3336111053,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIScreenProjectionCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIScreenProjectionCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Input",
+                name_hash: 214522259,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(UIScreenProjectionCommandDynamicState, input),
             },
             FieldInfoData {
                 name: "Plane",
+                name_hash: 232719795,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIScreenProjectionCommandDynamicState, plane),
             },
             FieldInfoData {
                 name: "IsInputNormalized",
+                name_hash: 1643522376,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIScreenProjectionCommandDynamicState, is_input_normalized),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIScreenProjectionCommandDynamicState, field_flag_changed0),
@@ -1375,6 +1466,7 @@ impl TypeObject for UIScreenProjectionCommandDynamicState {
 
 pub static UISCREENPROJECTIONCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIScreenProjectionCommandDynamicState-Array",
+    name_hash: 3949025273,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIScreenProjectionCommandDynamicState"),
@@ -1383,7 +1475,8 @@ pub static UISCREENPROJECTIONCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIScreenProjectionCommandStaticState {
     pub reverse_handle: super::game_base::UIImReverseHandle,
     pub field_flag_changed0: u8,
@@ -1413,21 +1506,25 @@ impl UIScreenProjectionCommandStaticStateTrait for UIScreenProjectionCommandStat
 
 pub static UISCREENPROJECTIONCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIScreenProjectionCommandStaticState",
+    name_hash: 258419488,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIScreenProjectionCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIScreenProjectionCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ReverseHandle",
+                name_hash: 1506811119,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIImReverseHandle",
                 rust_offset: offset_of!(UIScreenProjectionCommandStaticState, reverse_handle),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIScreenProjectionCommandStaticState, field_flag_changed0),
@@ -1459,6 +1556,7 @@ impl TypeObject for UIScreenProjectionCommandStaticState {
 
 pub static UISCREENPROJECTIONCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIScreenProjectionCommandStaticState-Array",
+    name_hash: 1075409044,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIScreenProjectionCommandStaticState"),
@@ -1467,7 +1565,8 @@ pub static UISCREENPROJECTIONCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIInputCommandStaticState {
     pub command_type: UIInputCommandType,
     pub reverse_handle: super::game_base::UIImReverseHandle,
@@ -1524,39 +1623,46 @@ impl UIInputCommandStaticStateTrait for UIInputCommandStaticState {
 
 pub static UIINPUTCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputCommandStaticState",
+    name_hash: 968901639,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIInputCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIInputCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CommandType",
+                name_hash: 1071888026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIInputCommandType",
                 rust_offset: offset_of!(UIInputCommandStaticState, command_type),
             },
             FieldInfoData {
                 name: "ReverseHandle",
+                name_hash: 1506811119,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIImReverseHandle",
                 rust_offset: offset_of!(UIInputCommandStaticState, reverse_handle),
             },
             FieldInfoData {
                 name: "ZDepth",
+                name_hash: 3570201778,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIInputCommandStaticState, z_depth),
             },
             FieldInfoData {
                 name: "InputAction",
+                name_hash: 1407707693,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIInputCommandStaticState, input_action),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIInputCommandStaticState, field_flag_changed0),
@@ -1588,6 +1694,7 @@ impl TypeObject for UIInputCommandStaticState {
 
 pub static UIINPUTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputCommandStaticState-Array",
+    name_hash: 3720668339,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIInputCommandStaticState"),
@@ -1612,6 +1719,7 @@ pub enum UIInputCommandType {
 
 pub static UIINPUTCOMMANDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputCommandType",
+    name_hash: 3405717040,
     flags: MemberInfoFlags::new(49429),
     module: "GameClientUI",
     data: TypeInfoData::Enum,
@@ -1640,6 +1748,7 @@ impl TypeObject for UIInputCommandType {
 
 pub static UIINPUTCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIInputCommandType-Array",
+    name_hash: 1747872644,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIInputCommandType"),
@@ -1648,7 +1757,8 @@ pub static UIINPUTCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIMouseInputCommandDynamicState {
     pub tag: String,
     pub listen_rect: super::core::Vec4,
@@ -1714,45 +1824,53 @@ impl UIMouseInputCommandDynamicStateTrait for UIMouseInputCommandDynamicState {
 
 pub static UIMOUSEINPUTCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMouseInputCommandDynamicState",
+    name_hash: 2463056939,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIMouseInputCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIMouseInputCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Tag",
+                name_hash: 193462807,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(UIMouseInputCommandDynamicState, tag),
             },
             FieldInfoData {
                 name: "ListenRect",
+                name_hash: 1752071596,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIMouseInputCommandDynamicState, listen_rect),
             },
             FieldInfoData {
                 name: "Plane",
+                name_hash: 232719795,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIMouseInputCommandDynamicState, plane),
             },
             FieldInfoData {
                 name: "ScreenLocalTransform",
+                name_hash: 2355375240,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(UIMouseInputCommandDynamicState, screen_local_transform),
             },
             FieldInfoData {
                 name: "MouseInputTypeMask",
+                name_hash: 241805022,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIMouseInputCommandDynamicState, mouse_input_type_mask),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIMouseInputCommandDynamicState, field_flag_changed0),
@@ -1784,6 +1902,7 @@ impl TypeObject for UIMouseInputCommandDynamicState {
 
 pub static UIMOUSEINPUTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMouseInputCommandDynamicState-Array",
+    name_hash: 3539952543,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIMouseInputCommandDynamicState"),
@@ -1792,7 +1911,8 @@ pub static UIMOUSEINPUTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIMouseInputCommandStaticState {
     pub reverse_handle: super::game_base::UIImReverseHandle,
     pub field_flag_changed0: u8,
@@ -1822,21 +1942,25 @@ impl UIMouseInputCommandStaticStateTrait for UIMouseInputCommandStaticState {
 
 pub static UIMOUSEINPUTCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMouseInputCommandStaticState",
+    name_hash: 3707634694,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIMouseInputCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIMouseInputCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ReverseHandle",
+                name_hash: 1506811119,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIImReverseHandle",
                 rust_offset: offset_of!(UIMouseInputCommandStaticState, reverse_handle),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIMouseInputCommandStaticState, field_flag_changed0),
@@ -1868,6 +1992,7 @@ impl TypeObject for UIMouseInputCommandStaticState {
 
 pub static UIMOUSEINPUTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMouseInputCommandStaticState-Array",
+    name_hash: 737906994,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIMouseInputCommandStaticState"),
@@ -1876,7 +2001,8 @@ pub static UIMOUSEINPUTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawSectionNameCommandDynamicState {
     pub name: String,
     pub field_flag_changed0: u8,
@@ -1906,21 +2032,25 @@ impl UIDrawSectionNameCommandDynamicStateTrait for UIDrawSectionNameCommandDynam
 
 pub static UIDRAWSECTIONNAMECOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawSectionNameCommandDynamicState",
+    name_hash: 3971057458,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawSectionNameCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawSectionNameCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(UIDrawSectionNameCommandDynamicState, name),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawSectionNameCommandDynamicState, field_flag_changed0),
@@ -1952,6 +2082,7 @@ impl TypeObject for UIDrawSectionNameCommandDynamicState {
 
 pub static UIDRAWSECTIONNAMECOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawSectionNameCommandDynamicState-Array",
+    name_hash: 3296988550,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawSectionNameCommandDynamicState"),
@@ -1960,7 +2091,8 @@ pub static UIDRAWSECTIONNAMECOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawClearCommandDynamicState {
     pub color: super::core::Vec4,
     pub stencil: u8,
@@ -2008,33 +2140,39 @@ impl UIDrawClearCommandDynamicStateTrait for UIDrawClearCommandDynamicState {
 
 pub static UIDRAWCLEARCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawClearCommandDynamicState",
+    name_hash: 4057812453,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawClearCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawClearCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Color",
+                name_hash: 212387320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawClearCommandDynamicState, color),
             },
             FieldInfoData {
                 name: "Stencil",
+                name_hash: 2180867087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawClearCommandDynamicState, stencil),
             },
             FieldInfoData {
                 name: "ClearMask",
+                name_hash: 3406203816,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(UIDrawClearCommandDynamicState, clear_mask),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawClearCommandDynamicState, field_flag_changed0),
@@ -2066,6 +2204,7 @@ impl TypeObject for UIDrawClearCommandDynamicState {
 
 pub static UIDRAWCLEARCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawClearCommandDynamicState-Array",
+    name_hash: 2587219665,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawClearCommandDynamicState"),
@@ -2074,7 +2213,8 @@ pub static UIDRAWCLEARCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawViewportCommandDynamicState {
     pub viewport: super::render_base::ViewportRect,
     pub field_flag_changed0: u8,
@@ -2104,21 +2244,25 @@ impl UIDrawViewportCommandDynamicStateTrait for UIDrawViewportCommandDynamicStat
 
 pub static UIDRAWVIEWPORTCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawViewportCommandDynamicState",
+    name_hash: 3943096264,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawViewportCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawViewportCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Viewport",
+                name_hash: 383721937,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ViewportRect",
                 rust_offset: offset_of!(UIDrawViewportCommandDynamicState, viewport),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawViewportCommandDynamicState, field_flag_changed0),
@@ -2150,6 +2294,7 @@ impl TypeObject for UIDrawViewportCommandDynamicState {
 
 pub static UIDRAWVIEWPORTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawViewportCommandDynamicState-Array",
+    name_hash: 4261524092,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawViewportCommandDynamicState"),
@@ -2158,7 +2303,8 @@ pub static UIDRAWVIEWPORTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawViewportCommandStaticState {
     pub command_type: UIDrawViewportCommandType,
     pub field_flag_changed0: u8,
@@ -2188,21 +2334,25 @@ impl UIDrawViewportCommandStaticStateTrait for UIDrawViewportCommandStaticState 
 
 pub static UIDRAWVIEWPORTCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawViewportCommandStaticState",
+    name_hash: 2267600965,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawViewportCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawViewportCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CommandType",
+                name_hash: 1071888026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIDrawViewportCommandType",
                 rust_offset: offset_of!(UIDrawViewportCommandStaticState, command_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawViewportCommandStaticState, field_flag_changed0),
@@ -2234,6 +2384,7 @@ impl TypeObject for UIDrawViewportCommandStaticState {
 
 pub static UIDRAWVIEWPORTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawViewportCommandStaticState-Array",
+    name_hash: 3755946097,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawViewportCommandStaticState"),
@@ -2253,6 +2404,7 @@ pub enum UIDrawViewportCommandType {
 
 pub static UIDRAWVIEWPORTCOMMANDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawViewportCommandType",
+    name_hash: 728530226,
     flags: MemberInfoFlags::new(49429),
     module: "GameClientUI",
     data: TypeInfoData::Enum,
@@ -2281,6 +2433,7 @@ impl TypeObject for UIDrawViewportCommandType {
 
 pub static UIDRAWVIEWPORTCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawViewportCommandType-Array",
+    name_hash: 488604550,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawViewportCommandType"),
@@ -2289,7 +2442,8 @@ pub static UIDRAWVIEWPORTCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawBlendCommandDynamicState {
     pub enabled: bool,
     pub separate_alpha_blend: bool,
@@ -2382,63 +2536,74 @@ impl UIDrawBlendCommandDynamicStateTrait for UIDrawBlendCommandDynamicState {
 
 pub static UIDRAWBLENDCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawBlendCommandDynamicState",
+    name_hash: 549885853,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawBlendCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawBlendCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawBlendCommandDynamicState, enabled),
             },
             FieldInfoData {
                 name: "SeparateAlphaBlend",
+                name_hash: 779712981,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawBlendCommandDynamicState, separate_alpha_blend),
             },
             FieldInfoData {
                 name: "ColorOp",
+                name_hash: 3656522727,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RenderBlendOp",
                 rust_offset: offset_of!(UIDrawBlendCommandDynamicState, color_op),
             },
             FieldInfoData {
                 name: "AlphaOp",
+                name_hash: 644697838,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RenderBlendOp",
                 rust_offset: offset_of!(UIDrawBlendCommandDynamicState, alpha_op),
             },
             FieldInfoData {
                 name: "SourceColor",
+                name_hash: 3003361221,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RenderBlendMode",
                 rust_offset: offset_of!(UIDrawBlendCommandDynamicState, source_color),
             },
             FieldInfoData {
                 name: "DestColor",
+                name_hash: 1648320830,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RenderBlendMode",
                 rust_offset: offset_of!(UIDrawBlendCommandDynamicState, dest_color),
             },
             FieldInfoData {
                 name: "SourceAlpha",
+                name_hash: 2996541260,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RenderBlendMode",
                 rust_offset: offset_of!(UIDrawBlendCommandDynamicState, source_alpha),
             },
             FieldInfoData {
                 name: "DestAlpha",
+                name_hash: 1645940919,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RenderBlendMode",
                 rust_offset: offset_of!(UIDrawBlendCommandDynamicState, dest_alpha),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawBlendCommandDynamicState, field_flag_changed0),
@@ -2470,6 +2635,7 @@ impl TypeObject for UIDrawBlendCommandDynamicState {
 
 pub static UIDRAWBLENDCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawBlendCommandDynamicState-Array",
+    name_hash: 2281014057,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawBlendCommandDynamicState"),
@@ -2478,7 +2644,8 @@ pub static UIDRAWBLENDCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawBlendCommandStaticState {
     pub command_type: UIDrawBlendCommandType,
     pub field_flag_changed0: u8,
@@ -2508,21 +2675,25 @@ impl UIDrawBlendCommandStaticStateTrait for UIDrawBlendCommandStaticState {
 
 pub static UIDRAWBLENDCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawBlendCommandStaticState",
+    name_hash: 593927792,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawBlendCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawBlendCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CommandType",
+                name_hash: 1071888026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIDrawBlendCommandType",
                 rust_offset: offset_of!(UIDrawBlendCommandStaticState, command_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawBlendCommandStaticState, field_flag_changed0),
@@ -2554,6 +2725,7 @@ impl TypeObject for UIDrawBlendCommandStaticState {
 
 pub static UIDRAWBLENDCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawBlendCommandStaticState-Array",
+    name_hash: 2248219716,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawBlendCommandStaticState"),
@@ -2573,6 +2745,7 @@ pub enum UIDrawBlendCommandType {
 
 pub static UIDRAWBLENDCOMMANDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawBlendCommandType",
+    name_hash: 982353511,
     flags: MemberInfoFlags::new(49429),
     module: "GameClientUI",
     data: TypeInfoData::Enum,
@@ -2601,6 +2774,7 @@ impl TypeObject for UIDrawBlendCommandType {
 
 pub static UIDRAWBLENDCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawBlendCommandType-Array",
+    name_hash: 2063247443,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawBlendCommandType"),
@@ -2609,7 +2783,8 @@ pub static UIDRAWBLENDCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawDepthCommandDynamicState {
     pub mode: super::render::RenderDepthMode,
     pub field_flag_changed0: u8,
@@ -2639,21 +2814,25 @@ impl UIDrawDepthCommandDynamicStateTrait for UIDrawDepthCommandDynamicState {
 
 pub static UIDRAWDEPTHCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawDepthCommandDynamicState",
+    name_hash: 2735002865,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawDepthCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawDepthCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Mode",
+                name_hash: 2088772358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RenderDepthMode",
                 rust_offset: offset_of!(UIDrawDepthCommandDynamicState, mode),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawDepthCommandDynamicState, field_flag_changed0),
@@ -2685,6 +2864,7 @@ impl TypeObject for UIDrawDepthCommandDynamicState {
 
 pub static UIDRAWDEPTHCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawDepthCommandDynamicState-Array",
+    name_hash: 4042897349,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawDepthCommandDynamicState"),
@@ -2693,7 +2873,8 @@ pub static UIDRAWDEPTHCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawDepthCommandStaticState {
     pub command_type: UIDrawDepthCommandType,
     pub field_flag_changed0: u8,
@@ -2723,21 +2904,25 @@ impl UIDrawDepthCommandStaticStateTrait for UIDrawDepthCommandStaticState {
 
 pub static UIDRAWDEPTHCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawDepthCommandStaticState",
+    name_hash: 3124351900,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawDepthCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawDepthCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CommandType",
+                name_hash: 1071888026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIDrawDepthCommandType",
                 rust_offset: offset_of!(UIDrawDepthCommandStaticState, command_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawDepthCommandStaticState, field_flag_changed0),
@@ -2769,6 +2954,7 @@ impl TypeObject for UIDrawDepthCommandStaticState {
 
 pub static UIDRAWDEPTHCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawDepthCommandStaticState-Array",
+    name_hash: 370863016,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawDepthCommandStaticState"),
@@ -2788,6 +2974,7 @@ pub enum UIDrawDepthCommandType {
 
 pub static UIDRAWDEPTHCOMMANDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawDepthCommandType",
+    name_hash: 1252280459,
     flags: MemberInfoFlags::new(49429),
     module: "GameClientUI",
     data: TypeInfoData::Enum,
@@ -2816,6 +3003,7 @@ impl TypeObject for UIDrawDepthCommandType {
 
 pub static UIDRAWDEPTHCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawDepthCommandType-Array",
+    name_hash: 2432300863,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawDepthCommandType"),
@@ -2824,7 +3012,8 @@ pub static UIDRAWDEPTHCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawStencilMaskCommandDynamicState {
     pub invert_test: bool,
     pub rect: super::core::Vec4,
@@ -2890,45 +3079,53 @@ impl UIDrawStencilMaskCommandDynamicStateTrait for UIDrawStencilMaskCommandDynam
 
 pub static UIDRAWSTENCILMASKCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilMaskCommandDynamicState",
+    name_hash: 339429666,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawStencilMaskCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawStencilMaskCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InvertTest",
+                name_hash: 3752948225,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawStencilMaskCommandDynamicState, invert_test),
             },
             FieldInfoData {
                 name: "Rect",
+                name_hash: 2089376965,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawStencilMaskCommandDynamicState, rect),
             },
             FieldInfoData {
                 name: "Texture",
+                name_hash: 3185041626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureResourceHandle",
                 rust_offset: offset_of!(UIDrawStencilMaskCommandDynamicState, texture),
             },
             FieldInfoData {
                 name: "UvRect",
+                name_hash: 2939810758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawStencilMaskCommandDynamicState, uv_rect),
             },
             FieldInfoData {
                 name: "AlphaThreshold",
+                name_hash: 2686813414,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIDrawStencilMaskCommandDynamicState, alpha_threshold),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawStencilMaskCommandDynamicState, field_flag_changed0),
@@ -2960,6 +3157,7 @@ impl TypeObject for UIDrawStencilMaskCommandDynamicState {
 
 pub static UIDRAWSTENCILMASKCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilMaskCommandDynamicState-Array",
+    name_hash: 2168752022,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawStencilMaskCommandDynamicState"),
@@ -2968,7 +3166,8 @@ pub static UIDRAWSTENCILMASKCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawStencilMaskCommandStaticState {
     pub command_type: UIDrawStencilMaskCommandType,
     pub field_flag_changed0: u8,
@@ -2998,21 +3197,25 @@ impl UIDrawStencilMaskCommandStaticStateTrait for UIDrawStencilMaskCommandStatic
 
 pub static UIDRAWSTENCILMASKCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilMaskCommandStaticState",
+    name_hash: 3808630831,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawStencilMaskCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawStencilMaskCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CommandType",
+                name_hash: 1071888026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIDrawStencilMaskCommandType",
                 rust_offset: offset_of!(UIDrawStencilMaskCommandStaticState, command_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawStencilMaskCommandStaticState, field_flag_changed0),
@@ -3044,6 +3247,7 @@ impl TypeObject for UIDrawStencilMaskCommandStaticState {
 
 pub static UIDRAWSTENCILMASKCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilMaskCommandStaticState-Array",
+    name_hash: 2567038363,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawStencilMaskCommandStaticState"),
@@ -3063,6 +3267,7 @@ pub enum UIDrawStencilMaskCommandType {
 
 pub static UIDRAWSTENCILMASKCOMMANDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilMaskCommandType",
+    name_hash: 2275175768,
     flags: MemberInfoFlags::new(49429),
     module: "GameClientUI",
     data: TypeInfoData::Enum,
@@ -3091,6 +3296,7 @@ impl TypeObject for UIDrawStencilMaskCommandType {
 
 pub static UIDRAWSTENCILMASKCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilMaskCommandType-Array",
+    name_hash: 377366508,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawStencilMaskCommandType"),
@@ -3099,7 +3305,8 @@ pub static UIDRAWSTENCILMASKCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawStencilCommandDynamicState {
     pub enabled: bool,
     pub write_color: bool,
@@ -3192,63 +3399,74 @@ impl UIDrawStencilCommandDynamicStateTrait for UIDrawStencilCommandDynamicState 
 
 pub static UIDRAWSTENCILCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilCommandDynamicState",
+    name_hash: 1445157014,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawStencilCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawStencilCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawStencilCommandDynamicState, enabled),
             },
             FieldInfoData {
                 name: "WriteColor",
+                name_hash: 2757588965,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawStencilCommandDynamicState, write_color),
             },
             FieldInfoData {
                 name: "Ref",
+                name_hash: 193464980,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawStencilCommandDynamicState, r#ref),
             },
             FieldInfoData {
                 name: "StencilMask",
+                name_hash: 1257438203,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawStencilCommandDynamicState, stencil_mask),
             },
             FieldInfoData {
                 name: "Func",
+                name_hash: 2088684539,
                 flags: MemberInfoFlags::new(0),
                 field_type: "DepthStencilCompareFunc",
                 rust_offset: offset_of!(UIDrawStencilCommandDynamicState, func),
             },
             FieldInfoData {
                 name: "FailOp",
+                name_hash: 2516077784,
                 flags: MemberInfoFlags::new(0),
                 field_type: "StencilOperation",
                 rust_offset: offset_of!(UIDrawStencilCommandDynamicState, fail_op),
             },
             FieldInfoData {
                 name: "DepthFailOp",
+                name_hash: 2917776469,
                 flags: MemberInfoFlags::new(0),
                 field_type: "StencilOperation",
                 rust_offset: offset_of!(UIDrawStencilCommandDynamicState, depth_fail_op),
             },
             FieldInfoData {
                 name: "PassOp",
+                name_hash: 3371545035,
                 flags: MemberInfoFlags::new(0),
                 field_type: "StencilOperation",
                 rust_offset: offset_of!(UIDrawStencilCommandDynamicState, pass_op),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawStencilCommandDynamicState, field_flag_changed0),
@@ -3280,6 +3498,7 @@ impl TypeObject for UIDrawStencilCommandDynamicState {
 
 pub static UIDRAWSTENCILCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilCommandDynamicState-Array",
+    name_hash: 2508262818,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawStencilCommandDynamicState"),
@@ -3288,7 +3507,8 @@ pub static UIDRAWSTENCILCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawStencilCommandStaticState {
     pub command_type: UIDrawStencilCommandType,
     pub field_flag_changed0: u8,
@@ -3318,21 +3538,25 @@ impl UIDrawStencilCommandStaticStateTrait for UIDrawStencilCommandStaticState {
 
 pub static UIDRAWSTENCILCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilCommandStaticState",
+    name_hash: 2868663515,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawStencilCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawStencilCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CommandType",
+                name_hash: 1071888026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIDrawStencilCommandType",
                 rust_offset: offset_of!(UIDrawStencilCommandStaticState, command_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawStencilCommandStaticState, field_flag_changed0),
@@ -3364,6 +3588,7 @@ impl TypeObject for UIDrawStencilCommandStaticState {
 
 pub static UIDRAWSTENCILCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilCommandStaticState-Array",
+    name_hash: 2466036719,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawStencilCommandStaticState"),
@@ -3383,6 +3608,7 @@ pub enum UIDrawStencilCommandType {
 
 pub static UIDRAWSTENCILCOMMANDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilCommandType",
+    name_hash: 2764859116,
     flags: MemberInfoFlags::new(49429),
     module: "GameClientUI",
     data: TypeInfoData::Enum,
@@ -3411,6 +3637,7 @@ impl TypeObject for UIDrawStencilCommandType {
 
 pub static UIDRAWSTENCILCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawStencilCommandType-Array",
+    name_hash: 1340573400,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawStencilCommandType"),
@@ -3419,7 +3646,8 @@ pub static UIDRAWSTENCILCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIClipThresholdCommandDynamicState {
     pub threshold: f32,
     pub field_flag_changed0: u8,
@@ -3449,21 +3677,25 @@ impl UIClipThresholdCommandDynamicStateTrait for UIClipThresholdCommandDynamicSt
 
 pub static UICLIPTHRESHOLDCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIClipThresholdCommandDynamicState",
+    name_hash: 2689396573,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIClipThresholdCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIClipThresholdCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Threshold",
+                name_hash: 3768602130,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIClipThresholdCommandDynamicState, threshold),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIClipThresholdCommandDynamicState, field_flag_changed0),
@@ -3495,6 +3727,7 @@ impl TypeObject for UIClipThresholdCommandDynamicState {
 
 pub static UICLIPTHRESHOLDCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIClipThresholdCommandDynamicState-Array",
+    name_hash: 3515525993,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIClipThresholdCommandDynamicState"),
@@ -3503,7 +3736,8 @@ pub static UICLIPTHRESHOLDCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawTransformCommandDynamicState {
     pub transform: super::core::LinearTransform,
     pub enabled: bool,
@@ -3542,27 +3776,32 @@ impl UIDrawTransformCommandDynamicStateTrait for UIDrawTransformCommandDynamicSt
 
 pub static UIDRAWTRANSFORMCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTransformCommandDynamicState",
+    name_hash: 1987529776,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawTransformCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawTransformCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(UIDrawTransformCommandDynamicState, transform),
             },
             FieldInfoData {
                 name: "Enabled",
+                name_hash: 2662400,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawTransformCommandDynamicState, enabled),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawTransformCommandDynamicState, field_flag_changed0),
@@ -3594,6 +3833,7 @@ impl TypeObject for UIDrawTransformCommandDynamicState {
 
 pub static UIDRAWTRANSFORMCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTransformCommandDynamicState-Array",
+    name_hash: 3297843588,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawTransformCommandDynamicState"),
@@ -3602,7 +3842,8 @@ pub static UIDRAWTRANSFORMCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawTransformCommandStaticState {
     pub command_type: UIDrawTransformCommandType,
     pub field_flag_changed0: u8,
@@ -3632,21 +3873,25 @@ impl UIDrawTransformCommandStaticStateTrait for UIDrawTransformCommandStaticStat
 
 pub static UIDRAWTRANSFORMCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTransformCommandStaticState",
+    name_hash: 695532157,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawTransformCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawTransformCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CommandType",
+                name_hash: 1071888026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIDrawTransformCommandType",
                 rust_offset: offset_of!(UIDrawTransformCommandStaticState, command_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawTransformCommandStaticState, field_flag_changed0),
@@ -3678,6 +3923,7 @@ impl TypeObject for UIDrawTransformCommandStaticState {
 
 pub static UIDRAWTRANSFORMCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTransformCommandStaticState-Array",
+    name_hash: 2534344521,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawTransformCommandStaticState"),
@@ -3698,6 +3944,7 @@ pub enum UIDrawTransformCommandType {
 
 pub static UIDRAWTRANSFORMCOMMANDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTransformCommandType",
+    name_hash: 1841912394,
     flags: MemberInfoFlags::new(49429),
     module: "GameClientUI",
     data: TypeInfoData::Enum,
@@ -3726,6 +3973,7 @@ impl TypeObject for UIDrawTransformCommandType {
 
 pub static UIDRAWTRANSFORMCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTransformCommandType-Array",
+    name_hash: 1653507582,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawTransformCommandType"),
@@ -3734,7 +3982,8 @@ pub static UIDRAWTRANSFORMCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawColorCommandDynamicState {
     pub color: super::core::Vec4,
     pub field_flag_changed0: u8,
@@ -3764,21 +4013,25 @@ impl UIDrawColorCommandDynamicStateTrait for UIDrawColorCommandDynamicState {
 
 pub static UIDRAWCOLORCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawColorCommandDynamicState",
+    name_hash: 259259457,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawColorCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawColorCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Color",
+                name_hash: 212387320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawColorCommandDynamicState, color),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawColorCommandDynamicState, field_flag_changed0),
@@ -3810,6 +4063,7 @@ impl TypeObject for UIDrawColorCommandDynamicState {
 
 pub static UIDRAWCOLORCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawColorCommandDynamicState-Array",
+    name_hash: 1135978101,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawColorCommandDynamicState"),
@@ -3818,7 +4072,8 @@ pub static UIDRAWCOLORCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawColorCommandStaticState {
     pub command_type: UIDrawColorCommandType,
     pub field_flag_changed0: u8,
@@ -3848,21 +4103,25 @@ impl UIDrawColorCommandStaticStateTrait for UIDrawColorCommandStaticState {
 
 pub static UIDRAWCOLORCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawColorCommandStaticState",
+    name_hash: 3220040236,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawColorCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawColorCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "CommandType",
+                name_hash: 1071888026,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIDrawColorCommandType",
                 rust_offset: offset_of!(UIDrawColorCommandStaticState, command_type),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawColorCommandStaticState, field_flag_changed0),
@@ -3894,6 +4153,7 @@ impl TypeObject for UIDrawColorCommandStaticState {
 
 pub static UIDRAWCOLORCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawColorCommandStaticState-Array",
+    name_hash: 3560077720,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawColorCommandStaticState"),
@@ -3913,6 +4173,7 @@ pub enum UIDrawColorCommandType {
 
 pub static UIDRAWCOLORCOMMANDTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawColorCommandType",
+    name_hash: 879372603,
     flags: MemberInfoFlags::new(49429),
     module: "GameClientUI",
     data: TypeInfoData::Enum,
@@ -3941,6 +4202,7 @@ impl TypeObject for UIDrawColorCommandType {
 
 pub static UIDRAWCOLORCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawColorCommandType-Array",
+    name_hash: 1745145999,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawColorCommandType"),
@@ -3949,7 +4211,8 @@ pub static UIDRAWCOLORCOMMANDTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIMovieCommandDynamicState {
     pub rect: super::core::Vec4,
     pub field_flag_changed0: u8,
@@ -3979,21 +4242,25 @@ impl UIMovieCommandDynamicStateTrait for UIMovieCommandDynamicState {
 
 pub static UIMOVIECOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMovieCommandDynamicState",
+    name_hash: 3787459108,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIMovieCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIMovieCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Rect",
+                name_hash: 2089376965,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIMovieCommandDynamicState, rect),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIMovieCommandDynamicState, field_flag_changed0),
@@ -4025,6 +4292,7 @@ impl TypeObject for UIMovieCommandDynamicState {
 
 pub static UIMOVIECOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMovieCommandDynamicState-Array",
+    name_hash: 2426224016,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIMovieCommandDynamicState"),
@@ -4033,7 +4301,8 @@ pub static UIMOVIECOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIMovieCommandStaticState {
     pub movie: super::movie_base::MovieHandle,
     pub field_flag_changed0: u8,
@@ -4063,21 +4332,25 @@ impl UIMovieCommandStaticStateTrait for UIMovieCommandStaticState {
 
 pub static UIMOVIECOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMovieCommandStaticState",
+    name_hash: 1442694377,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIMovieCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIMovieCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Movie",
+                name_hash: 210030653,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MovieHandle",
                 rust_offset: offset_of!(UIMovieCommandStaticState, movie),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIMovieCommandStaticState, field_flag_changed0),
@@ -4109,6 +4382,7 @@ impl TypeObject for UIMovieCommandStaticState {
 
 pub static UIMOVIECOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMovieCommandStaticState-Array",
+    name_hash: 164838365,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIMovieCommandStaticState"),
@@ -4117,7 +4391,8 @@ pub static UIMOVIECOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIMeasureTextCommandDynamicState {
     pub text: String,
     pub measure_width: f32,
@@ -4165,33 +4440,39 @@ impl UIMeasureTextCommandDynamicStateTrait for UIMeasureTextCommandDynamicState 
 
 pub static UIMEASURETEXTCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMeasureTextCommandDynamicState",
+    name_hash: 3858629305,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIMeasureTextCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIMeasureTextCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Text",
+                name_hash: 2089309304,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(UIMeasureTextCommandDynamicState, text),
             },
             FieldInfoData {
                 name: "MeasureWidth",
+                name_hash: 447278843,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIMeasureTextCommandDynamicState, measure_width),
             },
             FieldInfoData {
                 name: "CustomTextLayoutCallback",
+                name_hash: 2955734776,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(UIMeasureTextCommandDynamicState, custom_text_layout_callback),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIMeasureTextCommandDynamicState, field_flag_changed0),
@@ -4223,6 +4504,7 @@ impl TypeObject for UIMeasureTextCommandDynamicState {
 
 pub static UIMEASURETEXTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMeasureTextCommandDynamicState-Array",
+    name_hash: 3158135053,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIMeasureTextCommandDynamicState"),
@@ -4231,7 +4513,8 @@ pub static UIMEASURETEXTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIMeasureTextCommandStaticState {
     pub config: super::game_base::UIImTextCommandConfig,
     pub measure_handle: super::game_base::UIImReverseHandle,
@@ -4279,33 +4562,39 @@ impl UIMeasureTextCommandStaticStateTrait for UIMeasureTextCommandStaticState {
 
 pub static UIMEASURETEXTCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMeasureTextCommandStaticState",
+    name_hash: 457011668,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIMeasureTextCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIMeasureTextCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Config",
+                name_hash: 2713732399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIImTextCommandConfig",
                 rust_offset: offset_of!(UIMeasureTextCommandStaticState, config),
             },
             FieldInfoData {
                 name: "MeasureHandle",
+                name_hash: 2384192279,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIImReverseHandle",
                 rust_offset: offset_of!(UIMeasureTextCommandStaticState, measure_handle),
             },
             FieldInfoData {
                 name: "MeasureOnlyVisibleGlyphs",
+                name_hash: 3618456958,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIMeasureTextCommandStaticState, measure_only_visible_glyphs),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIMeasureTextCommandStaticState, field_flag_changed0),
@@ -4337,6 +4626,7 @@ impl TypeObject for UIMeasureTextCommandStaticState {
 
 pub static UIMEASURETEXTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIMeasureTextCommandStaticState-Array",
+    name_hash: 1672535648,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIMeasureTextCommandStaticState"),
@@ -4345,7 +4635,8 @@ pub static UIMEASURETEXTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawTextCommandDynamicState {
     pub text: String,
     pub rect: super::core::Vec4,
@@ -4402,39 +4693,46 @@ impl UIDrawTextCommandDynamicStateTrait for UIDrawTextCommandDynamicState {
 
 pub static UIDRAWTEXTCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTextCommandDynamicState",
+    name_hash: 1587966465,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawTextCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawTextCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Text",
+                name_hash: 2089309304,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(UIDrawTextCommandDynamicState, text),
             },
             FieldInfoData {
                 name: "Rect",
+                name_hash: 2089376965,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawTextCommandDynamicState, rect),
             },
             FieldInfoData {
                 name: "NonPremultipliedColor",
+                name_hash: 2395279021,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawTextCommandDynamicState, non_premultiplied_color),
             },
             FieldInfoData {
                 name: "CustomTextLayoutCallback",
+                name_hash: 2955734776,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(UIDrawTextCommandDynamicState, custom_text_layout_callback),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawTextCommandDynamicState, field_flag_changed0),
@@ -4466,6 +4764,7 @@ impl TypeObject for UIDrawTextCommandDynamicState {
 
 pub static UIDRAWTEXTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTextCommandDynamicState-Array",
+    name_hash: 3533532085,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawTextCommandDynamicState"),
@@ -4474,7 +4773,8 @@ pub static UIDRAWTEXTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawTextCommandStaticState {
     pub config: super::game_base::UIImTextCommandConfig,
     pub shader_program: i32,
@@ -4531,39 +4831,46 @@ impl UIDrawTextCommandStaticStateTrait for UIDrawTextCommandStaticState {
 
 pub static UIDRAWTEXTCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTextCommandStaticState",
+    name_hash: 825375084,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawTextCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawTextCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Config",
+                name_hash: 2713732399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIImTextCommandConfig",
                 rust_offset: offset_of!(UIDrawTextCommandStaticState, config),
             },
             FieldInfoData {
                 name: "ShaderProgram",
+                name_hash: 1878183064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIDrawTextCommandStaticState, shader_program),
             },
             FieldInfoData {
                 name: "MeasureHandle",
+                name_hash: 2384192279,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIImReverseHandle",
                 rust_offset: offset_of!(UIDrawTextCommandStaticState, measure_handle),
             },
             FieldInfoData {
                 name: "MeasureOnlyVisibleGlyphs",
+                name_hash: 3618456958,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawTextCommandStaticState, measure_only_visible_glyphs),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawTextCommandStaticState, field_flag_changed0),
@@ -4595,6 +4902,7 @@ impl TypeObject for UIDrawTextCommandStaticState {
 
 pub static UIDRAWTEXTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTextCommandStaticState-Array",
+    name_hash: 2533439832,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawTextCommandStaticState"),
@@ -4603,7 +4911,8 @@ pub static UIDRAWTEXTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawAACircleCommandDynamicState {
     pub center: super::core::Vec2,
     pub radius: f32,
@@ -4669,45 +4978,53 @@ impl UIDrawAACircleCommandDynamicStateTrait for UIDrawAACircleCommandDynamicStat
 
 pub static UIDRAWAACIRCLECOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawAACircleCommandDynamicState",
+    name_hash: 2510132398,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawAACircleCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawAACircleCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Center",
+                name_hash: 2711667502,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(UIDrawAACircleCommandDynamicState, center),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIDrawAACircleCommandDynamicState, radius),
             },
             FieldInfoData {
                 name: "Thickness",
+                name_hash: 3417098291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIDrawAACircleCommandDynamicState, thickness),
             },
             FieldInfoData {
                 name: "NonPremultipliedColor",
+                name_hash: 2395279021,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawAACircleCommandDynamicState, non_premultiplied_color),
             },
             FieldInfoData {
                 name: "ShaderProgram",
+                name_hash: 1878183064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIDrawAACircleCommandDynamicState, shader_program),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawAACircleCommandDynamicState, field_flag_changed0),
@@ -4739,6 +5056,7 @@ impl TypeObject for UIDrawAACircleCommandDynamicState {
 
 pub static UIDRAWAACIRCLECOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawAACircleCommandDynamicState-Array",
+    name_hash: 886078746,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawAACircleCommandDynamicState"),
@@ -4747,10 +5065,11 @@ pub static UIDRAWAACIRCLECOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawAALineStripCommandDynamicState {
-    pub vertices: Vec<super::core::Vec2>,
-    pub non_premultiplied_colors: Vec<super::core::Vec4>,
+    pub vertices: Vec<BoxedTypeObject /* super::core::Vec2 */>,
+    pub non_premultiplied_colors: Vec<BoxedTypeObject /* super::core::Vec4 */>,
     pub width: f32,
     pub closed: bool,
     pub fill_left: bool,
@@ -4759,10 +5078,10 @@ pub struct UIDrawAALineStripCommandDynamicState {
 }
 
 pub trait UIDrawAALineStripCommandDynamicStateTrait: TypeObject {
-    fn vertices(&self) -> &Vec<super::core::Vec2>;
-    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec2>;
-    fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4>;
-    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4>;
+    fn vertices(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn vertices_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn non_premultiplied_colors(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */>;
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */>;
     fn width(&self) -> &f32;
     fn width_mut(&mut self) -> &mut f32;
     fn closed(&self) -> &bool;
@@ -4776,16 +5095,16 @@ pub trait UIDrawAALineStripCommandDynamicStateTrait: TypeObject {
 }
 
 impl UIDrawAALineStripCommandDynamicStateTrait for UIDrawAALineStripCommandDynamicState {
-    fn vertices(&self) -> &Vec<super::core::Vec2> {
+    fn vertices(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &self.vertices
     }
-    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+    fn vertices_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &mut self.vertices
     }
-    fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4> {
+    fn non_premultiplied_colors(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &self.non_premultiplied_colors
     }
-    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &mut self.non_premultiplied_colors
     }
     fn width(&self) -> &f32 {
@@ -4822,51 +5141,60 @@ impl UIDrawAALineStripCommandDynamicStateTrait for UIDrawAALineStripCommandDynam
 
 pub static UIDRAWAALINESTRIPCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawAALineStripCommandDynamicState",
+    name_hash: 2032250590,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawAALineStripCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawAALineStripCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Vertices",
+                name_hash: 3169871788,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec2-Array",
                 rust_offset: offset_of!(UIDrawAALineStripCommandDynamicState, vertices),
             },
             FieldInfoData {
                 name: "NonPremultipliedColors",
+                name_hash: 1734796350,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec4-Array",
                 rust_offset: offset_of!(UIDrawAALineStripCommandDynamicState, non_premultiplied_colors),
             },
             FieldInfoData {
                 name: "Width",
+                name_hash: 226981187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UIDrawAALineStripCommandDynamicState, width),
             },
             FieldInfoData {
                 name: "Closed",
+                name_hash: 2721944279,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawAALineStripCommandDynamicState, closed),
             },
             FieldInfoData {
                 name: "FillLeft",
+                name_hash: 1137664465,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawAALineStripCommandDynamicState, fill_left),
             },
             FieldInfoData {
                 name: "FillRight",
+                name_hash: 3208992650,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawAALineStripCommandDynamicState, fill_right),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawAALineStripCommandDynamicState, field_flag_changed0),
@@ -4898,6 +5226,7 @@ impl TypeObject for UIDrawAALineStripCommandDynamicState {
 
 pub static UIDRAWAALINESTRIPCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawAALineStripCommandDynamicState-Array",
+    name_hash: 432451690,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawAALineStripCommandDynamicState"),
@@ -4906,19 +5235,20 @@ pub static UIDRAWAALINESTRIPCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawLineListCommandDynamicState {
-    pub vertices: Vec<super::core::Vec3>,
-    pub non_premultiplied_colors: Vec<super::core::Vec4>,
+    pub vertices: Vec<BoxedTypeObject /* super::core::Vec3 */>,
+    pub non_premultiplied_colors: Vec<BoxedTypeObject /* super::core::Vec4 */>,
     pub indices: Vec<u16>,
     pub field_flag_changed0: u8,
 }
 
 pub trait UIDrawLineListCommandDynamicStateTrait: TypeObject {
-    fn vertices(&self) -> &Vec<super::core::Vec3>;
-    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3>;
-    fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4>;
-    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4>;
+    fn vertices(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */>;
+    fn vertices_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */>;
+    fn non_premultiplied_colors(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */>;
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */>;
     fn indices(&self) -> &Vec<u16>;
     fn indices_mut(&mut self) -> &mut Vec<u16>;
     fn field_flag_changed0(&self) -> &u8;
@@ -4926,16 +5256,16 @@ pub trait UIDrawLineListCommandDynamicStateTrait: TypeObject {
 }
 
 impl UIDrawLineListCommandDynamicStateTrait for UIDrawLineListCommandDynamicState {
-    fn vertices(&self) -> &Vec<super::core::Vec3> {
+    fn vertices(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &self.vertices
     }
-    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn vertices_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &mut self.vertices
     }
-    fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4> {
+    fn non_premultiplied_colors(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &self.non_premultiplied_colors
     }
-    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &mut self.non_premultiplied_colors
     }
     fn indices(&self) -> &Vec<u16> {
@@ -4954,33 +5284,39 @@ impl UIDrawLineListCommandDynamicStateTrait for UIDrawLineListCommandDynamicStat
 
 pub static UIDRAWLINELISTCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawLineListCommandDynamicState",
+    name_hash: 3099703728,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawLineListCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawLineListCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Vertices",
+                name_hash: 3169871788,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec3-Array",
                 rust_offset: offset_of!(UIDrawLineListCommandDynamicState, vertices),
             },
             FieldInfoData {
                 name: "NonPremultipliedColors",
+                name_hash: 1734796350,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec4-Array",
                 rust_offset: offset_of!(UIDrawLineListCommandDynamicState, non_premultiplied_colors),
             },
             FieldInfoData {
                 name: "Indices",
+                name_hash: 1672980602,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint16-Array",
                 rust_offset: offset_of!(UIDrawLineListCommandDynamicState, indices),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawLineListCommandDynamicState, field_flag_changed0),
@@ -5012,6 +5348,7 @@ impl TypeObject for UIDrawLineListCommandDynamicState {
 
 pub static UIDRAWLINELISTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawLineListCommandDynamicState-Array",
+    name_hash: 525838084,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawLineListCommandDynamicState"),
@@ -5020,7 +5357,8 @@ pub static UIDRAWLINELISTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawLineListCommandStaticState {
     pub shader_program: i32,
     pub field_flag_changed0: u8,
@@ -5050,21 +5388,25 @@ impl UIDrawLineListCommandStaticStateTrait for UIDrawLineListCommandStaticState 
 
 pub static UIDRAWLINELISTCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawLineListCommandStaticState",
+    name_hash: 3982997501,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawLineListCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawLineListCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ShaderProgram",
+                name_hash: 1878183064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIDrawLineListCommandStaticState, shader_program),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawLineListCommandStaticState, field_flag_changed0),
@@ -5096,6 +5438,7 @@ impl TypeObject for UIDrawLineListCommandStaticState {
 
 pub static UIDRAWLINELISTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawLineListCommandStaticState-Array",
+    name_hash: 1148839113,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawLineListCommandStaticState"),
@@ -5104,19 +5447,20 @@ pub static UIDRAWLINELISTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawSolidTriangleListCommandDynamicState {
-    pub vertices: Vec<super::core::Vec3>,
-    pub non_premultiplied_colors: Vec<super::core::Vec4>,
+    pub vertices: Vec<BoxedTypeObject /* super::core::Vec3 */>,
+    pub non_premultiplied_colors: Vec<BoxedTypeObject /* super::core::Vec4 */>,
     pub indices: Vec<u16>,
     pub field_flag_changed0: u8,
 }
 
 pub trait UIDrawSolidTriangleListCommandDynamicStateTrait: TypeObject {
-    fn vertices(&self) -> &Vec<super::core::Vec3>;
-    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3>;
-    fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4>;
-    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4>;
+    fn vertices(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */>;
+    fn vertices_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */>;
+    fn non_premultiplied_colors(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */>;
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */>;
     fn indices(&self) -> &Vec<u16>;
     fn indices_mut(&mut self) -> &mut Vec<u16>;
     fn field_flag_changed0(&self) -> &u8;
@@ -5124,16 +5468,16 @@ pub trait UIDrawSolidTriangleListCommandDynamicStateTrait: TypeObject {
 }
 
 impl UIDrawSolidTriangleListCommandDynamicStateTrait for UIDrawSolidTriangleListCommandDynamicState {
-    fn vertices(&self) -> &Vec<super::core::Vec3> {
+    fn vertices(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &self.vertices
     }
-    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn vertices_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &mut self.vertices
     }
-    fn non_premultiplied_colors(&self) -> &Vec<super::core::Vec4> {
+    fn non_premultiplied_colors(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &self.non_premultiplied_colors
     }
-    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+    fn non_premultiplied_colors_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &mut self.non_premultiplied_colors
     }
     fn indices(&self) -> &Vec<u16> {
@@ -5152,33 +5496,39 @@ impl UIDrawSolidTriangleListCommandDynamicStateTrait for UIDrawSolidTriangleList
 
 pub static UIDRAWSOLIDTRIANGLELISTCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawSolidTriangleListCommandDynamicState",
+    name_hash: 3451812429,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawSolidTriangleListCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawSolidTriangleListCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Vertices",
+                name_hash: 3169871788,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec3-Array",
                 rust_offset: offset_of!(UIDrawSolidTriangleListCommandDynamicState, vertices),
             },
             FieldInfoData {
                 name: "NonPremultipliedColors",
+                name_hash: 1734796350,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec4-Array",
                 rust_offset: offset_of!(UIDrawSolidTriangleListCommandDynamicState, non_premultiplied_colors),
             },
             FieldInfoData {
                 name: "Indices",
+                name_hash: 1672980602,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint16-Array",
                 rust_offset: offset_of!(UIDrawSolidTriangleListCommandDynamicState, indices),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawSolidTriangleListCommandDynamicState, field_flag_changed0),
@@ -5210,6 +5560,7 @@ impl TypeObject for UIDrawSolidTriangleListCommandDynamicState {
 
 pub static UIDRAWSOLIDTRIANGLELISTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawSolidTriangleListCommandDynamicState-Array",
+    name_hash: 2670046841,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawSolidTriangleListCommandDynamicState"),
@@ -5218,7 +5569,8 @@ pub static UIDRAWSOLIDTRIANGLELISTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawSolidTriangleListCommandStaticState {
     pub shader_program: i32,
     pub field_flag_changed0: u8,
@@ -5248,21 +5600,25 @@ impl UIDrawSolidTriangleListCommandStaticStateTrait for UIDrawSolidTriangleListC
 
 pub static UIDRAWSOLIDTRIANGLELISTCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawSolidTriangleListCommandStaticState",
+    name_hash: 2084032928,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawSolidTriangleListCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawSolidTriangleListCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ShaderProgram",
+                name_hash: 1878183064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIDrawSolidTriangleListCommandStaticState, shader_program),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawSolidTriangleListCommandStaticState, field_flag_changed0),
@@ -5294,6 +5650,7 @@ impl TypeObject for UIDrawSolidTriangleListCommandStaticState {
 
 pub static UIDRAWSOLIDTRIANGLELISTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawSolidTriangleListCommandStaticState-Array",
+    name_hash: 3379361556,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawSolidTriangleListCommandStaticState"),
@@ -5302,11 +5659,12 @@ pub static UIDRAWSOLIDTRIANGLELISTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawTriangleListCommandDynamicState {
     pub texture: super::render_base::TextureResourceHandle,
-    pub vertices: Vec<super::core::Vec3>,
-    pub uvs: Vec<super::core::Vec2>,
+    pub vertices: Vec<BoxedTypeObject /* super::core::Vec3 */>,
+    pub uvs: Vec<BoxedTypeObject /* super::core::Vec2 */>,
     pub indices: Vec<u16>,
     pub field_flag_changed0: u8,
 }
@@ -5314,10 +5672,10 @@ pub struct UIDrawTriangleListCommandDynamicState {
 pub trait UIDrawTriangleListCommandDynamicStateTrait: TypeObject {
     fn texture(&self) -> &super::render_base::TextureResourceHandle;
     fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle;
-    fn vertices(&self) -> &Vec<super::core::Vec3>;
-    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3>;
-    fn uvs(&self) -> &Vec<super::core::Vec2>;
-    fn uvs_mut(&mut self) -> &mut Vec<super::core::Vec2>;
+    fn vertices(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */>;
+    fn vertices_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */>;
+    fn uvs(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */>;
+    fn uvs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */>;
     fn indices(&self) -> &Vec<u16>;
     fn indices_mut(&mut self) -> &mut Vec<u16>;
     fn field_flag_changed0(&self) -> &u8;
@@ -5331,16 +5689,16 @@ impl UIDrawTriangleListCommandDynamicStateTrait for UIDrawTriangleListCommandDyn
     fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle {
         &mut self.texture
     }
-    fn vertices(&self) -> &Vec<super::core::Vec3> {
+    fn vertices(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &self.vertices
     }
-    fn vertices_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn vertices_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &mut self.vertices
     }
-    fn uvs(&self) -> &Vec<super::core::Vec2> {
+    fn uvs(&self) -> &Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &self.uvs
     }
-    fn uvs_mut(&mut self) -> &mut Vec<super::core::Vec2> {
+    fn uvs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec2 */> {
         &mut self.uvs
     }
     fn indices(&self) -> &Vec<u16> {
@@ -5359,39 +5717,46 @@ impl UIDrawTriangleListCommandDynamicStateTrait for UIDrawTriangleListCommandDyn
 
 pub static UIDRAWTRIANGLELISTCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTriangleListCommandDynamicState",
+    name_hash: 847583504,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawTriangleListCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawTriangleListCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Texture",
+                name_hash: 3185041626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureResourceHandle",
                 rust_offset: offset_of!(UIDrawTriangleListCommandDynamicState, texture),
             },
             FieldInfoData {
                 name: "Vertices",
+                name_hash: 3169871788,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec3-Array",
                 rust_offset: offset_of!(UIDrawTriangleListCommandDynamicState, vertices),
             },
             FieldInfoData {
                 name: "Uvs",
+                name_hash: 193455157,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec2-Array",
                 rust_offset: offset_of!(UIDrawTriangleListCommandDynamicState, uvs),
             },
             FieldInfoData {
                 name: "Indices",
+                name_hash: 1672980602,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint16-Array",
                 rust_offset: offset_of!(UIDrawTriangleListCommandDynamicState, indices),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawTriangleListCommandDynamicState, field_flag_changed0),
@@ -5423,6 +5788,7 @@ impl TypeObject for UIDrawTriangleListCommandDynamicState {
 
 pub static UIDRAWTRIANGLELISTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawTriangleListCommandDynamicState-Array",
+    name_hash: 3865397028,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawTriangleListCommandDynamicState"),
@@ -5431,10 +5797,11 @@ pub static UIDRAWTRIANGLELISTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawDistanceFieldCommandDynamicState {
     pub texture: super::render_base::TextureResourceHandle,
-    pub corners: Vec<super::core::Vec3>,
+    pub corners: Vec<BoxedTypeObject /* super::core::Vec3 */>,
     pub uv_rect: super::core::Vec4,
     pub non_premultiplied_color: super::core::Vec4,
     pub field_flag_changed0: u8,
@@ -5443,8 +5810,8 @@ pub struct UIDrawDistanceFieldCommandDynamicState {
 pub trait UIDrawDistanceFieldCommandDynamicStateTrait: TypeObject {
     fn texture(&self) -> &super::render_base::TextureResourceHandle;
     fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle;
-    fn corners(&self) -> &Vec<super::core::Vec3>;
-    fn corners_mut(&mut self) -> &mut Vec<super::core::Vec3>;
+    fn corners(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */>;
+    fn corners_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */>;
     fn uv_rect(&self) -> &super::core::Vec4;
     fn uv_rect_mut(&mut self) -> &mut super::core::Vec4;
     fn non_premultiplied_color(&self) -> &super::core::Vec4;
@@ -5460,10 +5827,10 @@ impl UIDrawDistanceFieldCommandDynamicStateTrait for UIDrawDistanceFieldCommandD
     fn texture_mut(&mut self) -> &mut super::render_base::TextureResourceHandle {
         &mut self.texture
     }
-    fn corners(&self) -> &Vec<super::core::Vec3> {
+    fn corners(&self) -> &Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &self.corners
     }
-    fn corners_mut(&mut self) -> &mut Vec<super::core::Vec3> {
+    fn corners_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec3 */> {
         &mut self.corners
     }
     fn uv_rect(&self) -> &super::core::Vec4 {
@@ -5488,39 +5855,46 @@ impl UIDrawDistanceFieldCommandDynamicStateTrait for UIDrawDistanceFieldCommandD
 
 pub static UIDRAWDISTANCEFIELDCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawDistanceFieldCommandDynamicState",
+    name_hash: 3848705885,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawDistanceFieldCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawDistanceFieldCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Texture",
+                name_hash: 3185041626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureResourceHandle",
                 rust_offset: offset_of!(UIDrawDistanceFieldCommandDynamicState, texture),
             },
             FieldInfoData {
                 name: "Corners",
+                name_hash: 3677527825,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec3-Array",
                 rust_offset: offset_of!(UIDrawDistanceFieldCommandDynamicState, corners),
             },
             FieldInfoData {
                 name: "UvRect",
+                name_hash: 2939810758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawDistanceFieldCommandDynamicState, uv_rect),
             },
             FieldInfoData {
                 name: "NonPremultipliedColor",
+                name_hash: 2395279021,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawDistanceFieldCommandDynamicState, non_premultiplied_color),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawDistanceFieldCommandDynamicState, field_flag_changed0),
@@ -5552,6 +5926,7 @@ impl TypeObject for UIDrawDistanceFieldCommandDynamicState {
 
 pub static UIDRAWDISTANCEFIELDCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawDistanceFieldCommandDynamicState-Array",
+    name_hash: 4248982377,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawDistanceFieldCommandDynamicState"),
@@ -5560,7 +5935,8 @@ pub static UIDRAWDISTANCEFIELDCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawDistanceFieldCommandStaticState {
     pub params: super::game_shared_u_i::UIElementBitmapDistanceFieldParams,
     pub shader_program: i32,
@@ -5599,27 +5975,32 @@ impl UIDrawDistanceFieldCommandStaticStateTrait for UIDrawDistanceFieldCommandSt
 
 pub static UIDRAWDISTANCEFIELDCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawDistanceFieldCommandStaticState",
+    name_hash: 2998670512,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawDistanceFieldCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawDistanceFieldCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Params",
+                name_hash: 3371566681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIElementBitmapDistanceFieldParams",
                 rust_offset: offset_of!(UIDrawDistanceFieldCommandStaticState, params),
             },
             FieldInfoData {
                 name: "ShaderProgram",
+                name_hash: 1878183064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIDrawDistanceFieldCommandStaticState, shader_program),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawDistanceFieldCommandStaticState, field_flag_changed0),
@@ -5651,6 +6032,7 @@ impl TypeObject for UIDrawDistanceFieldCommandStaticState {
 
 pub static UIDRAWDISTANCEFIELDCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawDistanceFieldCommandStaticState-Array",
+    name_hash: 543834628,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawDistanceFieldCommandStaticState"),
@@ -5659,7 +6041,8 @@ pub static UIDRAWDISTANCEFIELDCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawAdvancedRectCommandDynamicState {
     pub texture1: super::render_base::TextureResourceHandle,
     pub uv_rect1: super::core::Vec4,
@@ -5743,57 +6126,67 @@ impl UIDrawAdvancedRectCommandDynamicStateTrait for UIDrawAdvancedRectCommandDyn
 
 pub static UIDRAWADVANCEDRECTCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawAdvancedRectCommandDynamicState",
+    name_hash: 4089994082,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawAdvancedRectCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawAdvancedRectCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Texture1",
+                name_hash: 2027158571,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureResourceHandle",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandDynamicState, texture1),
             },
             FieldInfoData {
                 name: "UvRect1",
+                name_hash: 2524474551,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandDynamicState, uv_rect1),
             },
             FieldInfoData {
                 name: "Texture2",
+                name_hash: 2027158568,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureResourceHandle",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandDynamicState, texture2),
             },
             FieldInfoData {
                 name: "UvRect2",
+                name_hash: 2524474548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandDynamicState, uv_rect2),
             },
             FieldInfoData {
                 name: "Rect",
+                name_hash: 2089376965,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandDynamicState, rect),
             },
             FieldInfoData {
                 name: "NonPremultipliedColor",
+                name_hash: 2395279021,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandDynamicState, non_premultiplied_color),
             },
             FieldInfoData {
                 name: "GradientParams",
+                name_hash: 4218127455,
                 flags: MemberInfoFlags::new(0),
                 field_type: "UIGradientRectParams",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandDynamicState, gradient_params),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandDynamicState, field_flag_changed0),
@@ -5825,6 +6218,7 @@ impl TypeObject for UIDrawAdvancedRectCommandDynamicState {
 
 pub static UIDRAWADVANCEDRECTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawAdvancedRectCommandDynamicState-Array",
+    name_hash: 3826649686,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawAdvancedRectCommandDynamicState"),
@@ -5833,7 +6227,8 @@ pub static UIDRAWADVANCEDRECTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawAdvancedRectCommandStaticState {
     pub address_u: super::render_base::TextureAddress,
     pub address_v: super::render_base::TextureAddress,
@@ -5908,51 +6303,60 @@ impl UIDrawAdvancedRectCommandStaticStateTrait for UIDrawAdvancedRectCommandStat
 
 pub static UIDRAWADVANCEDRECTCOMMANDSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawAdvancedRectCommandStaticState",
+    name_hash: 702616303,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawAdvancedRectCommandStaticState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawAdvancedRectCommandStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AddressU",
+                name_hash: 1909810598,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureAddress",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandStaticState, address_u),
             },
             FieldInfoData {
                 name: "AddressV",
+                name_hash: 1909810597,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureAddress",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandStaticState, address_v),
             },
             FieldInfoData {
                 name: "Filled",
+                name_hash: 2525175307,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandStaticState, filled),
             },
             FieldInfoData {
                 name: "Outlined",
+                name_hash: 927959105,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandStaticState, outlined),
             },
             FieldInfoData {
                 name: "Gradient",
+                name_hash: 1375866243,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandStaticState, gradient),
             },
             FieldInfoData {
                 name: "ShaderProgram",
+                name_hash: 1878183064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandStaticState, shader_program),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawAdvancedRectCommandStaticState, field_flag_changed0),
@@ -5984,6 +6388,7 @@ impl TypeObject for UIDrawAdvancedRectCommandStaticState {
 
 pub static UIDRAWADVANCEDRECTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawAdvancedRectCommandStaticState-Array",
+    name_hash: 4117033179,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawAdvancedRectCommandStaticState"),
@@ -5992,7 +6397,8 @@ pub static UIDRAWADVANCEDRECTCOMMANDSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIGradientRectParams {
     pub top_left_color: super::core::Vec4,
     pub top_right_color: super::core::Vec4,
@@ -6040,33 +6446,39 @@ impl UIGradientRectParamsTrait for UIGradientRectParams {
 
 pub static UIGRADIENTRECTPARAMS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIGradientRectParams",
+    name_hash: 1994090595,
     flags: MemberInfoFlags::new(36937),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIGradientRectParams as Default>::default())),
+            create_boxed: || Box::new(<UIGradientRectParams as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TopLeftColor",
+                name_hash: 1000158472,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIGradientRectParams, top_left_color),
             },
             FieldInfoData {
                 name: "TopRightColor",
+                name_hash: 2022051251,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIGradientRectParams, top_right_color),
             },
             FieldInfoData {
                 name: "BottomLeftColor",
+                name_hash: 1324188044,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIGradientRectParams, bottom_left_color),
             },
             FieldInfoData {
                 name: "BottomRightColor",
+                name_hash: 3457108407,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIGradientRectParams, bottom_right_color),
@@ -6098,6 +6510,7 @@ impl TypeObject for UIGradientRectParams {
 
 pub static UIGRADIENTRECTPARAMS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIGradientRectParams-Array",
+    name_hash: 3312082007,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIGradientRectParams"),
@@ -6106,7 +6519,8 @@ pub static UIGRADIENTRECTPARAMS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UIDrawRectCommandDynamicState {
     pub texture: super::render_base::TextureResourceHandle,
     pub rect: super::core::Vec4,
@@ -6172,45 +6586,53 @@ impl UIDrawRectCommandDynamicStateTrait for UIDrawRectCommandDynamicState {
 
 pub static UIDRAWRECTCOMMANDDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawRectCommandDynamicState",
+    name_hash: 527454812,
     flags: MemberInfoFlags::new(73),
     module: "GameClientUI",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UIDrawRectCommandDynamicState as Default>::default())),
+            create_boxed: || Box::new(<UIDrawRectCommandDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Texture",
+                name_hash: 3185041626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureResourceHandle",
                 rust_offset: offset_of!(UIDrawRectCommandDynamicState, texture),
             },
             FieldInfoData {
                 name: "Rect",
+                name_hash: 2089376965,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawRectCommandDynamicState, rect),
             },
             FieldInfoData {
                 name: "UvRect",
+                name_hash: 2939810758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawRectCommandDynamicState, uv_rect),
             },
             FieldInfoData {
                 name: "NonPremultipliedColor",
+                name_hash: 2395279021,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UIDrawRectCommandDynamicState, non_premultiplied_color),
             },
             FieldInfoData {
                 name: "ShaderProgram",
+                name_hash: 1878183064,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UIDrawRectCommandDynamicState, shader_program),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(UIDrawRectCommandDynamicState, field_flag_changed0),
@@ -6242,6 +6664,7 @@ impl TypeObject for UIDrawRectCommandDynamicState {
 
 pub static UIDRAWRECTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UIDrawRectCommandDynamicState-Array",
+    name_hash: 4197022440,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UIDrawRectCommandDynamicState"),
@@ -6250,7 +6673,8 @@ pub static UIDRAWRECTCOMMANDDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &T
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientUIInputEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6269,12 +6693,15 @@ impl super::entity::EntityBusPeerTrait for ClientUIInputEntity {
 
 pub static CLIENTUIINPUTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientUIInputEntity",
+    name_hash: 1603684333,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientUIInputEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientUIInputEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientUIInputEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6304,6 +6731,7 @@ impl TypeObject for ClientUIInputEntity {
 
 pub static CLIENTUIINPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientUIInputEntity-Array",
+    name_hash: 331459801,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("ClientUIInputEntity"),
@@ -6312,7 +6740,8 @@ pub static CLIENTUIINPUTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientMovieTrack {
     pub _glacier_base: super::timeline::TimelineTrack,
 }
@@ -6328,12 +6757,15 @@ impl super::timeline::TimelineTrackTrait for ClientMovieTrack {
 
 pub static CLIENTMOVIETRACK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMovieTrack",
+    name_hash: 3375014987,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::timeline::TIMELINETRACK_TYPE_INFO),
+        super_class_offset: offset_of!(ClientMovieTrack, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientMovieTrack as Default>::default())),
+            create_boxed: || Box::new(<ClientMovieTrack as Default>::default()),
         },
         fields: &[
         ],
@@ -6363,6 +6795,7 @@ impl TypeObject for ClientMovieTrack {
 
 pub static CLIENTMOVIETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientMovieTrack-Array",
+    name_hash: 32891775,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("ClientMovieTrack"),
@@ -6371,7 +6804,8 @@ pub static CLIENTMOVIETRACK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UISystem {
     pub _glacier_base: super::game_client::IUISystem,
 }
@@ -6387,12 +6821,15 @@ impl super::game_client::IUISystemTrait for UISystem {
 
 pub static UISYSTEM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UISystem",
+    name_hash: 1870323580,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::game_client::IUISYSTEM_TYPE_INFO),
+        super_class_offset: offset_of!(UISystem, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UISystem as Default>::default())),
+            create_boxed: || Box::new(<UISystem as Default>::default()),
         },
         fields: &[
         ],
@@ -6422,6 +6859,7 @@ impl TypeObject for UISystem {
 
 pub static UISYSTEM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UISystem-Array",
+    name_hash: 2118199112,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UISystem"),
@@ -6430,7 +6868,8 @@ pub static UISYSTEM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientPlayVideoEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -6449,12 +6888,15 @@ impl super::entity::EntityBusPeerTrait for ClientPlayVideoEntity {
 
 pub static CLIENTPLAYVIDEOENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayVideoEntity",
+    name_hash: 4253835698,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientPlayVideoEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientPlayVideoEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientPlayVideoEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -6484,6 +6926,7 @@ impl TypeObject for ClientPlayVideoEntity {
 
 pub static CLIENTPLAYVIDEOENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientPlayVideoEntity-Array",
+    name_hash: 632866822,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("ClientPlayVideoEntity"),
@@ -6492,7 +6935,8 @@ pub static CLIENTPLAYVIDEOENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UITtfFontFile {
 }
 
@@ -6504,12 +6948,15 @@ impl UITtfFontFileTrait for UITtfFontFile {
 
 pub static UITTFFONTFILE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UITtfFontFile",
+    name_hash: 1516510986,
     flags: MemberInfoFlags::new(101),
     module: "GameClientUI",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UITtfFontFile as Default>::default())),
+            create_boxed: || Box::new(<UITtfFontFile as Default>::default()),
         },
         fields: &[
         ],
@@ -6539,6 +6986,7 @@ impl TypeObject for UITtfFontFile {
 
 pub static UITTFFONTFILE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UITtfFontFile-Array",
+    name_hash: 596220478,
     flags: MemberInfoFlags::new(145),
     module: "GameClientUI",
     data: TypeInfoData::Array("UITtfFontFile"),

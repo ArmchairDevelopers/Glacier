@@ -9,7 +9,7 @@ use glacier_sdk::{
 
 #[tokio::main]
 async fn main() {
-    let mut registry = TypeRegistry::new();
+    let mut registry = TypeRegistry::default();
     register_mod_types(&mut registry);
 
     let bp_type = registry.type_by_name("Blueprint").unwrap();

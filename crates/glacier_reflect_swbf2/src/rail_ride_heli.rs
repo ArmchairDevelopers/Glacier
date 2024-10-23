@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -30,7 +31,8 @@ pub(crate) fn register_rail_ride_heli_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTRAILRIDEHELIENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RailRideHeliWaypointData {
     pub _glacier_base: super::pathfinding_shared::WaypointData,
     pub forward_direction: super::core::Vec3,
@@ -184,88 +186,104 @@ impl super::core::DataContainerTrait for RailRideHeliWaypointData {
 
 pub static RAILRIDEHELIWAYPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliWaypointData",
+    name_hash: 3014952754,
     flags: MemberInfoFlags::new(101),
     module: "RailRideHeli",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::pathfinding_shared::WAYPOINTDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RailRideHeliWaypointData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RailRideHeliWaypointData as Default>::default())),
+            create_boxed: || Box::new(<RailRideHeliWaypointData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ForwardDirection",
+                name_hash: 4200871771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(RailRideHeliWaypointData, forward_direction),
             },
             FieldInfoData {
                 name: "WindNoise",
+                name_hash: 3215343151,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliWaypointData, wind_noise),
             },
             FieldInfoData {
                 name: "LimitWindToHorizontal",
+                name_hash: 2899700673,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliWaypointData, limit_wind_to_horizontal),
             },
             FieldInfoData {
                 name: "Speed",
+                name_hash: 230887042,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliWaypointData, speed),
             },
             FieldInfoData {
                 name: "UseVelocityDirection",
+                name_hash: 1075717460,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliWaypointData, use_velocity_direction),
             },
             FieldInfoData {
                 name: "PointForward",
+                name_hash: 1482929074,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliWaypointData, point_forward),
             },
             FieldInfoData {
                 name: "PointToDistance",
+                name_hash: 2371114353,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliWaypointData, point_to_distance),
             },
             FieldInfoData {
                 name: "WingMode",
+                name_hash: 354218001,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliWaypointData, wing_mode),
             },
             FieldInfoData {
                 name: "Curvature",
+                name_hash: 2405441856,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliWaypointData, curvature),
             },
             FieldInfoData {
                 name: "Constraint",
+                name_hash: 1858096416,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliWaypointData, constraint),
             },
             FieldInfoData {
                 name: "ForcePitch",
+                name_hash: 1030831486,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliWaypointData, force_pitch),
             },
             FieldInfoData {
                 name: "BankingScale",
+                name_hash: 3470475451,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliWaypointData, banking_scale),
             },
             FieldInfoData {
                 name: "PointToIndex",
+                name_hash: 3277302860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RailRideHeliWaypointData, point_to_index),
@@ -297,6 +315,7 @@ impl TypeObject for RailRideHeliWaypointData {
 
 pub static RAILRIDEHELIWAYPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliWaypointData-Array",
+    name_hash: 2177305990,
     flags: MemberInfoFlags::new(145),
     module: "RailRideHeli",
     data: TypeInfoData::Array("RailRideHeliWaypointData"),
@@ -305,7 +324,8 @@ pub static RAILRIDEHELIWAYPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RailRideHeliSegmentData {
     pub _glacier_base: super::entity::EntityData,
     pub editor_color: super::core::Vec4,
@@ -492,112 +512,132 @@ impl super::core::DataContainerTrait for RailRideHeliSegmentData {
 
 pub static RAILRIDEHELISEGMENTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliSegmentData",
+    name_hash: 2103559314,
     flags: MemberInfoFlags::new(101),
     module: "RailRideHeli",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RailRideHeliSegmentData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RailRideHeliSegmentData as Default>::default())),
+            create_boxed: || Box::new(<RailRideHeliSegmentData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EditorColor",
+                name_hash: 3118032409,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(RailRideHeliSegmentData, editor_color),
             },
             FieldInfoData {
                 name: "Looping",
+                name_hash: 1366646169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliSegmentData, looping),
             },
             FieldInfoData {
                 name: "StartIndex",
+                name_hash: 2746865595,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RailRideHeliSegmentData, start_index),
             },
             FieldInfoData {
                 name: "EndIndex",
+                name_hash: 3992262036,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RailRideHeliSegmentData, end_index),
             },
             FieldInfoData {
                 name: "TeleportOnActivate",
+                name_hash: 321538620,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliSegmentData, teleport_on_activate),
             },
             FieldInfoData {
                 name: "ForceSpeedOnActivate",
+                name_hash: 1822409991,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliSegmentData, force_speed_on_activate),
             },
             FieldInfoData {
                 name: "ForceDirectionOnActivate",
+                name_hash: 3063057349,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliSegmentData, force_direction_on_activate),
             },
             FieldInfoData {
                 name: "TeleportOnLoop",
+                name_hash: 664053881,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliSegmentData, teleport_on_loop),
             },
             FieldInfoData {
                 name: "NodeIndex1",
+                name_hash: 3416174378,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RailRideHeliSegmentData, node_index1),
             },
             FieldInfoData {
                 name: "NodeIndex2",
+                name_hash: 3416174377,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RailRideHeliSegmentData, node_index2),
             },
             FieldInfoData {
                 name: "NodeIndex3",
+                name_hash: 3416174376,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RailRideHeliSegmentData, node_index3),
             },
             FieldInfoData {
                 name: "NodeOnReached",
+                name_hash: 3635116824,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(RailRideHeliSegmentData, node_on_reached),
             },
             FieldInfoData {
                 name: "NodeOnReachedEventHashes",
+                name_hash: 1140056496,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(RailRideHeliSegmentData, node_on_reached_event_hashes),
             },
             FieldInfoData {
                 name: "NodeOnReachedPropertyHashes",
+                name_hash: 45692123,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(RailRideHeliSegmentData, node_on_reached_property_hashes),
             },
             FieldInfoData {
                 name: "ExternalTime",
+                name_hash: 2162678253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliSegmentData, external_time),
             },
             FieldInfoData {
                 name: "WaypointsSpeedScale",
+                name_hash: 1854800842,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliSegmentData, waypoints_speed_scale),
             },
             FieldInfoData {
                 name: "UpdateWaypointsSpeedScaleEveryFrame",
+                name_hash: 40937019,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliSegmentData, update_waypoints_speed_scale_every_frame),
@@ -629,6 +669,7 @@ impl TypeObject for RailRideHeliSegmentData {
 
 pub static RAILRIDEHELISEGMENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliSegmentData-Array",
+    name_hash: 597740454,
     flags: MemberInfoFlags::new(145),
     module: "RailRideHeli",
     data: TypeInfoData::Array("RailRideHeliSegmentData"),
@@ -637,7 +678,8 @@ pub static RAILRIDEHELISEGMENTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RailRideNodePointToData {
     pub _glacier_base: super::entity::GameComponentEntityData,
     pub side: RailRideHeliPointToSide,
@@ -667,16 +709,16 @@ impl super::entity::GameComponentEntityDataTrait for RailRideNodePointToData {
 }
 
 impl super::entity::ComponentEntityDataTrait for RailRideNodePointToData {
-    fn components(&self) -> &Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components(&self) -> &Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components()
     }
-    fn components_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::entity::GameObjectDataTrait>>>> {
+    fn components_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::entity::GameObjectData */>> {
         self._glacier_base.components_mut()
     }
-    fn part_bounding_boxes(&self) -> &Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes(&self) -> &Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes()
     }
-    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<super::core::AxisAlignedBox> {
+    fn part_bounding_boxes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::AxisAlignedBox */> {
         self._glacier_base.part_bounding_boxes_mut()
     }
     fn client_runtime_component_count(&self) -> &u8 {
@@ -737,16 +779,20 @@ impl super::core::DataContainerTrait for RailRideNodePointToData {
 
 pub static RAILRIDENODEPOINTTODATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideNodePointToData",
+    name_hash: 2588246222,
     flags: MemberInfoFlags::new(101),
     module: "RailRideHeli",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::GAMECOMPONENTENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RailRideNodePointToData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RailRideNodePointToData as Default>::default())),
+            create_boxed: || Box::new(<RailRideNodePointToData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Side",
+                name_hash: 2089430110,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RailRideHeliPointToSide",
                 rust_offset: offset_of!(RailRideNodePointToData, side),
@@ -778,6 +824,7 @@ impl TypeObject for RailRideNodePointToData {
 
 pub static RAILRIDENODEPOINTTODATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideNodePointToData-Array",
+    name_hash: 3211606650,
     flags: MemberInfoFlags::new(145),
     module: "RailRideHeli",
     data: TypeInfoData::Array("RailRideNodePointToData"),
@@ -798,6 +845,7 @@ pub enum RailRideHeliPointToSide {
 
 pub static RAILRIDEHELIPOINTTOSIDE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliPointToSide",
+    name_hash: 3587824301,
     flags: MemberInfoFlags::new(49429),
     module: "RailRideHeli",
     data: TypeInfoData::Enum,
@@ -826,6 +874,7 @@ impl TypeObject for RailRideHeliPointToSide {
 
 pub static RAILRIDEHELIPOINTTOSIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliPointToSide-Array",
+    name_hash: 1497894681,
     flags: MemberInfoFlags::new(145),
     module: "RailRideHeli",
     data: TypeInfoData::Array("RailRideHeliPointToSide"),
@@ -834,7 +883,8 @@ pub static RAILRIDEHELIPOINTTOSIDE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RailRideHeliData {
     pub _glacier_base: super::entity::EntityData,
     pub control_type: RailRideHeliControlType,
@@ -1120,178 +1170,209 @@ impl super::core::DataContainerTrait for RailRideHeliData {
 
 pub static RAILRIDEHELIDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliData",
+    name_hash: 3224187057,
     flags: MemberInfoFlags::new(101),
     module: "RailRideHeli",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RailRideHeliData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RailRideHeliData as Default>::default())),
+            create_boxed: || Box::new(<RailRideHeliData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ControlType",
+                name_hash: 1607477722,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RailRideHeliControlType",
                 rust_offset: offset_of!(RailRideHeliData, control_type),
             },
             FieldInfoData {
                 name: "NetworkControlTransform",
+                name_hash: 2118676048,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliData, network_control_transform),
             },
             FieldInfoData {
                 name: "WaitOnClientActivation",
+                name_hash: 3532761762,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliData, wait_on_client_activation),
             },
             FieldInfoData {
                 name: "ClientActivationBlendTime",
+                name_hash: 4208139292,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, client_activation_blend_time),
             },
             FieldInfoData {
                 name: "AngularApproachSlow",
+                name_hash: 3814374870,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, angular_approach_slow),
             },
             FieldInfoData {
                 name: "AngularApproachFast",
+                name_hash: 3815047601,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, angular_approach_fast),
             },
             FieldInfoData {
                 name: "TiltMax",
+                name_hash: 3345235156,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, tilt_max),
             },
             FieldInfoData {
                 name: "TiltAccelMult",
+                name_hash: 2825680360,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, tilt_accel_mult),
             },
             FieldInfoData {
                 name: "TiltSpeedMult",
+                name_hash: 2127594503,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, tilt_speed_mult),
             },
             FieldInfoData {
                 name: "VeerDurationMin",
+                name_hash: 932416213,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, veer_duration_min),
             },
             FieldInfoData {
                 name: "VeerDurationMax",
+                name_hash: 932415947,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, veer_duration_max),
             },
             FieldInfoData {
                 name: "VeerPositionOffsetMin",
+                name_hash: 341595359,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, veer_position_offset_min),
             },
             FieldInfoData {
                 name: "VeerPositionOffsetMax",
+                name_hash: 341595585,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, veer_position_offset_max),
             },
             FieldInfoData {
                 name: "VeerHeadingOffsetMin",
+                name_hash: 3108076750,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, veer_heading_offset_min),
             },
             FieldInfoData {
                 name: "VeerHeadingOffsetMax",
+                name_hash: 3108077008,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, veer_heading_offset_max),
             },
             FieldInfoData {
                 name: "SimulationStepsPerFrame",
+                name_hash: 2564698285,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(RailRideHeliData, simulation_steps_per_frame),
             },
             FieldInfoData {
                 name: "SoundAccelToThrottleMult",
+                name_hash: 3826277853,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, sound_accel_to_throttle_mult),
             },
             FieldInfoData {
                 name: "SoundSpeedToThrottleMult",
+                name_hash: 3099079282,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, sound_speed_to_throttle_mult),
             },
             FieldInfoData {
                 name: "SpeedMultiplier",
+                name_hash: 1688256841,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, speed_multiplier),
             },
             FieldInfoData {
                 name: "WingModeOnActivate",
+                name_hash: 3826891529,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliData, wing_mode_on_activate),
             },
             FieldInfoData {
                 name: "RootTransform",
+                name_hash: 3407367919,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(RailRideHeliData, root_transform),
             },
             FieldInfoData {
                 name: "ReferenceTransform",
+                name_hash: 2231497250,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(RailRideHeliData, reference_transform),
             },
             FieldInfoData {
                 name: "BlendTransform",
+                name_hash: 1068622440,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(RailRideHeliData, blend_transform),
             },
             FieldInfoData {
                 name: "Blend",
+                name_hash: 211525156,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RailRideHeliData, blend),
             },
             FieldInfoData {
                 name: "PointToOverride",
+                name_hash: 3171831750,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(RailRideHeliData, point_to_override),
             },
             FieldInfoData {
                 name: "EnablePointToOverride",
+                name_hash: 465597511,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliData, enable_point_to_override),
             },
             FieldInfoData {
                 name: "UseSegmentExternalTime",
+                name_hash: 1318838765,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliData, use_segment_external_time),
             },
             FieldInfoData {
                 name: "Braking",
+                name_hash: 2953397663,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RailRideHeliData, braking),
@@ -1323,6 +1404,7 @@ impl TypeObject for RailRideHeliData {
 
 pub static RAILRIDEHELIDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliData-Array",
+    name_hash: 4061635333,
     flags: MemberInfoFlags::new(145),
     module: "RailRideHeli",
     data: TypeInfoData::Array("RailRideHeliData"),
@@ -1342,6 +1424,7 @@ pub enum RailRideHeliControlType {
 
 pub static RAILRIDEHELICONTROLTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliControlType",
+    name_hash: 1881554590,
     flags: MemberInfoFlags::new(49429),
     module: "RailRideHeli",
     data: TypeInfoData::Enum,
@@ -1370,6 +1453,7 @@ impl TypeObject for RailRideHeliControlType {
 
 pub static RAILRIDEHELICONTROLTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliControlType-Array",
+    name_hash: 3189231530,
     flags: MemberInfoFlags::new(145),
     module: "RailRideHeli",
     data: TypeInfoData::Array("RailRideHeliControlType"),
@@ -1378,7 +1462,8 @@ pub static RAILRIDEHELICONTROLTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RailRideHeliClientActivatedMessage {
 }
 
@@ -1390,11 +1475,13 @@ impl RailRideHeliClientActivatedMessageTrait for RailRideHeliClientActivatedMess
 
 pub static RAILRIDEHELICLIENTACTIVATEDMESSAGE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliClientActivatedMessage",
+    name_hash: 391446446,
     flags: MemberInfoFlags::new(73),
     module: "RailRideHeli",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RailRideHeliClientActivatedMessage as Default>::default())),
+            create_boxed: || Box::new(<RailRideHeliClientActivatedMessage as Default>::default()),
         },
         fields: &[
         ],
@@ -1421,7 +1508,8 @@ impl TypeObject for RailRideHeliClientActivatedMessage {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ServerRailRideHeliEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1440,12 +1528,15 @@ impl super::entity::EntityBusPeerTrait for ServerRailRideHeliEntity {
 
 pub static SERVERRAILRIDEHELIENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRailRideHeliEntity",
+    name_hash: 1409555455,
     flags: MemberInfoFlags::new(101),
     module: "RailRideHeli",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ServerRailRideHeliEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ServerRailRideHeliEntity as Default>::default())),
+            create_boxed: || Box::new(<ServerRailRideHeliEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1475,6 +1566,7 @@ impl TypeObject for ServerRailRideHeliEntity {
 
 pub static SERVERRAILRIDEHELIENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ServerRailRideHeliEntity-Array",
+    name_hash: 2306703819,
     flags: MemberInfoFlags::new(145),
     module: "RailRideHeli",
     data: TypeInfoData::Array("ServerRailRideHeliEntity"),
@@ -1483,7 +1575,8 @@ pub static SERVERRAILRIDEHELIENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RailRideHeliSegmentEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1502,12 +1595,15 @@ impl super::entity::EntityBusPeerTrait for RailRideHeliSegmentEntity {
 
 pub static RAILRIDEHELISEGMENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliSegmentEntity",
+    name_hash: 1833926393,
     flags: MemberInfoFlags::new(101),
     module: "RailRideHeli",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(RailRideHeliSegmentEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RailRideHeliSegmentEntity as Default>::default())),
+            create_boxed: || Box::new(<RailRideHeliSegmentEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1537,6 +1633,7 @@ impl TypeObject for RailRideHeliSegmentEntity {
 
 pub static RAILRIDEHELISEGMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RailRideHeliSegmentEntity-Array",
+    name_hash: 966475213,
     flags: MemberInfoFlags::new(145),
     module: "RailRideHeli",
     data: TypeInfoData::Array("RailRideHeliSegmentEntity"),
@@ -1545,7 +1642,8 @@ pub static RAILRIDEHELISEGMENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientRailRideHeliEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1564,12 +1662,15 @@ impl super::entity::EntityBusPeerTrait for ClientRailRideHeliEntity {
 
 pub static CLIENTRAILRIDEHELIENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRailRideHeliEntity",
+    name_hash: 2895764387,
     flags: MemberInfoFlags::new(101),
     module: "RailRideHeli",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(ClientRailRideHeliEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientRailRideHeliEntity as Default>::default())),
+            create_boxed: || Box::new(<ClientRailRideHeliEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1599,6 +1700,7 @@ impl TypeObject for ClientRailRideHeliEntity {
 
 pub static CLIENTRAILRIDEHELIENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientRailRideHeliEntity-Array",
+    name_hash: 1891516183,
     flags: MemberInfoFlags::new(145),
     module: "RailRideHeli",
     data: TypeInfoData::Array("ClientRailRideHeliEntity"),

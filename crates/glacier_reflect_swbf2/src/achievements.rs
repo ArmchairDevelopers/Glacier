@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -25,7 +26,8 @@ pub(crate) fn register_achievements_types(registry: &mut TypeRegistry) {
     registry.register_type(PRESENCEUNLOCKACHIEVEMENTSREQUESTPARAMETERS_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceAchievementServiceData {
     pub _glacier_base: super::online_shared::PresenceServiceData,
 }
@@ -53,12 +55,15 @@ impl super::core::DataContainerTrait for PresenceAchievementServiceData {
 
 pub static PRESENCEACHIEVEMENTSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceAchievementServiceData",
+    name_hash: 1575093238,
     flags: MemberInfoFlags::new(101),
     module: "Achievements",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCESERVICEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceAchievementServiceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceAchievementServiceData as Default>::default())),
+            create_boxed: || Box::new(<PresenceAchievementServiceData as Default>::default()),
         },
         fields: &[
         ],
@@ -88,6 +93,7 @@ impl TypeObject for PresenceAchievementServiceData {
 
 pub static PRESENCEACHIEVEMENTSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceAchievementServiceData-Array",
+    name_hash: 1656654018,
     flags: MemberInfoFlags::new(145),
     module: "Achievements",
     data: TypeInfoData::Array("PresenceAchievementServiceData"),
@@ -96,7 +102,8 @@ pub static PRESENCEACHIEVEMENTSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceAchievementRequestMessageBase {
 }
 
@@ -108,11 +115,13 @@ impl PresenceAchievementRequestMessageBaseTrait for PresenceAchievementRequestMe
 
 pub static PRESENCEACHIEVEMENTREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceAchievementRequestMessageBase",
+    name_hash: 485070420,
     flags: MemberInfoFlags::new(36937),
     module: "Achievements",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceAchievementRequestMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresenceAchievementRequestMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -139,7 +148,8 @@ impl TypeObject for PresenceAchievementRequestMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceAchievementMessageBase {
 }
 
@@ -151,11 +161,13 @@ impl PresenceAchievementMessageBaseTrait for PresenceAchievementMessageBase {
 
 pub static PRESENCEACHIEVEMENTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceAchievementMessageBase",
+    name_hash: 39077029,
     flags: MemberInfoFlags::new(36937),
     module: "Achievements",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceAchievementMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresenceAchievementMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -182,7 +194,8 @@ impl TypeObject for PresenceAchievementMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Xb1AchievementsBackendData {
     pub _glacier_base: super::online_shared::PresenceBackendData,
 }
@@ -216,12 +229,15 @@ impl super::core::DataContainerTrait for Xb1AchievementsBackendData {
 
 pub static XB1ACHIEVEMENTSBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Xb1AchievementsBackendData",
+    name_hash: 999074030,
     flags: MemberInfoFlags::new(101),
     module: "Achievements",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCEBACKENDDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Xb1AchievementsBackendData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Xb1AchievementsBackendData as Default>::default())),
+            create_boxed: || Box::new(<Xb1AchievementsBackendData as Default>::default()),
         },
         fields: &[
         ],
@@ -251,6 +267,7 @@ impl TypeObject for Xb1AchievementsBackendData {
 
 pub static XB1ACHIEVEMENTSBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Xb1AchievementsBackendData-Array",
+    name_hash: 335380954,
     flags: MemberInfoFlags::new(145),
     module: "Achievements",
     data: TypeInfoData::Array("Xb1AchievementsBackendData"),
@@ -259,7 +276,8 @@ pub static XB1ACHIEVEMENTSBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct Ps4TrophyBackendData {
     pub _glacier_base: super::online_shared::PresenceBackendData,
     pub enable_trophy_support: bool,
@@ -302,16 +320,20 @@ impl super::core::DataContainerTrait for Ps4TrophyBackendData {
 
 pub static PS4TROPHYBACKENDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Ps4TrophyBackendData",
+    name_hash: 4061862958,
     flags: MemberInfoFlags::new(101),
     module: "Achievements",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCEBACKENDDATA_TYPE_INFO),
+        super_class_offset: offset_of!(Ps4TrophyBackendData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<Ps4TrophyBackendData as Default>::default())),
+            create_boxed: || Box::new(<Ps4TrophyBackendData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EnableTrophySupport",
+                name_hash: 924025475,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(Ps4TrophyBackendData, enable_trophy_support),
@@ -343,6 +365,7 @@ impl TypeObject for Ps4TrophyBackendData {
 
 pub static PS4TROPHYBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "Ps4TrophyBackendData-Array",
+    name_hash: 2922751130,
     flags: MemberInfoFlags::new(145),
     module: "Achievements",
     data: TypeInfoData::Array("Ps4TrophyBackendData"),
@@ -351,7 +374,8 @@ pub static PS4TROPHYBACKENDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientAchievementService {
     pub _glacier_base: super::online::PresenceService,
 }
@@ -367,12 +391,15 @@ impl super::online::PresenceServiceTrait for ClientAchievementService {
 
 pub static CLIENTACHIEVEMENTSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAchievementService",
+    name_hash: 2403403238,
     flags: MemberInfoFlags::new(101),
     module: "Achievements",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCESERVICE_TYPE_INFO),
+        super_class_offset: offset_of!(ClientAchievementService, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientAchievementService as Default>::default())),
+            create_boxed: || Box::new(<ClientAchievementService as Default>::default()),
         },
         fields: &[
         ],
@@ -402,6 +429,7 @@ impl TypeObject for ClientAchievementService {
 
 pub static CLIENTACHIEVEMENTSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientAchievementService-Array",
+    name_hash: 71582418,
     flags: MemberInfoFlags::new(145),
     module: "Achievements",
     data: TypeInfoData::Array("ClientAchievementService"),
@@ -410,7 +438,8 @@ pub static CLIENTACHIEVEMENTSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceUpdateAchievementsRequestParameters {
     pub _glacier_base: super::online::PresenceRequestParameters,
 }
@@ -426,12 +455,15 @@ impl super::online::PresenceRequestParametersTrait for PresenceUpdateAchievement
 
 pub static PRESENCEUPDATEACHIEVEMENTSREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceUpdateAchievementsRequestParameters",
+    name_hash: 1336468146,
     flags: MemberInfoFlags::new(101),
     module: "Achievements",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceUpdateAchievementsRequestParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceUpdateAchievementsRequestParameters as Default>::default())),
+            create_boxed: || Box::new(<PresenceUpdateAchievementsRequestParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -461,6 +493,7 @@ impl TypeObject for PresenceUpdateAchievementsRequestParameters {
 
 pub static PRESENCEUPDATEACHIEVEMENTSREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceUpdateAchievementsRequestParameters-Array",
+    name_hash: 3044149510,
     flags: MemberInfoFlags::new(145),
     module: "Achievements",
     data: TypeInfoData::Array("PresenceUpdateAchievementsRequestParameters"),
@@ -469,7 +502,8 @@ pub static PRESENCEUPDATEACHIEVEMENTSREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceUnlockAchievementsRequestParameters {
     pub _glacier_base: super::online::PresenceRequestParameters,
 }
@@ -485,12 +519,15 @@ impl super::online::PresenceRequestParametersTrait for PresenceUnlockAchievement
 
 pub static PRESENCEUNLOCKACHIEVEMENTSREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceUnlockAchievementsRequestParameters",
+    name_hash: 581114867,
     flags: MemberInfoFlags::new(101),
     module: "Achievements",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceUnlockAchievementsRequestParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceUnlockAchievementsRequestParameters as Default>::default())),
+            create_boxed: || Box::new(<PresenceUnlockAchievementsRequestParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -520,6 +557,7 @@ impl TypeObject for PresenceUnlockAchievementsRequestParameters {
 
 pub static PRESENCEUNLOCKACHIEVEMENTSREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceUnlockAchievementsRequestParameters-Array",
+    name_hash: 798848967,
     flags: MemberInfoFlags::new(145),
     module: "Achievements",
     data: TypeInfoData::Array("PresenceUnlockAchievementsRequestParameters"),

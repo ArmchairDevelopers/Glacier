@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -41,7 +42,8 @@ pub(crate) fn register_emitter_base_types(registry: &mut TypeRegistry) {
     registry.register_type(LIGHTPROBESAMPLEMETHOD_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterHandle {
 }
 
@@ -53,11 +55,13 @@ impl EmitterHandleTrait for EmitterHandle {
 
 pub static EMITTERHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterHandle",
+    name_hash: 3302603673,
     flags: MemberInfoFlags::new(73),
     module: "EmitterBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterHandle as Default>::default())),
+            create_boxed: || Box::new(<EmitterHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -87,6 +91,7 @@ impl TypeObject for EmitterHandle {
 
 pub static EMITTERHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterHandle-Array",
+    name_hash: 3180591405,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterHandle"),
@@ -95,7 +100,8 @@ pub static EMITTERHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterCreateState {
     pub transform: super::core::LinearTransform,
 }
@@ -116,15 +122,18 @@ impl EmitterCreateStateTrait for EmitterCreateState {
 
 pub static EMITTERCREATESTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterCreateState",
+    name_hash: 1416664352,
     flags: MemberInfoFlags::new(36937),
     module: "EmitterBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterCreateState as Default>::default())),
+            create_boxed: || Box::new(<EmitterCreateState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(EmitterCreateState, transform),
@@ -156,6 +165,7 @@ impl TypeObject for EmitterCreateState {
 
 pub static EMITTERCREATESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterCreateState-Array",
+    name_hash: 84564628,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterCreateState"),
@@ -164,19 +174,20 @@ pub static EMITTERCREATESTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterDynamicState {
     pub params: super::effect_base::EffectParams,
-    pub effect_transform_space_params: Vec<super::effect_base::EffectTransformSpaceParam>,
+    pub effect_transform_space_params: Vec<BoxedTypeObject /* super::effect_base::EffectTransformSpaceParam */>,
     pub state: EmitterState,
     pub source_pt: super::core::Vec3,
     pub target_pt: super::core::Vec3,
     pub other_pt: super::core::Vec3,
     pub effect_position: super::core::Vec3,
     pub light_probe_sample_offset: super::core::Vec3,
-    pub ctrl_points: Vec<EmitterControlPoint>,
+    pub ctrl_points: Vec<BoxedTypeObject /* EmitterControlPoint */>,
     pub active_ctrl_point_count: u32,
-    pub emitter_exposed_inputs: Vec<super::effect_base::EmitterExposedInput>,
+    pub emitter_exposed_inputs: Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */>,
     pub emitter_graph_overrides: super::effect_base::EmitterGraphOverrides,
     pub included_cull_id: super::render_base::CullIdHandle,
     pub excluded_cull_id: super::render_base::CullIdHandle,
@@ -186,8 +197,8 @@ pub struct EmitterDynamicState {
 pub trait EmitterDynamicStateTrait: TypeObject {
     fn params(&self) -> &super::effect_base::EffectParams;
     fn params_mut(&mut self) -> &mut super::effect_base::EffectParams;
-    fn effect_transform_space_params(&self) -> &Vec<super::effect_base::EffectTransformSpaceParam>;
-    fn effect_transform_space_params_mut(&mut self) -> &mut Vec<super::effect_base::EffectTransformSpaceParam>;
+    fn effect_transform_space_params(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EffectTransformSpaceParam */>;
+    fn effect_transform_space_params_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EffectTransformSpaceParam */>;
     fn state(&self) -> &EmitterState;
     fn state_mut(&mut self) -> &mut EmitterState;
     fn source_pt(&self) -> &super::core::Vec3;
@@ -200,12 +211,12 @@ pub trait EmitterDynamicStateTrait: TypeObject {
     fn effect_position_mut(&mut self) -> &mut super::core::Vec3;
     fn light_probe_sample_offset(&self) -> &super::core::Vec3;
     fn light_probe_sample_offset_mut(&mut self) -> &mut super::core::Vec3;
-    fn ctrl_points(&self) -> &Vec<EmitterControlPoint>;
-    fn ctrl_points_mut(&mut self) -> &mut Vec<EmitterControlPoint>;
+    fn ctrl_points(&self) -> &Vec<BoxedTypeObject /* EmitterControlPoint */>;
+    fn ctrl_points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EmitterControlPoint */>;
     fn active_ctrl_point_count(&self) -> &u32;
     fn active_ctrl_point_count_mut(&mut self) -> &mut u32;
-    fn emitter_exposed_inputs(&self) -> &Vec<super::effect_base::EmitterExposedInput>;
-    fn emitter_exposed_inputs_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedInput>;
+    fn emitter_exposed_inputs(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */>;
+    fn emitter_exposed_inputs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */>;
     fn emitter_graph_overrides(&self) -> &super::effect_base::EmitterGraphOverrides;
     fn emitter_graph_overrides_mut(&mut self) -> &mut super::effect_base::EmitterGraphOverrides;
     fn included_cull_id(&self) -> &super::render_base::CullIdHandle;
@@ -223,10 +234,10 @@ impl EmitterDynamicStateTrait for EmitterDynamicState {
     fn params_mut(&mut self) -> &mut super::effect_base::EffectParams {
         &mut self.params
     }
-    fn effect_transform_space_params(&self) -> &Vec<super::effect_base::EffectTransformSpaceParam> {
+    fn effect_transform_space_params(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EffectTransformSpaceParam */> {
         &self.effect_transform_space_params
     }
-    fn effect_transform_space_params_mut(&mut self) -> &mut Vec<super::effect_base::EffectTransformSpaceParam> {
+    fn effect_transform_space_params_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EffectTransformSpaceParam */> {
         &mut self.effect_transform_space_params
     }
     fn state(&self) -> &EmitterState {
@@ -265,10 +276,10 @@ impl EmitterDynamicStateTrait for EmitterDynamicState {
     fn light_probe_sample_offset_mut(&mut self) -> &mut super::core::Vec3 {
         &mut self.light_probe_sample_offset
     }
-    fn ctrl_points(&self) -> &Vec<EmitterControlPoint> {
+    fn ctrl_points(&self) -> &Vec<BoxedTypeObject /* EmitterControlPoint */> {
         &self.ctrl_points
     }
-    fn ctrl_points_mut(&mut self) -> &mut Vec<EmitterControlPoint> {
+    fn ctrl_points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EmitterControlPoint */> {
         &mut self.ctrl_points
     }
     fn active_ctrl_point_count(&self) -> &u32 {
@@ -277,10 +288,10 @@ impl EmitterDynamicStateTrait for EmitterDynamicState {
     fn active_ctrl_point_count_mut(&mut self) -> &mut u32 {
         &mut self.active_ctrl_point_count
     }
-    fn emitter_exposed_inputs(&self) -> &Vec<super::effect_base::EmitterExposedInput> {
+    fn emitter_exposed_inputs(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */> {
         &self.emitter_exposed_inputs
     }
-    fn emitter_exposed_inputs_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedInput> {
+    fn emitter_exposed_inputs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */> {
         &mut self.emitter_exposed_inputs
     }
     fn emitter_graph_overrides(&self) -> &super::effect_base::EmitterGraphOverrides {
@@ -311,99 +322,116 @@ impl EmitterDynamicStateTrait for EmitterDynamicState {
 
 pub static EMITTERDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterDynamicState",
+    name_hash: 150626609,
     flags: MemberInfoFlags::new(73),
     module: "EmitterBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterDynamicState as Default>::default())),
+            create_boxed: || Box::new(<EmitterDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Params",
+                name_hash: 3371566681,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectParams",
                 rust_offset: offset_of!(EmitterDynamicState, params),
             },
             FieldInfoData {
                 name: "EffectTransformSpaceParams",
+                name_hash: 1037002630,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EffectTransformSpaceParam-Array",
                 rust_offset: offset_of!(EmitterDynamicState, effect_transform_space_params),
             },
             FieldInfoData {
                 name: "State",
+                name_hash: 230748402,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterState",
                 rust_offset: offset_of!(EmitterDynamicState, state),
             },
             FieldInfoData {
                 name: "SourcePt",
+                name_hash: 3432638652,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterDynamicState, source_pt),
             },
             FieldInfoData {
                 name: "TargetPt",
+                name_hash: 761484784,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterDynamicState, target_pt),
             },
             FieldInfoData {
                 name: "OtherPt",
+                name_hash: 1120323237,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterDynamicState, other_pt),
             },
             FieldInfoData {
                 name: "EffectPosition",
+                name_hash: 1245667339,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterDynamicState, effect_position),
             },
             FieldInfoData {
                 name: "LightProbeSampleOffset",
+                name_hash: 2900577786,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterDynamicState, light_probe_sample_offset),
             },
             FieldInfoData {
                 name: "CtrlPoints",
+                name_hash: 3013786323,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterControlPoint-Array",
                 rust_offset: offset_of!(EmitterDynamicState, ctrl_points),
             },
             FieldInfoData {
                 name: "ActiveCtrlPointCount",
+                name_hash: 3769406799,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterDynamicState, active_ctrl_point_count),
             },
             FieldInfoData {
                 name: "EmitterExposedInputs",
+                name_hash: 2833395014,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterExposedInput-Array",
                 rust_offset: offset_of!(EmitterDynamicState, emitter_exposed_inputs),
             },
             FieldInfoData {
                 name: "EmitterGraphOverrides",
+                name_hash: 3103421752,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphOverrides",
                 rust_offset: offset_of!(EmitterDynamicState, emitter_graph_overrides),
             },
             FieldInfoData {
                 name: "IncludedCullId",
+                name_hash: 2703503846,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CullIdHandle",
                 rust_offset: offset_of!(EmitterDynamicState, included_cull_id),
             },
             FieldInfoData {
                 name: "ExcludedCullId",
+                name_hash: 345469308,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CullIdHandle",
                 rust_offset: offset_of!(EmitterDynamicState, excluded_cull_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(EmitterDynamicState, field_flag_changed0),
@@ -435,6 +463,7 @@ impl TypeObject for EmitterDynamicState {
 
 pub static EMITTERDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterDynamicState-Array",
+    name_hash: 1227305861,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterDynamicState"),
@@ -443,7 +472,8 @@ pub static EMITTERDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterControlPoint {
     pub position: super::core::Vec3,
     pub index: u32,
@@ -473,21 +503,25 @@ impl EmitterControlPointTrait for EmitterControlPoint {
 
 pub static EMITTERCONTROLPOINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterControlPoint",
+    name_hash: 3299976824,
     flags: MemberInfoFlags::new(36937),
     module: "EmitterBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterControlPoint as Default>::default())),
+            create_boxed: || Box::new(<EmitterControlPoint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Position",
+                name_hash: 3402582524,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterControlPoint, position),
             },
             FieldInfoData {
                 name: "Index",
+                name_hash: 214509467,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterControlPoint, index),
@@ -519,6 +553,7 @@ impl TypeObject for EmitterControlPoint {
 
 pub static EMITTERCONTROLPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterControlPoint-Array",
+    name_hash: 3354493004,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterControlPoint"),
@@ -540,6 +575,7 @@ pub enum EmitterState {
 
 pub static EMITTERSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterState",
+    name_hash: 2018708932,
     flags: MemberInfoFlags::new(49429),
     module: "EmitterBase",
     data: TypeInfoData::Enum,
@@ -568,6 +604,7 @@ impl TypeObject for EmitterState {
 
 pub static EMITTERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterState-Array",
+    name_hash: 704164464,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterState"),
@@ -576,12 +613,13 @@ pub static EMITTERSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterStaticState {
     pub transform_space: super::state_stream::TransformSpaceHandle,
-    pub emitter_base_asset: Option<Arc<Mutex<dyn EmitterBaseAssetTrait>>>,
+    pub emitter_base_asset: Option<LockedTypeObject /* EmitterBaseAsset */>,
     pub is_emitter_graph: bool,
-    pub emitter_graph_base_asset: Option<Arc<Mutex<dyn super::core::AssetTrait>>>,
+    pub emitter_graph_base_asset: Option<LockedTypeObject /* super::core::Asset */>,
     pub spawn_probability: super::core::QualityScalableFloat,
     pub simulation_cull_distance: super::core::QualityScalableFloat,
     pub kill_when_distance_culled: bool,
@@ -602,8 +640,8 @@ pub struct EmitterStaticState {
     pub group_guid: glacier_util::guid::Guid,
     pub max_instance_count_in_group: u32,
     pub kill_on_max_count: bool,
-    pub property_id_lookup_table: Vec<PropertyIdLookup>,
-    pub emitter_exposed_texture_inputs: Vec<super::effect_base::EmitterExposedTextureInput>,
+    pub property_id_lookup_table: Vec<BoxedTypeObject /* PropertyIdLookup */>,
+    pub emitter_exposed_texture_inputs: Vec<BoxedTypeObject /* super::effect_base::EmitterExposedTextureInput */>,
     pub effect_time_delta_type: u32,
     pub internal_duplication_render_view_id: u16,
     pub field_flag_changed0: u32,
@@ -612,12 +650,12 @@ pub struct EmitterStaticState {
 pub trait EmitterStaticStateTrait: TypeObject {
     fn transform_space(&self) -> &super::state_stream::TransformSpaceHandle;
     fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle;
-    fn emitter_base_asset(&self) -> &Option<Arc<Mutex<dyn EmitterBaseAssetTrait>>>;
-    fn emitter_base_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterBaseAssetTrait>>>;
+    fn emitter_base_asset(&self) -> &Option<LockedTypeObject /* EmitterBaseAsset */>;
+    fn emitter_base_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterBaseAsset */>;
     fn is_emitter_graph(&self) -> &bool;
     fn is_emitter_graph_mut(&mut self) -> &mut bool;
-    fn emitter_graph_base_asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
-    fn emitter_graph_base_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn emitter_graph_base_asset(&self) -> &Option<LockedTypeObject /* super::core::Asset */>;
+    fn emitter_graph_base_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */>;
     fn spawn_probability(&self) -> &super::core::QualityScalableFloat;
     fn spawn_probability_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn simulation_cull_distance(&self) -> &super::core::QualityScalableFloat;
@@ -658,10 +696,10 @@ pub trait EmitterStaticStateTrait: TypeObject {
     fn max_instance_count_in_group_mut(&mut self) -> &mut u32;
     fn kill_on_max_count(&self) -> &bool;
     fn kill_on_max_count_mut(&mut self) -> &mut bool;
-    fn property_id_lookup_table(&self) -> &Vec<PropertyIdLookup>;
-    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<PropertyIdLookup>;
-    fn emitter_exposed_texture_inputs(&self) -> &Vec<super::effect_base::EmitterExposedTextureInput>;
-    fn emitter_exposed_texture_inputs_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedTextureInput>;
+    fn property_id_lookup_table(&self) -> &Vec<BoxedTypeObject /* PropertyIdLookup */>;
+    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PropertyIdLookup */>;
+    fn emitter_exposed_texture_inputs(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EmitterExposedTextureInput */>;
+    fn emitter_exposed_texture_inputs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EmitterExposedTextureInput */>;
     fn effect_time_delta_type(&self) -> &u32;
     fn effect_time_delta_type_mut(&mut self) -> &mut u32;
     fn internal_duplication_render_view_id(&self) -> &u16;
@@ -677,10 +715,10 @@ impl EmitterStaticStateTrait for EmitterStaticState {
     fn transform_space_mut(&mut self) -> &mut super::state_stream::TransformSpaceHandle {
         &mut self.transform_space
     }
-    fn emitter_base_asset(&self) -> &Option<Arc<Mutex<dyn EmitterBaseAssetTrait>>> {
+    fn emitter_base_asset(&self) -> &Option<LockedTypeObject /* EmitterBaseAsset */> {
         &self.emitter_base_asset
     }
-    fn emitter_base_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterBaseAssetTrait>>> {
+    fn emitter_base_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterBaseAsset */> {
         &mut self.emitter_base_asset
     }
     fn is_emitter_graph(&self) -> &bool {
@@ -689,10 +727,10 @@ impl EmitterStaticStateTrait for EmitterStaticState {
     fn is_emitter_graph_mut(&mut self) -> &mut bool {
         &mut self.is_emitter_graph
     }
-    fn emitter_graph_base_asset(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn emitter_graph_base_asset(&self) -> &Option<LockedTypeObject /* super::core::Asset */> {
         &self.emitter_graph_base_asset
     }
-    fn emitter_graph_base_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn emitter_graph_base_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */> {
         &mut self.emitter_graph_base_asset
     }
     fn spawn_probability(&self) -> &super::core::QualityScalableFloat {
@@ -815,16 +853,16 @@ impl EmitterStaticStateTrait for EmitterStaticState {
     fn kill_on_max_count_mut(&mut self) -> &mut bool {
         &mut self.kill_on_max_count
     }
-    fn property_id_lookup_table(&self) -> &Vec<PropertyIdLookup> {
+    fn property_id_lookup_table(&self) -> &Vec<BoxedTypeObject /* PropertyIdLookup */> {
         &self.property_id_lookup_table
     }
-    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<PropertyIdLookup> {
+    fn property_id_lookup_table_mut(&mut self) -> &mut Vec<BoxedTypeObject /* PropertyIdLookup */> {
         &mut self.property_id_lookup_table
     }
-    fn emitter_exposed_texture_inputs(&self) -> &Vec<super::effect_base::EmitterExposedTextureInput> {
+    fn emitter_exposed_texture_inputs(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EmitterExposedTextureInput */> {
         &self.emitter_exposed_texture_inputs
     }
-    fn emitter_exposed_texture_inputs_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedTextureInput> {
+    fn emitter_exposed_texture_inputs_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EmitterExposedTextureInput */> {
         &mut self.emitter_exposed_texture_inputs
     }
     fn effect_time_delta_type(&self) -> &u32 {
@@ -849,183 +887,214 @@ impl EmitterStaticStateTrait for EmitterStaticState {
 
 pub static EMITTERSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterStaticState",
+    name_hash: 3302779228,
     flags: MemberInfoFlags::new(73),
     module: "EmitterBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterStaticState as Default>::default())),
+            create_boxed: || Box::new(<EmitterStaticState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TransformSpace",
+                name_hash: 3602558253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TransformSpaceHandle",
                 rust_offset: offset_of!(EmitterStaticState, transform_space),
             },
             FieldInfoData {
                 name: "EmitterBaseAsset",
+                name_hash: 2054247862,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterBaseAsset",
                 rust_offset: offset_of!(EmitterStaticState, emitter_base_asset),
             },
             FieldInfoData {
                 name: "IsEmitterGraph",
+                name_hash: 3615926149,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterStaticState, is_emitter_graph),
             },
             FieldInfoData {
                 name: "EmitterGraphBaseAsset",
+                name_hash: 293700826,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Asset",
                 rust_offset: offset_of!(EmitterStaticState, emitter_graph_base_asset),
             },
             FieldInfoData {
                 name: "SpawnProbability",
+                name_hash: 2017232915,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterStaticState, spawn_probability),
             },
             FieldInfoData {
                 name: "SimulationCullDistance",
+                name_hash: 2579367491,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterStaticState, simulation_cull_distance),
             },
             FieldInfoData {
                 name: "KillWhenDistanceCulled",
+                name_hash: 1804997319,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterStaticState, kill_when_distance_culled),
             },
             FieldInfoData {
                 name: "KillByWater",
+                name_hash: 1161865769,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterStaticState, kill_by_water),
             },
             FieldInfoData {
                 name: "SpawnOutsideViewRadius",
+                name_hash: 3760047582,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterStaticState, spawn_outside_view_radius),
             },
             FieldInfoData {
                 name: "NearbyRadius",
+                name_hash: 4280871454,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterStaticState, nearby_radius),
             },
             FieldInfoData {
                 name: "MaxNearbyInstanceCount",
+                name_hash: 820916920,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterStaticState, max_nearby_instance_count),
             },
             FieldInfoData {
                 name: "OverrideDrawOrder",
+                name_hash: 3411677887,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterStaticState, override_draw_order),
             },
             FieldInfoData {
                 name: "DrawOrderSlot",
+                name_hash: 2482084975,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(EmitterStaticState, draw_order_slot),
             },
             FieldInfoData {
                 name: "IsFirstPerson",
+                name_hash: 824639024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterStaticState, is_first_person),
             },
             FieldInfoData {
                 name: "CastShadows",
+                name_hash: 2378385237,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterStaticState, cast_shadows),
             },
             FieldInfoData {
                 name: "CastReflection",
+                name_hash: 4059416391,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterStaticState, cast_reflection),
             },
             FieldInfoData {
                 name: "UseLightprobeVisibility",
+                name_hash: 329748,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterStaticState, use_lightprobe_visibility),
             },
             FieldInfoData {
                 name: "InheritedVelocityAndStartDeltaTime",
+                name_hash: 3210822768,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec",
                 rust_offset: offset_of!(EmitterStaticState, inherited_velocity_and_start_delta_time),
             },
             FieldInfoData {
                 name: "InheritedVelocityEnabled",
+                name_hash: 3387974003,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterStaticState, inherited_velocity_enabled),
             },
             FieldInfoData {
                 name: "LightProbeSampleMethod",
+                name_hash: 3131262888,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LightProbeSampleMethod",
                 rust_offset: offset_of!(EmitterStaticState, light_probe_sample_method),
             },
             FieldInfoData {
                 name: "LightProbeSampleOffsetMethod",
+                name_hash: 2268715077,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LightProbeSampleOffsetMethod",
                 rust_offset: offset_of!(EmitterStaticState, light_probe_sample_offset_method),
             },
             FieldInfoData {
                 name: "GroupGuid",
+                name_hash: 3178497637,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Guid",
                 rust_offset: offset_of!(EmitterStaticState, group_guid),
             },
             FieldInfoData {
                 name: "MaxInstanceCountInGroup",
+                name_hash: 2852823779,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterStaticState, max_instance_count_in_group),
             },
             FieldInfoData {
                 name: "KillOnMaxCount",
+                name_hash: 3200869329,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterStaticState, kill_on_max_count),
             },
             FieldInfoData {
                 name: "PropertyIdLookupTable",
+                name_hash: 169442835,
                 flags: MemberInfoFlags::new(144),
                 field_type: "PropertyIdLookup-Array",
                 rust_offset: offset_of!(EmitterStaticState, property_id_lookup_table),
             },
             FieldInfoData {
                 name: "EmitterExposedTextureInputs",
+                name_hash: 1224578137,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterExposedTextureInput-Array",
                 rust_offset: offset_of!(EmitterStaticState, emitter_exposed_texture_inputs),
             },
             FieldInfoData {
                 name: "EffectTimeDeltaType",
+                name_hash: 3293602311,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterStaticState, effect_time_delta_type),
             },
             FieldInfoData {
                 name: "InternalDuplicationRenderViewId",
+                name_hash: 3674609682,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(EmitterStaticState, internal_duplication_render_view_id),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterStaticState, field_flag_changed0),
@@ -1057,6 +1126,7 @@ impl TypeObject for EmitterStaticState {
 
 pub static EMITTERSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterStaticState-Array",
+    name_hash: 2081083880,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterStaticState"),
@@ -1065,7 +1135,8 @@ pub static EMITTERSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterExclusionVolumesBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -1090,12 +1161,15 @@ impl super::core::DataContainerTrait for EmitterExclusionVolumesBaseAsset {
 
 pub static EMITTEREXCLUSIONVOLUMESBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolumesBaseAsset",
+    name_hash: 3355891185,
     flags: MemberInfoFlags::new(101),
     module: "EmitterBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterExclusionVolumesBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterExclusionVolumesBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<EmitterExclusionVolumesBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -1125,6 +1199,7 @@ impl TypeObject for EmitterExclusionVolumesBaseAsset {
 
 pub static EMITTEREXCLUSIONVOLUMESBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolumesBaseAsset-Array",
+    name_hash: 1236826309,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterExclusionVolumesBaseAsset"),
@@ -1133,7 +1208,8 @@ pub static EMITTEREXCLUSIONVOLUMESBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterTag {
     pub _glacier_base: super::core::DataContainer,
     pub name: String,
@@ -1158,16 +1234,20 @@ impl super::core::DataContainerTrait for EmitterTag {
 
 pub static EMITTERTAG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterTag",
+    name_hash: 3259569889,
     flags: MemberInfoFlags::new(101),
     module: "EmitterBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterTag, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterTag as Default>::default())),
+            create_boxed: || Box::new(<EmitterTag as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EmitterTag, name),
@@ -1199,6 +1279,7 @@ impl TypeObject for EmitterTag {
 
 pub static EMITTERTAG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterTag-Array",
+    name_hash: 659861973,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterTag"),
@@ -1207,7 +1288,8 @@ pub static EMITTERTAG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterGraphBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -1232,12 +1314,15 @@ impl super::core::DataContainerTrait for EmitterGraphBaseAsset {
 
 pub static EMITTERGRAPHBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphBaseAsset",
+    name_hash: 293700826,
     flags: MemberInfoFlags::new(101),
     module: "EmitterBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterGraphBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterGraphBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<EmitterGraphBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -1267,6 +1352,7 @@ impl TypeObject for EmitterGraphBaseAsset {
 
 pub static EMITTERGRAPHBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphBaseAsset-Array",
+    name_hash: 1257199726,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterGraphBaseAsset"),
@@ -1275,7 +1361,8 @@ pub static EMITTERGRAPHBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterBaseAsset {
     pub _glacier_base: super::core::Asset,
 }
@@ -1300,12 +1387,15 @@ impl super::core::DataContainerTrait for EmitterBaseAsset {
 
 pub static EMITTERBASEASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterBaseAsset",
+    name_hash: 2054247862,
     flags: MemberInfoFlags::new(101),
     module: "EmitterBase",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::ASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterBaseAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterBaseAsset as Default>::default())),
+            create_boxed: || Box::new(<EmitterBaseAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -1335,6 +1425,7 @@ impl TypeObject for EmitterBaseAsset {
 
 pub static EMITTERBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterBaseAsset-Array",
+    name_hash: 1623484930,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterBaseAsset"),
@@ -1343,7 +1434,8 @@ pub static EMITTERBASEASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PropertyIdLookup {
     pub field_property_id: i32,
     pub field_property_hash: i32,
@@ -1382,27 +1474,32 @@ impl PropertyIdLookupTrait for PropertyIdLookup {
 
 pub static PROPERTYIDLOOKUP_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyIdLookup",
+    name_hash: 3441153165,
     flags: MemberInfoFlags::new(36937),
     module: "EmitterBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PropertyIdLookup as Default>::default())),
+            create_boxed: || Box::new(<PropertyIdLookup as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FieldPropertyId",
+                name_hash: 3644798061,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyIdLookup, field_property_id),
             },
             FieldInfoData {
                 name: "FieldPropertyHash",
+                name_hash: 635060338,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(PropertyIdLookup, field_property_hash),
             },
             FieldInfoData {
                 name: "EmitterExposableType",
+                name_hash: 675516272,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterExposableType",
                 rust_offset: offset_of!(PropertyIdLookup, emitter_exposable_type),
@@ -1434,6 +1531,7 @@ impl TypeObject for PropertyIdLookup {
 
 pub static PROPERTYIDLOOKUP_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PropertyIdLookup-Array",
+    name_hash: 821147705,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("PropertyIdLookup"),
@@ -1455,6 +1553,7 @@ pub enum EmitterExposableType {
 
 pub static EMITTEREXPOSABLETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExposableType",
+    name_hash: 675516272,
     flags: MemberInfoFlags::new(49429),
     module: "EmitterBase",
     data: TypeInfoData::Enum,
@@ -1483,6 +1582,7 @@ impl TypeObject for EmitterExposableType {
 
 pub static EMITTEREXPOSABLETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExposableType-Array",
+    name_hash: 1393478980,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterExposableType"),
@@ -1491,7 +1591,8 @@ pub static EMITTEREXPOSABLETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterExclusionVolumeResultData {
     pub transform: super::core::LinearTransform,
     pub half_extent: super::core::Vec3,
@@ -1530,27 +1631,32 @@ impl EmitterExclusionVolumeResultDataTrait for EmitterExclusionVolumeResultData 
 
 pub static EMITTEREXCLUSIONVOLUMERESULTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolumeResultData",
+    name_hash: 985262270,
     flags: MemberInfoFlags::new(36937),
     module: "EmitterBase",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterExclusionVolumeResultData as Default>::default())),
+            create_boxed: || Box::new(<EmitterExclusionVolumeResultData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Transform",
+                name_hash: 2270319721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LinearTransform",
                 rust_offset: offset_of!(EmitterExclusionVolumeResultData, transform),
             },
             FieldInfoData {
                 name: "HalfExtent",
+                name_hash: 548034032,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterExclusionVolumeResultData, half_extent),
             },
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterExclusionVolumeResultData, id),
@@ -1582,6 +1688,7 @@ impl TypeObject for EmitterExclusionVolumeResultData {
 
 pub static EMITTEREXCLUSIONVOLUMERESULTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolumeResultData-Array",
+    name_hash: 711891210,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("EmitterExclusionVolumeResultData"),
@@ -1601,6 +1708,7 @@ pub enum LightProbeSampleOffsetMethod {
 
 pub static LIGHTPROBESAMPLEOFFSETMETHOD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightProbeSampleOffsetMethod",
+    name_hash: 2268715077,
     flags: MemberInfoFlags::new(49429),
     module: "EmitterBase",
     data: TypeInfoData::Enum,
@@ -1629,6 +1737,7 @@ impl TypeObject for LightProbeSampleOffsetMethod {
 
 pub static LIGHTPROBESAMPLEOFFSETMETHOD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightProbeSampleOffsetMethod-Array",
+    name_hash: 3903860849,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("LightProbeSampleOffsetMethod"),
@@ -1650,6 +1759,7 @@ pub enum LightProbeSampleMethod {
 
 pub static LIGHTPROBESAMPLEMETHOD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightProbeSampleMethod",
+    name_hash: 3131262888,
     flags: MemberInfoFlags::new(49429),
     module: "EmitterBase",
     data: TypeInfoData::Enum,
@@ -1678,6 +1788,7 @@ impl TypeObject for LightProbeSampleMethod {
 
 pub static LIGHTPROBESAMPLEMETHOD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LightProbeSampleMethod-Array",
+    name_hash: 2258127132,
     flags: MemberInfoFlags::new(145),
     module: "EmitterBase",
     data: TypeInfoData::Array("LightProbeSampleMethod"),

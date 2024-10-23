@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -25,7 +26,8 @@ pub(crate) fn register_first_party_overlay_types(registry: &mut TypeRegistry) {
     registry.register_type(CLIENTOVERLAYSERVICE_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceOverlayServiceData {
     pub _glacier_base: super::online_shared::PresenceServiceData,
 }
@@ -53,12 +55,15 @@ impl super::core::DataContainerTrait for PresenceOverlayServiceData {
 
 pub static PRESENCEOVERLAYSERVICEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceOverlayServiceData",
+    name_hash: 630362187,
     flags: MemberInfoFlags::new(101),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online_shared::PRESENCESERVICEDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceOverlayServiceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceOverlayServiceData as Default>::default())),
+            create_boxed: || Box::new(<PresenceOverlayServiceData as Default>::default()),
         },
         fields: &[
         ],
@@ -88,6 +93,7 @@ impl TypeObject for PresenceOverlayServiceData {
 
 pub static PRESENCEOVERLAYSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceOverlayServiceData-Array",
+    name_hash: 2141114239,
     flags: MemberInfoFlags::new(145),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Array("PresenceOverlayServiceData"),
@@ -96,7 +102,8 @@ pub static PRESENCEOVERLAYSERVICEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceOverlayRequestMessageBase {
 }
 
@@ -108,11 +115,13 @@ impl PresenceOverlayRequestMessageBaseTrait for PresenceOverlayRequestMessageBas
 
 pub static PRESENCEOVERLAYREQUESTMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceOverlayRequestMessageBase",
+    name_hash: 1269208649,
     flags: MemberInfoFlags::new(36937),
     module: "FirstPartyOverlay",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceOverlayRequestMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresenceOverlayRequestMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -139,7 +148,8 @@ impl TypeObject for PresenceOverlayRequestMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceOverlayMessageBase {
 }
 
@@ -151,11 +161,13 @@ impl PresenceOverlayMessageBaseTrait for PresenceOverlayMessageBase {
 
 pub static PRESENCEOVERLAYMESSAGEBASE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceOverlayMessageBase",
+    name_hash: 926932248,
     flags: MemberInfoFlags::new(36937),
     module: "FirstPartyOverlay",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceOverlayMessageBase as Default>::default())),
+            create_boxed: || Box::new(<PresenceOverlayMessageBase as Default>::default()),
         },
         fields: &[
         ],
@@ -182,7 +194,8 @@ impl TypeObject for PresenceOverlayMessageBase {
     }
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceShowInviteUIRequestParameters {
     pub _glacier_base: super::online::PresenceRequestParameters,
 }
@@ -198,12 +211,15 @@ impl super::online::PresenceRequestParametersTrait for PresenceShowInviteUIReque
 
 pub static PRESENCESHOWINVITEUIREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceShowInviteUIRequestParameters",
+    name_hash: 2238251681,
     flags: MemberInfoFlags::new(101),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceShowInviteUIRequestParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceShowInviteUIRequestParameters as Default>::default())),
+            create_boxed: || Box::new(<PresenceShowInviteUIRequestParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -233,6 +249,7 @@ impl TypeObject for PresenceShowInviteUIRequestParameters {
 
 pub static PRESENCESHOWINVITEUIREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceShowInviteUIRequestParameters-Array",
+    name_hash: 3990236437,
     flags: MemberInfoFlags::new(145),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Array("PresenceShowInviteUIRequestParameters"),
@@ -241,7 +258,8 @@ pub static PRESENCESHOWINVITEUIREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceDisplayFriendRequestDialogRequestParameters {
     pub _glacier_base: super::online::PresenceRequestParameters,
 }
@@ -257,12 +275,15 @@ impl super::online::PresenceRequestParametersTrait for PresenceDisplayFriendRequ
 
 pub static PRESENCEDISPLAYFRIENDREQUESTDIALOGREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceDisplayFriendRequestDialogRequestParameters",
+    name_hash: 3020539078,
     flags: MemberInfoFlags::new(101),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceDisplayFriendRequestDialogRequestParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceDisplayFriendRequestDialogRequestParameters as Default>::default())),
+            create_boxed: || Box::new(<PresenceDisplayFriendRequestDialogRequestParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -292,6 +313,7 @@ impl TypeObject for PresenceDisplayFriendRequestDialogRequestParameters {
 
 pub static PRESENCEDISPLAYFRIENDREQUESTDIALOGREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceDisplayFriendRequestDialogRequestParameters-Array",
+    name_hash: 1372922482,
     flags: MemberInfoFlags::new(145),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Array("PresenceDisplayFriendRequestDialogRequestParameters"),
@@ -300,7 +322,8 @@ pub static PRESENCEDISPLAYFRIENDREQUESTDIALOGREQUESTPARAMETERS_ARRAY_TYPE_INFO: 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceDisplayFriendsDialogRequestParameters {
     pub _glacier_base: super::online::PresenceRequestParameters,
 }
@@ -316,12 +339,15 @@ impl super::online::PresenceRequestParametersTrait for PresenceDisplayFriendsDia
 
 pub static PRESENCEDISPLAYFRIENDSDIALOGREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceDisplayFriendsDialogRequestParameters",
+    name_hash: 2801541444,
     flags: MemberInfoFlags::new(101),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceDisplayFriendsDialogRequestParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceDisplayFriendsDialogRequestParameters as Default>::default())),
+            create_boxed: || Box::new(<PresenceDisplayFriendsDialogRequestParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -351,6 +377,7 @@ impl TypeObject for PresenceDisplayFriendsDialogRequestParameters {
 
 pub static PRESENCEDISPLAYFRIENDSDIALOGREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceDisplayFriendsDialogRequestParameters-Array",
+    name_hash: 50488816,
     flags: MemberInfoFlags::new(145),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Array("PresenceDisplayFriendsDialogRequestParameters"),
@@ -359,7 +386,8 @@ pub static PRESENCEDISPLAYFRIENDSDIALOGREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'stat
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PresenceDisplayUserProfileRequestParameters {
     pub _glacier_base: super::online::PresenceRequestParameters,
 }
@@ -375,12 +403,15 @@ impl super::online::PresenceRequestParametersTrait for PresenceDisplayUserProfil
 
 pub static PRESENCEDISPLAYUSERPROFILEREQUESTPARAMETERS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceDisplayUserProfileRequestParameters",
+    name_hash: 2778512439,
     flags: MemberInfoFlags::new(101),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCEREQUESTPARAMETERS_TYPE_INFO),
+        super_class_offset: offset_of!(PresenceDisplayUserProfileRequestParameters, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PresenceDisplayUserProfileRequestParameters as Default>::default())),
+            create_boxed: || Box::new(<PresenceDisplayUserProfileRequestParameters as Default>::default()),
         },
         fields: &[
         ],
@@ -410,6 +441,7 @@ impl TypeObject for PresenceDisplayUserProfileRequestParameters {
 
 pub static PRESENCEDISPLAYUSERPROFILEREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PresenceDisplayUserProfileRequestParameters-Array",
+    name_hash: 106558851,
     flags: MemberInfoFlags::new(145),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Array("PresenceDisplayUserProfileRequestParameters"),
@@ -418,7 +450,8 @@ pub static PRESENCEDISPLAYUSERPROFILEREQUESTPARAMETERS_ARRAY_TYPE_INFO: &'static
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ClientOverlayService {
     pub _glacier_base: super::online::PresenceService,
 }
@@ -434,12 +467,15 @@ impl super::online::PresenceServiceTrait for ClientOverlayService {
 
 pub static CLIENTOVERLAYSERVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientOverlayService",
+    name_hash: 2470751707,
     flags: MemberInfoFlags::new(101),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::online::PRESENCESERVICE_TYPE_INFO),
+        super_class_offset: offset_of!(ClientOverlayService, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ClientOverlayService as Default>::default())),
+            create_boxed: || Box::new(<ClientOverlayService as Default>::default()),
         },
         fields: &[
         ],
@@ -469,6 +505,7 @@ impl TypeObject for ClientOverlayService {
 
 pub static CLIENTOVERLAYSERVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ClientOverlayService-Array",
+    name_hash: 2422461679,
     flags: MemberInfoFlags::new(145),
     module: "FirstPartyOverlay",
     data: TypeInfoData::Array("ClientOverlayService"),

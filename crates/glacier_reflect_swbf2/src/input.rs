@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -36,6 +37,7 @@ pub(crate) fn register_input_types(registry: &mut TypeRegistry) {
 
 pub static GETWENTDOWN_BOOLEAN_INPUTDEVICEKEYS__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetWentDown(Boolean,InputDeviceKeys)",
+    name_hash: 2187233866,
     flags: MemberInfoFlags::new(793),
     module: "Input",
     data: TypeInfoData::Unknown,
@@ -47,6 +49,7 @@ pub static GETWENTDOWN_BOOLEAN_INPUTDEVICEKEYS__TYPE_INFO: &'static TypeInfo = &
 
 pub static GETISDOWN_BOOLEAN_INPUTDEVICEKEYS__TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GetIsDown(Boolean,InputDeviceKeys)",
+    name_hash: 2038532376,
     flags: MemberInfoFlags::new(793),
     module: "Input",
     data: TypeInfoData::Unknown,
@@ -55,7 +58,8 @@ pub static GETISDOWN_BOOLEAN_INPUTDEVICEKEYS__TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputHandle {
 }
 
@@ -67,11 +71,13 @@ impl InputHandleTrait for InputHandle {
 
 pub static INPUTHANDLE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputHandle",
+    name_hash: 1987894969,
     flags: MemberInfoFlags::new(73),
     module: "Input",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputHandle as Default>::default())),
+            create_boxed: || Box::new(<InputHandle as Default>::default()),
         },
         fields: &[
         ],
@@ -101,6 +107,7 @@ impl TypeObject for InputHandle {
 
 pub static INPUTHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputHandle-Array",
+    name_hash: 1064381709,
     flags: MemberInfoFlags::new(145),
     module: "Input",
     data: TypeInfoData::Array("InputHandle"),
@@ -109,7 +116,8 @@ pub static INPUTHANDLE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputSimDynamicState {
     pub input_sim_state: Vec<u8>,
     pub input_sim_state_size: u16,
@@ -148,27 +156,32 @@ impl InputSimDynamicStateTrait for InputSimDynamicState {
 
 pub static INPUTSIMDYNAMICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputSimDynamicState",
+    name_hash: 2022874566,
     flags: MemberInfoFlags::new(73),
     module: "Input",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputSimDynamicState as Default>::default())),
+            create_boxed: || Box::new(<InputSimDynamicState as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "inputSimState",
+                name_hash: 282344627,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Uint8-Array",
                 rust_offset: offset_of!(InputSimDynamicState, input_sim_state),
             },
             FieldInfoData {
                 name: "inputSimStateSize",
+                name_hash: 2773591798,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint16",
                 rust_offset: offset_of!(InputSimDynamicState, input_sim_state_size),
             },
             FieldInfoData {
                 name: "FieldFlagChanged0",
+                name_hash: 4279507097,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(InputSimDynamicState, field_flag_changed0),
@@ -200,6 +213,7 @@ impl TypeObject for InputSimDynamicState {
 
 pub static INPUTSIMDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputSimDynamicState-Array",
+    name_hash: 2044509042,
     flags: MemberInfoFlags::new(145),
     module: "Input",
     data: TypeInfoData::Array("InputSimDynamicState"),
@@ -208,7 +222,8 @@ pub static INPUTSIMDYNAMICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputSimStaticState {
 }
 
@@ -220,11 +235,13 @@ impl InputSimStaticStateTrait for InputSimStaticState {
 
 pub static INPUTSIMSTATICSTATE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputSimStaticState",
+    name_hash: 681777291,
     flags: MemberInfoFlags::new(36937),
     module: "Input",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputSimStaticState as Default>::default())),
+            create_boxed: || Box::new(<InputSimStaticState as Default>::default()),
         },
         fields: &[
         ],
@@ -254,6 +271,7 @@ impl TypeObject for InputSimStaticState {
 
 pub static INPUTSIMSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputSimStaticState-Array",
+    name_hash: 3335833407,
     flags: MemberInfoFlags::new(145),
     module: "Input",
     data: TypeInfoData::Array("InputSimStaticState"),
@@ -262,7 +280,8 @@ pub static INPUTSIMSTATICSTATE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IInputDevice {
 }
 
@@ -274,12 +293,15 @@ impl IInputDeviceTrait for IInputDevice {
 
 pub static IINPUTDEVICE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IInputDevice",
+    name_hash: 618347266,
     flags: MemberInfoFlags::new(101),
     module: "Input",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IInputDevice as Default>::default())),
+            create_boxed: || Box::new(<IInputDevice as Default>::default()),
         },
         fields: &[
         ],
@@ -309,6 +331,7 @@ impl TypeObject for IInputDevice {
 
 pub static IINPUTDEVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IInputDevice-Array",
+    name_hash: 3345373750,
     flags: MemberInfoFlags::new(145),
     module: "Input",
     data: TypeInfoData::Array("IInputDevice"),
@@ -317,7 +340,8 @@ pub static IINPUTDEVICE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputManTouch {
     pub _glacier_base: ITouch,
 }
@@ -339,12 +363,15 @@ impl IInputDeviceTrait for InputManTouch {
 
 pub static INPUTMANTOUCH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputManTouch",
+    name_hash: 1968663220,
     flags: MemberInfoFlags::new(101),
     module: "Input",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(ITOUCH_TYPE_INFO),
+        super_class_offset: offset_of!(InputManTouch, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputManTouch as Default>::default())),
+            create_boxed: || Box::new(<InputManTouch as Default>::default()),
         },
         fields: &[
         ],
@@ -374,6 +401,7 @@ impl TypeObject for InputManTouch {
 
 pub static INPUTMANTOUCH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputManTouch-Array",
+    name_hash: 1559086592,
     flags: MemberInfoFlags::new(145),
     module: "Input",
     data: TypeInfoData::Array("InputManTouch"),
@@ -382,7 +410,8 @@ pub static INPUTMANTOUCH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputManMouse {
     pub _glacier_base: IMouse,
 }
@@ -401,12 +430,15 @@ impl IInputDeviceTrait for InputManMouse {
 
 pub static INPUTMANMOUSE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputManMouse",
+    name_hash: 1988358448,
     flags: MemberInfoFlags::new(101),
     module: "Input",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IMOUSE_TYPE_INFO),
+        super_class_offset: offset_of!(InputManMouse, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputManMouse as Default>::default())),
+            create_boxed: || Box::new(<InputManMouse as Default>::default()),
         },
         fields: &[
         ],
@@ -436,6 +468,7 @@ impl TypeObject for InputManMouse {
 
 pub static INPUTMANMOUSE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputManMouse-Array",
+    name_hash: 3871702660,
     flags: MemberInfoFlags::new(145),
     module: "Input",
     data: TypeInfoData::Array("InputManMouse"),
@@ -444,7 +477,8 @@ pub static INPUTMANMOUSE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct InputManKeyboard {
     pub _glacier_base: IKeyboard,
 }
@@ -463,12 +497,15 @@ impl IInputDeviceTrait for InputManKeyboard {
 
 pub static INPUTMANKEYBOARD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputManKeyboard",
+    name_hash: 8360668,
     flags: MemberInfoFlags::new(101),
     module: "Input",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IKEYBOARD_TYPE_INFO),
+        super_class_offset: offset_of!(InputManKeyboard, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<InputManKeyboard as Default>::default())),
+            create_boxed: || Box::new(<InputManKeyboard as Default>::default()),
         },
         fields: &[
         ],
@@ -498,6 +535,7 @@ impl TypeObject for InputManKeyboard {
 
 pub static INPUTMANKEYBOARD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "InputManKeyboard-Array",
+    name_hash: 919018344,
     flags: MemberInfoFlags::new(145),
     module: "Input",
     data: TypeInfoData::Array("InputManKeyboard"),
@@ -506,7 +544,8 @@ pub static INPUTMANKEYBOARD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ITouch {
     pub _glacier_base: IMouse,
 }
@@ -525,12 +564,15 @@ impl IInputDeviceTrait for ITouch {
 
 pub static ITOUCH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ITouch",
+    name_hash: 2850130537,
     flags: MemberInfoFlags::new(101),
     module: "Input",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IMOUSE_TYPE_INFO),
+        super_class_offset: offset_of!(ITouch, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ITouch as Default>::default())),
+            create_boxed: || Box::new(<ITouch as Default>::default()),
         },
         fields: &[
         ],
@@ -560,6 +602,7 @@ impl TypeObject for ITouch {
 
 pub static ITOUCH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ITouch-Array",
+    name_hash: 2312446301,
     flags: MemberInfoFlags::new(145),
     module: "Input",
     data: TypeInfoData::Array("ITouch"),
@@ -568,7 +611,8 @@ pub static ITOUCH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IMouse {
     pub _glacier_base: IInputDevice,
 }
@@ -584,12 +628,15 @@ impl IInputDeviceTrait for IMouse {
 
 pub static IMOUSE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IMouse",
+    name_hash: 2820948205,
     flags: MemberInfoFlags::new(101),
     module: "Input",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IINPUTDEVICE_TYPE_INFO),
+        super_class_offset: offset_of!(IMouse, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IMouse as Default>::default())),
+            create_boxed: || Box::new(<IMouse as Default>::default()),
         },
         fields: &[
         ],
@@ -619,6 +666,7 @@ impl TypeObject for IMouse {
 
 pub static IMOUSE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IMouse-Array",
+    name_hash: 925263321,
     flags: MemberInfoFlags::new(145),
     module: "Input",
     data: TypeInfoData::Array("IMouse"),
@@ -627,7 +675,8 @@ pub static IMOUSE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct IKeyboard {
     pub _glacier_base: IInputDevice,
 }
@@ -643,12 +692,15 @@ impl IInputDeviceTrait for IKeyboard {
 
 pub static IKEYBOARD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IKeyboard",
+    name_hash: 1991459297,
     flags: MemberInfoFlags::new(101),
     module: "Input",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(IINPUTDEVICE_TYPE_INFO),
+        super_class_offset: offset_of!(IKeyboard, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<IKeyboard as Default>::default())),
+            create_boxed: || Box::new(<IKeyboard as Default>::default()),
         },
         fields: &[
         ],
@@ -678,6 +730,7 @@ impl TypeObject for IKeyboard {
 
 pub static IKEYBOARD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "IKeyboard-Array",
+    name_hash: 192093397,
     flags: MemberInfoFlags::new(145),
     module: "Input",
     data: TypeInfoData::Array("IKeyboard"),

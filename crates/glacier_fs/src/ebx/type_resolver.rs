@@ -1,6 +1,6 @@
 use glacier_reflect::{member::MemberInfoFlags, type_info::TypeInfo, type_registry::TypeRegistry};
 
-#[derive(Default, Clone)]
+#[derive(Default, Clone, Debug)]
 #[repr(C)]
 pub struct EbxPartitionFieldDescriptor {
     pub field_name_hash: u32,

@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -37,7 +38,8 @@ pub(crate) fn register_l_m_s_billboard_types(registry: &mut TypeRegistry) {
     registry.register_type(LINEARMEDIABILLBOARDCLIENTENTITY_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaBillboardSettings {
     pub _glacier_base: super::core::DataContainer,
     pub debug_entity_logic_update_enable: bool,
@@ -125,58 +127,69 @@ impl super::core::DataContainerTrait for LinearMediaBillboardSettings {
 
 pub static LINEARMEDIABILLBOARDSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardSettings",
+    name_hash: 32534856,
     flags: MemberInfoFlags::new(101),
     module: "LMSBillboard",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMediaBillboardSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaBillboardSettings as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaBillboardSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DebugEntityLogicUpdateEnable",
+                name_hash: 769022705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardSettings, debug_entity_logic_update_enable),
             },
             FieldInfoData {
                 name: "StreamingEnable",
+                name_hash: 958910872,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardSettings, streaming_enable),
             },
             FieldInfoData {
                 name: "SkipLOD",
+                name_hash: 2997149955,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinearMediaBillboardSettings, skip_l_o_d),
             },
             FieldInfoData {
                 name: "MaxActiveFeeds",
+                name_hash: 2554806540,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinearMediaBillboardSettings, max_active_feeds),
             },
             FieldInfoData {
                 name: "SupportTexture2Enable",
+                name_hash: 3209009926,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardSettings, support_texture2_enable),
             },
             FieldInfoData {
                 name: "SupportEmissiveEnable",
+                name_hash: 4222621872,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardSettings, support_emissive_enable),
             },
             FieldInfoData {
                 name: "LODScreenSurfaceScale",
+                name_hash: 3413147235,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Float32",
                 rust_offset: offset_of!(LinearMediaBillboardSettings, l_o_d_screen_surface_scale),
             },
             FieldInfoData {
                 name: "ForceLowestMipDynamic",
+                name_hash: 3184431055,
                 flags: MemberInfoFlags::new(8192),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardSettings, force_lowest_mip_dynamic),
@@ -208,6 +221,7 @@ impl TypeObject for LinearMediaBillboardSettings {
 
 pub static LINEARMEDIABILLBOARDSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardSettings-Array",
+    name_hash: 422732796,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LinearMediaBillboardSettings"),
@@ -216,7 +230,8 @@ pub static LINEARMEDIABILLBOARDSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaBillboardClientEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub receiving_channel: i32,
@@ -225,7 +240,7 @@ pub struct LinearMediaBillboardClientEntityData {
     pub disable_l_o_d: bool,
     pub use_second_texture_stream: bool,
     pub enabled_on_startup: bool,
-    pub fallback_texture: Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>,
+    pub fallback_texture: Option<LockedTypeObject /* super::render::TextureAsset */>,
 }
 
 pub trait LinearMediaBillboardClientEntityDataTrait: super::entity::EntityDataTrait {
@@ -241,8 +256,8 @@ pub trait LinearMediaBillboardClientEntityDataTrait: super::entity::EntityDataTr
     fn use_second_texture_stream_mut(&mut self) -> &mut bool;
     fn enabled_on_startup(&self) -> &bool;
     fn enabled_on_startup_mut(&mut self) -> &mut bool;
-    fn fallback_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
-    fn fallback_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
+    fn fallback_texture(&self) -> &Option<LockedTypeObject /* super::render::TextureAsset */>;
+    fn fallback_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::TextureAsset */>;
 }
 
 impl LinearMediaBillboardClientEntityDataTrait for LinearMediaBillboardClientEntityData {
@@ -282,10 +297,10 @@ impl LinearMediaBillboardClientEntityDataTrait for LinearMediaBillboardClientEnt
     fn enabled_on_startup_mut(&mut self) -> &mut bool {
         &mut self.enabled_on_startup
     }
-    fn fallback_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+    fn fallback_texture(&self) -> &Option<LockedTypeObject /* super::render::TextureAsset */> {
         &self.fallback_texture
     }
-    fn fallback_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+    fn fallback_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::TextureAsset */> {
         &mut self.fallback_texture
     }
 }
@@ -313,52 +328,62 @@ impl super::core::DataContainerTrait for LinearMediaBillboardClientEntityData {
 
 pub static LINEARMEDIABILLBOARDCLIENTENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardClientEntityData",
+    name_hash: 2370500511,
     flags: MemberInfoFlags::new(101),
     module: "LMSBillboard",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMediaBillboardClientEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaBillboardClientEntityData as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaBillboardClientEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ReceivingChannel",
+                name_hash: 103571112,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinearMediaBillboardClientEntityData, receiving_channel),
             },
             FieldInfoData {
                 name: "isDynamicObject",
+                name_hash: 2522116511,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardClientEntityData, is_dynamic_object),
             },
             FieldInfoData {
                 name: "SizeInMeterSqr",
+                name_hash: 640674460,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LinearMediaBillboardClientEntityData, size_in_meter_sqr),
             },
             FieldInfoData {
                 name: "disableLOD",
+                name_hash: 2123727702,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardClientEntityData, disable_l_o_d),
             },
             FieldInfoData {
                 name: "useSecondTextureStream",
+                name_hash: 3251372501,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardClientEntityData, use_second_texture_stream),
             },
             FieldInfoData {
                 name: "EnabledOnStartup",
+                name_hash: 3071465348,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardClientEntityData, enabled_on_startup),
             },
             FieldInfoData {
                 name: "FallbackTexture",
+                name_hash: 387060886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureAsset",
                 rust_offset: offset_of!(LinearMediaBillboardClientEntityData, fallback_texture),
@@ -390,6 +415,7 @@ impl TypeObject for LinearMediaBillboardClientEntityData {
 
 pub static LINEARMEDIABILLBOARDCLIENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardClientEntityData-Array",
+    name_hash: 3095026731,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LinearMediaBillboardClientEntityData"),
@@ -398,7 +424,8 @@ pub static LINEARMEDIABILLBOARDCLIENTENTITYDATA_ARRAY_TYPE_INFO: &'static TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaBillboardOverrideFeedEntityData {
     pub _glacier_base: LinearMediaBillboardFeedEntityData,
     pub channels_to_override: Vec<i32>,
@@ -425,16 +452,16 @@ impl LinearMediaBillboardFeedEntityDataTrait for LinearMediaBillboardOverrideFee
     fn emitting_channel_mut(&mut self) -> &mut i32 {
         self._glacier_base.emitting_channel_mut()
     }
-    fn texture_codes(&self) -> &Vec<LinearMediaLODCodes> {
+    fn texture_codes(&self) -> &Vec<BoxedTypeObject /* LinearMediaLODCodes */> {
         self._glacier_base.texture_codes()
     }
-    fn texture_codes_mut(&mut self) -> &mut Vec<LinearMediaLODCodes> {
+    fn texture_codes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LinearMediaLODCodes */> {
         self._glacier_base.texture_codes_mut()
     }
-    fn linear_media_billboard_asset(&self) -> &Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>> {
+    fn linear_media_billboard_asset(&self) -> &Option<LockedTypeObject /* LMSBillboardAsset */> {
         self._glacier_base.linear_media_billboard_asset()
     }
-    fn linear_media_billboard_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>> {
+    fn linear_media_billboard_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* LMSBillboardAsset */> {
         self._glacier_base.linear_media_billboard_asset_mut()
     }
     fn start_on_load(&self) -> &bool {
@@ -480,16 +507,20 @@ impl super::core::DataContainerTrait for LinearMediaBillboardOverrideFeedEntityD
 
 pub static LINEARMEDIABILLBOARDOVERRIDEFEEDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardOverrideFeedEntityData",
+    name_hash: 2005411216,
     flags: MemberInfoFlags::new(101),
     module: "LMSBillboard",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(LINEARMEDIABILLBOARDFEEDENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMediaBillboardOverrideFeedEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaBillboardOverrideFeedEntityData as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaBillboardOverrideFeedEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ChannelsToOverride",
+                name_hash: 2793131706,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int32-Array",
                 rust_offset: offset_of!(LinearMediaBillboardOverrideFeedEntityData, channels_to_override),
@@ -521,6 +552,7 @@ impl TypeObject for LinearMediaBillboardOverrideFeedEntityData {
 
 pub static LINEARMEDIABILLBOARDOVERRIDEFEEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardOverrideFeedEntityData-Array",
+    name_hash: 3651122084,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LinearMediaBillboardOverrideFeedEntityData"),
@@ -529,12 +561,13 @@ pub static LINEARMEDIABILLBOARDOVERRIDEFEEDENTITYDATA_ARRAY_TYPE_INFO: &'static 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaBillboardFeedEntityData {
     pub _glacier_base: super::entity::EntityData,
     pub emitting_channel: i32,
-    pub texture_codes: Vec<LinearMediaLODCodes>,
-    pub linear_media_billboard_asset: Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>>,
+    pub texture_codes: Vec<BoxedTypeObject /* LinearMediaLODCodes */>,
+    pub linear_media_billboard_asset: Option<LockedTypeObject /* LMSBillboardAsset */>,
     pub start_on_load: bool,
     pub r#loop: bool,
     pub external_time: f32,
@@ -543,10 +576,10 @@ pub struct LinearMediaBillboardFeedEntityData {
 pub trait LinearMediaBillboardFeedEntityDataTrait: super::entity::EntityDataTrait {
     fn emitting_channel(&self) -> &i32;
     fn emitting_channel_mut(&mut self) -> &mut i32;
-    fn texture_codes(&self) -> &Vec<LinearMediaLODCodes>;
-    fn texture_codes_mut(&mut self) -> &mut Vec<LinearMediaLODCodes>;
-    fn linear_media_billboard_asset(&self) -> &Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>>;
-    fn linear_media_billboard_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>>;
+    fn texture_codes(&self) -> &Vec<BoxedTypeObject /* LinearMediaLODCodes */>;
+    fn texture_codes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LinearMediaLODCodes */>;
+    fn linear_media_billboard_asset(&self) -> &Option<LockedTypeObject /* LMSBillboardAsset */>;
+    fn linear_media_billboard_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* LMSBillboardAsset */>;
     fn start_on_load(&self) -> &bool;
     fn start_on_load_mut(&mut self) -> &mut bool;
     fn r#loop(&self) -> &bool;
@@ -562,16 +595,16 @@ impl LinearMediaBillboardFeedEntityDataTrait for LinearMediaBillboardFeedEntityD
     fn emitting_channel_mut(&mut self) -> &mut i32 {
         &mut self.emitting_channel
     }
-    fn texture_codes(&self) -> &Vec<LinearMediaLODCodes> {
+    fn texture_codes(&self) -> &Vec<BoxedTypeObject /* LinearMediaLODCodes */> {
         &self.texture_codes
     }
-    fn texture_codes_mut(&mut self) -> &mut Vec<LinearMediaLODCodes> {
+    fn texture_codes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* LinearMediaLODCodes */> {
         &mut self.texture_codes
     }
-    fn linear_media_billboard_asset(&self) -> &Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>> {
+    fn linear_media_billboard_asset(&self) -> &Option<LockedTypeObject /* LMSBillboardAsset */> {
         &self.linear_media_billboard_asset
     }
-    fn linear_media_billboard_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn LMSBillboardAssetTrait>>> {
+    fn linear_media_billboard_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* LMSBillboardAsset */> {
         &mut self.linear_media_billboard_asset
     }
     fn start_on_load(&self) -> &bool {
@@ -617,46 +650,55 @@ impl super::core::DataContainerTrait for LinearMediaBillboardFeedEntityData {
 
 pub static LINEARMEDIABILLBOARDFEEDENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardFeedEntityData",
+    name_hash: 1402840292,
     flags: MemberInfoFlags::new(101),
     module: "LMSBillboard",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMediaBillboardFeedEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaBillboardFeedEntityData as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaBillboardFeedEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EmittingChannel",
+                name_hash: 1653211335,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LinearMediaBillboardFeedEntityData, emitting_channel),
             },
             FieldInfoData {
                 name: "TextureCodes",
+                name_hash: 2156237316,
                 flags: MemberInfoFlags::new(144),
                 field_type: "LinearMediaLODCodes-Array",
                 rust_offset: offset_of!(LinearMediaBillboardFeedEntityData, texture_codes),
             },
             FieldInfoData {
                 name: "LinearMediaBillboardAsset",
+                name_hash: 2491219261,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LMSBillboardAsset",
                 rust_offset: offset_of!(LinearMediaBillboardFeedEntityData, linear_media_billboard_asset),
             },
             FieldInfoData {
                 name: "StartOnLoad",
+                name_hash: 227866530,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardFeedEntityData, start_on_load),
             },
             FieldInfoData {
                 name: "Loop",
+                name_hash: 2089019673,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardFeedEntityData, r#loop),
             },
             FieldInfoData {
                 name: "ExternalTime",
+                name_hash: 2162678253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LinearMediaBillboardFeedEntityData, external_time),
@@ -688,6 +730,7 @@ impl TypeObject for LinearMediaBillboardFeedEntityData {
 
 pub static LINEARMEDIABILLBOARDFEEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardFeedEntityData-Array",
+    name_hash: 1873799376,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LinearMediaBillboardFeedEntityData"),
@@ -696,7 +739,8 @@ pub static LINEARMEDIABILLBOARDFEEDENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaLODCodes {
     pub texture_out_code: u64,
     pub texture2_out_code: u64,
@@ -735,27 +779,32 @@ impl LinearMediaLODCodesTrait for LinearMediaLODCodes {
 
 pub static LINEARMEDIALODCODES_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaLODCodes",
+    name_hash: 2523147397,
     flags: MemberInfoFlags::new(36937),
     module: "LMSBillboard",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaLODCodes as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaLODCodes as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TextureOutCode",
+                name_hash: 1696517881,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(LinearMediaLODCodes, texture_out_code),
             },
             FieldInfoData {
                 name: "Texture2OutCode",
+                name_hash: 1578962123,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(LinearMediaLODCodes, texture2_out_code),
             },
             FieldInfoData {
                 name: "EmissiveTextureOutCode",
+                name_hash: 1840034082,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint64",
                 rust_offset: offset_of!(LinearMediaLODCodes, emissive_texture_out_code),
@@ -787,6 +836,7 @@ impl TypeObject for LinearMediaLODCodes {
 
 pub static LINEARMEDIALODCODES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaLODCodes-Array",
+    name_hash: 2459743281,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LinearMediaLODCodes"),
@@ -795,25 +845,26 @@ pub static LINEARMEDIALODCODES_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaBillboardProviderEntityData {
     pub _glacier_base: super::entity::EntityData,
-    pub fallbacktexture: Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>,
+    pub fallbacktexture: Option<LockedTypeObject /* super::render::TextureAsset */>,
     pub is_active: bool,
 }
 
 pub trait LinearMediaBillboardProviderEntityDataTrait: super::entity::EntityDataTrait {
-    fn fallbacktexture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
-    fn fallbacktexture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
+    fn fallbacktexture(&self) -> &Option<LockedTypeObject /* super::render::TextureAsset */>;
+    fn fallbacktexture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::TextureAsset */>;
     fn is_active(&self) -> &bool;
     fn is_active_mut(&mut self) -> &mut bool;
 }
 
 impl LinearMediaBillboardProviderEntityDataTrait for LinearMediaBillboardProviderEntityData {
-    fn fallbacktexture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+    fn fallbacktexture(&self) -> &Option<LockedTypeObject /* super::render::TextureAsset */> {
         &self.fallbacktexture
     }
-    fn fallbacktexture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+    fn fallbacktexture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::TextureAsset */> {
         &mut self.fallbacktexture
     }
     fn is_active(&self) -> &bool {
@@ -847,22 +898,27 @@ impl super::core::DataContainerTrait for LinearMediaBillboardProviderEntityData 
 
 pub static LINEARMEDIABILLBOARDPROVIDERENTITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardProviderEntityData",
+    name_hash: 3544829543,
     flags: MemberInfoFlags::new(101),
     module: "LMSBillboard",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITYDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMediaBillboardProviderEntityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaBillboardProviderEntityData as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaBillboardProviderEntityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Fallbacktexture",
+                name_hash: 145790326,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureAsset",
                 rust_offset: offset_of!(LinearMediaBillboardProviderEntityData, fallbacktexture),
             },
             FieldInfoData {
                 name: "IsActive",
+                name_hash: 1010522579,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LinearMediaBillboardProviderEntityData, is_active),
@@ -894,6 +950,7 @@ impl TypeObject for LinearMediaBillboardProviderEntityData {
 
 pub static LINEARMEDIABILLBOARDPROVIDERENTITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardProviderEntityData-Array",
+    name_hash: 298643539,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LinearMediaBillboardProviderEntityData"),
@@ -902,31 +959,32 @@ pub static LINEARMEDIABILLBOARDPROVIDERENTITYDATA_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LMSBillboardAsset {
     pub _glacier_base: super::linear_media::LinearMediaAssetDesc,
-    pub base_texture: Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>,
+    pub base_texture: Option<LockedTypeObject /* super::render::TextureAsset */>,
 }
 
 pub trait LMSBillboardAssetTrait: super::linear_media::LinearMediaAssetDescTrait {
-    fn base_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
-    fn base_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>>;
+    fn base_texture(&self) -> &Option<LockedTypeObject /* super::render::TextureAsset */>;
+    fn base_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::TextureAsset */>;
 }
 
 impl LMSBillboardAssetTrait for LMSBillboardAsset {
-    fn base_texture(&self) -> &Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+    fn base_texture(&self) -> &Option<LockedTypeObject /* super::render::TextureAsset */> {
         &self.base_texture
     }
-    fn base_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::TextureAssetTrait>>> {
+    fn base_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::TextureAsset */> {
         &mut self.base_texture
     }
 }
 
 impl super::linear_media::LinearMediaAssetDescTrait for LMSBillboardAsset {
-    fn resources(&self) -> &Vec<super::linear_media::LinearMediaRuntimeResource> {
+    fn resources(&self) -> &Vec<BoxedTypeObject /* super::linear_media::LinearMediaRuntimeResource */> {
         self._glacier_base.resources()
     }
-    fn resources_mut(&mut self) -> &mut Vec<super::linear_media::LinearMediaRuntimeResource> {
+    fn resources_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::linear_media::LinearMediaRuntimeResource */> {
         self._glacier_base.resources_mut()
     }
 }
@@ -945,16 +1003,20 @@ impl super::core::DataContainerTrait for LMSBillboardAsset {
 
 pub static LMSBILLBOARDASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSBillboardAsset",
+    name_hash: 2547543734,
     flags: MemberInfoFlags::new(101),
     module: "LMSBillboard",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::linear_media::LINEARMEDIAASSETDESC_TYPE_INFO),
+        super_class_offset: offset_of!(LMSBillboardAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LMSBillboardAsset as Default>::default())),
+            create_boxed: || Box::new(<LMSBillboardAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BaseTexture",
+                name_hash: 3738598959,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureAsset",
                 rust_offset: offset_of!(LMSBillboardAsset, base_texture),
@@ -986,6 +1048,7 @@ impl TypeObject for LMSBillboardAsset {
 
 pub static LMSBILLBOARDASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LMSBillboardAsset-Array",
+    name_hash: 526009090,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LMSBillboardAsset"),
@@ -994,7 +1057,8 @@ pub static LMSBILLBOARDASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LODDimension {
     pub width: i32,
     pub height: i32,
@@ -1024,21 +1088,25 @@ impl LODDimensionTrait for LODDimension {
 
 pub static LODDIMENSION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LODDimension",
+    name_hash: 2283557586,
     flags: MemberInfoFlags::new(36937),
     module: "LMSBillboard",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LODDimension as Default>::default())),
+            create_boxed: || Box::new(<LODDimension as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Width",
+                name_hash: 226981187,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LODDimension, width),
             },
             FieldInfoData {
                 name: "Height",
+                name_hash: 3054065626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(LODDimension, height),
@@ -1070,6 +1138,7 @@ impl TypeObject for LODDimension {
 
 pub static LODDIMENSION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LODDimension-Array",
+    name_hash: 3882699366,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LODDimension"),
@@ -1089,6 +1158,7 @@ pub enum LinearMediaBillboardDefs {
 
 pub static LINEARMEDIABILLBOARDDEFS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardDefs",
+    name_hash: 4240114041,
     flags: MemberInfoFlags::new(49429),
     module: "LMSBillboard",
     data: TypeInfoData::Enum,
@@ -1117,6 +1187,7 @@ impl TypeObject for LinearMediaBillboardDefs {
 
 pub static LINEARMEDIABILLBOARDDEFS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardDefs-Array",
+    name_hash: 4248739917,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LinearMediaBillboardDefs"),
@@ -1125,7 +1196,8 @@ pub static LINEARMEDIABILLBOARDDEFS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaBillboardProviderEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1144,12 +1216,15 @@ impl super::entity::EntityBusPeerTrait for LinearMediaBillboardProviderEntity {
 
 pub static LINEARMEDIABILLBOARDPROVIDERENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardProviderEntity",
+    name_hash: 2151845271,
     flags: MemberInfoFlags::new(101),
     module: "LMSBillboard",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMediaBillboardProviderEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaBillboardProviderEntity as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaBillboardProviderEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1179,6 +1254,7 @@ impl TypeObject for LinearMediaBillboardProviderEntity {
 
 pub static LINEARMEDIABILLBOARDPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardProviderEntity-Array",
+    name_hash: 634066467,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LinearMediaBillboardProviderEntity"),
@@ -1187,7 +1263,8 @@ pub static LINEARMEDIABILLBOARDPROVIDERENTITY_ARRAY_TYPE_INFO: &'static TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaBillboardOverrideFeedEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1206,12 +1283,15 @@ impl super::entity::EntityBusPeerTrait for LinearMediaBillboardOverrideFeedEntit
 
 pub static LINEARMEDIABILLBOARDOVERRIDEFEEDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardOverrideFeedEntity",
+    name_hash: 2308446880,
     flags: MemberInfoFlags::new(101),
     module: "LMSBillboard",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMediaBillboardOverrideFeedEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaBillboardOverrideFeedEntity as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaBillboardOverrideFeedEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1241,6 +1321,7 @@ impl TypeObject for LinearMediaBillboardOverrideFeedEntity {
 
 pub static LINEARMEDIABILLBOARDOVERRIDEFEEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardOverrideFeedEntity-Array",
+    name_hash: 3122659348,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LinearMediaBillboardOverrideFeedEntity"),
@@ -1249,7 +1330,8 @@ pub static LINEARMEDIABILLBOARDOVERRIDEFEEDENTITY_ARRAY_TYPE_INFO: &'static Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaBillboardFeedEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1268,12 +1350,15 @@ impl super::entity::EntityBusPeerTrait for LinearMediaBillboardFeedEntity {
 
 pub static LINEARMEDIABILLBOARDFEEDENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardFeedEntity",
+    name_hash: 296156372,
     flags: MemberInfoFlags::new(101),
     module: "LMSBillboard",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMediaBillboardFeedEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaBillboardFeedEntity as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaBillboardFeedEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1303,6 +1388,7 @@ impl TypeObject for LinearMediaBillboardFeedEntity {
 
 pub static LINEARMEDIABILLBOARDFEEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardFeedEntity-Array",
+    name_hash: 2748754272,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LinearMediaBillboardFeedEntity"),
@@ -1311,7 +1397,8 @@ pub static LINEARMEDIABILLBOARDFEEDENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LinearMediaBillboardClientEntity {
     pub _glacier_base: super::entity::Entity,
 }
@@ -1330,12 +1417,15 @@ impl super::entity::EntityBusPeerTrait for LinearMediaBillboardClientEntity {
 
 pub static LINEARMEDIABILLBOARDCLIENTENTITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardClientEntity",
+    name_hash: 720978031,
     flags: MemberInfoFlags::new(101),
     module: "LMSBillboard",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::entity::ENTITY_TYPE_INFO),
+        super_class_offset: offset_of!(LinearMediaBillboardClientEntity, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LinearMediaBillboardClientEntity as Default>::default())),
+            create_boxed: || Box::new(<LinearMediaBillboardClientEntity as Default>::default()),
         },
         fields: &[
         ],
@@ -1365,6 +1455,7 @@ impl TypeObject for LinearMediaBillboardClientEntity {
 
 pub static LINEARMEDIABILLBOARDCLIENTENTITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LinearMediaBillboardClientEntity-Array",
+    name_hash: 3796450907,
     flags: MemberInfoFlags::new(145),
     module: "LMSBillboard",
     data: TypeInfoData::Array("LinearMediaBillboardClientEntity"),

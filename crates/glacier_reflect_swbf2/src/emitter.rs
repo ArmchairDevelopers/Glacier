@@ -4,7 +4,8 @@ use tokio::sync::Mutex;
 use glacier_reflect::{
     member::MemberInfoFlags,
     type_info::{
-        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData, TypeObject, TypeFunctions,
+        ClassInfoData, ValueTypeInfoData, FieldInfoData, TypeInfo, TypeInfoData,
+        TypeObject, TypeFunctions, LockedTypeObject, BoxedTypeObject,
     }, type_registry::TypeRegistry,
 };
 
@@ -303,7 +304,8 @@ pub(crate) fn register_emitter_types(registry: &mut TypeRegistry) {
     registry.register_type(DEFAULTEVALUATORDATA_ARRAY_TYPE_INFO);
 }
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshEmitterResource {
 }
 
@@ -315,12 +317,15 @@ impl MeshEmitterResourceTrait for MeshEmitterResource {
 
 pub static MESHEMITTERRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterResource",
+    name_hash: 287496042,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshEmitterResource as Default>::default())),
+            create_boxed: || Box::new(<MeshEmitterResource as Default>::default()),
         },
         fields: &[
         ],
@@ -350,6 +355,7 @@ impl TypeObject for MeshEmitterResource {
 
 pub static MESHEMITTERRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterResource-Array",
+    name_hash: 2497503838,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("MeshEmitterResource"),
@@ -358,7 +364,8 @@ pub static MESHEMITTERRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshEmitterMaskResource {
 }
 
@@ -370,12 +377,15 @@ impl MeshEmitterMaskResourceTrait for MeshEmitterMaskResource {
 
 pub static MESHEMITTERMASKRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterMaskResource",
+    name_hash: 1805804702,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshEmitterMaskResource as Default>::default())),
+            create_boxed: || Box::new(<MeshEmitterMaskResource as Default>::default()),
         },
         fields: &[
         ],
@@ -405,6 +415,7 @@ impl TypeObject for MeshEmitterMaskResource {
 
 pub static MESHEMITTERMASKRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterMaskResource-Array",
+    name_hash: 2342024618,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("MeshEmitterMaskResource"),
@@ -413,7 +424,8 @@ pub static MESHEMITTERMASKRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterGraphResource {
 }
 
@@ -425,12 +437,15 @@ impl EmitterGraphResourceTrait for EmitterGraphResource {
 
 pub static EMITTERGRAPHRESOURCE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphResource",
+    name_hash: 3861299989,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: None,
+        super_class_offset: 0,
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterGraphResource as Default>::default())),
+            create_boxed: || Box::new(<EmitterGraphResource as Default>::default()),
         },
         fields: &[
         ],
@@ -460,6 +475,7 @@ impl TypeObject for EmitterGraphResource {
 
 pub static EMITTERGRAPHRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphResource-Array",
+    name_hash: 405336737,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphResource"),
@@ -468,7 +484,8 @@ pub static EMITTERGRAPHRESOURCE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterSystemSettings {
     pub _glacier_base: super::core::DataContainer,
     pub enable: bool,
@@ -1492,682 +1509,797 @@ impl super::core::DataContainerTrait for EmitterSystemSettings {
 
 pub static EMITTERSYSTEMSETTINGS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterSystemSettings",
+    name_hash: 2629651507,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterSystemSettings, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterSystemSettings as Default>::default())),
+            create_boxed: || Box::new(<EmitterSystemSettings as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Enable",
+                name_hash: 2342790116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, enable),
             },
             FieldInfoData {
                 name: "UpdateJobEnable",
+                name_hash: 4205084690,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, update_job_enable),
             },
             FieldInfoData {
                 name: "SkipUpdateMaxCount",
+                name_hash: 3502954914,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, skip_update_max_count),
             },
             FieldInfoData {
                 name: "ForceJobCount",
+                name_hash: 1588797276,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EmitterSystemSettings, force_job_count),
             },
             FieldInfoData {
                 name: "TimeScale",
+                name_hash: 169511528,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, time_scale),
             },
             FieldInfoData {
                 name: "GlobalResetStartTimeInterval",
+                name_hash: 191922705,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, global_reset_start_time_interval),
             },
             FieldInfoData {
                 name: "EnableFixedTimeStep",
+                name_hash: 3426148757,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, enable_fixed_time_step),
             },
             FieldInfoData {
                 name: "EnableFixedDelta",
+                name_hash: 3036744842,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, enable_fixed_delta),
             },
             FieldInfoData {
                 name: "EnableJobs",
+                name_hash: 1190923856,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, enable_jobs),
             },
             FieldInfoData {
                 name: "CollisionRayCastEnable",
+                name_hash: 1076569109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, collision_ray_cast_enable),
             },
             FieldInfoData {
                 name: "CollisionRayCastMaxCount",
+                name_hash: 395062115,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, collision_ray_cast_max_count),
             },
             FieldInfoData {
                 name: "ProximityPhysicsEntitiesMaxCount",
+                name_hash: 2826754033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, proximity_physics_entities_max_count),
             },
             FieldInfoData {
                 name: "DrawDebugRayCastCollision",
+                name_hash: 71402085,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_debug_ray_cast_collision),
             },
             FieldInfoData {
                 name: "EmitterQualityLevel",
+                name_hash: 171671976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityLevel",
                 rust_offset: offset_of!(EmitterSystemSettings, emitter_quality_level),
             },
             FieldInfoData {
                 name: "TemplateTimeoutTime",
+                name_hash: 2548500955,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, template_timeout_time),
             },
             FieldInfoData {
                 name: "PreciseWindAndForceMaxDistance",
+                name_hash: 194696875,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, precise_wind_and_force_max_distance),
             },
             FieldInfoData {
                 name: "TurbulenceMaxDistance",
+                name_hash: 1766710583,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, turbulence_max_distance),
             },
             FieldInfoData {
                 name: "ScreenAreaCullingStart",
+                name_hash: 1992222952,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, screen_area_culling_start),
             },
             FieldInfoData {
                 name: "ScreenAreaCullingEnd",
+                name_hash: 711722087,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, screen_area_culling_end),
             },
             FieldInfoData {
                 name: "ScreenAreaCullingMinTotalArea",
+                name_hash: 893792055,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, screen_area_culling_min_total_area),
             },
             FieldInfoData {
                 name: "ScreenAreaCullingMaxTotalArea",
+                name_hash: 908964969,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, screen_area_culling_max_total_area),
             },
             FieldInfoData {
                 name: "ScreenAreaCullingMaxMultiplier",
+                name_hash: 1904993815,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, screen_area_culling_max_multiplier),
             },
             FieldInfoData {
                 name: "ProcessJobYieldTime",
+                name_hash: 1319054721,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, process_job_yield_time),
             },
             FieldInfoData {
                 name: "VisibleJobYieldTime",
+                name_hash: 4153235140,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, visible_job_yield_time),
             },
             FieldInfoData {
                 name: "MeshEmitterMotionBlurEnable",
+                name_hash: 2164601974,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_emitter_motion_blur_enable),
             },
             FieldInfoData {
                 name: "EnableRendering",
+                name_hash: 40741518,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, enable_rendering),
             },
             FieldInfoData {
                 name: "DrawStats",
+                name_hash: 2413142628,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_stats),
             },
             FieldInfoData {
                 name: "CollectPerformanceStats",
+                name_hash: 1994685250,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, collect_performance_stats),
             },
             FieldInfoData {
                 name: "CollectPerformanceStatsTime",
+                name_hash: 4286846103,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EmitterSystemSettings, collect_performance_stats_time),
             },
             FieldInfoData {
                 name: "DrawMemStats",
+                name_hash: 3083503233,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_mem_stats),
             },
             FieldInfoData {
                 name: "DrawStatsSamplingPeriod",
+                name_hash: 1066713090,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_stats_sampling_period),
             },
             FieldInfoData {
                 name: "DrawStatsEntriesPerPage",
+                name_hash: 2416207010,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_stats_entries_per_page),
             },
             FieldInfoData {
                 name: "DrawStatsPageIndex",
+                name_hash: 302207977,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_stats_page_index),
             },
             FieldInfoData {
                 name: "DrawStatsFilter",
+                name_hash: 661899428,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_stats_filter),
             },
             FieldInfoData {
                 name: "HideInactiveStats",
+                name_hash: 2074201423,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, hide_inactive_stats),
             },
             FieldInfoData {
                 name: "SaveListActiveEmitters",
+                name_hash: 303333359,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, save_list_active_emitters),
             },
             FieldInfoData {
                 name: "DrawEmitterName",
+                name_hash: 1302967284,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_emitter_name),
             },
             FieldInfoData {
                 name: "ZBufferCullEnable",
+                name_hash: 2454313224,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, z_buffer_cull_enable),
             },
             FieldInfoData {
                 name: "DrawProjectedBoxes",
+                name_hash: 3600370386,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_projected_boxes),
             },
             FieldInfoData {
                 name: "DrawBoundingBoxes",
+                name_hash: 256065972,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_bounding_boxes),
             },
             FieldInfoData {
                 name: "MinScreenArea",
+                name_hash: 81136980,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, min_screen_area),
             },
             FieldInfoData {
                 name: "MinScreenAreaThreshold",
+                name_hash: 3327520867,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, min_screen_area_threshold),
             },
             FieldInfoData {
                 name: "ForceCullDistance",
+                name_hash: 1492762093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, force_cull_distance),
             },
             FieldInfoData {
                 name: "ForceCullFadeFarDistance",
+                name_hash: 2758766654,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, force_cull_fade_far_distance),
             },
             FieldInfoData {
                 name: "DrawTransforms",
+                name_hash: 1809613690,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_transforms),
             },
             FieldInfoData {
                 name: "DrawLightProbeSampleTransforms",
+                name_hash: 2233528616,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_light_probe_sample_transforms),
             },
             FieldInfoData {
                 name: "DrawDebugBaseAtlas",
+                name_hash: 479128618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_debug_base_atlas),
             },
             FieldInfoData {
                 name: "DrawDebugNormalAtlas",
+                name_hash: 2053187500,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_debug_normal_atlas),
             },
             FieldInfoData {
                 name: "DrawDebugAtlasMiplevel",
+                name_hash: 1897135325,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_debug_atlas_miplevel),
             },
             FieldInfoData {
                 name: "DrawDebugAtlasTextureIndex",
+                name_hash: 923027326,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_debug_atlas_texture_index),
             },
             FieldInfoData {
                 name: "DrawDebugAtlasAlpha",
+                name_hash: 3990181867,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_debug_atlas_alpha),
             },
             FieldInfoData {
                 name: "DrawDebugEmitterExclusionVolumes",
+                name_hash: 2310762245,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_debug_emitter_exclusion_volumes),
             },
             FieldInfoData {
                 name: "DrawDebugAtlasPageIndex",
+                name_hash: 3321381618,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_debug_atlas_page_index),
             },
             FieldInfoData {
                 name: "DrawDebugEmitterSunTransmittanceMapGroup",
+                name_hash: 2269375934,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_debug_emitter_sun_transmittance_map_group),
             },
             FieldInfoData {
                 name: "DrawDebugEmitterSunTransmittanceMapsLinks",
+                name_hash: 3560847393,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_debug_emitter_sun_transmittance_maps_links),
             },
             FieldInfoData {
                 name: "ForceSunTransmittanceOnAllEmitters",
+                name_hash: 2273453250,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, force_sun_transmittance_on_all_emitters),
             },
             FieldInfoData {
                 name: "EmitterRenderSunTransmittanceViewsFirst",
+                name_hash: 3086819490,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, emitter_render_sun_transmittance_views_first),
             },
             FieldInfoData {
                 name: "DrawDebugEmitterVertexBufferUsage",
+                name_hash: 497240751,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, draw_debug_emitter_vertex_buffer_usage),
             },
             FieldInfoData {
                 name: "EmitterGpuLightingEnable",
+                name_hash: 1611036782,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, emitter_gpu_lighting_enable),
             },
             FieldInfoData {
                 name: "WalrusLightingEnable",
+                name_hash: 2065910164,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, walrus_lighting_enable),
             },
             FieldInfoData {
                 name: "EmitterGpuLightingPipelineShadersEnabled",
+                name_hash: 2060886034,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, emitter_gpu_lighting_pipeline_shaders_enabled),
             },
             FieldInfoData {
                 name: "SystemShadersPath",
+                name_hash: 2176469047,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EmitterSystemSettings, system_shaders_path),
             },
             FieldInfoData {
                 name: "SystemVSFPath",
+                name_hash: 1948353230,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EmitterSystemSettings, system_v_s_f_path),
             },
             FieldInfoData {
                 name: "CrossfireDriverProfileAvailable",
+                name_hash: 2770960527,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, crossfire_driver_profile_available),
             },
             FieldInfoData {
                 name: "QuadClipScaleEnable",
+                name_hash: 2519874955,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_clip_scale_enable),
             },
             FieldInfoData {
                 name: "QuadEnableRendering",
+                name_hash: 468998543,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_enable_rendering),
             },
             FieldInfoData {
                 name: "QuadNiceRenderingEnable",
+                name_hash: 4038089934,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_nice_rendering_enable),
             },
             FieldInfoData {
                 name: "QuadSimpleRenderingEnable",
+                name_hash: 2930079169,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_simple_rendering_enable),
             },
             FieldInfoData {
                 name: "QuadEnableOpaque",
+                name_hash: 1334058906,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_enable_opaque),
             },
             FieldInfoData {
                 name: "QuadEnableCustomShader",
+                name_hash: 3337792799,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_enable_custom_shader),
             },
             FieldInfoData {
                 name: "QuadColorShaderCostsEnable",
+                name_hash: 583045289,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_color_shader_costs_enable),
             },
             FieldInfoData {
                 name: "QuadEnableSorting",
+                name_hash: 2931738335,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_enable_sorting),
             },
             FieldInfoData {
                 name: "QuadEnableWireframe",
+                name_hash: 1089239377,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_enable_wireframe),
             },
             FieldInfoData {
                 name: "QuadHalfResEnable",
+                name_hash: 780819106,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_half_res_enable),
             },
             FieldInfoData {
                 name: "QuadGroupsJoinAll",
+                name_hash: 3752191243,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_groups_join_all),
             },
             FieldInfoData {
                 name: "QuadGroupsJoinNone",
+                name_hash: 3563197984,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_groups_join_none),
             },
             FieldInfoData {
                 name: "QuadGroupsJoinNiceAndSimple",
+                name_hash: 2729389326,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_groups_join_nice_and_simple),
             },
             FieldInfoData {
                 name: "QuadTechnique",
+                name_hash: 481029528,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_technique),
             },
             FieldInfoData {
                 name: "QuadVertexShadowsEnable",
+                name_hash: 2940509112,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_vertex_shadows_enable),
             },
             FieldInfoData {
                 name: "QuadCloudVertexShadowsEnable",
+                name_hash: 2239809833,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_cloud_vertex_shadows_enable),
             },
             FieldInfoData {
                 name: "QuadPlanarReflectionEnable",
+                name_hash: 2631720578,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_planar_reflection_enable),
             },
             FieldInfoData {
                 name: "QuadPointLightsEnable",
+                name_hash: 1678550564,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_point_lights_enable),
             },
             FieldInfoData {
                 name: "QuadSpotLightsEnable",
+                name_hash: 2807602672,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_spot_lights_enable),
             },
             FieldInfoData {
                 name: "PunctualLightThresholdSquared",
+                name_hash: 3984600877,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, punctual_light_threshold_squared),
             },
             FieldInfoData {
                 name: "QuadNearFadeDistance",
+                name_hash: 1063747929,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_near_fade_distance),
             },
             FieldInfoData {
                 name: "CustomEmitterPositionSorting",
+                name_hash: 1997472483,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, custom_emitter_position_sorting),
             },
             FieldInfoData {
                 name: "QuadMaxCount",
+                name_hash: 3236519283,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_max_count),
             },
             FieldInfoData {
                 name: "MeshRenderingEnable",
+                name_hash: 2979790077,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_rendering_enable),
             },
             FieldInfoData {
                 name: "MeshDrawTransforms",
+                name_hash: 67393161,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_draw_transforms),
             },
             FieldInfoData {
                 name: "MeshDrawBoundingBoxes",
+                name_hash: 1284065831,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_draw_bounding_boxes),
             },
             FieldInfoData {
                 name: "MeshShadowEnable",
+                name_hash: 418824849,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_shadow_enable),
             },
             FieldInfoData {
                 name: "MeshPlanarReflectionEnable",
+                name_hash: 2887703376,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_planar_reflection_enable),
             },
             FieldInfoData {
                 name: "MeshCullingDistance",
+                name_hash: 2057455619,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_culling_distance),
             },
             FieldInfoData {
                 name: "MeshDrawCountLimit",
+                name_hash: 3584341216,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_draw_count_limit),
             },
             FieldInfoData {
                 name: "MeshStreamingPriorityMultiplier",
+                name_hash: 1971206387,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_streaming_priority_multiplier),
             },
             FieldInfoData {
                 name: "MeshDrawCullStats",
+                name_hash: 2146509665,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_draw_cull_stats),
             },
             FieldInfoData {
                 name: "MeshMaxCount",
+                name_hash: 910173601,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_max_count),
             },
             FieldInfoData {
                 name: "SkipRenderIfProbeIsUninitialized",
+                name_hash: 124160390,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, skip_render_if_probe_is_uninitialized),
             },
             FieldInfoData {
                 name: "BatchUpdateLightProbesEnable",
+                name_hash: 4121307278,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, batch_update_light_probes_enable),
             },
             FieldInfoData {
                 name: "QuadLightProbeMaxUpdateCount",
+                name_hash: 2627197110,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, quad_light_probe_max_update_count),
             },
             FieldInfoData {
                 name: "GraphLightProbeMaxUpdateCount",
+                name_hash: 1809708539,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, graph_light_probe_max_update_count),
             },
             FieldInfoData {
                 name: "MeshLightProbeMaxUpdateCount",
+                name_hash: 1606061412,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, mesh_light_probe_max_update_count),
             },
             FieldInfoData {
                 name: "GraphEmitterEnabled",
+                name_hash: 4244939418,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, graph_emitter_enabled),
             },
             FieldInfoData {
                 name: "GraphEmitterDrawDebugStats",
+                name_hash: 1496997359,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, graph_emitter_draw_debug_stats),
             },
             FieldInfoData {
                 name: "GraphEmitterDrawDebugBuffers",
+                name_hash: 4260686045,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, graph_emitter_draw_debug_buffers),
             },
             FieldInfoData {
                 name: "GraphEmitterDrawDebugViewVisibleInstances",
+                name_hash: 2576797719,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, graph_emitter_draw_debug_view_visible_instances),
             },
             FieldInfoData {
                 name: "GraphEmitterOverlappedComputeEnable",
+                name_hash: 1400345833,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, graph_emitter_overlapped_compute_enable),
             },
             FieldInfoData {
                 name: "EmitterGraphBlockAllocatorMaxByteCount",
+                name_hash: 2841272334,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, emitter_graph_block_allocator_max_byte_count),
             },
             FieldInfoData {
                 name: "EmitterGraphBlockAllocatorBlockMaxCount",
+                name_hash: 1532498669,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, emitter_graph_block_allocator_block_max_count),
             },
             FieldInfoData {
                 name: "EmitterGraphMaxDefragOperationsPerFrame",
+                name_hash: 4264893060,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterSystemSettings, emitter_graph_max_defrag_operations_per_frame),
             },
             FieldInfoData {
                 name: "EmitterGraphDrawDebugUberBuffer",
+                name_hash: 2741970126,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, emitter_graph_draw_debug_uber_buffer),
             },
             FieldInfoData {
                 name: "EmitterGraphUberBufferDefragEnable",
+                name_hash: 2295190925,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterSystemSettings, emitter_graph_uber_buffer_defrag_enable),
@@ -2199,6 +2331,7 @@ impl TypeObject for EmitterSystemSettings {
 
 pub static EMITTERSYSTEMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterSystemSettings-Array",
+    name_hash: 1986451335,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterSystemSettings"),
@@ -2207,22 +2340,23 @@ pub static EMITTERSYSTEMSETTINGS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct FlatEmitterDocument {
     pub _glacier_base: EmitterDocument,
-    pub template_data: Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>,
+    pub template_data: Option<LockedTypeObject /* EmitterTemplateData */>,
 }
 
 pub trait FlatEmitterDocumentTrait: EmitterDocumentTrait {
-    fn template_data(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
-    fn template_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
+    fn template_data(&self) -> &Option<LockedTypeObject /* EmitterTemplateData */>;
+    fn template_data_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterTemplateData */>;
 }
 
 impl FlatEmitterDocumentTrait for FlatEmitterDocument {
-    fn template_data(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+    fn template_data(&self) -> &Option<LockedTypeObject /* EmitterTemplateData */> {
         &self.template_data
     }
-    fn template_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+    fn template_data_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterTemplateData */> {
         &mut self.template_data
     }
 }
@@ -2250,16 +2384,20 @@ impl super::core::DataContainerTrait for FlatEmitterDocument {
 
 pub static FLATEMITTERDOCUMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FlatEmitterDocument",
+    name_hash: 3350830179,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EMITTERDOCUMENT_TYPE_INFO),
+        super_class_offset: offset_of!(FlatEmitterDocument, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<FlatEmitterDocument as Default>::default())),
+            create_boxed: || Box::new(<FlatEmitterDocument as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TemplateData",
+                name_hash: 673762469,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterTemplateData",
                 rust_offset: offset_of!(FlatEmitterDocument, template_data),
@@ -2291,6 +2429,7 @@ impl TypeObject for FlatEmitterDocument {
 
 pub static FLATEMITTERDOCUMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "FlatEmitterDocument-Array",
+    name_hash: 2568982615,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("FlatEmitterDocument"),
@@ -2299,49 +2438,50 @@ pub static FLATEMITTERDOCUMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ScalableEmitterDocument {
     pub _glacier_base: EmitterDocument,
-    pub template_data_low: Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>,
-    pub template_data_medium: Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>,
-    pub template_data_high: Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>,
-    pub template_data_ultra: Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>,
+    pub template_data_low: Option<LockedTypeObject /* EmitterTemplateData */>,
+    pub template_data_medium: Option<LockedTypeObject /* EmitterTemplateData */>,
+    pub template_data_high: Option<LockedTypeObject /* EmitterTemplateData */>,
+    pub template_data_ultra: Option<LockedTypeObject /* EmitterTemplateData */>,
 }
 
 pub trait ScalableEmitterDocumentTrait: EmitterDocumentTrait {
-    fn template_data_low(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
-    fn template_data_low_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
-    fn template_data_medium(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
-    fn template_data_medium_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
-    fn template_data_high(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
-    fn template_data_high_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
-    fn template_data_ultra(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
-    fn template_data_ultra_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>>;
+    fn template_data_low(&self) -> &Option<LockedTypeObject /* EmitterTemplateData */>;
+    fn template_data_low_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterTemplateData */>;
+    fn template_data_medium(&self) -> &Option<LockedTypeObject /* EmitterTemplateData */>;
+    fn template_data_medium_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterTemplateData */>;
+    fn template_data_high(&self) -> &Option<LockedTypeObject /* EmitterTemplateData */>;
+    fn template_data_high_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterTemplateData */>;
+    fn template_data_ultra(&self) -> &Option<LockedTypeObject /* EmitterTemplateData */>;
+    fn template_data_ultra_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterTemplateData */>;
 }
 
 impl ScalableEmitterDocumentTrait for ScalableEmitterDocument {
-    fn template_data_low(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+    fn template_data_low(&self) -> &Option<LockedTypeObject /* EmitterTemplateData */> {
         &self.template_data_low
     }
-    fn template_data_low_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+    fn template_data_low_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterTemplateData */> {
         &mut self.template_data_low
     }
-    fn template_data_medium(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+    fn template_data_medium(&self) -> &Option<LockedTypeObject /* EmitterTemplateData */> {
         &self.template_data_medium
     }
-    fn template_data_medium_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+    fn template_data_medium_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterTemplateData */> {
         &mut self.template_data_medium
     }
-    fn template_data_high(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+    fn template_data_high(&self) -> &Option<LockedTypeObject /* EmitterTemplateData */> {
         &self.template_data_high
     }
-    fn template_data_high_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+    fn template_data_high_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterTemplateData */> {
         &mut self.template_data_high
     }
-    fn template_data_ultra(&self) -> &Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+    fn template_data_ultra(&self) -> &Option<LockedTypeObject /* EmitterTemplateData */> {
         &self.template_data_ultra
     }
-    fn template_data_ultra_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterTemplateDataTrait>>> {
+    fn template_data_ultra_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterTemplateData */> {
         &mut self.template_data_ultra
     }
 }
@@ -2369,34 +2509,41 @@ impl super::core::DataContainerTrait for ScalableEmitterDocument {
 
 pub static SCALABLEEMITTERDOCUMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScalableEmitterDocument",
+    name_hash: 478796651,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EMITTERDOCUMENT_TYPE_INFO),
+        super_class_offset: offset_of!(ScalableEmitterDocument, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ScalableEmitterDocument as Default>::default())),
+            create_boxed: || Box::new(<ScalableEmitterDocument as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TemplateDataLow",
+                name_hash: 2271136625,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterTemplateData",
                 rust_offset: offset_of!(ScalableEmitterDocument, template_data_low),
             },
             FieldInfoData {
                 name: "TemplateDataMedium",
+                name_hash: 619170904,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterTemplateData",
                 rust_offset: offset_of!(ScalableEmitterDocument, template_data_medium),
             },
             FieldInfoData {
                 name: "TemplateDataHigh",
+                name_hash: 1933197291,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterTemplateData",
                 rust_offset: offset_of!(ScalableEmitterDocument, template_data_high),
             },
             FieldInfoData {
                 name: "TemplateDataUltra",
+                name_hash: 3672490843,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterTemplateData",
                 rust_offset: offset_of!(ScalableEmitterDocument, template_data_ultra),
@@ -2428,6 +2575,7 @@ impl TypeObject for ScalableEmitterDocument {
 
 pub static SCALABLEEMITTERDOCUMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ScalableEmitterDocument-Array",
+    name_hash: 560098143,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("ScalableEmitterDocument"),
@@ -2436,7 +2584,8 @@ pub static SCALABLEEMITTERDOCUMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterDocument {
     pub _glacier_base: EmitterAsset,
 }
@@ -2467,12 +2616,15 @@ impl super::core::DataContainerTrait for EmitterDocument {
 
 pub static EMITTERDOCUMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterDocument",
+    name_hash: 1112563356,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EMITTERASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterDocument, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterDocument as Default>::default())),
+            create_boxed: || Box::new(<EmitterDocument as Default>::default()),
         },
         fields: &[
         ],
@@ -2502,6 +2654,7 @@ impl TypeObject for EmitterDocument {
 
 pub static EMITTERDOCUMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterDocument-Array",
+    name_hash: 3048060584,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterDocument"),
@@ -2510,10 +2663,11 @@ pub static EMITTERDOCUMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterTemplateData {
     pub _glacier_base: super::core::DataContainer,
-    pub root_processor: Option<Arc<Mutex<dyn ProcessorDataTrait>>>,
+    pub root_processor: Option<LockedTypeObject /* ProcessorData */>,
     pub max_count: u32,
     pub lifetime: f32,
     pub time_scale: f32,
@@ -2533,7 +2687,7 @@ pub struct EmitterTemplateData {
     pub motion_stretch_length_clamp: f32,
     pub motion_stretch_relative_length_clamp: f32,
     pub orient_to_position: super::core::Vec3,
-    pub mesh: Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>>,
+    pub mesh: Option<LockedTypeObject /* super::render::MeshAsset */>,
     pub object_variation_name_hash: u32,
     pub emissive: bool,
     pub emissive_exposure_factor: f32,
@@ -2594,7 +2748,7 @@ pub struct EmitterTemplateData {
     pub accept_global_parameter1: bool,
     pub accept_global_parameter2: bool,
     pub accept_global_parameter3: bool,
-    pub per_particle_effect_parameters: Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>,
+    pub per_particle_effect_parameters: Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>,
     pub min_distance_travelled_before_spawn: f32,
     pub cull_fade_near_distance: f32,
     pub cull_fade_near_range: f32,
@@ -2604,12 +2758,12 @@ pub struct EmitterTemplateData {
     pub emitter_wind_evaluation_enable: bool,
     pub emittable_wind_evaluation_enable: bool,
     pub debug_name: String,
-    pub tweak_inherited_emitter: Option<Arc<Mutex<dyn EmitterDocumentTrait>>>,
+    pub tweak_inherited_emitter: Option<LockedTypeObject /* EmitterDocument */>,
 }
 
 pub trait EmitterTemplateDataTrait: super::core::DataContainerTrait {
-    fn root_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>>;
-    fn root_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>>;
+    fn root_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */>;
+    fn root_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */>;
     fn max_count(&self) -> &u32;
     fn max_count_mut(&mut self) -> &mut u32;
     fn lifetime(&self) -> &f32;
@@ -2648,8 +2802,8 @@ pub trait EmitterTemplateDataTrait: super::core::DataContainerTrait {
     fn motion_stretch_relative_length_clamp_mut(&mut self) -> &mut f32;
     fn orient_to_position(&self) -> &super::core::Vec3;
     fn orient_to_position_mut(&mut self) -> &mut super::core::Vec3;
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>>;
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>>;
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render::MeshAsset */>;
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::MeshAsset */>;
     fn object_variation_name_hash(&self) -> &u32;
     fn object_variation_name_hash_mut(&mut self) -> &mut u32;
     fn emissive(&self) -> &bool;
@@ -2770,8 +2924,8 @@ pub trait EmitterTemplateDataTrait: super::core::DataContainerTrait {
     fn accept_global_parameter2_mut(&mut self) -> &mut bool;
     fn accept_global_parameter3(&self) -> &bool;
     fn accept_global_parameter3_mut(&mut self) -> &mut bool;
-    fn per_particle_effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
-    fn per_particle_effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
+    fn per_particle_effect_parameters(&self) -> &Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>;
+    fn per_particle_effect_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>;
     fn min_distance_travelled_before_spawn(&self) -> &f32;
     fn min_distance_travelled_before_spawn_mut(&mut self) -> &mut f32;
     fn cull_fade_near_distance(&self) -> &f32;
@@ -2790,15 +2944,15 @@ pub trait EmitterTemplateDataTrait: super::core::DataContainerTrait {
     fn emittable_wind_evaluation_enable_mut(&mut self) -> &mut bool;
     fn debug_name(&self) -> &String;
     fn debug_name_mut(&mut self) -> &mut String;
-    fn tweak_inherited_emitter(&self) -> &Option<Arc<Mutex<dyn EmitterDocumentTrait>>>;
-    fn tweak_inherited_emitter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterDocumentTrait>>>;
+    fn tweak_inherited_emitter(&self) -> &Option<LockedTypeObject /* EmitterDocument */>;
+    fn tweak_inherited_emitter_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterDocument */>;
 }
 
 impl EmitterTemplateDataTrait for EmitterTemplateData {
-    fn root_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn root_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         &self.root_processor
     }
-    fn root_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn root_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         &mut self.root_processor
     }
     fn max_count(&self) -> &u32 {
@@ -2915,10 +3069,10 @@ impl EmitterTemplateDataTrait for EmitterTemplateData {
     fn orient_to_position_mut(&mut self) -> &mut super::core::Vec3 {
         &mut self.orient_to_position
     }
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>> {
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render::MeshAsset */> {
         &self.mesh
     }
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>> {
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::MeshAsset */> {
         &mut self.mesh
     }
     fn object_variation_name_hash(&self) -> &u32 {
@@ -3281,10 +3435,10 @@ impl EmitterTemplateDataTrait for EmitterTemplateData {
     fn accept_global_parameter3_mut(&mut self) -> &mut bool {
         &mut self.accept_global_parameter3
     }
-    fn per_particle_effect_parameters(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn per_particle_effect_parameters(&self) -> &Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         &self.per_particle_effect_parameters
     }
-    fn per_particle_effect_parameters_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn per_particle_effect_parameters_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         &mut self.per_particle_effect_parameters
     }
     fn min_distance_travelled_before_spawn(&self) -> &f32 {
@@ -3341,10 +3495,10 @@ impl EmitterTemplateDataTrait for EmitterTemplateData {
     fn debug_name_mut(&mut self) -> &mut String {
         &mut self.debug_name
     }
-    fn tweak_inherited_emitter(&self) -> &Option<Arc<Mutex<dyn EmitterDocumentTrait>>> {
+    fn tweak_inherited_emitter(&self) -> &Option<LockedTypeObject /* EmitterDocument */> {
         &self.tweak_inherited_emitter
     }
-    fn tweak_inherited_emitter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterDocumentTrait>>> {
+    fn tweak_inherited_emitter_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterDocument */> {
         &mut self.tweak_inherited_emitter
     }
 }
@@ -3354,562 +3508,657 @@ impl super::core::DataContainerTrait for EmitterTemplateData {
 
 pub static EMITTERTEMPLATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterTemplateData",
+    name_hash: 1623660115,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterTemplateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterTemplateData as Default>::default())),
+            create_boxed: || Box::new(<EmitterTemplateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RootProcessor",
+                name_hash: 3988805269,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProcessorData",
                 rust_offset: offset_of!(EmitterTemplateData, root_processor),
             },
             FieldInfoData {
                 name: "MaxCount",
+                name_hash: 415061138,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterTemplateData, max_count),
             },
             FieldInfoData {
                 name: "Lifetime",
+                name_hash: 2450521238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, lifetime),
             },
             FieldInfoData {
                 name: "TimeScale",
+                name_hash: 169511528,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, time_scale),
             },
             FieldInfoData {
                 name: "RepeatParticleSpawning",
+                name_hash: 2147054397,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, repeat_particle_spawning),
             },
             FieldInfoData {
                 name: "LifetimeFrameCount",
+                name_hash: 2205246824,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterTemplateData, lifetime_frame_count),
             },
             FieldInfoData {
                 name: "FollowSpawnSource",
+                name_hash: 1782450290,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, follow_spawn_source),
             },
             FieldInfoData {
                 name: "FollowSpawnSourceVelocity",
+                name_hash: 1246146853,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, follow_spawn_source_velocity),
             },
             FieldInfoData {
                 name: "KillParticlesWithEmitter",
+                name_hash: 2140513492,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, kill_particles_with_emitter),
             },
             FieldInfoData {
                 name: "KillRibbonTailDistance",
+                name_hash: 2148162894,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, kill_ribbon_tail_distance),
             },
             FieldInfoData {
                 name: "SmoothRibbonSpawn",
+                name_hash: 1753723942,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, smooth_ribbon_spawn),
             },
             FieldInfoData {
                 name: "ExclusionVolumeCullEnable",
+                name_hash: 3245605062,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, exclusion_volume_cull_enable),
             },
             FieldInfoData {
                 name: "EmittableType",
+                name_hash: 3808538518,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmittableType",
                 rust_offset: offset_of!(EmitterTemplateData, emittable_type),
             },
             FieldInfoData {
                 name: "EmittableAlignment",
+                name_hash: 1653740593,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmittableAlignment",
                 rust_offset: offset_of!(EmitterTemplateData, emittable_alignment),
             },
             FieldInfoData {
                 name: "WorldAlignmentDirection",
+                name_hash: 3427031965,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterTemplateData, world_alignment_direction),
             },
             FieldInfoData {
                 name: "MotionStretchMultiplier",
+                name_hash: 432327775,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, motion_stretch_multiplier),
             },
             FieldInfoData {
                 name: "MotionStretchViewMultiplier",
+                name_hash: 4065489362,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, motion_stretch_view_multiplier),
             },
             FieldInfoData {
                 name: "MotionStretchLengthClamp",
+                name_hash: 626111643,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, motion_stretch_length_clamp),
             },
             FieldInfoData {
                 name: "MotionStretchRelativeLengthClamp",
+                name_hash: 3008664943,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, motion_stretch_relative_length_clamp),
             },
             FieldInfoData {
                 name: "OrientToPosition",
+                name_hash: 785765036,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterTemplateData, orient_to_position),
             },
             FieldInfoData {
                 name: "Mesh",
+                name_hash: 2088783990,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MeshAsset",
                 rust_offset: offset_of!(EmitterTemplateData, mesh),
             },
             FieldInfoData {
                 name: "ObjectVariationNameHash",
+                name_hash: 1857284564,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterTemplateData, object_variation_name_hash),
             },
             FieldInfoData {
                 name: "Emissive",
+                name_hash: 782359646,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, emissive),
             },
             FieldInfoData {
                 name: "EmissiveExposureFactor",
+                name_hash: 1411947136,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, emissive_exposure_factor),
             },
             FieldInfoData {
                 name: "Opaque",
+                name_hash: 2892752538,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, opaque),
             },
             FieldInfoData {
                 name: "MeshParticlesMotionBlur",
+                name_hash: 861475494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, mesh_particles_motion_blur),
             },
             FieldInfoData {
                 name: "VertexPixelLightingBlendFactor",
+                name_hash: 2828867447,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, vertex_pixel_lighting_blend_factor),
             },
             FieldInfoData {
                 name: "GlobalLocalNormalBlendFactor",
+                name_hash: 3400652860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, global_local_normal_blend_factor),
             },
             FieldInfoData {
                 name: "SoftParticlesFadeDistanceMultiplier",
+                name_hash: 2725694050,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, soft_particles_fade_distance_multiplier),
             },
             FieldInfoData {
                 name: "LightWrapAroundFactor",
+                name_hash: 372734881,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, light_wrap_around_factor),
             },
             FieldInfoData {
                 name: "BentNormalFactor",
+                name_hash: 201684102,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, bent_normal_factor),
             },
             FieldInfoData {
                 name: "LightMultiplier",
+                name_hash: 3252516944,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, light_multiplier),
             },
             FieldInfoData {
                 name: "LightMultiplierDynamic",
+                name_hash: 3800995109,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, light_multiplier_dynamic),
             },
             FieldInfoData {
                 name: "ReceiveSunShadow",
+                name_hash: 3564954240,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, receive_sun_shadow),
             },
             FieldInfoData {
                 name: "BendingFactor",
+                name_hash: 132038437,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, bending_factor),
             },
             FieldInfoData {
                 name: "MicroVariationSmoothingFactor",
+                name_hash: 560596257,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, micro_variation_smoothing_factor),
             },
             FieldInfoData {
                 name: "ForceNiceSorting",
+                name_hash: 318607267,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, force_nice_sorting),
             },
             FieldInfoData {
                 name: "LocalSpace",
+                name_hash: 4045017420,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, local_space),
             },
             FieldInfoData {
                 name: "AllowScale",
+                name_hash: 3348828452,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, allow_scale),
             },
             FieldInfoData {
                 name: "CameraSpace",
+                name_hash: 3176014744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, camera_space),
             },
             FieldInfoData {
                 name: "TransparencySunShadowEnable",
+                name_hash: 3351532450,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, transparency_sun_shadow_enable),
             },
             FieldInfoData {
                 name: "SunVolumetricShadowEnable",
+                name_hash: 2010499086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, sun_volumetric_shadow_enable),
             },
             FieldInfoData {
                 name: "SunVolumetricShadowAbsorptionScale",
+                name_hash: 1527715414,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, sun_volumetric_shadow_absorption_scale),
             },
             FieldInfoData {
                 name: "SunVolumetricShadowAbsorptionR",
+                name_hash: 71278588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, sun_volumetric_shadow_absorption_r),
             },
             FieldInfoData {
                 name: "SunVolumetricShadowAbsorptionG",
+                name_hash: 71278569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, sun_volumetric_shadow_absorption_g),
             },
             FieldInfoData {
                 name: "SunVolumetricShadowAbsorptionB",
+                name_hash: 71278572,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, sun_volumetric_shadow_absorption_b),
             },
             FieldInfoData {
                 name: "SunVolumetricShadowPhaseG0",
+                name_hash: 537560823,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, sun_volumetric_shadow_phase_g0),
             },
             FieldInfoData {
                 name: "SunVolumetricShadowPhaseG1",
+                name_hash: 537560822,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, sun_volumetric_shadow_phase_g1),
             },
             FieldInfoData {
                 name: "SunVolumetricShadowOffset",
+                name_hash: 1785017154,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, sun_volumetric_shadow_offset),
             },
             FieldInfoData {
                 name: "EnablePyroShader",
+                name_hash: 2541193433,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, enable_pyro_shader),
             },
             FieldInfoData {
                 name: "GnomonLightRigIndex",
+                name_hash: 670355155,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EmitterTemplateData, gnomon_light_rig_index),
             },
             FieldInfoData {
                 name: "UseRightTextureTile",
+                name_hash: 1280156909,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, use_right_texture_tile),
             },
             FieldInfoData {
                 name: "CastPlanarReflectionEnable",
+                name_hash: 1542428550,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, cast_planar_reflection_enable),
             },
             FieldInfoData {
                 name: "ForceFullRes",
+                name_hash: 3014404943,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, force_full_res),
             },
             FieldInfoData {
                 name: "FogFade",
+                name_hash: 1963613677,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, fog_fade),
             },
             FieldInfoData {
                 name: "CameraBias",
+                name_hash: 3220437093,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, camera_bias),
             },
             FieldInfoData {
                 name: "EmitterDrawOrder",
+                name_hash: 3440058429,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterDrawOrder",
                 rust_offset: offset_of!(EmitterTemplateData, emitter_draw_order),
             },
             FieldInfoData {
                 name: "FlipUProbability",
+                name_hash: 1766647598,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, flip_u_probability),
             },
             FieldInfoData {
                 name: "FlipVProbability",
+                name_hash: 2681602253,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, flip_v_probability),
             },
             FieldInfoData {
                 name: "LockRibbonDirection",
+                name_hash: 1604337393,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, lock_ribbon_direction),
             },
             FieldInfoData {
                 name: "ParticleCullingFactor",
+                name_hash: 1653196586,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, particle_culling_factor),
             },
             FieldInfoData {
                 name: "Instanced",
+                name_hash: 3890087560,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, instanced),
             },
             FieldInfoData {
                 name: "AlphaCullThreshold",
+                name_hash: 344454320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, alpha_cull_threshold),
             },
             FieldInfoData {
                 name: "MinSpawnDistance",
+                name_hash: 4292619415,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, min_spawn_distance),
             },
             FieldInfoData {
                 name: "MaxSpawnDistance",
+                name_hash: 3656506569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, max_spawn_distance),
             },
             FieldInfoData {
                 name: "MinScreenArea",
+                name_hash: 81136980,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, min_screen_area),
             },
             FieldInfoData {
                 name: "MeshCullingDistance",
+                name_hash: 2057455619,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, mesh_culling_distance),
             },
             FieldInfoData {
                 name: "PauseSimulationWhenCulled",
+                name_hash: 2050986407,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, pause_simulation_when_culled),
             },
             FieldInfoData {
                 name: "SkipUpdateMaxCount",
+                name_hash: 3502954914,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EmitterTemplateData, skip_update_max_count),
             },
             FieldInfoData {
                 name: "SkipSimulationDistance",
+                name_hash: 2119903348,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, skip_simulation_distance),
             },
             FieldInfoData {
                 name: "PreciseWindAndForceMaxDistance",
+                name_hash: 194696875,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, precise_wind_and_force_max_distance),
             },
             FieldInfoData {
                 name: "TurbulenceMaxDistance",
+                name_hash: 1766710583,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, turbulence_max_distance),
             },
             FieldInfoData {
                 name: "DistanceScaleLength",
+                name_hash: 2372975298,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, distance_scale_length),
             },
             FieldInfoData {
                 name: "DistanceScaleNearValue",
+                name_hash: 4151251565,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, distance_scale_near_value),
             },
             FieldInfoData {
                 name: "DistanceScaleFarValue",
+                name_hash: 1407092256,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, distance_scale_far_value),
             },
             FieldInfoData {
                 name: "SpeedNormalizationValue",
+                name_hash: 4085855060,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, speed_normalization_value),
             },
             FieldInfoData {
                 name: "WindSpeedNormalizationValue",
+                name_hash: 4154952384,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, wind_speed_normalization_value),
             },
             FieldInfoData {
                 name: "TravelledDistanceNormalizationValue",
+                name_hash: 2332255301,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, travelled_distance_normalization_value),
             },
             FieldInfoData {
                 name: "AcceptGlobalParameter1",
+                name_hash: 2313528118,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, accept_global_parameter1),
             },
             FieldInfoData {
                 name: "AcceptGlobalParameter2",
+                name_hash: 2313528117,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, accept_global_parameter2),
             },
             FieldInfoData {
                 name: "AcceptGlobalParameter3",
+                name_hash: 2313528116,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, accept_global_parameter3),
             },
             FieldInfoData {
                 name: "PerParticleEffectParameters",
+                name_hash: 2203352251,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EffectParameter-Array",
                 rust_offset: offset_of!(EmitterTemplateData, per_particle_effect_parameters),
             },
             FieldInfoData {
                 name: "MinDistanceTravelledBeforeSpawn",
+                name_hash: 3683368059,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, min_distance_travelled_before_spawn),
             },
             FieldInfoData {
                 name: "CullFadeNearDistance",
+                name_hash: 1443430062,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, cull_fade_near_distance),
             },
             FieldInfoData {
                 name: "CullFadeNearRange",
+                name_hash: 2444564306,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, cull_fade_near_range),
             },
             FieldInfoData {
                 name: "CullFadeFarDistance",
+                name_hash: 180937827,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, cull_fade_far_distance),
             },
             FieldInfoData {
                 name: "CullFadeFarRange",
+                name_hash: 2804394623,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterTemplateData, cull_fade_far_range),
             },
             FieldInfoData {
                 name: "SkipNearCameraFade",
+                name_hash: 1764540899,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, skip_near_camera_fade),
             },
             FieldInfoData {
                 name: "EmitterWindEvaluationEnable",
+                name_hash: 2233633072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, emitter_wind_evaluation_enable),
             },
             FieldInfoData {
                 name: "EmittableWindEvaluationEnable",
+                name_hash: 233908397,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterTemplateData, emittable_wind_evaluation_enable),
             },
             FieldInfoData {
                 name: "DebugName",
+                name_hash: 859955379,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EmitterTemplateData, debug_name),
             },
             FieldInfoData {
                 name: "TweakInheritedEmitter",
+                name_hash: 1701792027,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterDocument",
                 rust_offset: offset_of!(EmitterTemplateData, tweak_inherited_emitter),
@@ -3941,6 +4190,7 @@ impl TypeObject for EmitterTemplateData {
 
 pub static EMITTERTEMPLATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterTemplateData-Array",
+    name_hash: 3669180775,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterTemplateData"),
@@ -3959,6 +4209,7 @@ pub enum PerParticleParams {
 
 pub static PERPARTICLEPARAMS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerParticleParams",
+    name_hash: 418288714,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -3987,6 +4238,7 @@ impl TypeObject for PerParticleParams {
 
 pub static PERPARTICLEPARAMS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PerParticleParams-Array",
+    name_hash: 3342286846,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("PerParticleParams"),
@@ -3995,40 +4247,41 @@ pub static PERPARTICLEPARAMS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ProcessorData {
     pub _glacier_base: super::core::DataContainer,
-    pub pre: Option<Arc<Mutex<dyn EvaluatorDataTrait>>>,
-    pub next_processor: Option<Arc<Mutex<dyn ProcessorDataTrait>>>,
+    pub pre: Option<LockedTypeObject /* EvaluatorData */>,
+    pub next_processor: Option<LockedTypeObject /* ProcessorData */>,
     pub evaluator_input: EmittableField,
-    pub evaluator_input_param: Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>,
+    pub evaluator_input_param: Option<LockedTypeObject /* super::effect_base::EffectParameter */>,
     pub schematics_enable: bool,
 }
 
 pub trait ProcessorDataTrait: super::core::DataContainerTrait {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>>;
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>>;
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>>;
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>>;
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */>;
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */>;
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */>;
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */>;
     fn evaluator_input(&self) -> &EmittableField;
     fn evaluator_input_mut(&mut self) -> &mut EmittableField;
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */>;
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */>;
     fn schematics_enable(&self) -> &bool;
     fn schematics_enable_mut(&mut self) -> &mut bool;
 }
 
 impl ProcessorDataTrait for ProcessorData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         &self.pre
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         &mut self.pre
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         &self.next_processor
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         &mut self.next_processor
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -4037,10 +4290,10 @@ impl ProcessorDataTrait for ProcessorData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         &mut self.evaluator_input
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         &self.evaluator_input_param
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         &mut self.evaluator_input_param
     }
     fn schematics_enable(&self) -> &bool {
@@ -4056,40 +4309,48 @@ impl super::core::DataContainerTrait for ProcessorData {
 
 pub static PROCESSORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProcessorData",
+    name_hash: 793071843,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(ProcessorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ProcessorData as Default>::default())),
+            create_boxed: || Box::new(<ProcessorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Pre",
+                name_hash: 193466786,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EvaluatorData",
                 rust_offset: offset_of!(ProcessorData, pre),
             },
             FieldInfoData {
                 name: "NextProcessor",
+                name_hash: 4017683988,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ProcessorData",
                 rust_offset: offset_of!(ProcessorData, next_processor),
             },
             FieldInfoData {
                 name: "EvaluatorInput",
+                name_hash: 1132314832,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmittableField",
                 rust_offset: offset_of!(ProcessorData, evaluator_input),
             },
             FieldInfoData {
                 name: "EvaluatorInputParam",
+                name_hash: 3084266399,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectParameter",
                 rust_offset: offset_of!(ProcessorData, evaluator_input_param),
             },
             FieldInfoData {
                 name: "SchematicsEnable",
+                name_hash: 3588396664,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(ProcessorData, schematics_enable),
@@ -4121,6 +4382,7 @@ impl TypeObject for ProcessorData {
 
 pub static PROCESSORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProcessorData-Array",
+    name_hash: 2898306263,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("ProcessorData"),
@@ -4129,25 +4391,26 @@ pub static PROCESSORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EvaluatorData {
     pub _glacier_base: super::core::DataContainer,
-    pub parameter: Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>,
+    pub parameter: Option<LockedTypeObject /* super::effect_base::EffectParameter */>,
     pub schematics_enable: bool,
 }
 
 pub trait EvaluatorDataTrait: super::core::DataContainerTrait {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */>;
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */>;
     fn schematics_enable(&self) -> &bool;
     fn schematics_enable_mut(&mut self) -> &mut bool;
 }
 
 impl EvaluatorDataTrait for EvaluatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         &self.parameter
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         &mut self.parameter
     }
     fn schematics_enable(&self) -> &bool {
@@ -4163,22 +4426,27 @@ impl super::core::DataContainerTrait for EvaluatorData {
 
 pub static EVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EvaluatorData",
+    name_hash: 2897245270,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(EvaluatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EvaluatorData as Default>::default())),
+            create_boxed: || Box::new(<EvaluatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Parameter",
+                name_hash: 2964084716,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectParameter",
                 rust_offset: offset_of!(EvaluatorData, parameter),
             },
             FieldInfoData {
                 name: "SchematicsEnable",
+                name_hash: 3588396664,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EvaluatorData, schematics_enable),
@@ -4210,6 +4478,7 @@ impl TypeObject for EvaluatorData {
 
 pub static EVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EvaluatorData-Array",
+    name_hash: 187972066,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EvaluatorData"),
@@ -4230,6 +4499,7 @@ pub enum ParticleSorting {
 
 pub static PARTICLESORTING_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ParticleSorting",
+    name_hash: 1703784523,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -4258,6 +4528,7 @@ impl TypeObject for ParticleSorting {
 
 pub static PARTICLESORTING_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ParticleSorting-Array",
+    name_hash: 3614568319,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("ParticleSorting"),
@@ -4278,6 +4549,7 @@ pub enum EmitterDrawOrder {
 
 pub static EMITTERDRAWORDER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterDrawOrder",
+    name_hash: 3440058429,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -4306,6 +4578,7 @@ impl TypeObject for EmitterDrawOrder {
 
 pub static EMITTERDRAWORDER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterDrawOrder-Array",
+    name_hash: 4031397001,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterDrawOrder"),
@@ -4331,6 +4604,7 @@ pub enum EmitterSchematicInputParameter {
 
 pub static EMITTERSCHEMATICINPUTPARAMETER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterSchematicInputParameter",
+    name_hash: 1249498531,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -4359,6 +4633,7 @@ impl TypeObject for EmitterSchematicInputParameter {
 
 pub static EMITTERSCHEMATICINPUTPARAMETER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterSchematicInputParameter-Array",
+    name_hash: 422689047,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterSchematicInputParameter"),
@@ -4439,6 +4714,7 @@ pub enum ProcessorType {
 
 pub static PROCESSORTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProcessorType",
+    name_hash: 792523115,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -4467,6 +4743,7 @@ impl TypeObject for ProcessorType {
 
 pub static PROCESSORTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ProcessorType-Array",
+    name_hash: 2945319263,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("ProcessorType"),
@@ -4503,6 +4780,7 @@ pub enum EvaluatorType {
 
 pub static EVALUATORTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EvaluatorType",
+    name_hash: 2897811422,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -4531,6 +4809,7 @@ impl TypeObject for EvaluatorType {
 
 pub static EVALUATORTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EvaluatorType-Array",
+    name_hash: 92854634,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EvaluatorType"),
@@ -4551,6 +4830,7 @@ pub enum RandomFrequency {
 
 pub static RANDOMFREQUENCY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomFrequency",
+    name_hash: 2560465210,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -4579,6 +4859,7 @@ impl TypeObject for RandomFrequency {
 
 pub static RANDOMFREQUENCY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomFrequency-Array",
+    name_hash: 2352282510,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("RandomFrequency"),
@@ -4607,6 +4888,7 @@ pub enum EmittableAlignment {
 
 pub static EMITTABLEALIGNMENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmittableAlignment",
+    name_hash: 1653740593,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -4635,6 +4917,7 @@ impl TypeObject for EmittableAlignment {
 
 pub static EMITTABLEALIGNMENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmittableAlignment-Array",
+    name_hash: 813246085,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmittableAlignment"),
@@ -4666,6 +4949,7 @@ pub enum EmittableType {
 
 pub static EMITTABLETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmittableType",
+    name_hash: 3808538518,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -4694,6 +4978,7 @@ impl TypeObject for EmittableType {
 
 pub static EMITTABLETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmittableType-Array",
+    name_hash: 3682903202,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmittableType"),
@@ -4736,6 +5021,7 @@ pub enum EmittableField {
 
 pub static EMITTABLEFIELD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmittableField",
+    name_hash: 1111539980,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -4764,6 +5050,7 @@ impl TypeObject for EmittableField {
 
 pub static EMITTABLEFIELD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmittableField-Array",
+    name_hash: 1651192120,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmittableField"),
@@ -4772,7 +5059,8 @@ pub static EMITTABLEFIELD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterExclusionVolumeBoundingSphereSoA {
     pub pos_x: super::core::Vec4,
     pub pos_y: super::core::Vec4,
@@ -4820,33 +5108,39 @@ impl EmitterExclusionVolumeBoundingSphereSoATrait for EmitterExclusionVolumeBoun
 
 pub static EMITTEREXCLUSIONVOLUMEBOUNDINGSPHERESOA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolumeBoundingSphereSoA",
+    name_hash: 303260945,
     flags: MemberInfoFlags::new(36937),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterExclusionVolumeBoundingSphereSoA as Default>::default())),
+            create_boxed: || Box::new(<EmitterExclusionVolumeBoundingSphereSoA as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PosX",
+                name_hash: 2089458993,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(EmitterExclusionVolumeBoundingSphereSoA, pos_x),
             },
             FieldInfoData {
                 name: "PosY",
+                name_hash: 2089458992,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(EmitterExclusionVolumeBoundingSphereSoA, pos_y),
             },
             FieldInfoData {
                 name: "PosZ",
+                name_hash: 2089458995,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(EmitterExclusionVolumeBoundingSphereSoA, pos_z),
             },
             FieldInfoData {
                 name: "RadiusSqr",
+                name_hash: 2349614861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(EmitterExclusionVolumeBoundingSphereSoA, radius_sqr),
@@ -4878,6 +5172,7 @@ impl TypeObject for EmitterExclusionVolumeBoundingSphereSoA {
 
 pub static EMITTEREXCLUSIONVOLUMEBOUNDINGSPHERESOA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolumeBoundingSphereSoA-Array",
+    name_hash: 3192350373,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterExclusionVolumeBoundingSphereSoA"),
@@ -4886,7 +5181,8 @@ pub static EMITTEREXCLUSIONVOLUMEBOUNDINGSPHERESOA_ARRAY_TYPE_INFO: &'static Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterExclusionVolume {
     pub left: super::core::Vec4,
     pub up: super::core::Vec4,
@@ -4943,39 +5239,46 @@ impl EmitterExclusionVolumeTrait for EmitterExclusionVolume {
 
 pub static EMITTEREXCLUSIONVOLUME_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolume",
+    name_hash: 7500103,
     flags: MemberInfoFlags::new(36937),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterExclusionVolume as Default>::default())),
+            create_boxed: || Box::new(<EmitterExclusionVolume as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Left",
+                name_hash: 2089021886,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(EmitterExclusionVolume, left),
             },
             FieldInfoData {
                 name: "Up",
+                name_hash: 5862272,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(EmitterExclusionVolume, up),
             },
             FieldInfoData {
                 name: "Forward",
+                name_hash: 1986470206,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(EmitterExclusionVolume, forward),
             },
             FieldInfoData {
                 name: "HalfExtents",
+                name_hash: 905253763,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(EmitterExclusionVolume, half_extents),
             },
             FieldInfoData {
                 name: "Id",
+                name_hash: 5862152,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterExclusionVolume, id),
@@ -5007,6 +5310,7 @@ impl TypeObject for EmitterExclusionVolume {
 
 pub static EMITTEREXCLUSIONVOLUME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolume-Array",
+    name_hash: 2481177203,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterExclusionVolume"),
@@ -5015,30 +5319,31 @@ pub static EMITTEREXCLUSIONVOLUME_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterGraph {
     pub _glacier_base: super::emitter_base::EmitterGraphBaseAsset,
-    pub spawn_mode2: Option<Arc<Mutex<dyn SpawnModeInfoTrait>>>,
+    pub spawn_mode2: Option<LockedTypeObject /* SpawnModeInfo */>,
     pub use_node_graph: bool,
-    pub graph_data: Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>>,
+    pub graph_data: Option<LockedTypeObject /* super::expression::ExpressionNodeGraphData */>,
     pub spawn_mode: EmitterGraphSpawnMode,
     pub spawn_rate: super::core::QualityScalableFloat,
     pub particle_max_count: super::core::QualityScalableInt,
     pub particle_life_span: super::core::QualityScalableFloat,
     pub planar_reflections_enabled: bool,
     pub normalize_mesh_start_ids: bool,
-    pub meshes: Vec<EmitterGraphMesh>,
+    pub meshes: Vec<BoxedTypeObject /* EmitterGraphMesh */>,
     pub object_variation_name_hash: u32,
     pub requires_per_root_view_duplication: bool,
     pub shader: super::render_base::SurfaceShaderInstanceDataStruct,
     pub draw_pass: EmitterGraphDrawPass,
     pub draw_layer: EmitterGraphDrawLayer,
     pub sort_mode: EmitterGraphSortMode,
-    pub user_buffers: Vec<EmitterGraphUserBuffer>,
+    pub user_buffers: Vec<BoxedTypeObject /* EmitterGraphUserBuffer */>,
     pub spawn_shader_override: glacier_reflect::builtin::FileRef,
     pub simulate_shader_override: glacier_reflect::builtin::FileRef,
-    pub texture0: Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>,
-    pub texture1: Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>,
+    pub texture0: Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>,
+    pub texture1: Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>,
     pub z_buffer_enable: bool,
     pub emitter_life_span: super::core::QualityScalableFloat,
     pub kill_on_stop: bool,
@@ -5055,8 +5360,8 @@ pub struct EmitterGraph {
     pub gpu_particle_culling_radius: f32,
     pub gpu_particle_culling_distance: super::core::QualityScalableFloat,
     pub mesh_vertex_shader_fragment_code_file: glacier_reflect::builtin::FileRef,
-    pub effect_params: Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>,
-    pub emitter_graph_params: Vec<super::effect_base::EmitterExposedInput>,
+    pub effect_params: Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>,
+    pub emitter_graph_params: Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */>,
     pub is_using_opaque_lit_root_node: bool,
     pub is_using_lit_root_node: bool,
     pub is_using_gpu_lighting: bool,
@@ -5066,21 +5371,21 @@ pub struct EmitterGraph {
     pub mesh_vertex_shader_fragment_asset_name: String,
     pub particle_data_byte_stride: u32,
     pub particle_data_buffer_layout_hash: u32,
-    pub simulate_runtime_textures: Vec<RuntimeTexture>,
-    pub simulate_runtime_samplers: Vec<RuntimeSampler>,
-    pub spawn_runtime_textures: Vec<RuntimeTexture>,
-    pub spawn_runtime_samplers: Vec<RuntimeSampler>,
-    pub vertex_shader_runtime_textures: Vec<RuntimeTexture>,
-    pub runtime_particle_data_buffers: Vec<RuntimeParticleDataBuffer>,
+    pub simulate_runtime_textures: Vec<BoxedTypeObject /* RuntimeTexture */>,
+    pub simulate_runtime_samplers: Vec<BoxedTypeObject /* RuntimeSampler */>,
+    pub spawn_runtime_textures: Vec<BoxedTypeObject /* RuntimeTexture */>,
+    pub spawn_runtime_samplers: Vec<BoxedTypeObject /* RuntimeSampler */>,
+    pub vertex_shader_runtime_textures: Vec<BoxedTypeObject /* RuntimeTexture */>,
+    pub runtime_particle_data_buffers: Vec<BoxedTypeObject /* RuntimeParticleDataBuffer */>,
 }
 
 pub trait EmitterGraphTrait: super::emitter_base::EmitterGraphBaseAssetTrait {
-    fn spawn_mode2(&self) -> &Option<Arc<Mutex<dyn SpawnModeInfoTrait>>>;
-    fn spawn_mode2_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SpawnModeInfoTrait>>>;
+    fn spawn_mode2(&self) -> &Option<LockedTypeObject /* SpawnModeInfo */>;
+    fn spawn_mode2_mut(&mut self) -> &mut Option<LockedTypeObject /* SpawnModeInfo */>;
     fn use_node_graph(&self) -> &bool;
     fn use_node_graph_mut(&mut self) -> &mut bool;
-    fn graph_data(&self) -> &Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>>;
-    fn graph_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>>;
+    fn graph_data(&self) -> &Option<LockedTypeObject /* super::expression::ExpressionNodeGraphData */>;
+    fn graph_data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::expression::ExpressionNodeGraphData */>;
     fn spawn_mode(&self) -> &EmitterGraphSpawnMode;
     fn spawn_mode_mut(&mut self) -> &mut EmitterGraphSpawnMode;
     fn spawn_rate(&self) -> &super::core::QualityScalableFloat;
@@ -5093,8 +5398,8 @@ pub trait EmitterGraphTrait: super::emitter_base::EmitterGraphBaseAssetTrait {
     fn planar_reflections_enabled_mut(&mut self) -> &mut bool;
     fn normalize_mesh_start_ids(&self) -> &bool;
     fn normalize_mesh_start_ids_mut(&mut self) -> &mut bool;
-    fn meshes(&self) -> &Vec<EmitterGraphMesh>;
-    fn meshes_mut(&mut self) -> &mut Vec<EmitterGraphMesh>;
+    fn meshes(&self) -> &Vec<BoxedTypeObject /* EmitterGraphMesh */>;
+    fn meshes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EmitterGraphMesh */>;
     fn object_variation_name_hash(&self) -> &u32;
     fn object_variation_name_hash_mut(&mut self) -> &mut u32;
     fn requires_per_root_view_duplication(&self) -> &bool;
@@ -5107,16 +5412,16 @@ pub trait EmitterGraphTrait: super::emitter_base::EmitterGraphBaseAssetTrait {
     fn draw_layer_mut(&mut self) -> &mut EmitterGraphDrawLayer;
     fn sort_mode(&self) -> &EmitterGraphSortMode;
     fn sort_mode_mut(&mut self) -> &mut EmitterGraphSortMode;
-    fn user_buffers(&self) -> &Vec<EmitterGraphUserBuffer>;
-    fn user_buffers_mut(&mut self) -> &mut Vec<EmitterGraphUserBuffer>;
+    fn user_buffers(&self) -> &Vec<BoxedTypeObject /* EmitterGraphUserBuffer */>;
+    fn user_buffers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EmitterGraphUserBuffer */>;
     fn spawn_shader_override(&self) -> &glacier_reflect::builtin::FileRef;
     fn spawn_shader_override_mut(&mut self) -> &mut glacier_reflect::builtin::FileRef;
     fn simulate_shader_override(&self) -> &glacier_reflect::builtin::FileRef;
     fn simulate_shader_override_mut(&mut self) -> &mut glacier_reflect::builtin::FileRef;
-    fn texture0(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
-    fn texture0_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
-    fn texture1(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
-    fn texture1_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture0(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
+    fn texture0_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
+    fn texture1(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
+    fn texture1_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
     fn z_buffer_enable(&self) -> &bool;
     fn z_buffer_enable_mut(&mut self) -> &mut bool;
     fn emitter_life_span(&self) -> &super::core::QualityScalableFloat;
@@ -5149,10 +5454,10 @@ pub trait EmitterGraphTrait: super::emitter_base::EmitterGraphBaseAssetTrait {
     fn gpu_particle_culling_distance_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn mesh_vertex_shader_fragment_code_file(&self) -> &glacier_reflect::builtin::FileRef;
     fn mesh_vertex_shader_fragment_code_file_mut(&mut self) -> &mut glacier_reflect::builtin::FileRef;
-    fn effect_params(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
-    fn effect_params_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>>;
-    fn emitter_graph_params(&self) -> &Vec<super::effect_base::EmitterExposedInput>;
-    fn emitter_graph_params_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedInput>;
+    fn effect_params(&self) -> &Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>;
+    fn effect_params_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>>;
+    fn emitter_graph_params(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */>;
+    fn emitter_graph_params_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */>;
     fn is_using_opaque_lit_root_node(&self) -> &bool;
     fn is_using_opaque_lit_root_node_mut(&mut self) -> &mut bool;
     fn is_using_lit_root_node(&self) -> &bool;
@@ -5171,25 +5476,25 @@ pub trait EmitterGraphTrait: super::emitter_base::EmitterGraphBaseAssetTrait {
     fn particle_data_byte_stride_mut(&mut self) -> &mut u32;
     fn particle_data_buffer_layout_hash(&self) -> &u32;
     fn particle_data_buffer_layout_hash_mut(&mut self) -> &mut u32;
-    fn simulate_runtime_textures(&self) -> &Vec<RuntimeTexture>;
-    fn simulate_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture>;
-    fn simulate_runtime_samplers(&self) -> &Vec<RuntimeSampler>;
-    fn simulate_runtime_samplers_mut(&mut self) -> &mut Vec<RuntimeSampler>;
-    fn spawn_runtime_textures(&self) -> &Vec<RuntimeTexture>;
-    fn spawn_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture>;
-    fn spawn_runtime_samplers(&self) -> &Vec<RuntimeSampler>;
-    fn spawn_runtime_samplers_mut(&mut self) -> &mut Vec<RuntimeSampler>;
-    fn vertex_shader_runtime_textures(&self) -> &Vec<RuntimeTexture>;
-    fn vertex_shader_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture>;
-    fn runtime_particle_data_buffers(&self) -> &Vec<RuntimeParticleDataBuffer>;
-    fn runtime_particle_data_buffers_mut(&mut self) -> &mut Vec<RuntimeParticleDataBuffer>;
+    fn simulate_runtime_textures(&self) -> &Vec<BoxedTypeObject /* RuntimeTexture */>;
+    fn simulate_runtime_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeTexture */>;
+    fn simulate_runtime_samplers(&self) -> &Vec<BoxedTypeObject /* RuntimeSampler */>;
+    fn simulate_runtime_samplers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeSampler */>;
+    fn spawn_runtime_textures(&self) -> &Vec<BoxedTypeObject /* RuntimeTexture */>;
+    fn spawn_runtime_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeTexture */>;
+    fn spawn_runtime_samplers(&self) -> &Vec<BoxedTypeObject /* RuntimeSampler */>;
+    fn spawn_runtime_samplers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeSampler */>;
+    fn vertex_shader_runtime_textures(&self) -> &Vec<BoxedTypeObject /* RuntimeTexture */>;
+    fn vertex_shader_runtime_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeTexture */>;
+    fn runtime_particle_data_buffers(&self) -> &Vec<BoxedTypeObject /* RuntimeParticleDataBuffer */>;
+    fn runtime_particle_data_buffers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeParticleDataBuffer */>;
 }
 
 impl EmitterGraphTrait for EmitterGraph {
-    fn spawn_mode2(&self) -> &Option<Arc<Mutex<dyn SpawnModeInfoTrait>>> {
+    fn spawn_mode2(&self) -> &Option<LockedTypeObject /* SpawnModeInfo */> {
         &self.spawn_mode2
     }
-    fn spawn_mode2_mut(&mut self) -> &mut Option<Arc<Mutex<dyn SpawnModeInfoTrait>>> {
+    fn spawn_mode2_mut(&mut self) -> &mut Option<LockedTypeObject /* SpawnModeInfo */> {
         &mut self.spawn_mode2
     }
     fn use_node_graph(&self) -> &bool {
@@ -5198,10 +5503,10 @@ impl EmitterGraphTrait for EmitterGraph {
     fn use_node_graph_mut(&mut self) -> &mut bool {
         &mut self.use_node_graph
     }
-    fn graph_data(&self) -> &Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>> {
+    fn graph_data(&self) -> &Option<LockedTypeObject /* super::expression::ExpressionNodeGraphData */> {
         &self.graph_data
     }
-    fn graph_data_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::expression::ExpressionNodeGraphDataTrait>>> {
+    fn graph_data_mut(&mut self) -> &mut Option<LockedTypeObject /* super::expression::ExpressionNodeGraphData */> {
         &mut self.graph_data
     }
     fn spawn_mode(&self) -> &EmitterGraphSpawnMode {
@@ -5240,10 +5545,10 @@ impl EmitterGraphTrait for EmitterGraph {
     fn normalize_mesh_start_ids_mut(&mut self) -> &mut bool {
         &mut self.normalize_mesh_start_ids
     }
-    fn meshes(&self) -> &Vec<EmitterGraphMesh> {
+    fn meshes(&self) -> &Vec<BoxedTypeObject /* EmitterGraphMesh */> {
         &self.meshes
     }
-    fn meshes_mut(&mut self) -> &mut Vec<EmitterGraphMesh> {
+    fn meshes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EmitterGraphMesh */> {
         &mut self.meshes
     }
     fn object_variation_name_hash(&self) -> &u32 {
@@ -5282,10 +5587,10 @@ impl EmitterGraphTrait for EmitterGraph {
     fn sort_mode_mut(&mut self) -> &mut EmitterGraphSortMode {
         &mut self.sort_mode
     }
-    fn user_buffers(&self) -> &Vec<EmitterGraphUserBuffer> {
+    fn user_buffers(&self) -> &Vec<BoxedTypeObject /* EmitterGraphUserBuffer */> {
         &self.user_buffers
     }
-    fn user_buffers_mut(&mut self) -> &mut Vec<EmitterGraphUserBuffer> {
+    fn user_buffers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EmitterGraphUserBuffer */> {
         &mut self.user_buffers
     }
     fn spawn_shader_override(&self) -> &glacier_reflect::builtin::FileRef {
@@ -5300,16 +5605,16 @@ impl EmitterGraphTrait for EmitterGraph {
     fn simulate_shader_override_mut(&mut self) -> &mut glacier_reflect::builtin::FileRef {
         &mut self.simulate_shader_override
     }
-    fn texture0(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn texture0(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &self.texture0
     }
-    fn texture0_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn texture0_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &mut self.texture0
     }
-    fn texture1(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn texture1(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &self.texture1
     }
-    fn texture1_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn texture1_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &mut self.texture1
     }
     fn z_buffer_enable(&self) -> &bool {
@@ -5408,16 +5713,16 @@ impl EmitterGraphTrait for EmitterGraph {
     fn mesh_vertex_shader_fragment_code_file_mut(&mut self) -> &mut glacier_reflect::builtin::FileRef {
         &mut self.mesh_vertex_shader_fragment_code_file
     }
-    fn effect_params(&self) -> &Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn effect_params(&self) -> &Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         &self.effect_params
     }
-    fn effect_params_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>> {
+    fn effect_params_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* super::effect_base::EffectParameter */>> {
         &mut self.effect_params
     }
-    fn emitter_graph_params(&self) -> &Vec<super::effect_base::EmitterExposedInput> {
+    fn emitter_graph_params(&self) -> &Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */> {
         &self.emitter_graph_params
     }
-    fn emitter_graph_params_mut(&mut self) -> &mut Vec<super::effect_base::EmitterExposedInput> {
+    fn emitter_graph_params_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::effect_base::EmitterExposedInput */> {
         &mut self.emitter_graph_params
     }
     fn is_using_opaque_lit_root_node(&self) -> &bool {
@@ -5474,40 +5779,40 @@ impl EmitterGraphTrait for EmitterGraph {
     fn particle_data_buffer_layout_hash_mut(&mut self) -> &mut u32 {
         &mut self.particle_data_buffer_layout_hash
     }
-    fn simulate_runtime_textures(&self) -> &Vec<RuntimeTexture> {
+    fn simulate_runtime_textures(&self) -> &Vec<BoxedTypeObject /* RuntimeTexture */> {
         &self.simulate_runtime_textures
     }
-    fn simulate_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture> {
+    fn simulate_runtime_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeTexture */> {
         &mut self.simulate_runtime_textures
     }
-    fn simulate_runtime_samplers(&self) -> &Vec<RuntimeSampler> {
+    fn simulate_runtime_samplers(&self) -> &Vec<BoxedTypeObject /* RuntimeSampler */> {
         &self.simulate_runtime_samplers
     }
-    fn simulate_runtime_samplers_mut(&mut self) -> &mut Vec<RuntimeSampler> {
+    fn simulate_runtime_samplers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeSampler */> {
         &mut self.simulate_runtime_samplers
     }
-    fn spawn_runtime_textures(&self) -> &Vec<RuntimeTexture> {
+    fn spawn_runtime_textures(&self) -> &Vec<BoxedTypeObject /* RuntimeTexture */> {
         &self.spawn_runtime_textures
     }
-    fn spawn_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture> {
+    fn spawn_runtime_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeTexture */> {
         &mut self.spawn_runtime_textures
     }
-    fn spawn_runtime_samplers(&self) -> &Vec<RuntimeSampler> {
+    fn spawn_runtime_samplers(&self) -> &Vec<BoxedTypeObject /* RuntimeSampler */> {
         &self.spawn_runtime_samplers
     }
-    fn spawn_runtime_samplers_mut(&mut self) -> &mut Vec<RuntimeSampler> {
+    fn spawn_runtime_samplers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeSampler */> {
         &mut self.spawn_runtime_samplers
     }
-    fn vertex_shader_runtime_textures(&self) -> &Vec<RuntimeTexture> {
+    fn vertex_shader_runtime_textures(&self) -> &Vec<BoxedTypeObject /* RuntimeTexture */> {
         &self.vertex_shader_runtime_textures
     }
-    fn vertex_shader_runtime_textures_mut(&mut self) -> &mut Vec<RuntimeTexture> {
+    fn vertex_shader_runtime_textures_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeTexture */> {
         &mut self.vertex_shader_runtime_textures
     }
-    fn runtime_particle_data_buffers(&self) -> &Vec<RuntimeParticleDataBuffer> {
+    fn runtime_particle_data_buffers(&self) -> &Vec<BoxedTypeObject /* RuntimeParticleDataBuffer */> {
         &self.runtime_particle_data_buffers
     }
-    fn runtime_particle_data_buffers_mut(&mut self) -> &mut Vec<RuntimeParticleDataBuffer> {
+    fn runtime_particle_data_buffers_mut(&mut self) -> &mut Vec<BoxedTypeObject /* RuntimeParticleDataBuffer */> {
         &mut self.runtime_particle_data_buffers
     }
 }
@@ -5529,334 +5834,391 @@ impl super::core::DataContainerTrait for EmitterGraph {
 
 pub static EMITTERGRAPH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraph",
+    name_hash: 2041067167,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::emitter_base::EMITTERGRAPHBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterGraph, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterGraph as Default>::default())),
+            create_boxed: || Box::new(<EmitterGraph as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SpawnMode2",
+                name_hash: 3462747471,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SpawnModeInfo",
                 rust_offset: offset_of!(EmitterGraph, spawn_mode2),
             },
             FieldInfoData {
                 name: "UseNodeGraph",
+                name_hash: 4262565034,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraph, use_node_graph),
             },
             FieldInfoData {
                 name: "GraphData",
+                name_hash: 1669336409,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ExpressionNodeGraphData",
                 rust_offset: offset_of!(EmitterGraph, graph_data),
             },
             FieldInfoData {
                 name: "SpawnMode",
+                name_hash: 2317490653,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphSpawnMode",
                 rust_offset: offset_of!(EmitterGraph, spawn_mode),
             },
             FieldInfoData {
                 name: "SpawnRate",
+                name_hash: 2317161148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterGraph, spawn_rate),
             },
             FieldInfoData {
                 name: "ParticleMaxCount",
+                name_hash: 1668354694,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableInt",
                 rust_offset: offset_of!(EmitterGraph, particle_max_count),
             },
             FieldInfoData {
                 name: "ParticleLifeSpan",
+                name_hash: 355291419,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterGraph, particle_life_span),
             },
             FieldInfoData {
                 name: "PlanarReflectionsEnabled",
+                name_hash: 3169130356,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraph, planar_reflections_enabled),
             },
             FieldInfoData {
                 name: "NormalizeMeshStartIds",
+                name_hash: 1018919373,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraph, normalize_mesh_start_ids),
             },
             FieldInfoData {
                 name: "Meshes",
+                name_hash: 2648066496,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterGraphMesh-Array",
                 rust_offset: offset_of!(EmitterGraph, meshes),
             },
             FieldInfoData {
                 name: "ObjectVariationNameHash",
+                name_hash: 1857284564,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterGraph, object_variation_name_hash),
             },
             FieldInfoData {
                 name: "RequiresPerRootViewDuplication",
+                name_hash: 3805698125,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraph, requires_per_root_view_duplication),
             },
             FieldInfoData {
                 name: "Shader",
+                name_hash: 3352909900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderInstanceDataStruct",
                 rust_offset: offset_of!(EmitterGraph, shader),
             },
             FieldInfoData {
                 name: "DrawPass",
+                name_hash: 3457086740,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphDrawPass",
                 rust_offset: offset_of!(EmitterGraph, draw_pass),
             },
             FieldInfoData {
                 name: "DrawLayer",
+                name_hash: 2400509478,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphDrawLayer",
                 rust_offset: offset_of!(EmitterGraph, draw_layer),
             },
             FieldInfoData {
                 name: "SortMode",
+                name_hash: 3164313756,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphSortMode",
                 rust_offset: offset_of!(EmitterGraph, sort_mode),
             },
             FieldInfoData {
                 name: "UserBuffers",
+                name_hash: 1346617799,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterGraphUserBuffer-Array",
                 rust_offset: offset_of!(EmitterGraph, user_buffers),
             },
             FieldInfoData {
                 name: "SpawnShaderOverride",
+                name_hash: 600211171,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FileRef",
                 rust_offset: offset_of!(EmitterGraph, spawn_shader_override),
             },
             FieldInfoData {
                 name: "SimulateShaderOverride",
+                name_hash: 89723078,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FileRef",
                 rust_offset: offset_of!(EmitterGraph, simulate_shader_override),
             },
             FieldInfoData {
                 name: "Texture0",
+                name_hash: 2027158570,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(EmitterGraph, texture0),
             },
             FieldInfoData {
                 name: "Texture1",
+                name_hash: 2027158571,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(EmitterGraph, texture1),
             },
             FieldInfoData {
                 name: "ZBufferEnable",
+                name_hash: 2010091550,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraph, z_buffer_enable),
             },
             FieldInfoData {
                 name: "EmitterLifeSpan",
+                name_hash: 2884727609,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterGraph, emitter_life_span),
             },
             FieldInfoData {
                 name: "KillOnStop",
+                name_hash: 4061141182,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraph, kill_on_stop),
             },
             FieldInfoData {
                 name: "EmitterMinSpawnDistance",
+                name_hash: 4028457313,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterGraph, emitter_min_spawn_distance),
             },
             FieldInfoData {
                 name: "EmitterMaxSpawnDistance",
+                name_hash: 1544874047,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterGraph, emitter_max_spawn_distance),
             },
             FieldInfoData {
                 name: "SpawnOutsideViewRadius",
+                name_hash: 3760047582,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterGraph, spawn_outside_view_radius),
             },
             FieldInfoData {
                 name: "BoundingBoxMin",
+                name_hash: 2339812968,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterGraph, bounding_box_min),
             },
             FieldInfoData {
                 name: "BoundingBoxMax",
+                name_hash: 2339813238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(EmitterGraph, bounding_box_max),
             },
             FieldInfoData {
                 name: "CulledBehavior",
+                name_hash: 2084711486,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphCulledBehavior",
                 rust_offset: offset_of!(EmitterGraph, culled_behavior),
             },
             FieldInfoData {
                 name: "SkipUpdateMaxCount",
+                name_hash: 3502954914,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(EmitterGraph, skip_update_max_count),
             },
             FieldInfoData {
                 name: "EmitterMeshCullingDistance",
+                name_hash: 3400988917,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterGraph, emitter_mesh_culling_distance),
             },
             FieldInfoData {
                 name: "MinScreenArea",
+                name_hash: 81136980,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterGraph, min_screen_area),
             },
             FieldInfoData {
                 name: "GpuParticleCullingEnable",
+                name_hash: 1340690308,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraph, gpu_particle_culling_enable),
             },
             FieldInfoData {
                 name: "GpuParticleCullingRadius",
+                name_hash: 2305786237,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(EmitterGraph, gpu_particle_culling_radius),
             },
             FieldInfoData {
                 name: "GpuParticleCullingDistance",
+                name_hash: 1882042470,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(EmitterGraph, gpu_particle_culling_distance),
             },
             FieldInfoData {
                 name: "MeshVertexShaderFragmentCodeFile",
+                name_hash: 2998876156,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FileRef",
                 rust_offset: offset_of!(EmitterGraph, mesh_vertex_shader_fragment_code_file),
             },
             FieldInfoData {
                 name: "EffectParams",
+                name_hash: 2299616430,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EffectParameter-Array",
                 rust_offset: offset_of!(EmitterGraph, effect_params),
             },
             FieldInfoData {
                 name: "EmitterGraphParams",
+                name_hash: 4229400387,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterExposedInput-Array",
                 rust_offset: offset_of!(EmitterGraph, emitter_graph_params),
             },
             FieldInfoData {
                 name: "IsUsingOpaqueLitRootNode",
+                name_hash: 1059730897,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraph, is_using_opaque_lit_root_node),
             },
             FieldInfoData {
                 name: "IsUsingLitRootNode",
+                name_hash: 47497774,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraph, is_using_lit_root_node),
             },
             FieldInfoData {
                 name: "IsUsingGpuLighting",
+                name_hash: 3758117477,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(EmitterGraph, is_using_gpu_lighting),
             },
             FieldInfoData {
                 name: "CompiledSpawnGraphComputeShader",
+                name_hash: 968627707,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(EmitterGraph, compiled_spawn_graph_compute_shader),
             },
             FieldInfoData {
                 name: "CompiledSimulateGraphComputeShader",
+                name_hash: 783212414,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(EmitterGraph, compiled_simulate_graph_compute_shader),
             },
             FieldInfoData {
                 name: "VertexShaderFragmentAssetName",
+                name_hash: 4037690611,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EmitterGraph, vertex_shader_fragment_asset_name),
             },
             FieldInfoData {
                 name: "MeshVertexShaderFragmentAssetName",
+                name_hash: 2063931808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EmitterGraph, mesh_vertex_shader_fragment_asset_name),
             },
             FieldInfoData {
                 name: "ParticleDataByteStride",
+                name_hash: 3226921942,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterGraph, particle_data_byte_stride),
             },
             FieldInfoData {
                 name: "ParticleDataBufferLayoutHash",
+                name_hash: 2743792841,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterGraph, particle_data_buffer_layout_hash),
             },
             FieldInfoData {
                 name: "SimulateRuntimeTextures",
+                name_hash: 1886155435,
                 flags: MemberInfoFlags::new(144),
                 field_type: "RuntimeTexture-Array",
                 rust_offset: offset_of!(EmitterGraph, simulate_runtime_textures),
             },
             FieldInfoData {
                 name: "SimulateRuntimeSamplers",
+                name_hash: 3333933408,
                 flags: MemberInfoFlags::new(144),
                 field_type: "RuntimeSampler-Array",
                 rust_offset: offset_of!(EmitterGraph, simulate_runtime_samplers),
             },
             FieldInfoData {
                 name: "SpawnRuntimeTextures",
+                name_hash: 2428191918,
                 flags: MemberInfoFlags::new(144),
                 field_type: "RuntimeTexture-Array",
                 rust_offset: offset_of!(EmitterGraph, spawn_runtime_textures),
             },
             FieldInfoData {
                 name: "SpawnRuntimeSamplers",
+                name_hash: 3482313445,
                 flags: MemberInfoFlags::new(144),
                 field_type: "RuntimeSampler-Array",
                 rust_offset: offset_of!(EmitterGraph, spawn_runtime_samplers),
             },
             FieldInfoData {
                 name: "VertexShaderRuntimeTextures",
+                name_hash: 2324043956,
                 flags: MemberInfoFlags::new(144),
                 field_type: "RuntimeTexture-Array",
                 rust_offset: offset_of!(EmitterGraph, vertex_shader_runtime_textures),
             },
             FieldInfoData {
                 name: "RuntimeParticleDataBuffers",
+                name_hash: 1267947278,
                 flags: MemberInfoFlags::new(144),
                 field_type: "RuntimeParticleDataBuffer-Array",
                 rust_offset: offset_of!(EmitterGraph, runtime_particle_data_buffers),
@@ -5888,6 +6250,7 @@ impl TypeObject for EmitterGraph {
 
 pub static EMITTERGRAPH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraph-Array",
+    name_hash: 1267391275,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraph"),
@@ -5896,7 +6259,8 @@ pub static EMITTERGRAPH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RuntimeParticleDataBuffer {
     pub shader_parameter_handle: u32,
     pub bind_point: u8,
@@ -5935,27 +6299,32 @@ impl RuntimeParticleDataBufferTrait for RuntimeParticleDataBuffer {
 
 pub static RUNTIMEPARTICLEDATABUFFER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RuntimeParticleDataBuffer",
+    name_hash: 949476317,
     flags: MemberInfoFlags::new(32841),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RuntimeParticleDataBuffer as Default>::default())),
+            create_boxed: || Box::new(<RuntimeParticleDataBuffer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ShaderParameterHandle",
+                name_hash: 4141069103,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RuntimeParticleDataBuffer, shader_parameter_handle),
             },
             FieldInfoData {
                 name: "BindPoint",
+                name_hash: 3123896456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(RuntimeParticleDataBuffer, bind_point),
             },
             FieldInfoData {
                 name: "BufferType",
+                name_hash: 2367107901,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphParticleDataType",
                 rust_offset: offset_of!(RuntimeParticleDataBuffer, buffer_type),
@@ -5987,6 +6356,7 @@ impl TypeObject for RuntimeParticleDataBuffer {
 
 pub static RUNTIMEPARTICLEDATABUFFER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RuntimeParticleDataBuffer-Array",
+    name_hash: 645199849,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("RuntimeParticleDataBuffer"),
@@ -5995,7 +6365,8 @@ pub static RUNTIMEPARTICLEDATABUFFER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RuntimeSampler {
     pub bind_point: u8,
     pub filter: super::render::TextureFilter,
@@ -6034,27 +6405,32 @@ impl RuntimeSamplerTrait for RuntimeSampler {
 
 pub static RUNTIMESAMPLER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RuntimeSampler",
+    name_hash: 172955597,
     flags: MemberInfoFlags::new(36937),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RuntimeSampler as Default>::default())),
+            create_boxed: || Box::new(<RuntimeSampler as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BindPoint",
+                name_hash: 3123896456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(RuntimeSampler, bind_point),
             },
             FieldInfoData {
                 name: "Filter",
+                name_hash: 2525184005,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureFilter",
                 rust_offset: offset_of!(RuntimeSampler, filter),
             },
             FieldInfoData {
                 name: "Address",
+                name_hash: 318174099,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureAddress",
                 rust_offset: offset_of!(RuntimeSampler, address),
@@ -6086,6 +6462,7 @@ impl TypeObject for RuntimeSampler {
 
 pub static RUNTIMESAMPLER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RuntimeSampler-Array",
+    name_hash: 4229327865,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("RuntimeSampler"),
@@ -6094,12 +6471,13 @@ pub static RUNTIMESAMPLER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RuntimeTexture {
     pub bind_point: u8,
     pub shader_parameter_handle: u32,
     pub texture_type: super::render::TextureType,
-    pub texture: Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>,
+    pub texture: Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>,
 }
 
 pub trait RuntimeTextureTrait: TypeObject {
@@ -6109,8 +6487,8 @@ pub trait RuntimeTextureTrait: TypeObject {
     fn shader_parameter_handle_mut(&mut self) -> &mut u32;
     fn texture_type(&self) -> &super::render::TextureType;
     fn texture_type_mut(&mut self) -> &mut super::render::TextureType;
-    fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
-    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn texture(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
+    fn texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
 }
 
 impl RuntimeTextureTrait for RuntimeTexture {
@@ -6132,43 +6510,49 @@ impl RuntimeTextureTrait for RuntimeTexture {
     fn texture_type_mut(&mut self) -> &mut super::render::TextureType {
         &mut self.texture_type
     }
-    fn texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn texture(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &self.texture
     }
-    fn texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &mut self.texture
     }
 }
 
 pub static RUNTIMETEXTURE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RuntimeTexture",
+    name_hash: 1884725606,
     flags: MemberInfoFlags::new(73),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RuntimeTexture as Default>::default())),
+            create_boxed: || Box::new(<RuntimeTexture as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BindPoint",
+                name_hash: 3123896456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(RuntimeTexture, bind_point),
             },
             FieldInfoData {
                 name: "ShaderParameterHandle",
+                name_hash: 4141069103,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(RuntimeTexture, shader_parameter_handle),
             },
             FieldInfoData {
                 name: "TextureType",
+                name_hash: 3058629218,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureType",
                 rust_offset: offset_of!(RuntimeTexture, texture_type),
             },
             FieldInfoData {
                 name: "Texture",
+                name_hash: 3185041626,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(RuntimeTexture, texture),
@@ -6200,6 +6584,7 @@ impl TypeObject for RuntimeTexture {
 
 pub static RUNTIMETEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RuntimeTexture-Array",
+    name_hash: 2701164114,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("RuntimeTexture"),
@@ -6208,19 +6593,20 @@ pub static RUNTIMETEXTURE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterGraphMesh {
-    pub mesh: Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>>,
-    pub object_variation: Option<Arc<Mutex<dyn super::core::AssetTrait>>>,
+    pub mesh: Option<LockedTypeObject /* super::render::MeshAsset */>,
+    pub object_variation: Option<LockedTypeObject /* super::core::Asset */>,
     pub object_variation_name_hash: u32,
     pub start_id: u32,
 }
 
 pub trait EmitterGraphMeshTrait: TypeObject {
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>>;
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>>;
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>>;
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render::MeshAsset */>;
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::MeshAsset */>;
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::core::Asset */>;
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */>;
     fn object_variation_name_hash(&self) -> &u32;
     fn object_variation_name_hash_mut(&mut self) -> &mut u32;
     fn start_id(&self) -> &u32;
@@ -6228,16 +6614,16 @@ pub trait EmitterGraphMeshTrait: TypeObject {
 }
 
 impl EmitterGraphMeshTrait for EmitterGraphMesh {
-    fn mesh(&self) -> &Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>> {
+    fn mesh(&self) -> &Option<LockedTypeObject /* super::render::MeshAsset */> {
         &self.mesh
     }
-    fn mesh_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::MeshAssetTrait>>> {
+    fn mesh_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::MeshAsset */> {
         &mut self.mesh
     }
-    fn object_variation(&self) -> &Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn object_variation(&self) -> &Option<LockedTypeObject /* super::core::Asset */> {
         &self.object_variation
     }
-    fn object_variation_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::AssetTrait>>> {
+    fn object_variation_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::Asset */> {
         &mut self.object_variation
     }
     fn object_variation_name_hash(&self) -> &u32 {
@@ -6256,33 +6642,39 @@ impl EmitterGraphMeshTrait for EmitterGraphMesh {
 
 pub static EMITTERGRAPHMESH_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphMesh",
+    name_hash: 3924075372,
     flags: MemberInfoFlags::new(73),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterGraphMesh as Default>::default())),
+            create_boxed: || Box::new(<EmitterGraphMesh as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Mesh",
+                name_hash: 2088783990,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MeshAsset",
                 rust_offset: offset_of!(EmitterGraphMesh, mesh),
             },
             FieldInfoData {
                 name: "ObjectVariation",
+                name_hash: 3624336577,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Asset",
                 rust_offset: offset_of!(EmitterGraphMesh, object_variation),
             },
             FieldInfoData {
                 name: "ObjectVariationNameHash",
+                name_hash: 1857284564,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterGraphMesh, object_variation_name_hash),
             },
             FieldInfoData {
                 name: "StartId",
+                name_hash: 2176542184,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterGraphMesh, start_id),
@@ -6314,6 +6706,7 @@ impl TypeObject for EmitterGraphMesh {
 
 pub static EMITTERGRAPHMESH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphMesh-Array",
+    name_hash: 710615896,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphMesh"),
@@ -6322,7 +6715,8 @@ pub static EMITTERGRAPHMESH_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterGraphUserBuffer {
     pub bind_point: u8,
     pub name: String,
@@ -6352,21 +6746,25 @@ impl EmitterGraphUserBufferTrait for EmitterGraphUserBuffer {
 
 pub static EMITTERGRAPHUSERBUFFER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphUserBuffer",
+    name_hash: 3165017518,
     flags: MemberInfoFlags::new(73),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterGraphUserBuffer as Default>::default())),
+            create_boxed: || Box::new(<EmitterGraphUserBuffer as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BindPoint",
+                name_hash: 3123896456,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint8",
                 rust_offset: offset_of!(EmitterGraphUserBuffer, bind_point),
             },
             FieldInfoData {
                 name: "Name",
+                name_hash: 2088949890,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(EmitterGraphUserBuffer, name),
@@ -6398,6 +6796,7 @@ impl TypeObject for EmitterGraphUserBuffer {
 
 pub static EMITTERGRAPHUSERBUFFER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphUserBuffer-Array",
+    name_hash: 698744346,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphUserBuffer"),
@@ -6417,6 +6816,7 @@ pub enum EmitterGraphSpawnMode {
 
 pub static EMITTERGRAPHSPAWNMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphSpawnMode",
+    name_hash: 1266570631,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -6445,6 +6845,7 @@ impl TypeObject for EmitterGraphSpawnMode {
 
 pub static EMITTERGRAPHSPAWNMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphSpawnMode-Array",
+    name_hash: 3777631795,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphSpawnMode"),
@@ -6467,6 +6868,7 @@ pub enum EmitterGraphSortMode {
 
 pub static EMITTERGRAPHSORTMODE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphSortMode",
+    name_hash: 4021936134,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -6495,6 +6897,7 @@ impl TypeObject for EmitterGraphSortMode {
 
 pub static EMITTERGRAPHSORTMODE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphSortMode-Array",
+    name_hash: 724331826,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphSortMode"),
@@ -6515,6 +6918,7 @@ pub enum EmitterGraphDrawLayer {
 
 pub static EMITTERGRAPHDRAWLAYER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphDrawLayer",
+    name_hash: 2151622780,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -6543,6 +6947,7 @@ impl TypeObject for EmitterGraphDrawLayer {
 
 pub static EMITTERGRAPHDRAWLAYER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphDrawLayer-Array",
+    name_hash: 1834496072,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphDrawLayer"),
@@ -6564,6 +6969,7 @@ pub enum EmitterGraphDrawPass {
 
 pub static EMITTERGRAPHDRAWPASS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphDrawPass",
+    name_hash: 3318820622,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -6592,6 +6998,7 @@ impl TypeObject for EmitterGraphDrawPass {
 
 pub static EMITTERGRAPHDRAWPASS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphDrawPass-Array",
+    name_hash: 1908561978,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphDrawPass"),
@@ -6612,6 +7019,7 @@ pub enum EmitterGraphCulledBehavior {
 
 pub static EMITTERGRAPHCULLEDBEHAVIOR_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphCulledBehavior",
+    name_hash: 3097939364,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -6640,6 +7048,7 @@ impl TypeObject for EmitterGraphCulledBehavior {
 
 pub static EMITTERGRAPHCULLEDBEHAVIOR_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphCulledBehavior-Array",
+    name_hash: 2506662160,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphCulledBehavior"),
@@ -6661,6 +7070,7 @@ pub enum EmitterGraphConfig {
 
 pub static EMITTERGRAPHCONFIG_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphConfig",
+    name_hash: 357588149,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -6689,6 +7099,7 @@ impl TypeObject for EmitterGraphConfig {
 
 pub static EMITTERGRAPHCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphConfig-Array",
+    name_hash: 2032893185,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphConfig"),
@@ -6697,7 +7108,8 @@ pub static EMITTERGRAPHCONFIG_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomSpawnRateModifier {
     pub _glacier_base: SpawnRateModifier,
     pub frequency: EmitterGraphRandomFrequency,
@@ -6743,28 +7155,34 @@ impl super::core::DataContainerTrait for RandomSpawnRateModifier {
 
 pub static RANDOMSPAWNRATEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomSpawnRateModifier",
+    name_hash: 1747434864,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPAWNRATEMODIFIER_TYPE_INFO),
+        super_class_offset: offset_of!(RandomSpawnRateModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomSpawnRateModifier as Default>::default())),
+            create_boxed: || Box::new(<RandomSpawnRateModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Frequency",
+                name_hash: 4112821953,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphRandomFrequency",
                 rust_offset: offset_of!(RandomSpawnRateModifier, frequency),
             },
             FieldInfoData {
                 name: "Min",
+                name_hash: 193446607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomSpawnRateModifier, min),
             },
             FieldInfoData {
                 name: "Max",
+                name_hash: 193446865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomSpawnRateModifier, max),
@@ -6796,6 +7214,7 @@ impl TypeObject for RandomSpawnRateModifier {
 
 pub static RANDOMSPAWNRATEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomSpawnRateModifier-Array",
+    name_hash: 3839720260,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("RandomSpawnRateModifier"),
@@ -6815,6 +7234,7 @@ pub enum EmitterGraphRandomFrequency {
 
 pub static EMITTERGRAPHRANDOMFREQUENCY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphRandomFrequency",
+    name_hash: 592170336,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -6843,6 +7263,7 @@ impl TypeObject for EmitterGraphRandomFrequency {
 
 pub static EMITTERGRAPHRANDOMFREQUENCY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphRandomFrequency-Array",
+    name_hash: 1060815700,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphRandomFrequency"),
@@ -6851,18 +7272,19 @@ pub static EMITTERGRAPHRANDOMFREQUENCY_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterSpawnRateModifier {
     pub _glacier_base: SpawnRateModifier,
     pub emitter_property: EmitterGraphSpawnProperty,
-    pub curve: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
+    pub curve: Option<LockedTypeObject /* super::core::FloatCurve */>,
 }
 
 pub trait EmitterSpawnRateModifierTrait: SpawnRateModifierTrait {
     fn emitter_property(&self) -> &EmitterGraphSpawnProperty;
     fn emitter_property_mut(&mut self) -> &mut EmitterGraphSpawnProperty;
-    fn curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
 }
 
 impl EmitterSpawnRateModifierTrait for EmitterSpawnRateModifier {
@@ -6872,10 +7294,10 @@ impl EmitterSpawnRateModifierTrait for EmitterSpawnRateModifier {
     fn emitter_property_mut(&mut self) -> &mut EmitterGraphSpawnProperty {
         &mut self.emitter_property
     }
-    fn curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.curve
     }
-    fn curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.curve
     }
 }
@@ -6888,22 +7310,27 @@ impl super::core::DataContainerTrait for EmitterSpawnRateModifier {
 
 pub static EMITTERSPAWNRATEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterSpawnRateModifier",
+    name_hash: 1399236605,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPAWNRATEMODIFIER_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterSpawnRateModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterSpawnRateModifier as Default>::default())),
+            create_boxed: || Box::new(<EmitterSpawnRateModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EmitterProperty",
+                name_hash: 778300820,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphSpawnProperty",
                 rust_offset: offset_of!(EmitterSpawnRateModifier, emitter_property),
             },
             FieldInfoData {
                 name: "Curve",
+                name_hash: 212866962,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(EmitterSpawnRateModifier, curve),
@@ -6935,6 +7362,7 @@ impl TypeObject for EmitterSpawnRateModifier {
 
 pub static EMITTERSPAWNRATEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterSpawnRateModifier-Array",
+    name_hash: 1240257737,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterSpawnRateModifier"),
@@ -6943,31 +7371,32 @@ pub static EMITTERSPAWNRATEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EffectParameterSpawnRateModifier {
     pub _glacier_base: SpawnRateModifier,
-    pub effect_parameter: Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>,
-    pub curve: Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>,
+    pub effect_parameter: Option<LockedTypeObject /* super::effect_base::EffectParameter */>,
+    pub curve: Option<LockedTypeObject /* super::core::FloatCurve */>,
 }
 
 pub trait EffectParameterSpawnRateModifierTrait: SpawnRateModifierTrait {
-    fn effect_parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
-    fn effect_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>>;
-    fn curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
-    fn curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>>;
+    fn effect_parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */>;
+    fn effect_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */>;
+    fn curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */>;
+    fn curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */>;
 }
 
 impl EffectParameterSpawnRateModifierTrait for EffectParameterSpawnRateModifier {
-    fn effect_parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn effect_parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         &self.effect_parameter
     }
-    fn effect_parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn effect_parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         &mut self.effect_parameter
     }
-    fn curve(&self) -> &Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn curve(&self) -> &Option<LockedTypeObject /* super::core::FloatCurve */> {
         &self.curve
     }
-    fn curve_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::core::FloatCurveTrait>>> {
+    fn curve_mut(&mut self) -> &mut Option<LockedTypeObject /* super::core::FloatCurve */> {
         &mut self.curve
     }
 }
@@ -6980,22 +7409,27 @@ impl super::core::DataContainerTrait for EffectParameterSpawnRateModifier {
 
 pub static EFFECTPARAMETERSPAWNRATEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParameterSpawnRateModifier",
+    name_hash: 3486546677,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPAWNRATEMODIFIER_TYPE_INFO),
+        super_class_offset: offset_of!(EffectParameterSpawnRateModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EffectParameterSpawnRateModifier as Default>::default())),
+            create_boxed: || Box::new(<EffectParameterSpawnRateModifier as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EffectParameter",
+                name_hash: 1850282555,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectParameter",
                 rust_offset: offset_of!(EffectParameterSpawnRateModifier, effect_parameter),
             },
             FieldInfoData {
                 name: "Curve",
+                name_hash: 212866962,
                 flags: MemberInfoFlags::new(0),
                 field_type: "FloatCurve",
                 rust_offset: offset_of!(EffectParameterSpawnRateModifier, curve),
@@ -7027,6 +7461,7 @@ impl TypeObject for EffectParameterSpawnRateModifier {
 
 pub static EFFECTPARAMETERSPAWNRATEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EffectParameterSpawnRateModifier-Array",
+    name_hash: 2930346945,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EffectParameterSpawnRateModifier"),
@@ -7035,7 +7470,8 @@ pub static EFFECTPARAMETERSPAWNRATEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo =
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnRateModifier {
     pub _glacier_base: super::core::DataContainer,
 }
@@ -7051,12 +7487,15 @@ impl super::core::DataContainerTrait for SpawnRateModifier {
 
 pub static SPAWNRATEMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnRateModifier",
+    name_hash: 2586385291,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnRateModifier, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnRateModifier as Default>::default())),
+            create_boxed: || Box::new(<SpawnRateModifier as Default>::default()),
         },
         fields: &[
         ],
@@ -7086,6 +7525,7 @@ impl TypeObject for SpawnRateModifier {
 
 pub static SPAWNRATEMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnRateModifier-Array",
+    name_hash: 3012627007,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnRateModifier"),
@@ -7106,6 +7546,7 @@ pub enum EmitterGraphSpawnProperty {
 
 pub static EMITTERGRAPHSPAWNPROPERTY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphSpawnProperty",
+    name_hash: 2172264547,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -7134,6 +7575,7 @@ impl TypeObject for EmitterGraphSpawnProperty {
 
 pub static EMITTERGRAPHSPAWNPROPERTY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphSpawnProperty-Array",
+    name_hash: 2855474263,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphSpawnProperty"),
@@ -7142,13 +7584,14 @@ pub static EMITTERGRAPHSPAWNPROPERTY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnModeContinuous {
     pub _glacier_base: SpawnModeInfo,
     pub spawn_rate: super::core::QualityScalableFloat,
     pub min_spawn_rate: super::core::QualityScalableFloat,
     pub max_spawn_rate: super::core::QualityScalableFloat,
-    pub spawn_rate_multipliers: Vec<Option<Arc<Mutex<dyn SpawnRateModifierTrait>>>>,
+    pub spawn_rate_multipliers: Vec<Option<LockedTypeObject /* SpawnRateModifier */>>,
 }
 
 pub trait SpawnModeContinuousTrait: SpawnModeInfoTrait {
@@ -7158,8 +7601,8 @@ pub trait SpawnModeContinuousTrait: SpawnModeInfoTrait {
     fn min_spawn_rate_mut(&mut self) -> &mut super::core::QualityScalableFloat;
     fn max_spawn_rate(&self) -> &super::core::QualityScalableFloat;
     fn max_spawn_rate_mut(&mut self) -> &mut super::core::QualityScalableFloat;
-    fn spawn_rate_multipliers(&self) -> &Vec<Option<Arc<Mutex<dyn SpawnRateModifierTrait>>>>;
-    fn spawn_rate_multipliers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SpawnRateModifierTrait>>>>;
+    fn spawn_rate_multipliers(&self) -> &Vec<Option<LockedTypeObject /* SpawnRateModifier */>>;
+    fn spawn_rate_multipliers_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SpawnRateModifier */>>;
 }
 
 impl SpawnModeContinuousTrait for SpawnModeContinuous {
@@ -7181,10 +7624,10 @@ impl SpawnModeContinuousTrait for SpawnModeContinuous {
     fn max_spawn_rate_mut(&mut self) -> &mut super::core::QualityScalableFloat {
         &mut self.max_spawn_rate
     }
-    fn spawn_rate_multipliers(&self) -> &Vec<Option<Arc<Mutex<dyn SpawnRateModifierTrait>>>> {
+    fn spawn_rate_multipliers(&self) -> &Vec<Option<LockedTypeObject /* SpawnRateModifier */>> {
         &self.spawn_rate_multipliers
     }
-    fn spawn_rate_multipliers_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn SpawnRateModifierTrait>>>> {
+    fn spawn_rate_multipliers_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* SpawnRateModifier */>> {
         &mut self.spawn_rate_multipliers
     }
 }
@@ -7209,34 +7652,41 @@ impl super::core::DataContainerTrait for SpawnModeContinuous {
 
 pub static SPAWNMODECONTINUOUS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnModeContinuous",
+    name_hash: 5170352,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPAWNMODEINFO_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnModeContinuous, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnModeContinuous as Default>::default())),
+            create_boxed: || Box::new(<SpawnModeContinuous as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SpawnRate",
+                name_hash: 2317161148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(SpawnModeContinuous, spawn_rate),
             },
             FieldInfoData {
                 name: "MinSpawnRate",
+                name_hash: 290245046,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(SpawnModeContinuous, min_spawn_rate),
             },
             FieldInfoData {
                 name: "MaxSpawnRate",
+                name_hash: 3922221160,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableFloat",
                 rust_offset: offset_of!(SpawnModeContinuous, max_spawn_rate),
             },
             FieldInfoData {
                 name: "SpawnRateMultipliers",
+                name_hash: 808469860,
                 flags: MemberInfoFlags::new(144),
                 field_type: "SpawnRateModifier-Array",
                 rust_offset: offset_of!(SpawnModeContinuous, spawn_rate_multipliers),
@@ -7268,6 +7718,7 @@ impl TypeObject for SpawnModeContinuous {
 
 pub static SPAWNMODECONTINUOUS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnModeContinuous-Array",
+    name_hash: 618205700,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnModeContinuous"),
@@ -7276,7 +7727,8 @@ pub static SPAWNMODECONTINUOUS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnModeBurst {
     pub _glacier_base: SpawnModeInfo,
 }
@@ -7307,12 +7759,15 @@ impl super::core::DataContainerTrait for SpawnModeBurst {
 
 pub static SPAWNMODEBURST_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnModeBurst",
+    name_hash: 2141567871,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(SPAWNMODEINFO_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnModeBurst, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnModeBurst as Default>::default())),
+            create_boxed: || Box::new(<SpawnModeBurst as Default>::default()),
         },
         fields: &[
         ],
@@ -7342,6 +7797,7 @@ impl TypeObject for SpawnModeBurst {
 
 pub static SPAWNMODEBURST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnModeBurst-Array",
+    name_hash: 314097995,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnModeBurst"),
@@ -7350,7 +7806,8 @@ pub static SPAWNMODEBURST_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnModeInfo {
     pub _glacier_base: super::core::DataContainer,
     pub particle_max_count: super::core::QualityScalableInt,
@@ -7384,22 +7841,27 @@ impl super::core::DataContainerTrait for SpawnModeInfo {
 
 pub static SPAWNMODEINFO_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnModeInfo",
+    name_hash: 2667472531,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::core::DATACONTAINER_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnModeInfo, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnModeInfo as Default>::default())),
+            create_boxed: || Box::new(<SpawnModeInfo as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ParticleMaxCount",
+                name_hash: 1668354694,
                 flags: MemberInfoFlags::new(0),
                 field_type: "QualityScalableInt",
                 rust_offset: offset_of!(SpawnModeInfo, particle_max_count),
             },
             FieldInfoData {
                 name: "SpawnModeEnum",
+                name_hash: 2667606958,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphSpawnMode",
                 rust_offset: offset_of!(SpawnModeInfo, spawn_mode_enum),
@@ -7431,6 +7893,7 @@ impl TypeObject for SpawnModeInfo {
 
 pub static SPAWNMODEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnModeInfo-Array",
+    name_hash: 554041639,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnModeInfo"),
@@ -7439,7 +7902,8 @@ pub static SPAWNMODEINFO_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VertexShaderParam {
     pub param_name: String,
     pub value: super::core::Vec4,
@@ -7487,33 +7951,39 @@ impl VertexShaderParamTrait for VertexShaderParam {
 
 pub static VERTEXSHADERPARAM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VertexShaderParam",
+    name_hash: 1820479179,
     flags: MemberInfoFlags::new(73),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VertexShaderParam as Default>::default())),
+            create_boxed: || Box::new(<VertexShaderParam as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ParamName",
+                name_hash: 2964687917,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VertexShaderParam, param_name),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(VertexShaderParam, value),
             },
             FieldInfoData {
                 name: "ParamType",
+                name_hash: 2965736018,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterGraphParamType",
                 rust_offset: offset_of!(VertexShaderParam, param_type),
             },
             FieldInfoData {
                 name: "ValueType",
+                name_hash: 1235276758,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterExposableType",
                 rust_offset: offset_of!(VertexShaderParam, value_type),
@@ -7545,6 +8015,7 @@ impl TypeObject for VertexShaderParam {
 
 pub static VERTEXSHADERPARAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VertexShaderParam-Array",
+    name_hash: 872639999,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("VertexShaderParam"),
@@ -7553,10 +8024,11 @@ pub static VERTEXSHADERPARAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct VertexShaderTextureParam {
     pub param_name: String,
-    pub value: Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>,
+    pub value: Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>,
     pub address_mode: TextureNodeAddress,
     pub filter_mode: TextureNodeFilter,
 }
@@ -7564,8 +8036,8 @@ pub struct VertexShaderTextureParam {
 pub trait VertexShaderTextureParamTrait: TypeObject {
     fn param_name(&self) -> &String;
     fn param_name_mut(&mut self) -> &mut String;
-    fn value(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
-    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn value(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
+    fn value_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
     fn address_mode(&self) -> &TextureNodeAddress;
     fn address_mode_mut(&mut self) -> &mut TextureNodeAddress;
     fn filter_mode(&self) -> &TextureNodeFilter;
@@ -7579,10 +8051,10 @@ impl VertexShaderTextureParamTrait for VertexShaderTextureParam {
     fn param_name_mut(&mut self) -> &mut String {
         &mut self.param_name
     }
-    fn value(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn value(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &self.value
     }
-    fn value_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn value_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &mut self.value
     }
     fn address_mode(&self) -> &TextureNodeAddress {
@@ -7601,33 +8073,39 @@ impl VertexShaderTextureParamTrait for VertexShaderTextureParam {
 
 pub static VERTEXSHADERTEXTUREPARAM_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VertexShaderTextureParam",
+    name_hash: 2989272468,
     flags: MemberInfoFlags::new(73),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<VertexShaderTextureParam as Default>::default())),
+            create_boxed: || Box::new(<VertexShaderTextureParam as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ParamName",
+                name_hash: 2964687917,
                 flags: MemberInfoFlags::new(0),
                 field_type: "CString",
                 rust_offset: offset_of!(VertexShaderTextureParam, param_name),
             },
             FieldInfoData {
                 name: "Value",
+                name_hash: 225375086,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(VertexShaderTextureParam, value),
             },
             FieldInfoData {
                 name: "AddressMode",
+                name_hash: 3581782416,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureNodeAddress",
                 rust_offset: offset_of!(VertexShaderTextureParam, address_mode),
             },
             FieldInfoData {
                 name: "FilterMode",
+                name_hash: 2795556358,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureNodeFilter",
                 rust_offset: offset_of!(VertexShaderTextureParam, filter_mode),
@@ -7659,6 +8137,7 @@ impl TypeObject for VertexShaderTextureParam {
 
 pub static VERTEXSHADERTEXTUREPARAM_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VertexShaderTextureParam-Array",
+    name_hash: 2429151648,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("VertexShaderTextureParam"),
@@ -7685,6 +8164,7 @@ pub enum EmitterGraphParticleDataType {
 
 pub static EMITTERGRAPHPARTICLEDATATYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphParticleDataType",
+    name_hash: 3455415427,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -7713,6 +8193,7 @@ impl TypeObject for EmitterGraphParticleDataType {
 
 pub static EMITTERGRAPHPARTICLEDATATYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterGraphParticleDataType-Array",
+    name_hash: 1291634487,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterGraphParticleDataType"),
@@ -7732,6 +8213,7 @@ pub enum TextureNodeFilter {
 
 pub static TEXTURENODEFILTER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureNodeFilter",
+    name_hash: 182375674,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -7760,6 +8242,7 @@ impl TypeObject for TextureNodeFilter {
 
 pub static TEXTURENODEFILTER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureNodeFilter-Array",
+    name_hash: 1234421710,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("TextureNodeFilter"),
@@ -7779,6 +8262,7 @@ pub enum TextureNodeAddress {
 
 pub static TEXTURENODEADDRESS_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureNodeAddress",
+    name_hash: 3435823756,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -7807,6 +8291,7 @@ impl TypeObject for TextureNodeAddress {
 
 pub static TEXTURENODEADDRESS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TextureNodeAddress-Array",
+    name_hash: 346034872,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("TextureNodeAddress"),
@@ -7815,21 +8300,22 @@ pub static TEXTURENODEADDRESS_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterExclusionVolumesAsset {
     pub _glacier_base: super::emitter_base::EmitterExclusionVolumesBaseAsset,
     pub exclusion_volumes_count: u32,
-    pub exclusion_volumes: Vec<EmitterExclusionVolume>,
-    pub exclusion_volume_bounding_spheres: Vec<EmitterExclusionVolumeBoundingSphereSoA>,
+    pub exclusion_volumes: Vec<BoxedTypeObject /* EmitterExclusionVolume */>,
+    pub exclusion_volume_bounding_spheres: Vec<BoxedTypeObject /* EmitterExclusionVolumeBoundingSphereSoA */>,
 }
 
 pub trait EmitterExclusionVolumesAssetTrait: super::emitter_base::EmitterExclusionVolumesBaseAssetTrait {
     fn exclusion_volumes_count(&self) -> &u32;
     fn exclusion_volumes_count_mut(&mut self) -> &mut u32;
-    fn exclusion_volumes(&self) -> &Vec<EmitterExclusionVolume>;
-    fn exclusion_volumes_mut(&mut self) -> &mut Vec<EmitterExclusionVolume>;
-    fn exclusion_volume_bounding_spheres(&self) -> &Vec<EmitterExclusionVolumeBoundingSphereSoA>;
-    fn exclusion_volume_bounding_spheres_mut(&mut self) -> &mut Vec<EmitterExclusionVolumeBoundingSphereSoA>;
+    fn exclusion_volumes(&self) -> &Vec<BoxedTypeObject /* EmitterExclusionVolume */>;
+    fn exclusion_volumes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EmitterExclusionVolume */>;
+    fn exclusion_volume_bounding_spheres(&self) -> &Vec<BoxedTypeObject /* EmitterExclusionVolumeBoundingSphereSoA */>;
+    fn exclusion_volume_bounding_spheres_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EmitterExclusionVolumeBoundingSphereSoA */>;
 }
 
 impl EmitterExclusionVolumesAssetTrait for EmitterExclusionVolumesAsset {
@@ -7839,16 +8325,16 @@ impl EmitterExclusionVolumesAssetTrait for EmitterExclusionVolumesAsset {
     fn exclusion_volumes_count_mut(&mut self) -> &mut u32 {
         &mut self.exclusion_volumes_count
     }
-    fn exclusion_volumes(&self) -> &Vec<EmitterExclusionVolume> {
+    fn exclusion_volumes(&self) -> &Vec<BoxedTypeObject /* EmitterExclusionVolume */> {
         &self.exclusion_volumes
     }
-    fn exclusion_volumes_mut(&mut self) -> &mut Vec<EmitterExclusionVolume> {
+    fn exclusion_volumes_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EmitterExclusionVolume */> {
         &mut self.exclusion_volumes
     }
-    fn exclusion_volume_bounding_spheres(&self) -> &Vec<EmitterExclusionVolumeBoundingSphereSoA> {
+    fn exclusion_volume_bounding_spheres(&self) -> &Vec<BoxedTypeObject /* EmitterExclusionVolumeBoundingSphereSoA */> {
         &self.exclusion_volume_bounding_spheres
     }
-    fn exclusion_volume_bounding_spheres_mut(&mut self) -> &mut Vec<EmitterExclusionVolumeBoundingSphereSoA> {
+    fn exclusion_volume_bounding_spheres_mut(&mut self) -> &mut Vec<BoxedTypeObject /* EmitterExclusionVolumeBoundingSphereSoA */> {
         &mut self.exclusion_volume_bounding_spheres
     }
 }
@@ -7870,28 +8356,34 @@ impl super::core::DataContainerTrait for EmitterExclusionVolumesAsset {
 
 pub static EMITTEREXCLUSIONVOLUMESASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolumesAsset",
+    name_hash: 1085889796,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::emitter_base::EMITTEREXCLUSIONVOLUMESBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterExclusionVolumesAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterExclusionVolumesAsset as Default>::default())),
+            create_boxed: || Box::new(<EmitterExclusionVolumesAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ExclusionVolumesCount",
+                name_hash: 2756182081,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(EmitterExclusionVolumesAsset, exclusion_volumes_count),
             },
             FieldInfoData {
                 name: "ExclusionVolumes",
+                name_hash: 482118946,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterExclusionVolume-Array",
                 rust_offset: offset_of!(EmitterExclusionVolumesAsset, exclusion_volumes),
             },
             FieldInfoData {
                 name: "ExclusionVolumeBoundingSpheres",
+                name_hash: 3674894409,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterExclusionVolumeBoundingSphereSoA-Array",
                 rust_offset: offset_of!(EmitterExclusionVolumesAsset, exclusion_volume_bounding_spheres),
@@ -7923,6 +8415,7 @@ impl TypeObject for EmitterExclusionVolumesAsset {
 
 pub static EMITTEREXCLUSIONVOLUMESASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterExclusionVolumesAsset-Array",
+    name_hash: 2506715440,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterExclusionVolumesAsset"),
@@ -7931,7 +8424,8 @@ pub static EMITTEREXCLUSIONVOLUMESASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshEmitterMaskAsset {
     pub _glacier_base: super::effect_base::MeshEmitterMaskBaseAsset,
     pub mesh_emitter_mask_resource: glacier_reflect::builtin::ResourceRef,
@@ -7968,16 +8462,20 @@ impl super::core::DataContainerTrait for MeshEmitterMaskAsset {
 
 pub static MESHEMITTERMASKASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterMaskAsset",
+    name_hash: 2733390148,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::effect_base::MESHEMITTERMASKBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(MeshEmitterMaskAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshEmitterMaskAsset as Default>::default())),
+            create_boxed: || Box::new(<MeshEmitterMaskAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MeshEmitterMaskResource",
+                name_hash: 1805804702,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(MeshEmitterMaskAsset, mesh_emitter_mask_resource),
@@ -8009,6 +8507,7 @@ impl TypeObject for MeshEmitterMaskAsset {
 
 pub static MESHEMITTERMASKASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterMaskAsset-Array",
+    name_hash: 2829352432,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("MeshEmitterMaskAsset"),
@@ -8017,7 +8516,8 @@ pub static MESHEMITTERMASKASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MeshEmitterAsset {
     pub _glacier_base: super::effect_base::MeshEmitterBaseAsset,
     pub mesh_emitter_resource: glacier_reflect::builtin::ResourceRef,
@@ -8054,16 +8554,20 @@ impl super::core::DataContainerTrait for MeshEmitterAsset {
 
 pub static MESHEMITTERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterAsset",
+    name_hash: 3824468976,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::effect_base::MESHEMITTERBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(MeshEmitterAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MeshEmitterAsset as Default>::default())),
+            create_boxed: || Box::new(<MeshEmitterAsset as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MeshEmitterResource",
+                name_hash: 287496042,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ResourceRef",
                 rust_offset: offset_of!(MeshEmitterAsset, mesh_emitter_resource),
@@ -8095,6 +8599,7 @@ impl TypeObject for MeshEmitterAsset {
 
 pub static MESHEMITTERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MeshEmitterAsset-Array",
+    name_hash: 2700435908,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("MeshEmitterAsset"),
@@ -8103,7 +8608,8 @@ pub static MESHEMITTERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterAsset {
     pub _glacier_base: super::emitter_base::EmitterBaseAsset,
 }
@@ -8131,12 +8637,15 @@ impl super::core::DataContainerTrait for EmitterAsset {
 
 pub static EMITTERASSET_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterAsset",
+    name_hash: 2043417923,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(super::emitter_base::EMITTERBASEASSET_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterAsset, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterAsset as Default>::default())),
+            create_boxed: || Box::new(<EmitterAsset as Default>::default()),
         },
         fields: &[
         ],
@@ -8166,6 +8675,7 @@ impl TypeObject for EmitterAsset {
 
 pub static EMITTERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterAsset-Array",
+    name_hash: 430487671,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterAsset"),
@@ -8174,7 +8684,8 @@ pub static EMITTERASSET_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateStencilMaskData {
     pub _glacier_base: ProcessorData,
     pub mask: EmitterStencilMask,
@@ -8195,16 +8706,16 @@ impl UpdateStencilMaskDataTrait for UpdateStencilMaskData {
 }
 
 impl ProcessorDataTrait for UpdateStencilMaskData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -8213,10 +8724,10 @@ impl ProcessorDataTrait for UpdateStencilMaskData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -8232,16 +8743,20 @@ impl super::core::DataContainerTrait for UpdateStencilMaskData {
 
 pub static UPDATESTENCILMASKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateStencilMaskData",
+    name_hash: 3848051770,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateStencilMaskData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateStencilMaskData as Default>::default())),
+            create_boxed: || Box::new(<UpdateStencilMaskData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Mask",
+                name_hash: 2088779633,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterStencilMask",
                 rust_offset: offset_of!(UpdateStencilMaskData, mask),
@@ -8273,6 +8788,7 @@ impl TypeObject for UpdateStencilMaskData {
 
 pub static UPDATESTENCILMASKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateStencilMaskData-Array",
+    name_hash: 451559054,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateStencilMaskData"),
@@ -8293,6 +8809,7 @@ pub enum EmitterStencilMask {
 
 pub static EMITTERSTENCILMASK_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterStencilMask",
+    name_hash: 3923544077,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -8321,6 +8838,7 @@ impl TypeObject for EmitterStencilMask {
 
 pub static EMITTERSTENCILMASK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterStencilMask-Array",
+    name_hash: 1397427129,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterStencilMask"),
@@ -8329,7 +8847,8 @@ pub static EMITTERSTENCILMASK_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateVolumeMaskData {
     pub _glacier_base: ProcessorData,
     pub mask_type: VolumeMaskType,
@@ -8350,16 +8869,16 @@ impl UpdateVolumeMaskDataTrait for UpdateVolumeMaskData {
 }
 
 impl ProcessorDataTrait for UpdateVolumeMaskData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -8368,10 +8887,10 @@ impl ProcessorDataTrait for UpdateVolumeMaskData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -8387,16 +8906,20 @@ impl super::core::DataContainerTrait for UpdateVolumeMaskData {
 
 pub static UPDATEVOLUMEMASKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateVolumeMaskData",
+    name_hash: 1623837912,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateVolumeMaskData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateVolumeMaskData as Default>::default())),
+            create_boxed: || Box::new(<UpdateVolumeMaskData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaskType",
+                name_hash: 950003465,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VolumeMaskType",
                 rust_offset: offset_of!(UpdateVolumeMaskData, mask_type),
@@ -8428,6 +8951,7 @@ impl TypeObject for UpdateVolumeMaskData {
 
 pub static UPDATEVOLUMEMASKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateVolumeMaskData-Array",
+    name_hash: 3071616876,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateVolumeMaskData"),
@@ -8448,6 +8972,7 @@ pub enum VolumeMaskType {
 
 pub static VOLUMEMASKTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VolumeMaskType",
+    name_hash: 3890757185,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -8476,6 +9001,7 @@ impl TypeObject for VolumeMaskType {
 
 pub static VOLUMEMASKTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "VolumeMaskType-Array",
+    name_hash: 651389045,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("VolumeMaskType"),
@@ -8484,7 +9010,8 @@ pub static VOLUMEMASKTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateVolumetricData {
     pub _glacier_base: ProcessorData,
     pub absorption: f32,
@@ -8514,16 +9041,16 @@ impl UpdateVolumetricDataTrait for UpdateVolumetricData {
 }
 
 impl ProcessorDataTrait for UpdateVolumetricData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -8532,10 +9059,10 @@ impl ProcessorDataTrait for UpdateVolumetricData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -8551,22 +9078,27 @@ impl super::core::DataContainerTrait for UpdateVolumetricData {
 
 pub static UPDATEVOLUMETRICDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateVolumetricData",
+    name_hash: 2155924224,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateVolumetricData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateVolumetricData as Default>::default())),
+            create_boxed: || Box::new(<UpdateVolumetricData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Absorption",
+                name_hash: 2643950660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateVolumetricData, absorption),
             },
             FieldInfoData {
                 name: "HighQualityInjection",
+                name_hash: 410478609,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateVolumetricData, high_quality_injection),
@@ -8598,6 +9130,7 @@ impl TypeObject for UpdateVolumetricData {
 
 pub static UPDATEVOLUMETRICDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateVolumetricData-Array",
+    name_hash: 3008082228,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateVolumetricData"),
@@ -8606,37 +9139,38 @@ pub static UPDATEVOLUMETRICDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateMeshEmitterMaskData {
     pub _glacier_base: ProcessorData,
-    pub mesh_emitter_mask: Option<Arc<Mutex<dyn MeshEmitterMaskAssetTrait>>>,
+    pub mesh_emitter_mask: Option<LockedTypeObject /* MeshEmitterMaskAsset */>,
 }
 
 pub trait UpdateMeshEmitterMaskDataTrait: ProcessorDataTrait {
-    fn mesh_emitter_mask(&self) -> &Option<Arc<Mutex<dyn MeshEmitterMaskAssetTrait>>>;
-    fn mesh_emitter_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MeshEmitterMaskAssetTrait>>>;
+    fn mesh_emitter_mask(&self) -> &Option<LockedTypeObject /* MeshEmitterMaskAsset */>;
+    fn mesh_emitter_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* MeshEmitterMaskAsset */>;
 }
 
 impl UpdateMeshEmitterMaskDataTrait for UpdateMeshEmitterMaskData {
-    fn mesh_emitter_mask(&self) -> &Option<Arc<Mutex<dyn MeshEmitterMaskAssetTrait>>> {
+    fn mesh_emitter_mask(&self) -> &Option<LockedTypeObject /* MeshEmitterMaskAsset */> {
         &self.mesh_emitter_mask
     }
-    fn mesh_emitter_mask_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MeshEmitterMaskAssetTrait>>> {
+    fn mesh_emitter_mask_mut(&mut self) -> &mut Option<LockedTypeObject /* MeshEmitterMaskAsset */> {
         &mut self.mesh_emitter_mask
     }
 }
 
 impl ProcessorDataTrait for UpdateMeshEmitterMaskData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -8645,10 +9179,10 @@ impl ProcessorDataTrait for UpdateMeshEmitterMaskData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -8664,16 +9198,20 @@ impl super::core::DataContainerTrait for UpdateMeshEmitterMaskData {
 
 pub static UPDATEMESHEMITTERMASKDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateMeshEmitterMaskData",
+    name_hash: 331018901,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateMeshEmitterMaskData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateMeshEmitterMaskData as Default>::default())),
+            create_boxed: || Box::new(<UpdateMeshEmitterMaskData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MeshEmitterMask",
+                name_hash: 116301588,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MeshEmitterMaskAsset",
                 rust_offset: offset_of!(UpdateMeshEmitterMaskData, mesh_emitter_mask),
@@ -8705,6 +9243,7 @@ impl TypeObject for UpdateMeshEmitterMaskData {
 
 pub static UPDATEMESHEMITTERMASKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateMeshEmitterMaskData-Array",
+    name_hash: 2466431521,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateMeshEmitterMaskData"),
@@ -8713,10 +9252,11 @@ pub static UPDATEMESHEMITTERMASKDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateMeshEmitterSourceData {
     pub _glacier_base: ProcessorData,
-    pub mesh_emitter: Option<Arc<Mutex<dyn MeshEmitterAssetTrait>>>,
+    pub mesh_emitter: Option<LockedTypeObject /* MeshEmitterAsset */>,
     pub generate_position: bool,
     pub generate_normal: bool,
     pub generate_u_vs: bool,
@@ -8727,8 +9267,8 @@ pub struct UpdateMeshEmitterSourceData {
 }
 
 pub trait UpdateMeshEmitterSourceDataTrait: ProcessorDataTrait {
-    fn mesh_emitter(&self) -> &Option<Arc<Mutex<dyn MeshEmitterAssetTrait>>>;
-    fn mesh_emitter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MeshEmitterAssetTrait>>>;
+    fn mesh_emitter(&self) -> &Option<LockedTypeObject /* MeshEmitterAsset */>;
+    fn mesh_emitter_mut(&mut self) -> &mut Option<LockedTypeObject /* MeshEmitterAsset */>;
     fn generate_position(&self) -> &bool;
     fn generate_position_mut(&mut self) -> &mut bool;
     fn generate_normal(&self) -> &bool;
@@ -8746,10 +9286,10 @@ pub trait UpdateMeshEmitterSourceDataTrait: ProcessorDataTrait {
 }
 
 impl UpdateMeshEmitterSourceDataTrait for UpdateMeshEmitterSourceData {
-    fn mesh_emitter(&self) -> &Option<Arc<Mutex<dyn MeshEmitterAssetTrait>>> {
+    fn mesh_emitter(&self) -> &Option<LockedTypeObject /* MeshEmitterAsset */> {
         &self.mesh_emitter
     }
-    fn mesh_emitter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn MeshEmitterAssetTrait>>> {
+    fn mesh_emitter_mut(&mut self) -> &mut Option<LockedTypeObject /* MeshEmitterAsset */> {
         &mut self.mesh_emitter
     }
     fn generate_position(&self) -> &bool {
@@ -8797,16 +9337,16 @@ impl UpdateMeshEmitterSourceDataTrait for UpdateMeshEmitterSourceData {
 }
 
 impl ProcessorDataTrait for UpdateMeshEmitterSourceData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -8815,10 +9355,10 @@ impl ProcessorDataTrait for UpdateMeshEmitterSourceData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -8834,58 +9374,69 @@ impl super::core::DataContainerTrait for UpdateMeshEmitterSourceData {
 
 pub static UPDATEMESHEMITTERSOURCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateMeshEmitterSourceData",
+    name_hash: 1772828860,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateMeshEmitterSourceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateMeshEmitterSourceData as Default>::default())),
+            create_boxed: || Box::new(<UpdateMeshEmitterSourceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MeshEmitter",
+                name_hash: 75090976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MeshEmitterAsset",
                 rust_offset: offset_of!(UpdateMeshEmitterSourceData, mesh_emitter),
             },
             FieldInfoData {
                 name: "GeneratePosition",
+                name_hash: 3980901495,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateMeshEmitterSourceData, generate_position),
             },
             FieldInfoData {
                 name: "GenerateNormal",
+                name_hash: 2395738973,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateMeshEmitterSourceData, generate_normal),
             },
             FieldInfoData {
                 name: "GenerateUVs",
+                name_hash: 2180747006,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateMeshEmitterSourceData, generate_u_vs),
             },
             FieldInfoData {
                 name: "SendMeshUvsToShaderGraph",
+                name_hash: 508417476,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateMeshEmitterSourceData, send_mesh_uvs_to_shader_graph),
             },
             FieldInfoData {
                 name: "SequentialEmission",
+                name_hash: 2545618309,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateMeshEmitterSourceData, sequential_emission),
             },
             FieldInfoData {
                 name: "ParticlesPerPrimitive",
+                name_hash: 2858489060,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(UpdateMeshEmitterSourceData, particles_per_primitive),
             },
             FieldInfoData {
                 name: "RandomPosition",
+                name_hash: 251381927,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateMeshEmitterSourceData, random_position),
@@ -8917,6 +9468,7 @@ impl TypeObject for UpdateMeshEmitterSourceData {
 
 pub static UPDATEMESHEMITTERSOURCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateMeshEmitterSourceData-Array",
+    name_hash: 2732814344,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateMeshEmitterSourceData"),
@@ -8925,34 +9477,35 @@ pub static UPDATEMESHEMITTERSOURCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateVertexAnimData {
     pub _glacier_base: ProcessorData,
-    pub shader_fragment: Option<Arc<Mutex<dyn super::render::VertexShaderFragmentAssetTrait>>>,
+    pub shader_fragment: Option<LockedTypeObject /* super::render::VertexShaderFragmentAsset */>,
     pub per_particle_randomness: f32,
     pub frequency_multiplier: f32,
     pub animation_parameters: super::core::Vec4,
-    pub animation_texture: Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>,
+    pub animation_texture: Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>,
 }
 
 pub trait UpdateVertexAnimDataTrait: ProcessorDataTrait {
-    fn shader_fragment(&self) -> &Option<Arc<Mutex<dyn super::render::VertexShaderFragmentAssetTrait>>>;
-    fn shader_fragment_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::VertexShaderFragmentAssetTrait>>>;
+    fn shader_fragment(&self) -> &Option<LockedTypeObject /* super::render::VertexShaderFragmentAsset */>;
+    fn shader_fragment_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::VertexShaderFragmentAsset */>;
     fn per_particle_randomness(&self) -> &f32;
     fn per_particle_randomness_mut(&mut self) -> &mut f32;
     fn frequency_multiplier(&self) -> &f32;
     fn frequency_multiplier_mut(&mut self) -> &mut f32;
     fn animation_parameters(&self) -> &super::core::Vec4;
     fn animation_parameters_mut(&mut self) -> &mut super::core::Vec4;
-    fn animation_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
-    fn animation_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>>;
+    fn animation_texture(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
+    fn animation_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */>;
 }
 
 impl UpdateVertexAnimDataTrait for UpdateVertexAnimData {
-    fn shader_fragment(&self) -> &Option<Arc<Mutex<dyn super::render::VertexShaderFragmentAssetTrait>>> {
+    fn shader_fragment(&self) -> &Option<LockedTypeObject /* super::render::VertexShaderFragmentAsset */> {
         &self.shader_fragment
     }
-    fn shader_fragment_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::VertexShaderFragmentAssetTrait>>> {
+    fn shader_fragment_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::VertexShaderFragmentAsset */> {
         &mut self.shader_fragment
     }
     fn per_particle_randomness(&self) -> &f32 {
@@ -8973,25 +9526,25 @@ impl UpdateVertexAnimDataTrait for UpdateVertexAnimData {
     fn animation_parameters_mut(&mut self) -> &mut super::core::Vec4 {
         &mut self.animation_parameters
     }
-    fn animation_texture(&self) -> &Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn animation_texture(&self) -> &Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &self.animation_texture
     }
-    fn animation_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render_base::TextureBaseAssetTrait>>> {
+    fn animation_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render_base::TextureBaseAsset */> {
         &mut self.animation_texture
     }
 }
 
 impl ProcessorDataTrait for UpdateVertexAnimData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -9000,10 +9553,10 @@ impl ProcessorDataTrait for UpdateVertexAnimData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -9019,40 +9572,48 @@ impl super::core::DataContainerTrait for UpdateVertexAnimData {
 
 pub static UPDATEVERTEXANIMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateVertexAnimData",
+    name_hash: 2928045575,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateVertexAnimData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateVertexAnimData as Default>::default())),
+            create_boxed: || Box::new(<UpdateVertexAnimData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ShaderFragment",
+                name_hash: 3766966444,
                 flags: MemberInfoFlags::new(0),
                 field_type: "VertexShaderFragmentAsset",
                 rust_offset: offset_of!(UpdateVertexAnimData, shader_fragment),
             },
             FieldInfoData {
                 name: "PerParticleRandomness",
+                name_hash: 3177160038,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateVertexAnimData, per_particle_randomness),
             },
             FieldInfoData {
                 name: "FrequencyMultiplier",
+                name_hash: 1846076170,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateVertexAnimData, frequency_multiplier),
             },
             FieldInfoData {
                 name: "AnimationParameters",
+                name_hash: 2312955177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UpdateVertexAnimData, animation_parameters),
             },
             FieldInfoData {
                 name: "AnimationTexture",
+                name_hash: 1566970476,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TextureBaseAsset",
                 rust_offset: offset_of!(UpdateVertexAnimData, animation_texture),
@@ -9084,6 +9645,7 @@ impl TypeObject for UpdateVertexAnimData {
 
 pub static UPDATEVERTEXANIMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateVertexAnimData-Array",
+    name_hash: 1560448691,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateVertexAnimData"),
@@ -9092,7 +9654,8 @@ pub static UPDATEVERTEXANIMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateBeamPointData {
     pub _glacier_base: ProcessorData,
     pub num_points: u32,
@@ -9185,16 +9748,16 @@ impl UpdateBeamPointDataTrait for UpdateBeamPointData {
 }
 
 impl ProcessorDataTrait for UpdateBeamPointData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -9203,10 +9766,10 @@ impl ProcessorDataTrait for UpdateBeamPointData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -9222,64 +9785,76 @@ impl super::core::DataContainerTrait for UpdateBeamPointData {
 
 pub static UPDATEBEAMPOINTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateBeamPointData",
+    name_hash: 1910443043,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateBeamPointData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateBeamPointData as Default>::default())),
+            create_boxed: || Box::new(<UpdateBeamPointData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "NumPoints",
+                name_hash: 3972777164,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(UpdateBeamPointData, num_points),
             },
             FieldInfoData {
                 name: "NumCtrlPoints",
+                name_hash: 2667726661,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(UpdateBeamPointData, num_ctrl_points),
             },
             FieldInfoData {
                 name: "TaperCoefficients",
+                name_hash: 3279742545,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UpdateBeamPointData, taper_coefficients),
             },
             FieldInfoData {
                 name: "Attractor",
+                name_hash: 2706126525,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocationSelection",
                 rust_offset: offset_of!(UpdateBeamPointData, attractor),
             },
             FieldInfoData {
                 name: "AttractorCoefficients",
+                name_hash: 3892452379,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UpdateBeamPointData, attractor_coefficients),
             },
             FieldInfoData {
                 name: "ParamOverride",
+                name_hash: 3778875230,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ParamOverrideSelection",
                 rust_offset: offset_of!(UpdateBeamPointData, param_override),
             },
             FieldInfoData {
                 name: "ParamCoefficients",
+                name_hash: 664721548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UpdateBeamPointData, param_coefficients),
             },
             FieldInfoData {
                 name: "BeamInterpolation",
+                name_hash: 3065965252,
                 flags: MemberInfoFlags::new(0),
                 field_type: "BeamInterpolation",
                 rust_offset: offset_of!(UpdateBeamPointData, beam_interpolation),
             },
             FieldInfoData {
                 name: "Coefficient",
+                name_hash: 2688369744,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateBeamPointData, coefficient),
@@ -9311,6 +9886,7 @@ impl TypeObject for UpdateBeamPointData {
 
 pub static UPDATEBEAMPOINTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateBeamPointData-Array",
+    name_hash: 3192246167,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateBeamPointData"),
@@ -9331,6 +9907,7 @@ pub enum BeamInterpolation {
 
 pub static BEAMINTERPOLATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BeamInterpolation",
+    name_hash: 3065965252,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -9359,6 +9936,7 @@ impl TypeObject for BeamInterpolation {
 
 pub static BEAMINTERPOLATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BeamInterpolation-Array",
+    name_hash: 1393971056,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("BeamInterpolation"),
@@ -9367,7 +9945,8 @@ pub static BEAMINTERPOLATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateBeamTargetData {
     pub _glacier_base: ProcessorData,
     pub target: LocationSelection,
@@ -9388,16 +9967,16 @@ impl UpdateBeamTargetDataTrait for UpdateBeamTargetData {
 }
 
 impl ProcessorDataTrait for UpdateBeamTargetData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -9406,10 +9985,10 @@ impl ProcessorDataTrait for UpdateBeamTargetData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -9425,16 +10004,20 @@ impl super::core::DataContainerTrait for UpdateBeamTargetData {
 
 pub static UPDATEBEAMTARGETDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateBeamTargetData",
+    name_hash: 2605281022,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateBeamTargetData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateBeamTargetData as Default>::default())),
+            create_boxed: || Box::new(<UpdateBeamTargetData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Target",
+                name_hash: 3215022804,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocationSelection",
                 rust_offset: offset_of!(UpdateBeamTargetData, target),
@@ -9466,6 +10049,7 @@ impl TypeObject for UpdateBeamTargetData {
 
 pub static UPDATEBEAMTARGETDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateBeamTargetData-Array",
+    name_hash: 2873724874,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateBeamTargetData"),
@@ -9474,7 +10058,8 @@ pub static UPDATEBEAMTARGETDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateBeamSourceData {
     pub _glacier_base: ProcessorData,
     pub source: LocationSelection,
@@ -9495,16 +10080,16 @@ impl UpdateBeamSourceDataTrait for UpdateBeamSourceData {
 }
 
 impl ProcessorDataTrait for UpdateBeamSourceData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -9513,10 +10098,10 @@ impl ProcessorDataTrait for UpdateBeamSourceData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -9532,16 +10117,20 @@ impl super::core::DataContainerTrait for UpdateBeamSourceData {
 
 pub static UPDATEBEAMSOURCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateBeamSourceData",
+    name_hash: 3158649394,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateBeamSourceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateBeamSourceData as Default>::default())),
+            create_boxed: || Box::new(<UpdateBeamSourceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Source",
+                name_hash: 3339738264,
                 flags: MemberInfoFlags::new(0),
                 field_type: "LocationSelection",
                 rust_offset: offset_of!(UpdateBeamSourceData, source),
@@ -9573,6 +10162,7 @@ impl TypeObject for UpdateBeamSourceData {
 
 pub static UPDATEBEAMSOURCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateBeamSourceData-Array",
+    name_hash: 184938630,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateBeamSourceData"),
@@ -9595,6 +10185,7 @@ pub enum ParamOverrideSelection {
 
 pub static PARAMOVERRIDESELECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ParamOverrideSelection",
+    name_hash: 2729676734,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -9623,6 +10214,7 @@ impl TypeObject for ParamOverrideSelection {
 
 pub static PARAMOVERRIDESELECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ParamOverrideSelection-Array",
+    name_hash: 650739722,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("ParamOverrideSelection"),
@@ -9647,6 +10239,7 @@ pub enum LocationSelection {
 
 pub static LOCATIONSELECTION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocationSelection",
+    name_hash: 4235557144,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -9675,6 +10268,7 @@ impl TypeObject for LocationSelection {
 
 pub static LOCATIONSELECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocationSelection-Array",
+    name_hash: 2107441964,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("LocationSelection"),
@@ -9683,7 +10277,8 @@ pub static LOCATIONSELECTION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateQuadBendingAngleData {
     pub _glacier_base: ProcessorData,
 }
@@ -9695,16 +10290,16 @@ impl UpdateQuadBendingAngleDataTrait for UpdateQuadBendingAngleData {
 }
 
 impl ProcessorDataTrait for UpdateQuadBendingAngleData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -9713,10 +10308,10 @@ impl ProcessorDataTrait for UpdateQuadBendingAngleData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -9732,12 +10327,15 @@ impl super::core::DataContainerTrait for UpdateQuadBendingAngleData {
 
 pub static UPDATEQUADBENDINGANGLEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateQuadBendingAngleData",
+    name_hash: 649199049,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateQuadBendingAngleData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateQuadBendingAngleData as Default>::default())),
+            create_boxed: || Box::new(<UpdateQuadBendingAngleData as Default>::default()),
         },
         fields: &[
         ],
@@ -9767,6 +10365,7 @@ impl TypeObject for UpdateQuadBendingAngleData {
 
 pub static UPDATEQUADBENDINGANGLEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateQuadBendingAngleData-Array",
+    name_hash: 189670397,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateQuadBendingAngleData"),
@@ -9775,7 +10374,8 @@ pub static UPDATEQUADBENDINGANGLEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateClipScaleData {
     pub _glacier_base: ProcessorData,
     pub lookup: Vec<i16>,
@@ -9796,16 +10396,16 @@ impl UpdateClipScaleDataTrait for UpdateClipScaleData {
 }
 
 impl ProcessorDataTrait for UpdateClipScaleData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -9814,10 +10414,10 @@ impl ProcessorDataTrait for UpdateClipScaleData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -9833,16 +10433,20 @@ impl super::core::DataContainerTrait for UpdateClipScaleData {
 
 pub static UPDATECLIPSCALEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateClipScaleData",
+    name_hash: 3963296618,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateClipScaleData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateClipScaleData as Default>::default())),
+            create_boxed: || Box::new(<UpdateClipScaleData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Lookup",
+                name_hash: 2904698983,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Int16-Array",
                 rust_offset: offset_of!(UpdateClipScaleData, lookup),
@@ -9874,6 +10478,7 @@ impl TypeObject for UpdateClipScaleData {
 
 pub static UPDATECLIPSCALEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateClipScaleData-Array",
+    name_hash: 3659015774,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateClipScaleData"),
@@ -9882,7 +10487,8 @@ pub static UPDATECLIPSCALEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SnapToWaterData {
     pub _glacier_base: ProcessorData,
     pub offset: f32,
@@ -9903,16 +10509,16 @@ impl SnapToWaterDataTrait for SnapToWaterData {
 }
 
 impl ProcessorDataTrait for SnapToWaterData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -9921,10 +10527,10 @@ impl ProcessorDataTrait for SnapToWaterData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -9940,16 +10546,20 @@ impl super::core::DataContainerTrait for SnapToWaterData {
 
 pub static SNAPTOWATERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SnapToWaterData",
+    name_hash: 379371319,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SnapToWaterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SnapToWaterData as Default>::default())),
+            create_boxed: || Box::new(<SnapToWaterData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Offset",
+                name_hash: 2871410728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SnapToWaterData, offset),
@@ -9981,6 +10591,7 @@ impl TypeObject for SnapToWaterData {
 
 pub static SNAPTOWATERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SnapToWaterData-Array",
+    name_hash: 638597251,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SnapToWaterData"),
@@ -9989,7 +10600,8 @@ pub static SNAPTOWATERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateCollisionData {
     pub _glacier_base: ProcessorData,
     pub restitution: f32,
@@ -10262,16 +10874,16 @@ impl UpdateCollisionDataTrait for UpdateCollisionData {
 }
 
 impl ProcessorDataTrait for UpdateCollisionData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -10280,10 +10892,10 @@ impl ProcessorDataTrait for UpdateCollisionData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -10299,184 +10911,216 @@ impl super::core::DataContainerTrait for UpdateCollisionData {
 
 pub static UPDATECOLLISIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateCollisionData",
+    name_hash: 3991392602,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateCollisionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateCollisionData as Default>::default())),
+            create_boxed: || Box::new(<UpdateCollisionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Restitution",
+                name_hash: 2298929185,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, restitution),
             },
             FieldInfoData {
                 name: "ReflectionBias",
+                name_hash: 1172479355,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, reflection_bias),
             },
             FieldInfoData {
                 name: "RestSpeedThreshold",
+                name_hash: 2404418597,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, rest_speed_threshold),
             },
             FieldInfoData {
                 name: "Randomness",
+                name_hash: 3549488181,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, randomness),
             },
             FieldInfoData {
                 name: "KillOnCollision",
+                name_hash: 1549172024,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateCollisionData, kill_on_collision),
             },
             FieldInfoData {
                 name: "DeathEffectOrientation",
+                name_hash: 3913889336,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterCollisionEffectOrientation",
                 rust_offset: offset_of!(UpdateCollisionData, death_effect_orientation),
             },
             FieldInfoData {
                 name: "CollisionType",
+                name_hash: 2884836771,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterCollisionType",
                 rust_offset: offset_of!(UpdateCollisionData, collision_type),
             },
             FieldInfoData {
                 name: "CollisionRadiusFactor",
+                name_hash: 3018717102,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, collision_radius_factor),
             },
             FieldInfoData {
                 name: "Method",
+                name_hash: 2647678330,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterCollisionMethod",
                 rust_offset: offset_of!(UpdateCollisionData, method),
             },
             FieldInfoData {
                 name: "Priority",
+                name_hash: 3062102871,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterCollisionPriority",
                 rust_offset: offset_of!(UpdateCollisionData, priority),
             },
             FieldInfoData {
                 name: "SnapOnTerrain",
+                name_hash: 1382853119,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateCollisionData, snap_on_terrain),
             },
             FieldInfoData {
                 name: "SnapOffsetBasedOnEmitter",
+                name_hash: 506707522,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, snap_offset_based_on_emitter),
             },
             FieldInfoData {
                 name: "SnapRelativeOffsetFactor",
+                name_hash: 2318099741,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, snap_relative_offset_factor),
             },
             FieldInfoData {
                 name: "SnapRange",
+                name_hash: 1753178838,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, snap_range),
             },
             FieldInfoData {
                 name: "SnapVelocity",
+                name_hash: 3143019262,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterSnapVelocityType",
                 rust_offset: offset_of!(UpdateCollisionData, snap_velocity),
             },
             FieldInfoData {
                 name: "SnapType",
+                name_hash: 704065105,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterTerrainSnapType",
                 rust_offset: offset_of!(UpdateCollisionData, snap_type),
             },
             FieldInfoData {
                 name: "RepelFactor",
+                name_hash: 2943661126,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, repel_factor),
             },
             FieldInfoData {
                 name: "RepelHeight",
+                name_hash: 2405445876,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, repel_height),
             },
             FieldInfoData {
                 name: "MaterialPair",
+                name_hash: 161392100,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MaterialDecl",
                 rust_offset: offset_of!(UpdateCollisionData, material_pair),
             },
             FieldInfoData {
                 name: "Throttle",
+                name_hash: 2709773613,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, throttle),
             },
             FieldInfoData {
                 name: "ThrottleFarDistance",
+                name_hash: 1502240443,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCollisionData, throttle_far_distance),
             },
             FieldInfoData {
                 name: "ThrottleEnvelope",
+                name_hash: 1377091363,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UpdateCollisionData, throttle_envelope),
             },
             FieldInfoData {
                 name: "CheckWater",
+                name_hash: 33784182,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateCollisionData, check_water),
             },
             FieldInfoData {
                 name: "CheckTerrain",
+                name_hash: 4138451316,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateCollisionData, check_terrain),
             },
             FieldInfoData {
                 name: "CheckRagdoll",
+                name_hash: 1577343516,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateCollisionData, check_ragdoll),
             },
             FieldInfoData {
                 name: "CheckCharacter",
+                name_hash: 899700346,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateCollisionData, check_character),
             },
             FieldInfoData {
                 name: "CheckGroup",
+                name_hash: 15377244,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateCollisionData, check_group),
             },
             FieldInfoData {
                 name: "CheckPhantoms",
+                name_hash: 3840994929,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateCollisionData, check_phantoms),
             },
             FieldInfoData {
                 name: "CheckSimpleShape",
+                name_hash: 2069046018,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateCollisionData, check_simple_shape),
@@ -10508,6 +11152,7 @@ impl TypeObject for UpdateCollisionData {
 
 pub static UPDATECOLLISIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateCollisionData-Array",
+    name_hash: 587007214,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateCollisionData"),
@@ -10528,6 +11173,7 @@ pub enum EmitterCollisionEffectOrientation {
 
 pub static EMITTERCOLLISIONEFFECTORIENTATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterCollisionEffectOrientation",
+    name_hash: 180761484,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -10556,6 +11202,7 @@ impl TypeObject for EmitterCollisionEffectOrientation {
 
 pub static EMITTERCOLLISIONEFFECTORIENTATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterCollisionEffectOrientation-Array",
+    name_hash: 2799469496,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterCollisionEffectOrientation"),
@@ -10577,6 +11224,7 @@ pub enum EmitterCollisionType {
 
 pub static EMITTERCOLLISIONTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterCollisionType",
+    name_hash: 979269973,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -10605,6 +11253,7 @@ impl TypeObject for EmitterCollisionType {
 
 pub static EMITTERCOLLISIONTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterCollisionType-Array",
+    name_hash: 2526828897,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterCollisionType"),
@@ -10625,6 +11274,7 @@ pub enum EmitterCollisionPriority {
 
 pub static EMITTERCOLLISIONPRIORITY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterCollisionPriority",
+    name_hash: 743830079,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -10653,6 +11303,7 @@ impl TypeObject for EmitterCollisionPriority {
 
 pub static EMITTERCOLLISIONPRIORITY_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterCollisionPriority-Array",
+    name_hash: 4280485771,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterCollisionPriority"),
@@ -10673,6 +11324,7 @@ pub enum EmitterSnapVelocityType {
 
 pub static EMITTERSNAPVELOCITYTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterSnapVelocityType",
+    name_hash: 3670048560,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -10701,6 +11353,7 @@ impl TypeObject for EmitterSnapVelocityType {
 
 pub static EMITTERSNAPVELOCITYTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterSnapVelocityType-Array",
+    name_hash: 1437895812,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterSnapVelocityType"),
@@ -10722,6 +11375,7 @@ pub enum EmitterTerrainSnapType {
 
 pub static EMITTERTERRAINSNAPTYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterTerrainSnapType",
+    name_hash: 468237968,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -10750,6 +11404,7 @@ impl TypeObject for EmitterTerrainSnapType {
 
 pub static EMITTERTERRAINSNAPTYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterTerrainSnapType-Array",
+    name_hash: 3561950372,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterTerrainSnapType"),
@@ -10770,6 +11425,7 @@ pub enum EmitterCollisionMethod {
 
 pub static EMITTERCOLLISIONMETHOD_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterCollisionMethod",
+    name_hash: 410735186,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -10798,6 +11454,7 @@ impl TypeObject for EmitterCollisionMethod {
 
 pub static EMITTERCOLLISIONMETHOD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterCollisionMethod-Array",
+    name_hash: 2246961638,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterCollisionMethod"),
@@ -10806,7 +11463,8 @@ pub static EMITTERCOLLISIONMETHOD_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateCameraProximityData {
     pub _glacier_base: ProcessorData,
     pub size: super::core::Vec3,
@@ -10845,16 +11503,16 @@ impl UpdateCameraProximityDataTrait for UpdateCameraProximityData {
 }
 
 impl ProcessorDataTrait for UpdateCameraProximityData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -10863,10 +11521,10 @@ impl ProcessorDataTrait for UpdateCameraProximityData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -10882,28 +11540,34 @@ impl super::core::DataContainerTrait for UpdateCameraProximityData {
 
 pub static UPDATECAMERAPROXIMITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateCameraProximityData",
+    name_hash: 4053840008,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateCameraProximityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateCameraProximityData as Default>::default())),
+            create_boxed: || Box::new(<UpdateCameraProximityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Size",
+                name_hash: 2089429248,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(UpdateCameraProximityData, size),
             },
             FieldInfoData {
                 name: "FadeDistance",
+                name_hash: 636128672,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(UpdateCameraProximityData, fade_distance),
             },
             FieldInfoData {
                 name: "ForwardOffset",
+                name_hash: 2564135379,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateCameraProximityData, forward_offset),
@@ -10935,6 +11599,7 @@ impl TypeObject for UpdateCameraProximityData {
 
 pub static UPDATECAMERAPROXIMITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateCameraProximityData-Array",
+    name_hash: 3617657532,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateCameraProximityData"),
@@ -10943,7 +11608,8 @@ pub static UPDATECAMERAPROXIMITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateTrapezoidShapeData {
     pub _glacier_base: ProcessorData,
     pub scale: f32,
@@ -10964,16 +11630,16 @@ impl UpdateTrapezoidShapeDataTrait for UpdateTrapezoidShapeData {
 }
 
 impl ProcessorDataTrait for UpdateTrapezoidShapeData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -10982,10 +11648,10 @@ impl ProcessorDataTrait for UpdateTrapezoidShapeData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -11001,16 +11667,20 @@ impl super::core::DataContainerTrait for UpdateTrapezoidShapeData {
 
 pub static UPDATETRAPEZOIDSHAPEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateTrapezoidShapeData",
+    name_hash: 4287057025,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateTrapezoidShapeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateTrapezoidShapeData as Default>::default())),
+            create_boxed: || Box::new(<UpdateTrapezoidShapeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateTrapezoidShapeData, scale),
@@ -11042,6 +11712,7 @@ impl TypeObject for UpdateTrapezoidShapeData {
 
 pub static UPDATETRAPEZOIDSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateTrapezoidShapeData-Array",
+    name_hash: 811083317,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateTrapezoidShapeData"),
@@ -11050,7 +11721,8 @@ pub static UPDATETRAPEZOIDSHAPEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateBackLightData {
     pub _glacier_base: ProcessorData,
     pub vertex_back_light: f32,
@@ -11098,16 +11770,16 @@ impl UpdateBackLightDataTrait for UpdateBackLightData {
 }
 
 impl ProcessorDataTrait for UpdateBackLightData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -11116,10 +11788,10 @@ impl ProcessorDataTrait for UpdateBackLightData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -11135,34 +11807,41 @@ impl super::core::DataContainerTrait for UpdateBackLightData {
 
 pub static UPDATEBACKLIGHTDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateBackLightData",
+    name_hash: 2112166129,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateBackLightData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateBackLightData as Default>::default())),
+            create_boxed: || Box::new(<UpdateBackLightData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "VertexBackLight",
+                name_hash: 3188164344,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateBackLightData, vertex_back_light),
             },
             FieldInfoData {
                 name: "GnomonBackLight",
+                name_hash: 3393722874,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateBackLightData, gnomon_back_light),
             },
             FieldInfoData {
                 name: "PixelContrast",
+                name_hash: 4138526863,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateBackLightData, pixel_contrast),
             },
             FieldInfoData {
                 name: "ViewIndependentContrast",
+                name_hash: 1092485612,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateBackLightData, view_independent_contrast),
@@ -11194,6 +11873,7 @@ impl TypeObject for UpdateBackLightData {
 
 pub static UPDATEBACKLIGHTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateBackLightData-Array",
+    name_hash: 3959225285,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateBackLightData"),
@@ -11202,7 +11882,8 @@ pub static UPDATEBACKLIGHTDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateLightWrapAroundData {
     pub _glacier_base: ProcessorData,
 }
@@ -11214,16 +11895,16 @@ impl UpdateLightWrapAroundDataTrait for UpdateLightWrapAroundData {
 }
 
 impl ProcessorDataTrait for UpdateLightWrapAroundData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -11232,10 +11913,10 @@ impl ProcessorDataTrait for UpdateLightWrapAroundData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -11251,12 +11932,15 @@ impl super::core::DataContainerTrait for UpdateLightWrapAroundData {
 
 pub static UPDATELIGHTWRAPAROUNDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateLightWrapAroundData",
+    name_hash: 2962590733,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateLightWrapAroundData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateLightWrapAroundData as Default>::default())),
+            create_boxed: || Box::new(<UpdateLightWrapAroundData as Default>::default()),
         },
         fields: &[
         ],
@@ -11286,6 +11970,7 @@ impl TypeObject for UpdateLightWrapAroundData {
 
 pub static UPDATELIGHTWRAPAROUNDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateLightWrapAroundData-Array",
+    name_hash: 1773604793,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateLightWrapAroundData"),
@@ -11294,7 +11979,8 @@ pub static UPDATELIGHTWRAPAROUNDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateTextureColorLerpData {
     pub _glacier_base: ProcessorData,
     pub texture_color_strength: f32,
@@ -11315,16 +12001,16 @@ impl UpdateTextureColorLerpDataTrait for UpdateTextureColorLerpData {
 }
 
 impl ProcessorDataTrait for UpdateTextureColorLerpData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -11333,10 +12019,10 @@ impl ProcessorDataTrait for UpdateTextureColorLerpData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -11352,16 +12038,20 @@ impl super::core::DataContainerTrait for UpdateTextureColorLerpData {
 
 pub static UPDATETEXTURECOLORLERPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateTextureColorLerpData",
+    name_hash: 631159821,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateTextureColorLerpData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateTextureColorLerpData as Default>::default())),
+            create_boxed: || Box::new(<UpdateTextureColorLerpData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TextureColorStrength",
+                name_hash: 3255846786,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateTextureColorLerpData, texture_color_strength),
@@ -11393,6 +12083,7 @@ impl TypeObject for UpdateTextureColorLerpData {
 
 pub static UPDATETEXTURECOLORLERPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateTextureColorLerpData-Array",
+    name_hash: 2900639673,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateTextureColorLerpData"),
@@ -11401,7 +12092,8 @@ pub static UPDATETEXTURECOLORLERPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateAlphaLevelScaleData {
     pub _glacier_base: ProcessorData,
     pub exponent: f32,
@@ -11422,16 +12114,16 @@ impl UpdateAlphaLevelScaleDataTrait for UpdateAlphaLevelScaleData {
 }
 
 impl ProcessorDataTrait for UpdateAlphaLevelScaleData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -11440,10 +12132,10 @@ impl ProcessorDataTrait for UpdateAlphaLevelScaleData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -11459,16 +12151,20 @@ impl super::core::DataContainerTrait for UpdateAlphaLevelScaleData {
 
 pub static UPDATEALPHALEVELSCALEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateAlphaLevelScaleData",
+    name_hash: 1969807710,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateAlphaLevelScaleData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateAlphaLevelScaleData as Default>::default())),
+            create_boxed: || Box::new(<UpdateAlphaLevelScaleData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Exponent",
+                name_hash: 4228690070,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateAlphaLevelScaleData, exponent),
@@ -11500,6 +12196,7 @@ impl TypeObject for UpdateAlphaLevelScaleData {
 
 pub static UPDATEALPHALEVELSCALEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateAlphaLevelScaleData-Array",
+    name_hash: 1279902442,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateAlphaLevelScaleData"),
@@ -11508,7 +12205,8 @@ pub static UPDATEALPHALEVELSCALEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateAlphaLevelMaxData {
     pub _glacier_base: ProcessorData,
     pub max_level: f32,
@@ -11529,16 +12227,16 @@ impl UpdateAlphaLevelMaxDataTrait for UpdateAlphaLevelMaxData {
 }
 
 impl ProcessorDataTrait for UpdateAlphaLevelMaxData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -11547,10 +12245,10 @@ impl ProcessorDataTrait for UpdateAlphaLevelMaxData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -11566,16 +12264,20 @@ impl super::core::DataContainerTrait for UpdateAlphaLevelMaxData {
 
 pub static UPDATEALPHALEVELMAXDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateAlphaLevelMaxData",
+    name_hash: 3139949842,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateAlphaLevelMaxData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateAlphaLevelMaxData as Default>::default())),
+            create_boxed: || Box::new(<UpdateAlphaLevelMaxData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MaxLevel",
+                name_hash: 429847463,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateAlphaLevelMaxData, max_level),
@@ -11607,6 +12309,7 @@ impl TypeObject for UpdateAlphaLevelMaxData {
 
 pub static UPDATEALPHALEVELMAXDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateAlphaLevelMaxData-Array",
+    name_hash: 1053899814,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateAlphaLevelMaxData"),
@@ -11615,7 +12318,8 @@ pub static UPDATEALPHALEVELMAXDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateAlphaLevelMinData {
     pub _glacier_base: ProcessorData,
     pub min_level: f32,
@@ -11636,16 +12340,16 @@ impl UpdateAlphaLevelMinDataTrait for UpdateAlphaLevelMinData {
 }
 
 impl ProcessorDataTrait for UpdateAlphaLevelMinData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -11654,10 +12358,10 @@ impl ProcessorDataTrait for UpdateAlphaLevelMinData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -11673,16 +12377,20 @@ impl super::core::DataContainerTrait for UpdateAlphaLevelMinData {
 
 pub static UPDATEALPHALEVELMINDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateAlphaLevelMinData",
+    name_hash: 2871503884,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateAlphaLevelMinData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateAlphaLevelMinData as Default>::default())),
+            create_boxed: || Box::new(<UpdateAlphaLevelMinData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "MinLevel",
+                name_hash: 3341324025,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateAlphaLevelMinData, min_level),
@@ -11714,6 +12422,7 @@ impl TypeObject for UpdateAlphaLevelMinData {
 
 pub static UPDATEALPHALEVELMINDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateAlphaLevelMinData-Array",
+    name_hash: 362175544,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateAlphaLevelMinData"),
@@ -11722,7 +12431,8 @@ pub static UPDATEALPHALEVELMINDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateRibbonTextureData {
     pub _glacier_base: ProcessorData,
     pub texture_particle_count: i32,
@@ -11761,16 +12471,16 @@ impl UpdateRibbonTextureDataTrait for UpdateRibbonTextureData {
 }
 
 impl ProcessorDataTrait for UpdateRibbonTextureData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -11779,10 +12489,10 @@ impl ProcessorDataTrait for UpdateRibbonTextureData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -11798,28 +12508,34 @@ impl super::core::DataContainerTrait for UpdateRibbonTextureData {
 
 pub static UPDATERIBBONTEXTUREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateRibbonTextureData",
+    name_hash: 568273473,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateRibbonTextureData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateRibbonTextureData as Default>::default())),
+            create_boxed: || Box::new(<UpdateRibbonTextureData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "TextureParticleCount",
+                name_hash: 338149613,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UpdateRibbonTextureData, texture_particle_count),
             },
             FieldInfoData {
                 name: "MirrorTexture",
+                name_hash: 3455583747,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateRibbonTextureData, mirror_texture),
             },
             FieldInfoData {
                 name: "BeamLikeCoords",
+                name_hash: 1822003491,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateRibbonTextureData, beam_like_coords),
@@ -11851,6 +12567,7 @@ impl TypeObject for UpdateRibbonTextureData {
 
 pub static UPDATERIBBONTEXTUREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateRibbonTextureData-Array",
+    name_hash: 827020405,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateRibbonTextureData"),
@@ -11859,7 +12576,8 @@ pub static UPDATERIBBONTEXTUREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateRibbonFadeData {
     pub _glacier_base: ProcessorData,
     pub fade_in_particle_count: i32,
@@ -11889,16 +12607,16 @@ impl UpdateRibbonFadeDataTrait for UpdateRibbonFadeData {
 }
 
 impl ProcessorDataTrait for UpdateRibbonFadeData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -11907,10 +12625,10 @@ impl ProcessorDataTrait for UpdateRibbonFadeData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -11926,22 +12644,27 @@ impl super::core::DataContainerTrait for UpdateRibbonFadeData {
 
 pub static UPDATERIBBONFADEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateRibbonFadeData",
+    name_hash: 3605702872,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateRibbonFadeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateRibbonFadeData as Default>::default())),
+            create_boxed: || Box::new(<UpdateRibbonFadeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FadeInParticleCount",
+                name_hash: 3072268947,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UpdateRibbonFadeData, fade_in_particle_count),
             },
             FieldInfoData {
                 name: "FadeOutParticleCount",
+                name_hash: 1196472378,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(UpdateRibbonFadeData, fade_out_particle_count),
@@ -11973,6 +12696,7 @@ impl TypeObject for UpdateRibbonFadeData {
 
 pub static UPDATERIBBONFADEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateRibbonFadeData-Array",
+    name_hash: 1365967724,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateRibbonFadeData"),
@@ -11981,7 +12705,8 @@ pub static UPDATERIBBONFADEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateTransparencySecondaryData {
     pub _glacier_base: ProcessorData,
 }
@@ -11993,16 +12718,16 @@ impl UpdateTransparencySecondaryDataTrait for UpdateTransparencySecondaryData {
 }
 
 impl ProcessorDataTrait for UpdateTransparencySecondaryData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -12011,10 +12736,10 @@ impl ProcessorDataTrait for UpdateTransparencySecondaryData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -12030,12 +12755,15 @@ impl super::core::DataContainerTrait for UpdateTransparencySecondaryData {
 
 pub static UPDATETRANSPARENCYSECONDARYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateTransparencySecondaryData",
+    name_hash: 263534518,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateTransparencySecondaryData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateTransparencySecondaryData as Default>::default())),
+            create_boxed: || Box::new(<UpdateTransparencySecondaryData as Default>::default()),
         },
         fields: &[
         ],
@@ -12065,6 +12793,7 @@ impl TypeObject for UpdateTransparencySecondaryData {
 
 pub static UPDATETRANSPARENCYSECONDARYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateTransparencySecondaryData-Array",
+    name_hash: 2246691842,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateTransparencySecondaryData"),
@@ -12073,7 +12802,8 @@ pub static UPDATETRANSPARENCYSECONDARYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateTransparencyData {
     pub _glacier_base: ProcessorData,
 }
@@ -12085,16 +12815,16 @@ impl UpdateTransparencyDataTrait for UpdateTransparencyData {
 }
 
 impl ProcessorDataTrait for UpdateTransparencyData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -12103,10 +12833,10 @@ impl ProcessorDataTrait for UpdateTransparencyData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -12122,12 +12852,15 @@ impl super::core::DataContainerTrait for UpdateTransparencyData {
 
 pub static UPDATETRANSPARENCYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateTransparencyData",
+    name_hash: 1968378284,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateTransparencyData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateTransparencyData as Default>::default())),
+            create_boxed: || Box::new(<UpdateTransparencyData as Default>::default()),
         },
         fields: &[
         ],
@@ -12157,6 +12890,7 @@ impl TypeObject for UpdateTransparencyData {
 
 pub static UPDATETRANSPARENCYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateTransparencyData-Array",
+    name_hash: 3719774488,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateTransparencyData"),
@@ -12165,7 +12899,8 @@ pub static UPDATETRANSPARENCYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateColorSecondaryData {
     pub _glacier_base: ProcessorData,
     pub color: super::core::Vec3,
@@ -12186,16 +12921,16 @@ impl UpdateColorSecondaryDataTrait for UpdateColorSecondaryData {
 }
 
 impl ProcessorDataTrait for UpdateColorSecondaryData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -12204,10 +12939,10 @@ impl ProcessorDataTrait for UpdateColorSecondaryData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -12223,16 +12958,20 @@ impl super::core::DataContainerTrait for UpdateColorSecondaryData {
 
 pub static UPDATECOLORSECONDARYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateColorSecondaryData",
+    name_hash: 1908400387,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateColorSecondaryData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateColorSecondaryData as Default>::default())),
+            create_boxed: || Box::new(<UpdateColorSecondaryData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Color",
+                name_hash: 212387320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(UpdateColorSecondaryData, color),
@@ -12264,6 +13003,7 @@ impl TypeObject for UpdateColorSecondaryData {
 
 pub static UPDATECOLORSECONDARYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateColorSecondaryData-Array",
+    name_hash: 788960183,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateColorSecondaryData"),
@@ -12272,7 +13012,8 @@ pub static UPDATECOLORSECONDARYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateColorData {
     pub _glacier_base: ProcessorData,
     pub color: super::core::Vec3,
@@ -12293,16 +13034,16 @@ impl UpdateColorDataTrait for UpdateColorData {
 }
 
 impl ProcessorDataTrait for UpdateColorData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -12311,10 +13052,10 @@ impl ProcessorDataTrait for UpdateColorData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -12330,16 +13071,20 @@ impl super::core::DataContainerTrait for UpdateColorData {
 
 pub static UPDATECOLORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateColorData",
+    name_hash: 1200895033,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateColorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateColorData as Default>::default())),
+            create_boxed: || Box::new(<UpdateColorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Color",
+                name_hash: 212387320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(UpdateColorData, color),
@@ -12371,6 +13116,7 @@ impl TypeObject for UpdateColorData {
 
 pub static UPDATECOLORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateColorData-Array",
+    name_hash: 3641877133,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateColorData"),
@@ -12379,7 +13125,8 @@ pub static UPDATECOLORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateCustomParamsData {
     pub _glacier_base: ProcessorData,
 }
@@ -12391,16 +13138,16 @@ impl UpdateCustomParamsDataTrait for UpdateCustomParamsData {
 }
 
 impl ProcessorDataTrait for UpdateCustomParamsData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -12409,10 +13156,10 @@ impl ProcessorDataTrait for UpdateCustomParamsData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -12428,12 +13175,15 @@ impl super::core::DataContainerTrait for UpdateCustomParamsData {
 
 pub static UPDATECUSTOMPARAMSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateCustomParamsData",
+    name_hash: 2523875179,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateCustomParamsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateCustomParamsData as Default>::default())),
+            create_boxed: || Box::new(<UpdateCustomParamsData as Default>::default()),
         },
         fields: &[
         ],
@@ -12463,6 +13213,7 @@ impl TypeObject for UpdateCustomParamsData {
 
 pub static UPDATECUSTOMPARAMSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateCustomParamsData-Array",
+    name_hash: 1151915871,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateCustomParamsData"),
@@ -12471,7 +13222,8 @@ pub static UPDATECUSTOMPARAMSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateSizeZData {
     pub _glacier_base: ProcessorData,
 }
@@ -12483,16 +13235,16 @@ impl UpdateSizeZDataTrait for UpdateSizeZData {
 }
 
 impl ProcessorDataTrait for UpdateSizeZData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -12501,10 +13253,10 @@ impl ProcessorDataTrait for UpdateSizeZData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -12520,12 +13272,15 @@ impl super::core::DataContainerTrait for UpdateSizeZData {
 
 pub static UPDATESIZEZDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateSizeZData",
+    name_hash: 3379566619,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateSizeZData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateSizeZData as Default>::default())),
+            create_boxed: || Box::new(<UpdateSizeZData as Default>::default()),
         },
         fields: &[
         ],
@@ -12555,6 +13310,7 @@ impl TypeObject for UpdateSizeZData {
 
 pub static UPDATESIZEZDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateSizeZData-Array",
+    name_hash: 1607872175,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateSizeZData"),
@@ -12563,7 +13319,8 @@ pub static UPDATESIZEZDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateSizeYData {
     pub _glacier_base: ProcessorData,
 }
@@ -12575,16 +13332,16 @@ impl UpdateSizeYDataTrait for UpdateSizeYData {
 }
 
 impl ProcessorDataTrait for UpdateSizeYData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -12593,10 +13350,10 @@ impl ProcessorDataTrait for UpdateSizeYData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -12612,12 +13369,15 @@ impl super::core::DataContainerTrait for UpdateSizeYData {
 
 pub static UPDATESIZEYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateSizeYData",
+    name_hash: 3376148440,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateSizeYData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateSizeYData as Default>::default())),
+            create_boxed: || Box::new(<UpdateSizeYData as Default>::default()),
         },
         fields: &[
         ],
@@ -12647,6 +13407,7 @@ impl TypeObject for UpdateSizeYData {
 
 pub static UPDATESIZEYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateSizeYData-Array",
+    name_hash: 1666550380,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateSizeYData"),
@@ -12655,7 +13416,8 @@ pub static UPDATESIZEYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateSizeXData {
     pub _glacier_base: ProcessorData,
 }
@@ -12667,16 +13429,16 @@ impl UpdateSizeXDataTrait for UpdateSizeXData {
 }
 
 impl ProcessorDataTrait for UpdateSizeXData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -12685,10 +13447,10 @@ impl ProcessorDataTrait for UpdateSizeXData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -12704,12 +13466,15 @@ impl super::core::DataContainerTrait for UpdateSizeXData {
 
 pub static UPDATESIZEXDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateSizeXData",
+    name_hash: 3381798937,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateSizeXData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateSizeXData as Default>::default())),
+            create_boxed: || Box::new(<UpdateSizeXData as Default>::default()),
         },
         fields: &[
         ],
@@ -12739,6 +13504,7 @@ impl TypeObject for UpdateSizeXData {
 
 pub static UPDATESIZEXDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateSizeXData-Array",
+    name_hash: 2064369069,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateSizeXData"),
@@ -12747,7 +13513,8 @@ pub static UPDATESIZEXDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateSizeData {
     pub _glacier_base: ProcessorData,
     pub pivot: super::core::Vec2,
@@ -12777,16 +13544,16 @@ impl UpdateSizeDataTrait for UpdateSizeData {
 }
 
 impl ProcessorDataTrait for UpdateSizeData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -12795,10 +13562,10 @@ impl ProcessorDataTrait for UpdateSizeData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -12814,22 +13581,27 @@ impl super::core::DataContainerTrait for UpdateSizeData {
 
 pub static UPDATESIZEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateSizeData",
+    name_hash: 1664745057,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateSizeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateSizeData as Default>::default())),
+            create_boxed: || Box::new(<UpdateSizeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Pivot",
+                name_hash: 232602033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(UpdateSizeData, pivot),
             },
             FieldInfoData {
                 name: "MultiplyWithSizeXYZ",
+                name_hash: 762965653,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateSizeData, multiply_with_size_x_y_z),
@@ -12861,6 +13633,7 @@ impl TypeObject for UpdateSizeData {
 
 pub static UPDATESIZEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateSizeData-Array",
+    name_hash: 104151381,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateSizeData"),
@@ -12869,7 +13642,8 @@ pub static UPDATESIZEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateRotationData {
     pub _glacier_base: ProcessorData,
 }
@@ -12881,16 +13655,16 @@ impl UpdateRotationDataTrait for UpdateRotationData {
 }
 
 impl ProcessorDataTrait for UpdateRotationData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -12899,10 +13673,10 @@ impl ProcessorDataTrait for UpdateRotationData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -12918,12 +13692,15 @@ impl super::core::DataContainerTrait for UpdateRotationData {
 
 pub static UPDATEROTATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateRotationData",
+    name_hash: 1283617520,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateRotationData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateRotationData as Default>::default())),
+            create_boxed: || Box::new(<UpdateRotationData as Default>::default()),
         },
         fields: &[
         ],
@@ -12953,6 +13730,7 @@ impl TypeObject for UpdateRotationData {
 
 pub static UPDATEROTATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateRotationData-Array",
+    name_hash: 2395623620,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateRotationData"),
@@ -12961,11 +13739,12 @@ pub static UPDATEROTATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateTextureCoordsData {
     pub _glacier_base: ProcessorData,
-    pub base_texture: Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>>,
-    pub normal_texture: Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>>,
+    pub base_texture: Option<LockedTypeObject /* super::render::AtlasTextureAsset */>,
+    pub normal_texture: Option<LockedTypeObject /* super::render::AtlasTextureAsset */>,
     pub disable_clip_scale_optimization: bool,
     pub modifier_u: TexCoordModifier,
     pub modifier_v: TexCoordModifier,
@@ -12980,10 +13759,10 @@ pub struct UpdateTextureCoordsData {
 }
 
 pub trait UpdateTextureCoordsDataTrait: ProcessorDataTrait {
-    fn base_texture(&self) -> &Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>>;
-    fn base_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>>;
-    fn normal_texture(&self) -> &Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>>;
-    fn normal_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>>;
+    fn base_texture(&self) -> &Option<LockedTypeObject /* super::render::AtlasTextureAsset */>;
+    fn base_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::AtlasTextureAsset */>;
+    fn normal_texture(&self) -> &Option<LockedTypeObject /* super::render::AtlasTextureAsset */>;
+    fn normal_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::AtlasTextureAsset */>;
     fn disable_clip_scale_optimization(&self) -> &bool;
     fn disable_clip_scale_optimization_mut(&mut self) -> &mut bool;
     fn modifier_u(&self) -> &TexCoordModifier;
@@ -13009,16 +13788,16 @@ pub trait UpdateTextureCoordsDataTrait: ProcessorDataTrait {
 }
 
 impl UpdateTextureCoordsDataTrait for UpdateTextureCoordsData {
-    fn base_texture(&self) -> &Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>> {
+    fn base_texture(&self) -> &Option<LockedTypeObject /* super::render::AtlasTextureAsset */> {
         &self.base_texture
     }
-    fn base_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>> {
+    fn base_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::AtlasTextureAsset */> {
         &mut self.base_texture
     }
-    fn normal_texture(&self) -> &Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>> {
+    fn normal_texture(&self) -> &Option<LockedTypeObject /* super::render::AtlasTextureAsset */> {
         &self.normal_texture
     }
-    fn normal_texture_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::render::AtlasTextureAssetTrait>>> {
+    fn normal_texture_mut(&mut self) -> &mut Option<LockedTypeObject /* super::render::AtlasTextureAsset */> {
         &mut self.normal_texture
     }
     fn disable_clip_scale_optimization(&self) -> &bool {
@@ -13090,16 +13869,16 @@ impl UpdateTextureCoordsDataTrait for UpdateTextureCoordsData {
 }
 
 impl ProcessorDataTrait for UpdateTextureCoordsData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -13108,10 +13887,10 @@ impl ProcessorDataTrait for UpdateTextureCoordsData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -13127,88 +13906,104 @@ impl super::core::DataContainerTrait for UpdateTextureCoordsData {
 
 pub static UPDATETEXTURECOORDSDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateTextureCoordsData",
+    name_hash: 2863768253,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateTextureCoordsData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateTextureCoordsData as Default>::default())),
+            create_boxed: || Box::new(<UpdateTextureCoordsData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "BaseTexture",
+                name_hash: 3738598959,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AtlasTextureAsset",
                 rust_offset: offset_of!(UpdateTextureCoordsData, base_texture),
             },
             FieldInfoData {
                 name: "NormalTexture",
+                name_hash: 2310229929,
                 flags: MemberInfoFlags::new(0),
                 field_type: "AtlasTextureAsset",
                 rust_offset: offset_of!(UpdateTextureCoordsData, normal_texture),
             },
             FieldInfoData {
                 name: "DisableClipScaleOptimization",
+                name_hash: 1209824350,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateTextureCoordsData, disable_clip_scale_optimization),
             },
             FieldInfoData {
                 name: "ModifierU",
+                name_hash: 105828583,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TexCoordModifier",
                 rust_offset: offset_of!(UpdateTextureCoordsData, modifier_u),
             },
             FieldInfoData {
                 name: "ModifierV",
+                name_hash: 105828580,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TexCoordModifier",
                 rust_offset: offset_of!(UpdateTextureCoordsData, modifier_v),
             },
             FieldInfoData {
                 name: "ScaleU",
+                name_hash: 3335406696,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateTextureCoordsData, scale_u),
             },
             FieldInfoData {
                 name: "ScaleV",
+                name_hash: 3335406699,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateTextureCoordsData, scale_v),
             },
             FieldInfoData {
                 name: "BiasU",
+                name_hash: 211418441,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateTextureCoordsData, bias_u),
             },
             FieldInfoData {
                 name: "BiasV",
+                name_hash: 211418442,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateTextureCoordsData, bias_v),
             },
             FieldInfoData {
                 name: "DirectTextureFrameLookup",
+                name_hash: 4126578312,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateTextureCoordsData, direct_texture_frame_lookup),
             },
             FieldInfoData {
                 name: "InputStartMin",
+                name_hash: 2863501049,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateTextureCoordsData, input_start_min),
             },
             FieldInfoData {
                 name: "InputStartMax",
+                name_hash: 2863501287,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateTextureCoordsData, input_start_max),
             },
             FieldInfoData {
                 name: "EnableFrameBlending",
+                name_hash: 3626109976,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateTextureCoordsData, enable_frame_blending),
@@ -13240,6 +14035,7 @@ impl TypeObject for UpdateTextureCoordsData {
 
 pub static UPDATETEXTURECOORDSDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateTextureCoordsData-Array",
+    name_hash: 2187894537,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateTextureCoordsData"),
@@ -13261,6 +14057,7 @@ pub enum TexCoordModifier {
 
 pub static TEXCOORDMODIFIER_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TexCoordModifier",
+    name_hash: 153244942,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -13289,6 +14086,7 @@ impl TypeObject for TexCoordModifier {
 
 pub static TEXCOORDMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TexCoordModifier-Array",
+    name_hash: 1389887034,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("TexCoordModifier"),
@@ -13297,7 +14095,8 @@ pub static TEXCOORDMODIFIER_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateMimicOverridesData {
     pub _glacier_base: ProcessorData,
     pub lifetime_scale: f32,
@@ -13363,16 +14162,16 @@ impl UpdateMimicOverridesDataTrait for UpdateMimicOverridesData {
 }
 
 impl ProcessorDataTrait for UpdateMimicOverridesData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -13381,10 +14180,10 @@ impl ProcessorDataTrait for UpdateMimicOverridesData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -13400,46 +14199,55 @@ impl super::core::DataContainerTrait for UpdateMimicOverridesData {
 
 pub static UPDATEMIMICOVERRIDESDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateMimicOverridesData",
+    name_hash: 3903563520,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateMimicOverridesData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateMimicOverridesData as Default>::default())),
+            create_boxed: || Box::new(<UpdateMimicOverridesData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LifetimeScale",
+                name_hash: 1605188462,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateMimicOverridesData, lifetime_scale),
             },
             FieldInfoData {
                 name: "UniqueRandom",
+                name_hash: 3286254925,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateMimicOverridesData, unique_random),
             },
             FieldInfoData {
                 name: "SizeScale",
+                name_hash: 2352552760,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateMimicOverridesData, size_scale),
             },
             FieldInfoData {
                 name: "SizeYScaleMultiplier",
+                name_hash: 2708290570,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateMimicOverridesData, size_y_scale_multiplier),
             },
             FieldInfoData {
                 name: "UniformScaleOriginal",
+                name_hash: 2211134464,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateMimicOverridesData, uniform_scale_original),
             },
             FieldInfoData {
                 name: "OverrideRotation",
+                name_hash: 336960869,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(UpdateMimicOverridesData, override_rotation),
@@ -13471,6 +14279,7 @@ impl TypeObject for UpdateMimicOverridesData {
 
 pub static UPDATEMIMICOVERRIDESDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateMimicOverridesData-Array",
+    name_hash: 522947892,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateMimicOverridesData"),
@@ -13479,25 +14288,26 @@ pub static UPDATEMIMICOVERRIDESDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MimicEmitterData {
     pub _glacier_base: ProcessorData,
-    pub emitter_assets: Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>>,
+    pub emitter_assets: Vec<Option<LockedTypeObject /* EmitterDocument */>>,
     pub kill_mimics_when_deactivated: bool,
 }
 
 pub trait MimicEmitterDataTrait: ProcessorDataTrait {
-    fn emitter_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>>;
-    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>>;
+    fn emitter_assets(&self) -> &Vec<Option<LockedTypeObject /* EmitterDocument */>>;
+    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* EmitterDocument */>>;
     fn kill_mimics_when_deactivated(&self) -> &bool;
     fn kill_mimics_when_deactivated_mut(&mut self) -> &mut bool;
 }
 
 impl MimicEmitterDataTrait for MimicEmitterData {
-    fn emitter_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>> {
+    fn emitter_assets(&self) -> &Vec<Option<LockedTypeObject /* EmitterDocument */>> {
         &self.emitter_assets
     }
-    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>> {
+    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* EmitterDocument */>> {
         &mut self.emitter_assets
     }
     fn kill_mimics_when_deactivated(&self) -> &bool {
@@ -13509,16 +14319,16 @@ impl MimicEmitterDataTrait for MimicEmitterData {
 }
 
 impl ProcessorDataTrait for MimicEmitterData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -13527,10 +14337,10 @@ impl ProcessorDataTrait for MimicEmitterData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -13546,22 +14356,27 @@ impl super::core::DataContainerTrait for MimicEmitterData {
 
 pub static MIMICEMITTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MimicEmitterData",
+    name_hash: 1000025024,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MimicEmitterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MimicEmitterData as Default>::default())),
+            create_boxed: || Box::new(<MimicEmitterData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EmitterAssets",
+                name_hash: 3008282064,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterDocument-Array",
                 rust_offset: offset_of!(MimicEmitterData, emitter_assets),
             },
             FieldInfoData {
                 name: "KillMimicsWhenDeactivated",
+                name_hash: 1133003903,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(MimicEmitterData, kill_mimics_when_deactivated),
@@ -13593,6 +14408,7 @@ impl TypeObject for MimicEmitterData {
 
 pub static MIMICEMITTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MimicEmitterData-Array",
+    name_hash: 1965007476,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("MimicEmitterData"),
@@ -13601,46 +14417,47 @@ pub static MIMICEMITTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct EmitterData {
     pub _glacier_base: ProcessorData,
-    pub emitter_assets: Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>>,
-    pub emitter_graph_assets: Vec<Option<Arc<Mutex<dyn EmitterGraphTrait>>>>,
+    pub emitter_assets: Vec<Option<LockedTypeObject /* EmitterDocument */>>,
+    pub emitter_graph_assets: Vec<Option<LockedTypeObject /* EmitterGraph */>>,
 }
 
 pub trait EmitterDataTrait: ProcessorDataTrait {
-    fn emitter_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>>;
-    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>>;
-    fn emitter_graph_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterGraphTrait>>>>;
-    fn emitter_graph_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterGraphTrait>>>>;
+    fn emitter_assets(&self) -> &Vec<Option<LockedTypeObject /* EmitterDocument */>>;
+    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* EmitterDocument */>>;
+    fn emitter_graph_assets(&self) -> &Vec<Option<LockedTypeObject /* EmitterGraph */>>;
+    fn emitter_graph_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* EmitterGraph */>>;
 }
 
 impl EmitterDataTrait for EmitterData {
-    fn emitter_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>> {
+    fn emitter_assets(&self) -> &Vec<Option<LockedTypeObject /* EmitterDocument */>> {
         &self.emitter_assets
     }
-    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterDocumentTrait>>>> {
+    fn emitter_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* EmitterDocument */>> {
         &mut self.emitter_assets
     }
-    fn emitter_graph_assets(&self) -> &Vec<Option<Arc<Mutex<dyn EmitterGraphTrait>>>> {
+    fn emitter_graph_assets(&self) -> &Vec<Option<LockedTypeObject /* EmitterGraph */>> {
         &self.emitter_graph_assets
     }
-    fn emitter_graph_assets_mut(&mut self) -> &mut Vec<Option<Arc<Mutex<dyn EmitterGraphTrait>>>> {
+    fn emitter_graph_assets_mut(&mut self) -> &mut Vec<Option<LockedTypeObject /* EmitterGraph */>> {
         &mut self.emitter_graph_assets
     }
 }
 
 impl ProcessorDataTrait for EmitterData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -13649,10 +14466,10 @@ impl ProcessorDataTrait for EmitterData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -13668,22 +14485,27 @@ impl super::core::DataContainerTrait for EmitterData {
 
 pub static EMITTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterData",
+    name_hash: 192198467,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(EmitterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<EmitterData as Default>::default())),
+            create_boxed: || Box::new(<EmitterData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EmitterAssets",
+                name_hash: 3008282064,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterDocument-Array",
                 rust_offset: offset_of!(EmitterData, emitter_assets),
             },
             FieldInfoData {
                 name: "EmitterGraphAssets",
+                name_hash: 275035388,
                 flags: MemberInfoFlags::new(144),
                 field_type: "EmitterGraph-Array",
                 rust_offset: offset_of!(EmitterData, emitter_graph_assets),
@@ -13715,6 +14537,7 @@ impl TypeObject for EmitterData {
 
 pub static EMITTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "EmitterData-Array",
+    name_hash: 2747456119,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("EmitterData"),
@@ -13723,7 +14546,8 @@ pub static EMITTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct TurbulanceData {
     pub _glacier_base: ProcessorData,
     pub intensity: f32,
@@ -13807,16 +14631,16 @@ impl TurbulanceDataTrait for TurbulanceData {
 }
 
 impl ProcessorDataTrait for TurbulanceData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -13825,10 +14649,10 @@ impl ProcessorDataTrait for TurbulanceData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -13844,58 +14668,69 @@ impl super::core::DataContainerTrait for TurbulanceData {
 
 pub static TURBULANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TurbulanceData",
+    name_hash: 3582006516,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(TurbulanceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<TurbulanceData as Default>::default())),
+            create_boxed: || Box::new(<TurbulanceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Intensity",
+                name_hash: 3836394730,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TurbulanceData, intensity),
             },
             FieldInfoData {
                 name: "NoiseType",
+                name_hash: 1737231939,
                 flags: MemberInfoFlags::new(0),
                 field_type: "TurbulenceNoiseType",
                 rust_offset: offset_of!(TurbulanceData, noise_type),
             },
             FieldInfoData {
                 name: "PeriodSpace",
+                name_hash: 2690899172,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TurbulanceData, period_space),
             },
             FieldInfoData {
                 name: "TurbulenceForceAsInstantVelocity",
+                name_hash: 2637686627,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TurbulanceData, turbulence_force_as_instant_velocity),
             },
             FieldInfoData {
                 name: "Octaves",
+                name_hash: 103989660,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Int32",
                 rust_offset: offset_of!(TurbulanceData, octaves),
             },
             FieldInfoData {
                 name: "OctavePersistence",
+                name_hash: 1735550936,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TurbulanceData, octave_persistence),
             },
             FieldInfoData {
                 name: "PerParticleRandomness",
+                name_hash: 3177160038,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(TurbulanceData, per_particle_randomness),
             },
             FieldInfoData {
                 name: "Multiplier",
+                name_hash: 2037512782,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(TurbulanceData, multiplier),
@@ -13927,6 +14762,7 @@ impl TypeObject for TurbulanceData {
 
 pub static TURBULANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TurbulanceData-Array",
+    name_hash: 3657048256,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("TurbulanceData"),
@@ -13948,6 +14784,7 @@ pub enum TurbulenceNoiseType {
 
 pub static TURBULENCENOISETYPE_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TurbulenceNoiseType",
+    name_hash: 3533383654,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -13976,6 +14813,7 @@ impl TypeObject for TurbulenceNoiseType {
 
 pub static TURBULENCENOISETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "TurbulenceNoiseType-Array",
+    name_hash: 523232466,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("TurbulenceNoiseType"),
@@ -13984,7 +14822,8 @@ pub static TURBULENCENOISETYPE_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct AirResistanceData {
     pub _glacier_base: ProcessorData,
     pub drag_factor: f32,
@@ -14005,16 +14844,16 @@ impl AirResistanceDataTrait for AirResistanceData {
 }
 
 impl ProcessorDataTrait for AirResistanceData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -14023,10 +14862,10 @@ impl ProcessorDataTrait for AirResistanceData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -14042,16 +14881,20 @@ impl super::core::DataContainerTrait for AirResistanceData {
 
 pub static AIRRESISTANCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AirResistanceData",
+    name_hash: 1780031180,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(AirResistanceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<AirResistanceData as Default>::default())),
+            create_boxed: || Box::new(<AirResistanceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "DragFactor",
+                name_hash: 709065016,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(AirResistanceData, drag_factor),
@@ -14083,6 +14926,7 @@ impl TypeObject for AirResistanceData {
 
 pub static AIRRESISTANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "AirResistanceData-Array",
+    name_hash: 3100041080,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("AirResistanceData"),
@@ -14091,7 +14935,8 @@ pub static AIRRESISTANCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldForcesData {
     pub _glacier_base: ProcessorData,
     pub forces_multiplier: f32,
@@ -14121,16 +14966,16 @@ impl WorldForcesDataTrait for WorldForcesData {
 }
 
 impl ProcessorDataTrait for WorldForcesData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -14139,10 +14984,10 @@ impl ProcessorDataTrait for WorldForcesData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -14158,22 +15003,27 @@ impl super::core::DataContainerTrait for WorldForcesData {
 
 pub static WORLDFORCESDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldForcesData",
+    name_hash: 4093814137,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WorldForcesData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldForcesData as Default>::default())),
+            create_boxed: || Box::new(<WorldForcesData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ForcesMultiplier",
+                name_hash: 1940626880,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldForcesData, forces_multiplier),
             },
             FieldInfoData {
                 name: "PerParticleRandomness",
+                name_hash: 3177160038,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldForcesData, per_particle_randomness),
@@ -14205,6 +15055,7 @@ impl TypeObject for WorldForcesData {
 
 pub static WORLDFORCESDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldForcesData-Array",
+    name_hash: 1555121229,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("WorldForcesData"),
@@ -14213,7 +15064,8 @@ pub static WORLDFORCESDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct WorldWindData {
     pub _glacier_base: ProcessorData,
     pub wind_multiplier: f32,
@@ -14243,16 +15095,16 @@ impl WorldWindDataTrait for WorldWindData {
 }
 
 impl ProcessorDataTrait for WorldWindData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -14261,10 +15113,10 @@ impl ProcessorDataTrait for WorldWindData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -14280,22 +15132,27 @@ impl super::core::DataContainerTrait for WorldWindData {
 
 pub static WORLDWINDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldWindData",
+    name_hash: 1284683235,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(WorldWindData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<WorldWindData as Default>::default())),
+            create_boxed: || Box::new(<WorldWindData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "WindMultiplier",
+                name_hash: 1029515866,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldWindData, wind_multiplier),
             },
             FieldInfoData {
                 name: "PerParticleRandomness",
+                name_hash: 3177160038,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(WorldWindData, per_particle_randomness),
@@ -14327,6 +15184,7 @@ impl TypeObject for WorldWindData {
 
 pub static WORLDWINDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "WorldWindData-Array",
+    name_hash: 2311440855,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("WorldWindData"),
@@ -14335,7 +15193,8 @@ pub static WORLDWINDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct LocalForceData {
     pub _glacier_base: ProcessorData,
     pub local_force: super::core::Vec3,
@@ -14374,16 +15233,16 @@ impl LocalForceDataTrait for LocalForceData {
 }
 
 impl ProcessorDataTrait for LocalForceData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -14392,10 +15251,10 @@ impl ProcessorDataTrait for LocalForceData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -14411,28 +15270,34 @@ impl super::core::DataContainerTrait for LocalForceData {
 
 pub static LOCALFORCEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalForceData",
+    name_hash: 3870484293,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(LocalForceData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<LocalForceData as Default>::default())),
+            create_boxed: || Box::new(<LocalForceData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "LocalForce",
+                name_hash: 4022902837,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(LocalForceData, local_force),
             },
             FieldInfoData {
                 name: "EmitterLocalSpaceForce",
+                name_hash: 1801745895,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(LocalForceData, emitter_local_space_force),
             },
             FieldInfoData {
                 name: "PerParticleRandomness",
+                name_hash: 3177160038,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(LocalForceData, per_particle_randomness),
@@ -14464,6 +15329,7 @@ impl TypeObject for LocalForceData {
 
 pub static LOCALFORCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "LocalForceData-Array",
+    name_hash: 3900211057,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("LocalForceData"),
@@ -14472,7 +15338,8 @@ pub static LOCALFORCEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct GravityData {
     pub _glacier_base: ProcessorData,
     pub gravity: f32,
@@ -14502,16 +15369,16 @@ impl GravityDataTrait for GravityData {
 }
 
 impl ProcessorDataTrait for GravityData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -14520,10 +15387,10 @@ impl ProcessorDataTrait for GravityData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -14539,22 +15406,27 @@ impl super::core::DataContainerTrait for GravityData {
 
 pub static GRAVITYDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GravityData",
+    name_hash: 4074787859,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(GravityData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<GravityData as Default>::default())),
+            create_boxed: || Box::new(<GravityData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Gravity",
+                name_hash: 3295092963,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GravityData, gravity),
             },
             FieldInfoData {
                 name: "PerParticleRandomness",
+                name_hash: 3177160038,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(GravityData, per_particle_randomness),
@@ -14586,6 +15458,7 @@ impl TypeObject for GravityData {
 
 pub static GRAVITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "GravityData-Array",
+    name_hash: 1090784935,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("GravityData"),
@@ -14594,13 +15467,14 @@ pub static GRAVITYDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct UpdateAgeData {
     pub _glacier_base: ProcessorData,
     pub lifetime: f32,
     pub random_lifetime_scale: f32,
     pub max_factor: f32,
-    pub death_effect: Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>,
+    pub death_effect: Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>,
     pub throttle: f32,
     pub throttle_far_distance: f32,
     pub throttle_envelope: super::core::Vec4,
@@ -14613,8 +15487,8 @@ pub trait UpdateAgeDataTrait: ProcessorDataTrait {
     fn random_lifetime_scale_mut(&mut self) -> &mut f32;
     fn max_factor(&self) -> &f32;
     fn max_factor_mut(&mut self) -> &mut f32;
-    fn death_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
-    fn death_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>>;
+    fn death_effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
+    fn death_effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */>;
     fn throttle(&self) -> &f32;
     fn throttle_mut(&mut self) -> &mut f32;
     fn throttle_far_distance(&self) -> &f32;
@@ -14642,10 +15516,10 @@ impl UpdateAgeDataTrait for UpdateAgeData {
     fn max_factor_mut(&mut self) -> &mut f32 {
         &mut self.max_factor
     }
-    fn death_effect(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn death_effect(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &self.death_effect
     }
-    fn death_effect_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectBlueprintTrait>>> {
+    fn death_effect_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectBlueprint */> {
         &mut self.death_effect
     }
     fn throttle(&self) -> &f32 {
@@ -14669,16 +15543,16 @@ impl UpdateAgeDataTrait for UpdateAgeData {
 }
 
 impl ProcessorDataTrait for UpdateAgeData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -14687,10 +15561,10 @@ impl ProcessorDataTrait for UpdateAgeData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -14706,52 +15580,62 @@ impl super::core::DataContainerTrait for UpdateAgeData {
 
 pub static UPDATEAGEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateAgeData",
+    name_hash: 2951865031,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(UpdateAgeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<UpdateAgeData as Default>::default())),
+            create_boxed: || Box::new(<UpdateAgeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Lifetime",
+                name_hash: 2450521238,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateAgeData, lifetime),
             },
             FieldInfoData {
                 name: "RandomLifetimeScale",
+                name_hash: 3634771349,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateAgeData, random_lifetime_scale),
             },
             FieldInfoData {
                 name: "MaxFactor",
+                name_hash: 1221892220,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateAgeData, max_factor),
             },
             FieldInfoData {
                 name: "DeathEffect",
+                name_hash: 1034183726,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EffectBlueprint",
                 rust_offset: offset_of!(UpdateAgeData, death_effect),
             },
             FieldInfoData {
                 name: "Throttle",
+                name_hash: 2709773613,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateAgeData, throttle),
             },
             FieldInfoData {
                 name: "ThrottleFarDistance",
+                name_hash: 1502240443,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(UpdateAgeData, throttle_far_distance),
             },
             FieldInfoData {
                 name: "ThrottleEnvelope",
+                name_hash: 1377091363,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(UpdateAgeData, throttle_envelope),
@@ -14783,6 +15667,7 @@ impl TypeObject for UpdateAgeData {
 
 pub static UPDATEAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "UpdateAgeData-Array",
+    name_hash: 2559726579,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("UpdateAgeData"),
@@ -14791,7 +15676,8 @@ pub static UPDATEAGEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnColorRandomData {
     pub _glacier_base: ProcessorData,
     pub color0: super::core::Vec3,
@@ -14821,16 +15707,16 @@ impl SpawnColorRandomDataTrait for SpawnColorRandomData {
 }
 
 impl ProcessorDataTrait for SpawnColorRandomData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -14839,10 +15725,10 @@ impl ProcessorDataTrait for SpawnColorRandomData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -14858,22 +15744,27 @@ impl super::core::DataContainerTrait for SpawnColorRandomData {
 
 pub static SPAWNCOLORRANDOMDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnColorRandomData",
+    name_hash: 1313579496,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnColorRandomData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnColorRandomData as Default>::default())),
+            create_boxed: || Box::new(<SpawnColorRandomData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Color0",
+                name_hash: 2713814216,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(SpawnColorRandomData, color0),
             },
             FieldInfoData {
                 name: "Color1",
+                name_hash: 2713814217,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(SpawnColorRandomData, color1),
@@ -14905,6 +15796,7 @@ impl TypeObject for SpawnColorRandomData {
 
 pub static SPAWNCOLORRANDOMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnColorRandomData-Array",
+    name_hash: 1734824924,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnColorRandomData"),
@@ -14913,7 +15805,8 @@ pub static SPAWNCOLORRANDOMDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnRotationSpeedData {
     pub _glacier_base: ProcessorData,
     pub rotation_speed: f32,
@@ -14934,16 +15827,16 @@ impl SpawnRotationSpeedDataTrait for SpawnRotationSpeedData {
 }
 
 impl ProcessorDataTrait for SpawnRotationSpeedData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -14952,10 +15845,10 @@ impl ProcessorDataTrait for SpawnRotationSpeedData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -14971,16 +15864,20 @@ impl super::core::DataContainerTrait for SpawnRotationSpeedData {
 
 pub static SPAWNROTATIONSPEEDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnRotationSpeedData",
+    name_hash: 2775393693,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnRotationSpeedData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnRotationSpeedData as Default>::default())),
+            create_boxed: || Box::new(<SpawnRotationSpeedData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RotationSpeed",
+                name_hash: 802351446,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnRotationSpeedData, rotation_speed),
@@ -15012,6 +15909,7 @@ impl TypeObject for SpawnRotationSpeedData {
 
 pub static SPAWNROTATIONSPEEDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnRotationSpeedData-Array",
+    name_hash: 1053724969,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnRotationSpeedData"),
@@ -15020,7 +15918,8 @@ pub static SPAWNROTATIONSPEEDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnOrientationData {
     pub _glacier_base: ProcessorData,
 }
@@ -15032,16 +15931,16 @@ impl SpawnOrientationDataTrait for SpawnOrientationData {
 }
 
 impl ProcessorDataTrait for SpawnOrientationData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -15050,10 +15949,10 @@ impl ProcessorDataTrait for SpawnOrientationData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -15069,12 +15968,15 @@ impl super::core::DataContainerTrait for SpawnOrientationData {
 
 pub static SPAWNORIENTATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnOrientationData",
+    name_hash: 4174572152,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnOrientationData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnOrientationData as Default>::default())),
+            create_boxed: || Box::new(<SpawnOrientationData as Default>::default()),
         },
         fields: &[
         ],
@@ -15104,6 +16006,7 @@ impl TypeObject for SpawnOrientationData {
 
 pub static SPAWNORIENTATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnOrientationData-Array",
+    name_hash: 1224066124,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnOrientationData"),
@@ -15112,7 +16015,8 @@ pub static SPAWNORIENTATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnRotationData {
     pub _glacier_base: ProcessorData,
     pub rotation: f32,
@@ -15133,16 +16037,16 @@ impl SpawnRotationDataTrait for SpawnRotationData {
 }
 
 impl ProcessorDataTrait for SpawnRotationData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -15151,10 +16055,10 @@ impl ProcessorDataTrait for SpawnRotationData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -15170,16 +16074,20 @@ impl super::core::DataContainerTrait for SpawnRotationData {
 
 pub static SPAWNROTATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnRotationData",
+    name_hash: 2437646906,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnRotationData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnRotationData as Default>::default())),
+            create_boxed: || Box::new(<SpawnRotationData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Rotation",
+                name_hash: 48673745,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnRotationData, rotation),
@@ -15211,6 +16119,7 @@ impl TypeObject for SpawnRotationData {
 
 pub static SPAWNROTATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnRotationData-Array",
+    name_hash: 634629262,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnRotationData"),
@@ -15219,7 +16128,8 @@ pub static SPAWNROTATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnAnimationFrameData {
     pub _glacier_base: ProcessorData,
     pub animation_frame: u32,
@@ -15240,16 +16150,16 @@ impl SpawnAnimationFrameDataTrait for SpawnAnimationFrameData {
 }
 
 impl ProcessorDataTrait for SpawnAnimationFrameData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -15258,10 +16168,10 @@ impl ProcessorDataTrait for SpawnAnimationFrameData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -15277,16 +16187,20 @@ impl super::core::DataContainerTrait for SpawnAnimationFrameData {
 
 pub static SPAWNANIMATIONFRAMEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnAnimationFrameData",
+    name_hash: 3191112837,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnAnimationFrameData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnAnimationFrameData as Default>::default())),
+            create_boxed: || Box::new(<SpawnAnimationFrameData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AnimationFrame",
+                name_hash: 3086820910,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Uint32",
                 rust_offset: offset_of!(SpawnAnimationFrameData, animation_frame),
@@ -15318,6 +16232,7 @@ impl TypeObject for SpawnAnimationFrameData {
 
 pub static SPAWNANIMATIONFRAMEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnAnimationFrameData-Array",
+    name_hash: 1531907121,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnAnimationFrameData"),
@@ -15326,7 +16241,8 @@ pub static SPAWNANIMATIONFRAMEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnAnimationData {
     pub _glacier_base: ProcessorData,
     pub animation_speed: f32,
@@ -15356,16 +16272,16 @@ impl SpawnAnimationDataTrait for SpawnAnimationData {
 }
 
 impl ProcessorDataTrait for SpawnAnimationData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -15374,10 +16290,10 @@ impl ProcessorDataTrait for SpawnAnimationData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -15393,22 +16309,27 @@ impl super::core::DataContainerTrait for SpawnAnimationData {
 
 pub static SPAWNANIMATIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnAnimationData",
+    name_hash: 3365336568,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnAnimationData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnAnimationData as Default>::default())),
+            create_boxed: || Box::new(<SpawnAnimationData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "AnimationSpeed",
+                name_hash: 3065159348,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnAnimationData, animation_speed),
             },
             FieldInfoData {
                 name: "BasedOnLifetime",
+                name_hash: 2690501734,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SpawnAnimationData, based_on_lifetime),
@@ -15440,6 +16361,7 @@ impl TypeObject for SpawnAnimationData {
 
 pub static SPAWNANIMATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnAnimationData-Array",
+    name_hash: 427061196,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnAnimationData"),
@@ -15448,7 +16370,8 @@ pub static SPAWNANIMATIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnPositionData {
     pub _glacier_base: ProcessorData,
     pub apply_screen_aspect_ratio: bool,
@@ -15469,16 +16392,16 @@ impl SpawnPositionDataTrait for SpawnPositionData {
 }
 
 impl ProcessorDataTrait for SpawnPositionData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -15487,10 +16410,10 @@ impl ProcessorDataTrait for SpawnPositionData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -15506,16 +16429,20 @@ impl super::core::DataContainerTrait for SpawnPositionData {
 
 pub static SPAWNPOSITIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnPositionData",
+    name_hash: 2821894423,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnPositionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnPositionData as Default>::default())),
+            create_boxed: || Box::new(<SpawnPositionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "ApplyScreenAspectRatio",
+                name_hash: 3184300044,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SpawnPositionData, apply_screen_aspect_ratio),
@@ -15547,6 +16474,7 @@ impl TypeObject for SpawnPositionData {
 
 pub static SPAWNPOSITIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnPositionData-Array",
+    name_hash: 891804067,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnPositionData"),
@@ -15555,7 +16483,8 @@ pub static SPAWNPOSITIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnSizeData {
     pub _glacier_base: ProcessorData,
     pub size: f32,
@@ -15576,16 +16505,16 @@ impl SpawnSizeDataTrait for SpawnSizeData {
 }
 
 impl ProcessorDataTrait for SpawnSizeData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -15594,10 +16523,10 @@ impl ProcessorDataTrait for SpawnSizeData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -15613,16 +16542,20 @@ impl super::core::DataContainerTrait for SpawnSizeData {
 
 pub static SPAWNSIZEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnSizeData",
+    name_hash: 2668042923,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnSizeData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnSizeData as Default>::default())),
+            create_boxed: || Box::new(<SpawnSizeData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Size",
+                name_hash: 2089429248,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnSizeData, size),
@@ -15654,6 +16587,7 @@ impl TypeObject for SpawnSizeData {
 
 pub static SPAWNSIZEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnSizeData-Array",
+    name_hash: 2556303903,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnSizeData"),
@@ -15662,7 +16596,8 @@ pub static SPAWNSIZEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnSpeedData {
     pub _glacier_base: ProcessorData,
     pub speed: f32,
@@ -15683,16 +16618,16 @@ impl SpawnSpeedDataTrait for SpawnSpeedData {
 }
 
 impl ProcessorDataTrait for SpawnSpeedData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -15701,10 +16636,10 @@ impl ProcessorDataTrait for SpawnSpeedData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -15720,16 +16655,20 @@ impl super::core::DataContainerTrait for SpawnSpeedData {
 
 pub static SPAWNSPEEDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnSpeedData",
+    name_hash: 2004121417,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnSpeedData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnSpeedData as Default>::default())),
+            create_boxed: || Box::new(<SpawnSpeedData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Speed",
+                name_hash: 230887042,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnSpeedData, speed),
@@ -15761,6 +16700,7 @@ impl TypeObject for SpawnSpeedData {
 
 pub static SPAWNSPEEDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnSpeedData-Array",
+    name_hash: 694533501,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnSpeedData"),
@@ -15769,7 +16709,8 @@ pub static SPAWNSPEEDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnDirectionData {
     pub _glacier_base: ProcessorData,
     pub inherit_speed_and_direction_from_emitter: bool,
@@ -15826,16 +16767,16 @@ impl SpawnDirectionDataTrait for SpawnDirectionData {
 }
 
 impl ProcessorDataTrait for SpawnDirectionData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -15844,10 +16785,10 @@ impl ProcessorDataTrait for SpawnDirectionData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -15863,40 +16804,48 @@ impl super::core::DataContainerTrait for SpawnDirectionData {
 
 pub static SPAWNDIRECTIONDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnDirectionData",
+    name_hash: 3068717195,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnDirectionData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnDirectionData as Default>::default())),
+            create_boxed: || Box::new(<SpawnDirectionData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "InheritSpeedAndDirectionFromEmitter",
+                name_hash: 1871208809,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SpawnDirectionData, inherit_speed_and_direction_from_emitter),
             },
             FieldInfoData {
                 name: "DirectionFromEmitterOrigin",
+                name_hash: 657561364,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnDirectionData, direction_from_emitter_origin),
             },
             FieldInfoData {
                 name: "InheritSpeedAmount",
+                name_hash: 1379199595,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnDirectionData, inherit_speed_amount),
             },
             FieldInfoData {
                 name: "InheritSpeedSmoothingFactor",
+                name_hash: 2252248968,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnDirectionData, inherit_speed_smoothing_factor),
             },
             FieldInfoData {
                 name: "InheritSpeedRandomness",
+                name_hash: 3521661943,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnDirectionData, inherit_speed_randomness),
@@ -15928,6 +16877,7 @@ impl TypeObject for SpawnDirectionData {
 
 pub static SPAWNDIRECTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnDirectionData-Array",
+    name_hash: 2251724607,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnDirectionData"),
@@ -15936,7 +16886,8 @@ pub static SPAWNDIRECTIONDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnPointCloudData {
     pub _glacier_base: ProcessorData,
 }
@@ -15948,16 +16899,16 @@ impl SpawnPointCloudDataTrait for SpawnPointCloudData {
 }
 
 impl ProcessorDataTrait for SpawnPointCloudData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -15966,10 +16917,10 @@ impl ProcessorDataTrait for SpawnPointCloudData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -15985,12 +16936,15 @@ impl super::core::DataContainerTrait for SpawnPointCloudData {
 
 pub static SPAWNPOINTCLOUDDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnPointCloudData",
+    name_hash: 546482035,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnPointCloudData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnPointCloudData as Default>::default())),
+            create_boxed: || Box::new(<SpawnPointCloudData as Default>::default()),
         },
         fields: &[
         ],
@@ -16020,6 +16974,7 @@ impl TypeObject for SpawnPointCloudData {
 
 pub static SPAWNPOINTCLOUDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnPointCloudData-Array",
+    name_hash: 15180615,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnPointCloudData"),
@@ -16028,7 +16983,8 @@ pub static SPAWNPOINTCLOUDDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PreRollData {
     pub _glacier_base: ProcessorData,
     pub pre_roll: f32,
@@ -16067,16 +17023,16 @@ impl PreRollDataTrait for PreRollData {
 }
 
 impl ProcessorDataTrait for PreRollData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -16085,10 +17041,10 @@ impl ProcessorDataTrait for PreRollData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -16104,28 +17060,34 @@ impl super::core::DataContainerTrait for PreRollData {
 
 pub static PREROLLDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreRollData",
+    name_hash: 1019336239,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PreRollData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PreRollData as Default>::default())),
+            create_boxed: || Box::new(<PreRollData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "PreRoll",
+                name_hash: 3464589919,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PreRollData, pre_roll),
             },
             FieldInfoData {
                 name: "UpdatesPerSecond",
+                name_hash: 2192548880,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PreRollData, updates_per_second),
             },
             FieldInfoData {
                 name: "SkipSimulatePostPreRoll",
+                name_hash: 2583223736,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(PreRollData, skip_simulate_post_pre_roll),
@@ -16157,6 +17119,7 @@ impl TypeObject for PreRollData {
 
 pub static PREROLLDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PreRollData-Array",
+    name_hash: 2186748827,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("PreRollData"),
@@ -16165,7 +17128,8 @@ pub static PREROLLDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnRibbonRateData {
     pub _glacier_base: ProcessorData,
     pub spawn_rate: f32,
@@ -16204,16 +17168,16 @@ impl SpawnRibbonRateDataTrait for SpawnRibbonRateData {
 }
 
 impl ProcessorDataTrait for SpawnRibbonRateData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -16222,10 +17186,10 @@ impl ProcessorDataTrait for SpawnRibbonRateData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -16241,28 +17205,34 @@ impl super::core::DataContainerTrait for SpawnRibbonRateData {
 
 pub static SPAWNRIBBONRATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnRibbonRateData",
+    name_hash: 201544598,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnRibbonRateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnRibbonRateData as Default>::default())),
+            create_boxed: || Box::new(<SpawnRibbonRateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SpawnRate",
+                name_hash: 2317161148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnRibbonRateData, spawn_rate),
             },
             FieldInfoData {
                 name: "DistributeOverDistance",
+                name_hash: 2314066943,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SpawnRibbonRateData, distribute_over_distance),
             },
             FieldInfoData {
                 name: "AngleDeviation",
+                name_hash: 1435512583,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnRibbonRateData, angle_deviation),
@@ -16294,6 +17264,7 @@ impl TypeObject for SpawnRibbonRateData {
 
 pub static SPAWNRIBBONRATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnRibbonRateData-Array",
+    name_hash: 1345407138,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnRibbonRateData"),
@@ -16302,7 +17273,8 @@ pub static SPAWNRIBBONRATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SpawnRateData {
     pub _glacier_base: ProcessorData,
     pub spawn_rate: f32,
@@ -16341,16 +17313,16 @@ impl SpawnRateDataTrait for SpawnRateData {
 }
 
 impl ProcessorDataTrait for SpawnRateData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -16359,10 +17331,10 @@ impl ProcessorDataTrait for SpawnRateData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -16378,28 +17350,34 @@ impl super::core::DataContainerTrait for SpawnRateData {
 
 pub static SPAWNRATEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnRateData",
+    name_hash: 2747229580,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SpawnRateData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SpawnRateData as Default>::default())),
+            create_boxed: || Box::new(<SpawnRateData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SpawnRate",
+                name_hash: 2317161148,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SpawnRateData, spawn_rate),
             },
             FieldInfoData {
                 name: "DistributeOverTime",
+                name_hash: 2990510569,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SpawnRateData, distribute_over_time),
             },
             FieldInfoData {
                 name: "DistributeOverDistance",
+                name_hash: 2314066943,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SpawnRateData, distribute_over_distance),
@@ -16431,6 +17409,7 @@ impl TypeObject for SpawnRateData {
 
 pub static SPAWNRATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SpawnRateData-Array",
+    name_hash: 913520056,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SpawnRateData"),
@@ -16439,7 +17418,8 @@ pub static SPAWNRATEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CustomShaderData {
     pub _glacier_base: ProcessorData,
     pub shader: super::render_base::SurfaceShaderInstanceDataStruct,
@@ -16496,16 +17476,16 @@ impl CustomShaderDataTrait for CustomShaderData {
 }
 
 impl ProcessorDataTrait for CustomShaderData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -16514,10 +17494,10 @@ impl ProcessorDataTrait for CustomShaderData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -16533,40 +17513,48 @@ impl super::core::DataContainerTrait for CustomShaderData {
 
 pub static CUSTOMSHADERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomShaderData",
+    name_hash: 656079087,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CustomShaderData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CustomShaderData as Default>::default())),
+            create_boxed: || Box::new(<CustomShaderData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Shader",
+                name_hash: 3352909900,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SurfaceShaderInstanceDataStruct",
                 rust_offset: offset_of!(CustomShaderData, shader),
             },
             FieldInfoData {
                 name: "AnimationFrameCount",
+                name_hash: 1220614861,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CustomShaderData, animation_frame_count),
             },
             FieldInfoData {
                 name: "AnimationFrameColumnCount",
+                name_hash: 3878152251,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CustomShaderData, animation_frame_column_count),
             },
             FieldInfoData {
                 name: "EmitterDrawOrder",
+                name_hash: 3440058429,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterDrawOrder",
                 rust_offset: offset_of!(CustomShaderData, emitter_draw_order),
             },
             FieldInfoData {
                 name: "ParticleSorting",
+                name_hash: 1703784523,
                 flags: MemberInfoFlags::new(0),
                 field_type: "ParticleSorting",
                 rust_offset: offset_of!(CustomShaderData, particle_sorting),
@@ -16598,6 +17586,7 @@ impl TypeObject for CustomShaderData {
 
 pub static CUSTOMSHADERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CustomShaderData-Array",
+    name_hash: 200496859,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("CustomShaderData"),
@@ -16606,37 +17595,38 @@ pub static CUSTOMSHADERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BaseEmitterData {
     pub _glacier_base: ProcessorData,
-    pub emitter_asset: Option<Arc<Mutex<dyn EmitterDocumentTrait>>>,
+    pub emitter_asset: Option<LockedTypeObject /* EmitterDocument */>,
 }
 
 pub trait BaseEmitterDataTrait: ProcessorDataTrait {
-    fn emitter_asset(&self) -> &Option<Arc<Mutex<dyn EmitterDocumentTrait>>>;
-    fn emitter_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterDocumentTrait>>>;
+    fn emitter_asset(&self) -> &Option<LockedTypeObject /* EmitterDocument */>;
+    fn emitter_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterDocument */>;
 }
 
 impl BaseEmitterDataTrait for BaseEmitterData {
-    fn emitter_asset(&self) -> &Option<Arc<Mutex<dyn EmitterDocumentTrait>>> {
+    fn emitter_asset(&self) -> &Option<LockedTypeObject /* EmitterDocument */> {
         &self.emitter_asset
     }
-    fn emitter_asset_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EmitterDocumentTrait>>> {
+    fn emitter_asset_mut(&mut self) -> &mut Option<LockedTypeObject /* EmitterDocument */> {
         &mut self.emitter_asset
     }
 }
 
 impl ProcessorDataTrait for BaseEmitterData {
-    fn pre(&self) -> &Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre(&self) -> &Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre()
     }
-    fn pre_mut(&mut self) -> &mut Option<Arc<Mutex<dyn EvaluatorDataTrait>>> {
+    fn pre_mut(&mut self) -> &mut Option<LockedTypeObject /* EvaluatorData */> {
         self._glacier_base.pre_mut()
     }
-    fn next_processor(&self) -> &Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor(&self) -> &Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor()
     }
-    fn next_processor_mut(&mut self) -> &mut Option<Arc<Mutex<dyn ProcessorDataTrait>>> {
+    fn next_processor_mut(&mut self) -> &mut Option<LockedTypeObject /* ProcessorData */> {
         self._glacier_base.next_processor_mut()
     }
     fn evaluator_input(&self) -> &EmittableField {
@@ -16645,10 +17635,10 @@ impl ProcessorDataTrait for BaseEmitterData {
     fn evaluator_input_mut(&mut self) -> &mut EmittableField {
         self._glacier_base.evaluator_input_mut()
     }
-    fn evaluator_input_param(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param()
     }
-    fn evaluator_input_param_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn evaluator_input_param_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.evaluator_input_param_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -16664,16 +17654,20 @@ impl super::core::DataContainerTrait for BaseEmitterData {
 
 pub static BASEEMITTERDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseEmitterData",
+    name_hash: 1273302390,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(PROCESSORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BaseEmitterData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BaseEmitterData as Default>::default())),
+            create_boxed: || Box::new(<BaseEmitterData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "EmitterAsset",
+                name_hash: 2043417923,
                 flags: MemberInfoFlags::new(0),
                 field_type: "EmitterDocument",
                 rust_offset: offset_of!(BaseEmitterData, emitter_asset),
@@ -16705,6 +17699,7 @@ impl TypeObject for BaseEmitterData {
 
 pub static BASEEMITTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BaseEmitterData-Array",
+    name_hash: 3494031938,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("BaseEmitterData"),
@@ -16713,7 +17708,8 @@ pub static BASEEMITTERDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PolynomialXYZWEvaluatorData {
     pub _glacier_base: EvaluatorData,
     pub x_coefficients: super::core::Vec4,
@@ -16788,10 +17784,10 @@ impl PolynomialXYZWEvaluatorDataTrait for PolynomialXYZWEvaluatorData {
 }
 
 impl EvaluatorDataTrait for PolynomialXYZWEvaluatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -16807,52 +17803,62 @@ impl super::core::DataContainerTrait for PolynomialXYZWEvaluatorData {
 
 pub static POLYNOMIALXYZWEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialXYZWEvaluatorData",
+    name_hash: 2146733496,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PolynomialXYZWEvaluatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PolynomialXYZWEvaluatorData as Default>::default())),
+            create_boxed: || Box::new(<PolynomialXYZWEvaluatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "XCoefficients",
+                name_hash: 489061467,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(PolynomialXYZWEvaluatorData, x_coefficients),
             },
             FieldInfoData {
                 name: "YCoefficients",
+                name_hash: 2802027290,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(PolynomialXYZWEvaluatorData, y_coefficients),
             },
             FieldInfoData {
                 name: "ZCoefficients",
+                name_hash: 2945207513,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(PolynomialXYZWEvaluatorData, z_coefficients),
             },
             FieldInfoData {
                 name: "WCoefficients",
+                name_hash: 3156556180,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(PolynomialXYZWEvaluatorData, w_coefficients),
             },
             FieldInfoData {
                 name: "ScaleValue",
+                name_hash: 1405926902,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(PolynomialXYZWEvaluatorData, scale_value),
             },
             FieldInfoData {
                 name: "MinClamp",
+                name_hash: 3349357596,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(PolynomialXYZWEvaluatorData, min_clamp),
             },
             FieldInfoData {
                 name: "MaxClamp",
+                name_hash: 415055298,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(PolynomialXYZWEvaluatorData, max_clamp),
@@ -16884,6 +17890,7 @@ impl TypeObject for PolynomialXYZWEvaluatorData {
 
 pub static POLYNOMIALXYZWEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialXYZWEvaluatorData-Array",
+    name_hash: 2161694476,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("PolynomialXYZWEvaluatorData"),
@@ -16892,7 +17899,8 @@ pub static POLYNOMIALXYZWEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Typ
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MultiColorInterpData {
     pub _glacier_base: EvaluatorData,
     pub gradient: MultiColorGradient,
@@ -16913,10 +17921,10 @@ impl MultiColorInterpDataTrait for MultiColorInterpData {
 }
 
 impl EvaluatorDataTrait for MultiColorInterpData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -16932,16 +17940,20 @@ impl super::core::DataContainerTrait for MultiColorInterpData {
 
 pub static MULTICOLORINTERPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiColorInterpData",
+    name_hash: 1281236661,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(MultiColorInterpData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MultiColorInterpData as Default>::default())),
+            create_boxed: || Box::new(<MultiColorInterpData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Gradient",
+                name_hash: 1375866243,
                 flags: MemberInfoFlags::new(0),
                 field_type: "MultiColorGradient",
                 rust_offset: offset_of!(MultiColorInterpData, gradient),
@@ -16973,6 +17985,7 @@ impl TypeObject for MultiColorInterpData {
 
 pub static MULTICOLORINTERPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiColorInterpData-Array",
+    name_hash: 2818752257,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("MultiColorInterpData"),
@@ -16981,36 +17994,40 @@ pub static MULTICOLORINTERPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MultiColorGradient {
-    pub key_points: Vec<MultiColorGradientKeyPoint>,
+    pub key_points: Vec<BoxedTypeObject /* MultiColorGradientKeyPoint */>,
 }
 
 pub trait MultiColorGradientTrait: TypeObject {
-    fn key_points(&self) -> &Vec<MultiColorGradientKeyPoint>;
-    fn key_points_mut(&mut self) -> &mut Vec<MultiColorGradientKeyPoint>;
+    fn key_points(&self) -> &Vec<BoxedTypeObject /* MultiColorGradientKeyPoint */>;
+    fn key_points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MultiColorGradientKeyPoint */>;
 }
 
 impl MultiColorGradientTrait for MultiColorGradient {
-    fn key_points(&self) -> &Vec<MultiColorGradientKeyPoint> {
+    fn key_points(&self) -> &Vec<BoxedTypeObject /* MultiColorGradientKeyPoint */> {
         &self.key_points
     }
-    fn key_points_mut(&mut self) -> &mut Vec<MultiColorGradientKeyPoint> {
+    fn key_points_mut(&mut self) -> &mut Vec<BoxedTypeObject /* MultiColorGradientKeyPoint */> {
         &mut self.key_points
     }
 }
 
 pub static MULTICOLORGRADIENT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiColorGradient",
+    name_hash: 2175773079,
     flags: MemberInfoFlags::new(73),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MultiColorGradient as Default>::default())),
+            create_boxed: || Box::new(<MultiColorGradient as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "KeyPoints",
+                name_hash: 518206221,
                 flags: MemberInfoFlags::new(144),
                 field_type: "MultiColorGradientKeyPoint-Array",
                 rust_offset: offset_of!(MultiColorGradient, key_points),
@@ -17042,6 +18059,7 @@ impl TypeObject for MultiColorGradient {
 
 pub static MULTICOLORGRADIENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiColorGradient-Array",
+    name_hash: 597504547,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("MultiColorGradient"),
@@ -17050,7 +18068,8 @@ pub static MULTICOLORGRADIENT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct MultiColorGradientKeyPoint {
     pub color: super::core::Vec3,
 }
@@ -17071,15 +18090,18 @@ impl MultiColorGradientKeyPointTrait for MultiColorGradientKeyPoint {
 
 pub static MULTICOLORGRADIENTKEYPOINT_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiColorGradientKeyPoint",
+    name_hash: 3443243692,
     flags: MemberInfoFlags::new(36937),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<MultiColorGradientKeyPoint as Default>::default())),
+            create_boxed: || Box::new(<MultiColorGradientKeyPoint as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Color",
+                name_hash: 212387320,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(MultiColorGradientKeyPoint, color),
@@ -17111,6 +18133,7 @@ impl TypeObject for MultiColorGradientKeyPoint {
 
 pub static MULTICOLORGRADIENTKEYPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "MultiColorGradientKeyPoint-Array",
+    name_hash: 3048909336,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("MultiColorGradientKeyPoint"),
@@ -17119,7 +18142,8 @@ pub static MULTICOLORGRADIENTKEYPOINT_ARRAY_TYPE_INFO: &'static TypeInfo = &Type
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PolynomialColorInterpData {
     pub _glacier_base: EvaluatorData,
     pub color0: super::core::Vec3,
@@ -17158,10 +18182,10 @@ impl PolynomialColorInterpDataTrait for PolynomialColorInterpData {
 }
 
 impl EvaluatorDataTrait for PolynomialColorInterpData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -17177,28 +18201,34 @@ impl super::core::DataContainerTrait for PolynomialColorInterpData {
 
 pub static POLYNOMIALCOLORINTERPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialColorInterpData",
+    name_hash: 3870860926,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PolynomialColorInterpData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PolynomialColorInterpData as Default>::default())),
+            create_boxed: || Box::new(<PolynomialColorInterpData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Color0",
+                name_hash: 2713814216,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PolynomialColorInterpData, color0),
             },
             FieldInfoData {
                 name: "Color1",
+                name_hash: 2713814217,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(PolynomialColorInterpData, color1),
             },
             FieldInfoData {
                 name: "Coefficients",
+                name_hash: 2816855587,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(PolynomialColorInterpData, coefficients),
@@ -17230,6 +18260,7 @@ impl TypeObject for PolynomialColorInterpData {
 
 pub static POLYNOMIALCOLORINTERPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialColorInterpData-Array",
+    name_hash: 3458492234,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("PolynomialColorInterpData"),
@@ -17238,7 +18269,8 @@ pub static POLYNOMIALCOLORINTERPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeI
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct ConstantEvaluatorData {
     pub _glacier_base: EvaluatorData,
     pub scale: f32,
@@ -17259,10 +18291,10 @@ impl ConstantEvaluatorDataTrait for ConstantEvaluatorData {
 }
 
 impl EvaluatorDataTrait for ConstantEvaluatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -17278,16 +18310,20 @@ impl super::core::DataContainerTrait for ConstantEvaluatorData {
 
 pub static CONSTANTEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConstantEvaluatorData",
+    name_hash: 1367760840,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(ConstantEvaluatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<ConstantEvaluatorData as Default>::default())),
+            create_boxed: || Box::new(<ConstantEvaluatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(ConstantEvaluatorData, scale),
@@ -17319,6 +18355,7 @@ impl TypeObject for ConstantEvaluatorData {
 
 pub static CONSTANTEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "ConstantEvaluatorData-Array",
+    name_hash: 639709820,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("ConstantEvaluatorData"),
@@ -17327,7 +18364,8 @@ pub static CONSTANTEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo 
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct CameraProximityEvaluatorData {
     pub _glacier_base: EvaluatorData,
     pub size: super::core::Vec3,
@@ -17384,10 +18422,10 @@ impl CameraProximityEvaluatorDataTrait for CameraProximityEvaluatorData {
 }
 
 impl EvaluatorDataTrait for CameraProximityEvaluatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -17403,40 +18441,48 @@ impl super::core::DataContainerTrait for CameraProximityEvaluatorData {
 
 pub static CAMERAPROXIMITYEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraProximityEvaluatorData",
+    name_hash: 201903322,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(CameraProximityEvaluatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<CameraProximityEvaluatorData as Default>::default())),
+            create_boxed: || Box::new(<CameraProximityEvaluatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Size",
+                name_hash: 2089429248,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CameraProximityEvaluatorData, size),
             },
             FieldInfoData {
                 name: "Offset",
+                name_hash: 2871410728,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CameraProximityEvaluatorData, offset),
             },
             FieldInfoData {
                 name: "ForwardOffset",
+                name_hash: 2564135379,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraProximityEvaluatorData, forward_offset),
             },
             FieldInfoData {
                 name: "InnerRadius",
+                name_hash: 3334193859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(CameraProximityEvaluatorData, inner_radius),
             },
             FieldInfoData {
                 name: "InnerRadiusDirection",
+                name_hash: 3044199494,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(CameraProximityEvaluatorData, inner_radius_direction),
@@ -17468,6 +18514,7 @@ impl TypeObject for CameraProximityEvaluatorData {
 
 pub static CAMERAPROXIMITYEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "CameraProximityEvaluatorData-Array",
+    name_hash: 801939566,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("CameraProximityEvaluatorData"),
@@ -17476,7 +18523,8 @@ pub static CAMERAPROXIMITYEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &Ty
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SuperSphereEvaluatorData {
     pub _glacier_base: EvaluatorData,
     pub scale: super::core::Vec3,
@@ -17605,10 +18653,10 @@ impl SuperSphereEvaluatorDataTrait for SuperSphereEvaluatorData {
 }
 
 impl EvaluatorDataTrait for SuperSphereEvaluatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -17624,88 +18672,104 @@ impl super::core::DataContainerTrait for SuperSphereEvaluatorData {
 
 pub static SUPERSPHEREEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SuperSphereEvaluatorData",
+    name_hash: 1443439790,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SuperSphereEvaluatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SuperSphereEvaluatorData as Default>::default())),
+            create_boxed: || Box::new(<SuperSphereEvaluatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, scale),
             },
             FieldInfoData {
                 name: "Pivot",
+                name_hash: 232602033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, pivot),
             },
             FieldInfoData {
                 name: "InnerRadius",
+                name_hash: 3334193859,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, inner_radius),
             },
             FieldInfoData {
                 name: "OuterRadius",
+                name_hash: 3440386404,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, outer_radius),
             },
             FieldInfoData {
                 name: "StartZenithAngle",
+                name_hash: 822591072,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, start_zenith_angle),
             },
             FieldInfoData {
                 name: "EndZenithAngle",
+                name_hash: 3696679887,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, end_zenith_angle),
             },
             FieldInfoData {
                 name: "InnerRadiusBound",
+                name_hash: 2279697297,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, inner_radius_bound),
             },
             FieldInfoData {
                 name: "StartZenithAngleBound",
+                name_hash: 4243448082,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, start_zenith_angle_bound),
             },
             FieldInfoData {
                 name: "EndZenithAngleBound",
+                name_hash: 3276080669,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, end_zenith_angle_bound),
             },
             FieldInfoData {
                 name: "StartAzimuthAngle",
+                name_hash: 960560978,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, start_azimuth_angle),
             },
             FieldInfoData {
                 name: "EndAzimuthAngle",
+                name_hash: 2782451549,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, end_azimuth_angle),
             },
             FieldInfoData {
                 name: "DistributionAlongRadius",
+                name_hash: 579193548,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, distribution_along_radius),
             },
             FieldInfoData {
                 name: "OrientAlongZ",
+                name_hash: 2580220063,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(SuperSphereEvaluatorData, orient_along_z),
@@ -17737,6 +18801,7 @@ impl TypeObject for SuperSphereEvaluatorData {
 
 pub static SUPERSPHEREEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SuperSphereEvaluatorData-Array",
+    name_hash: 463998234,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SuperSphereEvaluatorData"),
@@ -17745,7 +18810,8 @@ pub static SUPERSPHEREEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeIn
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SphereEvaluatorData {
     pub _glacier_base: EvaluatorData,
     pub scale: super::core::Vec3,
@@ -17784,10 +18850,10 @@ impl SphereEvaluatorDataTrait for SphereEvaluatorData {
 }
 
 impl EvaluatorDataTrait for SphereEvaluatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -17803,28 +18869,34 @@ impl super::core::DataContainerTrait for SphereEvaluatorData {
 
 pub static SPHEREEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereEvaluatorData",
+    name_hash: 1160688687,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SphereEvaluatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SphereEvaluatorData as Default>::default())),
+            create_boxed: || Box::new(<SphereEvaluatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Scale",
+                name_hash: 231223453,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(SphereEvaluatorData, scale),
             },
             FieldInfoData {
                 name: "Radius",
+                name_hash: 3298407133,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SphereEvaluatorData, radius),
             },
             FieldInfoData {
                 name: "Pivot",
+                name_hash: 232602033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(SphereEvaluatorData, pivot),
@@ -17856,6 +18928,7 @@ impl TypeObject for SphereEvaluatorData {
 
 pub static SPHEREEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SphereEvaluatorData-Array",
+    name_hash: 745701787,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SphereEvaluatorData"),
@@ -17864,7 +18937,8 @@ pub static SPHEREEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct BoxEvaluatorData {
     pub _glacier_base: EvaluatorData,
     pub dimensions: super::core::Vec3,
@@ -17894,10 +18968,10 @@ impl BoxEvaluatorDataTrait for BoxEvaluatorData {
 }
 
 impl EvaluatorDataTrait for BoxEvaluatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -17913,22 +18987,27 @@ impl super::core::DataContainerTrait for BoxEvaluatorData {
 
 pub static BOXEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoxEvaluatorData",
+    name_hash: 463266019,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(BoxEvaluatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<BoxEvaluatorData as Default>::default())),
+            create_boxed: || Box::new(<BoxEvaluatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Dimensions",
+                name_hash: 2541621734,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(BoxEvaluatorData, dimensions),
             },
             FieldInfoData {
                 name: "Pivot",
+                name_hash: 232602033,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(BoxEvaluatorData, pivot),
@@ -17960,6 +19039,7 @@ impl TypeObject for BoxEvaluatorData {
 
 pub static BOXEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "BoxEvaluatorData-Array",
+    name_hash: 8664279,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("BoxEvaluatorData"),
@@ -17968,7 +19048,8 @@ pub static BOXEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomXYZWEvaluatorData {
     pub _glacier_base: EvaluatorData,
     pub random_frequency: RandomFrequency,
@@ -18070,10 +19151,10 @@ impl RandomXYZWEvaluatorDataTrait for RandomXYZWEvaluatorData {
 }
 
 impl EvaluatorDataTrait for RandomXYZWEvaluatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -18089,70 +19170,83 @@ impl super::core::DataContainerTrait for RandomXYZWEvaluatorData {
 
 pub static RANDOMXYZWEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomXYZWEvaluatorData",
+    name_hash: 2596743393,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RandomXYZWEvaluatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomXYZWEvaluatorData as Default>::default())),
+            create_boxed: || Box::new(<RandomXYZWEvaluatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RandomFrequency",
+                name_hash: 2560465210,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RandomFrequency",
                 rust_offset: offset_of!(RandomXYZWEvaluatorData, random_frequency),
             },
             FieldInfoData {
                 name: "MaxX",
+                name_hash: 2088779177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZWEvaluatorData, max_x),
             },
             FieldInfoData {
                 name: "MinX",
+                name_hash: 2088770807,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZWEvaluatorData, min_x),
             },
             FieldInfoData {
                 name: "MaxY",
+                name_hash: 2088779176,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZWEvaluatorData, max_y),
             },
             FieldInfoData {
                 name: "MinY",
+                name_hash: 2088770806,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZWEvaluatorData, min_y),
             },
             FieldInfoData {
                 name: "MaxZ",
+                name_hash: 2088779179,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZWEvaluatorData, max_z),
             },
             FieldInfoData {
                 name: "MinZ",
+                name_hash: 2088770805,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZWEvaluatorData, min_z),
             },
             FieldInfoData {
                 name: "MaxW",
+                name_hash: 2088779174,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZWEvaluatorData, max_w),
             },
             FieldInfoData {
                 name: "MinW",
+                name_hash: 2088770808,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZWEvaluatorData, min_w),
             },
             FieldInfoData {
                 name: "Mirror",
+                name_hash: 2633787068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomXYZWEvaluatorData, mirror),
@@ -18184,6 +19278,7 @@ impl TypeObject for RandomXYZWEvaluatorData {
 
 pub static RANDOMXYZWEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomXYZWEvaluatorData-Array",
+    name_hash: 2123908053,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("RandomXYZWEvaluatorData"),
@@ -18192,7 +19287,8 @@ pub static RANDOMXYZWEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInf
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomXYZEvaluatorData {
     pub _glacier_base: EvaluatorData,
     pub random_frequency: RandomFrequency,
@@ -18276,10 +19372,10 @@ impl RandomXYZEvaluatorDataTrait for RandomXYZEvaluatorData {
 }
 
 impl EvaluatorDataTrait for RandomXYZEvaluatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -18295,58 +19391,69 @@ impl super::core::DataContainerTrait for RandomXYZEvaluatorData {
 
 pub static RANDOMXYZEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomXYZEvaluatorData",
+    name_hash: 1118491446,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RandomXYZEvaluatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomXYZEvaluatorData as Default>::default())),
+            create_boxed: || Box::new(<RandomXYZEvaluatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RandomFrequency",
+                name_hash: 2560465210,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RandomFrequency",
                 rust_offset: offset_of!(RandomXYZEvaluatorData, random_frequency),
             },
             FieldInfoData {
                 name: "MaxX",
+                name_hash: 2088779177,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZEvaluatorData, max_x),
             },
             FieldInfoData {
                 name: "MinX",
+                name_hash: 2088770807,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZEvaluatorData, min_x),
             },
             FieldInfoData {
                 name: "MaxY",
+                name_hash: 2088779176,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZEvaluatorData, max_y),
             },
             FieldInfoData {
                 name: "MinY",
+                name_hash: 2088770806,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZEvaluatorData, min_y),
             },
             FieldInfoData {
                 name: "MaxZ",
+                name_hash: 2088779179,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZEvaluatorData, max_z),
             },
             FieldInfoData {
                 name: "MinZ",
+                name_hash: 2088770805,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomXYZEvaluatorData, min_z),
             },
             FieldInfoData {
                 name: "Mirror",
+                name_hash: 2633787068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomXYZEvaluatorData, mirror),
@@ -18378,6 +19485,7 @@ impl TypeObject for RandomXYZEvaluatorData {
 
 pub static RANDOMXYZEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomXYZEvaluatorData-Array",
+    name_hash: 1552287618,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("RandomXYZEvaluatorData"),
@@ -18386,7 +19494,8 @@ pub static RANDOMXYZEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RandomEvaluatorData {
     pub _glacier_base: EvaluatorData,
     pub random_frequency: RandomFrequency,
@@ -18434,10 +19543,10 @@ impl RandomEvaluatorDataTrait for RandomEvaluatorData {
 }
 
 impl EvaluatorDataTrait for RandomEvaluatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -18453,34 +19562,41 @@ impl super::core::DataContainerTrait for RandomEvaluatorData {
 
 pub static RANDOMEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomEvaluatorData",
+    name_hash: 3007759213,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RandomEvaluatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RandomEvaluatorData as Default>::default())),
+            create_boxed: || Box::new(<RandomEvaluatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "RandomFrequency",
+                name_hash: 2560465210,
                 flags: MemberInfoFlags::new(0),
                 field_type: "RandomFrequency",
                 rust_offset: offset_of!(RandomEvaluatorData, random_frequency),
             },
             FieldInfoData {
                 name: "Max",
+                name_hash: 193446865,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomEvaluatorData, max),
             },
             FieldInfoData {
                 name: "Min",
+                name_hash: 193446607,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RandomEvaluatorData, min),
             },
             FieldInfoData {
                 name: "Mirror",
+                name_hash: 2633787068,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RandomEvaluatorData, mirror),
@@ -18512,6 +19628,7 @@ impl TypeObject for RandomEvaluatorData {
 
 pub static RANDOMEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RandomEvaluatorData-Array",
+    name_hash: 599836761,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("RandomEvaluatorData"),
@@ -18520,7 +19637,8 @@ pub static RANDOMEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct RotateVectorData {
     pub _glacier_base: EvaluatorData,
     pub angle: f32,
@@ -18559,10 +19677,10 @@ impl RotateVectorDataTrait for RotateVectorData {
 }
 
 impl EvaluatorDataTrait for RotateVectorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -18578,28 +19696,34 @@ impl super::core::DataContainerTrait for RotateVectorData {
 
 pub static ROTATEVECTORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotateVectorData",
+    name_hash: 2417760053,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(RotateVectorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<RotateVectorData as Default>::default())),
+            create_boxed: || Box::new(<RotateVectorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Angle",
+                name_hash: 205597860,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(RotateVectorData, angle),
             },
             FieldInfoData {
                 name: "InputAffectsPhi",
+                name_hash: 2136254690,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RotateVectorData, input_affects_phi),
             },
             FieldInfoData {
                 name: "RotateWithinPlane",
+                name_hash: 658584111,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Boolean",
                 rust_offset: offset_of!(RotateVectorData, rotate_within_plane),
@@ -18631,6 +19755,7 @@ impl TypeObject for RotateVectorData {
 
 pub static ROTATEVECTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "RotateVectorData-Array",
+    name_hash: 3984136065,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("RotateVectorData"),
@@ -18639,10 +19764,11 @@ pub static ROTATEVECTORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SampleTextureData {
     pub _glacier_base: EvaluatorData,
-    pub gradient_data: Vec<super::core::Vec4>,
+    pub gradient_data: Vec<BoxedTypeObject /* super::core::Vec4 */>,
     pub color_intensity_max: super::core::Vec3,
     pub color_intensity_min: super::core::Vec3,
     pub texture_dimensions: super::core::Vec2,
@@ -18651,8 +19777,8 @@ pub struct SampleTextureData {
 }
 
 pub trait SampleTextureDataTrait: EvaluatorDataTrait {
-    fn gradient_data(&self) -> &Vec<super::core::Vec4>;
-    fn gradient_data_mut(&mut self) -> &mut Vec<super::core::Vec4>;
+    fn gradient_data(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */>;
+    fn gradient_data_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */>;
     fn color_intensity_max(&self) -> &super::core::Vec3;
     fn color_intensity_max_mut(&mut self) -> &mut super::core::Vec3;
     fn color_intensity_min(&self) -> &super::core::Vec3;
@@ -18666,10 +19792,10 @@ pub trait SampleTextureDataTrait: EvaluatorDataTrait {
 }
 
 impl SampleTextureDataTrait for SampleTextureData {
-    fn gradient_data(&self) -> &Vec<super::core::Vec4> {
+    fn gradient_data(&self) -> &Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &self.gradient_data
     }
-    fn gradient_data_mut(&mut self) -> &mut Vec<super::core::Vec4> {
+    fn gradient_data_mut(&mut self) -> &mut Vec<BoxedTypeObject /* super::core::Vec4 */> {
         &mut self.gradient_data
     }
     fn color_intensity_max(&self) -> &super::core::Vec3 {
@@ -18705,10 +19831,10 @@ impl SampleTextureDataTrait for SampleTextureData {
 }
 
 impl EvaluatorDataTrait for SampleTextureData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -18724,46 +19850,55 @@ impl super::core::DataContainerTrait for SampleTextureData {
 
 pub static SAMPLETEXTUREDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SampleTextureData",
+    name_hash: 2771026764,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SampleTextureData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SampleTextureData as Default>::default())),
+            create_boxed: || Box::new(<SampleTextureData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "GradientData",
+                name_hash: 2003028595,
                 flags: MemberInfoFlags::new(144),
                 field_type: "Vec4-Array",
                 rust_offset: offset_of!(SampleTextureData, gradient_data),
             },
             FieldInfoData {
                 name: "ColorIntensityMax",
+                name_hash: 707866275,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(SampleTextureData, color_intensity_max),
             },
             FieldInfoData {
                 name: "ColorIntensityMin",
+                name_hash: 707866045,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec3",
                 rust_offset: offset_of!(SampleTextureData, color_intensity_min),
             },
             FieldInfoData {
                 name: "TextureDimensions",
+                name_hash: 1486911481,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec2",
                 rust_offset: offset_of!(SampleTextureData, texture_dimensions),
             },
             FieldInfoData {
                 name: "TextureOriginU",
+                name_hash: 1728068571,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SampleTextureData, texture_origin_u),
             },
             FieldInfoData {
                 name: "TextureOriginV",
+                name_hash: 1728068568,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(SampleTextureData, texture_origin_v),
@@ -18795,6 +19930,7 @@ impl TypeObject for SampleTextureData {
 
 pub static SAMPLETEXTUREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SampleTextureData-Array",
+    name_hash: 2037490680,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SampleTextureData"),
@@ -18803,7 +19939,8 @@ pub static SAMPLETEXTUREDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct SplineData {
     pub _glacier_base: EvaluatorData,
     pub spline_curve: super::core::SplineCurve,
@@ -18824,10 +19961,10 @@ impl SplineDataTrait for SplineData {
 }
 
 impl EvaluatorDataTrait for SplineData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -18843,16 +19980,20 @@ impl super::core::DataContainerTrait for SplineData {
 
 pub static SPLINEDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SplineData",
+    name_hash: 3991778360,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(SplineData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<SplineData as Default>::default())),
+            create_boxed: || Box::new(<SplineData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "SplineCurve",
+                name_hash: 2881532991,
                 flags: MemberInfoFlags::new(0),
                 field_type: "SplineCurve",
                 rust_offset: offset_of!(SplineData, spline_curve),
@@ -18884,6 +20025,7 @@ impl TypeObject for SplineData {
 
 pub static SPLINEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "SplineData-Array",
+    name_hash: 1739906444,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("SplineData"),
@@ -18892,7 +20034,8 @@ pub static SPLINEDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PolynomialOperatorData {
     pub _glacier_base: EvaluatorData,
     pub first_operand: PolynomialTempData,
@@ -18949,10 +20092,10 @@ impl PolynomialOperatorDataTrait for PolynomialOperatorData {
 }
 
 impl EvaluatorDataTrait for PolynomialOperatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -18968,40 +20111,48 @@ impl super::core::DataContainerTrait for PolynomialOperatorData {
 
 pub static POLYNOMIALOPERATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialOperatorData",
+    name_hash: 380790903,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PolynomialOperatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PolynomialOperatorData as Default>::default())),
+            create_boxed: || Box::new(<PolynomialOperatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "FirstOperand",
+                name_hash: 3787784796,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PolynomialTempData",
                 rust_offset: offset_of!(PolynomialOperatorData, first_operand),
             },
             FieldInfoData {
                 name: "SecondOperand",
+                name_hash: 46362454,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PolynomialTempData",
                 rust_offset: offset_of!(PolynomialOperatorData, second_operand),
             },
             FieldInfoData {
                 name: "Operation",
+                name_hash: 2346271248,
                 flags: MemberInfoFlags::new(0),
                 field_type: "PolynomialOperation",
                 rust_offset: offset_of!(PolynomialOperatorData, operation),
             },
             FieldInfoData {
                 name: "MinClampResult",
+                name_hash: 3438772181,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PolynomialOperatorData, min_clamp_result),
             },
             FieldInfoData {
                 name: "MaxClampResult",
+                name_hash: 2626134155,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PolynomialOperatorData, max_clamp_result),
@@ -19033,6 +20184,7 @@ impl TypeObject for PolynomialOperatorData {
 
 pub static POLYNOMIALOPERATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialOperatorData-Array",
+    name_hash: 2605961795,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("PolynomialOperatorData"),
@@ -19053,6 +20205,7 @@ pub enum PolynomialOperation {
 
 pub static POLYNOMIALOPERATION_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialOperation",
+    name_hash: 2518886194,
     flags: MemberInfoFlags::new(49429),
     module: "Emitter",
     data: TypeInfoData::Enum,
@@ -19081,6 +20234,7 @@ impl TypeObject for PolynomialOperation {
 
 pub static POLYNOMIALOPERATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialOperation-Array",
+    name_hash: 1689103750,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("PolynomialOperation"),
@@ -19089,7 +20243,8 @@ pub static POLYNOMIALOPERATION_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PolynomialTempData {
     pub coefficients: super::core::Vec4,
     pub scale_value: f32,
@@ -19137,33 +20292,39 @@ impl PolynomialTempDataTrait for PolynomialTempData {
 
 pub static POLYNOMIALTEMPDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialTempData",
+    name_hash: 2757094811,
     flags: MemberInfoFlags::new(36937),
     module: "Emitter",
     data: TypeInfoData::ValueType(ValueTypeInfoData {
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PolynomialTempData as Default>::default())),
+            create_boxed: || Box::new(<PolynomialTempData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Coefficients",
+                name_hash: 2816855587,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(PolynomialTempData, coefficients),
             },
             FieldInfoData {
                 name: "ScaleValue",
+                name_hash: 1405926902,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PolynomialTempData, scale_value),
             },
             FieldInfoData {
                 name: "MinClamp",
+                name_hash: 3349357596,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PolynomialTempData, min_clamp),
             },
             FieldInfoData {
                 name: "MaxClamp",
+                name_hash: 415055298,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PolynomialTempData, max_clamp),
@@ -19195,6 +20356,7 @@ impl TypeObject for PolynomialTempData {
 
 pub static POLYNOMIALTEMPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialTempData-Array",
+    name_hash: 3290833967,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("PolynomialTempData"),
@@ -19203,7 +20365,8 @@ pub static POLYNOMIALTEMPDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct PolynomialData {
     pub _glacier_base: EvaluatorData,
     pub coefficients: super::core::Vec4,
@@ -19251,10 +20414,10 @@ impl PolynomialDataTrait for PolynomialData {
 }
 
 impl EvaluatorDataTrait for PolynomialData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -19270,34 +20433,41 @@ impl super::core::DataContainerTrait for PolynomialData {
 
 pub static POLYNOMIALDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialData",
+    name_hash: 1966366871,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(PolynomialData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<PolynomialData as Default>::default())),
+            create_boxed: || Box::new(<PolynomialData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Coefficients",
+                name_hash: 2816855587,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(PolynomialData, coefficients),
             },
             FieldInfoData {
                 name: "ScaleValue",
+                name_hash: 1405926902,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PolynomialData, scale_value),
             },
             FieldInfoData {
                 name: "MinClamp",
+                name_hash: 3349357596,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PolynomialData, min_clamp),
             },
             FieldInfoData {
                 name: "MaxClamp",
+                name_hash: 415055298,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Float32",
                 rust_offset: offset_of!(PolynomialData, max_clamp),
@@ -19329,6 +20499,7 @@ impl TypeObject for PolynomialData {
 
 pub static POLYNOMIALDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "PolynomialData-Array",
+    name_hash: 2341415203,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("PolynomialData"),
@@ -19337,7 +20508,8 @@ pub static POLYNOMIALDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
 };
 
 
-#[derive(Clone, Debug, Default)]
+#[derive(Debug, Default)]
+#[repr(C)]
 pub struct DefaultEvaluatorData {
     pub _glacier_base: EvaluatorData,
     pub values: super::core::Vec4,
@@ -19358,10 +20530,10 @@ impl DefaultEvaluatorDataTrait for DefaultEvaluatorData {
 }
 
 impl EvaluatorDataTrait for DefaultEvaluatorData {
-    fn parameter(&self) -> &Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter(&self) -> &Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter()
     }
-    fn parameter_mut(&mut self) -> &mut Option<Arc<Mutex<dyn super::effect_base::EffectParameterTrait>>> {
+    fn parameter_mut(&mut self) -> &mut Option<LockedTypeObject /* super::effect_base::EffectParameter */> {
         self._glacier_base.parameter_mut()
     }
     fn schematics_enable(&self) -> &bool {
@@ -19377,16 +20549,20 @@ impl super::core::DataContainerTrait for DefaultEvaluatorData {
 
 pub static DEFAULTEVALUATORDATA_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DefaultEvaluatorData",
+    name_hash: 1231361181,
     flags: MemberInfoFlags::new(101),
     module: "Emitter",
     data: TypeInfoData::Class(ClassInfoData {
         super_class: Some(EVALUATORDATA_TYPE_INFO),
+        super_class_offset: offset_of!(DefaultEvaluatorData, _glacier_base),
         functions: TypeFunctions {
             create: || Arc::new(Mutex::new(<DefaultEvaluatorData as Default>::default())),
+            create_boxed: || Box::new(<DefaultEvaluatorData as Default>::default()),
         },
         fields: &[
             FieldInfoData {
                 name: "Values",
+                name_hash: 3142410589,
                 flags: MemberInfoFlags::new(0),
                 field_type: "Vec4",
                 rust_offset: offset_of!(DefaultEvaluatorData, values),
@@ -19418,6 +20594,7 @@ impl TypeObject for DefaultEvaluatorData {
 
 pub static DEFAULTEVALUATORDATA_ARRAY_TYPE_INFO: &'static TypeInfo = &TypeInfo {
     name: "DefaultEvaluatorData-Array",
+    name_hash: 1589493801,
     flags: MemberInfoFlags::new(145),
     module: "Emitter",
     data: TypeInfoData::Array("DefaultEvaluatorData"),
