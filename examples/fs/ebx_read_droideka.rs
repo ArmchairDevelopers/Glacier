@@ -12,17 +12,18 @@ use glacier_sdk::{
 #[tokio::main]
 async fn main() {
     let data = include_bytes!("../../crates/glacier_fs/tests/data/DefaultSoldierStateMachine.bin");
-    let mut bytes = BytesMut::from(&data[..]);
 
     let mut registry = TypeRegistry::default();
     register_mod_types(&mut registry);
 
     let mut reader = EbxPartitionReader::new("LevelListReport".to_owned(), &registry);
-    reader.read(&mut bytes).await;
+    reader.read(data.to_vec()).await;
 
     let partition = reader.finalize();
     let primary_instance = partition.primary_instance().unwrap();
     let primary_instance = primary_instance.lock().await;
 
     //println!("{:?}", primary_instance);
+    println!("Done");
+    tokio::time::sleep(std::time::Duration::from_secs(10)).await;
 }

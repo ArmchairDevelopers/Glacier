@@ -10,13 +10,12 @@ use glacier_sdk::{
 #[tokio::main]
 async fn main() {
     let data = include_bytes!("../../crates/glacier_fs/tests/data/LevelListReport.bin");
-    let mut bytes = BytesMut::from(&data[..]);
 
     let mut registry = TypeRegistry::default();
     register_mod_types(&mut registry);
 
     let mut reader = EbxPartitionReader::new("DroidekaStateMachine".to_owned(), &registry);
-    reader.read(&mut bytes).await;
+    reader.read(data.to_vec()).await;
 
     let partition = reader.finalize();
     let primary_instance = partition.primary_instance().unwrap();

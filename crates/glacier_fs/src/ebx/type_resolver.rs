@@ -45,7 +45,6 @@ impl EbxPartitionTypeDescriptor {
 pub struct EbxPartitionTypeResolver {
     field_descriptors: Vec<EbxPartitionFieldDescriptor>,
     type_descriptors: Vec<EbxPartitionTypeDescriptor>,
-    meta_string_block: Vec<u8>,
 }
 
 impl EbxPartitionTypeResolver {
@@ -53,11 +52,9 @@ impl EbxPartitionTypeResolver {
         &mut self,
         field_descriptors: Vec<EbxPartitionFieldDescriptor>,
         type_descriptors: Vec<EbxPartitionTypeDescriptor>,
-        meta_string_block: Vec<u8>,
     ) {
         self.field_descriptors = field_descriptors;
         self.type_descriptors = type_descriptors;
-        self.meta_string_block = meta_string_block;
     }
 
     pub fn resolve_type(&self, type_index: u32) -> &EbxPartitionTypeDescriptor {

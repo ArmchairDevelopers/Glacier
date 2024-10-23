@@ -1,4 +1,4 @@
-use glacier_reflect::type_info::LockedTypeObject;
+use glacier_reflect::type_info::{LockedTypeObject, TypeInfo, TypeInfoData};
 use glacier_util::guid::Guid;
 
 #[derive(Default)]
@@ -20,8 +20,36 @@ impl DatabasePartition {
         }
     }
 
-    pub fn add_instance(&mut self, instance: LockedTypeObject) {
+    pub fn guid(&self) -> &Guid {
+        &self.guid
+    }
+
+    /// Sets the instance's partition guid to this partition and adds it to the partition's instance list
+    pub async fn add_instance(&mut self, instance: LockedTypeObject) {
+        {
+            let mut instance = instance.lock().await;
+            let core = instance.data_container_core_mut().expect("Instance is not a DataContainer");
+            core.partition_guid = self.guid().clone();
+        }
+
         self.instances.push(instance);
+    }
+
+    pub async fn create_instance(&self, type_info: &'static TypeInfo) -> Option<LockedTypeObject> {
+        if let TypeInfoData::Class(class_info) = &type_info.data {
+            let instance = class_info.create();
+
+            {
+                let mut instance = instance.lock().await;
+                let core = instance.data_container_core_mut().expect("Instance is not a DataContainer");
+                core.partition_guid = self.guid().clone();
+                core.instance_guid = Guid::random();
+            }
+
+            Some(instance)
+        } else {
+            None
+        }
     }
 
     pub fn instances(&self) -> &[LockedTypeObject] {

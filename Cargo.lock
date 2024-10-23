@@ -104,7 +104,6 @@ name = "glacier_fs"
 version = "0.1.0"
 dependencies = [
  "async-recursion",
- "bytes",
  "glacier_reflect",
  "glacier_reflect_swbf2",
  "glacier_util",

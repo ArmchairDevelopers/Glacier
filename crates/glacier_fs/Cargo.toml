@@ -11,7 +11,6 @@ tokio = { version = "1.28.2", features = [
     "time",
     "net",
 ] }
-bytes = "1.7.2"
 glacier_util = { path = "../glacier_util" }
 glacier_reflect = { path = "../glacier_reflect" }
 glacier_reflect_swbf2 = { path = "../glacier_reflect_swbf2" }
