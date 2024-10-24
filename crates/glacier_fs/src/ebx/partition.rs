@@ -12,6 +12,7 @@ use glacier_util::{endian::endian_swap, guid::Guid, math::roundup};
 use crate::{
     db::partition::{DatabasePartition, PartitionInitData},
     io::native_reader::NativeReader,
+    util::trait_coercion::data_ptr_from_trait_object,
 };
 
 use super::type_resolver::{
@@ -106,7 +107,7 @@ pub struct EbxPartitionReader<'a> {
 
     full_size: usize,
     payload_start: usize,
-    
+
     import_entries: Vec<EbxPartitionImportEntry>,
     imports: Vec<Option<LockedTypeObject>>,
 
@@ -116,23 +117,6 @@ pub struct EbxPartitionReader<'a> {
 
     type_infos: Vec<Option<&'static TypeInfo>>,
     containers: Vec<LockedTypeObject>,
-}
-
-#[repr(C)]
-struct RawTypeObject {
-    data_ptr: *mut u8,
-    vtable_ptr: *mut (),
-}
-
-unsafe impl Send for RawTypeObject {}
-
-fn data_ptr_from_trait_object(data: &mut dyn TypeObject) -> RawTypeObject {
-    let ptr = data as *mut dyn TypeObject;
-    let (data_ptr, _vtable_ptr): (*mut u8, *mut ()) = unsafe { std::mem::transmute(ptr) };
-    RawTypeObject {
-        data_ptr,
-        vtable_ptr: _vtable_ptr,
-    }
 }
 
 impl<'a> EbxPartitionReader<'a> {
@@ -460,7 +444,7 @@ impl<'a> EbxPartitionReader<'a> {
             .type_info(inst.type_registry)
             .expect("Type not found");
 
-        let data_ptr = data_ptr_from_trait_object(container);
+        let raw = data_ptr_from_trait_object(container);
 
         for i in 0..type_desc.field_count as u32 {
             let field_desc = inst
@@ -505,8 +489,7 @@ impl<'a> EbxPartitionReader<'a> {
             };
 
             let target_ptr = unsafe {
-                data_ptr
-                    .data_ptr
+                raw.data_ptr
                     .offset(offset)
                     .offset(field_info.rust_offset as isize)
             };

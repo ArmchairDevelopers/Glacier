@@ -1,3 +1,6 @@
+#![allow(dead_code)]
+#![allow(unused_imports)]
+
 use std::{mem::offset_of, any::Any, option::Option, sync::Arc};
 use tokio::sync::Mutex;
 

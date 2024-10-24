@@ -1,7 +1,5 @@
 use std::collections::HashMap;
 
-use glacier_util::hash::hash_quick_str;
-
 use crate::{
     builtin::register_builtin_types, primitive::register_primitive_types, type_info::TypeInfo,
 };

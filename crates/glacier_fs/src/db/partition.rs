@@ -7,6 +7,7 @@ pub struct PartitionInitData {
     pub instances: Vec<LockedTypeObject>,
 }
 
+#[derive(Debug)]
 pub struct DatabasePartition {
     guid: Guid,
     instances: Vec<LockedTypeObject>,
@@ -58,5 +59,11 @@ impl DatabasePartition {
 
     pub fn primary_instance(&self) -> Option<&LockedTypeObject> {
         self.instances.first()
+    }
+}
+
+impl PartialEq for DatabasePartition {
+    fn eq(&self, other: &Self) -> bool {
+        self.guid == other.guid
     }
 }

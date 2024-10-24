@@ -16,12 +16,14 @@ async fn main() {
     let mut registry = TypeRegistry::default();
     register_mod_types(&mut registry);
 
-    let mut reader = EbxPartitionReader::new("LevelListReport".to_owned(), &registry);
-    reader.read(data.to_vec()).await;
+    let partition = {
+        let mut reader = EbxPartitionReader::new("LevelListReport".to_owned(), &registry);
+        reader.read(data.to_vec()).await;
+        reader.finalize()
+    };
 
-    let partition = reader.finalize();
     let primary_instance = partition.primary_instance().unwrap();
-    let primary_instance = primary_instance.lock().await;
+    //let primary_instance = primary_instance.lock().await;
 
     //println!("{:?}", primary_instance);
     println!("Done");

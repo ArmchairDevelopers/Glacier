@@ -1,9 +1,10 @@
 use std::{any::Any, fmt::Debug, sync::Arc};
 
-use glacier_util::hash::QuickHashExt;
 use tokio::sync::Mutex;
 
-use crate::{data_container::DataContainerCore, member::MemberInfoFlags, type_registry::TypeRegistry};
+use crate::{
+    data_container::DataContainerCore, member::MemberInfoFlags, type_registry::TypeRegistry,
+};
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct FieldInfoData {
@@ -18,7 +19,10 @@ pub struct FieldInfoData {
 
 impl FieldInfoData {
     pub fn field_type(&self, registry: &TypeRegistry) -> &'static TypeInfo {
-        registry.type_by_name(self.field_type).expect(&format!("Field type not found: {}/{}", self.name, self.field_type))
+        registry.type_by_name(self.field_type).expect(&format!(
+            "Field type not found: {}/{}",
+            self.name, self.field_type
+        ))
     }
 }
 
@@ -26,7 +30,6 @@ impl FieldInfoData {
 pub struct TypeFunctions {
     pub create: fn() -> LockedTypeObject,
     pub create_boxed: fn() -> BoxedTypeObject,
-
     ///// Expensive! This currently constructs a new object for every call.
     //pub trait_vtable: fn() -> *const (),
 }
@@ -156,6 +159,11 @@ pub struct TypeInfo {
 }
 
 impl TypeInfo {
+    /// Returns {module}.{name}
+    pub fn full_name(&self) -> String {
+        format!("{}.{}", self.module, self.name)
+    }
+
     pub const fn array_type(&self) -> Option<&'static TypeInfo> {
         match &self.data {
             TypeInfoData::Array(_) => self.array_type,
@@ -173,7 +181,7 @@ pub trait TypeObject: Any + Send + Sync + Debug {
     /// the concrete type of every object we're working with.
     fn data_container_core(&self) -> Option<&DataContainerCore>;
     fn data_container_core_mut(&mut self) -> Option<&mut DataContainerCore>;
-    
+
     fn as_any(&self) -> &dyn Any;
     fn as_any_mut(&mut self) -> &mut dyn Any;
 }
