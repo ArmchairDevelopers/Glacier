@@ -1,0 +1,16 @@
+[package]
+name = "glacier_editor"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+egui = "0.29.1"
+eframe = { version = "0.29.1", features = [
+    "wgpu",
+    "accesskit",
+    "default_fonts",
+    "wayland",
+    "x11",
+], default-features = false }
+wgpu = "22.1.0"
+bytemuck = "1.19.0"

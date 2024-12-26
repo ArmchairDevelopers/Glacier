@@ -1,6 +1,6 @@
 use std::{ops::Index, slice::SliceIndex};
 
-use glacier_util::guid::Guid;
+use glacier_util::{guid::Guid, sha1::Sha1};
 
 pub struct NativeReader {
     buf: Vec<u8>,
@@ -121,12 +121,73 @@ impl NativeReader {
     }
 
     pub fn get_guid(&mut self) -> Guid {
-        assert!(self.pos + 16 <= self.buf.len(), "Not enough bytes left in buffer to read GUID ({} bytes left)", self.remaining());
+        Guid::from_slice(&self.get_slice(16))
+    }
 
-        let mut guid = [0; 16];
-        guid.copy_from_slice(&self.buf[self.pos..self.pos + 16]);
-        self.pos += 16;
-        Guid::from_slice(&guid)
+    pub fn get_sha1(&mut self) -> Sha1 {
+        Sha1::from_slice(&self.get_slice(20))
+    }
+
+    pub fn get_null_terminated_str(&mut self) -> String {
+        let mut bytes = Vec::new();
+    
+        loop {
+            let b = self.get_u8();
+            if b == 0 {
+                break;
+            }
+    
+            bytes.push(b);
+        }
+    
+        String::from_utf8(bytes).unwrap()
+    }
+    
+    pub fn get_sized_str(&mut self, size: u32) -> String {
+        let mut bytes = Vec::new();
+    
+        for _ in 0..size {
+            let b = self.get_u8();
+            if b == 0 {
+                break;
+            }
+    
+            bytes.push(b);
+        }
+    
+        String::from_utf8(bytes).unwrap()
+    }
+    
+    pub fn get_7bit_encoded_int(&mut self) -> u32 {
+        let mut result: u32 = 0;
+        let mut i: u32 = 0;
+    
+        loop {
+            let b = self.get_u8() as u32;
+            result |= (b & 127) << i;
+    
+            if b >> 7 == 0 {
+                return result;
+            }
+    
+            i += 7;
+        }
+    }
+    
+    pub fn get_7bit_encoded_long(&mut self) -> u64 {
+        let mut result: u64 = 0;
+        let mut i: u32 = 0;
+    
+        loop {
+            let b = self.get_u8() as u32;
+            result |= ((b & 127) << i) as u64;
+    
+            if b >> 7 == 0 {
+                return result;
+            }
+    
+            i += 7;
+        }
     }
 
     pub fn get_slice(&mut self, len: usize) -> &[u8] {

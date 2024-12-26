@@ -1,0 +1,8 @@
+[package]
+name = "glacier_resource"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bytes = "1.8.0"
+glam = "0.29.0"

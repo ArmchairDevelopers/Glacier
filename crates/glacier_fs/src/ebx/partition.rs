@@ -162,7 +162,6 @@ impl<'a> EbxPartitionReader<'a> {
                     self.data.copy_to_slice(&mut header_data);
 
                     self.header = unsafe { mem::transmute(header_data) };
-                    println!("{:?}", self.header);
 
                     if self.header.magic == EbxPartitionHeader::MAGIC {
                         self.endian_swap = false;
@@ -379,8 +378,6 @@ impl<'a> EbxPartitionReader<'a> {
 
             i += 1;
         }
-
-        println!("Instance count: {}", instance_count);
     }
 
     async fn handle_fixup(&mut self) {

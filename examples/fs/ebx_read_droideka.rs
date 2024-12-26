@@ -22,10 +22,12 @@ async fn main() {
         reader.finalize()
     };
 
-    let primary_instance = partition.primary_instance().unwrap();
-    //let primary_instance = primary_instance.lock().await;
+    println!("{:?}", partition);
 
-    //println!("{:?}", primary_instance);
-    println!("Done");
-    tokio::time::sleep(std::time::Duration::from_secs(10)).await;
+    // let primary_instance = partition.primary_instance().unwrap();
+    // //let primary_instance = primary_instance.lock().await;
+
+    // //println!("{:?}", primary_instance);
+    // println!("Done");
+    // tokio::time::sleep(std::time::Duration::from_secs(10)).await;
 }
