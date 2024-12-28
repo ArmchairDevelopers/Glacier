@@ -8,7 +8,7 @@ use glacier_reflect::{
     type_registry::TypeRegistry,
 };
 use glacier_util::{endian::endian_swap, guid::Guid, math::roundup};
-use tracing::debug;
+use tracing::{warn, debug, error};
 
 use crate::{
     db::partition::{DatabasePartition, PartitionInitData},
@@ -399,7 +399,11 @@ impl<'a> EbxPartitionReader<'a> {
                         )
                         .unwrap();
 
-                        self.init_data.name = asset.name.to_owned();
+                        if !asset.name.is_empty() {
+                            self.init_data.name = asset.name.to_owned();
+                        } else {
+                            self.init_data.name = self.partition_name.clone();
+                        }
                     }
 
                     self.init_data.instances = self.containers.clone();
@@ -510,7 +514,7 @@ impl<'a> EbxPartitionReader<'a> {
 
                     guid
                 } else {
-                    Guid::random()
+                    Guid::from_u128(i as u128)
                 };
 
                 if td.alignment != 4 {
@@ -689,7 +693,7 @@ impl<'a> EbxPartitionReader<'a> {
                     };
                 }
                 TypeInfoData::ResourceRef => {
-                    let value = inst.data.get_u64();
+                    let _value = inst.data.get_u64();
                     // TODO
                 }
                 TypeInfoData::TypeRef => {
@@ -705,9 +709,9 @@ impl<'a> EbxPartitionReader<'a> {
                     // TODO
                 }
                 TypeInfoData::BoxedValueRef => {
-                    eprintln!(
-                        "Encountered BoxedValueRef while marshalling EBX field {} in {} in {}",
-                        field_info.name, type_info.name, inst.partition_name
+                    debug!(
+                        "Encountered BoxedValueRef while marshalling EBX field {}.{} in {}",
+                        type_info.name, field_info.name, inst.partition_name
                     );
                     return Err(EbxError::Unknown("BoxedValueRef".to_string()));
                 }
@@ -722,7 +726,7 @@ impl<'a> EbxPartitionReader<'a> {
                     let payload_offset = inst.data.pos();
 
                     if inst.array_entries.len() <= index as usize {
-                        eprintln!(
+                        error!(
                             "Invalid array index {}/{} for {} in {} in {}",
                             index,
                             inst.array_entries.len(),

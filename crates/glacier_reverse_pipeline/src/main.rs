@@ -2,12 +2,10 @@ use std::{path::PathBuf, sync::Arc};
 
 use glacier_reflect::type_registry::TypeRegistry;
 use glacier_reflect_swbf2::register_mod_types;
-use glacier_reverse_pipeline::packaged_conversion::{
-    memory_fs::convert_memory_fs, PackagedConversionContext,
-};
+use glacier_reverse_pipeline::PackagedConversionContext;
 
 use clap::Parser;
-use tracing::{info, error, Level};
+use tracing::{error, info, Level};
 use tracing_subscriber::{fmt, layer::SubscriberExt, util::SubscriberInitExt, EnvFilter};
 
 /// Convert the target data of a Frostbite game to source data that can be manipulated by Glacier

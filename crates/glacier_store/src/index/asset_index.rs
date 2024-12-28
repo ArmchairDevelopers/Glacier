@@ -9,7 +9,7 @@ pub struct DomainAssetIndexEntry {
     pub name: String,
     pub partition: Guid,
     pub instances: Vec<Guid>,
-    pub primary_type: String,
+    pub primary_type_hash: u32,
     pub bundles: Vec<u32>,
     pub imports: Vec<Guid>, // Partition IDs
 }

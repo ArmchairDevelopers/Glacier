@@ -100,16 +100,22 @@ impl<W: AsyncWrite + Unpin> XmlWriter<W> {
     }
 }
 
+pub trait DbxWriterImportResolver: Sync {
+    fn resolve_import_name(&self, partition_guid: &Guid) -> Option<String>;
+}
+
 pub struct DbxPartitionWriter<'a> {
     partition: &'a DatabasePartition,
     type_registry: &'a TypeRegistry,
+    import_resolver: &'a dyn DbxWriterImportResolver,
 }
 
 impl<'a> DbxPartitionWriter<'a> {
-    pub fn new(partition: &'a DatabasePartition, type_registry: &'a TypeRegistry) -> Self {
+    pub fn new(partition: &'a DatabasePartition, type_registry: &'a TypeRegistry, import_resolver: &'a dyn DbxWriterImportResolver) -> Self {
         Self {
             partition,
             type_registry,
+            import_resolver,
         }
     }
 
@@ -663,8 +669,13 @@ impl<'a> DbxPartitionWriter<'a> {
         if &partition_guid == self.partition.guid() {
             vec![("ref".to_owned(), instance_guid)]
         } else {
+            let partition_name = self
+                .import_resolver
+                .resolve_import_name(&partition_guid)
+                .unwrap_or_else(|| "unknown".to_string());
+
             vec![
-                ("ref".to_owned(), instance_guid),
+                ("ref".to_owned(), format!("{}/{}", partition_name, instance_guid)),
                 ("partitionGuid".to_owned(), partition_guid.to_string()),
             ]
         }

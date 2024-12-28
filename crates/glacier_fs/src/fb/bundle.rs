@@ -1,5 +1,3 @@
-use bytes::{Buf, Bytes};
-
 use crate::io::native_reader::NativeReader;
 
 use super::{
@@ -22,7 +20,7 @@ pub struct BundleManifest {
 
 impl BundleManifest {
     pub fn load(info: ManifestBundleInfo, bytes: &mut NativeReader) -> Result<Self, FbFileError> {
-        let data_offset = bytes.get_u32_be() + 4;
+        let _data_offset = bytes.get_u32_be() + 4;
 
         let magic = bytes.get_u32_be();
         if magic != 0x9D798ED5 {
@@ -38,8 +36,8 @@ impl BundleManifest {
         assert_eq!(total_count, ebx_count + res_count + chunk_count);
 
         let strings_offset = bytes.get_u32_be();
-        let meta_offset = bytes.get_u32_be();
-        let data_size = bytes.get_u32_be();
+        let _meta_offset = bytes.get_u32_be();
+        let _data_size = bytes.get_u32_be();
 
         // Skip Sha1s
         bytes.skip(total_count as usize * 20);

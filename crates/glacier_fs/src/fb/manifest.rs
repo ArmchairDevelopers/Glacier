@@ -164,8 +164,8 @@ pub async fn parse_manifest(
     let mut manifest_bundles: Vec<ManifestBundleInfo> = Vec::new();
     for _ in 0..bundle_count {
         let hash = buf.get_u32();
-        let start_index = buf.get_u32();
-        let count = buf.get_u32();
+        let _start_index = buf.get_u32();
+        let _count = buf.get_u32();
 
         let _unk1 = buf.get_u32();
         let _unk2 = buf.get_u32();
@@ -218,8 +218,8 @@ pub async fn parse_manifest(
     }
 
     for _ in 0..chunks_count {
-        let guid = buf.get_guid();
-        let file_index = buf.get_i32();
+        let _guid = buf.get_guid();
+        let _file_index = buf.get_i32();
         //let manifest_file = manifest_files.get(file_index as usize).unwrap();
         // if guid.to_string() == "6a65ef12-952f-8d8c-cddc-98c61e24516b" {
         //     println!(

@@ -1,48 +1,21 @@
 use std::{
     collections::{HashMap, HashSet},
-    path::PathBuf,
-    sync::{atomic::AtomicU32, Arc},
+    sync::Arc,
 };
 
 use glacier_fs::{
-    db::partition::DatabasePartition,
-    ebx::partition::{EbxError, EbxPartitionHeader, EbxPartitionReader},
-    fb::{cas::CAS_MAX_CHUNK_SIZE, FrostbiteGameData},
+    ebx::partition::{EbxError, EbxPartitionReader},
+    fb::FrostbiteGameData,
 };
 use glacier_reflect::type_registry::TypeRegistry;
 use glacier_store::index::asset_index::DomainAssetIndexEntry;
 use glacier_util::guid::Guid;
-use serde::Serialize;
 use tokio::{
     fs,
     sync::{Mutex, Semaphore},
 };
 
 use super::PackagedConversionContext;
-
-#[derive(Serialize)]
-struct EbxIndexEntry {
-    partition_guid: String,
-    primary_type: String,
-    bundles: Vec<u32>,
-    imports: Vec<String>, // Partition IDs
-}
-
-async fn convert_to_dbx(registry: &TypeRegistry, partition: DatabasePartition) {
-    let path = PathBuf::from("SourceData/Source")
-        .join(partition.name())
-        .with_extension("dbx");
-
-    //println!("Writing DBX to {:?}", path);
-    tokio::fs::create_dir_all(&path.parent().unwrap())
-        .await
-        .unwrap();
-
-    let mut dbx_writer = glacier_fs::dbx::writer::DbxPartitionWriter::new(&partition, &registry);
-
-    let mut writer = tokio::fs::File::create(path).await.unwrap();
-    dbx_writer.write(&mut writer).await.unwrap();
-}
 
 pub(crate) async fn index_ebx(
     ctx: &PackagedConversionContext,
@@ -52,25 +25,12 @@ pub(crate) async fn index_ebx(
     let indexed_partitions = Arc::new(Mutex::new(HashMap::<String, DomainAssetIndexEntry>::new()));
     let noretail_fields = Arc::new(Mutex::new(HashSet::new()));
 
-    let max_concurrent_jobs = 2000; // Adjust this limit based on your system's capacity
+    let max_concurrent_jobs = 2000;
     let semaphore = Arc::new(Semaphore::new(max_concurrent_jobs));
 
     let mut handles = Vec::new();
 
     for bundle in &data.bundles {
-        // println!(
-        //     "Starting bundle with {} indexed partitions",
-        //     unique_indexed_partitions.len()
-        // );
-
-        // {
-        //     let indexed_partitions = indexed_partitions.lock().await;
-        //     println!(
-        //         "Indexed {} assets",
-        //         indexed_partitions.len()
-        //     );
-        // }
-
         for entry in &bundle.ebx_entries {
             {
                 let mut indexed_partitions = indexed_partitions.lock().await;
@@ -82,7 +42,7 @@ pub(crate) async fn index_ebx(
                         name: entry.name.to_owned(),
                         partition: Guid::default(),
                         instances: Vec::new(),
-                        primary_type: String::new(),
+                        primary_type_hash: 0,
                         bundles: vec![bundle.hash],
                         imports: Vec::new(),
                     };
@@ -108,7 +68,7 @@ pub(crate) async fn index_ebx(
                             &cloned_registry,
                             None,
                         );
-                        reader.layout_only();
+                        //reader.layout_only();
 
                         let result = reader.read(data).await;
                         if let Err(err) = result {
@@ -149,14 +109,13 @@ pub(crate) async fn index_ebx(
 
                         index_entry.instances = instances;
 
-                        // index_entry.primary_type = partition
-                        //     .primary_instance()
-                        //     .unwrap()
-                        //     .lock()
-                        //     .await
-                        //     .type_info()
-                        //     .name
-                        //     .to_owned();
+                        index_entry.primary_type_hash = partition
+                            .primary_instance()
+                            .unwrap()
+                            .lock()
+                            .await
+                            .type_info()
+                            .name_hash;
 
                         index_entry.imports = imports;
 
