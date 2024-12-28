@@ -8,7 +8,7 @@ pub fn hash_with_seed(data: &[u8], hash: u64) -> u64 {
     hash.0
 }
 
-pub fn hash_string(str: &str) -> u64 {
-    let l = hash_with_seed(str.to_lowercase().as_bytes(), 5381);
-    l & 0xFFFFFFFF
+pub fn hash_string(str: &str) -> u32 {
+    let l = hash_with_seed(str.as_bytes(), 5381);
+    (l & 0xFFFFFFFF) as u32
 }

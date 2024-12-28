@@ -1,9 +1,10 @@
 use std::fmt::{self, Debug, Formatter};
 
 use bytes::BytesMut;
+use serde::{Deserialize, Serialize, Serializer, Deserializer};
 
 // UUID v3
-#[derive(Default, Clone, Copy, PartialEq)]
+#[derive(Default, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(C)]
 pub struct Guid {
     pub data1: u32,
@@ -110,6 +111,25 @@ impl Guid {
 impl Debug for Guid {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         write!(f, "{}", self.to_string())
+    }
+}
+
+impl Serialize for Guid {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        serializer.serialize_str(&self.to_string())
+    }
+}
+
+impl<'de> Deserialize<'de> for Guid {
+    fn deserialize<D>(deserializer: D) -> Result<Guid, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let s = String::deserialize(deserializer)?;
+        Ok(Guid::from_str(&s))
     }
 }
 

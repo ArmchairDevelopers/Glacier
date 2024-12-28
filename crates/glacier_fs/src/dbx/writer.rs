@@ -279,10 +279,30 @@ impl<'a> DbxPartitionWriter<'a> {
 
         let field_type_info = field_info.field_type(&self.type_registry);
         match &field_type_info.data {
-            TypeInfoData::Uint8 => todo!(),
-            TypeInfoData::Int8 => todo!(),
-            TypeInfoData::Uint16 => todo!(),
-            TypeInfoData::Int16 => todo!(),
+            TypeInfoData::Uint8 => {
+                open_tag!("field", false);
+                let value = unsafe { *(source_ptr.0 as *const u8) };
+                writer.write(&value.to_string()).await?;
+                writer.write_close_tag().await?;
+            }
+            TypeInfoData::Int8 => {
+                open_tag!("field", false);
+                let value = unsafe { *(source_ptr.0 as *const i8) };
+                writer.write(&value.to_string()).await?;
+                writer.write_close_tag().await?;
+            }
+            TypeInfoData::Uint16 => {
+                open_tag!("field", false);
+                let value = unsafe { *(source_ptr.0 as *const u16) };
+                writer.write(&value.to_string()).await?;
+                writer.write_close_tag().await?;
+            }
+            TypeInfoData::Int16 => {
+                open_tag!("field", false);
+                let value = unsafe { *(source_ptr.0 as *const i16) };
+                writer.write(&value.to_string()).await?;
+                writer.write_close_tag().await?;
+            }
             TypeInfoData::Uint32 => {
                 open_tag!("field", false);
                 let value = unsafe { *(source_ptr.0 as *const u32) };
@@ -295,8 +315,18 @@ impl<'a> DbxPartitionWriter<'a> {
                 writer.write(&value.to_string()).await?;
                 writer.write_close_tag().await?;
             }
-            TypeInfoData::Uint64 => todo!(),
-            TypeInfoData::Int64 => todo!(),
+            TypeInfoData::Uint64 => {
+                open_tag!("field", false);
+                let value = unsafe { *(source_ptr.0 as *const u64) };
+                writer.write(&value.to_string()).await?;
+                writer.write_close_tag().await?;
+            }
+            TypeInfoData::Int64 => {
+                open_tag!("field", false);
+                let value = unsafe { *(source_ptr.0 as *const i64) };
+                writer.write(&value.to_string()).await?;
+                writer.write_close_tag().await?;
+            }
             TypeInfoData::Float32 => {
                 open_tag!("field", false);
                 let value = unsafe { *(source_ptr.0 as *const f32) };
@@ -317,10 +347,26 @@ impl<'a> DbxPartitionWriter<'a> {
                 writer.write(str_ref).await?;
                 writer.write_close_tag().await?;
             }
-            TypeInfoData::ResourceRef => todo!(),
-            TypeInfoData::TypeRef => todo!(),
-            TypeInfoData::FileRef => todo!(),
-            TypeInfoData::BoxedValueRef => todo!(),
+            TypeInfoData::ResourceRef => {
+                open_tag!("field", false);
+                writer.write("TODO").await?;
+                writer.write_close_tag().await?;
+            }
+            TypeInfoData::TypeRef => {
+                open_tag!("field", false);
+                writer.write("TODO").await?;
+                writer.write_close_tag().await?;
+            }
+            TypeInfoData::FileRef => {
+                open_tag!("field", false);
+                writer.write("TODO").await?;
+                writer.write_close_tag().await?;
+            }
+            TypeInfoData::BoxedValueRef => {
+                open_tag!("field", false);
+                writer.write("TODO").await?;
+                writer.write_close_tag().await?;
+            }
             TypeInfoData::SHA1 => todo!(),
             TypeInfoData::Guid => {
                 open_tag!("field", false);
@@ -347,9 +393,42 @@ impl<'a> DbxPartitionWriter<'a> {
                             writer.write_close_tag().await?;
                         }
                     }
-                    TypeInfoData::Int8 => todo!(),
-                    TypeInfoData::Uint16 => todo!(),
-                    TypeInfoData::Int16 => todo!(),
+                    TypeInfoData::Int8 => {
+                        let vec = unsafe { &mut *(source_ptr.0 as *mut Vec<i8>) };
+                        if !vec.is_empty() {
+                            open_tag!("array", true);
+                            for value in vec.iter() {
+                                open_tag_attr!("item", false, vec![]);
+                                writer.write(&value.to_string()).await?;
+                                writer.write_close_tag().await?;
+                            }
+                            writer.write_close_tag().await?;
+                        }
+                    }
+                    TypeInfoData::Uint16 => {
+                        let vec = unsafe { &mut *(source_ptr.0 as *mut Vec<u16>) };
+                        if !vec.is_empty() {
+                            open_tag!("array", true);
+                            for value in vec.iter() {
+                                open_tag_attr!("item", false, vec![]);
+                                writer.write(&value.to_string()).await?;
+                                writer.write_close_tag().await?;
+                            }
+                            writer.write_close_tag().await?;
+                        }
+                    }
+                    TypeInfoData::Int16 => {
+                        let vec = unsafe { &mut *(source_ptr.0 as *mut Vec<i16>) };
+                        if !vec.is_empty() {
+                            open_tag!("array", true);
+                            for value in vec.iter() {
+                                open_tag_attr!("item", false, vec![]);
+                                writer.write(&value.to_string()).await?;
+                                writer.write_close_tag().await?;
+                            }
+                            writer.write_close_tag().await?;
+                        }
+                    }
                     TypeInfoData::Uint32 => {
                         let vec = unsafe { &mut *(source_ptr.0 as *mut Vec<u32>) };
                         if !vec.is_empty() {
@@ -374,8 +453,30 @@ impl<'a> DbxPartitionWriter<'a> {
                             writer.write_close_tag().await?;
                         }
                     }
-                    TypeInfoData::Uint64 => todo!(),
-                    TypeInfoData::Int64 => todo!(),
+                    TypeInfoData::Uint64 => {
+                        let vec = unsafe { &mut *(source_ptr.0 as *mut Vec<u64>) };
+                        if !vec.is_empty() {
+                            open_tag!("array", true);
+                            for value in vec.iter() {
+                                open_tag_attr!("item", false, vec![]);
+                                writer.write(&value.to_string()).await?;
+                                writer.write_close_tag().await?;
+                            }
+                            writer.write_close_tag().await?;
+                        }
+                    }
+                    TypeInfoData::Int64 => {
+                        let vec = unsafe { &mut *(source_ptr.0 as *mut Vec<i64>) };
+                        if !vec.is_empty() {
+                            open_tag!("array", true);
+                            for value in vec.iter() {
+                                open_tag_attr!("item", false, vec![]);
+                                writer.write(&value.to_string()).await?;
+                                writer.write_close_tag().await?;
+                            }
+                            writer.write_close_tag().await?;
+                        }
+                    }
                     TypeInfoData::Float32 => {
                         let vec = unsafe { &mut *(source_ptr.0 as *mut Vec<f32>) };
                         if !vec.is_empty() {
@@ -389,8 +490,30 @@ impl<'a> DbxPartitionWriter<'a> {
                         }
                     }
                     TypeInfoData::Float64 => todo!(),
-                    TypeInfoData::Boolean => todo!(),
-                    TypeInfoData::CString => todo!(),
+                    TypeInfoData::Boolean => {
+                        let vec = unsafe { &mut *(source_ptr.0 as *mut Vec<bool>) };
+                        if !vec.is_empty() {
+                            open_tag!("array", true);
+                            for value in vec.iter() {
+                                open_tag_attr!("item", false, vec![]);
+                                writer.write(&value.to_string()).await?;
+                                writer.write_close_tag().await?;
+                            }
+                            writer.write_close_tag().await?;
+                        }
+                    }
+                    TypeInfoData::CString => {
+                        let vec = unsafe { &mut *(source_ptr.0 as *mut Vec<String>) };
+                        if !vec.is_empty() {
+                            open_tag!("array", true);
+                            for value in vec.iter() {
+                                open_tag_attr!("item", false, vec![]);
+                                writer.write(value).await?;
+                                writer.write_close_tag().await?;
+                            }
+                            writer.write_close_tag().await?;
+                        }
+                    }
                     TypeInfoData::ResourceRef => todo!(),
                     TypeInfoData::TypeRef => todo!(),
                     TypeInfoData::FileRef => todo!(),
@@ -456,7 +579,18 @@ impl<'a> DbxPartitionWriter<'a> {
                             writer.write_close_tag().await?;
                         }
                     }
-                    TypeInfoData::Enum => todo!(),
+                    TypeInfoData::Enum => {
+                        let vec = unsafe { &mut *(source_ptr.0 as *mut Vec<i64>) };
+                        if !vec.is_empty() {
+                            open_tag!("array", true);
+                            for value in vec.iter() {
+                                open_tag_attr!("item", false, vec![]);
+                                writer.write(&value.to_string()).await?;
+                                writer.write_close_tag().await?;
+                            }
+                            writer.write_close_tag().await?;
+                        }
+                    }
                     TypeInfoData::Unknown => todo!(),
                 }
             }

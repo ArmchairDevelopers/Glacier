@@ -1,4 +1,4 @@
-use std::{borrow::Cow, mem};
+use std::{borrow::Cow, collections::HashMap, mem};
 
 use glacier_reflect::{
     member::MemberInfoFlags,
@@ -8,11 +8,13 @@ use glacier_reflect::{
     type_registry::TypeRegistry,
 };
 use glacier_util::{endian::endian_swap, guid::Guid, math::roundup};
+use tracing::debug;
 
 use crate::{
     db::partition::{DatabasePartition, PartitionInitData},
+    fb::hash::hash_string,
     io::native_reader::NativeReader,
-    util::trait_coercion::data_ptr_from_trait_object,
+    util::trait_coercion::{data_ptr_from_trait_object, type_info_cast, SendPtr},
 };
 
 use super::type_resolver::{
@@ -21,10 +23,26 @@ use super::type_resolver::{
 
 const SUPER_CLASS_FIELD_HASH: u32 = 177537;
 
+#[async_trait::async_trait]
+pub trait EbxPartitionImportLoader: Sync {
+    async fn store_instance(
+        &mut self,
+        partition_guid: Guid,
+        instance_guid: Guid,
+        instance: LockedTypeObject,
+    );
+
+    async fn load_partition(
+        &mut self,
+        partition_guid: Guid,
+        instance_guid: Guid,
+    ) -> Option<LockedTypeObject>;
+}
+
 #[derive(Debug, Default)]
 #[repr(C)]
 #[repr(align(16))]
-struct EbxPartitionHeader {
+pub struct EbxPartitionHeader {
     magic: u32,
     meta_size: u32,
     payload_size: u32,
@@ -45,6 +63,7 @@ struct EbxPartitionHeader {
 
 impl EbxPartitionHeader {
     pub const MAGIC: u32 = 0xfb4d1ce;
+    pub const SIZE: usize = mem::size_of::<EbxPartitionHeader>();
 }
 
 #[derive(Default)]
@@ -61,9 +80,9 @@ enum ReaderState {
 
 #[derive(Default, Clone)]
 #[repr(C)]
-struct EbxPartitionImportEntry {
-    partition_guid: Guid,
-    instance_guid: Guid,
+pub struct EbxPartitionImportEntry {
+    pub partition_guid: Guid,
+    pub instance_guid: Guid,
 }
 
 #[derive(Default, Clone)]
@@ -89,18 +108,37 @@ struct EbxPartitionBoxedValueEntry {
     type_code: u16,
 }
 
+#[derive(thiserror::Error, Debug)]
+pub enum EbxError {
+    #[error("failed to find field {0} of type {1} in type {2}")]
+    FieldNotFound(String, String, String),
+    #[error("array index out of bounds")]
+    ArrayIndexOutOfBounds,
+    #[error("unknown error: {0}")]
+    Unknown(String),
+}
+
 pub struct EbxPartitionReader<'a> {
     partition_name: String,
+
     type_registry: &'a TypeRegistry,
+    importer: Option<&'a mut dyn EbxPartitionImportLoader>,
 
     data: NativeReader,
 
+    layout_only: bool,
+    shallow_mode: bool,
+
     header: EbxPartitionHeader,
+
     state: ReaderState,
     endian_swap: bool,
 
     init_data: PartitionInitData,
     type_resolver: EbxPartitionTypeResolver,
+
+    read_type_names: bool,
+    type_names: HashMap<u32, String>,
 
     metadata_outstanding: u32,
     payload_outstanding: u32,
@@ -119,17 +157,28 @@ pub struct EbxPartitionReader<'a> {
     containers: Vec<LockedTypeObject>,
 }
 
+unsafe impl<'a> Send for EbxPartitionReader<'a> {}
+
 impl<'a> EbxPartitionReader<'a> {
-    pub fn new(partition_name: String, type_registry: &'a TypeRegistry) -> Self {
+    pub fn new(
+        partition_name: String,
+        type_registry: &'a TypeRegistry,
+        importer: Option<&'a mut dyn EbxPartitionImportLoader>,
+    ) -> Self {
         Self {
             partition_name,
             type_registry,
+            importer,
             data: NativeReader::new(),
+            layout_only: false,
+            shallow_mode: false,
             header: EbxPartitionHeader::default(),
             state: ReaderState::Initial,
             endian_swap: false,
             init_data: PartitionInitData::default(),
             type_resolver: EbxPartitionTypeResolver::default(),
+            read_type_names: true,
+            type_names: HashMap::new(),
             metadata_outstanding: 0,
             payload_outstanding: 0,
             full_size: 0,
@@ -144,7 +193,22 @@ impl<'a> EbxPartitionReader<'a> {
         }
     }
 
-    pub async fn read(&mut self, data: Vec<u8>) {
+    /// Layout only mode doesn't read any field values, only the layout of the partition and instances.
+    pub fn layout_only(&mut self) {
+        self.layout_only = true;
+        self.read_type_names = false;
+    }
+
+    /// Shallow mode doesn't try to load imports.
+    pub fn shallow_mode(&mut self) {
+        self.shallow_mode = true;
+    }
+
+    pub fn import_entries(&self) -> &[EbxPartitionImportEntry] {
+        &self.import_entries
+    }
+
+    pub async fn read(&mut self, data: Vec<u8>) -> Result<(), EbxError> {
         self.data = NativeReader::from_bytes(data);
 
         let in_byte_count = self.data.len();
@@ -156,9 +220,9 @@ impl<'a> EbxPartitionReader<'a> {
             let byte_count = self.data.len() as u32;
             match self.state {
                 ReaderState::Initial => {
-                    assert!(byte_count >= mem::size_of::<EbxPartitionHeader>() as u32);
+                    assert!(byte_count >= EbxPartitionHeader::SIZE as u32);
 
-                    let mut header_data = [0u8; mem::size_of::<EbxPartitionHeader>()];
+                    let mut header_data = [0u8; EbxPartitionHeader::SIZE];
                     self.data.copy_to_slice(&mut header_data);
 
                     self.header = unsafe { mem::transmute(header_data) };
@@ -175,7 +239,9 @@ impl<'a> EbxPartitionReader<'a> {
                         );
                     }
 
-                    if (self.header.payload_size + self.header.meta_size) == byte_count {
+                    if self.layout_only
+                        || (self.header.payload_size + self.header.meta_size) == byte_count
+                    {
                         complete = true;
                     } else {
                         panic!(
@@ -185,7 +251,7 @@ impl<'a> EbxPartitionReader<'a> {
                     }
 
                     self.metadata_outstanding =
-                        self.header.meta_size - mem::size_of::<EbxPartitionHeader>() as u32;
+                        self.header.meta_size - EbxPartitionHeader::SIZE as u32;
                     self.payload_outstanding = self.header.payload_size;
 
                     self.init_data.guid = self.header.partition_guid;
@@ -219,7 +285,24 @@ impl<'a> EbxPartitionReader<'a> {
                     };
 
                     // TODO: handle type descriptors
-                    self.data.skip(self.header.type_string_table_size as usize);
+                    //self.data.skip(self.header.type_string_table_size as usize);
+
+                    if self.read_type_names {
+                        let type_names_offset = self.data.pos();
+                        loop {
+                            if self.data.pos()
+                                >= type_names_offset + self.header.type_string_table_size as usize
+                            {
+                                break;
+                            }
+
+                            let type_name = self.data.get_null_terminated_str();
+                            let type_hash = hash_string(&type_name);
+                            self.type_names.insert(type_hash, type_name);
+                        }
+                    } else {
+                        self.data.skip(self.header.type_string_table_size as usize);
+                    }
 
                     let field_descriptors = unsafe {
                         let mut values = vec![
@@ -302,15 +385,30 @@ impl<'a> EbxPartitionReader<'a> {
                     self.state = ReaderState::Fixup;
                 }
                 ReaderState::Fixup => {
-                    self.handle_fixup().await;
+                    self.handle_fixup().await?;
                     self.state = ReaderState::Done;
                 }
                 ReaderState::Done => {
+                    if self.layout_only {
+                        self.init_data.name = self.partition_name.clone();
+                    } else {
+                        let container = &mut *self.containers[0].lock().await;
+                        let asset = type_info_cast::<glacier_reflect_swbf2::core::Asset>(
+                            container,
+                            glacier_reflect_swbf2::core::ASSET_TYPE_INFO,
+                        )
+                        .unwrap();
+
+                        self.init_data.name = asset.name.to_owned();
+                    }
+
                     self.init_data.instances = self.containers.clone();
                     break;
                 }
             }
         }
+
+        Ok(())
     }
 
     fn resolve_imports(&mut self) {
@@ -328,8 +426,6 @@ impl<'a> EbxPartitionReader<'a> {
 
     async fn handle_layout(&mut self) {
         self.type_infos = vec![None; 512];
-
-        let mut instance_count = 0;
 
         let mut i = 0;
         for range in &self.instance_ranges {
@@ -374,13 +470,11 @@ impl<'a> EbxPartitionReader<'a> {
                 self.containers.push(container);
             }
 
-            instance_count += range.instance_count as usize;
-
             i += 1;
         }
     }
 
-    async fn handle_fixup(&mut self) {
+    async fn handle_fixup(&mut self) -> Result<(), EbxError> {
         let mut i = 0;
         for range in self.instance_ranges.clone() {
             let td = self
@@ -399,14 +493,22 @@ impl<'a> EbxPartitionReader<'a> {
             for _ in 0..range.instance_count {
                 self.align_payload(td.alignment as usize);
 
-                let container = self.containers[i].clone();
+                let container_arc = self.containers[i].clone();
 
-                let mut container = container.lock().await;
+                let mut container = container_arc.lock().await;
                 let dc_core = container
                     .data_container_core_mut()
                     .expect("Invalid container");
                 dc_core.instance_guid = if dc_core.exported {
-                    self.data.get_guid()
+                    let guid = self.data.get_guid();
+
+                    if let Some(importer) = &mut self.importer {
+                        importer
+                            .store_instance(self.init_data.guid, guid, container_arc.clone())
+                            .await;
+                    }
+
+                    guid
                 } else {
                     Guid::random()
                 };
@@ -415,10 +517,15 @@ impl<'a> EbxPartitionReader<'a> {
                     self.data.skip(8);
                 }
 
-                Self::marshal_fields(self, td.clone(), Some(&mut *container), 0, 0).await;
+                if !self.layout_only {
+                    Self::marshal_fields(self, td.clone(), Some(&mut *container), 0, 0).await?;
+                }
+
                 i += 1;
             }
         }
+
+        Ok(())
     }
 
     #[async_recursion::async_recursion]
@@ -428,7 +535,7 @@ impl<'a> EbxPartitionReader<'a> {
         container: Option<&mut dyn TypeObject>,
         offset: isize,
         depth: u32,
-    ) {
+    ) -> Result<(), EbxError> {
         let container = match container {
             Some(container) => container,
             None => {
@@ -482,7 +589,37 @@ impl<'a> EbxPartitionReader<'a> {
 
             let field_info = match field_info {
                 Some(field_info) => field_info,
-                None => panic!("Field not found: {}", field_desc.field_name_hash),
+                None => {
+                    let field_type_name = inst
+                        .type_names
+                        .get(&field_type_desc.type_name_hash)
+                        .unwrap()
+                        .to_owned();
+                    let field_name = inst
+                        .type_names
+                        .get(&field_desc.field_name_hash)
+                        .unwrap()
+                        .to_owned();
+                    let enclosing_type_name = inst
+                        .type_names
+                        .get(&type_desc.type_name_hash)
+                        .unwrap()
+                        .to_owned();
+
+                    // if field_name == "DebugName" {
+                    //     let str_offset = inst.data.get_u32();
+                    //     let string = inst.payload_string(str_offset);
+                    //     if string.len() > 0 {
+                    //         println!("{} {}: {}", enclosing_type_name, field_name, string);
+                    //     }
+                    // }
+
+                    return Err(EbxError::FieldNotFound(
+                        field_name,
+                        field_type_name,
+                        enclosing_type_name,
+                    ));
+                }
             };
 
             let target_ptr = unsafe {
@@ -509,9 +646,15 @@ impl<'a> EbxPartitionReader<'a> {
             }
 
             match &field_type_info.data {
-                TypeInfoData::Uint8 => todo!(),
+                TypeInfoData::Uint8 => {
+                    let value = inst.data.get_u8();
+                    unsafe { *(target_ptr as *mut u8) = value };
+                }
                 TypeInfoData::Int8 => todo!(),
-                TypeInfoData::Uint16 => todo!(),
+                TypeInfoData::Uint16 => {
+                    let value = inst.data.get_u16();
+                    unsafe { *(target_ptr as *mut u16) = value };
+                }
                 TypeInfoData::Int16 => todo!(),
                 TypeInfoData::Uint32 => {
                     let value = inst.data.get_u32();
@@ -521,8 +664,14 @@ impl<'a> EbxPartitionReader<'a> {
                     let value = inst.data.get_i32();
                     unsafe { *(target_ptr as *mut i32) = value };
                 }
-                TypeInfoData::Uint64 => todo!(),
-                TypeInfoData::Int64 => todo!(),
+                TypeInfoData::Uint64 => {
+                    let value = inst.data.get_u64();
+                    unsafe { *(target_ptr as *mut u64) = value };
+                }
+                TypeInfoData::Int64 => {
+                    let value = inst.data.get_i64();
+                    unsafe { *(target_ptr as *mut i64) = value };
+                }
                 TypeInfoData::Float32 => {
                     let value = inst.data.get_f32();
                     unsafe { *(target_ptr as *mut f32) = value };
@@ -539,10 +688,29 @@ impl<'a> EbxPartitionReader<'a> {
                         (*(target_ptr as *mut String)).push_str(&string);
                     };
                 }
-                TypeInfoData::ResourceRef => todo!(),
-                TypeInfoData::TypeRef => todo!(),
-                TypeInfoData::FileRef => todo!(),
-                TypeInfoData::BoxedValueRef => todo!(),
+                TypeInfoData::ResourceRef => {
+                    let value = inst.data.get_u64();
+                    // TODO
+                }
+                TypeInfoData::TypeRef => {
+                    let str_offset = inst.data.get_u32();
+                    let _string = inst.payload_string(str_offset);
+                    inst.data.skip(4);
+                    // TODO
+                }
+                TypeInfoData::FileRef => {
+                    let str_offset = inst.data.get_u32();
+                    inst.data.skip(4);
+                    let _string = inst.payload_string(str_offset);
+                    // TODO
+                }
+                TypeInfoData::BoxedValueRef => {
+                    eprintln!(
+                        "Encountered BoxedValueRef while marshalling EBX field {} in {} in {}",
+                        field_info.name, type_info.name, inst.partition_name
+                    );
+                    return Err(EbxError::Unknown("BoxedValueRef".to_string()));
+                }
                 TypeInfoData::SHA1 => todo!(),
                 TypeInfoData::Guid => {
                     let guid = inst.data.get_guid();
@@ -552,6 +720,19 @@ impl<'a> EbxPartitionReader<'a> {
                 TypeInfoData::Array(element_type_name) => {
                     let index = inst.data.get_i32();
                     let payload_offset = inst.data.pos();
+
+                    if inst.array_entries.len() <= index as usize {
+                        eprintln!(
+                            "Invalid array index {}/{} for {} in {} in {}",
+                            index,
+                            inst.array_entries.len(),
+                            element_type_name,
+                            field_info.name,
+                            inst.partition_name
+                        );
+
+                        return Err(EbxError::ArrayIndexOutOfBounds);
+                    }
 
                     let array = &inst.array_entries[index as usize];
                     inst.data.seek(
@@ -598,8 +779,24 @@ impl<'a> EbxPartitionReader<'a> {
                             }
                         }
                         TypeInfoData::Int8 => todo!(),
-                        TypeInfoData::Uint16 => todo!(),
-                        TypeInfoData::Int16 => todo!(),
+                        TypeInfoData::Uint16 => {
+                            let vec = unsafe { &mut *(target_ptr as *mut Vec<u16>) };
+                            vec.reserve_exact(count as usize);
+
+                            for _ in 0..count as usize {
+                                let value = inst.data.get_u16();
+                                vec.push(value);
+                            }
+                        }
+                        TypeInfoData::Int16 => {
+                            let vec = unsafe { &mut *(target_ptr as *mut Vec<i16>) };
+                            vec.reserve_exact(count as usize);
+
+                            for _ in 0..count as usize {
+                                let value = inst.data.get_i16();
+                                vec.push(value);
+                            }
+                        }
                         TypeInfoData::Uint32 => {
                             let vec = unsafe { &mut *(target_ptr as *mut Vec<u32>) };
                             vec.reserve_exact(count as usize);
@@ -630,8 +827,25 @@ impl<'a> EbxPartitionReader<'a> {
                             }
                         }
                         TypeInfoData::Float64 => todo!(),
-                        TypeInfoData::Boolean => todo!(),
-                        TypeInfoData::CString => todo!(),
+                        TypeInfoData::Boolean => {
+                            let vec = unsafe { &mut *(target_ptr as *mut Vec<bool>) };
+                            vec.reserve_exact(count as usize);
+
+                            for _ in 0..count as usize {
+                                let value = inst.data.get_u8();
+                                vec.push(value != 0);
+                            }
+                        }
+                        TypeInfoData::CString => {
+                            let vec = unsafe { &mut *(target_ptr as *mut Vec<String>) };
+                            vec.reserve_exact(count as usize);
+
+                            for _ in 0..count as usize {
+                                let str_offset = inst.data.get_u32();
+                                let string = inst.payload_string(str_offset);
+                                vec.push(string);
+                            }
+                        }
                         TypeInfoData::ResourceRef => todo!(),
                         TypeInfoData::TypeRef => todo!(),
                         TypeInfoData::FileRef => todo!(),
@@ -657,9 +871,10 @@ impl<'a> EbxPartitionReader<'a> {
 
                             for _ in 0..count {
                                 let mut dc_ref: Option<LockedTypeObject> = None;
-                                inst.marshal_reference(
+                                inst.marshal_reference(SendPtr(
                                     &mut dc_ref as *mut Option<LockedTypeObject> as *mut u8,
-                                );
+                                ))
+                                .await;
                                 vec.push(dc_ref);
                             }
                         }
@@ -678,11 +893,19 @@ impl<'a> EbxPartitionReader<'a> {
                                     0,
                                     depth + 1,
                                 )
-                                .await;
+                                .await?;
                                 vec.push(boxed);
                             }
                         }
-                        TypeInfoData::Enum => todo!(),
+                        TypeInfoData::Enum => {
+                            let vec = unsafe { &mut *(target_ptr as *mut Vec<i64>) };
+                            vec.reserve_exact(count as usize);
+
+                            for _ in 0..count as usize {
+                                let value = inst.data.get_i32();
+                                vec.push(value as i64);
+                            }
+                        }
                         TypeInfoData::Unknown => todo!(),
                     }
 
@@ -697,9 +920,9 @@ impl<'a> EbxPartitionReader<'a> {
                             class_info.super_class_offset as isize,
                             depth + 1,
                         )
-                        .await;
+                        .await?;
                     } else {
-                        inst.marshal_reference(target_ptr);
+                        inst.marshal_reference(SendPtr(target_ptr)).await;
                     }
                 }
                 TypeInfoData::ValueType(_) => {
@@ -712,7 +935,7 @@ impl<'a> EbxPartitionReader<'a> {
                         offset + field_info.rust_offset as isize,
                         depth + 1,
                     )
-                    .await;
+                    .await?;
                 }
                 TypeInfoData::Enum => {
                     let value = inst.data.get_i32() as i64;
@@ -726,15 +949,17 @@ impl<'a> EbxPartitionReader<'a> {
             TypeInfoData::Boolean => {}
             _ => inst.align_payload(type_desc.alignment as usize),
         }
+
+        Ok(())
     }
 
-    fn marshal_reference(&mut self, target: *mut u8) {
+    async fn marshal_reference(&mut self, target: SendPtr<u8>) {
         let index = self.data.get_u32();
 
         //println!("Reference index: {}", index);
 
         if index == 0 {
-            unsafe { *(target as *mut Option<LockedTypeObject>) = None };
+            unsafe { *(target.0 as *mut Option<LockedTypeObject>) = None };
             return;
         }
 
@@ -747,7 +972,7 @@ impl<'a> EbxPartitionReader<'a> {
                 self.containers.len()
             );
             let container = self.containers[(index - 1) as usize].clone();
-            unsafe { *(target as *mut Option<LockedTypeObject>) = Some(container) };
+            unsafe { *(target.0 as *mut Option<LockedTypeObject>) = Some(container) };
         } else {
             let i = index & 0x7FFF_FFFF;
             //println!("Import index: {}", i);
@@ -755,12 +980,23 @@ impl<'a> EbxPartitionReader<'a> {
             assert!(i < self.imports.len() as u32);
 
             let import = self.imports[i as usize].clone();
-            if import.is_none() {
-                // Lazy resolve required
-                unsafe { *(target as *mut Option<LockedTypeObject>) = None };
-                //todo!("Lazy resolve required");
-            } else {
-                unsafe { *(target as *mut Option<LockedTypeObject>) = Some(import.unwrap()) };
+            if import.is_some() {
+                unsafe { *(target.0 as *mut Option<LockedTypeObject>) = import };
+            } else if let Some(importer) = &mut self.importer && !self.shallow_mode {
+                let entry = &self.import_entries[i as usize];
+
+                let instance = importer
+                    .load_partition(entry.partition_guid, entry.instance_guid)
+                    .await;
+
+                if instance.is_some() {
+                    unsafe { *(target.0 as *mut Option<LockedTypeObject>) = instance };
+                } else {
+                    debug!(
+                        "Failed to load import {:?}/{:?} in {}",
+                        entry.partition_guid, entry.instance_guid, self.partition_name
+                    );
+                }
             }
         }
     }
@@ -803,7 +1039,7 @@ mod tests {
         register_mod_types(&mut registry);
 
         let mut reader = EbxPartitionReader::new("LevelListReport".to_owned(), &registry);
-        reader.read(data.to_vec()).await;
+        reader.read(data.to_vec()).await.unwrap();
 
         let partition = reader.finalize();
         let primary_instance = partition.primary_instance().unwrap();
@@ -832,7 +1068,7 @@ mod tests {
         register_mod_types(&mut registry);
 
         let mut reader = EbxPartitionReader::new("DroidekaStateMachine".to_owned(), &registry);
-        reader.read(data.to_vec()).await;
+        reader.read(data.to_vec()).await.unwrap();
 
         let partition = reader.finalize();
         let primary_instance = partition.primary_instance().unwrap();
@@ -850,7 +1086,7 @@ mod tests {
 
         let mut reader =
             EbxPartitionReader::new("DefaultSoldierStateMachine".to_owned(), &registry);
-        reader.read(data.to_vec()).await;
+        reader.read(data.to_vec()).await.unwrap();
 
         let partition = reader.finalize();
         let primary_instance = partition.primary_instance().unwrap();

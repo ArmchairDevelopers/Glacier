@@ -1,3 +1,5 @@
+#![feature(let_chains)]
+
 pub mod db;
 pub mod dbx;
 pub mod ebx;

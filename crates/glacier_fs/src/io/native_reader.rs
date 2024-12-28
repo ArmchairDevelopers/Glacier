@@ -1,5 +1,6 @@
 use std::{ops::Index, slice::SliceIndex};
 
+use bytes::{Buf, Bytes};
 use glacier_util::{guid::Guid, sha1::Sha1};
 
 pub struct NativeReader {
@@ -57,11 +58,29 @@ impl NativeReader {
         value
     }
 
+    pub fn get_u16_be(&mut self) -> u16 {
+        assert!(self.pos + 2 <= self.buf.len());
+
+        let bytes = self.buf.get(self.pos..self.pos + 2).unwrap();
+        let value = u16::from_be_bytes(bytes.try_into().expect("slice with incorrect length"));
+        self.pos += 2;
+        value
+    }
+
     pub fn get_i16(&mut self) -> i16 {
         assert!(self.pos + 2 <= self.buf.len());
 
         let bytes = self.buf.get(self.pos..self.pos + 2).unwrap();
         let value = i16::from_le_bytes(bytes.try_into().expect("slice with incorrect length"));
+        self.pos += 2;
+        value
+    }
+
+    pub fn get_i16_be(&mut self) -> i16 {
+        assert!(self.pos + 2 <= self.buf.len());
+
+        let bytes = self.buf.get(self.pos..self.pos + 2).unwrap();
+        let value = i16::from_be_bytes(bytes.try_into().expect("slice with incorrect length"));
         self.pos += 2;
         value
     }
@@ -75,11 +94,29 @@ impl NativeReader {
         value
     }
 
+    pub fn get_u32_be(&mut self) -> u32 {
+        assert!(self.pos + 4 <= self.buf.len());
+
+        let bytes = self.buf.get(self.pos..self.pos + 4).unwrap();
+        let value = u32::from_be_bytes(bytes.try_into().expect("slice with incorrect length"));
+        self.pos += 4;
+        value
+    }
+
     pub fn get_i32(&mut self) -> i32 {
         assert!(self.pos + 4 <= self.buf.len());
 
         let bytes = self.buf.get(self.pos..self.pos + 4).unwrap();
         let value = i32::from_le_bytes(bytes.try_into().expect("slice with incorrect length"));
+        self.pos += 4;
+        value
+    }
+
+    pub fn get_i32_be(&mut self) -> i32 {
+        assert!(self.pos + 4 <= self.buf.len());
+
+        let bytes = self.buf.get(self.pos..self.pos + 4).unwrap();
+        let value = i32::from_be_bytes(bytes.try_into().expect("slice with incorrect length"));
         self.pos += 4;
         value
     }
@@ -93,11 +130,29 @@ impl NativeReader {
         value
     }
 
+    pub fn get_u64_be(&mut self) -> u64 {
+        assert!(self.pos + 8 <= self.buf.len());
+
+        let bytes = self.buf.get(self.pos..self.pos + 8).unwrap();
+        let value = u64::from_be_bytes(bytes.try_into().expect("slice with incorrect length"));
+        self.pos += 8;
+        value
+    }
+
     pub fn get_i64(&mut self) -> i64 {
         assert!(self.pos + 8 <= self.buf.len());
 
         let bytes = self.buf.get(self.pos..self.pos + 8).unwrap();
         let value = i64::from_le_bytes(bytes.try_into().expect("slice with incorrect length"));
+        self.pos += 8;
+        value
+    }
+
+    pub fn get_i64_be(&mut self) -> i64 {
+        assert!(self.pos + 8 <= self.buf.len());
+
+        let bytes = self.buf.get(self.pos..self.pos + 8).unwrap();
+        let value = i64::from_be_bytes(bytes.try_into().expect("slice with incorrect length"));
         self.pos += 8;
         value
     }
@@ -111,11 +166,29 @@ impl NativeReader {
         value
     }
 
+    pub fn get_f32_be(&mut self) -> f32 {
+        assert!(self.pos + 4 <= self.buf.len());
+
+        let bytes = self.buf.get(self.pos..self.pos + 4).unwrap();
+        let value = f32::from_be_bytes(bytes.try_into().expect("slice with incorrect length"));
+        self.pos += 4;
+        value
+    }
+
     pub fn get_f64(&mut self) -> f64 {
         assert!(self.pos + 8 <= self.buf.len());
 
         let bytes = self.buf.get(self.pos..self.pos + 8).unwrap();
         let value = f64::from_le_bytes(bytes.try_into().expect("slice with incorrect length"));
+        self.pos += 8;
+        value
+    }
+
+    pub fn get_f64_be(&mut self) -> f64 {
+        assert!(self.pos + 8 <= self.buf.len());
+
+        let bytes = self.buf.get(self.pos..self.pos + 8).unwrap();
+        let value = f64::from_be_bytes(bytes.try_into().expect("slice with incorrect length"));
         self.pos += 8;
         value
     }
@@ -247,5 +320,26 @@ impl Index<std::ops::RangeTo<usize>> for NativeReader {
 
     fn index(&self, index: std::ops::RangeTo<usize>) -> &Self::Output {
         &self.buf[self.pos..self.pos + index.end]
+    }
+}
+
+pub trait BytesExt {
+    fn get_null_terminated_str(&mut self) -> String;
+}
+
+impl BytesExt for Bytes {
+    fn get_null_terminated_str(&mut self) -> String {
+        let mut bytes = Vec::new();
+    
+        loop {
+            let b = self.get_u8();
+            if b == 0 {
+                break;
+            }
+    
+            bytes.push(b);
+        }
+    
+        String::from_utf8(bytes).unwrap()
     }
 }

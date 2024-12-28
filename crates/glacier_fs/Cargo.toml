@@ -13,11 +13,11 @@ tokio = { version = "1.28.2", features = [
 ] }
 glacier_util = { path = "../glacier_util" }
 glacier_reflect = { path = "../glacier_reflect" }
-tracing = "0.1.40"
+glacier_reflect_swbf2 = { path = "../glacier_reflect_swbf2" }
+tracing = "0.1.41"
 async-recursion = "1.1.1"
 paste = "1.0.15"
 bytes = "1.8.0"
 thiserror = "1.0.65"
-
-[dev-dependencies]
-glacier_reflect_swbf2 = { path = "../glacier_reflect_swbf2" }
+async-compression = { version = "0.4.18", features = [ "tokio", "zstd" ] }
+async-trait = "0.1.83"

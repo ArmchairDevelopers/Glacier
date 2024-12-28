@@ -17,7 +17,7 @@ const DB_TYPE_FLOAT: u8 = 11;
 const DB_TYPE_DOUBLE: u8 = 12;
 const DB_TYPE_GUID: u8 = 15;
 const DB_TYPE_SHA1: u8 = 16;
-//const DB_TYPE_BYTE_ARRAY: u8 = 19;
+const DB_TYPE_BYTE_ARRAY: u8 = 19;
 
 #[derive(thiserror::Error, Debug)]
 pub enum DbObjectError {
@@ -58,7 +58,7 @@ pub enum DbType {
 }
 
 macro_rules! db_type_getter {
-    ($name:ident, $variant:ident, $type:ident) => {
+    ($name:ident, $variant:ident, $type:ty) => {
         paste::paste! {
             pub fn [<get_as_ $name>](&self) -> Result<&$type, DbObjectError> {
                 if let DbType::$variant(x) = self {
@@ -77,6 +77,7 @@ impl DbType {
     db_type_getter!(boolean, Boolean, bool);
     db_type_getter!(str, String, String);
     db_type_getter!(int, Int, u32);
+    db_type_getter!(byte_array, ByteArray, Vec<u8>);
 }
 
 pub fn read_db_object(
@@ -140,6 +141,17 @@ pub fn read_db_object(
         DB_TYPE_DOUBLE => DbType::Double(buf.get_f64()),
         DB_TYPE_GUID => DbType::Guid(buf.get_guid()),
         DB_TYPE_SHA1 => DbType::Sha1(buf.get_sha1()),
+        DB_TYPE_BYTE_ARRAY => {
+            let size = buf.get_7bit_encoded_long();
+            let offset = buf.pos();
+
+            let mut values: Vec<u8> = Vec::new();
+            while buf.pos() - offset < size.try_into().unwrap() {
+                values.push(buf.get_u8());
+            }
+
+            DbType::ByteArray(values)
+        }
         _ => {
             println!("Unknown type {obj_type}");
             return Ok(None);

@@ -82,7 +82,6 @@ pub fn parse_catalog(path: PathBuf) -> Result<Catalog, FbCatalogError> {
     let encrypted_cnt = buf.get_u32();
     buf.skip(12);
 
-    println!("{:?} has resources: {}", path, resource_cnt);
     let mut file_count = 0;
 
     let mut resource_entries = Vec::new();
@@ -97,8 +96,6 @@ pub fn parse_catalog(path: PathBuf) -> Result<Catalog, FbCatalogError> {
         let entry = CatPatchEntry::load(&mut buf);
         patch_entries.push(entry);
     }
-
-    println!("File count: {}", file_count);
 
     Ok(Catalog {
         resource_cnt,
