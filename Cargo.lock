@@ -2462,9 +2462,14 @@ dependencies = [
 name = "glacier_store"
 version = "0.1.0"
 dependencies = [
+ "async-trait",
+ "glacier_fs",
+ "glacier_reflect",
+ "glacier_reflect_swbf2",
  "glacier_util",
  "serde",
  "serde_json",
+ "tokio",
 ]
 
 [[package]]

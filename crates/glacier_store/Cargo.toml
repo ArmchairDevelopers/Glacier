@@ -4,6 +4,17 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+tokio = { version = "1.28.2", features = [
+    "full",
+    "rt",
+    "rt-multi-thread",
+    "time",
+    "net",
+] }
+glacier_fs = { path = "../glacier_fs" }
 glacier_util = { path = "../glacier_util" }
+glacier_reflect = { path = "../glacier_reflect" }
+glacier_reflect_swbf2 = { path = "../glacier_reflect_swbf2" }
 serde = { version = "1.0.216", features = ["derive"] }
 serde_json = "1.0.134"
+async-trait = "0.1.83"

@@ -109,6 +109,7 @@ async fn convert_to_dbx(
 
 pub(crate) async fn convert_ebx(
     ctx: &PackagedConversionContext,
+    asset_index: &Arc<DomainAssetIndex>,
     type_registry: &Arc<TypeRegistry>,
     data: &Arc<FrostbiteGameData>,
 ) {
@@ -116,13 +117,6 @@ pub(crate) async fn convert_ebx(
     let semaphore = Arc::new(Semaphore::new(max_concurrent_jobs));
 
     let mut handles = Vec::new();
-
-    info!("Loading indexed partitions...");
-
-    let str = fs::read(ctx.state_data_path().await.join("indexed_partitions.json"))
-        .await
-        .expect("Failed to write indexed partitions");
-    let asset_index = DomainAssetIndex::load(String::from_utf8(str).unwrap()).unwrap();
 
     info!("Creating partition file map...");
 
@@ -149,7 +143,6 @@ pub(crate) async fn convert_ebx(
 
     info!("Starting conversion...");
 
-    let asset_index = Arc::new(asset_index);
     let error_count = Arc::new(AtomicU32::new(0));
 
     let mut i = 0;

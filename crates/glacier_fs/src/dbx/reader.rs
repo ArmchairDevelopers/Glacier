@@ -40,6 +40,8 @@ pub enum DbxReaderError {
     InvalidClosingTag,
     #[error("invalid type")]
     InvalidType,
+    #[error("file not found")]
+    FileNotFound,
 }
 
 #[derive(Clone, Debug)]
@@ -280,15 +282,12 @@ impl<'a> DbxPartitionReader<'a> {
 
         self.partition_guid = partition_guid;
 
-        let primary_instance_guid = Guid::from_str(
-            partition_node
-                .attributes
-                .get("primaryInstance")
-                .ok_or(DbxReaderError::InvalidXml)?,
-        );
-
-        println!("Partition GUID: {:?}", partition_guid);
-        println!("Primary instance GUID: {:?}", primary_instance_guid);
+        // let primary_instance_guid = Guid::from_str(
+        //     partition_node
+        //         .attributes
+        //         .get("primaryInstance")
+        //         .ok_or(DbxReaderError::InvalidXml)?,
+        // );
 
         //let mut raw_partitions = Vec::new();
 
