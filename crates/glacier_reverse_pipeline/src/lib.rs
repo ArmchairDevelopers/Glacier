@@ -10,6 +10,7 @@ use tracing::info;
 pub mod dbx_conversion;
 pub mod ebx_indexing;
 pub mod memory_fs;
+pub mod mutator;
 
 pub struct PackagedConversionContext {
     pub source_data_path: PathBuf,

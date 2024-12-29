@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<partition guid="6de53c0c-88d4-4cd9-bca8-6f4686d9bdc4" primaryInstance="44ff3348-fb56-44aa-b781-0020a1654d88" exportMode="All">
+    <instance guid="44ff3348-fb56-44aa-b781-0020a1654d88" type="Entity.LayerData" exported="True">
+        <field name="Name">S2_2/Levels/JabbasPalace_01/Pathfinding_Schematic2</field>
+        <field name="Flags">0</field>
+        <array name="Objects">
+            <item ref="1296c675-35ef-440a-9677-26731d35fd65"></item>
+            <item ref="9229960c-6a5a-4f23-b68b-ebe4bd92bd16"></item>
+            <item ref="733546d2-72fc-46d0-b7f1-8d17caf81656"></item>
+            <item ref="cd544f31-e4e0-408e-a153-f83a479f76ba"></item>
+            <item ref="65a51b34-62c3-499d-9cdb-64c78cb2e346"></item>
+            <item ref="5dcba8c4-0fed-4bc5-9f2d-608f9481e81a"></item>
+        </array>
+        <field name="TimeDeltaType">0</field>
+        <field name="Enabled">true</field>
+        <field name="HackToSolveRealTimeTweakingIssue">b9b38509-be37-e83f-c09a-0ba97c966ff2</field>
+    </instance>
+    <instance guid="9229960c-6a5a-4f23-b68b-ebe4bd92bd16" type="Network.SyncedBoolEntityData" exported="True">
+        <field name="Flags">271160844</field>
+    </instance>
+    <instance guid="cd544f31-e4e0-408e-a153-f83a479f76ba" type="GameShared.InclusionSettingEntityData" exported="True">
+        <field name="Flags">22302513</field>
+        <field name="Realm">1</field>
+        <field name="Setting">GameMode</field>
+        <array name="Settings">
+            <item>Mode9</item>
+            <item>ModeDefend</item>
+            <item>ModeE</item>
+            <item>ModeF</item>
+        </array>
+    </instance>
+    <instance guid="65a51b34-62c3-499d-9cdb-64c78cb2e346" type="BattleAIShared.PathfindingStreamEntityData" exported="True">
+        <field name="Flags">94706484</field>
+        <field name="PathfindingBlobs" ref="s2_2/levels/jabbaspalace_01/jabbaspalace_01_pathfindingblobs_65a51b34-62c3-499d-9cdb-64c78cb2e346/79f2daf2-8241-3b21-d3a6-64e2faddda45" partitionGuid="79f2daf2-8241-3b21-d3a6-64e2faddda45"></field>
+        <field name="Autoload">false</field>
+        <field name="Realm">1</field>
+    </instance>
+    <instance guid="1296c675-35ef-440a-9677-26731d35fd65" type="BattleAIShared.PathfindingStreamEntityData" exported="True">
+        <field name="Flags">76990069</field>
+        <field name="PathfindingBlobs" ref="s2_2/levels/jabbaspalace_01/jabbaspalace_01_pathfindingblobs_1296c675-35ef-440a-9677-26731d35fd65/1218b6a5-d5b2-1383-c7ab-0a2863837c20" partitionGuid="1218b6a5-d5b2-1383-c7ab-0a2863837c20"></field>
+        <field name="Autoload">false</field>
+        <field name="Realm">1</field>
+    </instance>
+    <instance guid="5dcba8c4-0fed-4bc5-9f2d-608f9481e81a" type="Entity.CompareBoolEntityData" exported="True">
+        <field name="Flags">298559684</field>
+        <field name="Realm">1</field>
+        <field name="TriggerOnPropertyChange">true</field>
+        <field name="TriggerOnStart">true</field>
+        <field name="AlwaysSend">false</field>
+        <field name="Bool">false</field>
+    </instance>
+    <instance guid="733546d2-72fc-46d0-b7f1-8d17caf81656" type="GameShared.InclusionSettingEntityData" exported="True">
+        <field name="Flags">20268754</field>
+        <field name="Realm">1</field>
+        <field name="Setting">GameMode</field>
+        <array name="Settings">
+            <item>SkirmishBlast</item>
+            <item>SkirmishOnslaught</item>
+            <item>SkirmishDuel</item>
+        </array>
+    </instance>
+</partition>

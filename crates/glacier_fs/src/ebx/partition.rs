@@ -451,7 +451,7 @@ impl<'a> EbxPartitionReader<'a> {
 
             self.type_infos[range.type_descriptor_index as usize] = type_info;
 
-            let type_info = type_info.unwrap();
+            let type_info = type_info.expect("Type not found");
             let class_info = if let TypeInfoData::Class(class_info) = &type_info.data {
                 class_info
             } else {

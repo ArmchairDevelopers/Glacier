@@ -49,7 +49,7 @@ pub fn type_info_cast<'a, T: TypeObject>(
     Some(unsafe { &mut *(raw.data_ptr as *mut T) })
 }
 
-#[derive(Clone, Copy)]
+#[derive(Debug, Clone, Copy)]
 pub struct SendPtr<T>(pub *mut T);
 
 unsafe impl<T> Send for SendPtr<T> {}
