@@ -77,7 +77,6 @@ pub async fn cas_decompress(
         cursor.copy_to_slice(&mut buffered_data);
 
         if do_decompression {
-    
             let mut decoder = ZstdDecoder::new(Cursor::new(buffered_data));
             let mut decompressed_data = vec![0u8; decompressed_size];
     

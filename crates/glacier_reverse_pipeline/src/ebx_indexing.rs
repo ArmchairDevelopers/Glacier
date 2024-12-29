@@ -68,7 +68,7 @@ pub(crate) async fn index_ebx(
                             &cloned_registry,
                             None,
                         );
-                        //reader.layout_only();
+                        reader.layout_only();
 
                         let result = reader.read(data).await;
                         if let Err(err) = result {

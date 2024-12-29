@@ -469,7 +469,6 @@ impl HeightfieldTree {
                 .to_vec();
         } else if node_data_skipped && self.min_max_stack_size > 0 {
             //println!("Loading min_max_stack_data for {:?}", node.id);
-            // read min_max_stack_data u16s
             node.min_max_stack_data = (0..self.min_max_stack_size)
                 .map(|_| buf.get_u16_le())
                 .collect();

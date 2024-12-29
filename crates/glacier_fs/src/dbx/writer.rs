@@ -111,7 +111,11 @@ pub struct DbxPartitionWriter<'a> {
 }
 
 impl<'a> DbxPartitionWriter<'a> {
-    pub fn new(partition: &'a DatabasePartition, type_registry: &'a TypeRegistry, import_resolver: &'a dyn DbxWriterImportResolver) -> Self {
+    pub fn new(
+        partition: &'a DatabasePartition,
+        type_registry: &'a TypeRegistry,
+        import_resolver: &'a dyn DbxWriterImportResolver,
+    ) -> Self {
         Self {
             partition,
             type_registry,
@@ -547,7 +551,11 @@ impl<'a> DbxPartitionWriter<'a> {
                                 let mut reference = self
                                     .collect_reference(
                                         container,
-                                        container_instance.as_deref_mut(),
+                                        if container_instance.is_some() {
+                                            container_instance.as_deref_mut()
+                                        } else {
+                                            Some(instance)
+                                        },
                                         item,
                                     )
                                     .await;
@@ -601,9 +609,17 @@ impl<'a> DbxPartitionWriter<'a> {
                 }
             }
             TypeInfoData::Class(_) => {
-                let instance = unsafe { &mut *(source_ptr.0 as *mut Option<LockedTypeObject>) };
+                let field_instance = unsafe { &mut *(source_ptr.0 as *mut Option<LockedTypeObject>) };
                 let mut reference = self
-                    .collect_reference(container, container_instance.as_deref_mut(), instance)
+                    .collect_reference(
+                        container,
+                        if container_instance.is_some() {
+                            container_instance.as_deref_mut()
+                        } else {
+                            Some(instance)
+                        },
+                        field_instance,
+                    )
                     .await;
                 if !reference.is_empty() {
                     let mut attr = vec![("name".to_owned(), field_info.name.to_owned())];
@@ -650,11 +666,14 @@ impl<'a> DbxPartitionWriter<'a> {
         };
 
         let dc_core = if Arc::ptr_eq(container, instance) {
-            let container = container_instance.as_ref().unwrap();
-            container
-                .data_container_core()
-                .expect("Instance is not a DataContainer")
-                .clone()
+            if let Some(container) = container_instance {
+                container
+                    .data_container_core()
+                    .expect("Instance is not a DataContainer")
+                    .clone()
+            } else {
+                panic!("Top-level container instance not provided for reference collection");
+            }
         } else {
             let instance = instance.lock().await;
             instance
@@ -675,7 +694,10 @@ impl<'a> DbxPartitionWriter<'a> {
                 .unwrap_or_else(|| "unknown".to_string());
 
             vec![
-                ("ref".to_owned(), format!("{}/{}", partition_name, instance_guid)),
+                (
+                    "ref".to_owned(),
+                    format!("{}/{}", partition_name, instance_guid),
+                ),
                 ("partitionGuid".to_owned(), partition_guid.to_string()),
             ]
         }
