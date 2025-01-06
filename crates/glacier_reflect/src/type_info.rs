@@ -1,4 +1,4 @@
-use std::{any::Any, fmt::Debug, sync::Arc};
+use std::{any::Any, fmt::Debug, hash::Hash, sync::Arc};
 
 use tokio::sync::Mutex;
 
@@ -6,7 +6,7 @@ use crate::{
     data_container::DataContainerCore, member::MemberInfoFlags, type_registry::TypeRegistry,
 };
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FieldInfoData {
     pub name: &'static str,
     pub name_hash: u32,
@@ -26,7 +26,7 @@ impl FieldInfoData {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct TypeFunctions {
     pub create: fn() -> LockedTypeObject,
     pub create_boxed: fn() -> BoxedTypeObject,
@@ -34,7 +34,7 @@ pub struct TypeFunctions {
     //pub trait_vtable: fn() -> *const (),
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct ClassInfoData {
     pub super_class: Option<&'static TypeInfo>,
     pub super_class_offset: usize,
@@ -84,7 +84,7 @@ impl ClassInfoData {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct ValueTypeInfoData {
     pub functions: TypeFunctions,
     pub fields: &'static [FieldInfoData],
@@ -120,7 +120,7 @@ impl ValueTypeInfoData {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum TypeInfoData {
     Uint8,
     Int8,
@@ -147,7 +147,7 @@ pub enum TypeInfoData {
     Unknown,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Eq)]
 pub struct TypeInfo {
     pub name: &'static str,
     pub name_hash: u32,
@@ -156,6 +156,18 @@ pub struct TypeInfo {
     pub data: TypeInfoData,
     pub array_type: Option<&'static TypeInfo>,
     pub alignment: u16,
+}
+
+impl PartialEq for TypeInfo {
+    fn eq(&self, other: &Self) -> bool {
+        self.name_hash == other.name_hash
+    }
+}
+
+impl Hash for TypeInfo {
+    fn hash<H: std::hash::Hasher>(&self, state: &mut H) {
+        self.name_hash.hash(state);
+    }
 }
 
 impl TypeInfo {

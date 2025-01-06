@@ -1,7 +1,7 @@
 use std::{path::PathBuf, sync::Arc};
 
 use glacier_reflect::type_registry::TypeRegistry;
-use glacier_reflect_swbf2::register_mod_types;
+use glacier_reflect_custom::register_types;
 use glacier_reverse_pipeline::PackagedConversionContext;
 
 use clap::Parser;
@@ -40,7 +40,7 @@ async fn main() {
     let ctx = PackagedConversionContext::new(args.source_data, args.output_data);
 
     let mut registry = TypeRegistry::default();
-    register_mod_types(&mut registry);
+    register_types(&mut registry);
 
     glacier_reverse_pipeline::execute(&ctx, Arc::new(registry))
         .await

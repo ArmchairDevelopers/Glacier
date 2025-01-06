@@ -17,6 +17,9 @@ thiserror = "1.0.65"
 glacier_util = { path = "../glacier_util" }
 glacier_reflect = { path = "../glacier_reflect" }
 glacier_reflect_swbf2 = { path = "../glacier_reflect_swbf2" }
+glacier_reflect_custom = { path = "../glacier_reflect_custom" }
+glacier_reflect_ext = { path = "../glacier_reflect_ext" }
+glacier_resource = { path = "../glacier_resource" }
 glacier_fs = { path = "../glacier_fs" }
 glacier_store = { path = "../glacier_store" }
 serde = { version = "1.0.216", features = ["derive"] }
@@ -24,3 +27,4 @@ serde_json = "1.0.134"
 clap = { version = "4.5.23", features = ["derive"] }
 tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
 async-trait = "0.1.83"
+typemap_rev = "0.3.0"

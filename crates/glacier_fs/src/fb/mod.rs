@@ -1,4 +1,4 @@
-use std::path::PathBuf;
+use std::{io::Cursor, path::PathBuf};
 
 use tokio::{
     fs::File,
@@ -129,8 +129,8 @@ pub async fn read_fb_game_data(
         //let mut buf = ByteBuf::from(Bytes::from(buffer));
         //let data_offset = buf.buf().get_u32() + 4;
 
-        let mut bytes = NativeReader::from_bytes(buffer);
-        let manifest = BundleManifest::load(bundle, &mut bytes)?;
+        let mut cursor = Cursor::new(buffer);
+        let manifest = BundleManifest::load(bundle, &mut cursor).await?;
 
         bundles.push(manifest);
 
@@ -159,7 +159,7 @@ mod tests {
 
         let data = read_fb_game_data(ctx).await.unwrap();
         data.bundles.iter().for_each(|bundle| {
-            println!("{:?}", bundle.ebx_entries.len());
+            println!("{:?}", bundle.res_entries.len());
         });
     }
 }

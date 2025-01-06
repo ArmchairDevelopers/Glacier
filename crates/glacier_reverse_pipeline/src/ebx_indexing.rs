@@ -8,7 +8,7 @@ use glacier_fs::{
     fb::FrostbiteGameData,
 };
 use glacier_reflect::type_registry::TypeRegistry;
-use glacier_store::index::asset_index::DomainAssetIndexEntry;
+use glacier_store::index::asset_index::{DomainAssetIndexEntry, DomainAssetIndexInstance};
 use glacier_util::guid::Guid;
 use tokio::{
     fs,
@@ -29,6 +29,8 @@ pub(crate) async fn index_ebx(
     let semaphore = Arc::new(Semaphore::new(max_concurrent_jobs));
 
     let mut handles = Vec::new();
+
+    let class_info_type = type_registry.type_by_name("ClassInfoAsset").unwrap();
 
     for bundle in &data.bundles {
         for entry in &bundle.ebx_entries {
@@ -68,7 +70,7 @@ pub(crate) async fn index_ebx(
                             &cloned_registry,
                             None,
                         );
-                        reader.layout_only();
+                        //reader.layout_only();
 
                         let result = reader.read(data).await;
                         if let Err(err) = result {
@@ -90,26 +92,7 @@ pub(crate) async fn index_ebx(
                             .collect();
                         let partition = reader.finalize();
 
-                        let mut indexed_partitions = cloned_indexed_partitions.lock().await;
-                        let index_entry = indexed_partitions.get_mut(&cloned_entry.name).unwrap();
-
-                        index_entry.partition = *partition.guid();
-
-                        let mut instances = Vec::new();
-                        for instance in partition.instances() {
-                            instances.push(
-                                instance
-                                    .lock()
-                                    .await
-                                    .data_container_core()
-                                    .unwrap()
-                                    .instance_guid,
-                            );
-                        }
-
-                        index_entry.instances = instances;
-
-                        index_entry.primary_type_hash = partition
+                        let primary_type_hash = partition
                             .primary_instance()
                             .unwrap()
                             .lock()
@@ -117,9 +100,34 @@ pub(crate) async fn index_ebx(
                             .type_info()
                             .name_hash;
 
-                        index_entry.imports = imports;
+                        let mut indexed_partitions = cloned_indexed_partitions.lock().await;
 
-                        //convert_to_dbx(&cloned_registry, partition).await;
+                        // The class info assets have different bundle and asset names, which
+                        // causes issues when running the reverse pipeline. We can safely ignore
+                        // these assets as we would just delete them anyway.
+                        if primary_type_hash == class_info_type.name_hash {
+                            indexed_partitions.remove(&cloned_entry.name);
+                            return;
+                        }
+
+                        let index_entry = indexed_partitions.get_mut(&cloned_entry.name).unwrap();
+
+                        index_entry.name = partition.name().to_lowercase();
+                        index_entry.partition = *partition.guid();
+
+                        let mut instances = Vec::new();
+                        for instance in partition.instances() {
+                            let instance = instance.lock().await;
+
+                            instances.push(DomainAssetIndexInstance {
+                                guid: instance.data_container_core().unwrap().instance_guid,
+                                type_hash: instance.type_info().name_hash,
+                            });
+                        }
+
+                        index_entry.instances = instances;
+                        index_entry.primary_type_hash = primary_type_hash;
+                        index_entry.imports = imports;
                     }
                     Err(err) => {
                         eprintln!("Error reading EBX: {:?}", err);
@@ -137,12 +145,12 @@ pub(crate) async fn index_ebx(
     let json = serde_json::to_string(
         &indexed_partitions
             .values()
-            .into_iter()
-            .collect::<Vec<&DomainAssetIndexEntry>>(),
+            .cloned()
+            .collect::<Vec<DomainAssetIndexEntry>>(),
     )
     .unwrap();
     fs::write(
-        ctx.state_data_path().await.join("indexed_partitions.json"),
+        ctx.state_data_path().await.join("partition_index.json"),
         json,
     )
     .await

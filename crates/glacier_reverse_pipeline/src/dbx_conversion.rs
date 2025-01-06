@@ -6,27 +6,30 @@ use std::{
 
 use glacier_fs::{
     db::partition::DatabasePartition,
-    dbx::writer::DbxWriterImportResolver,
+    dbx::writer::DbxPartitionWriter,
     ebx::partition::{EbxPartitionImportLoader, EbxPartitionReader},
     fb::FrostbiteGameData,
 };
 use glacier_reflect::{type_info::LockedTypeObject, type_registry::TypeRegistry};
 use glacier_reflect_swbf2::core::DATACONTAINER_TYPE_INFO;
-use glacier_store::index::asset_index::DomainAssetIndex;
+use glacier_store::index::asset_index::{AssetIndexDbxWriterImportResolver, DomainAssetIndex};
 use glacier_util::guid::Guid;
-use tokio::{fs, sync::Semaphore};
-use tracing::{error, info, warn};
+use tokio::{
+    fs,
+    sync::{RwLock, Semaphore},
+};
+use tracing::{error, info};
 
 use super::PackagedConversionContext;
 
 #[derive(Clone)]
 pub struct PackagedConversionEbxPartitionImportLoader {
-    index: Arc<DomainAssetIndex>,
+    index: Arc<RwLock<DomainAssetIndex>>,
     loaded_instances: HashMap<(Guid, Guid), LockedTypeObject>,
 }
 
 impl PackagedConversionEbxPartitionImportLoader {
-    pub fn new(index: Arc<DomainAssetIndex>) -> Self {
+    pub fn new(index: Arc<RwLock<DomainAssetIndex>>) -> Self {
         Self {
             index,
             loaded_instances: HashMap::new(),
@@ -55,39 +58,30 @@ impl EbxPartitionImportLoader for PackagedConversionEbxPartitionImportLoader {
             return Some(instance.clone());
         }
 
-        let data = self.index.by_partition_guid(&partition_guid)?;
-        let partition = DatabasePartition::new_empty(data.name.to_owned(), partition_guid);
+        let name = self
+            .index
+            .read()
+            .await
+            .get_name_by_partition_guid(&partition_guid)?
+            .to_owned();
+
+        let mut partition = DatabasePartition::new_empty(name, partition_guid);
         let instance = partition
             .create_instance_with_id(instance_guid, DATACONTAINER_TYPE_INFO)
             .await
             .unwrap();
+
         self.loaded_instances
             .insert((partition_guid, instance_guid), instance.clone());
+
         Some(instance)
-    }
-}
-
-pub struct AssetIndexDbxWriterImportResolver {
-    index: Arc<DomainAssetIndex>,
-}
-
-impl AssetIndexDbxWriterImportResolver {
-    pub fn new(index: Arc<DomainAssetIndex>) -> Self {
-        Self { index }
-    }
-}
-
-impl DbxWriterImportResolver for AssetIndexDbxWriterImportResolver {
-    fn resolve_import_name(&self, partition_guid: &Guid) -> Option<String> {
-        let data = self.index.by_partition_guid(partition_guid)?;
-        Some(data.name.to_owned())
     }
 }
 
 async fn convert_to_dbx(
     base_path: PathBuf,
     registry: &TypeRegistry,
-    index: Arc<DomainAssetIndex>,
+    index: Arc<RwLock<DomainAssetIndex>>,
     partition: DatabasePartition,
 ) {
     let path = base_path
@@ -95,21 +89,18 @@ async fn convert_to_dbx(
         .join(partition.name())
         .with_extension("dbx");
 
-    tokio::fs::create_dir_all(&path.parent().unwrap())
-        .await
-        .unwrap();
+    fs::create_dir_all(&path.parent().unwrap()).await.unwrap();
 
     let import_resolver = AssetIndexDbxWriterImportResolver::new(index);
-    let mut dbx_writer =
-        glacier_fs::dbx::writer::DbxPartitionWriter::new(&partition, &registry, &import_resolver);
+    let mut dbx_writer = DbxPartitionWriter::new(&partition, &registry, &import_resolver);
 
-    let mut writer = tokio::fs::File::create(path).await.unwrap();
+    let mut writer = fs::File::create(path).await.unwrap();
     dbx_writer.write(&mut writer).await.unwrap();
 }
 
 pub(crate) async fn convert_ebx(
     ctx: &PackagedConversionContext,
-    asset_index: &Arc<DomainAssetIndex>,
+    asset_index: &Arc<RwLock<DomainAssetIndex>>,
     type_registry: &Arc<TypeRegistry>,
     data: &Arc<FrostbiteGameData>,
 ) {
@@ -123,19 +114,17 @@ pub(crate) async fn convert_ebx(
     let mut unique_partitions = HashSet::new();
     let mut parse_files = Vec::new();
 
-    for bundle in &data.bundles {
-        for entry in &bundle.ebx_entries {
-            match asset_index.by_name(&entry.name) {
-                Some(data) => {
-                    if unique_partitions.insert(data.partition) {
-                        parse_files.push((entry.name.to_owned(), entry.file.clone()));
+    {
+        let asset_index = asset_index.read().await;
+        for bundle in &data.bundles {
+            for entry in &bundle.ebx_entries {
+                match asset_index.get_by_name(&entry.name) {
+                    Some(data) => {
+                        if unique_partitions.insert(data.partition) {
+                            parse_files.push((entry.name.to_owned(), entry.file.clone()));
+                        }
                     }
-                }
-                None => {
-                    warn!(
-                        "CONV-1 Partition not found in asset index: {:?}",
-                        entry.name
-                    );
+                    None => {}
                 }
             }
         }
@@ -200,5 +189,9 @@ pub(crate) async fn convert_ebx(
 
     info!("Waiting for conversion to finish...");
     futures::future::join_all(handles).await;
-    info!("Converted {} EBX assets to DBX with {} error(s)", len, error_count.load(std::sync::atomic::Ordering::SeqCst));
+    info!(
+        "Converted {} EBX assets to DBX with {} error(s)",
+        len,
+        error_count.load(std::sync::atomic::Ordering::SeqCst)
+    );
 }

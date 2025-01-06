@@ -271,8 +271,6 @@ impl<'a> EbxPartitionReader<'a> {
                             self.partition_name
                         );
                     }
-
-                    //data.skip(bytes_to_copy as usize);
                 }
                 ReaderState::Prepare => {
                     self.import_entries = unsafe {
@@ -286,9 +284,6 @@ impl<'a> EbxPartitionReader<'a> {
                         self.data.copy_to_slice(slice);
                         values
                     };
-
-                    // TODO: handle type descriptors
-                    //self.data.skip(self.header.type_string_table_size as usize);
 
                     if self.read_type_names {
                         let type_names_offset = self.data.pos();

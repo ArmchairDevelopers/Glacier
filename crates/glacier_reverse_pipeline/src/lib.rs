@@ -1,14 +1,16 @@
 use std::{path::PathBuf, sync::Arc};
 
 use crate::{dbx_conversion::convert_ebx, ebx_indexing::index_ebx, memory_fs::convert_memory_fs};
+use bundle_breaker::BundleBreaker;
 use glacier_fs::fb::{read_fb_game_data, ConverterContext};
 use glacier_reflect::type_registry::TypeRegistry;
 
 use glacier_store::{domain::DomainStore, index::asset_index::DomainAssetIndex};
 use pipeline::ReversePipeline;
-use tokio::fs;
+use tokio::{fs, sync::RwLock};
 use tracing::info;
 
+pub mod bundle_breaker;
 pub mod dbx_conversion;
 pub mod ebx_indexing;
 pub mod memory_fs;
@@ -73,10 +75,12 @@ pub async fn execute(
 
     info!("Loading indexed partitions...");
 
-    let str = fs::read(ctx.state_data_path().await.join("indexed_partitions.json"))
+    let str = fs::read(ctx.state_data_path().await.join("partition_index.json"))
         .await
         .expect("Failed to write indexed partitions");
-    let asset_index = Arc::new(DomainAssetIndex::load(String::from_utf8(str).unwrap()).unwrap());
+    let asset_index = Arc::new(RwLock::new(
+        DomainAssetIndex::load(String::from_utf8(str).unwrap()).unwrap(),
+    ));
 
     info!("Converting EBX...");
 
@@ -87,15 +91,21 @@ pub async fn execute(
     let domain = Arc::new(DomainStore::new(
         registry,
         asset_index,
-        ctx.output_domain_path().await,
+        ctx.output_data_path.clone(),
+        "Source",
     ));
-    
-    let pipeline = ReversePipeline::new(domain);
+
+    let pipeline = ReversePipeline::new(domain.clone(), data.clone(), false);
     pipeline.run_mutators().await;
+
+    info!("Initializing bundle breaker...");
+
+    let bundle_breaker = BundleBreaker::new();
+    bundle_breaker.execute(&domain, &data).await;
 
     info!("Converting memfs...");
 
-    //convert_memory_fs(&ctx).await?;
+    convert_memory_fs(&ctx).await?;
 
     info!("Pipeline complete!");
     Ok(())

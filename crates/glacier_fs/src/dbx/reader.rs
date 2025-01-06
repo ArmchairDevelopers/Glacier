@@ -167,7 +167,7 @@ impl<W: AsyncRead + AsyncSeek + Unpin> XmlReader<W> {
             return Err(DbxReaderError::InvalidXml);
         }
 
-        loop {
+        'outer: loop {
             let mut c = self.reader.read_u8().await?;
             while c != b'<' {
                 c = self.reader.read_u8().await?;
@@ -178,6 +178,10 @@ impl<W: AsyncRead + AsyncSeek + Unpin> XmlReader<W> {
             while c != b'>' {
                 closing_tag.push(c as char);
                 c = self.reader.read_u8().await?;
+
+                if c == b' ' || c == b'@' {
+                    continue 'outer;
+                }
             }
 
             if closing_tag == format!("/{}", last_node.name) {
@@ -452,7 +456,12 @@ impl<'a> DbxPartitionReader<'a> {
 
                     let field_type = field_info.field_type(&self.type_registry);
                     match &field_type.data {
-                        TypeInfoData::Uint8 => todo!(),
+                        TypeInfoData::Uint8 => {
+                            let value = xml_reader.read_text().await?.parse::<u8>()?;
+                            unsafe {
+                                *(target_ptr.0 as *mut u8) = value;
+                            };
+                        }
                         TypeInfoData::Int8 => todo!(),
                         TypeInfoData::Uint16 => {
                             let value = xml_reader.read_text().await?.parse::<u16>()?;
@@ -473,7 +482,12 @@ impl<'a> DbxPartitionReader<'a> {
                                 *(target_ptr.0 as *mut i32) = value;
                             };
                         }
-                        TypeInfoData::Uint64 => todo!(),
+                        TypeInfoData::Uint64 => {
+                            let value = xml_reader.read_text().await?.parse::<u64>()?;
+                            unsafe {
+                                *(target_ptr.0 as *mut u64) = value;
+                            };
+                        }
                         TypeInfoData::Int64 => todo!(),
                         TypeInfoData::Float32 => {
                             let value = xml_reader.read_text().await?.parse::<f32>()?;
@@ -494,10 +508,22 @@ impl<'a> DbxPartitionReader<'a> {
                                 (*(target_ptr.0 as *mut String)).push_str(&str);
                             };
                         }
-                        TypeInfoData::ResourceRef => todo!(),
-                        TypeInfoData::TypeRef => todo!(),
-                        TypeInfoData::FileRef => todo!(),
-                        TypeInfoData::BoxedValueRef => todo!(),
+                        TypeInfoData::ResourceRef => {
+                            let _value = xml_reader.read_text().await?;
+                            // TODO
+                        }
+                        TypeInfoData::TypeRef => {
+                            let _value = xml_reader.read_text().await?;
+                            // TODO
+                        }
+                        TypeInfoData::FileRef => {
+                            let _value = xml_reader.read_text().await?;
+                            // TODO
+                        }
+                        TypeInfoData::BoxedValueRef => {
+                            let _value = xml_reader.read_text().await?;
+                            // TODO
+                        }
                         TypeInfoData::SHA1 => todo!(),
                         TypeInfoData::Guid => {
                             let value = xml_reader.read_text().await?;
@@ -529,7 +555,21 @@ impl<'a> DbxPartitionReader<'a> {
                                     }
                                 }
                                 TypeInfoData::Int8 => todo!(),
-                                TypeInfoData::Uint16 => todo!(),
+                                TypeInfoData::Uint16 => {
+                                    let vec = unsafe { &mut *(target_ptr.0 as *mut Vec<u16>) };
+
+                                    while let Some(node) = xml_reader.next_node().await? {
+                                        if node.name == "array" {
+                                            eprintln!("Arrays of arrays are not supported!");
+                                            break;
+                                        }
+
+                                        let value = xml_reader.read_text().await?.parse::<u16>()?;
+                                        vec.push(value);
+
+                                        xml_reader.end_node(&node).await?;
+                                    }
+                                }
                                 TypeInfoData::Int16 => todo!(),
                                 TypeInfoData::Uint32 => {
                                     let vec = unsafe { &mut *(target_ptr.0 as *mut Vec<u32>) };
@@ -579,7 +619,21 @@ impl<'a> DbxPartitionReader<'a> {
                                     }
                                 }
                                 TypeInfoData::Float64 => todo!(),
-                                TypeInfoData::Boolean => todo!(),
+                                TypeInfoData::Boolean => {
+                                    let vec = unsafe { &mut *(target_ptr.0 as *mut Vec<bool>) };
+
+                                    while let Some(node) = xml_reader.next_node().await? {
+                                        if node.name == "array" {
+                                            eprintln!("Arrays of arrays are not supported!");
+                                            break;
+                                        }
+
+                                        let value = xml_reader.read_text().await?.parse::<bool>()?;
+                                        vec.push(value);
+
+                                        xml_reader.end_node(&node).await?;
+                                    }
+                                }
                                 TypeInfoData::CString => {
                                     let vec = unsafe { &mut *(target_ptr.0 as *mut Vec<String>) };
 
@@ -600,7 +654,22 @@ impl<'a> DbxPartitionReader<'a> {
                                 TypeInfoData::FileRef => todo!(),
                                 TypeInfoData::BoxedValueRef => todo!(),
                                 TypeInfoData::SHA1 => todo!(),
-                                TypeInfoData::Guid => todo!(),
+                                TypeInfoData::Guid => {
+                                    let vec = unsafe { &mut *(target_ptr.0 as *mut Vec<Guid>) };
+
+                                    while let Some(node) = xml_reader.next_node().await? {
+                                        if node.name == "array" {
+                                            eprintln!("Arrays of arrays are not supported!");
+                                            break;
+                                        }
+
+                                        let value = xml_reader.read_text().await?;
+                                        let guid = Guid::from_str(&value);
+                                        vec.push(guid);
+
+                                        xml_reader.end_node(&node).await?;
+                                    }
+                                }
                                 TypeInfoData::Array(_) => todo!(),
                                 TypeInfoData::Class(_) => {
                                     let mut nodes = Vec::new();
@@ -660,7 +729,21 @@ impl<'a> DbxPartitionReader<'a> {
                                         xml_reader.end_node(&node).await?;
                                     }
                                 }
-                                TypeInfoData::Enum => todo!(),
+                                TypeInfoData::Enum => {
+                                    let vec = unsafe { &mut *(target_ptr.0 as *mut Vec<i64>) };
+
+                                    while let Some(node) = xml_reader.next_node().await? {
+                                        if node.name == "array" {
+                                            eprintln!("Arrays of arrays are not supported!");
+                                            break;
+                                        }
+
+                                        let value = xml_reader.read_text().await?.parse::<i64>()?;
+                                        vec.push(value);
+
+                                        xml_reader.end_node(&node).await?;
+                                    }
+                                }
                                 TypeInfoData::Unknown => todo!(),
                             }
                         }
@@ -783,7 +866,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_read_partition_2() {
-        let data = include_bytes!("../../tests/data/DefaultSoldierStateMachine.dbx");
+        let data = include_bytes!("../../tests/data/spacearcade_networkregistry_Win32.dbx");
 
         let mut registry = TypeRegistry::default();
         register_mod_types(&mut registry);

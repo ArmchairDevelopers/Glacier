@@ -1,0 +1,16 @@
+[package]
+name = "glacier_buf_ext"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.28.2", features = [
+    "full",
+    "rt",
+    "rt-multi-thread",
+    "time",
+    "net",
+] }
+glacier_util = { path = "../glacier_util" }
+bytes = "1.8.0"
+async-trait = "0.1.83"

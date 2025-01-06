@@ -46,6 +46,7 @@ impl<W: AsyncWrite + Unpin> XmlWriter<W> {
         tag: &str,
         attributes: Vec<(String, String)>,
         newline: bool,
+        close: bool,
     ) -> tokio::io::Result<()> {
         self.write_indent().await?;
 
@@ -60,6 +61,11 @@ impl<W: AsyncWrite + Unpin> XmlWriter<W> {
             self.writer.write("\"".as_bytes()).await?;
         }
 
+        if close {
+            self.writer.write(" /".as_bytes()).await?;
+        } else {
+        }
+
         self.writer.write(">".as_bytes()).await?;
 
         let node = XmlNode {
@@ -71,7 +77,9 @@ impl<W: AsyncWrite + Unpin> XmlWriter<W> {
             self.writer.write(b"\n").await?;
         }
 
-        self.stack.push(node);
+        if !close {
+            self.stack.push(node);
+        }
 
         Ok(())
     }
@@ -100,21 +108,22 @@ impl<W: AsyncWrite + Unpin> XmlWriter<W> {
     }
 }
 
+#[async_trait::async_trait]
 pub trait DbxWriterImportResolver: Sync {
-    fn resolve_import_name(&self, partition_guid: &Guid) -> Option<String>;
+    async fn resolve_import_name(&self, partition_guid: &Guid) -> Option<String>;
 }
 
-pub struct DbxPartitionWriter<'a> {
+pub struct DbxPartitionWriter<'a, T: DbxWriterImportResolver> {
     partition: &'a DatabasePartition,
     type_registry: &'a TypeRegistry,
-    import_resolver: &'a dyn DbxWriterImportResolver,
+    import_resolver: &'a T,
 }
 
-impl<'a> DbxPartitionWriter<'a> {
+impl<'a, T: DbxWriterImportResolver> DbxPartitionWriter<'a, T> {
     pub fn new(
         partition: &'a DatabasePartition,
         type_registry: &'a TypeRegistry,
-        import_resolver: &'a dyn DbxWriterImportResolver,
+        import_resolver: &'a T,
     ) -> Self {
         Self {
             partition,
@@ -123,10 +132,7 @@ impl<'a> DbxPartitionWriter<'a> {
         }
     }
 
-    pub async fn write<W: AsyncWrite + Unpin + Send>(
-        &mut self,
-        mut writer: W,
-    ) -> tokio::io::Result<()> {
+    pub async fn write<W: AsyncWrite + Unpin + Send>(self, mut writer: W) -> tokio::io::Result<()> {
         writer
             .write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n".as_bytes())
             .await?;
@@ -154,6 +160,7 @@ impl<'a> DbxPartitionWriter<'a> {
                     ("exportMode".to_owned(), "All".to_owned()),
                 ],
                 true,
+                false,
             )
             .await?;
 
@@ -193,7 +200,7 @@ impl<'a> DbxPartitionWriter<'a> {
             attributes.push(("exported".to_owned(), "True".to_owned()));
         }
 
-        writer.write_open_tag("instance", attributes, true).await?;
+        writer.write_open_tag("instance", attributes, true, false).await?;
 
         self.write_fields(writer, &new_instance, None, &mut *instance, 0, type_info)
             .await?;
@@ -269,6 +276,7 @@ impl<'a> DbxPartitionWriter<'a> {
                         $tag,
                         vec![("name".to_owned(), field_info.name.to_owned())],
                         $newline,
+                        false,
                     )
                     .await?;
             };
@@ -276,7 +284,13 @@ impl<'a> DbxPartitionWriter<'a> {
 
         macro_rules! open_tag_attr {
             ($tag: tt, $newline: tt, $attr: expr) => {
-                writer.write_open_tag($tag, $attr, $newline).await?;
+                writer.write_open_tag($tag, $attr, $newline, false).await?;
+            };
+        }
+
+        macro_rules! tag_attr {
+            ($tag: tt, $newline: tt, $attr: expr) => {
+                writer.write_open_tag($tag, $attr, $newline, true).await?;
             };
         }
 
@@ -563,6 +577,9 @@ impl<'a> DbxPartitionWriter<'a> {
                                     reference.push(("ref".to_owned(), "null".to_owned()));
                                 }
 
+                                // We should use tag_attr! here, but the reader doesn't support
+                                // fields without explicit ending tags yet
+                                
                                 open_tag_attr!("item", false, reference);
                                 writer.write_close_tag().await?;
                             }
@@ -609,7 +626,8 @@ impl<'a> DbxPartitionWriter<'a> {
                 }
             }
             TypeInfoData::Class(_) => {
-                let field_instance = unsafe { &mut *(source_ptr.0 as *mut Option<LockedTypeObject>) };
+                let field_instance =
+                    unsafe { &mut *(source_ptr.0 as *mut Option<LockedTypeObject>) };
                 let mut reference = self
                     .collect_reference(
                         container,
@@ -691,6 +709,7 @@ impl<'a> DbxPartitionWriter<'a> {
             let partition_name = self
                 .import_resolver
                 .resolve_import_name(&partition_guid)
+                .await
                 .unwrap_or_else(|| "unknown".to_string());
 
             vec![

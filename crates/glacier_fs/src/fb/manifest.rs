@@ -51,7 +51,7 @@ pub fn resolve_cas_path(catalogs: &Vec<String>, manifest_ref: u32) -> String {
     )
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Hash)]
 pub struct ManifestFileInfo {
     pub file: u32,
     pub offset: u32,

@@ -1,4 +1,5 @@
 use glacier_reflect::type_info::{LockedTypeObject, TypeInfo, TypeInfoData};
+use glacier_reflect_ext::util::get_dc_instance_guid;
 use glacier_util::guid::Guid;
 
 #[derive(Default)]
@@ -51,7 +52,7 @@ impl DatabasePartition {
         self.instances.push(instance);
     }
 
-    pub async fn create_instance_with_id(&self, guid: Guid, type_info: &'static TypeInfo) -> Option<LockedTypeObject> {
+    pub async fn create_instance_with_id(&mut self, guid: Guid, type_info: &'static TypeInfo) -> Option<LockedTypeObject> {
         if let TypeInfoData::Class(class_info) = &type_info.data {
             let instance = class_info.create();
 
@@ -62,13 +63,14 @@ impl DatabasePartition {
                 core.instance_guid = guid;
             }
 
+            self.instances.push(instance.clone());
             Some(instance)
         } else {
             None
         }
     }
 
-    pub async fn create_instance(&self, type_info: &'static TypeInfo) -> Option<LockedTypeObject> {
+    pub async fn create_instance(&mut self, type_info: &'static TypeInfo) -> Option<LockedTypeObject> {
         self.create_instance_with_id(Guid::random(), type_info).await
     }
 
@@ -82,10 +84,8 @@ impl DatabasePartition {
 
     pub async fn instance_by_guid(&self, guid: &Guid) -> Option<&LockedTypeObject> {
         for instance in &self.instances {
-            let locked_instance = instance.lock().await;
-            let core = locked_instance.data_container_core().expect("Instance is not a DataContainer");
-
-            if core.instance_guid == *guid {
+            let instance_guid = get_dc_instance_guid(instance).await;
+            if instance_guid == *guid {
                 return Some(instance);
             }
         }

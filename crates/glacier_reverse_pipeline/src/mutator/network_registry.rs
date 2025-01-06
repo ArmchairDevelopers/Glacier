@@ -1,9 +1,9 @@
+use glacier_fs::db::partition::DatabasePartition;
 use glacier_reflect::type_info::{TypeInfo, TypeObject};
-use glacier_reflect_swbf2::entity::{
-    NetworkRegistryAsset, NETWORKREGISTRYASSET_TYPE_INFO,
-};
+use glacier_reflect_swbf2::entity::{NetworkRegistryAsset, NETWORKREGISTRYASSET_TYPE_INFO};
+use glacier_store::domain::DomainStore;
 
-use super::{PipelineMutationError, PipelineAssetMutator, UnbuildResult};
+use super::{PipelineAssetMutator, PipelineMutationError, UnbuildResult};
 
 pub struct NetworkRegistryMutator;
 
@@ -15,24 +15,32 @@ impl PipelineAssetMutator for NetworkRegistryMutator {
 
     async fn mutate(
         &self,
-        asset: &mut dyn TypeObject,
+        domain: &DomainStore,
+        partition: &mut DatabasePartition,
         result: &mut UnbuildResult,
     ) -> Result<(), PipelineMutationError> {
-        let asset = asset
-            .as_any()
-            .downcast_ref::<NetworkRegistryAsset>()
-            .map_or_else(
-                || {
-                    Err(PipelineMutationError::Custom(
-                        "Asset is not a NetworkRegistryAsset".to_string(),
-                    ))
-                },
-                |asset| Ok(asset),
-            )?;
+        // let primary = partition
+        //     .primary_instance()
+        //     .expect("Asset has no primary instance")
+        //     .lock()
+        //     .await;
 
-        let partition = asset.data_container_core().unwrap().partition_guid;
-        result.delete_asset(partition);
+        // let asset = primary
+        //     .as_any()
+        //     .downcast_ref::<NetworkRegistryAsset>()
+        //     .map_or_else(
+        //         || {
+        //             Err(PipelineMutationError::Custom(
+        //                 "Asset is not a NetworkRegistryAsset".to_string(),
+        //             ))
+        //         },
+        //         |asset| Ok(asset),
+        //     )?;
 
+        // let partition = asset.data_container_core().unwrap().partition_guid;
+        // result.delete_asset(partition);
+
+        result.delete_asset(*partition.guid());
         Ok(())
     }
 }
