@@ -1,5 +1,7 @@
 use std::{io::Cursor, path::PathBuf, sync::Arc};
-
+use std::collections::HashSet;
+use async_zip::error::ZipError;
+use async_zip::tokio::write::ZipFileWriter;
 use glacier_fs::{
     db::partition::DatabasePartition,
     dbx::{
@@ -14,11 +16,18 @@ use tokio::{
     fs,
     sync::{RwLock, RwLockReadGuard},
 };
-
+use tokio::io::{AsyncWriteExt, BufReader, BufWriter};
+use tokio::sync::RwLockWriteGuard;
+use crate::domain::sandbox::DomainSandbox;
+use crate::domain::string_lock::StringLock;
 use crate::index::asset_index::{
     AssetIndexDbxWriterImportResolver, DomainAssetIndex, DomainAssetIndexEntry,
     DomainAssetIndexInstance,
 };
+
+pub mod sandbox;
+mod string_lock;
+mod stack;
 
 pub struct StubDbxPartitionImportLoader {
     pub index: Arc<RwLock<DomainAssetIndex>>,
@@ -51,9 +60,22 @@ impl DbxPartitionImportLoader for StubDbxPartitionImportLoader {
     }
 }
 
+#[derive(thiserror::Error, Debug)]
+pub enum DomainStoreError {
+    #[error(transparent)]
+    IoError(#[from] tokio::io::Error),
+    #[error(transparent)]
+    BincodeError(#[from] bincode::Error),
+    #[error(transparent)]
+    ZipError(#[from] ZipError),
+}
+
 pub struct DomainStore {
     type_registry: Arc<TypeRegistry>,
     asset_index: Arc<RwLock<DomainAssetIndex>>,
+
+    sandbox_lock: StringLock,
+
     base_path: PathBuf,
     source_folder: String,
 }
@@ -68,6 +90,7 @@ impl DomainStore {
         Self {
             type_registry,
             asset_index,
+            sandbox_lock: StringLock::new(),
             base_path,
             source_folder: domain_folder.to_owned(),
         }
@@ -78,11 +101,11 @@ impl DomainStore {
         base_path: PathBuf,
         domain_folder: &str,
     ) -> Result<Self, tokio::io::Error> {
-        let index_path = base_path.join(".state/partition_index.json");
+        let index_path = base_path.join(".state/partition_index");
         let index = if index_path.exists() {
             let data = fs::read(index_path).await?;
             Arc::new(RwLock::new(
-                DomainAssetIndex::load(String::from_utf8(data).unwrap()).unwrap(),
+                DomainAssetIndex::load(&data).unwrap(),
             ))
         } else {
             Arc::new(RwLock::new(DomainAssetIndex::new()))
@@ -180,8 +203,9 @@ impl DomainStore {
                         partition: *asset.guid(),
                         primary_type_hash: instances[0].type_hash,
                         instances,
-                        bundles: Vec::new(),
+                        bundles: HashSet::new(),
                         imports,
+                        res_imports: HashSet::new(),
                     }
                 }
             }
@@ -205,6 +229,13 @@ impl DomainStore {
         Ok(())
     }
 
+    pub async fn load_sandbox(&self, asset_path: &str) -> Result<DomainSandbox, DomainStoreError> {
+        let lock = self.sandbox_lock.lock_write(asset_path).await;
+
+        let path = self.source_path().join(asset_path).with_extension("fb");
+        DomainSandbox::open(lock, path, true).await
+    }
+
     pub fn type_registry(&self) -> &Arc<TypeRegistry> {
         &self.type_registry
     }
@@ -217,10 +248,14 @@ impl DomainStore {
         self.asset_index.read().await
     }
 
-    pub async fn save_asset_index(&self) -> Result<(), tokio::io::Error> {
-        let path = self.base_path.join(".state/partition_index.json");
+    pub async fn index_write(&self) -> RwLockWriteGuard<DomainAssetIndex> {
+        self.asset_index.write().await
+    }
+
+    pub async fn save_asset_index(&self) -> Result<(), DomainStoreError> {
+        let path = self.base_path.join(".state/partition_index");
         let index = self.asset_index.read().await;
-        let data = serde_json::to_string(&index.values())?;
-        fs::write(path, &data).await
+        let data = bincode::serialize(&index.values())?;
+        Ok(fs::write(path, &data).await?)
     }
 }

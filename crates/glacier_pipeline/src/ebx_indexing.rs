@@ -9,7 +9,7 @@ use glacier_fs::{
 };
 use glacier_reflect::type_registry::TypeRegistry;
 use glacier_store::index::asset_index::{
-    DomainAssetIndexEntry, DomainAssetIndexInstance,
+    DomainAssetIndex, DomainAssetIndexEntry, DomainAssetIndexInstance,
 };
 use glacier_util::guid::Guid;
 use tokio::{
@@ -145,12 +145,14 @@ pub(crate) async fn index_ebx(
     futures::future::join_all(handles).await;
 
     let indexed_partitions = indexed_partitions.lock().await;
-    let indexed_partitions = indexed_partitions
-        .values()
-        .cloned()
-        .collect::<Vec<DomainAssetIndexEntry>>();
+    let index = DomainAssetIndex::load_from_entries(
+        indexed_partitions
+            .values()
+            .cloned()
+            .collect::<Vec<DomainAssetIndexEntry>>(),
+    );
 
-    let data = bincode::serialize(&indexed_partitions).expect("Failed to serialize indexed partitions");
+    let data = bincode::serialize(&index.values()).expect("Failed to serialize indexed partitions");
     fs::write(ctx.state_data_path().await.join("partition_index"), data)
         .await
         .expect("Failed to write indexed partitions");

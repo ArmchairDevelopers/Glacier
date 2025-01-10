@@ -20,6 +20,6 @@ tracing = "0.1.41"
 async-recursion = "1.1.1"
 paste = "1.0.15"
 bytes = "1.8.0"
-thiserror = "1.0.65"
+thiserror = "2.0.9"
 async-compression = { version = "0.4.18", features = [ "tokio", "zstd" ] }
 async-trait = "0.1.83"

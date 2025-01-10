@@ -3,9 +3,9 @@ use std::{
     io::Cursor,
 };
 
-use glacier_fs::db::partition::DatabasePartition;
-use glacier_reflect::type_info::{TypeInfo, TypeObject};
-use glacier_reflect_swbf2::entity::{NetworkRegistryAsset, NETWORKREGISTRYASSET_TYPE_INFO};
+use crate::pipeline::PipelineStorage;
+use glacier_reflect::type_info::TypeObject;
+use glacier_resource::rvm::pipeline::RvmShaderSandboxData;
 use glacier_resource::rvm::{
     reader::{RvmDatabaseReader, RvmDependencyTraverser},
     types::{RvmSerializedDb_ns_SurfaceShader, RvmType},
@@ -13,9 +13,7 @@ use glacier_resource::rvm::{
 use glacier_store::domain::DomainStore;
 use typemap_rev::TypeMapKey;
 
-use crate::pipeline::PipelineStorage;
-
-use super::{PipelineAssetMutator, PipelineMutationError, PipelineResourceMutator, UnbuildResult};
+use super::{PipelineMutationError, PipelineResourceMutator, UnbuildResult};
 
 struct RvmDatabaseByteCount;
 
@@ -34,7 +32,7 @@ pub struct Dx11RvmDatabaseResourceMutator;
 #[async_trait::async_trait]
 impl PipelineResourceMutator for Dx11RvmDatabaseResourceMutator {
     fn max_concurrent_jobs(&self) -> usize {
-        10
+        1
     }
 
     fn resource_type_name(&self) -> &'static str {
@@ -87,7 +85,7 @@ impl PipelineResourceMutator for Dx11RvmDatabaseResourceMutator {
 
         println!("Resolved dependencies, found {} shaders", shaders.len());
 
-        let asset_index = domain.index_read().await;
+        let mut asset_index = domain.index_write().await;
 
         let mut storage = storage.write().await;
         let unique_dependencies = storage
@@ -102,47 +100,93 @@ impl PipelineResourceMutator for Dx11RvmDatabaseResourceMutator {
                 .expect("Shader block is empty");
 
             if let RvmType::SurfaceShader(shader) = shader_block {
-                //println!("Shader: {}", shader.name_hash);
-
-                let asset = asset_index.get_by_name_hash(shader.name_hash);
-                if let Some(asset) = asset {
-                    println!(
-                        "RVM contains shader: {} ({} dependencies)",
-                        asset.name,
-                        dependencies.len()
-                    );
-                } else {
-                    println!("Asset not found");
-                }
-
                 unique_dependencies
                     .entry(shader.name_hash as u64)
                     .or_default()
                     .insert(dependencies.len());
+
+                //println!("Shader: {}", shader.name_hash);
+
+                let asset = asset_index.get_by_name_hash(shader.name_hash);
+                let mut asset = if let Some(asset) = asset {
+                    // println!(
+                    //     "RVM contains shader: {} ({} dependencies)",
+                    //     asset.name,
+                    //     dependencies.len()
+                    // );
+
+                    asset.clone()
+                } else {
+                    //println!("Asset not found");
+                    continue;
+                };
+
+                let mut rvm_sandbox = RvmShaderSandboxData::new();
+
+                let mut sandbox = domain.load_sandbox(&asset.name).await?;
+                if let Some(data) = sandbox.read_file("rvmBlocks").await {
+                    rvm_sandbox = serde_json::from_slice(&data).unwrap();
+                }
+
+                rvm_sandbox.add_block(shader_block_hash, vec![shader_block.clone()]);
+
+                for dependency in &dependencies {
+                    if rvm_sandbox.has_block(*dependency) {
+                        continue;
+                    }
+
+                    let block = db
+                        .get_block(*dependency)
+                        .expect("Dependency block not found");
+                    rvm_sandbox.add_block(*dependency, block.clone());
+
+                    if let RvmType::ShaderStreamableTexture(texture) = block.first().unwrap() {
+                        let texture_asset = asset_index
+                            .get_by_name_hash(texture.name_hash)
+                            .expect("Texture not found");
+                        asset.res_imports.insert(texture_asset.partition);
+                    }
+                }
+
+                // let res_elements = res_name.split('/').collect::<Vec<&str>>();
+                //
+                // // Second to last element
+                // let rvm_name = res_elements.iter().rev().skip(1).next().unwrap();
+
+                sandbox.write_file(
+                    "rvmBlocks",
+                    serde_json::to_string(&rvm_sandbox)
+                        .unwrap()
+                        .as_bytes()
+                        .to_vec(),
+                );
+                sandbox.commit().await;
+
+                asset_index.upsert_entry(asset);
             } else {
                 panic!("Unexpected shader type");
             }
 
-            let mut bytecode_count = 0;
+            // let mut bytecode_count = 0;
 
-            for dependency in dependencies {
-                let block = db
-                    .get_block(dependency)
-                    .expect("Dependency block not found")
-                    .first()
-                    .expect("Dependency block is empty");
+            // for dependency in dependencies {
+            //     let block = db
+            //         .get_block(dependency)
+            //         .expect("Dependency block not found")
+            //         .first()
+            //         .expect("Dependency block is empty");
+            //
+            //     if let RvmType::ShaderStreamableTexture(texture) = block {
+            //         let asset = asset_index
+            //             .get_by_name_hash(texture.name_hash)
+            //             .expect("Texture not found");
+            //         println!(" - Depends on texture '{}'", asset.name);
+            //     } else if let RvmType::Dx11ByteCodeElement(bytecode) = block {
+            //         bytecode_count += 1;
+            //     }
+            // }
 
-                if let RvmType::ShaderStreamableTexture(texture) = block {
-                    let asset = asset_index
-                        .get_by_name_hash(texture.name_hash)
-                        .expect("Texture not found");
-                    println!(" - Depends on texture '{}'", asset.name);
-                } else if let RvmType::Dx11ByteCodeElement(bytecode) = block {
-                    bytecode_count += 1;
-                }
-            }
-
-            println!(" - {} bytecodes", bytecode_count);
+            //println!(" - {} bytecodes", bytecode_count);
         }
 
         Ok(())
@@ -150,9 +194,9 @@ impl PipelineResourceMutator for Dx11RvmDatabaseResourceMutator {
 
     async fn post_mutation(
         &self,
-        domain: &DomainStore,
+        _domain: &DomainStore,
         storage: &PipelineStorage,
-        result: &mut UnbuildResult,
+        _result: &mut UnbuildResult,
     ) -> Result<(), PipelineMutationError> {
         let storage = storage.read().await;
         let count = storage.get::<RvmDatabaseByteCount>().unwrap();
@@ -167,17 +211,17 @@ impl PipelineResourceMutator for Dx11RvmDatabaseResourceMutator {
                 continue;
             }
 
-            println!(
-                "Block {} has {} dependency sets",
-                block_hash,
-                dependencies.len()
-            );
+            // println!(
+            //     "Block {} has {} dependency sets",
+            //     block_hash,
+            //     dependencies.len()
+            // );
 
             // for (i, deps) in dependencies.iter().enumerate() {
             //     println!("  Set {}: {:?}", i, deps);
             // }
 
-            total_duplicates += dependencies.len() - 1;
+            total_duplicates += 1;
         }
 
         println!(

@@ -13,19 +13,19 @@ pub mod mesh_variation_db;
 pub mod network_registry;
 pub mod rvm_database;
 
-#[derive(Debug)]
-pub enum UnbuildAction {
+#[derive(Debug, Hash)]
+pub enum BuildAction {
     SaveSelf,
     SaveAsset(DatabasePartition),
     DeleteAsset(Guid),
 }
 
-#[derive(Debug)]
-pub struct UnbuildResult {
-    pub actions: Vec<UnbuildAction>,
+#[derive(Debug, Hash)]
+pub struct BuildResult {
+    pub actions: Vec<BuildAction>,
 }
 
-impl UnbuildResult {
+impl BuildResult {
     pub fn new() -> Self {
         Self {
             actions: Vec::new(),
@@ -33,16 +33,16 @@ impl UnbuildResult {
     }
 
     pub fn save_self(&mut self) {
-        self.actions.push(UnbuildAction::SaveSelf);
+        self.actions.push(BuildAction::SaveSelf);
     }
 
     pub fn save_asset(&mut self, partition: DatabasePartition) {
-        self.actions.push(UnbuildAction::SaveAsset(partition));
+        self.actions.push(BuildAction::SaveAsset(partition));
     }
 
     pub fn delete_asset(&mut self, partition_guid: Guid) {
         self.actions
-            .push(UnbuildAction::DeleteAsset(partition_guid));
+            .push(BuildAction::DeleteAsset(partition_guid));
     }
 }
 
@@ -75,7 +75,7 @@ pub trait PipelineAssetMutator: Sync + Send {
         &self,
         domain: &DomainStore,
         partition: &mut DatabasePartition,
-        result: &mut UnbuildResult,
+        result: &mut BuildResult,
     ) -> Result<(), PipelineMutationError>;
 }
 
@@ -96,7 +96,7 @@ pub trait PipelineDataContainerPolicyMutator {
         &self,
         domain: &DomainStore,
         partition: &mut DatabasePartition,
-        result: &mut UnbuildResult,
+        result: &mut BuildResult,
     ) -> Result<(), PipelineMutationError>;
 }
 
@@ -112,7 +112,7 @@ pub trait PipelineResourceMutator: Sync + Send {
         &self,
         domain: &DomainStore,
         storage: &PipelineStorage,
-        result: &mut UnbuildResult,
+        result: &mut BuildResult,
     ) -> Result<(), PipelineMutationError> {
         Ok(())
     }
@@ -125,14 +125,14 @@ pub trait PipelineResourceMutator: Sync + Send {
         res_id: u64,
         res_meta: &[u8],
         res_data: &[u8],
-        result: &mut UnbuildResult,
+        result: &mut BuildResult,
     ) -> Result<(), PipelineMutationError>;
 
     async fn post_mutation(
         &self,
         domain: &DomainStore,
         storage: &PipelineStorage,
-        result: &mut UnbuildResult,
+        result: &mut BuildResult,
     ) -> Result<(), PipelineMutationError> {
         Ok(())
     }

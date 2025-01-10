@@ -9,7 +9,7 @@ pub struct PartitionInitData {
     pub instances: Vec<LockedTypeObject>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Hash)]
 pub struct DatabasePartition {
     name: String,
     guid: Guid,

@@ -1,12 +1,13 @@
-use glacier_reflect_swbf2::core::Mat4;
 use glacier_resource_proc::{RvmTypeEnum, RvmTypeInfo};
 use glacier_util::guid::Guid;
+use serde::{Deserialize, Serialize};
+use serde_with::{serde_as, Bytes};
 use strum_macros::IntoStaticStr;
 
 macro_rules! rvm_boxed {
     ($name:ident) => {
         paste::paste! {
-            #[derive(Debug)]
+            #[derive(Debug, Clone, Serialize, Deserialize)]
             pub struct [<$name Boxed>](pub Box<$name>);
 
             impl [<$name Boxed>] {
@@ -41,16 +42,18 @@ macro_rules! rvm_boxed {
     };
 }
 
-#[derive(Debug, Clone, RvmTypeInfo)]
+#[serde_as]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x04E8CA7D)]
 pub struct RvmSerializedDb_ns_Dx11SerializedBlendState {
+    #[serde_as(as = "Bytes")]
     pub data: [u8; 0x80],
 }
 
 rvm_boxed!(RvmSerializedDb_ns_Dx11SerializedBlendState);
 
-#[derive(Debug, Clone, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x0B87FA95)]
 pub struct RvmSerializedDb_ns_Vec {
@@ -60,14 +63,14 @@ pub struct RvmSerializedDb_ns_Vec {
     pub w: f32,
 }
 
-#[derive(Debug, Clone, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x1CEE5632)]
 pub struct RvmLegacyLightMapInstance {
     pub data: [u8; 0x20],
 }
 
-#[derive(Debug, Clone, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x23166F15)]
 pub struct RvmSerializedDb_ns_Dx11VsShader {
@@ -78,7 +81,7 @@ pub struct RvmSerializedDb_ns_Dx11VsShader {
     pub unk3: u64,
 }
 
-#[derive(Debug, Clone, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x2EFE3369)]
 pub struct RvmSerializedDb_ns_SerializedParamDbKey {
@@ -88,63 +91,73 @@ pub struct RvmSerializedDb_ns_SerializedParamDbKey {
     pub legacy_high: u16,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[serde_as]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x7416FA4F)]
 pub struct RvmSerializedDb_ns_ProjectionState {
-    pub matrix: Mat4,
+    pub matrix: [f32; 16],
+    #[serde_as(as = "Bytes")]
     pub rest: [u8; 0x50],
 }
 
 rvm_boxed!(RvmSerializedDb_ns_ProjectionState);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xAB6472B8)]
 pub struct RvmSerializedDb_ns_StencilState {
     pub data: [u8; 0x10],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[serde_as]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xC60DCB0D)]
 pub struct RvmSerializedDb_ns_Dx11Sampler {
+    #[serde_as(as = "Bytes")]
     pub data: [u8; 0x40],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+rvm_boxed!(RvmSerializedDb_ns_Dx11Sampler);
+
+#[serde_as]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xDA99C37E)]
 pub struct RvmLegacyLightProbes {
+    #[serde_as(as = "Bytes")]
     pub data: [u8; 0x90],
 }
 
 rvm_boxed!(RvmLegacyLightProbes);
 
-#[derive(Debug, RvmTypeInfo)]
+#[serde_as]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xF0F92EDF)]
 pub struct RvmSerializedDb_ns_ViewState {
+    #[serde_as(as = "Bytes")]
     pub data: [u8; 0x140],
 }
 
 rvm_boxed!(RvmSerializedDb_ns_ViewState);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x01EC4994)]
 pub struct RvmSerializedDb_ns_DefaultValueRef {
     pub hash: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x0247D1B0)]
 pub struct RvmSerializedDb_ns_InstructionBatchRef {
     pub hash: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x057BA51E)]
 pub struct RvmSerializedDb_ns_Dx11ApplyParametersBlock {
@@ -152,7 +165,7 @@ pub struct RvmSerializedDb_ns_Dx11ApplyParametersBlock {
     pub rvm_slot_handle: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x0746CEFA)]
 pub struct RvmSerializedDb_ns_RvmPermutation {
@@ -168,12 +181,12 @@ pub struct RvmSerializedDb_ns_RvmPermutation {
     pub rvm_dispatch: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x0CC971F4)]
 pub struct RvmSerializedDb_ns_Int64(i64);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x0D9B2921)]
 pub struct RvmSerializedDb_ns_InstructionBatch {
@@ -183,7 +196,7 @@ pub struct RvmSerializedDb_ns_InstructionBatch {
     pub unk2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x140AFC4E)]
 pub struct RvmSerializedDb_ns_RvmFunction {
@@ -195,7 +208,7 @@ pub struct RvmSerializedDb_ns_RvmFunction {
     pub param_db_serialized_filter_view: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x16FDAA58)]
 pub struct RvmSerializedDb_ns_InstanceTableAssemblyInstructionBatchData {
@@ -204,7 +217,7 @@ pub struct RvmSerializedDb_ns_InstanceTableAssemblyInstructionBatchData {
     pub unk1: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x20149F19)]
 pub struct RvmSerializedDb_ns_SurfaceShader {
@@ -222,7 +235,7 @@ pub struct RvmSerializedDb_ns_SurfaceShader {
     pub guid: Guid,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x26B25214)]
 pub struct RvmSerializedDb_ns_Dx11LegacyVertexBufferConversionInstructionData {
@@ -233,7 +246,7 @@ pub struct RvmSerializedDb_ns_Dx11LegacyVertexBufferConversionInstructionData {
     pub unk4: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x2A49CA57)]
 pub struct RvmSerializedDb_ns_SerializedParameterBlock {
@@ -242,7 +255,7 @@ pub struct RvmSerializedDb_ns_SerializedParameterBlock {
     pub unk1: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x364CB5D9)]
 pub struct RvmSerializedDb_ns_RvmFunctionInputTableIndices {
@@ -250,7 +263,7 @@ pub struct RvmSerializedDb_ns_RvmFunctionInputTableIndices {
     pub hash: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x500FE453)]
 pub struct RvmSerializedDb_ns_Dx11PsShader {
@@ -259,7 +272,7 @@ pub struct RvmSerializedDb_ns_Dx11PsShader {
     pub unk2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x5E9D8F4B)]
 pub struct RvmSerializedDb_ns_Dx11HsShader {
@@ -268,23 +281,25 @@ pub struct RvmSerializedDb_ns_Dx11HsShader {
     pub unk2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x609E0E06)]
 pub struct RvmSerializedDb_ns_SerializedParameterBlockRef {
     pub hash: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[serde_as]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x687DB53F)]
 pub struct RvmSerializedDb_ns_Dx11BlendStateData {
-    pub dx11_serialized_blend_states: [u64; 512],
+    #[serde_as(as = "Bytes")]
+    pub dx11_serialized_blend_states: [u8; 4096],
 }
 
 rvm_boxed!(RvmSerializedDb_ns_Dx11BlendStateData);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x6D3403B6)]
 pub struct RvmSerializedDb_ns_DirectInputInstructionData {
@@ -293,7 +308,7 @@ pub struct RvmSerializedDb_ns_DirectInputInstructionData {
     pub unk2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x6FBE3136)]
 pub struct RvmSerializedDb_ns_Dx11TextureConversionInstructionData {
@@ -301,7 +316,7 @@ pub struct RvmSerializedDb_ns_Dx11TextureConversionInstructionData {
     pub rvm_slot_handle2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x7091E0C7)]
 pub struct RvmSerializedDb_ns_Dx11DsShader {
@@ -310,7 +325,7 @@ pub struct RvmSerializedDb_ns_Dx11DsShader {
     pub unk2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x77CB507F)]
 pub struct RvmSerializedDb_ns_ValueRef {
@@ -318,14 +333,14 @@ pub struct RvmSerializedDb_ns_ValueRef {
     pub unk1: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x7B05DCCB)]
 pub struct RvmSerializedDb_ns_RvmPermutationRef {
     pub hash: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x7B05F918)]
 pub struct RvmSerializedDb_ns_RvmPermutationSet {
@@ -347,14 +362,14 @@ pub struct RvmSerializedDb_ns_RvmPermutationSet {
     pub param_db_serialized_hash_view_ref: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x8487EB54)]
 pub struct RvmSerializedDb_ns_ShaderStreamableTextureRef {
     pub hash: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x8FD7EA81)]
 pub struct RvmSerializedDb_ns_ParamDbSerializedHashView {
@@ -363,7 +378,7 @@ pub struct RvmSerializedDb_ns_ParamDbSerializedHashView {
     pub unk3: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x9005919C)]
 pub struct RvmSerializedDb_ns_RvmDispatch {
@@ -373,7 +388,7 @@ pub struct RvmSerializedDb_ns_RvmDispatch {
     pub unk3: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x937C3AE7)]
 pub struct RvmSerializedDb_ns_RvmFunctionInstance {
@@ -382,14 +397,14 @@ pub struct RvmSerializedDb_ns_RvmFunctionInstance {
     pub combined_serialized_parameter_block: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x950FBF90)]
 pub struct RvmSerializedDb_ns_ParamDbSerializedHashViewRef {
     pub hash: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x9940EC93)]
 pub struct RvmSerializedDb_ns_ParamDbSerializedFilterView {
@@ -397,14 +412,14 @@ pub struct RvmSerializedDb_ns_ParamDbSerializedFilterView {
     pub unk2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x99DB2C67)]
 pub struct RvmSerializedDb_ns_RuntimeInstantiatedType {
     pub rtti_type: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xB46704F1)]
 pub struct RvmSerializedDb_ns_Dx11InputElement {
@@ -418,7 +433,7 @@ pub struct RvmSerializedDb_ns_Dx11InputElement {
     pub instance_data_step_rate: u32,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xC4450BB2)]
 pub struct RvmSerializedDb_ns_CombinedSerializedParameterBlock {
@@ -426,7 +441,7 @@ pub struct RvmSerializedDb_ns_CombinedSerializedParameterBlock {
     pub hash2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xC82F8081)]
 pub struct RvmSerializedDb_ns_ParamDbSerializedReadView {
@@ -434,7 +449,7 @@ pub struct RvmSerializedDb_ns_ParamDbSerializedReadView {
     pub unk2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xCE79D69F)]
 pub struct RvmSerializedDb_ns_Dx11ApplyParametersInstructionData {
@@ -442,21 +457,21 @@ pub struct RvmSerializedDb_ns_Dx11ApplyParametersInstructionData {
     pub hash2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xD247D436)]
 pub struct RvmSerializedDb_ns_RvmFunctionInstanceRef {
     pub hash: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xD43A4A5E)]
 pub struct RvmSerializedDb_ns_ParamDbHash {
     pub hash: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xD5F9FA09)]
 pub struct RvmSerializedDb_ns_Dx11BufferConversionInstructionData {
@@ -464,7 +479,7 @@ pub struct RvmSerializedDb_ns_Dx11BufferConversionInstructionData {
     pub rvm_slot_handle2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xDAE7CC60)]
 pub struct RvmSerializedDb_ns_Settings {
@@ -474,14 +489,14 @@ pub struct RvmSerializedDb_ns_Settings {
     pub hash1: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xDD2446A9)]
 pub struct RvmSerializedDb_ns_ShaderStreamableExternalTextureRef {
     pub hash: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xDF7CA221)]
 pub struct RvmSerializedDb_ns_Dx11DispatchInstructionData {
@@ -489,14 +504,14 @@ pub struct RvmSerializedDb_ns_Dx11DispatchInstructionData {
     pub rvm_slot_handle2: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xDFA807CA)]
 pub struct RvmSerializedDb_ns_ParamDbKeyRef {
     pub hash: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xF17B1BA6)]
 pub struct RvmSerializedDb_ns_RttiType {
@@ -504,7 +519,7 @@ pub struct RvmSerializedDb_ns_RttiType {
     pub name: u64,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xFBB62E91)]
 pub struct RvmSerializedDb_ns_TableAssemblyInstructionBatchData {
@@ -514,7 +529,7 @@ pub struct RvmSerializedDb_ns_TableAssemblyInstructionBatchData {
 }
 
 /// Probably related to the 4 shader types (vs, ps, hs, ds)
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xFDF2A466)]
 pub struct RvmSerializedDb_ns_RvmPermutationLookupTable {
@@ -524,17 +539,17 @@ pub struct RvmSerializedDb_ns_RvmPermutationLookupTable {
     pub unk4: u16,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x0CC97257)]
 pub struct RvmSerializedDb_ns_Int32(i32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x191C1D07)]
 pub struct RvmSerializedDb_ns_ShaderDepthBiasGroup(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x1E5FBC18)]
 pub struct RvmSerializedDb_ns_ShaderStreamableExternalTexture {
@@ -546,22 +561,22 @@ pub struct RvmSerializedDb_ns_ShaderStreamableExternalTexture {
     pub external_hash: u32,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x1ECE9401)]
 pub struct RvmSerializedDb_ns_RenderDepthMode(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x2DD5FBAB)]
 pub struct RvmSerializedDb_ns_RvmLegacyOutdoorLightStatus(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x3AD97822)]
 pub struct RvmSerializedDb_ns_RvmLevelOfDetail(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x518DED45)]
 pub struct RvmSerializedDb_ns_ShaderStreamableTexture {
@@ -573,260 +588,272 @@ pub struct RvmSerializedDb_ns_ShaderStreamableTexture {
     pub external_hash: u32,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x6C42BB1C)]
 pub struct RvmSerializedDb_ns_InstanceTableAssemblyData {
     pub data: [u8; 0x0C],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x7F39A7B4)]
 pub struct RvmSerializedDb_ns_Float(f32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x85EA841F)]
 pub struct RvmSerializedDb_ns_ShaderInstancingMethod(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x921C7685)]
 pub struct RvmSerializedDb_ns_ShaderRenderMode(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x963FC9FC)]
 pub struct RvmSerializedDb_ns_PrimitiveType(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xAB211D82)]
 pub struct RvmSerializedDb_ns_ShaderSkinningMethod(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xB0BC3C22)]
 pub struct RvmSerializedDb_ns_Uint32(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xCBEB8BF2)]
 pub struct RvmSerializedDb_ns_ShaderGeometrySpace(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xD80E5015)]
 pub struct RvmSerializedDb_ns_TableAssemblyData {
     pub data: [u8; 0x14],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[serde_as]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xD946931E)]
 pub struct RvmSerializedDb_ns_DepthBiasGroupData {
+    #[serde_as(as = "Bytes")]
     pub data: [u8; 0x88],
 }
 
 rvm_boxed!(RvmSerializedDb_ns_DepthBiasGroupData);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xDF54A891)]
 pub struct RvmSerializedDb_ns_IndexBufferFormat(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xF004D71E)]
 pub struct RvmSerializedDb_ns_QualityLevel(u32);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x024C0AA3)]
 pub struct RvmSerializedDb_ns_PackLightMapWeightIntoInstanceInstructionData {
     pub data: [u8; 0x0C],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x30FEB5EB)]
 pub struct RvmSerializedDb_ns_Dx11ViewStateInstructionData {
     pub data: [u8; 0x14],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x373F60B2)]
 pub struct RvmLegacyInstructions_ns_LegacyInstructionData {
     pub data: [u8; 0x14],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x38349F07)]
 pub struct RvmSerializedDb_ns_WriteOp {
     pub data: [u8; 8],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x3EC9F4C9)]
 pub struct RvmSerializedDb_ns_CpuToGpuMatrixInstructionData {
     pub data: [u8; 8],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x3FFF936C)]
 pub struct RvmSerializedDb_ns_LodFadeInstructionData {
     pub data: [u8; 0x14],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[serde_as]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x48EF6EC8)]
 pub struct RvmSerializedDb_ns_Dx11ShaderDispatchDrawInstructionData {
+    #[serde_as(as = "Bytes")]
     pub data: [u8; 0x24],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x4CC78E74)]
 pub struct RvmSerializedDb_ns_DefaultValueSimpleTexture {
     pub data: [u8; 4],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x577F1194)]
 pub struct RvmSerializedDb_ns_PreparedVertexStream {
     pub data: [u8; 0x0C],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x6034ECD0)]
 pub struct RvmSerializedDb_ns_RvmContextSortKeyInfo {
     pub index: u32,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x64670697)]
 pub struct RvmSerializedDb_ns_OffsetTranslationInMatrixInstructionData {
     pub data: [u8; 0x0C],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x6589C9E2)]
 pub struct RvmSerializedDb_ns_RvmSlotHandle {
     pub unk1: u32,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x8FD6EAC0)]
 pub struct RvmSerializedDb_ns_VectorSubtractInstructionData {
     pub data: [u8; 0x0C],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[serde_as]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xAFD54D5E)]
 pub struct RvmSerializedDb_ns_TessellationParametersInstructionData {
+    #[serde_as(as = "Bytes")]
     pub data: [u8; 0x38],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+rvm_boxed!(RvmSerializedDb_ns_TessellationParametersInstructionData);
+
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xB0BC3C64)]
 pub struct RvmSerializedDb_ns_Uint16(u16);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xB1FA00E2)]
 pub struct RvmSerializedDb_ns_DefaultValueZeroMem {
     pub data: [u8; 2],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[serde_as]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xCBC56BCA)]
 pub struct RvmSerializedDb_ns_Dx11LegacyDrawStateBuilderData {
+    #[serde_as(as = "Bytes")]
     pub data: [u8; 0x54],
 }
 
 rvm_boxed!(RvmSerializedDb_ns_Dx11LegacyDrawStateBuilderData);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xE18E74EB)]
 pub struct RvmSerializedDb_ns_DefaultValueSimpleBuffer {
     pub data: [u8; 2],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0xFF1CDF1E)]
 pub struct RvmSerializedDb_ns_SliceCountInstructionData {
     pub unk1: u32,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x0D1CFA1B)]
 pub struct RvmSerializedDb_ns_Uint8(u8);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x5AF184F7)]
 pub struct RvmSerializedDb_ns_DefaultValueStructLegacyData {
     pub unk1: u8,
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[serde_as]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x602A31A0)]
 pub struct RvmSerializedDb_ns_Dx11ByteCodeElement {
+    #[serde_as(as = "Bytes")]
     pub data: [u8; 0x100],
 }
 
 rvm_boxed!(RvmSerializedDb_ns_Dx11ByteCodeElement);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x685C8B18)]
 pub struct RvmSerializedDb_ns_WriteOpGroup {
     pub unk1: [u8; 3],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x7C70E6DD)]
 pub struct RvmSerializedDb_ns_Char(u8);
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x920A778E)]
 pub struct RvmSerializedDb_ns_BaseShaderState {
     pub data: [u8; 6],
 }
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(0x9638B221)]
 pub struct RvmSerializedDb_ns_Boolean(pub bool);
 
 // RVM NV (NVidia?) Types
 
-#[derive(Debug, RvmTypeInfo)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeInfo)]
 #[repr(C)]
 #[hash(2051034773)]
 pub struct RvmSerializedDb_ns_NvShadowMapRenderType(pub u32);
 
-#[derive(Debug, RvmTypeEnum, IntoStaticStr)]
+#[derive(Debug, Clone, Serialize, Deserialize, RvmTypeEnum, IntoStaticStr)]
 pub enum RvmType {
     Dx11SerializedBlendState(RvmSerializedDb_ns_Dx11SerializedBlendStateBoxed),
     Vec(RvmSerializedDb_ns_Vec),
@@ -835,7 +862,7 @@ pub enum RvmType {
     SerializedParamDbKey(RvmSerializedDb_ns_SerializedParamDbKey),
     ProjectionState(RvmSerializedDb_ns_ProjectionStateBoxed),
     StencilState(RvmSerializedDb_ns_StencilState),
-    Dx11Sampler(RvmSerializedDb_ns_Dx11Sampler),
+    Dx11Sampler(RvmSerializedDb_ns_Dx11SamplerBoxed),
     LegacyLightProbes(RvmLegacyLightProbesBoxed),
     ViewState(RvmSerializedDb_ns_ViewStateBoxed),
     DefaultValueRef(RvmSerializedDb_ns_DefaultValueRef),
@@ -921,7 +948,9 @@ pub enum RvmType {
     ),
     RvmSlotHandle(RvmSerializedDb_ns_RvmSlotHandle),
     VectorSubtractInstructionData(RvmSerializedDb_ns_VectorSubtractInstructionData),
-    TessellationParametersInstructionData(RvmSerializedDb_ns_TessellationParametersInstructionData),
+    TessellationParametersInstructionData(
+        RvmSerializedDb_ns_TessellationParametersInstructionDataBoxed,
+    ),
     Uint16(RvmSerializedDb_ns_Uint16),
     DefaultValueZeroMem(RvmSerializedDb_ns_DefaultValueZeroMem),
     Dx11LegacyDrawStateBuilderData(RvmSerializedDb_ns_Dx11LegacyDrawStateBuilderDataBoxed),

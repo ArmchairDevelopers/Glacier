@@ -416,8 +416,9 @@ impl RvmDependencyVisitor for RvmSerializedDb_ns_DirectInputInstructionData {
 
 impl RvmDependencyVisitor for RvmSerializedDb_ns_Dx11BlendStateDataBoxed {
     fn visit(&self, _db: &RvmTypeDatabase, out: &mut Vec<u64>) {
-        for hash in &self.0.dx11_serialized_blend_states {
-            out.push(hash_from_binary(*hash));
+        for hash_bytes in self.0.dx11_serialized_blend_states.chunks(8) {
+            let hash = u64::from_le_bytes(hash_bytes.try_into().unwrap());
+            out.push(hash_from_binary(hash));
         }
     }
 }

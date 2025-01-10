@@ -200,7 +200,9 @@ impl<'a, T: DbxWriterImportResolver> DbxPartitionWriter<'a, T> {
             attributes.push(("exported".to_owned(), "True".to_owned()));
         }
 
-        writer.write_open_tag("instance", attributes, true, false).await?;
+        writer
+            .write_open_tag("instance", attributes, true, false)
+            .await?;
 
         self.write_fields(writer, &new_instance, None, &mut *instance, 0, type_info)
             .await?;
@@ -579,7 +581,7 @@ impl<'a, T: DbxWriterImportResolver> DbxPartitionWriter<'a, T> {
 
                                 // We should use tag_attr! here, but the reader doesn't support
                                 // fields without explicit ending tags yet
-                                
+
                                 open_tag_attr!("item", false, reference);
                                 writer.write_close_tag().await?;
                             }
@@ -715,7 +717,7 @@ impl<'a, T: DbxWriterImportResolver> DbxPartitionWriter<'a, T> {
             vec![
                 (
                     "ref".to_owned(),
-                    format!("{}/{}", partition_name, instance_guid),
+                    format!("{}/{}", partition_name.to_lowercase(), instance_guid),
                 ),
                 ("partitionGuid".to_owned(), partition_guid.to_string()),
             ]

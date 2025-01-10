@@ -294,7 +294,7 @@ impl Debug for HeightfieldTreeNode {
 fn get_min_max_level_offset(minMaxStackDepth: u32) -> u32 {
     let mut result = 0;
 
-    let minMaxWidth = (1 << (minMaxStackDepth - 1));
+    let minMaxWidth = 1 << (minMaxStackDepth - 1);
     for i in 0..minMaxStackDepth {
         result = result + (minMaxWidth >> i) * (minMaxWidth >> i) * 2;
     }
@@ -305,7 +305,7 @@ fn get_min_max_level_offset(minMaxStackDepth: u32) -> u32 {
 fn get_occluder_level_offset(occluderGridStackDepth: u32) -> u32 {
     let mut result = 0;
 
-    let occluder_grid_width_minus_one = (1 << (occluderGridStackDepth - 1));
+    let occluder_grid_width_minus_one = 1 << (occluderGridStackDepth - 1);
     for i in 0..occluderGridStackDepth {
         let occluderGridLevelWidth = (occluder_grid_width_minus_one >> i) + 1;
         result = result + occluderGridLevelWidth * occluderGridLevelWidth;

@@ -1,46 +1,12 @@
-use std::{collections::HashMap, hash::BuildHasherDefault};
+use std::collections::HashMap;
 
 use types::RvmType;
 
+pub mod pipeline;
 pub mod reader;
 pub mod types;
 
 pub const RVM_HASH_MASK_LE: u64 = 0xffffffffff000000;
-
-mod simple {
-    use std::hash::Hasher;
-    pub struct SimpleHasher(u64);
-
-    #[inline]
-    fn load_u64_le(buf: &[u8], len: usize) -> u64 {
-        use std::ptr;
-        debug_assert!(len <= buf.len());
-        let mut data = 0u64;
-        unsafe {
-            ptr::copy_nonoverlapping(buf.as_ptr(), &mut data as *mut _ as *mut u8, len);
-        }
-        data.to_le()
-    }
-
-    impl Default for SimpleHasher {
-        #[inline]
-        fn default() -> SimpleHasher {
-            SimpleHasher(0)
-        }
-    }
-
-    impl Hasher for SimpleHasher {
-        #[inline]
-        fn finish(&self) -> u64 {
-            self.0
-        }
-
-        #[inline]
-        fn write(&mut self, bytes: &[u8]) {
-            *self = SimpleHasher(load_u64_le(bytes, bytes.len()));
-        }
-    }
-}
 
 pub type RvmBlock = Vec<RvmType>;
 
@@ -53,7 +19,7 @@ impl RvmTypeDatabase {
     pub fn new() -> Self {
         Self {
             blocks: HashMap::new(),
-            blocks_by_type_hash: HashMap::new()
+            blocks_by_type_hash: HashMap::new(),
         }
     }
 

@@ -6,7 +6,7 @@ use glacier_fs::fb::{read_fb_game_data, ConverterContext};
 use glacier_reflect::type_registry::TypeRegistry;
 
 use glacier_store::{domain::DomainStore, index::asset_index::DomainAssetIndex};
-use pipeline::ReversePipeline;
+use pipeline::DataPipeline;
 use tokio::{fs, sync::RwLock};
 use tracing::info;
 
@@ -16,6 +16,7 @@ pub mod ebx_indexing;
 pub mod memory_fs;
 pub mod mutator;
 pub mod pipeline;
+pub mod policy;
 
 pub struct PackagedConversionContext {
     pub source_data_path: PathBuf,
@@ -59,20 +60,6 @@ pub async fn execute(
     ctx: &PackagedConversionContext,
     registry: Arc<TypeRegistry>,
 ) -> Result<(), ReversePipelineError> {
-    let conv_ctx = ConverterContext::new(ctx.source_data_path.clone());
-
-    info!("Initializing game data...");
-
-    let data = Arc::new(
-        read_fb_game_data(conv_ctx)
-            .await
-            .expect("Failed to read game data"),
-    );
-
-    info!("Indexing EBX...");
-
-    //index_ebx(ctx, &registry, &data).await;
-
     info!("Loading indexed partitions...");
 
     let index_data = fs::read(ctx.state_data_path().await.join("partition_index"))
@@ -81,10 +68,6 @@ pub async fn execute(
     let asset_index = Arc::new(RwLock::new(
         DomainAssetIndex::load(&index_data).unwrap(),
     ));
-
-    info!("Converting EBX...");
-
-    //convert_ebx(ctx, &asset_index, &registry, &data).await;
 
     info!("Initializing pipeline...");
 
@@ -95,7 +78,7 @@ pub async fn execute(
         "Source",
     ));
 
-    let pipeline = ReversePipeline::new(domain.clone(), data.clone(), false);
+    let pipeline = DataPipeline::new(domain.clone(), data.clone(), false);
     pipeline.run_mutators().await;
 
     info!("Initializing bundle breaker...");
