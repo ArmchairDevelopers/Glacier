@@ -75,11 +75,9 @@ pub async fn execute(
 
     info!("Loading indexed partitions...");
 
-    let path = ctx.state_data_path().await.join("partition_index");
-    info!("Index path: {:?}", path);
     let index_data = fs::read(ctx.state_data_path().await.join("partition_index"))
         .await
-        .expect("Failed to write indexed partitions");
+        .expect("Failed to read indexed partitions");
     let asset_index = Arc::new(RwLock::new(
         DomainAssetIndex::load(&index_data).unwrap(),
     ));
