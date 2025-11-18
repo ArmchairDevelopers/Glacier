@@ -75,8 +75,8 @@ pub struct ReversePipeline {
 impl ReversePipeline {
     pub fn new(domain: Arc<DomainStore>, game_data: Arc<FrostbiteGameData>, dry_run: bool) -> Self {
         let mut asset_mutators: Vec<Arc<dyn PipelineAssetMutator>> = Vec::new();
-        //asset_mutators.push(Arc::new(BlueprintMutator));
-        //asset_mutators.push(Arc::new(ClassInfoAssetMutator));
+        asset_mutators.push(Arc::new(BlueprintMutator));
+        asset_mutators.push(Arc::new(ClassInfoAssetMutator));
         asset_mutators.push(Arc::new(LevelDescriptionMutator));
         asset_mutators.push(Arc::new(MeshVariationDatabaseMutator));
         asset_mutators.push(Arc::new(NetworkRegistryMutator));
@@ -99,7 +99,7 @@ impl ReversePipeline {
 
     pub async fn run_mutators(&self) {
         for mutator in &self.asset_mutators {
-            //self.run_asset_mutator(mutator).await;
+            self.run_asset_mutator(mutator).await;
         }
 
         for mutator in &self.resource_mutators {
