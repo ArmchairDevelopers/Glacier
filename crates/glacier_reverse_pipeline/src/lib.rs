@@ -71,10 +71,12 @@ pub async fn execute(
 
     info!("Indexing EBX...");
 
-    //index_ebx(ctx, &registry, &data).await;
+    index_ebx(ctx, &registry, &data).await;
 
     info!("Loading indexed partitions...");
 
+    let path = ctx.state_data_path().await.join("partition_index");
+    info!("Index path: {:?}", path);
     let index_data = fs::read(ctx.state_data_path().await.join("partition_index"))
         .await
         .expect("Failed to write indexed partitions");
@@ -84,7 +86,7 @@ pub async fn execute(
 
     info!("Converting EBX...");
 
-    //convert_ebx(ctx, &asset_index, &registry, &data).await;
+    convert_ebx(ctx, &asset_index, &registry, &data).await;
 
     info!("Initializing pipeline...");
 
