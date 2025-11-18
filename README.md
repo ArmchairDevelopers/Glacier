@@ -4,7 +4,7 @@
 <h4 align="center">Glacier is a tool for working with STAR WARS™ Battlefront™ II (2017) game data.</h4>
 <br>
 <p align="center">
-  <a href="https://x.com/KyberServers"><img src="https://img.shields.io/badge/Twitter-@KyberServers-1da1f2.svg?logo=twitter"></a>
+  <a href="https://x.com/BattleDashDev"><img src="https://img.shields.io/badge/Twitter-@BattleDashDev-1da1f2.svg?logo=twitter"></a>
   <a href="https://discord.gg/kyber">
       <img src="https://img.shields.io/discord/305338604316655616.svg?label=Discord&logo=discord&color=778cd4">
   </a>
