@@ -15,5 +15,7 @@ impl DomainStoreStack {
         self.stack.push(store);
     }
 
-    pub fn load
+    pub fn load(&mut self) -> Option<&mut DomainStore> {
+        self.stack.last_mut()
+    }
 }

@@ -2,7 +2,6 @@ use std::{
     collections::{HashMap, HashSet},
     sync::Arc,
 };
-use std::borrow::Cow;
 use glacier_fs::dbx::writer::DbxWriterImportResolver;
 use glacier_util::{guid::Guid, hash::QuickHashExt};
 use serde::{Deserialize, Serialize};
@@ -33,8 +32,10 @@ pub struct DomainAssetIndexEntrySimplified {
     pub primary_type_hash: u32,
 }
 
-pub struct DomainAssetIndex<'a> {
-    parent: Option<Cow<'a, DomainAssetIndex<'a>>>,
+#[derive(Deserialize, Serialize, Clone)]
+pub struct DomainAssetIndex {
+    #[serde(skip)]
+    parent: Option<Arc<DomainAssetIndex>>,
 
     by_name: HashMap<String, Guid>, // Map name to partition GUID
     by_name_hash: HashMap<u32, Guid>, // Map name hash to partition GUID
@@ -42,7 +43,7 @@ pub struct DomainAssetIndex<'a> {
     by_type: HashMap<u32, HashSet<Guid>>, // Map instance type hash to partition GUIDs
 }
 
-impl<'a> DomainAssetIndex {
+impl DomainAssetIndex {
     pub fn new() -> Self {
         Self {
             parent: None,
@@ -88,7 +89,7 @@ impl<'a> DomainAssetIndex {
         }
     }
 
-    pub fn set_parent(&mut self, parent: Cow<'a, DomainAssetIndex<'a>>) {
+    pub fn set_parent(&mut self, parent: Arc<DomainAssetIndex>) {
         self.parent = Some(parent);
     }
 
@@ -231,7 +232,7 @@ impl<'a> DomainAssetIndex {
 }
 
 pub struct AssetIndexDbxWriterImportResolver {
-    index: Arc<RwLock<DomainAssetIndex<'static>>>,
+    index: Arc<RwLock<DomainAssetIndex>>,
     imported_partitions: RwLock<HashSet<Guid>>,
 }
 
