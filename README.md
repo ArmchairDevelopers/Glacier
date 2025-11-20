@@ -1,7 +1,7 @@
 <p align="center">
 <img src="https://s3.kyber.gg/frontend-assets/icons/armc-glacier-logo-default.svg" width="250rem;">
 </p>
-<h4 align="center">project.glacier (GLACIER) is a tool for working with STAR WARS™ Battlefront™ II (2017) game data.</h4>
+<h4 align="center">GLACIER is a tool for working with STAR WARS™ Battlefront™ II (2017) game data.</h4>
 <br>
 <p align="center">
   <a href="https://x.com/BattleDashDev"><img src="https://img.shields.io/badge/Twitter-@BattleDashDev-1da1f2.svg?logo=twitter"></a>
